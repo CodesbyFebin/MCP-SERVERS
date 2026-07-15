@@ -100,14 +100,24 @@ export const pillars: Pillar[] = [
     faqCluster: "mcp-government-education",
     related: ["mcp-industry-ecommerce", "mcp-industry-fintech", "mcp-monitoring-security-observability"]
   },
-  {
-    slug: "mcp-monitoring-security-observability",
-    title: "Monitoring, Security & Observability",
-    subtitle: "Grafana Dashboards, mcp‑pulse monitoring, and enterprise security for Indian deployments.",
-    shortAnswer: "MCP monitoring, security, and observability solutions for India include Grafana dashboards, mcp‑pulse monitoring tools, and comprehensive security scanners. These tools ensure compliance with Indian regulations, provide real-time performance monitoring, and enable incident response across diverse MCP deployments from Bengaluru to global edge locations.",
-    description: "Monitoring, security, and observability for MCP servers in India require specialized tools that address local regulatory requirements and operational challenges. Grafana dashboards, mcp‑pulse monitoring, and enterprise security solutions provide comprehensive visibility into MCP performance, ensure compliance with Indian data protection laws, and enable rapid incident response across distributed deployments.",
-    primaryKeyword: "mcp monitoring security observability india",
-    faqCluster: "mcp-monitoring-security",
-    related: ["mcp-deployment-hosting", "mcp-security-compliance", "mcp-industry-fintech"]
-  }
+   {
+     slug: "mcp-monitoring-security-observability",
+     title: "Monitoring, Security & Observability",
+     subtitle: "Grafana Dashboards, mcp‑pulse monitoring, and enterprise security for Indian deployments.",
+     shortAnswer: "MCP monitoring, security, and observability solutions for India include Grafana dashboards, mcp‑pulse monitoring tools, and comprehensive security scanners. These tools ensure compliance with Indian regulations, provide real-time performance monitoring, and enable incident response across diverse MCP deployments from Bengaluru to global edge locations.",
+     description: "Monitoring, security, and observability for MCP servers in India require specialized tools that address local regulatory requirements and operational challenges. Grafana dashboards, mcp‑pulse monitoring, and enterprise security solutions provide comprehensive visibility into MCP performance, ensure compliance with Indian data protection laws, and enable rapid incident response across distributed deployments.",
+     primaryKeyword: "mcp monitoring security observability india",
+     faqCluster: "mcp-monitoring-security",
+     related: ["mcp-deployment-hosting", "mcp-security-compliance", "mcp-industry-fintech"]
+   },
+   {
+     slug: "dppd-data-compliance",
+     title: "DPDP & Data Compliance",
+     subtitle: "Navigate India's Digital Personal Data Protection Act (DPDP) with confidence.",
+     shortAnswer: "The DPDP Act requires MCP servers to implement strict data protection measures including consent management, data localization, and breach notification. Indian businesses must ensure MCP implementations comply with PII detection, audit logging, and provide users with comprehensive data rights.",
+     description: "India's DPDP Act introduces comprehensive data protection requirements that significantly impact MCP server implementations. Businesses must implement robust consent mechanisms, data localization strategies, and comprehensive audit trails to ensure compliance while leveraging MCP's capabilities for secure data processing and integration.",
+     primaryKeyword: "dppd data compliance india",
+     faqCluster: "dppd-compliance",
+     related: ["mcp-server-pricing-india", "mcp-security-compliance", "mcp-deployment-hosting"]
+   }
 ];
