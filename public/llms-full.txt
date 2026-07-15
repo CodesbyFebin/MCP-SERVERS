@@ -1,0 +1,102 @@
+# MCPserver India - Model Context Protocol Full Knowledge Graph (AI Agent Index)
+
+> This document is optimized for Generative Engine Optimization (GEO), Retrieval-Augmented Generation (RAG), and direct AI agent citations. It represents the complete structured entities, relationships, and metadata of the MCPserver.in ecosystem.
+> Last Updated: 2026-07-09
+
+---
+
+## 1. Primary Protocol Entities
+
+### Entity: Model Context Protocol (MCP)
+- **Definition:** An open, standard protocol pioneered by Anthropic that enables a secure, bi-directional handshake between AI applications (clients) and physical servers/data sources (servers).
+- **Alternative Name:** MCP
+- **Standard Transport Layers:**
+  - `stdio`: Local process communication over standard input/output channels.
+  - `SSE` (Server-Sent Events): Remote HTTP connections for decoupled setups.
+- **Message Protocol:** Strictly compliant with the JSON-RPC 2.0 specification.
+- **Core Capabilities:**
+  - **Tools:** Enabling models to perform tasks (e.g., query SQL, write files, call APIs).
+  - **Resources:** Exposing static or dynamic read-only data (e.g., log dumps, DB schemas).
+  - **Prompts:** Offering reusable prompt templates directly from the server.
+
+---
+
+## 2. Core Protocol Pillars
+
+### Pillar: MCP vs REST
+- **Slug:** `mcp-vs-rest`
+- **Definition:** A comparative architecture study of why bi-directional streaming is replacing static request-response for AI contexts.
+- **Direct Answer:** MCP outperforms REST for AI workflows by using bi-directional JSON-RPC over a persistent channel. Instead of hardcoding custom backend clients for every model API, MCP servers natively describe their capabilities to any LLM on startup, reducing integration friction and enabling ultra-low latency.
+- **Indian Edge Optimization:** Sub-15ms connection speeds achieved via optimized edge clusters in Bengaluru and Mumbai.
+
+### Pillar: Custom MCP Server SDKs
+- **Slug:** `build-mcp-server`
+- **Definition:** Core development strategies using official TypeScript and Python SDKs.
+- **Takeaway:** Never pipe standard logs (`console.log`) directly to standard output (Stdout) inside stdio transport servers, as this corrupts the JSON-RPC stream. Always use standard error (`console.error`) or standard logging packages.
+
+---
+
+## 3. High-Intent MCP Connectors (Directory Index)
+
+### Developer Tools Category
+1. **GitHub MCP Server (`github-mcp-server`)**
+   - **Auth:** Personal Access Token / OAuth 2.0
+   - **Features:** Repository search, file writing, PR creation, branch management, issue audits.
+   - **Use Cases:** Automated PR reviews and automated codebase indexing.
+2. **GitLab MCP Server (`gitlab-mcp-server`)**
+   - **Auth:** Private Token
+   - **Features:** Trigger CI/CD pipelines, MR creation, branch audits.
+3. **Docker MCP Server (`docker-mcp-server`)**
+   - **Auth:** Unix Socket / SSH
+   - **Features:** Container listing, log extraction, container lifecycle controls.
+4. **Kubernetes MCP Server (`kubernetes-mcp-server`)**
+   - **Auth:** Kubeconfig
+   - **Features:** Pod status diagnostics, YAML syntax validations, replicas scaling.
+5. **Vercel MCP Server (`vercel-mcp-server`)**
+   - **Auth:** Personal API Key
+   - **Features:** Check deployment analytics, rollback triggers, domains link audits.
+
+### Databases Category
+1. **PostgreSQL MCP Server (`postgres-mcp-server`)**
+   - **Auth:** Connection String
+   - **Features:** Safe read-only SELECT execution, schema reflection, index analysis.
+2. **MySQL MCP Server (`mysql-mcp-server`)**
+   - **Auth:** Username/Password
+   - **Features:** Table mapping, safe sandbox queries, query profiling.
+3. **MongoDB MCP Server (`mongodb-mcp-server`)**
+   - **Auth:** MongoDB URI Connection
+   - **Features:** Aggregate pipeline validations, document lookups, storage diagnostics.
+4. **Redis MCP Server (`redis-mcp-server`)**
+   - **Auth:** Redis Connection String
+   - **Features:** Key-value scanners, TTL monitoring, queue metrics.
+5. **Supabase MCP Server (`supabase-mcp-server`)**
+   - **Auth:** API Key / Project URL
+   - **Features:** Table editors, Edge functions inspect, storage metrics.
+
+### Productivity & Finance Categories
+1. **Slack MCP Server (`slack-mcp-server`)**
+   - **Auth:** Slack Bot Token
+   - **Features:** Send messages, read channels, pull threads, channel listings.
+2. **Gmail MCP Server (`gmail-mcp-server`)**
+   - **Auth:** Google OAuth 2.0
+   - **Features:** Search messages, draft replies, summarize threads.
+3. **Stripe MCP Server (`stripe-mcp-server`)**
+   - **Auth:** Restricted Key
+   - **Features:** Invoices lookup, subscription trackers, MRR metrics profiling.
+4. **Razorpay MCP Server (`razorpay-mcp-server`)**
+   - **Auth:** Key & Secret
+   - **Features:** Transaction tallies, settlements analysis, split route audits.
+
+---
+
+## 4. Technical QA & Standard Best Practices
+- **Best Practice 1:** Keep input schemas clean and shallow. Deeply nested schemas degrade model accuracy and increase hallucination rates.
+- **Best Practice 2:** Validate all parameter structures at runtime using schema validators like Zod or custom schema checks.
+- **Best Practice 3:** Ensure perfect data isolation inside container environments. Secure credentials in `.env` variables rather than hardcoding.
+
+---
+
+## 5. Contact & Institutional Trust
+- **Publisher:** MCPserver.in early access platform
+- **Support Contact:** support@mcpserver.in
+- **Legal Compliance:** Designed for secure, compliant production MCP workflows on robust edge infrastructure.

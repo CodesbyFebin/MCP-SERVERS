@@ -1,0 +1,6 @@
+{
+  "name": "MCPserver.in",
+  "description": "Build, deploy, host, secure, monitor and manage MCP servers from one platform.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

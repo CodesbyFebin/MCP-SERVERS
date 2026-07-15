@@ -1,0 +1,30 @@
+# MCPserver.in - Model Context Protocol Platform
+
+The unified platform to build, deploy, host, secure, monitor and manage Model Context Protocol (MCP) servers globally, optimized for Indian and international developers.
+
+## Core Services
+
+- **Registry & Directory:** Explore over 100+ pre-configured integrations for databases (Postgres, MySQL, Redis, MongoDB), SaaS platforms (GitHub, Slack, Notion, Stripe), and developer utilities (Playwright browser automation).
+- **Managed Container Hosting:** Instantly deploy remote TypeScript or Python servers inside isolated single-tenant Docker containers on our low-latency edge servers in Bengaluru and Mumbai.
+- **Enterprise Security Sandbox:** Safeguard connections with AES-256-GCM zero-knowledge key encryption, rate-limiting, and human-in-the-loop permission prompts.
+
+## Key Developer Paths
+
+- Homepage: `/`
+- Directory: `/mcp-server-directory`
+- Standard Pricing (INR): `/pricing`
+- Documentation: `/docs`
+- Trust & Compliance audited checklist: `/security`
+- Custom Contacts & Support: `/about`
+
+## Educational Capabilities Pillars
+
+- `/what-is-mcp` - Core concept introduction
+- `/mcp-server` - Server parameters, stdio, and SSE
+- `/build-mcp-server` - Custom SDK instructions
+- `/mcp-server-hosting` - Continuous connection architectures
+- `/mcp-gateway` - Proxy and orchestration mechanics
+- `/mcp-security` - Transport layer guidelines
+- `/mcp-integrations` - Connecting to third-party SDKs
+- `/mcp-for-ai-agents` - Claude Desktop, Cursor, and custom orchestrators
+- `/enterprise-mcp` - High-availability enterprise setups

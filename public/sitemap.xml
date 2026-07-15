@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <sitemap>
+    <loc>https://www.mcpserver.in/sitemap-pages.xml</loc>
+    <lastmod>2026-07-15</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://www.mcpserver.in/sitemap-pillars.xml</loc>
+    <lastmod>2026-07-15</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://www.mcpserver.in/sitemap-topics.xml</loc>
+    <lastmod>2026-07-15</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://www.mcpserver.in/sitemap-integrations.xml</loc>
+    <lastmod>2026-07-15</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://www.mcpserver.in/sitemap-glossary.xml</loc>
+    <lastmod>2026-07-15</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://www.mcpserver.in/sitemap-comparisons.xml</loc>
+    <lastmod>2026-07-15</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://www.mcpserver.in/sitemap-categories.xml</loc>
+    <lastmod>2026-07-15</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://www.mcpserver.in/sitemap-images.xml</loc>
+    <lastmod>2026-07-15</lastmod>
+  </sitemap>
+</sitemapindex>

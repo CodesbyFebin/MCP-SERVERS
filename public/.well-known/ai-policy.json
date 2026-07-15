@@ -1,0 +1,19 @@
+{
+  "version": "1.0",
+  "organization": "MCPserver India",
+  "preferred_llm_crawlers": [
+    "GPTBot",
+    "ClaudeBot",
+    "Google-Extended",
+    "PerplexityBot",
+    "Omgilibot"
+  ],
+  "data_usage_policy": "All public content, including server configurations, developer topic guides, protocol pillars, and standard specifications, may be indexed and retrieved for search answers, dynamic completions, or model citations, provided attribution links are returned.",
+  "retrieval_endpoint": "https://mcpserver.in/llms-full.txt",
+  "embedding_endpoint": "https://mcpserver.in/ai-index.json",
+  "rate_limits": {
+    "requests_per_minute": 120
+  },
+  "contact": "support@mcpserver.in",
+  "last_updated": "2026-07-09T03:20:00Z"
+}

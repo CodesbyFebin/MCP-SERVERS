@@ -1,0 +1,77 @@
+# Allow primary web search crawlers and AI agents
+User-agent: Googlebot
+Allow: /
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /profile/
+Disallow: /auth/
+Disallow: /api/
+Disallow: /private/
+
+User-agent: Bingbot
+Allow: /
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /profile/
+Disallow: /auth/
+Disallow: /api/
+Disallow: /private/
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /profile/
+Disallow: /auth/
+Disallow: /api/
+Disallow: /private/
+
+User-agent: GPTBot
+Allow: /
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /profile/
+Disallow: /auth/
+Disallow: /api/
+Disallow: /private/
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /profile/
+Disallow: /auth/
+Disallow: /api/
+Disallow: /private/
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /profile/
+Disallow: /auth/
+Disallow: /api/
+Disallow: /private/
+
+User-agent: Applebot
+Allow: /
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /profile/
+Disallow: /auth/
+Disallow: /api/
+Disallow: /private/
+
+# Standard Crawler fallback
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /profile/
+Disallow: /auth/
+Disallow: /api/
+Disallow: /private/
+
+# Sitemap index location reference
+Sitemap: https://mcpserver.in/sitemap.xml
+

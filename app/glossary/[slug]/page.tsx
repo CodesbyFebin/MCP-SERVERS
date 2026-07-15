@@ -1,0 +1,220 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { glossaryTerms } from "../../../src/data/glossary";
+import Breadcrumbs from "../../../src/components/Breadcrumbs";
+import AnswerBox from "../../../src/components/AnswerBox";
+import AuthorBox from "../../../src/components/AuthorBox";
+import SchemaJsonLd from "../../../src/components/SchemaJsonLd";
+import { notFound } from "next/navigation";
+import { 
+  ArrowLeft, Tag, Info, Cpu, FileText
+} from "lucide-react";
+
+interface PageProps {
+  params: Promise<{ slug: string }>;
+}
+
+export async function generateStaticParams() {
+  return glossaryTerms.map((t) => ({
+    slug: t.slug,
+  }));
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const term = glossaryTerms.find((t) => t.slug === slug);
+  if (!term) {
+    return {
+      title: "Term Not Found",
+    };
+  }
+  return {
+    title: `${term.term} - MCP Glossary Definition - MCPserver.in`,
+    description: term.definition,
+  };
+}
+
+export default async function GlossaryDetailPage({ params }: PageProps) {
+  const { slug } = await params;
+  const term = glossaryTerms.find((t) => t.slug === slug);
+
+  if (!term) {
+    notFound();
+  }
+
+  const detailBreadcrumbs = [
+    { name: "Glossary", href: "/glossary" },
+    { name: term.term, href: `/glossary/${term.slug}` }
+  ];
+
+  const termSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@id": `https://mcpserver.in/glossary/${term.slug}#definedterm`,
+        "@type": "DefinedTerm",
+        "name": term.term,
+        "description": term.definition,
+        "inDefinedTermSet": {
+          "@id": "https://mcpserver.in/glossary/#termset",
+          "@type": "DefinedTermSet",
+          "name": "Model Context Protocol Industry Glossary",
+          "url": "https://mcpserver.in/glossary"
+        }
+      },
+      {
+        "@id": `https://mcpserver.in/glossary/${term.slug}#webpage`,
+        "@type": "WebPage",
+        "url": `https://mcpserver.in/glossary/${term.slug}`,
+        "name": `${term.term} - MCP Glossary Definition`,
+        "description": term.definition,
+        "isPartOf": {
+          "@id": "https://mcpserver.in/#website",
+          "@type": "WebSite",
+          "url": "https://mcpserver.in"
+        },
+        "about": {
+          "@id": `https://mcpserver.in/glossary/${term.slug}#definedterm`
+        }
+      }
+    ]
+  };
+
+  return (
+    <div id="glossary-detail" className="min-h-screen bg-[#050508] text-white pt-6 pb-16 font-sans">
+      <SchemaJsonLd schema={termSchema} />
+
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <Breadcrumbs items={detailBreadcrumbs} />
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mt-6">
+          
+          {/* Main Content Column */}
+          <div className="lg:col-span-8 space-y-8">
+            
+            {/* Header Title with Badges */}
+            <div className="space-y-3">
+              <Link href="/glossary" className="inline-flex items-center gap-1 text-xs text-cyan-400 hover:underline mb-2">
+                <ArrowLeft className="w-3.5 h-3.5" /> Back to Glossary Index
+              </Link>
+              <div className="flex items-center gap-2">
+                <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-cyan-950/40 border border-cyan-800 text-cyan-400 flex items-center gap-1">
+                  <Tag className="w-3 h-3" /> Core Concept
+                </span>
+                {term.technicalDetails.protocolLayer && (
+                  <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-gray-900 border border-gray-800 text-gray-400">
+                    {term.technicalDetails.protocolLayer}
+                  </span>
+                )}
+              </div>
+              <h1 className="text-3xl sm:text-4xl font-sans font-extrabold text-white tracking-tight">
+                {term.term}
+              </h1>
+              <p className="text-xs text-gray-500 font-mono">
+                Industry Definition Set &bull; Entity Resolution Path: /glossary/{term.slug}
+              </p>
+            </div>
+
+            {/* AEO/GEO Answer Box */}
+            <AnswerBox 
+              question={`What is the definition of ${term.term} in Model Context Protocol?`}
+              answer={term.definition}
+              keyTakeaways={term.keyTakeaways || [
+                `Core Function: ${term.technicalDetails.protocolLayer || "Ecosystem integration standard"}`
+              ]}
+            />
+
+            {/* Comprehensive Technical Details */}
+            <div className="p-6 rounded-2xl bg-gray-900/10 border border-gray-900 space-y-4">
+              <h2 className="text-sm font-bold uppercase tracking-wider text-cyan-400 flex items-center gap-1.5">
+                <Info className="w-4 h-4" /> Technical Context & Protocol Usage
+              </h2>
+              <div className="prose prose-invert max-w-none text-xs sm:text-sm text-gray-300 space-y-4 leading-relaxed">
+                <p>{term.detailedExplanation}</p>
+                
+                {term.technicalDetails.format && (
+                  <div className="mt-4 p-4 rounded-xl bg-black/40 border border-gray-800 flex items-start gap-3">
+                    <Cpu className="w-5 h-5 text-indigo-400 mt-0.5 flex-shrink-0" />
+                    <div>
+                      <h4 className="text-xs font-bold text-white">Format & Payload Metadata</h4>
+                      <p className="text-[11px] text-gray-300 mt-0.5">
+                        Format: <span className="text-cyan-400 font-mono font-semibold">{term.technicalDetails.format}</span>
+                      </p>
+                      <p className="text-[11px] text-gray-400 mt-0.5">
+                        Latency: <span className="text-cyan-400 font-mono font-semibold">{term.technicalDetails.latencyProfile || "N/A"}</span>
+                      </p>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Real-World Use Case */}
+            {term.useCase && (
+              <div className="p-6 rounded-2xl bg-indigo-950/10 border border-indigo-900/30 space-y-3">
+                <h3 className="text-xs font-bold uppercase tracking-wider text-indigo-400">
+                  Real-World Implementation Use Case
+                </h3>
+                <p className="text-xs sm:text-sm text-gray-300 leading-relaxed">
+                  {term.useCase}
+                </p>
+              </div>
+            )}
+
+            {/* Author and Trust Box (EEAT) */}
+            <AuthorBox 
+              authorName="Rahul K. Gupta"
+              authorRole="Lead Systems & Protocol Architect, MCPserver India"
+              publishedDate="2026-03-24"
+              updatedDate="2026-07-09"
+              citations={term.references.map(ref => ({ label: ref.replace(/^https?:\/\//, ""), url: ref }))}
+            />
+
+          </div>
+
+          {/* Sidebar with related terms */}
+          <div className="lg:col-span-4 space-y-6">
+            <div className="p-5 rounded-2xl bg-gray-900/20 border border-gray-900/80 space-y-4">
+              <h3 className="font-sans font-bold text-sm text-white flex items-center gap-2 border-b border-gray-800 pb-2">
+                <FileText className="w-4.5 h-4.5 text-cyan-400" /> Related Terms
+              </h3>
+              <div className="space-y-3">
+                {glossaryTerms.filter((t) => t.slug !== term.slug).slice(0, 4).map((rt) => (
+                  <Link
+                    key={rt.slug}
+                    href={`/glossary/${rt.slug}`}
+                    className="block p-3 rounded-xl bg-gray-900/40 border border-gray-900 hover:border-cyan-500/30 transition-all group"
+                  >
+                    <h4 className="text-xs sm:text-sm font-semibold text-gray-300 group-hover:text-cyan-400 transition-colors">
+                      {rt.term}
+                    </h4>
+                    <p className="text-[11px] text-gray-500 mt-1 line-clamp-2">
+                      {rt.definition}
+                    </p>
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            {/* Platform Call-To-Action */}
+            <div className="p-5 rounded-2xl bg-gradient-to-br from-indigo-950/20 to-purple-950/20 border border-indigo-900/40 space-y-4">
+              <h3 className="font-sans font-extrabold text-sm text-indigo-300">
+                Deploy Secure MCP Clusters
+              </h3>
+              <p className="text-xs text-gray-400 leading-relaxed">
+                Run remote SSE Model Context Protocol servers in highly secure, fully-managed environment located inside India (Mumbai/Bengaluru).
+              </p>
+              <Link
+                href="/profile"
+                className="block text-center text-xs bg-indigo-600 hover:bg-indigo-500 transition-colors text-white font-semibold py-2 px-4 rounded-lg shadow-lg"
+              >
+                Deploy Node Now
+              </Link>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  );
+}
