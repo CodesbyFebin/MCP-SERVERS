@@ -7,6 +7,7 @@ import { topics } from "../../src/data/topics";
 import { servers } from "../../src/data/servers";
 import { glossaryTerms } from "../../src/data/glossary";
 import { comparisons } from "../../src/data/comparisons";
+import { docsPages, getDocsPath } from "../../src/data/docs";
 import {
   BookOpen,
   Compass,
@@ -21,6 +22,8 @@ import {
 
 export default function SitemapPage() {
   const breadcrumbs = [{ name: "HTML Sitemap", href: "/sitemap" }];
+  const docsServerPages = docsPages.filter((page) => page.category === "servers" && page.slug.length > 1);
+  const docsKnowledgePages = docsPages.filter((page) => page.category !== "servers" || page.slug.join("/") === "servers");
 
   return (
     <div id="html-sitemap-page" className="min-h-screen bg-transparent text-[#e0e0e0] font-sans pt-6 pb-16">
@@ -111,6 +114,56 @@ export default function SitemapPage() {
                       className="text-xs text-emerald-400 hover:text-emerald-300 font-medium hover:underline block"
                     >
                       Deploy {s.name} integration
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          {/* Section 3b: Docs Server Integration Guides */}
+          <div className="p-6 rounded-2xl bg-white/[0.01] border border-white/5 space-y-4 shadow-xl">
+            <h2 className="text-base font-bold text-white flex items-center gap-2 border-b border-white/5 pb-2">
+              <FileText className="w-5 h-5 text-cyan-400" />
+              105 Docs Server Guides
+            </h2>
+            <p className="text-xs text-gray-400 leading-relaxed">
+              Documentation-facing server pages with setup, authentication, security, example config, FAQs, and related integrations.
+            </p>
+            <div className="max-h-[300px] overflow-y-auto pr-2 space-y-2 pt-1 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent">
+              <ul className="space-y-2.5">
+                {docsServerPages.map((doc) => (
+                  <li key={doc.cluster}>
+                    <Link
+                      href={getDocsPath(doc)}
+                      className="text-xs text-cyan-400 hover:text-cyan-300 font-medium hover:underline block"
+                    >
+                      Read {doc.title} docs
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          {/* Section 3c: Docs Knowledge Base */}
+          <div className="p-6 rounded-2xl bg-white/[0.01] border border-white/5 space-y-4 shadow-xl">
+            <h2 className="text-base font-bold text-white flex items-center gap-2 border-b border-white/5 pb-2">
+              <BookOpen className="w-5 h-5 text-sky-400" />
+              Documentation Knowledge Base
+            </h2>
+            <p className="text-xs text-gray-400 leading-relaxed">
+              India-first guides for setup, protocol, pricing, performance, compliance, comparisons, deployment, industry, and monitoring.
+            </p>
+            <div className="max-h-[300px] overflow-y-auto pr-2 space-y-2 pt-1 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent">
+              <ul className="space-y-2.5">
+                {docsKnowledgePages.map((doc) => (
+                  <li key={doc.cluster}>
+                    <Link
+                      href={getDocsPath(doc)}
+                      className="text-xs text-sky-400 hover:text-sky-300 font-medium hover:underline block"
+                    >
+                      Open {doc.title}
                     </Link>
                   </li>
                 ))}

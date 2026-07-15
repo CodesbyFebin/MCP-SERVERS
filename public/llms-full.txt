@@ -96,7 +96,60 @@
 
 ---
 
-## 5. Contact & Institutional Trust
+## 5. Documentation Knowledge Base
+
+### Cluster: Getting Started
+- **Hub:** `/docs/getting-started`
+- **Coverage:** MCP concepts, local installation, Claude and Cursor configuration, managed edge hosting.
+- **Priority Paths:** `/docs/getting-started/what-is-mcp`, `/docs/getting-started/local-installation`, `/docs/getting-started/claude-cursor-config`, `/docs/getting-started/managed-edge-hosting`.
+
+### Cluster: Pricing
+- **Hub:** `/docs/pricing`
+- **Primary Keyword:** `mcp server india pricing`
+- **Priority Path:** `/docs/pricing/india-pricing-comparison`
+- **Coverage:** India-aware hosting costs, free vs paid, hidden operational costs, enterprise security and VAPT planning.
+
+### Cluster: Performance
+- **Hub:** `/docs/performance`
+- **Primary Keyword:** `low latency mcp connector bengaluru`
+- **Priority Path:** `/docs/performance/latency-benchmarks-india`
+- **Coverage:** Bengaluru vs Mumbai placement, global vs India hosting, payload optimization, latency benchmarking.
+
+### Cluster: Compliance
+- **Hub:** `/docs/compliance`
+- **Primary Keyword:** `dpdp compliant mcp server`
+- **Priority Path:** `/docs/compliance/dpdp-compliance-guide`
+- **Coverage:** DPDP-aware implementation, PII redaction, audit logs, RBI-aware fintech controls, secure tool design.
+
+### Cluster: Comparisons
+- **Hub:** `/docs/comparisons`
+- **Primary Keyword:** `mcp vs rest api 2026`
+- **Priority Path:** `/docs/comparisons/mcp-vs-rest-2026`
+- **Coverage:** MCP vs REST, GraphQL, API gateways, and when-to-use-MCP decision guides.
+
+### Cluster: Deployment
+- **Hub:** `/docs/deployment`
+- **Primary Keyword:** `deploy mcp server on railway india`
+- **Priority Path:** `/docs/deployment/railway-deployment`
+- **Coverage:** Railway, AWS EC2, Google Cloud Run, Vercel, Kubernetes, environment variables, health checks, rollout patterns.
+
+### Cluster: Industry
+- **Hub:** `/docs/industry`
+- **Coverage:** Indian startup, fintech, ecommerce, government, healthcare, and education workflows with sector-specific safety controls.
+
+### Cluster: Monitoring
+- **Hub:** `/docs/monitoring`
+- **Primary Keyword:** `mcp server monitoring dashboard`
+- **Coverage:** Grafana dashboards, MCP Pulse-style checks, logs, traces, redaction metrics, and incident workflows.
+
+### Glossary Expansion
+- **Hub:** `/glossary`
+- **New Terms:** OAuth, DPDP, ROS, MCP Robot Control, ROS2 MCP Bridge, Simulation MCP, Hardware Abstraction MCP.
+- **Purpose:** Provide defined-term pages for protocol, privacy, authorization, and LLM-robotics entities.
+
+---
+
+## 6. Contact & Institutional Trust
 - **Publisher:** MCPserver.in early access platform
 - **Support Contact:** support@mcpserver.in
 - **Legal Compliance:** Designed for secure, compliant production MCP workflows on robust edge infrastructure.

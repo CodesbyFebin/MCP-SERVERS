@@ -1,140 +1,114 @@
 "use client";
 
 import Link from "next/link";
-import { footerNav } from "../data/navigation";
-import { Terminal, Heart } from "lucide-react";
-import { siteConfig } from "../data/site";
-import { useTheme } from "./ThemeAndAuthProvider";
+import { ArrowRight, Github, Heart, Linkedin, Mail, Twitter } from "lucide-react";
+import { BrandMark } from "./ReferenceLanding";
+
+const columns = [
+  {
+    title: "Platform",
+    links: [
+      ["MCP Servers", "/mcp-server-directory"],
+      ["Integrations", "/integrations"],
+      ["Clients", "/clients"],
+      ["Pricing", "/pricing"],
+      ["Status", "/status"]
+    ]
+  },
+  {
+    title: "Resources",
+    links: [
+      ["Documentation", "/docs"],
+      ["API Reference", "/docs"],
+      ["SDKs", "/tools/mcp-playground"],
+      ["Guides", "/what-is-mcp"],
+      ["Blog", "/sitemap"]
+    ]
+  },
+  {
+    title: "Company",
+    links: [
+      ["About Us", "/about"],
+      ["Careers", "/contact"],
+      ["Press Kit", "/about"],
+      ["Contact Us", "/contact"],
+      ["Partner Program", "/pricing"]
+    ]
+  },
+  {
+    title: "Legal",
+    links: [
+      ["Privacy Policy", "/privacy"],
+      ["Terms of Service", "/terms"],
+      ["Security", "/security"],
+      ["Data Processing", "/privacy"],
+      ["DPA", "/terms"]
+    ]
+  }
+];
 
 export default function Footer() {
-  const { theme } = useTheme();
-  const isDark = theme === "dark";
-
   return (
-    <footer 
-      id="app-footer" 
-      className={`border-t pt-16 pb-12 text-sm relative z-10 transition-colors duration-200 ${
-        isDark 
-          ? "bg-black/40 border-white/5 text-white/50" 
-          : "bg-slate-100 border-slate-200 text-slate-600"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 lg:gap-12">
-          
-          {/* Logo & Pitch */}
-          <div className="col-span-2 flex flex-col gap-4">
-            <Link href="/" className="flex items-center gap-2">
-              <div className="w-7 h-7 rounded-lg bg-gradient-to-tr from-cyan-400 to-blue-600 flex items-center justify-center">
-                <Terminal className="w-3.5 h-3.5 text-white" />
-              </div>
-              <span className={`font-sans font-bold tracking-tight text-base ${
-                isDark ? "text-white" : "text-slate-900"
-              }`}>
-                MCP<span className="text-cyan-500">server</span>
-              </span>
-            </Link>
-            <p className={`text-xs max-w-sm leading-relaxed ${isDark ? "text-gray-400" : "text-slate-600"}`}>
-              Build, deploy, host, secure, and monitor Model Context Protocol (MCP) servers globally. 
-              Our edge network delivers sub-50ms latency across Indian and international developer hubs, 
-              connecting AI models directly and securely to local/remote files, databases, and SaaS APIs.
+    <footer id="app-footer" className="border-t border-white/10 bg-[#02050d] pt-10 text-white">
+      <div className="mx-auto max-w-7xl px-4 pb-8 sm:px-6 lg:px-8">
+        <div className="grid gap-9 lg:grid-cols-[1.5fr_repeat(4,1fr)_1.25fr]">
+          <div>
+            <BrandMark />
+            <p className="mt-4 max-w-xs text-xs leading-relaxed text-white/50">
+              A hosted MCP platform for connecting verified servers and integrations to power your AI agents.
             </p>
-            <div className={`text-xs mt-2 ${isDark ? "text-gray-500" : "text-slate-500"}`}>
-              <p className={`font-semibold mb-1 ${isDark ? "text-gray-400" : "text-slate-700"}`}>
-                {siteConfig.company.name}
-              </p>
-              <p>{siteConfig.company.address}</p>
-              <p>Contact: {siteConfig.company.email}</p>
+            <div className="mt-5 flex gap-2">
+              {[Twitter, Linkedin, Mail, Github].map((Icon, index) => (
+                <a
+                  key={index}
+                  href="https://github.com/mcpserver-in/mcpserver"
+                  className="grid h-8 w-8 place-items-center rounded-full border border-white/10 bg-white/[0.035] text-white/70 transition hover:text-white"
+                >
+                  <Icon className="h-3.5 w-3.5" />
+                </a>
+              ))}
             </div>
           </div>
 
-          {/* Links: Platform */}
-          <div>
-            <h4 className={`font-semibold mb-4 text-xs tracking-wider uppercase ${isDark ? "text-white" : "text-slate-900"}`}>
-              Platform
-            </h4>
-            <ul className="space-y-2.5 text-xs">
-              {footerNav.platform.map((link) => (
-                <li key={link.href}>
-                  <Link href={link.href} className="hover:text-cyan-500 transition-colors">
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-              <li>
-                <Link href="/mcp-monitoring" className="hover:text-cyan-500 transition-colors">
-                  Server Monitor Status
-                </Link>
-              </li>
-            </ul>
-          </div>
+          {columns.map((column) => (
+            <div key={column.title}>
+              <h4 className="mb-4 text-xs font-black text-white">{column.title}</h4>
+              <ul className="space-y-2.5">
+                {column.links.map(([label, href]) => (
+                  <li key={label}>
+                    <Link href={href} className="text-xs text-white/50 transition hover:text-violet-200">
+                      {label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
 
-          {/* Links: Resources */}
           <div>
-            <h4 className={`font-semibold mb-4 text-xs tracking-wider uppercase ${isDark ? "text-white" : "text-slate-900"}`}>
-              Resources
-            </h4>
-            <ul className="space-y-2.5 text-xs">
-              {footerNav.resources.map((link) => (
-                <li key={link.href}>
-                  <Link href={link.href} className="hover:text-cyan-500 transition-colors">
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Links: Legal & Corporate */}
-          <div>
-            <h4 className={`font-semibold mb-4 text-xs tracking-wider uppercase ${isDark ? "text-white" : "text-slate-900"}`}>
-              Company
-            </h4>
-            <ul className="space-y-2.5 text-xs">
-              {footerNav.company.map((link) => (
-                <li key={link.href}>
-                  <Link href={link.href} className="hover:text-cyan-500 transition-colors">
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-              {footerNav.legal.map((link) => (
-                <li key={link.href}>
-                  <Link href={link.href} className="hover:text-cyan-500 transition-colors">
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-              <li>
-                <Link href="/profile" className="hover:text-cyan-500 transition-colors">
-                  Developer Profile Hub
-                </Link>
-              </li>
-              <li>
-                <Link href="/sitemap" className="hover:text-cyan-500 transition-colors">
-                  HTML Site Directory Map
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-        </div>
-
-        {/* Bottom copyright block */}
-        <div className={`border-t mt-12 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs ${
-          isDark ? "border-white/5 text-white/30" : "border-slate-200 text-slate-500"
-        }`}>
-          <div>
-            © {new Date().getFullYear()} {siteConfig.company.name}. All rights reserved.
-          </div>
-          <div className="flex items-center gap-1.5 bg-black/5 px-3 py-1.5 rounded-full border border-white/5 text-gray-400">
-            <span>Made with</span>
-            <Heart className="w-3 h-3 text-red-500 fill-red-500 animate-pulse" />
-            <span>in India</span>
-            <span className="inline-block w-4 h-2.5 bg-gradient-to-b from-[#FF9933] via-white to-[#128807] rounded-sm"></span>
+            <h4 className="mb-3 text-xs font-black text-white">Newsletter</h4>
+            <p className="text-xs leading-relaxed text-white/50">Get the latest updates, tutorials and new integrations.</p>
+            <div className="mt-4 flex overflow-hidden rounded-md border border-white/12 bg-white/[0.025]">
+              <input
+                className="min-h-10 min-w-0 flex-1 bg-transparent px-3 text-xs text-white outline-none placeholder:text-white/30"
+                placeholder="Enter your email"
+                autoComplete="email"
+                suppressHydrationWarning
+              />
+              <button className="grid w-11 place-items-center border-l border-white/10 text-white/75">
+                <ArrowRight className="h-4 w-4" />
+              </button>
+            </div>
           </div>
         </div>
 
+        <div className="mt-8 flex flex-col gap-3 border-t border-white/8 pt-6 text-xs text-white/40 md:flex-row md:items-center md:justify-between">
+          <span>© 2026 MCP SERVER. All rights reserved.</span>
+          <span className="inline-flex items-center gap-1.5">
+            Made with <Heart className="h-3 w-3 fill-red-500 text-red-500" /> in India
+            <span className="inline-block h-2.5 w-4 rounded-sm bg-gradient-to-b from-[#FF9933] via-white to-[#128807]" />
+          </span>
+        </div>
       </div>
     </footer>
   );

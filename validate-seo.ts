@@ -8,6 +8,7 @@ import { topics } from "./src/data/topics";
 import { glossaryTerms } from "./src/data/glossary";
 import { comparisons } from "./src/data/comparisons";
 import { categories } from "./src/data/categories";
+import { docsPages, getDocsPath } from "./src/data/docs";
 
 console.log("--------------------------------------------------");
 console.log("🔍 STARTING STRICT METADATA, SCHEMA & SEO AUDIT");
@@ -18,6 +19,8 @@ const validPaths = new Set<string>([
   "/",
   "/sitemap/",
   "/mcp-server-directory/",
+  "/integrations/",
+  "/clients/",
   "/mcp-monitoring/",
   "/status/",
   "/glossary/",
@@ -38,6 +41,7 @@ topics.forEach((t) => validPaths.add(`/topics/${t.slug}/`));
 glossaryTerms.forEach((g) => validPaths.add(`/glossary/${g.slug}/`));
 comparisons.forEach((c) => validPaths.add(`/compare/${c.slug}/`));
 categories.forEach((cat) => validPaths.add(`/directory/${cat.slug}/`));
+docsPages.forEach((doc) => validPaths.add(`${getDocsPath(doc)}/`));
 
 const popularPairings = [
   "github-mcp-server-vs-gitlab-mcp-server",
@@ -261,6 +265,8 @@ if (errorsCount > 0) {
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${buildUrlNode("/", today, "daily", "1.0")}
 ${buildUrlNode("/mcp-server-directory/", today, "daily", "0.9")}
+${buildUrlNode("/integrations/", today, "weekly", "0.8")}
+${buildUrlNode("/clients/", today, "weekly", "0.8")}
 ${buildUrlNode("/mcp-monitoring/", today, "weekly", "0.8")}
 ${buildUrlNode("/status/", today, "daily", "0.9")}
 ${buildUrlNode("/glossary/", today, "weekly", "0.7")}
@@ -331,6 +337,15 @@ ${Array.from(categories)
   fs.writeFileSync("./public/sitemap-categories.xml", sitemapCategoriesContent);
 
   // 8. sitemap-images.xml
+  const sitemapDocsContent = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${Array.from(docsPages)
+  .map((doc) => buildUrlNode(`${getDocsPath(doc)}/`, today, doc.changefreq, doc.priority.toFixed(1)))
+  .join("\n")}
+</urlset>`;
+  fs.writeFileSync("./public/sitemap-docs.xml", sitemapDocsContent);
+
+  // 8. sitemap-images.xml
   const sitemapImagesContent = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
@@ -373,6 +388,10 @@ ${Array.from(categories)
   </sitemap>
   <sitemap>
     <loc>${siteUrl}/sitemap-categories.xml</loc>
+    <lastmod>${today}</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>${siteUrl}/sitemap-docs.xml</loc>
     <lastmod>${today}</lastmod>
   </sitemap>
   <sitemap>

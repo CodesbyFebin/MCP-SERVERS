@@ -4,13 +4,12 @@ export interface NavItem {
 }
 
 export const headerNav: NavItem[] = [
-  { name: "MCP Servers", href: "/mcp-server" },
-  { name: "Directory", href: "/mcp-server-directory" },
-  { name: "Hosting", href: "/mcp-server-hosting" },
-  { name: "Gateway", href: "/mcp-gateway" },
-  { name: "Security", href: "/mcp-security" },
+  { name: "MCP Servers", href: "/mcp-server-directory" },
+  { name: "Integrations", href: "/integrations" },
+  { name: "Clients", href: "/clients" },
   { name: "Pricing", href: "/pricing" },
-  { name: "Docs", href: "/docs" }
+  { name: "Docs", href: "/docs" },
+  { name: "Resources", href: "/what-is-mcp" }
 ];
 
 export const footerNav = {

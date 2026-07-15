@@ -5,6 +5,7 @@ import { servers } from "../src/data/servers";
 import { glossaryTerms } from "../src/data/glossary";
 import { comparisons } from "../src/data/comparisons";
 import { categories } from "../src/data/categories";
+import { docsPages, getDocsPath } from "../src/data/docs";
 
 export const dynamic = "force-static";
 
@@ -16,6 +17,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticPaths = [
     { url: "", changeFrequency: "daily" as const, priority: 1.0 },
     { url: "/mcp-server-directory", changeFrequency: "daily" as const, priority: 0.9 },
+    { url: "/integrations", changeFrequency: "weekly" as const, priority: 0.8 },
+    { url: "/clients", changeFrequency: "weekly" as const, priority: 0.8 },
     { url: "/mcp-monitoring", changeFrequency: "weekly" as const, priority: 0.8 },
     { url: "/status", changeFrequency: "daily" as const, priority: 0.9 },
     { url: "/glossary", changeFrequency: "weekly" as const, priority: 0.7 },
@@ -84,6 +87,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
+  // Documentation knowledge base
+  const docsEntries = docsPages.map((doc) => ({
+    url: `${baseUrl}${getDocsPath(doc)}/`,
+    lastModified: today,
+    changeFrequency: doc.changefreq,
+    priority: doc.priority,
+  }));
+
   // Developer Tools
   const toolSlugs = [
     "mcp-playground",
@@ -107,6 +118,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...glossaryEntries,
     ...comparisonEntries,
     ...categoryEntries,
+    ...docsEntries,
     ...toolEntries,
   ];
 }

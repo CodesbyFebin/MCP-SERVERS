@@ -52,6 +52,57 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
+const defaultServerConfigs: ServerConfig[] = [
+  {
+    id: "conf-1",
+    name: "GitHub Enterprise Connector",
+    command: "npx",
+    args: ["@modelcontextprotocol/server-github"],
+    env: "GITHUB_PERSONAL_ACCESS_TOKEN=ghp_****",
+    dateSaved: "2026-07-01 14:22"
+  },
+  {
+    id: "conf-2",
+    name: "PostgreSQL Local Sandbox",
+    command: "npx",
+    args: ["@modelcontextprotocol/server-postgres", "--host", "127.0.0.1"],
+    env: "DATABASE_URL=postgres://****",
+    dateSaved: "2026-07-04 09:10"
+  }
+];
+
+const defaultDeployments: DeploymentRecord[] = [
+  {
+    id: "dep-1",
+    serverName: "GitHub Enterprise Connector",
+    status: "active",
+    duration: "14ms",
+    timestamp: "2026-07-08 12:44:10",
+    region: "Mumbai-Edge-01",
+    url: "https://hub.mcpserver.in/sse/github-enterprise-connector"
+  },
+  {
+    id: "dep-2",
+    serverName: "PostgreSQL Local Sandbox",
+    status: "active",
+    duration: "22ms",
+    timestamp: "2026-07-08 18:30:15",
+    region: "Bengaluru-Edge-02",
+    url: "https://hub.mcpserver.in/sse/postgresql-local-sandbox"
+  }
+];
+
+function readJsonStorage<T>(key: string, fallback: T): T {
+  try {
+    const raw = localStorage.getItem(key);
+    if (!raw) return fallback;
+    return JSON.parse(raw) as T;
+  } catch {
+    localStorage.removeItem(key);
+    return fallback;
+  }
+}
+
 // --- PROVIDER COMPONENT ---
 export default function ThemeAndAuthProvider({ children }: { children: ReactNode }) {
   // Theme state
@@ -68,60 +119,19 @@ export default function ThemeAndAuthProvider({ children }: { children: ReactNode
   useEffect(() => {
     if (typeof window !== "undefined") {
       const savedTheme = localStorage.getItem("mcpserver-theme");
-      if (savedTheme) setTheme(savedTheme as Theme);
-
-      const savedUser = localStorage.getItem("mcpserver-user");
-      if (savedUser) setUser(JSON.parse(savedUser));
-
-      const savedConfigs = localStorage.getItem("mcpserver-configs");
-      if (savedConfigs) {
-        setServerConfigs(JSON.parse(savedConfigs));
-      } else {
-        setServerConfigs([
-          {
-            id: "conf-1",
-            name: "GitHub Enterprise Connector",
-            command: "npx",
-            args: ["@modelcontextprotocol/server-github"],
-            env: "GITHUB_PERSONAL_ACCESS_TOKEN=ghp_****",
-            dateSaved: "2026-07-01 14:22"
-          },
-          {
-            id: "conf-2",
-            name: "PostgreSQL Local Sandbox",
-            command: "npx",
-            args: ["@modelcontextprotocol/server-postgres", "--host", "127.0.0.1"],
-            env: "DATABASE_URL=postgres://****",
-            dateSaved: "2026-07-04 09:10"
-          }
-        ]);
+      if (savedTheme === "light" || savedTheme === "dark") {
+        setTheme(savedTheme);
+      } else if (savedTheme) {
+        localStorage.removeItem("mcpserver-theme");
       }
 
-      const savedDeps = localStorage.getItem("mcpserver-deployments");
-      if (savedDeps) {
-        setDeployments(JSON.parse(savedDeps));
-      } else {
-        setDeployments([
-          {
-            id: "dep-1",
-            serverName: "GitHub Enterprise Connector",
-            status: "active",
-            duration: "14ms",
-            timestamp: "2026-07-08 12:44:10",
-            region: "Mumbai-Edge-01",
-            url: "https://hub.mcpserver.in/sse/github-enterprise-connector"
-          },
-          {
-            id: "dep-2",
-            serverName: "PostgreSQL Local Sandbox",
-            status: "active",
-            duration: "22ms",
-            timestamp: "2026-07-08 18:30:15",
-            region: "Bengaluru-Edge-02",
-            url: "https://hub.mcpserver.in/sse/postgresql-local-sandbox"
-          }
-        ]);
-      }
+      setUser(readJsonStorage<User | null>("mcpserver-user", null));
+
+      const parsedConfigs = readJsonStorage<ServerConfig[]>("mcpserver-configs", defaultServerConfigs);
+      setServerConfigs(Array.isArray(parsedConfigs) ? parsedConfigs : defaultServerConfigs);
+
+      const parsedDeployments = readJsonStorage<DeploymentRecord[]>("mcpserver-deployments", defaultDeployments);
+      setDeployments(Array.isArray(parsedDeployments) ? parsedDeployments : defaultDeployments);
     }
   }, []);
 

@@ -14,8 +14,28 @@ The unified platform to build, deploy, host, secure, monitor and manage Model Co
 - Directory: `/mcp-server-directory`
 - Standard Pricing (INR): `/pricing`
 - Documentation: `/docs`
+- Docs Pricing Cluster: `/docs/pricing`
+- India Pricing Guide: `/docs/pricing/india-pricing-comparison`
+- India Latency Benchmarks: `/docs/performance/latency-benchmarks-india`
+- DPDP MCP Compliance Guide: `/docs/compliance/dpdp-compliance-guide`
+- MCP vs REST API 2026: `/docs/comparisons/mcp-vs-rest-2026`
+- Railway MCP Deployment: `/docs/deployment/railway-deployment`
+- MCP Monitoring Dashboard: `/docs/monitoring`
 - Trust & Compliance audited checklist: `/security`
 - Custom Contacts & Support: `/about`
+
+## Documentation Clusters
+
+- `/docs/getting-started` - MCP concepts, local installation, Claude and Cursor configuration, managed edge hosting.
+- `/docs/protocol` - Tools, resources, prompts, events, JSON-RPC, stdio, and SSE protocol behavior.
+- `/docs/pricing` - India-aware MCP server pricing, free vs paid hosting, hidden costs, enterprise pricing.
+- `/docs/performance` - Bengaluru and Mumbai latency planning, global vs India hosting, optimization guides.
+- `/docs/compliance` - DPDP-aware implementation, RBI-aware fintech controls, MCP security best practices.
+- `/docs/comparisons` - MCP vs REST, GraphQL, API gateways, and decision guides.
+- `/docs/deployment` - Railway, AWS EC2, Google Cloud Run, Vercel, and Kubernetes deployment guides.
+- `/docs/industry` - Indian startup, fintech, ecommerce, government, healthcare, and education MCP workflows.
+- `/docs/monitoring` - Dashboards, Grafana metrics, health checks, MCP Pulse-style monitoring, observability.
+- `/glossary` - MCP glossary now includes OAuth, DPDP, ROS, MCP Robot Control, ROS2 MCP Bridge, Simulation MCP, and Hardware Abstraction MCP.
 
 ## Educational Capabilities Pillars
 

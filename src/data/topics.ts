@@ -517,5 +517,20 @@ export const topics: Topic[] = [
     shortAnswer: "A spotlight on Indian developer-infrastructure startups utilizing Model Context Protocol to build global SaaS platforms.",
     explanation: "From local dev machines to global clouds, Indian builders are writing, securing, and deploying the tools that power the agent era.",
     bestPractices: ["Optimize server latency by deploying to secure Mumbai/Bengaluru hubs", "Leverage local cost structures to build high-margin AI apps"]
+  },
+  {
+    slug: "mcp-auth-scopes-permission-prompts",
+    title: "MCP Auth Scopes and Permission Prompts",
+    pillar: "mcp-security",
+    intent: "tutorial",
+    primaryKeyword: "mcp authentication scopes",
+    shortAnswer: "MCP auth scopes define what a server may access, while permission prompts make risky tool calls visible before the agent executes them.",
+    explanation: "Production MCP deployments should separate read and write scopes, bind credentials to one connector boundary, and display human-readable approval prompts before destructive actions. This is especially important for Indian fintech, ecommerce, healthcare, and enterprise workflows where a single over-broad token can expose customer data or trigger business-impacting changes.",
+    bestPractices: [
+      "Use separate credentials for read-only and write-capable tools",
+      "Require approval prompts for delete, refund, transfer, deploy, and message-send actions",
+      "Rotate tokens and audit every privileged tool call",
+      "Redact bearer tokens and OAuth refresh tokens from logs"
+    ]
   }
 ];

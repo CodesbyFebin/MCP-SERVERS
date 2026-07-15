@@ -229,5 +229,159 @@ export const glossaryTerms: GlossaryTerm[] = [
     references: [
       "https://spec.modelcontextprotocol.io/specification/basic/prompts/"
     ]
+  },
+  {
+    slug: "oauth",
+    term: "OAuth",
+    definition: "An authorization framework that lets MCP clients or servers request scoped access to third-party services without directly handling a user's password.",
+    detailedExplanation: "OAuth is commonly used when MCP servers connect to SaaS systems such as GitHub, Google, Slack, Notion, or payment platforms. Instead of placing a full account password inside an MCP configuration, the system exchanges grants and tokens with defined scopes. For production MCP deployments, OAuth tokens should be encrypted, rotated, scoped narrowly, and never exposed in tool outputs or logs.",
+    keyTakeaways: [
+      "OAuth delegates access using scoped tokens.",
+      "MCP servers should store tokens outside source code.",
+      "Scopes should match the smallest set of tools a server exposes.",
+      "Logs and model responses must never reveal raw OAuth tokens."
+    ],
+    useCase: "Connecting a support MCP server to a SaaS helpdesk with read-only ticket scopes for Indian customer support teams.",
+    technicalDetails: {
+      protocolLayer: "Authorization Layer",
+      format: "Bearer tokens, grants, scopes, refresh tokens",
+      latencyProfile: "Token validation adds minimal overhead when cached safely"
+    },
+    references: [
+      "https://oauth.net/2/",
+      "https://mcpserver.in/docs/compliance/security-best-practices"
+    ]
+  },
+  {
+    slug: "dpdp",
+    term: "DPDP",
+    definition: "The Digital Personal Data Protection framework for India, relevant to MCP servers that access or process personal data.",
+    detailedExplanation: "DPDP matters for MCP because agent tools can dynamically retrieve customer, employee, student, health, or financial data. A DPDP-aware MCP design maps data flows, limits purpose, redacts sensitive fields, logs access, and reviews retention and breach workflows. This glossary definition is technical guidance for builders, not legal advice.",
+    keyTakeaways: [
+      "Map every tool and resource that can expose personal data.",
+      "Use redaction and minimum necessary fields before model exposure.",
+      "Keep audit logs for sensitive tool calls.",
+      "Review official materials and counsel before launch."
+    ],
+    useCase: "Masking Aadhaar, PAN, phone, and card fields before an AI agent summarizes support tickets for a fintech team in Mumbai.",
+    technicalDetails: {
+      protocolLayer: "Privacy and Governance Layer",
+      format: "Policy metadata, redaction rules, consent and purpose records",
+      latencyProfile: "PII scanning adds processing time but reduces compliance risk"
+    },
+    references: [
+      "https://www.meity.gov.in/",
+      "https://mcpserver.in/docs/compliance/dpdp-compliance-guide"
+    ]
+  },
+  {
+    slug: "ros",
+    term: "ROS (Robot Operating System)",
+    definition: "A robotics middleware ecosystem used to build robot applications with nodes, topics, services, messages, and simulation tools.",
+    detailedExplanation: "ROS is relevant to MCP robotics because AI agents may need a controlled bridge into robot state, simulation data, telemetry, or high-level commands. MCP should not expose unsafe low-level robot controls directly. Instead, an MCP robotics server should wrap carefully approved operations such as status inspection, simulation queries, mission planning drafts, and operator-reviewed commands.",
+    keyTakeaways: [
+      "ROS organizes robot software into nodes and messages.",
+      "MCP can expose robot context to AI agents through safe tools and resources.",
+      "High-risk physical actions need human approval and safety interlocks.",
+      "Simulation should be tested before hardware execution."
+    ],
+    useCase: "Allowing an agent to inspect ROS topic summaries from a warehouse robot simulation before an operator approves a route change.",
+    technicalDetails: {
+      protocolLayer: "Robotics Middleware Layer",
+      format: "ROS topics, services, actions, messages",
+      latencyProfile: "Depends on robot network, simulator, and safety checks"
+    },
+    references: [
+      "https://www.ros.org/",
+      "https://mcpserver.in/llm-robotics"
+    ]
+  },
+  {
+    slug: "mcp-robot-control",
+    term: "MCP Robot Control",
+    definition: "A guarded MCP pattern for exposing robot status, simulation, planning, and approved control actions to AI agents.",
+    detailedExplanation: "MCP robot control should be designed as a safety boundary, not a direct remote-control pipe. The server should expose read-only telemetry first, then limited planning tools, and only then operator-approved commands. For physical systems, tool schemas must include bounded parameters, emergency-stop assumptions, and audit logs.",
+    keyTakeaways: [
+      "Expose telemetry before control.",
+      "Use bounded schemas and safety limits.",
+      "Require human approval for physical actions.",
+      "Log commands with operator and robot context."
+    ],
+    useCase: "A factory agent drafts a route update for an autonomous mobile robot, but the final command requires supervisor approval.",
+    technicalDetails: {
+      protocolLayer: "Safety-Critical Tool Layer",
+      format: "MCP tools over robotics middleware adapters",
+      latencyProfile: "Latency budget must include safety and operator approval"
+    },
+    references: [
+      "https://mcpserver.in/llm-robotics",
+      "https://mcpserver.in/docs/compliance/security-best-practices"
+    ]
+  },
+  {
+    slug: "ros2-mcp-bridge",
+    term: "ROS2 MCP Bridge",
+    definition: "A bridge pattern that translates selected ROS2 topics, services, and actions into MCP resources and tools for AI clients.",
+    detailedExplanation: "A ROS2 MCP bridge lets AI clients inspect robot state and request high-level operations through the MCP interface. It should filter noisy topics, normalize message payloads, and prevent unsafe command execution. In production, the bridge should run close to the robot network and publish only the minimal context the agent needs.",
+    keyTakeaways: [
+      "Translate ROS2 state into MCP resources.",
+      "Expose only approved high-level actions as tools.",
+      "Filter high-frequency telemetry before model context.",
+      "Keep bridge logs and safety decisions auditable."
+    ],
+    useCase: "Exposing battery, location, and current task state from ROS2 robots to a planning agent in a warehouse dashboard.",
+    technicalDetails: {
+      protocolLayer: "Bridge / Adapter Layer",
+      format: "ROS2 messages mapped to MCP resources and tools",
+      latencyProfile: "Best kept on the same LAN or edge network as robot systems"
+    },
+    references: [
+      "https://docs.ros.org/",
+      "https://mcpserver.in/llm-robotics"
+    ]
+  },
+  {
+    slug: "simulation-mcp",
+    term: "Simulation MCP",
+    definition: "An MCP server pattern that connects AI agents to robotics, infrastructure, or workflow simulators before real-world execution.",
+    detailedExplanation: "Simulation MCP is useful when an agent should test a plan against a digital environment before any high-risk action. The server can expose simulator state as resources and actions such as run_scenario, compare_paths, or summarize_failures as tools. This pattern is valuable for robotics, logistics, finance stress tests, and infrastructure change planning.",
+    keyTakeaways: [
+      "Use simulation to reduce risk before production actions.",
+      "Expose simulator state as resources.",
+      "Keep scenario tools deterministic and reproducible.",
+      "Record inputs and outputs for review."
+    ],
+    useCase: "Testing a warehouse robot route in simulation before generating an operator approval request.",
+    technicalDetails: {
+      protocolLayer: "Simulation and Planning Layer",
+      format: "Scenario tools, simulator resources, structured run reports",
+      latencyProfile: "Bounded by simulator run time rather than MCP overhead"
+    },
+    references: [
+      "https://mcpserver.in/llm-robotics",
+      "https://mcpserver.in/docs/monitoring/observability-best-practices"
+    ]
+  },
+  {
+    slug: "hardware-abstraction-mcp",
+    term: "Hardware Abstraction MCP",
+    definition: "A design pattern that exposes stable, safe MCP tools over changing hardware drivers, devices, and robot subsystems.",
+    detailedExplanation: "Hardware abstraction MCP keeps AI agents away from vendor-specific device commands. The MCP server exposes high-level, validated operations such as get_status, request_scan, or prepare_mission while internal adapters handle the device details. This reduces model confusion and makes hardware changes less disruptive.",
+    keyTakeaways: [
+      "Hide device-specific commands behind stable tools.",
+      "Use high-level actions instead of raw motor or driver calls.",
+      "Validate parameters with strict ranges.",
+      "Keep hardware changes invisible to the AI client when possible."
+    ],
+    useCase: "A robotics platform changes lidar vendors while the MCP tool schema for scan summaries remains stable for the agent.",
+    technicalDetails: {
+      protocolLayer: "Hardware Adapter Layer",
+      format: "Stable MCP schemas over device-specific drivers",
+      latencyProfile: "Depends on device polling, driver performance, and safety gates"
+    },
+    references: [
+      "https://mcpserver.in/llm-robotics",
+      "https://mcpserver.in/docs/protocol/tools"
+    ]
   }
 ];

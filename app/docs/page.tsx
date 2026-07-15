@@ -1,133 +1,156 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import Breadcrumbs from "../../src/components/Breadcrumbs";
-import { Terminal, BookOpen, Key, ShieldCheck } from "lucide-react";
-import { injectGlossaryLinks } from "../../src/lib/glossaryHelper";
+import SchemaJsonLd from "../../src/components/SchemaJsonLd";
+import { docsClusters, docsPages, getDocsPath } from "../../src/data/docs";
+import { ArrowRight, BookOpen, FileText, Search, ShieldCheck, Zap } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Model Context Protocol (MCP) Documentation - MCPserver.in",
-  description: "Examine deployment, config, security, and hosting guides for the Model Context Protocol (MCP). Integrate Claude, Cursor, and custom agents.",
+  title: "MCP Server Documentation India - MCPserver.in",
+  description: "Explore India-first MCP docs for setup, pricing, compliance, deployment, performance, monitoring, and glossary topics.",
+  alternates: {
+    canonical: "https://www.mcpserver.in/docs/",
+  },
 };
 
 export default function Docs() {
-  const breadcrumbSteps = [{ name: "Documentation", href: "/docs" }];
+  const priorityGuides = [
+    "/docs/pricing/india-pricing-comparison",
+    "/docs/performance/latency-benchmarks-india",
+    "/docs/compliance/dpdp-compliance-guide",
+    "/docs/comparisons/mcp-vs-rest-2026",
+    "/docs/deployment/railway-deployment",
+  ];
 
-  // Wrap document paragraphs with the glossary contextual linking engine
-  const mcpIntroHtml = injectGlossaryLinks(`
-    <p>
-      Model Context Protocol (MCP) is an open-source standard created by Anthropic that allows AI clients (like Claude Desktop, Cursor, and custom agents) to securely communicate with external databases, filesystems, and APIs through a unified protocol.
-    </p>
-    <p>
-      Instead of writing custom API integration scripts for each separate tool, you build or deploy an MCP server once. It describes its capabilities dynamically to any compliant model using strict JSON-RPC schemas.
-    </p>
-  `);
-
-  const localInstallHtml = injectGlossaryLinks(`
-    <p>
-      Most MCP servers can run locally over Stdio pipes using standard package managers. Below is the configuration syntax for launching a Postgres database tool interface.
-    </p>
-  `);
-
-  const authHtml = injectGlossaryLinks(`
-    <p>
-      When connecting servers that interact with third-party web apps (like GitHub, Slack, or Notion), you must supply authorization tokens safely using environment arrays inside your config files.
-    </p>
-    <p className="text-xs text-gray-500">
-      Tip: Never hardcode private API keys in client-side code blocks. Always reference them inside 'env' property blocks.
-    </p>
-  `);
-
-  const prodHtml = injectGlossaryLinks(`
-    <p>
-      Running MCP servers locally works well for individual testing, but doesn't scale for cloud applications, web portals, or distributed agent teams.
-    </p>
-    <p>
-      With MCPserver.in, you deploy standard container clusters in Bengaluru and Mumbai. Your node exposes web SSE endpoints, protected by TLS 1.3 and advanced custom authorization headers, ensuring sub-50ms roundtrip handshakes from anywhere in India.
-    </p>
-  `);
+  const guideLookup = new Map(docsPages.map((page) => [getDocsPath(page), page]));
+  const hubSchema = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": "https://www.mcpserver.in/docs/#collection",
+    name: "MCP Server Documentation India",
+    description: metadata.description,
+    url: "https://www.mcpserver.in/docs/",
+    hasPart: docsPages.map((page) => ({
+      "@type": "TechArticle",
+      name: page.title,
+      url: `https://www.mcpserver.in${getDocsPath(page)}/`,
+      about: page.targetKeywords,
+    })),
+  };
 
   return (
     <div id="docs-page" className="min-h-screen bg-[#050508] text-white pt-6 pb-16 font-sans">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Breadcrumbs */}
-        <Breadcrumbs items={breadcrumbSteps} />
+      <SchemaJsonLd schema={hubSchema} />
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mt-4">
-          
-          {/* Side Menu */}
-          <div className="lg:col-span-3 space-y-6">
-            <div className="p-4 rounded-xl bg-gray-900/20 border border-gray-900">
-              <h3 className="font-sans font-bold text-xs uppercase tracking-wider text-gray-400 mb-3">Quick Start Guides</h3>
-              <ul className="space-y-2 text-xs">
-                <li><a href="#intro" className="text-cyan-400 hover:underline block py-0.5">Introduction to MCP</a></li>
-                <li><a href="#quickstart" className="text-gray-400 hover:text-white block py-0.5">Local Installation</a></li>
-                <li><a href="#config" className="text-gray-400 hover:text-white block py-0.5">Claude & Cursor Config</a></li>
-                <li><a href="#deployment" className="text-gray-400 hover:text-white block py-0.5">Managed Edge Hosting</a></li>
-              </ul>
-            </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <Breadcrumbs items={[{ name: "Documentation", href: "/docs" }]} />
 
-            <div className="p-4 rounded-xl bg-gray-900/20 border border-gray-900">
-              <h3 className="font-sans font-bold text-xs uppercase tracking-wider text-gray-400 mb-3">Protocol Primitives</h3>
-              <ul className="space-y-2 text-xs">
-                <li><span className="text-gray-500 block py-0.5">✔ Tool Schemas</span></li>
-                <li><span className="text-gray-500 block py-0.5">✔ Resource Templates</span></li>
-                <li><span className="text-gray-500 block py-0.5">✔ Prompt Templates</span></li>
-                <li><span className="text-gray-500 block py-0.5">✔ Event-Driven Changes</span></li>
-              </ul>
-            </div>
-          </div>
-
-          {/* Main Doc text */}
-          <div className="lg:col-span-9 space-y-8 text-xs sm:text-sm text-gray-300 leading-relaxed">
-            
-            <section id="intro" className="space-y-3 pb-6 border-b border-gray-900">
-              <h1 className="text-2xl sm:text-3xl font-sans font-bold text-white tracking-tight flex items-center gap-2">
-                <BookOpen className="w-6 h-6 text-cyan-400" />
-                Introduction to Model Context Protocol
+        <section className="grid grid-cols-1 lg:grid-cols-12 gap-8 py-10 sm:py-14 border-b border-white/10">
+          <div className="lg:col-span-7 space-y-6">
+            <span className="inline-flex items-center gap-2 rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-1 text-xs font-semibold text-cyan-200">
+              <BookOpen className="h-3.5 w-3.5" />
+              India-first MCP knowledge base
+            </span>
+            <div className="space-y-4">
+              <h1 className="max-w-4xl text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white">
+                MCP Server Documentation for Builders in India
               </h1>
-              <div className="space-y-3" dangerouslySetInnerHTML={{ __html: mcpIntroHtml }} />
-            </section>
-
-            <section id="quickstart" className="space-y-3 pb-6 border-b border-gray-900">
-              <h2 className="text-lg font-bold text-white flex items-center gap-2">
-                <Terminal className="w-4.5 h-4.5 text-cyan-400" />
-                Setting up Local Integrations
-              </h2>
-              <div className="mb-4 text-gray-300" dangerouslySetInnerHTML={{ __html: localInstallHtml }} />
-              
-              <pre className="p-4 rounded-lg bg-black text-cyan-300 font-mono text-[11px] border border-gray-900 leading-relaxed">
-{`{
-  "mcpServers": {
-    "postgres-local": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-postgres", "postgresql://localhost:5432/mydb"]
-    }
-  }
-}`}
-              </pre>
-            </section>
-
-            <section id="config" className="space-y-3 pb-6 border-b border-gray-900">
-              <h2 className="text-lg font-bold text-white flex items-center gap-2">
-                <Key className="w-4.5 h-4.5 text-cyan-400" />
-                Configuring Authorization Keys
-              </h2>
-              <div className="space-y-3" dangerouslySetInnerHTML={{ __html: authHtml }} />
-            </section>
-
-            <section id="deployment" className="space-y-3">
-              <h2 className="text-lg font-bold text-white flex items-center gap-2">
-                <ShieldCheck className="w-4.5 h-4.5 text-emerald-400" />
-                Production Managed Edge Deployments
-              </h2>
-              <div className="space-y-3" dangerouslySetInnerHTML={{ __html: prodHtml }} />
-            </section>
-
+              <p className="max-w-3xl text-sm sm:text-base leading-7 text-slate-300">
+                Practical guides for Model Context Protocol setup, pricing, low-latency hosting, DPDP-aware compliance, deployments, monitoring, and industry workflows.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              {[
+                ["50+", "clustered docs paths"],
+                ["3+", "internal links per guide"],
+                ["India", "pricing and compliance context"],
+              ].map(([value, label]) => (
+                <div key={label} className="rounded-lg border border-white/10 bg-white/[0.04] px-4 py-3">
+                  <div className="text-2xl font-black text-white">{value}</div>
+                  <div className="text-xs text-slate-400">{label}</div>
+                </div>
+              ))}
+            </div>
           </div>
 
-        </div>
+          <div className="lg:col-span-5 rounded-xl border border-white/10 bg-[#07101d] p-5 shadow-2xl shadow-purple-950/20">
+            <div className="mb-4 flex items-center gap-2 text-sm font-bold text-white">
+              <Search className="h-4 w-4 text-cyan-300" />
+              Priority Guides
+            </div>
+            <div className="space-y-3">
+              {priorityGuides.map((href) => {
+                const guide = guideLookup.get(href);
+                if (!guide) return null;
+                return (
+                  <Link
+                    key={href}
+                    href={href}
+                    className="group block rounded-lg border border-white/10 bg-white/[0.03] p-4 transition hover:border-cyan-400/40 hover:bg-cyan-400/[0.06]"
+                  >
+                    <div className="flex items-start justify-between gap-3">
+                      <div>
+                        <h2 className="text-sm font-bold text-white group-hover:text-cyan-200">{guide.title}</h2>
+                        <p className="mt-1 text-xs leading-5 text-slate-400">{guide.description}</p>
+                      </div>
+                      <ArrowRight className="mt-1 h-4 w-4 shrink-0 text-slate-500 group-hover:text-cyan-300" />
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+        </section>
 
+        <section className="py-12">
+          <div className="mb-6 flex items-center justify-between gap-4">
+            <div>
+              <h2 className="text-2xl font-black text-white">Documentation Clusters</h2>
+              <p className="mt-1 text-sm text-slate-400">Browse by topic, then follow related guides through the semantic graph.</p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+            {docsClusters.map((cluster) => (
+              <div key={cluster.slug} className="rounded-xl border border-white/10 bg-white/[0.035] p-5">
+                <div className="mb-4 flex items-center gap-3">
+                  <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-cyan-400/20 bg-cyan-400/10">
+                    {cluster.slug === "compliance" ? (
+                      <ShieldCheck className="h-4 w-4 text-cyan-300" />
+                    ) : cluster.slug === "performance" ? (
+                      <Zap className="h-4 w-4 text-cyan-300" />
+                    ) : (
+                      <FileText className="h-4 w-4 text-cyan-300" />
+                    )}
+                  </div>
+                  <div>
+                    <h3 className="text-base font-bold text-white">{cluster.title}</h3>
+                    <p className="text-xs text-slate-500">{cluster.links.length} guides</p>
+                  </div>
+                </div>
+
+                <p className="mb-4 text-xs leading-5 text-slate-400">{cluster.description}</p>
+                <div className="space-y-2">
+                  {cluster.links.slice(0, 5).map((href) => {
+                    const page = guideLookup.get(href);
+                    return (
+                      <Link
+                        key={href}
+                        href={href}
+                        className="flex items-center justify-between rounded-md border border-white/5 bg-black/20 px-3 py-2 text-xs text-slate-300 transition hover:border-cyan-400/30 hover:text-cyan-200"
+                      >
+                        <span>{page?.title || href.replace("/docs/", "")}</span>
+                        <ArrowRight className="h-3.5 w-3.5" />
+                      </Link>
+                    );
+                  })}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
       </div>
     </div>
   );
 }
+
