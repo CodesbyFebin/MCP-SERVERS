@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="MCPserver favicon">
+  <defs>
+    <linearGradient id="bg" x1="10" y1="8" x2="54" y2="56" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#071827"/>
+      <stop offset="0.48" stop-color="#11103f"/>
+      <stop offset="1" stop-color="#2a083d"/>
+    </linearGradient>
+    <linearGradient id="mark" x1="17" y1="14" x2="49" y2="50" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#22d3ee"/>
+      <stop offset="0.55" stop-color="#818cf8"/>
+      <stop offset="1" stop-color="#f0abfc"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="url(#bg)"/>
+  <path d="M32 10 54 32 32 54 10 32 32 10Z" fill="none" stroke="url(#mark)" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M32 21 43 32 32 43 21 32 32 21Z" fill="none" stroke="#e0f2fe" stroke-width="4" stroke-linejoin="round"/>
+  <circle cx="32" cy="32" r="4" fill="#22d3ee"/>
+</svg>

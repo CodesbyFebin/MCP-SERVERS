@@ -73,5 +73,4 @@ Disallow: /api/
 Disallow: /private/
 
 # Sitemap index location reference
-Sitemap: https://mcpserver.in/sitemap.xml
-
+Sitemap: https://www.mcpserver.in/sitemap.xml

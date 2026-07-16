@@ -1,9 +1,10 @@
 https://www.mcpserver.in/sitemap.xml
-https://www.mcpserver.in/sitemap-categories.xml
-https://www.mcpserver.in/sitemap-comparisons.xml
-https://www.mcpserver.in/sitemap-docs.xml
-https://www.mcpserver.in/sitemap-glossary.xml
-https://www.mcpserver.in/sitemap-integrations.xml
 https://www.mcpserver.in/sitemap-pages.xml
 https://www.mcpserver.in/sitemap-pillars.xml
 https://www.mcpserver.in/sitemap-topics.xml
+https://www.mcpserver.in/sitemap-integrations.xml
+https://www.mcpserver.in/sitemap-glossary.xml
+https://www.mcpserver.in/sitemap-comparisons.xml
+https://www.mcpserver.in/sitemap-categories.xml
+https://www.mcpserver.in/sitemap-docs.xml
+https://www.mcpserver.in/sitemap-images.xml

@@ -253,12 +253,43 @@ if (errorsCount > 0) {
   const siteUrl = "https://www.mcpserver.in";
   const today = new Date().toISOString().split("T")[0];
 
-  const buildUrlNode = (loc: string, lastmod: string, changefreq: string, priority: string) => `  <url>
+const buildUrlNode = (loc: string, lastmod: string, changefreq: string, priority: string) => `  <url>
     <loc>${siteUrl}${loc}</loc>
     <lastmod>${lastmod}</lastmod>
     <changefreq>${changefreq}</changefreq>
     <priority>${priority}</priority>
   </url>`;
+
+  const writeIndexingFiles = () => {
+    const sitemapFiles = [
+      "sitemap-pages.xml",
+      "sitemap-pillars.xml",
+      "sitemap-topics.xml",
+      "sitemap-integrations.xml",
+      "sitemap-glossary.xml",
+      "sitemap-comparisons.xml",
+      "sitemap-categories.xml",
+      "sitemap-docs.xml",
+    ];
+    const urls = sitemapFiles.flatMap((fileName) => {
+      const filePath = `./public/${fileName}`;
+      if (!fs.existsSync(filePath)) return [];
+      const content = fs.readFileSync(filePath, "utf-8");
+      return Array.from(content.matchAll(/<loc>(.*?)<\/loc>/g), (match) => match[1]);
+    });
+
+    fs.mkdirSync("./public/indexing", { recursive: true });
+    fs.writeFileSync("./public/indexing/urls-for-indexing.txt", `${urls.join("\n")}\n`);
+    fs.writeFileSync("./public/indexing/urls-for-indexing.json", JSON.stringify(urls, null, 2));
+    fs.writeFileSync(
+      "./public/indexing/sitemap-submit-list.txt",
+      [
+        `${siteUrl}/sitemap.xml`,
+        ...sitemapFiles.map((fileName) => `${siteUrl}/${fileName}`),
+        `${siteUrl}/sitemap-images.xml`,
+      ].join("\n") + "\n"
+    );
+  };
 
   // 1. sitemap-pages.xml (EXCLUDE login, register, profile!)
   const sitemapPagesContent = `<?xml version="1.0" encoding="UTF-8"?>
@@ -277,6 +308,7 @@ ${buildUrlNode("/about/", today, "monthly", "0.6")}
 ${buildUrlNode("/contact/", today, "monthly", "0.6")}
 ${buildUrlNode("/privacy/", today, "monthly", "0.3")}
 ${buildUrlNode("/terms/", today, "monthly", "0.3")}
+${buildUrlNode("/compare/", today, "weekly", "0.8")}
 ${buildUrlNode("/sitemap/", today, "monthly", "0.4")}
 ${toolSlugs.map((ts) => buildUrlNode(`/tools/${ts}/`, today, "weekly", "0.8")).join("\n")}
 </urlset>`;
@@ -321,8 +353,8 @@ ${Array.from(glossaryTerms)
   // 6. sitemap-comparisons.xml
   const sitemapComparisonsContent = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${Array.from(comparisons)
-  .map((c) => buildUrlNode(`/compare/${c.slug}/`, today, "weekly", "0.8"))
+${[...Array.from(comparisons).map((c) => c.slug), ...popularPairings]
+  .map((slug) => buildUrlNode(`/compare/${slug}/`, today, "weekly", "0.8"))
   .join("\n")}
 </urlset>`;
   fs.writeFileSync("./public/sitemap-comparisons.xml", sitemapComparisonsContent);
@@ -400,6 +432,7 @@ ${Array.from(docsPages)
   </sitemap>
 </sitemapindex>`;
   fs.writeFileSync("./public/sitemap.xml", sitemapIndexContent);
+  writeIndexingFiles();
 
   console.log("🌟 Enterprise XML sitemaps built and stored successfully.");
   console.log("🌟 [SUCCESS] All SEO, Claims and Link validation checks passed successfully. Build safe to deploy.");

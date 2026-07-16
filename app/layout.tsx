@@ -20,6 +20,14 @@ export const metadata: Metadata = {
     canonical: "/"
   },
 
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "32x32" },
+      { url: "/favicon.svg", type: "image/svg+xml" }
+    ],
+    shortcut: "/favicon.ico"
+  },
+
   openGraph: {
     type: "website",
     url: "https://www.mcpserver.in",

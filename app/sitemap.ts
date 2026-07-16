@@ -9,6 +9,13 @@ import { docsPages, getDocsPath } from "../src/data/docs";
 
 export const dynamic = "force-static";
 
+const popularComparisonSlugs = [
+  "github-mcp-server-vs-gitlab-mcp-server",
+  "postgres-mcp-server-vs-sqlite-mcp-server",
+  "slack-mcp-server-vs-discord-mcp-server",
+  "github-mcp-server-vs-postgres-mcp-server",
+];
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://www.mcpserver.in";
   const today = new Date();
@@ -29,6 +36,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: "/contact", changeFrequency: "monthly" as const, priority: 0.6 },
     { url: "/privacy", changeFrequency: "monthly" as const, priority: 0.3 },
     { url: "/terms", changeFrequency: "monthly" as const, priority: 0.3 },
+    { url: "/compare", changeFrequency: "weekly" as const, priority: 0.8 },
     { url: "/sitemap", changeFrequency: "monthly" as const, priority: 0.4 },
   ];
 
@@ -72,8 +80,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   // Technical comparisons
-  const comparisonEntries = comparisons.map((c) => ({
-    url: `${baseUrl}/compare/${c.slug}/`,
+  const comparisonSlugs = [
+    ...comparisons.map((c) => c.slug),
+    ...popularComparisonSlugs,
+  ];
+
+  const comparisonEntries = comparisonSlugs.map((slug) => ({
+    url: `${baseUrl}/compare/${slug}/`,
     lastModified: today,
     changeFrequency: "weekly" as const,
     priority: 0.8,
