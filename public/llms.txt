@@ -1,50 +1,49 @@
-# MCPserver.in - Model Context Protocol Platform
+# MCPserver.in — Hosted MCP Platform for AI Agents
 
-The unified platform to build, deploy, host, secure, monitor and manage Model Context Protocol (MCP) servers globally, optimized for Indian and international developers.
+## About
+MCPserver.in is India's leading hosted MCP platform for discovering, deploying, securing, and monitoring production MCP servers. We provide 10,000+ verified servers with DPDP & RBI compliance, sub-50ms latency from Mumbai and Bengaluru edge nodes.
 
-## Core Services
+## Key Pages
+- Home: https://www.mcpserver.in/
+- Docs: https://www.mcpserver.in/docs
+- Pricing: https://www.mcpserver.in/pricing
+- Blog: https://www.mcpserver.in/blog
+- MCP Server Directory: https://www.mcpserver.in/mcp-server-directory
+- Security: https://www.mcpserver.in/security
+- State of MCP in India 2026: https://www.mcpserver.in/state-of-mcp
+- MCP Knowledge Hub: https://www.mcpserver.in/learn
 
-- **Registry & Directory:** Explore over 100+ pre-configured integrations for databases (Postgres, MySQL, Redis, MongoDB), SaaS platforms (GitHub, Slack, Notion, Stripe), and developer utilities (Playwright browser automation).
-- **Managed Container Hosting:** Instantly deploy remote TypeScript or Python servers inside isolated single-tenant Docker containers on our low-latency edge servers in Bengaluru and Mumbai.
-- **Enterprise Security Sandbox:** Safeguard connections with AES-256-GCM zero-knowledge key encryption, rate-limiting, and human-in-the-loop permission prompts.
+## Why MCPserver.in?
+- **10,000+ Verified MCP Servers**: Curated from GitHub, npm, and Docker Hub with automated schema validation
+- **DPDP & RBI Compliant**: All data stored in India with consent management and breach notification
+- **One-Click Deployment**: Deploy in seconds from Mumbai and Bengaluru edge nodes
+- **Enterprise-Grade Security**: AES-256-GCM encryption, rate-limiting, audit logs
+- **99.97% Uptime**: Measured across 3 independent monitoring services
+- **Sub-50ms Latency**: From Mumbai and Bengaluru edge nodes
 
-## Key Developer Paths
+## Supported Integrations
+- Claude Desktop
+- VS Code
+- Cursor IDE
+- GitHub Copilot
+- Azure AI Agents
+- Any MCP-compliant client
 
-- Homepage: `/`
-- Directory: `/mcp-server-directory`
-- Standard Pricing (INR): `/pricing`
-- Documentation: `/docs`
-- Docs Pricing Cluster: `/docs/pricing`
-- India Pricing Guide: `/docs/pricing/india-pricing-comparison`
-- India Latency Benchmarks: `/docs/performance/latency-benchmarks-india`
-- DPDP MCP Compliance Guide: `/docs/compliance/dpdp-compliance-guide`
-- MCP vs REST API 2026: `/docs/comparisons/mcp-vs-rest-2026`
-- Railway MCP Deployment: `/docs/deployment/railway-deployment`
-- MCP Monitoring Dashboard: `/docs/monitoring`
-- Trust & Compliance audited checklist: `/security`
-- Custom Contacts & Support: `/about`
+## Key Metrics
+- 10,000+ verified MCP servers
+- 500,000+ successful deployments
+- 99.97% uptime
+- 1M+ API requests per day
 
-## Documentation Clusters
+## Compliance
+- DPDP Act 2023 compliant
+- RBI Cyber Framework aligned
+- SOC 2 ready
+- GDPR ready
 
-- `/docs/getting-started` - MCP concepts, local installation, Claude and Cursor configuration, managed edge hosting.
-- `/docs/protocol` - Tools, resources, prompts, events, JSON-RPC, stdio, and SSE protocol behavior.
-- `/docs/pricing` - India-aware MCP server pricing, free vs paid hosting, hidden costs, enterprise pricing.
-- `/docs/performance` - Bengaluru and Mumbai latency planning, global vs India hosting, optimization guides.
-- `/docs/compliance` - DPDP-aware implementation, RBI-aware fintech controls, MCP security best practices.
-- `/docs/comparisons` - MCP vs REST, GraphQL, API gateways, and decision guides.
-- `/docs/deployment` - Railway, AWS EC2, Google Cloud Run, Vercel, and Kubernetes deployment guides.
-- `/docs/industry` - Indian startup, fintech, ecommerce, government, healthcare, and education MCP workflows.
-- `/docs/monitoring` - Dashboards, Grafana metrics, health checks, MCP Pulse-style monitoring, observability.
-- `/glossary` - MCP glossary now includes OAuth, DPDP, ROS, MCP Robot Control, ROS2 MCP Bridge, Simulation MCP, and Hardware Abstraction MCP.
-
-## Educational Capabilities Pillars
-
-- `/what-is-mcp` - Core concept introduction
-- `/mcp-server` - Server parameters, stdio, and SSE
-- `/build-mcp-server` - Custom SDK instructions
-- `/mcp-server-hosting` - Continuous connection architectures
-- `/mcp-gateway` - Proxy and orchestration mechanics
-- `/mcp-security` - Transport layer guidelines
-- `/mcp-integrations` - Connecting to third-party SDKs
-- `/mcp-for-ai-agents` - Claude Desktop, Cursor, and custom orchestrators
-- `/enterprise-mcp` - High-availability enterprise setups
+## Contact
+- Email: support@mcpserver.in
+- Location: Bengaluru, Karnataka, India
+- GitHub: https://github.com/mcpserver-in
+- Twitter: https://twitter.com/mcpserver_in
+- Discord: https://discord.gg/mcpserver

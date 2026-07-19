@@ -117,6 +117,26 @@ export function getSoftwareApplicationSchema(name: string, description: string) 
   };
 }
 
+export interface HowToStep {
+  name: string;
+  text: string;
+}
+
+export function getHowToSchema(name: string, description: string, steps: HowToStep[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": name,
+    "description": description,
+    "step": steps.map((step, idx) => ({
+      "@type": "HowToStep",
+      "position": idx + 1,
+      "name": step.name,
+      "text": step.text
+    }))
+  };
+}
+
 export interface UnifiedGraphOptions {
   pageUrl: string; // e.g., "/postgres-mcp-server" or "/mcp-vs-rest"
   title: string;

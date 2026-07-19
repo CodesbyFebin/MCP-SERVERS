@@ -11,73 +11,20 @@ export interface Topic {
 }
 
 export const topics: Topic[] = [
-  // What is MCP Supporting
   {
-    slug: "what-is-model-context-protocol",
-    title: "Understanding the Model Context Protocol Specification",
+    slug: "what-is-mcp",
+    title: "What is MCP? The Model Context Protocol Explained",
     pillar: "what-is-mcp",
     intent: "informational",
-    primaryKeyword: "model context protocol specification",
-    shortAnswer: "The Model Context Protocol specification details how clients and servers exchange context, tools, and prompts using JSON-RPC 2.0 messages. It defines core primitives including resources, templates, and tool schemas.",
-    explanation: "By defining a clean, formal spec, Anthropic has enabled an ecosystem where any language model client can interact with any conformant server without custom code changes.",
-    bestPractices: ["Always follow semantic versioning", "Validate all JSON-RPC payloads before transmission"]
-  },
-  {
-    slug: "how-mcp-works",
-    title: "How MCP Works: Core Architecture and Workflows",
-    pillar: "what-is-mcp",
-    intent: "informational",
-    primaryKeyword: "how mcp works",
-    shortAnswer: "MCP works through a simple client-server handshake where the client launches the server (via standard output/input or HTTP SSE) and queries its capabilities.",
-    explanation: "Once initialized, the client can list resources, invoke tools, or fill prompt templates. The server responds with rich markdown, text, or binary content.",
-    bestPractices: ["Keep connection timeouts high during heavy processing", "Log connection handshakes for easier debugging"]
-  },
-  {
-    slug: "mcp-client",
-    title: "The Developer's Guide to MCP Clients",
-    pillar: "what-is-mcp",
-    intent: "informational",
-    primaryKeyword: "mcp client integration",
-    shortAnswer: "An MCP client is any application (like Claude Desktop, Cursor IDE, or custom CLI) that initiates a Model Context Protocol connection to a server to consume tools.",
-    explanation: "Clients parse server capabilities, render them to the underlying LLM, and prompt the user for execution consent when risky tools are invoked.",
-    bestPractices: ["Always prompt before running destructive tools", "Cache client-side schema descriptions"]
-  },
-  {
-    slug: "mcp-tools",
-    title: "Model Context Protocol Tools Explained",
-    pillar: "what-is-mcp",
-    intent: "informational",
-    primaryKeyword: "mcp tools",
-    shortAnswer: "Tools in MCP represent executable functions that the LLM can call. They are described via standard JSON Schema, enabling accurate function calling.",
-    explanation: "An MCP tool can represent anything from checking the local weather to compiling code or committing changes to a remote repository.",
-    bestPractices: ["Provide extremely detailed descriptions in JSON Schema", "Avoid complex nested arguments where possible"]
-  },
-  {
-    slug: "mcp-resources",
-    title: "Using MCP Resources for Static Data Context",
-    pillar: "what-is-mcp",
-    intent: "informational",
-    primaryKeyword: "mcp resources",
-    shortAnswer: "Resources are the passive reading endpoints of an MCP server. They provide raw data like database schemas, logs, or local documents directly to the LLM.",
-    explanation: "Unlike tools, resources do not perform side-effects. They act as reliable data files or dynamic streams that models can pull context from on demand.",
-    bestPractices: ["Use URI templates for dynamic resource endpoints", "Gzip compress heavy resource contents"]
-  },
-
-  // MCP Server Supporting
-  {
-    slug: "mcp-prompts",
-    title: "Designing Highly Optimized MCP Prompts",
-    pillar: "mcp-server",
-    intent: "tutorial",
-    primaryKeyword: "mcp prompts",
-    shortAnswer: "MCP prompts allow servers to expose pre-designed templates and system guidelines directly to AI clients, establishing structured context patterns.",
-    explanation: "Prompts help guide user-agent interactions, ensuring models approach tasks like code debugging, PR reviews, or database lookups using industry best practices.",
-    bestPractices: ["Parameterize your prompts using clear variables", "Keep system guidance concise and punchy"]
+    primaryKeyword: "model context protocol",
+    shortAnswer: "MCP is an open protocol that standardizes how applications provide context to language models. APIs connect machines; MCP connects intelligence to machines.",
+    explanation: "MCP does not replace REST/gRPC — it is the layer that lets LLM agents discover and use tools. MCP client (AI agent) sends requests; MCP server exposes tools/data.",
+    bestPractices: ["Understand the client-server handshake before building", "Keep connection timeouts high during heavy processing"]
   },
   {
     slug: "mcp-architecture",
-    title: "Deep Dive into Model Context Protocol Architecture",
-    pillar: "mcp-server",
+    title: "MCP Architecture: How AI Agents Connect to External Tools",
+    pillar: "what-is-mcp",
     intent: "informational",
     primaryKeyword: "mcp architecture",
     shortAnswer: "MCP architecture is composed of a light protocol layer running over asynchronous I/O transport. It maintains a stateful connection for session duration.",
@@ -85,19 +32,406 @@ export const topics: Topic[] = [
     bestPractices: ["Isolate server execution threads", "Utilize async/await paradigms to prevent I/O blocking"]
   },
   {
-    slug: "mcp-protocol",
-    title: "The Under-the-Hood JSON-RPC 2.0 Protocol in MCP",
-    pillar: "mcp-server",
-    intent: "informational",
-    primaryKeyword: "mcp protocol spec",
-    shortAnswer: "At its core, MCP operates via JSON-RPC 2.0, utilizing notifications for state updates and request-response pairs for tool and resource interaction.",
-    explanation: "Understanding JSON-RPC packets helps developer-infrastructure builders debug transport issues on raw sockets or websocket connections.",
-    bestPractices: ["Ensure transaction IDs are unique per request", "Gracefully handle invalid JSON structures with standard RPC error codes"]
+    slug: "mcp-vs-api",
+    title: "MCP vs API: Understanding the Difference",
+    pillar: "what-is-mcp",
+    intent: "comparison",
+    primaryKeyword: "mcp vs api",
+    shortAnswer: "APIs are resource-based; MCP servers are task-based. An API is a human-oriented interface for software-to-software communication; MCP is an AI-oriented protocol.",
+    explanation: "APIs connect machines; MCP connects intelligence to machines. MCP is purpose-built for AI context, not general web APIs.",
+    bestPractices: ["Use REST for high-throughput binary transfers", "Migrate to MCP for dynamic agent actions and tool integration"]
   },
   {
-    slug: "remote-mcp-server",
+    slug: "mcp-vs-a2a",
+    title: "MCP vs A2A: Agent-to-Agent Protocol Comparison",
+    pillar: "what-is-mcp",
+    intent: "comparison",
+    primaryKeyword: "mcp vs a2a",
+    shortAnswer: "MCP servers can operate as both MCP and A2A (Agent-to-Agent) servers, providing flexibility in how AI agents communicate.",
+    explanation: "MCP servers can operate as both MCP and A2A servers, allowing seamless interoperability between different agent communication protocols.",
+    bestPractices: ["Evaluate A2A requirements before choosing protocol", "Consider hybrid MCP/A2A deployments for complex systems"]
+  },
+  {
+    slug: "mcp-clients",
+    title: "MCP Clients: The Complete Guide",
+    pillar: "what-is-mcp",
+    intent: "informational",
+    primaryKeyword: "mcp clients",
+    shortAnswer: "An MCP client is any application (like Claude Desktop, Cursor IDE, or custom CLI) that initiates a Model Context Protocol connection to a server to consume tools.",
+    explanation: "VS Code is a full MCP client supporting tools, resources, prompts, sampling, and OAuth. Clients parse server capabilities and render them to the underlying LLM.",
+    bestPractices: ["Always prompt before running destructive tools", "Cache client-side schema descriptions"]
+  },
+  {
+    slug: "how-mcp-works",
+    title: "How MCP Works: Core Architecture and Workflows",
+    pillar: "what-is-mcp",
+    intent: "informational",
+    primaryKeyword: "how mcp works",
+    shortAnswer: "MCP works through a simple client-server handshake where the client launches the server and queries its capabilities via JSON-RPC 2.0.",
+    explanation: "Once initialized, the client can list resources, invoke tools, or fill prompt templates. The server responds with rich markdown, text, or binary content.",
+    bestPractices: ["Keep connection timeouts high during heavy processing", "Log connection handshakes for easier debugging"]
+  },
+
+  {
+    slug: "official-mcp-servers",
+    title: "Official MCP Servers: Reference Implementations from Anthropic",
+    pillar: "official-mcp-servers",
+    intent: "informational",
+    primaryKeyword: "official mcp servers",
+    shortAnswer: "Anthropic maintains an official collection of reference MCP servers for core utilities. The modelcontextprotocol/servers repo houses reference implementations.",
+    explanation: "These servers are the gold standard for compliance, code stability, and standard conforming performance. Browse published servers at registry.modelcontextprotocol.io.",
+    bestPractices: ["Subscribe to upstream repository releases", "Contribute stability patches back to the main repository"]
+  },
+  {
+    slug: "official-mcp-integrations",
+    title: "Official MCP Integrations: Company-Maintained Servers",
+    pillar: "official-mcp-servers",
+    intent: "informational",
+    primaryKeyword: "mcp official integrations",
+    shortAnswer: "Servers maintained by companies for their platforms, listed in the MCP Servers Repository Official Integrations section.",
+    explanation: "Companies maintain MCP servers for their platforms to ensure seamless integration with the MCP ecosystem.",
+    bestPractices: ["Follow company-specific authentication patterns", "Monitor official repo releases for updates"]
+  },
+  {
+    slug: "mcp-steering-group",
+    title: "MCP Steering Group: Reference Server Governance",
+    pillar: "official-mcp-servers",
+    intent: "informational",
+    primaryKeyword: "mcp steering group",
+    shortAnswer: "The MCP steering group maintains a small number of reference servers that set the standard for the ecosystem.",
+    explanation: "The steering group ensures reference servers meet the highest standards for security, performance, and protocol compliance.",
+    bestPractices: ["Follow reference server patterns in your implementations", "Contribute improvements back to the steering group"]
+  },
+
+  {
+    slug: "mcp-marketplaces",
+    title: "The Complete Guide to MCP Server Marketplaces",
+    pillar: "mcp-marketplaces",
+    intent: "informational",
+    primaryKeyword: "mcp marketplace",
+    shortAnswer: "Smithery.ai is the primary MCP server marketplace with 2,211+ servers. Glama.ai, MCP.so, PulseMCP, and Docker MCP Catalog are other key discovery platforms.",
+    explanation: "A server listed on Glama is often also on MCP.so and PulseMCP. Smithery supports npm packages, GitHub repos, and Docker images.",
+    bestPractices: ["Cross-reference listings across multiple marketplaces", "Verify server quality scores before installation"]
+  },
+  {
+    slug: "smithery-mcp",
+    title: "Smithery.ai: The Primary MCP Server Marketplace",
+    pillar: "mcp-marketplaces",
+    intent: "commercial",
+    primaryKeyword: "smithery mcp",
+    shortAnswer: "Smithery is the primary MCP server marketplace with 2,211+ servers, one-click installable, with editorial review.",
+    explanation: "Smithery supports npm packages, GitHub repos, and Docker images, making it the most versatile MCP server marketplace.",
+    bestPractices: ["Use one-click install for quick setup", "Check editorial reviews before installing"]
+  },
+  {
+    slug: "glama-mcp",
+    title: "Glama.ai: Algorithmic Quality Scores for MCP Servers",
+    pillar: "mcp-marketplaces",
+    intent: "informational",
+    primaryKeyword: "glama mcp",
+    shortAnswer: "Glama provides algorithmic quality scores based on GitHub activity, stars, and maintenance signals for MCP servers.",
+    explanation: "Glama's quality scoring helps developers identify the most reliable and well-maintained MCP servers.",
+    bestPractices: ["Use quality scores as a starting point for evaluation", "Cross-check with other directories"]
+  },
+  {
+    slug: "mcpso-mcp",
+    title: "MCP.so: Free Directory for MCP Servers",
+    pillar: "mcp-marketplaces",
+    intent: "informational",
+    primaryKeyword: "mcp.so",
+    shortAnswer: "MCP.so is a popular free directory for MCP servers, complementing other discovery platforms.",
+    explanation: "MCP.so provides a simple, free way to discover and list MCP servers.",
+    bestPractices: ["Use as a cross-reference with other directories", "Verify server quality independently"]
+  },
+  {
+    slug: "pulsemcp",
+    title: "PulseMCP: Free Directory for MCP Server Discovery",
+    pillar: "mcp-marketplaces",
+    intent: "informational",
+    primaryKeyword: "pulsemcp",
+    shortAnswer: "PulseMCP is another free directory for MCP server discovery, often listing the same servers as MCP.so.",
+    explanation: "PulseMCP provides an alternative view of the MCP server ecosystem, useful for comprehensive discovery.",
+    bestPractices: ["Cross-reference with MCP.so and Glama", "Check for unique listings"]
+  },
+  {
+    slug: "github-mcp-registry",
+    title: "GitHub MCP Registry: 44 Official Integrations",
+    pillar: "mcp-marketplaces",
+    intent: "informational",
+    primaryKeyword: "github mcp registry",
+    shortAnswer: "The GitHub MCP Registry has 44 MCP servers including Playwright, GitHub MCP, Context7, MarkItDown, Terraform.",
+    explanation: "The GitHub MCP Registry is the official source for company-maintained MCP integrations.",
+    bestPractices: ["Prioritize official registry servers for production", "Monitor for new additions"]
+  },
+  {
+    slug: "docker-mcp-catalog",
+    title: "Docker MCP Catalog: Containerized MCP Servers",
+    pillar: "mcp-marketplaces",
+    intent: "informational",
+    primaryKeyword: "docker mcp catalog",
+    shortAnswer: "Browse MCP servers at hub.docker.com/mcp or in Docker Desktop for containerized deployment.",
+    explanation: "Docker MCP Catalog provides containerized MCP servers ready for deployment.",
+    bestPractices: ["Use Docker images for consistent deployments", "Verify image signatures for security"]
+  },
+  {
+    slug: "awesome-mcp-registries",
+    title: "Awesome MCP Registries: AI-Curated Server Rankings",
+    pillar: "mcp-marketplaces",
+    intent: "informational",
+    primaryKeyword: "awesome mcp servers",
+    shortAnswer: "AI-curated, self-updating directories analyzing and ranking MCP servers weekly.",
+    explanation: "Awesome MCP registries provide curated analysis and rankings of the best MCP servers.",
+    bestPractices: ["Use for discovering high-quality servers", "Check update frequency for freshness"]
+  },
+  {
+    slug: "archestra-mcp-catalog",
+    title: "Archestra MCP Server Catalog: Implementation Quality Rankings",
+    pillar: "mcp-marketplaces",
+    intent: "informational",
+    primaryKeyword: "archestra mcp",
+    shortAnswer: "Archestra ranks 879+ MCP servers by implementation quality, helping developers find the best-built servers.",
+    explanation: "Archestra's quality-based ranking helps identify well-implemented MCP servers.",
+    bestPractices: ["Use quality rankings to prioritize servers", "Verify rankings against actual usage"]
+  },
+
+  {
+    slug: "mcp-categories-guide",
+    title: "MCP Server Categories & Use Cases: Complete Guide",
+    pillar: "mcp-categories",
+    intent: "informational",
+    primaryKeyword: "mcp server categories",
+    shortAnswer: "MCP servers span development tools, databases, design, ITSM, cloud infrastructure, browser automation, knowledge management, DevOps, and cryptocurrency.",
+    explanation: "MCP is the open standard for connecting AI assistants to external tools across every industry and function.",
+    bestPractices: ["Choose servers that match your specific use case", "Combine multiple category servers for complex workflows"]
+  },
+  {
+    slug: "mcp-developer-tools",
+    title: "MCP for Developers: GitHub, GitLab, and Coding Tools",
+    pillar: "mcp-categories",
+    intent: "informational",
+    primaryKeyword: "mcp for developers",
+    shortAnswer: "GitHub MCP (100+ tools), GitLab MCP, and Cursor integration power the developer workflow.",
+    explanation: "Developer tools are among the most popular MCP server categories, with GitHub MCP offering 100+ tools for code management.",
+    bestPractices: ["Use GitHub MCP for repository management", "Integrate with your existing IDE workflow"]
+  },
+  {
+    slug: "mcp-database-analytics",
+    title: "MCP Database & Analytics: Power BI, MongoDB, and More",
+    pillar: "mcp-categories",
+    intent: "informational",
+    primaryKeyword: "mcp database",
+    shortAnswer: "Power BI MCP, MongoDB MCP, and Universal Database MCP enable AI-powered database interactions.",
+    explanation: "Database and analytics MCP servers allow AI agents to query and analyze data using natural language.",
+    bestPractices: ["Scope database access to minimum necessary permissions", "Use read-only servers for analytics"]
+  },
+  {
+    slug: "mcp-design-tools",
+    title: "MCP Design Tools: Figma and Creative Workflows",
+    pillar: "mcp-categories",
+    intent: "informational",
+    primaryKeyword: "figma mcp",
+    shortAnswer: "Figma MCP (Dev Mode) brings design decisions into tools where code gets written.",
+    explanation: "The Figma MCP server bridges design and development workflows, enabling AI agents to understand design context.",
+    bestPractices: ["Use Dev Mode for development-focused interactions", "Integrate with design handoff workflows"]
+  },
+  {
+    slug: "mcp-cloud-infrastructure",
+    title: "MCP Cloud Infrastructure: Azure, Terraform, and DevOps",
+    pillar: "mcp-categories",
+    intent: "informational",
+    primaryKeyword: "azure mcp",
+    shortAnswer: "Azure MCP, Terraform MCP, and DevOps-focused MCP servers enable infrastructure automation.",
+    explanation: "Cloud infrastructure MCP servers allow AI agents to manage and deploy cloud resources.",
+    bestPractices: ["Use least privilege for cloud operations", "Audit all infrastructure changes"]
+  },
+  {
+    slug: "mcp-browser-automation",
+    title: "MCP Browser Automation: Playwright and Beyond",
+    pillar: "mcp-categories",
+    intent: "informational",
+    primaryKeyword: "playwright mcp",
+    shortAnswer: "Playwright MCP enables browser automation for testing, scraping, and workflow automation.",
+    explanation: "Browser automation MCP servers allow AI agents to interact with web applications.",
+    bestPractices: ["Respect rate limits and terms of service", "Use for legitimate testing and automation"]
+  },
+  {
+    slug: "mcp-knowledge-management",
+    title: "MCP Knowledge Management: Notion, Obsidian, and More",
+    pillar: "mcp-categories",
+    intent: "informational",
+    primaryKeyword: "notion mcp",
+    shortAnswer: "Notion MCP and Obsidian MCP enable AI-powered knowledge management and note-taking.",
+    explanation: "Knowledge management MCP servers allow AI agents to access and organize personal and team knowledge.",
+    bestPractices: ["Protect sensitive knowledge base data", "Use for team collaboration"]
+  },
+
+  {
+    slug: "mcp-vs-rest-api",
+    title: "MCP vs REST API: The Architectural Difference",
+    pillar: "mcp-vs-api",
+    intent: "comparison",
+    primaryKeyword: "mcp vs rest api",
+    shortAnswer: "APIs are human-oriented interfaces for software-to-software communication; MCP is an AI-oriented protocol built for models that reason with text but cannot safely execute code.",
+    explanation: "MCP is built for AI models that reason with text but cannot safely execute code. An MCP server is a control layer that turns APIs into repeatable, context-aware workflows.",
+    bestPractices: ["Use REST for high-throughput binary transfers", "Migrate to MCP for dynamic agent actions"]
+  },
+  {
+    slug: "mcp-task-based-vs-resource-based",
+    title: "Task-Based vs Resource-Based: MCP vs API Deep Dive",
+    pillar: "mcp-vs-api",
+    intent: "comparison",
+    primaryKeyword: "mcp task-based",
+    shortAnswer: "APIs are resource-based; MCP servers are task-based. This fundamental difference changes how AI interacts with systems.",
+    explanation: "The task-based approach of MCP enables AI agents to complete complex workflows rather than just fetch data.",
+    bestPractices: ["Design MCP tools around tasks, not resources", "Use resources for static data context"]
+  },
+  {
+    slug: "mcp-as-control-layer",
+    title: "MCP as Control Layer: Packaging APIs into Workflows",
+    pillar: "mcp-vs-api",
+    intent: "informational",
+    primaryKeyword: "mcp as control layer",
+    shortAnswer: "An MCP server sits above APIs, packaging them into workflows with sequencing, validation, and guardrails.",
+    explanation: "The MCP layer provides validation, sequencing, and guardrails that raw APIs lack, making it ideal for AI agent interactions.",
+    bestPractices: ["Implement guardrails for destructive operations", "Use sequencing for multi-step workflows"]
+  },
+
+  {
+    slug: "mcp-claude-desktop",
+    title: "MCP in Claude Desktop: Complete Setup Guide",
+    pillar: "mcp-clients",
+    intent: "tutorial",
+    primaryKeyword: "claude desktop mcp",
+    shortAnswer: "Claude Desktop provides native MCP support via Developer settings, allowing seamless connection to MCP servers.",
+    explanation: "Claude Desktop provides a native desktop experience with full MCP support for tools, resources, prompts, sampling, and OAuth.",
+    bestPractices: ["Configure servers via Developer settings", "Test connections before production use"]
+  },
+  {
+    slug: "mcp-vscode",
+    title: "MCP in VS Code: Complete Setup Guide",
+    pillar: "mcp-clients",
+    intent: "tutorial",
+    primaryKeyword: "mcp in vscode",
+    shortAnswer: "VS Code is a full Model Context Protocol client supporting tools, resources, prompts, sampling, and OAuth.",
+    explanation: "VS Code's full MCP client support enables seamless integration of MCP servers into the development workflow.",
+    bestPractices: ["Use VS Code settings for MCP configuration", "Leverage OAuth for secure connections"]
+  },
+  {
+    slug: "mcp-cursor",
+    title: "Cursor IDE MCP Integration: Native Support",
+    pillar: "mcp-clients",
+    intent: "tutorial",
+    primaryKeyword: "cursor mcp",
+    shortAnswer: "Cursor supports remote MCP servers over Streamable HTTP natively, enabling seamless AI-powered development.",
+    explanation: "Cursor IDE provides native remote MCP support, allowing developers to connect to hosted MCP servers directly.",
+    bestPractices: ["Configure remote MCP servers via Cursor settings", "Use Streamable HTTP for remote connections"]
+  },
+  {
+    slug: "mcp-github-copilot",
+    title: "GitHub Copilot MCP: Connecting to External Tools",
+    pillar: "mcp-clients",
+    intent: "tutorial",
+    primaryKeyword: "github copilot mcp",
+    shortAnswer: "GitHub Copilot integrates with MCP servers via the GitHub MCP Server, extending its capabilities.",
+    explanation: "GitHub Copilot's MCP integration allows access to GitHub tools and external MCP servers.",
+    bestPractices: ["Configure GitHub MCP Server for Copilot", "Use for code review and repository management"]
+  },
+  {
+    slug: "mcp-azure-ai",
+    title: "Azure AI Agents MCP: Dynamic Tool Catalog",
+    pillar: "mcp-clients",
+    intent: "informational",
+    primaryKeyword: "azure ai mcp",
+    shortAnswer: "Azure AI Agents connect to MCP servers via dynamic tool catalog, enabling enterprise AI workflows.",
+    explanation: "Azure AI Agents provide dynamic tool catalog connection to MCP servers for enterprise AI automation.",
+    bestPractices: ["Configure MCP servers in Azure AI Foundry", "Use enterprise-grade authentication"]
+  },
+
+  {
+    slug: "servicenow-mcp",
+    title: "ServiceNow MCP Server: Complete Integration Guide",
+    pillar: "enterprise-mcp",
+    intent: "tutorial",
+    primaryKeyword: "servicenow mcp",
+    shortAnswer: "ServiceNow's Zurich release introduces a native MCP Server Console for publishing MCP Tools with OAuth-based authentication.",
+    explanation: "ServiceNow MCP enables AI agents to interact with ServiceNow workflows, incidents, and service management.",
+    bestPractices: ["Use OAuth-based authentication", "Publish tools via MCP Server Console"]
+  },
+  {
+    slug: "powerbi-mcp",
+    title: "Power BI MCP Server: Natural Language Analytics",
+    pillar: "enterprise-mcp",
+    intent: "tutorial",
+    primaryKeyword: "power bi mcp",
+    shortAnswer: "The remote Power BI MCP server enables AI agents to query Power BI semantic models using natural language via DAX.",
+    explanation: "Power BI MCP brings natural language querying to Power BI semantic models, enabling AI-powered analytics.",
+    bestPractices: ["Use DAX for natural language queries", "Secure semantic model access"]
+  },
+  {
+    slug: "azure-mcp-hosting",
+    title: "Azure MCP Server: Hosting Options Compared",
+    pillar: "enterprise-mcp",
+    intent: "informational",
+    primaryKeyword: "azure mcp",
+    shortAnswer: "Azure provides multiple hosting options for MCP servers: Container Apps, Functions, and Dynamic Sessions.",
+    explanation: "Azure MCP hosting offers flexibility from serverless Functions to scalable Container Apps.",
+    bestPractices: ["Choose Container Apps for flexible scaling", "Use Functions for lightweight endpoints"]
+  },
+  {
+    slug: "aws-mcp-hosting",
+    title: "AWS MCP Server: Lambda, ECS, and Bedrock AgentCore",
+    pillar: "enterprise-mcp",
+    intent: "informational",
+    primaryKeyword: "aws mcp",
+    shortAnswer: "AWS offers Lambda, ECS on Fargate, and Bedrock AgentCore for hosting MCP servers.",
+    explanation: "AWS MCP hosting options range from serverless Lambda to containerized ECS deployments.",
+    bestPractices: ["Use Lambda for bursty traffic patterns", "Use ECS for more control over runtime"]
+  },
+  {
+    slug: "salesforce-mcp",
+    title: "Salesforce MCP Server: Enterprise CRM Integration",
+    pillar: "enterprise-mcp",
+    intent: "informational",
+    primaryKeyword: "salesforce mcp",
+    shortAnswer: "Salesforce MCP server enables enterprise CRM integration with AI agents.",
+    explanation: "Salesforce MCP connects AI agents to Salesforce CRM data and workflows.",
+    bestPractices: ["Use OAuth for authentication", "Scope access to specific CRM objects"]
+  },
+  {
+    slug: "sap-mcp",
+    title: "SAP MCP Server: Enterprise Resource Planning",
+    pillar: "enterprise-mcp",
+    intent: "informational",
+    primaryKeyword: "sap mcp",
+    shortAnswer: "SAP MCP server enables AI agents to interact with SAP enterprise resource planning systems.",
+    explanation: "SAP MCP connects AI agents to SAP ERP data and workflows.",
+    bestPractices: ["Use SAP-specific authentication", "Limit access to relevant business objects"]
+  },
+  {
+    slug: "workday-mcp",
+    title: "Workday MCP Server: HR and Financial Management",
+    pillar: "enterprise-mcp",
+    intent: "informational",
+    primaryKeyword: "workday mcp",
+    shortAnswer: "Workday MCP server enables AI agents to interact with HR and financial management systems.",
+    explanation: "Workday MCP connects AI agents to Workday HR and financial data.",
+    bestPractices: ["Protect sensitive HR data", "Use role-based access controls"]
+  },
+
+  {
+    slug: "mcp-local-server",
+    title: "Local MCP Servers: Low-Latency, Zero-Network Integrations",
+    pillar: "mcp-hosting",
+    intent: "tutorial",
+    primaryKeyword: "local mcp server",
+    shortAnswer: "Local MCP servers run directly on the developer's workstation, using Standard Input/Output (Stdio) as the low-latency transport layer.",
+    explanation: "Because there is no network overhead or external API roundtrips, local servers provide instant, millisecond-level feedback for local tools.",
+    bestPractices: ["Ensure child process handles are cleaned up correctly", "Do not pollute standard output with debug logs — use standard error"]
+  },
+  {
+    slug: "mcp-remote-server",
     title: "Setting Up Secure Remote MCP Servers",
-    pillar: "mcp-server",
+    pillar: "mcp-hosting",
     intent: "tutorial",
     primaryKeyword: "remote mcp server",
     shortAnswer: "A remote MCP server runs in a cloud network and communicates via Server-Sent Events (SSE) or secure WebSockets over standard HTTPS channels.",
@@ -105,432 +439,287 @@ export const topics: Topic[] = [
     bestPractices: ["Require TLS 1.3 on all remote channels", "Implement API token authentication on SSE handshakes"]
   },
   {
-    slug: "local-mcp-server",
-    title: "Local MCP Servers: Low-Latency, Zero-Network Integrations",
-    pillar: "mcp-server",
+    slug: "mcp-docker-hosting",
+    title: "Docker MCP: Containerized Deployment Guide",
+    pillar: "mcp-hosting",
     intent: "tutorial",
-    primaryKeyword: "local mcp server",
-    shortAnswer: "Local MCP servers run directly on the developer's workstation, using Standard Input/Output (Stdio) as the low-latency transport layer.",
-    explanation: "Because there is no network overhead or external API roundtrips, local servers provide instant, millisecond-level feedback for local tools.",
-    bestPractices: ["Ensure child process handles are cleaned up correctly", "Do not pollute standard output with debug logs — use standard error"]
-  },
-
-  // Directory Supporting
-  {
-    slug: "best-mcp-servers",
-    title: "The Best MCP Servers for AI Agents (2026 Rankings)",
-    pillar: "mcp-server-directory",
-    intent: "commercial",
-    primaryKeyword: "best mcp servers",
-    shortAnswer: "A comprehensive analysis of the top-performing Model Context Protocol servers evaluated on reliability, speed, and real-world agent automation value.",
-    explanation: "We break down the leading connectors for software engineers, content creators, database administrators, and startup founders.",
-    bestPractices: ["Prioritize servers with robust validation", "Test server configurations in a safe playground first"]
-  },
-  {
-    slug: "open-source-mcp-servers",
-    title: "Top Open-Source MCP Servers to Clone and Deploy",
-    pillar: "mcp-server-directory",
-    intent: "commercial",
-    primaryKeyword: "open source mcp servers",
-    shortAnswer: "Discover community-maintained, open-source MCP repositories that you can run locally, modify, or host in your private cloud.",
-    explanation: "Open source allows complete visibility over the code executing on your system, avoiding compliance risks with proprietary integrations.",
-    bestPractices: ["Verify repository licenses before fork or commercial use", "Conduct regular security reviews on community code"]
-  },
-  {
-    slug: "official-mcp-servers",
-    title: "Official Model Context Protocol Servers from Anthropic",
-    pillar: "mcp-server-directory",
-    intent: "informational",
-    primaryKeyword: "official mcp servers",
-    shortAnswer: "Anthropic maintains an official collection of reference MCP servers for core utilities like Git, SQLite, Brave Search, and PostgreSQL.",
-    explanation: "These servers are the gold standard for compliance, code stability, and standard conforming performance.",
-    bestPractices: ["Subscribe to upstream repository releases", "Contribute stability patches back to the main repository"]
-  },
-  {
-    slug: "verified-mcp-servers",
-    title: "Verified MCP Servers: High-Trust Cloud Integrations",
-    pillar: "mcp-server-directory",
-    intent: "commercial",
-    primaryKeyword: "verified mcp servers",
-    shortAnswer: "Our team tests, optimizes, and certifies select MCP servers to ensure zero-risk execution, clean schemas, and high performance.",
-    explanation: "Verified status guarantees the server has been audited for security vulnerabilities, memory leaks, and prompt injection vectors.",
-    bestPractices: ["Always select the 'Verified' filter in the directory", "Enable auto-updates for hosted verified servers"]
-  },
-  {
-    slug: "free-mcp-servers",
-    title: "Free MCP Servers for Independent Developers",
-    pillar: "mcp-server-directory",
-    intent: "commercial",
-    primaryKeyword: "free mcp servers",
-    shortAnswer: "A curated list of zero-cost, high-utility MCP servers that can run on standard hobby instances or your local terminal.",
-    explanation: "Great for building proof-of-concepts, experimenting with new agent systems, or powering student hackathon projects.",
-    bestPractices: ["Keep track of free-tier API limits on underlying services", "Isolate local system variables"]
-  },
-
-  // Build Supporting
-  {
-    slug: "how-to-build-mcp-server",
-    title: "How to Build an MCP Server: Comprehensive Tutorial",
-    pillar: "build-mcp-server",
-    intent: "tutorial",
-    primaryKeyword: "how to build mcp server",
-    shortAnswer: "Learn how to build an MCP server from scratch. This tutorial guides you from empty directory to full tool execution and client integration.",
-    explanation: "We implement the core JSON-RPC protocol, register two utility tools, and connect it to Claude Desktop in less than 15 minutes.",
-    bestPractices: ["Begin with TypeScript for strong contract verification", "Define tools clearly using descriptive markdown text"]
-  },
-  {
-    slug: "mcp-server-typescript",
-    title: "Building MCP Servers with TypeScript and Node.js",
-    pillar: "build-mcp-server",
-    intent: "tutorial",
-    primaryKeyword: "mcp server typescript",
-    shortAnswer: "A complete programming guide leveraging the official TypeScript SDK to design type-safe Model Context Protocol servers.",
-    explanation: "TypeScript is the most popular ecosystem for MCP, offering robust packages and seamless integration with web services.",
-    bestPractices: ["Use ts-node or tsx during dev for instant testing", "Leverage Zod schemas for perfect runtime arguments validation"]
-  },
-  {
-    slug: "mcp-server-python",
-    title: "Building MCP Servers with Python and FastAPI",
-    pillar: "build-mcp-server",
-    intent: "tutorial",
-    primaryKeyword: "mcp server python",
-    shortAnswer: "Harness the power of Python, asyncio, and the official Python MCP SDK to build highly efficient data and AI tool adapters.",
-    explanation: "Python is ideal for data-intensive servers, letting you link LLMs directly to PyTorch, Pandas, or local AI pipelines.",
-    bestPractices: ["Use virtual environments (venv) to prevent conflicts", "Prefer asynchronous code inside tool implementation functions"]
-  },
-  {
-    slug: "mcp-server-nodejs",
-    title: "Building MCP Servers with Vanilla Node.js",
-    pillar: "build-mcp-server",
-    intent: "tutorial",
-    primaryKeyword: "mcp server nodejs",
-    shortAnswer: "Avoid build transpilers by writing lean, fast-booting, pure ES Module Node.js servers for Model Context Protocol.",
-    explanation: "Writing vanilla JS simplifies deployment, minimizes container size, and accelerates start times on serverless infrastructure.",
-    bestPractices: ["Add 'type': 'module' to package.json", "Minimize external dependencies to prevent security drift"]
-  },
-  {
-    slug: "mcp-server-docker",
-    title: "Containerizing MCP Servers with Docker",
-    pillar: "build-mcp-server",
-    intent: "tutorial",
-    primaryKeyword: "mcp server docker",
-    shortAnswer: "Step-by-step instructions for writing multi-stage, secure Dockerfiles to build, package, and deploy MCP servers anywhere.",
+    primaryKeyword: "docker mcp",
+    shortAnswer: "Docker enables containerized MCP server deployment with consistent execution environments.",
     explanation: "Docker guarantees identical execution environments in development and cloud hosting, isolating servers from host networks.",
     bestPractices: ["Use alpine-based small parent images", "Never run containers with root user privileges"]
   },
   {
-    slug: "openapi-to-mcp-server",
-    title: "Converting OpenAPI Schemas into MCP Servers",
-    pillar: "build-mcp-server",
-    intent: "tutorial",
-    primaryKeyword: "openapi to mcp server",
-    shortAnswer: "Automate server creation by parsing standard Swagger or OpenAPI v3 specifications directly into functional MCP tool descriptions.",
-    explanation: "Avoid writing manual tool definitions. Code generation scripts can convert hundreds of REST endpoints into LLM-callable tools instantly.",
-    bestPractices: ["Sanitize endpoint summaries to be model-friendly", "Exclude heavy binary-streaming endpoints from conversion"]
+    slug: "free-mcp-hosting",
+    title: "Free MCP Hosting: CreateOS and Alternatives (2026)",
+    pillar: "mcp-hosting",
+    intent: "commercial",
+    primaryKeyword: "free mcp hosting",
+    shortAnswer: "The best free hosting for an MCP server in 2026 is CreateOS — $0 tier with native MCP auto-discovery.",
+    explanation: "CreateOS offers free tier with native MCP auto-discovery, making it ideal for developers and startups.",
+    bestPractices: ["Use CreateOS for development and testing", "Upgrade to paid tiers for production"]
   },
   {
-    slug: "rest-api-to-mcp-server",
-    title: "Wrapping Standard REST APIs as MCP Servers",
-    pillar: "build-mcp-server",
-    intent: "tutorial",
-    primaryKeyword: "rest api to mcp",
-    shortAnswer: "Connect any standard JSON API to your AI agent by wrapping HTTP clients in Model Context Protocol actions.",
-    explanation: "By translating client-side RPC calls to backend axios/fetch commands, you turn legacy endpoints into smart AI tools.",
-    bestPractices: ["Implement standard bearer authorization forwarding", "Configure defensive timeouts of 10-15 seconds"]
+    slug: "azure-mcp-hosting-options",
+    title: "Azure MCP Hosting: Container Apps and Functions",
+    pillar: "mcp-hosting",
+    intent: "informational",
+    primaryKeyword: "azure mcp hosting",
+    shortAnswer: "Azure Container Apps and Azure Functions provide flexible, scalable hosting for MCP servers.",
+    explanation: "Azure supports two hosting models for MCP servers: Container Apps for flexible scaling and Functions for lightweight endpoints.",
+    bestPractices: ["Choose Container Apps for microservices", "Use Functions for stateless tool endpoints"]
   },
   {
-    slug: "swagger-to-mcp-server",
-    title: "Leveraging Swagger Specifications for MCP Servers",
-    pillar: "build-mcp-server",
-    intent: "tutorial",
-    primaryKeyword: "swagger to mcp",
-    shortAnswer: "Learn how to use generator CLI scripts to compile your local Swagger definitions directly into ready-to-run MCP servers.",
-    explanation: "This allows software teams with extensive API networks to expose their services safely to autonomous coders.",
-    bestPractices: ["Verify parameters match standard typescript types", "Keep the generated schemas fully synchronized with API changes"]
-  },
-  {
-    slug: "mcp-server-template",
-    title: "The Ultimate MCP Server Starter Template",
-    pillar: "build-mcp-server",
-    intent: "tutorial",
-    primaryKeyword: "mcp server template",
-    shortAnswer: "Boot your project instantly with our fully configured starter template including TypeScript, ESLint, vitest, and docker setup.",
-    explanation: "Avoid boilerplates. This template contains production-ready error boundaries and logger utilities built-in.",
-    bestPractices: ["Fork our verified GitHub repository template", "Set up environment files before running the local server"]
-  },
-  {
-    slug: "mcp-server-boilerplate",
-    title: "Minimal MCP Server Boilerplates for Fast Prototyping",
-    pillar: "build-mcp-server",
-    intent: "tutorial",
-    primaryKeyword: "mcp server boilerplate",
-    shortAnswer: "A collection of 10-line, dependency-free code snippets to get a Model Context Protocol tool running instantly.",
-    explanation: "Perfect for testing custom tools or teaching the principles of MCP in workshops and hackathons.",
-    bestPractices: ["Keep logic self-contained in a single index.js file", "Log standard errors to console.error to keep stdio output clean"]
+    slug: "aws-mcp-hosting-options",
+    title: "AWS MCP Hosting: Lambda, ECS, and Bedrock",
+    pillar: "mcp-hosting",
+    intent: "informational",
+    primaryKeyword: "aws mcp hosting",
+    shortAnswer: "AWS Lambda works well for lightweight, stateless tool endpoints with bursty traffic patterns. ECS on Fargate provides more control.",
+    explanation: "AWS offers multiple MCP hosting options from serverless Lambda to containerized ECS.",
+    bestPractices: ["Use Lambda for bursty traffic", "Use ECS for more runtime control"]
   },
 
-  // Hosting Supporting
   {
-    slug: "how-to-deploy-mcp-server",
-    title: "How to Deploy an MCP Server in 3 Simple Steps",
-    pillar: "mcp-server-hosting",
+    slug: "mcp-security-best-practices",
+    title: "MCP Server Security Best Practices",
+    pillar: "mcp-security",
     intent: "tutorial",
-    primaryKeyword: "how to deploy mcp server",
-    shortAnswer: "Deploy your MCP server to cloud runtimes to enable remote secure access for AI agents from any location.",
-    explanation: "We demonstrate how to launch servers, set environment secrets, and verify SSE connections in real-time.",
-    bestPractices: ["Configure SSL endpoints correctly", "Protect endpoints using custom authentication headers"]
-  },
-  {
-    slug: "managed-mcp-server-hosting",
-    title: "Why Managed MCP Server Hosting Wins Over Self-Host",
-    pillar: "mcp-server-hosting",
-    intent: "commercial",
-    primaryKeyword: "managed mcp hosting",
-    shortAnswer: "Managed hosting removes CORS configuration, domain pointing, SSL renewing, and container monitoring pain points.",
-    explanation: "Our serverless hosting guarantees automatic scaling, sub-50ms latency, and high-uptime service level agreements.",
-    bestPractices: ["Choose servers located close to your primary AI runner", "Set up automatic deploy on git pushes"]
-  },
-  {
-    slug: "free-mcp-server-hosting",
-    title: "Where to Host MCP Servers for Free (2026 Edition)",
-    pillar: "mcp-server-hosting",
-    intent: "commercial",
-    primaryKeyword: "free mcp server hosting",
-    shortAnswer: "A guide to hosting hobby MCP servers for free using platforms like Vercel, Render, and Cloudflare Workers.",
-    explanation: "While free servers may sleep due to inactivity, they are highly capable for independent tests and personal workflows.",
-    bestPractices: ["Configure keep-alive scripts to avoid cold starts", "Never store high-risk production database passwords on free tiers"]
-  },
-  {
-    slug: "mcp-cloud",
-    title: "MCP Cloud: Serverless Infrastructure for Agents",
-    pillar: "mcp-server-hosting",
-    intent: "commercial",
-    primaryKeyword: "mcp cloud",
-    shortAnswer: "An introduction to MCP Cloud architectures, running tool actions as ephemeral serverless micro-functions.",
-    explanation: "Serverless scaling means you only pay for the exact milliseconds your AI model executes a tool command.",
-    bestPractices: ["Keep memory limits at 256MB to optimize cold boots", "Leverage global content delivery networks for static contexts"]
-  },
-  {
-    slug: "mcp-playground",
-    title: "Interactive In-Browser MCP Playground",
-    pillar: "mcp-server-hosting",
-    intent: "tutorial",
-    primaryKeyword: "mcp playground",
-    shortAnswer: "Test any Model Context Protocol server directly from your browser with our interactive playground. No installations required.",
-    explanation: "Check schemas, simulate tool executions, inspect returned markdown, and verify response speeds on-the-fly.",
-    bestPractices: ["Utilize sample payloads for rapid interface checks", "Ensure target server allows CORS from mcpserver.in domains"]
-  },
-
-  // Gateway Supporting
-  {
-    slug: "mcp-monitoring",
-    title: "Monitoring Real-Time MCP Server Health",
-    pillar: "mcp-gateway",
-    intent: "tutorial",
-    primaryKeyword: "mcp monitoring",
-    shortAnswer: "Track active connections, SSE socket health, memory usage, and tool request counts across all integrated servers.",
-    explanation: "Robust monitoring guarantees issues are resolved before developers or end-users experience AI failures.",
-    bestPractices: ["Integrate Prometheus metrics on server endpoints", "Set up instant Slack notifications for server outages"]
-  },
-  {
-    slug: "mcp-logs",
-    title: "Managing and Analyzing MCP Execution Logs",
-    pillar: "mcp-gateway",
-    intent: "tutorial",
-    primaryKeyword: "mcp logs",
-    shortAnswer: "Log JSON-RPC packets safely to capture full intent, prompt inputs, and returned tools payload for compliance.",
-    explanation: "Audit logs are critical for understanding how LLM decisions are translated into automated actions in databases.",
-    bestPractices: ["Redact highly sensitive credentials before writing log files", "Rotate log storage disks every 30 days"]
-  },
-  {
-    slug: "mcp-debugging",
-    title: "How to Debug MCP Servers: Tips, Tools, and Tricks",
-    pillar: "mcp-gateway",
-    intent: "tutorial",
-    primaryKeyword: "mcp debugging",
-    shortAnswer: "Common methods for identifying why tools fail, capturing transport bugs, and testing payloads offline.",
-    explanation: "Debugging stdio transports requires redirection since traditional print statements crash active connections.",
-    bestPractices: ["Use the official Claude Desktop Developer Tools panel", "Write logs exclusively to stderr during local tests"]
-  },
-  {
-    slug: "mcp-observability",
-    title: "Observability for Multi-Agent MCP Deployments",
-    pillar: "mcp-gateway",
-    intent: "tutorial",
-    primaryKeyword: "mcp observability",
-    shortAnswer: "Implement OpenTelemetry and trace span tracking across multi-step agent flows to identify processing bottlenecks.",
-    explanation: "Trace how a user prompt moves from an AI agent to a gateway, through active servers, and back to the client.",
-    bestPractices: ["Label every tool execution with a correlation ID", "Keep aggregate trace times under 2 seconds"]
+    primaryKeyword: "mcp security",
+    shortAnswer: "Never expose MCP over the public internet without mTLS or equivalent. Replace .env files with runtime secret injection.",
+    explanation: "Security best practices include mTLS, least privilege, input validation, credential management, containerization, and logging & monitoring.",
+    bestPractices: ["Never expose MCP without mTLS", "Use least privilege for all tools", "Validate all inputs"]
   },
   {
     slug: "mcp-authentication",
-    title: "Securing MCP Gateways with OAuth and API Keys",
-    pillar: "mcp-gateway",
+    title: "MCP Authentication: mTLS, OAuth, and API Keys",
+    pillar: "mcp-security",
     intent: "tutorial",
     primaryKeyword: "mcp authentication",
-    shortAnswer: "Verify the identity of clients attempting to invoke server tools using industry-standard API keys and OAuth handshakes.",
+    shortAnswer: "Never expose MCP over the public internet without mTLS or equivalent. OAuth and API keys provide additional authentication layers.",
     explanation: "Authentication is the first line of defense, preventing unauthorized scripts from accessing secure server resources.",
-    bestPractices: ["Use SHA-256 hashed API key verification", "Regularly rotate master secret keys in production environments"]
+    bestPractices: ["Use mTLS for public internet exposure", "Implement OAuth for user-level access"]
+  },
+  {
+    slug: "mcp-least-privilege",
+    title: "MCP Least Privilege: Tool Scoping and Permissions",
+    pillar: "mcp-security",
+    intent: "tutorial",
+    primaryKeyword: "mcp least privilege",
+    shortAnswer: "Scope every tool to minimum necessary permissions to reduce the blast radius of potential compromises.",
+    explanation: "Least privilege ensures that each MCP tool has only the permissions necessary to perform its function.",
+    bestPractices: ["Scope every tool to minimum necessary permissions", "Separate read and write capabilities"]
+  },
+  {
+    slug: "mcp-credential-management",
+    title: "MCP Credential Management: Secrets and Keys",
+    pillar: "mcp-security",
+    intent: "tutorial",
+    primaryKeyword: "mcp credentials",
+    shortAnswer: "Replace .env files with runtime secret injection; implement per-server credentials for maximum security.",
+    explanation: "Proper credential management prevents accidental exposure of secrets in version control and logs.",
+    bestPractices: ["Replace .env files with runtime secret injection", "Implement per-server credentials"]
+  },
+  {
+    slug: "mcp-containerization",
+    title: "MCP Containerization: Sandboxing and Isolation",
+    pillar: "mcp-security",
+    intent: "tutorial",
+    primaryKeyword: "mcp containerization",
+    shortAnswer: "Containerize MCP servers and run them outside corporate/private networks to reduce attack surface.",
+    explanation: "Containerization provides isolation and security for MCP server deployments.",
+    bestPractices: ["Containerize all MCP servers", "Run outside corporate/private networks"]
+  },
+  {
+    slug: "mcp-logging-monitoring",
+    title: "MCP Logging & Monitoring: Observability Guide",
+    pillar: "mcp-security",
+    intent: "tutorial",
+    primaryKeyword: "mcp logging",
+    shortAnswer: "Log every request, tool invocation, and significant action for security and debugging.",
+    explanation: "Comprehensive logging enables security audits, debugging, and performance monitoring.",
+    bestPractices: ["Log every request and tool invocation", "Redact sensitive data from logs"]
+  },
+  {
+    slug: "mcp-security-checklist",
+    title: "MCP Security Checklist: Comprehensive Audit Guide",
+    pillar: "mcp-security",
+    intent: "informational",
+    primaryKeyword: "mcp security checklist",
+    shortAnswer: "A comprehensive checklist for MCP server deployments covering authentication, least privilege, input validation, and monitoring.",
+    explanation: "Use this checklist to audit your MCP server deployment for security best practices.",
+    bestPractices: ["Run security audits before deployment", "Regularly review and update security posture"]
   },
 
-  // Security Supporting
   {
-    slug: "mcp-authorization",
-    title: "Configuring Granular Authorizations in MCP",
-    pillar: "mcp-security",
+    slug: "build-mcp-server",
+    title: "How to Build Your First MCP Server",
+    pillar: "mcp-development",
     intent: "tutorial",
-    primaryKeyword: "mcp authorization",
-    shortAnswer: "Enforce precise, role-based tool limits to ensure AI models cannot trigger dangerous commands without specific access.",
-    explanation: "For example, allow public agents to search files while restricting commit capabilities to verified tech lead users.",
-    bestPractices: ["Design permissions around the principle of least privilege", "Perform strict signature checks on payload metadata"]
+    primaryKeyword: "how to build mcp server",
+    shortAnswer: "Learn how to build an MCP server from scratch using Python or TypeScript SDKs.",
+    explanation: "We implement the core JSON-RPC protocol, register two utility tools, and connect it to Claude Desktop in less than 15 minutes.",
+    bestPractices: ["Begin with TypeScript for strong contract verification", "Define tools clearly using descriptive markdown text"]
   },
   {
-    slug: "mcp-permissions",
-    title: "Managing User Permissions inside AI Tool Workflows",
-    pillar: "mcp-security",
-    intent: "tutorial",
-    primaryKeyword: "mcp permissions",
-    shortAnswer: "Capture human consent inside agent loops to verify risky commands like database edits or message sending.",
-    explanation: "User permission hooks prompt developers in their chat panels before executing any system modification actions.",
-    bestPractices: ["Always require 2FA confirmations for financial transactions", "Design friendly, human-readable tool confirmation dialogs"]
+    slug: "mcp-sdk",
+    title: "MCP SDKs: Python, TypeScript, and .NET",
+    pillar: "mcp-development",
+    intent: "informational",
+    primaryKeyword: "mcp sdk",
+    shortAnswer: "Python, TypeScript, and .NET SDKs are available for building MCP servers with official support.",
+    explanation: "Official SDKs provide the building blocks for creating MCP servers in your preferred language.",
+    bestPractices: ["Choose SDK based on your tech stack", "Follow SDK documentation for best practices"]
   },
   {
-    slug: "mcp-audit-logs",
-    title: "Setting Up Secure, Tamper-Proof MCP Audit Logs",
-    pillar: "mcp-security",
+    slug: "mcp-tools-definition",
+    title: "MCP Tools: Defining Tools for LLM Consumption",
+    pillar: "mcp-development",
     intent: "tutorial",
-    primaryKeyword: "mcp audit logs",
-    shortAnswer: "Stream execution actions to permanent, encrypted log platforms to support compliance requirements (SOC2, ISO 27001).",
-    explanation: "Audit logs prove exactly which agent prompted which tool, keeping full records of prompt, context, and output values.",
-    bestPractices: ["Store logs in write-once-read-many (WORM) storage", "Encrypt log archives using secure AES-256 standards"]
+    primaryKeyword: "mcp tools",
+    shortAnswer: "Defining tools with @tool decorators for LLM consumption using JSON Schema.",
+    explanation: "MCP tools are described via standard JSON Schema, enabling accurate function calling by LLMs.",
+    bestPractices: ["Provide extremely detailed descriptions in JSON Schema", "Avoid complex nested arguments where possible"]
   },
   {
-    slug: "mcp-rate-limiting",
-    title: "Rate Limiting MCP Servers for DDoS Prevention",
-    pillar: "mcp-security",
-    intent: "tutorial",
-    primaryKeyword: "mcp rate limiting",
-    shortAnswer: "Protect your database and API endpoints from infinite model execution loops using intelligent rate limits.",
-    explanation: "LLMs can occasionally enter runaway cycles, repeating tool executions thousands of times. Rate limiting stops this.",
-    bestPractices: ["Employ Token Bucket rate algorithms per agent", "Return clear '429 Too Many Requests' status blocks to clients"]
+    slug: "mcp-transport",
+    title: "STDIO vs SSE: MCP Transport Mechanisms",
+    pillar: "mcp-development",
+    intent: "informational",
+    primaryKeyword: "mcp transport",
+    shortAnswer: "STDIO is for local development; SSE is for remote server communication over HTTP.",
+    explanation: "Understanding MCP transport mechanisms helps choose the right deployment strategy.",
+    bestPractices: ["Use STDIO for local development", "Use SSE for remote/hosted servers"]
   },
   {
-    slug: "mcp-vs-api",
-    title: "MCP vs APIs: Why Standard JSON REST Isn't Enough",
-    pillar: "mcp-security",
-    intent: "comparison",
-    primaryKeyword: "mcp vs api",
-    shortAnswer: "Compare the differences, advantages, and overhead of Model Context Protocol versus writing custom API clients for agents.",
-    explanation: "Unlike static REST APIs, MCP provides the dynamic schema descriptors and system context LLMs require to understand tools.",
-    bestPractices: ["Use REST for high-throughput binary transfers", "Migrate to MCP for dynamic agent actions and tool integration"]
+    slug: "mcp-server-examples",
+    title: "MCP Server Examples: Reference Implementations",
+    pillar: "mcp-development",
+    intent: "informational",
+    primaryKeyword: "mcp server example",
+    shortAnswer: "Reference implementations and starter projects for building MCP servers.",
+    explanation: "MCP Archetypes demonstrates implementations using different frameworks, transports, and authorization methods.",
+    bestPractices: ["Study reference implementations before building", "Use official templates for production"]
+  },
+  {
+    slug: "mcp-server-testing",
+    title: "Testing MCP Servers: A Comprehensive Guide",
+    pillar: "mcp-development",
+    intent: "tutorial",
+    primaryKeyword: "test mcp server",
+    shortAnswer: "How to validate MCP server implementations using testing frameworks and tools.",
+    explanation: "Testing ensures your MCP server correctly implements the protocol and handles edge cases.",
+    bestPractices: ["Test all tool invocations", "Validate JSON-RPC compliance"]
   },
 
-  // Integrations Supporting
   {
-    slug: "mcp-vs-function-calling",
-    title: "MCP vs Function Calling: A Detailed Comparison",
-    pillar: "mcp-integrations",
-    intent: "comparison",
-    primaryKeyword: "mcp vs function calling",
-    shortAnswer: "Learn how Model Context Protocol standardizes and upgrades raw, model-specific function calling frameworks.",
-    explanation: "Function calling is proprietary per LLM. MCP provides a reusable, cross-model layer so one server works on all engines.",
-    bestPractices: ["Build tool layers using MCP to avoid vendor lock-in", "Provide rich markdown representations in tool returns"]
+    slug: "install-mcp-server",
+    title: "How to Install and Configure MCP Servers",
+    pillar: "mcp-installation",
+    intent: "tutorial",
+    primaryKeyword: "install mcp server",
+    shortAnswer: "Smithery's CLI (npx @smithery/cli install) handles config automatically. mcp-forge is a cross-platform CLI to install, run, and manage MCP servers.",
+    explanation: "Smithery CLI handles config automatically, making MCP server installation simple for developers.",
+    bestPractices: ["Use Smithery CLI for one-click installation", "Verify server configuration after install"]
   },
   {
-    slug: "mcp-vs-plugins",
-    title: "MCP vs ChatGPT Plugins: The Evolution of Web Tools",
-    pillar: "mcp-integrations",
-    intent: "comparison",
-    primaryKeyword: "mcp vs plugins",
-    shortAnswer: "A retrospection on ChatGPT plugins and why the open-source Model Context Protocol represents the future of tool-use.",
-    explanation: "Plugins were closed and hosted in specific gardens. MCP is open, supporting both local stdio and cloud web sockets.",
-    bestPractices: ["Avoid deprecated plugin standards", "Upgrade existing webhooks to conformant MCP server endpoints"]
+    slug: "smithery-cli",
+    title: "Smithery CLI: One-Click MCP Server Installation",
+    pillar: "mcp-installation",
+    intent: "tutorial",
+    primaryKeyword: "smithery install",
+    shortAnswer: "Smithery's CLI (npx @smithery/cli install) handles MCP server configuration automatically.",
+    explanation: "Smithery CLI simplifies MCP server installation by automatically handling configuration.",
+    bestPractices: ["Run npx @smithery/cli install for quick setup", "Verify installation in your MCP client"]
   },
   {
-    slug: "mcp-vs-langchain",
-    title: "MCP vs LangChain Toolsets: Architectural Differences",
-    pillar: "mcp-integrations",
-    intent: "comparison",
-    primaryKeyword: "mcp vs langchain",
-    shortAnswer: "Understand where LangChain tools fit and why Model Context Protocol provides a cleaner separation of concerns.",
-    explanation: "LangChain is a client framework. MCP separates servers and clients, letting you write servers in any language.",
-    bestPractices: ["Combine LangChain as the client orchestrator with MCP as the server tool provider", "Abstract server-side API keys completely"]
+    slug: "mcp-forge",
+    title: "mcp-forge: Cross-Platform MCP Server Management",
+    pillar: "mcp-installation",
+    intent: "informational",
+    primaryKeyword: "mcp-forge",
+    shortAnswer: "mcp-forge is a cross-platform CLI to install, run, and manage MCP servers from one interface.",
+    explanation: "mcp-forge provides unified management of MCP servers across platforms.",
+    bestPractices: ["Use mcp-forge for managing multiple servers", "Keep mcp-forge updated for latest features"]
   },
   {
-    slug: "mcp-vs-openapi",
-    title: "MCP vs OpenAPI Specifications: What Developer Needs to Know",
-    pillar: "mcp-integrations",
-    intent: "comparison",
-    primaryKeyword: "mcp vs openapi",
-    shortAnswer: "Compare OpenAPI and MCP. See why exposing raw endpoints to models causes hallucination, and how MCP solves it.",
-    explanation: "OpenAPI maps raw HTTP. MCP wraps these in semantic tools, providing prompts and resources optimized for LLM logic.",
-    bestPractices: ["Generate MCP servers from OpenAPI specs using automated tools", "Limit exposed paths to keep context windows empty"]
+    slug: "mcp-bin",
+    title: "mcp-bin: Run Prebuilt MCP Server Binaries",
+    pillar: "mcp-installation",
+    intent: "informational",
+    primaryKeyword: "mcp-bin",
+    shortAnswer: "mcp-bin runs prebuilt MCP server binaries straight from GitHub or GitLab releases.",
+    explanation: "mcp-bin simplifies running prebuilt MCP servers without building from source.",
+    bestPractices: ["Verify binary checksums for security", "Use for quick server deployment"]
   },
   {
-    slug: "mcp-for-startups",
-    title: "Accelerating Startup Growth with Model Context Protocol",
-    pillar: "mcp-for-ai-agents",
-    intent: "commercial",
-    primaryKeyword: "mcp for startups",
-    shortAnswer: "How agile startup teams leverage MCP to deploy feature-rich AI agents in days instead of months.",
-    explanation: "Save on engineering costs by building reusable internal toolsets that both human coders and AI workers can leverage.",
-    bestPractices: ["Focus on wrapping database actions for fast operations", "Use local servers during initial feature exploration"]
+    slug: "mcp-manual-configuration",
+    title: "Manual MCP Configuration: JSON Config Guide",
+    pillar: "mcp-installation",
+    intent: "tutorial",
+    primaryKeyword: "mcp configuration",
+    shortAnswer: "Manual JSON config updates and path discovery for MCP clients when CLI tools are not available.",
+    explanation: "Manual configuration involves updating JSON config files to register MCP servers with clients.",
+    bestPractices: ["Follow client-specific config formats", "Verify paths and settings after changes"]
   },
 
-  // Enterprise/Agent Supporting
   {
-    slug: "mcp-for-saas",
-    title: "Building LLM-Ready SaaS: Exposing MCP Endpoints",
-    pillar: "mcp-for-ai-agents",
-    intent: "commercial",
-    primaryKeyword: "mcp for saas",
-    shortAnswer: "Enable AI agents to consume your SaaS product natively by offering verified Model Context Protocol integrations.",
-    explanation: "Future SaaS customers will buy products based on how easily their autonomous AI agents can interact with them.",
-    bestPractices: ["Publish your server configurations in public directories", "Offer one-click oauth hooks for agent permissions"]
+    slug: "mcp-ecosystem-growth",
+    title: "The State of MCP in 2026: Ecosystem Growth & Adoption",
+    pillar: "mcp-trends",
+    intent: "informational",
+    primaryKeyword: "mcp ecosystem",
+    shortAnswer: "The broader MCP Ecosystem has 300K+ stars (servers, clients, etc.). 7,260 MCP servers as of May 30, 2025.",
+    explanation: "MCP is being adopted rapidly — security guidance is lagging behind. Enterprise adoption is growing across ServiceNow, Power BI, Azure.",
+    bestPractices: ["Follow ecosystem updates regularly", "Evaluate new servers for production use"]
   },
   {
-    slug: "mcp-for-enterprises",
-    title: "Scaling Secure AI Agents inside Enterprise Networks",
-    pillar: "enterprise-mcp",
+    slug: "top-mcp-servers-developers",
+    title: "Top 10 MCP Servers for Developers",
+    pillar: "mcp-trends",
     intent: "commercial",
-    primaryKeyword: "mcp for enterprise",
-    shortAnswer: "Ensure total corporate safety while giving team members access to AI integrations on private data.",
-    explanation: "Enterprise structures require private, on-premise gateways, SOC2-audited hosting, and strict user-token logging.",
-    bestPractices: ["Always select hosting with local data options", "Enforce strict single-sign-on (SSO) configurations"]
+    primaryKeyword: "top mcp servers",
+    shortAnswer: "The top MCP servers for developers include GitHub MCP, Docker MCP, Playwright MCP, and database connectors.",
+    explanation: "Developer-focused MCP servers enhance coding workflows, testing, and database interactions.",
+    bestPractices: ["Prioritize servers with active maintenance", "Test servers in development first"]
   },
   {
-    slug: "mcp-for-developers",
-    title: "The Ultimate MCP Toolkit for Software Engineers",
-    pillar: "mcp-for-ai-agents",
+    slug: "free-vs-paid-mcp-servers",
+    title: "Free vs Paid MCP Servers: What's Available?",
+    pillar: "mcp-trends",
+    intent: "commercial",
+    primaryKeyword: "free mcp servers",
+    shortAnswer: "Free MCP servers are available for developers, while paid servers offer enterprise features and support.",
+    explanation: "The MCP ecosystem includes both free and paid options, with paid servers emerging for enterprise use cases.",
+    bestPractices: ["Start with free servers for evaluation", "Upgrade to paid for production needs"]
+  },
+  {
+    slug: "remote-mcp-trends",
+    title: "Remote MCP Servers: The Shift to Hosted Infrastructure",
+    pillar: "mcp-trends",
+    intent: "informational",
+    primaryKeyword: "remote mcp server",
+    shortAnswer: "Remote MCP servers are becoming the standard for enterprise and production deployments.",
+    explanation: "The shift toward remote/hosted MCP servers enables scalable, accessible AI tool infrastructure.",
+    bestPractices: ["Use mTLS for all remote connections", "Monitor performance and uptime"]
+  },
+  {
+    slug: "mcp-monetization",
+    title: "MCP Server Monetization: Marketplace Models and Paid Servers",
+    pillar: "mcp-trends",
+    intent: "commercial",
+    primaryKeyword: "paid mcp servers",
+    shortAnswer: "Paid MCP servers and marketplace models are emerging as the ecosystem matures.",
+    explanation: "Monetization models for MCP servers include one-time purchases, subscriptions, and marketplace revenue sharing.",
+    bestPractices: ["Evaluate cost vs. value for paid servers", "Consider self-hosting for sensitive data"]
+  },
+  {
+    slug: "mcp-directory-listing",
+    title: "MCP Server Directories: How to Get Your Server Listed",
+    pillar: "mcp-trends",
     intent: "tutorial",
-    primaryKeyword: "mcp for developers",
-    shortAnswer: "Supercharge your coding terminal, automate repository checks, and query databases directly using AI and local servers.",
-    explanation: "Make your IDE work for you by setting up local filesystem and docker connectors that support autonomous writing.",
-    bestPractices: ["Bind local servers to specific safe work paths", "Keep terminal prompt tools in clean, responsive scripts"]
-  },
-  {
-    slug: "mcp-for-indian-startups",
-    title: "How Indian Startups are Leading the Autonomous AI Revolution",
-    pillar: "enterprise-mcp",
-    intent: "commercial",
-    primaryKeyword: "mcp indian startups",
-    shortAnswer: "A spotlight on Indian developer-infrastructure startups utilizing Model Context Protocol to build global SaaS platforms.",
-    explanation: "From local dev machines to global clouds, Indian builders are writing, securing, and deploying the tools that power the agent era.",
-    bestPractices: ["Optimize server latency by deploying to secure Mumbai/Bengaluru hubs", "Leverage local cost structures to build high-margin AI apps"]
-  },
-  {
-    slug: "mcp-auth-scopes-permission-prompts",
-    title: "MCP Auth Scopes and Permission Prompts",
-    pillar: "mcp-security",
-    intent: "tutorial",
-    primaryKeyword: "mcp authentication scopes",
-    shortAnswer: "MCP auth scopes define what a server may access, while permission prompts make risky tool calls visible before the agent executes them.",
-    explanation: "Production MCP deployments should separate read and write scopes, bind credentials to one connector boundary, and display human-readable approval prompts before destructive actions. This is especially important for Indian fintech, ecommerce, healthcare, and enterprise workflows where a single over-broad token can expose customer data or trigger business-impacting changes.",
-    bestPractices: [
-      "Use separate credentials for read-only and write-capable tools",
-      "Require approval prompts for delete, refund, transfer, deploy, and message-send actions",
-      "Rotate tokens and audit every privileged tool call",
-      "Redact bearer tokens and OAuth refresh tokens from logs"
-    ]
+    primaryKeyword: "mcp server directory",
+    shortAnswer: "Getting listed on MCP directories increases visibility and adoption of your MCP server.",
+    explanation: "Directory listing guidelines vary by platform, but generally require quality, documentation, and maintenance.",
+    bestPractices: ["Follow directory submission guidelines", "Maintain active development and support"]
   }
 ];

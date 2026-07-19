@@ -1,37 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://www.mcpserver.in/topics/what-is-model-context-protocol/</loc>
-    <lastmod>2026-07-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.mcpserver.in/topics/how-mcp-works/</loc>
-    <lastmod>2026-07-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.mcpserver.in/topics/mcp-client/</loc>
-    <lastmod>2026-07-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.mcpserver.in/topics/mcp-tools/</loc>
-    <lastmod>2026-07-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.mcpserver.in/topics/mcp-resources/</loc>
-    <lastmod>2026-07-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.mcpserver.in/topics/mcp-prompts/</loc>
+    <loc>https://www.mcpserver.in/topics/what-is-mcp/</loc>
     <lastmod>2026-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -43,31 +13,25 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.mcpserver.in/topics/mcp-protocol/</loc>
+    <loc>https://www.mcpserver.in/topics/mcp-vs-api/</loc>
     <lastmod>2026-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.mcpserver.in/topics/remote-mcp-server/</loc>
+    <loc>https://www.mcpserver.in/topics/mcp-vs-a2a/</loc>
     <lastmod>2026-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.mcpserver.in/topics/local-mcp-server/</loc>
+    <loc>https://www.mcpserver.in/topics/mcp-clients/</loc>
     <lastmod>2026-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.mcpserver.in/topics/best-mcp-servers/</loc>
-    <lastmod>2026-07-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.mcpserver.in/topics/open-source-mcp-servers/</loc>
+    <loc>https://www.mcpserver.in/topics/how-mcp-works/</loc>
     <lastmod>2026-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -79,127 +43,241 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.mcpserver.in/topics/verified-mcp-servers/</loc>
+    <loc>https://www.mcpserver.in/topics/official-mcp-integrations/</loc>
     <lastmod>2026-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.mcpserver.in/topics/free-mcp-servers/</loc>
+    <loc>https://www.mcpserver.in/topics/mcp-steering-group/</loc>
     <lastmod>2026-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.mcpserver.in/topics/how-to-build-mcp-server/</loc>
+    <loc>https://www.mcpserver.in/topics/mcp-marketplaces/</loc>
     <lastmod>2026-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.mcpserver.in/topics/mcp-server-typescript/</loc>
+    <loc>https://www.mcpserver.in/topics/smithery-mcp/</loc>
     <lastmod>2026-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.mcpserver.in/topics/mcp-server-python/</loc>
+    <loc>https://www.mcpserver.in/topics/glama-mcp/</loc>
     <lastmod>2026-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.mcpserver.in/topics/mcp-server-nodejs/</loc>
+    <loc>https://www.mcpserver.in/topics/mcpso-mcp/</loc>
     <lastmod>2026-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.mcpserver.in/topics/mcp-server-docker/</loc>
+    <loc>https://www.mcpserver.in/topics/pulsemcp/</loc>
     <lastmod>2026-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.mcpserver.in/topics/openapi-to-mcp-server/</loc>
+    <loc>https://www.mcpserver.in/topics/github-mcp-registry/</loc>
     <lastmod>2026-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.mcpserver.in/topics/rest-api-to-mcp-server/</loc>
+    <loc>https://www.mcpserver.in/topics/docker-mcp-catalog/</loc>
     <lastmod>2026-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.mcpserver.in/topics/swagger-to-mcp-server/</loc>
+    <loc>https://www.mcpserver.in/topics/awesome-mcp-registries/</loc>
     <lastmod>2026-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.mcpserver.in/topics/mcp-server-template/</loc>
+    <loc>https://www.mcpserver.in/topics/archestra-mcp-catalog/</loc>
     <lastmod>2026-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.mcpserver.in/topics/mcp-server-boilerplate/</loc>
+    <loc>https://www.mcpserver.in/topics/mcp-categories-guide/</loc>
     <lastmod>2026-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.mcpserver.in/topics/how-to-deploy-mcp-server/</loc>
+    <loc>https://www.mcpserver.in/topics/mcp-developer-tools/</loc>
     <lastmod>2026-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.mcpserver.in/topics/managed-mcp-server-hosting/</loc>
+    <loc>https://www.mcpserver.in/topics/mcp-database-analytics/</loc>
     <lastmod>2026-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.mcpserver.in/topics/free-mcp-server-hosting/</loc>
+    <loc>https://www.mcpserver.in/topics/mcp-design-tools/</loc>
     <lastmod>2026-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.mcpserver.in/topics/mcp-cloud/</loc>
+    <loc>https://www.mcpserver.in/topics/mcp-cloud-infrastructure/</loc>
     <lastmod>2026-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.mcpserver.in/topics/mcp-playground/</loc>
+    <loc>https://www.mcpserver.in/topics/mcp-browser-automation/</loc>
     <lastmod>2026-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.mcpserver.in/topics/mcp-monitoring/</loc>
+    <loc>https://www.mcpserver.in/topics/mcp-knowledge-management/</loc>
     <lastmod>2026-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.mcpserver.in/topics/mcp-logs/</loc>
+    <loc>https://www.mcpserver.in/topics/mcp-vs-rest-api/</loc>
     <lastmod>2026-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.mcpserver.in/topics/mcp-debugging/</loc>
+    <loc>https://www.mcpserver.in/topics/mcp-task-based-vs-resource-based/</loc>
     <lastmod>2026-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.mcpserver.in/topics/mcp-observability/</loc>
+    <loc>https://www.mcpserver.in/topics/mcp-as-control-layer/</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.mcpserver.in/topics/mcp-claude-desktop/</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.mcpserver.in/topics/mcp-vscode/</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.mcpserver.in/topics/mcp-cursor/</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.mcpserver.in/topics/mcp-github-copilot/</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.mcpserver.in/topics/mcp-azure-ai/</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.mcpserver.in/topics/servicenow-mcp/</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.mcpserver.in/topics/powerbi-mcp/</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.mcpserver.in/topics/azure-mcp-hosting/</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.mcpserver.in/topics/aws-mcp-hosting/</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.mcpserver.in/topics/salesforce-mcp/</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.mcpserver.in/topics/sap-mcp/</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.mcpserver.in/topics/workday-mcp/</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.mcpserver.in/topics/mcp-local-server/</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.mcpserver.in/topics/mcp-remote-server/</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.mcpserver.in/topics/mcp-docker-hosting/</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.mcpserver.in/topics/free-mcp-hosting/</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.mcpserver.in/topics/azure-mcp-hosting-options/</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.mcpserver.in/topics/aws-mcp-hosting-options/</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.mcpserver.in/topics/mcp-security-best-practices/</loc>
     <lastmod>2026-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -211,91 +289,133 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.mcpserver.in/topics/mcp-authorization/</loc>
+    <loc>https://www.mcpserver.in/topics/mcp-least-privilege/</loc>
     <lastmod>2026-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.mcpserver.in/topics/mcp-permissions/</loc>
+    <loc>https://www.mcpserver.in/topics/mcp-credential-management/</loc>
     <lastmod>2026-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.mcpserver.in/topics/mcp-audit-logs/</loc>
+    <loc>https://www.mcpserver.in/topics/mcp-containerization/</loc>
     <lastmod>2026-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.mcpserver.in/topics/mcp-rate-limiting/</loc>
+    <loc>https://www.mcpserver.in/topics/mcp-logging-monitoring/</loc>
     <lastmod>2026-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.mcpserver.in/topics/mcp-vs-api/</loc>
+    <loc>https://www.mcpserver.in/topics/mcp-security-checklist/</loc>
     <lastmod>2026-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.mcpserver.in/topics/mcp-vs-function-calling/</loc>
+    <loc>https://www.mcpserver.in/topics/build-mcp-server/</loc>
     <lastmod>2026-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.mcpserver.in/topics/mcp-vs-plugins/</loc>
+    <loc>https://www.mcpserver.in/topics/mcp-sdk/</loc>
     <lastmod>2026-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.mcpserver.in/topics/mcp-vs-langchain/</loc>
+    <loc>https://www.mcpserver.in/topics/mcp-tools-definition/</loc>
     <lastmod>2026-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.mcpserver.in/topics/mcp-vs-openapi/</loc>
+    <loc>https://www.mcpserver.in/topics/mcp-transport/</loc>
     <lastmod>2026-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.mcpserver.in/topics/mcp-for-startups/</loc>
+    <loc>https://www.mcpserver.in/topics/mcp-server-examples/</loc>
     <lastmod>2026-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.mcpserver.in/topics/mcp-for-saas/</loc>
+    <loc>https://www.mcpserver.in/topics/mcp-server-testing/</loc>
     <lastmod>2026-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.mcpserver.in/topics/mcp-for-enterprises/</loc>
+    <loc>https://www.mcpserver.in/topics/install-mcp-server/</loc>
     <lastmod>2026-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.mcpserver.in/topics/mcp-for-developers/</loc>
+    <loc>https://www.mcpserver.in/topics/smithery-cli/</loc>
     <lastmod>2026-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.mcpserver.in/topics/mcp-for-indian-startups/</loc>
+    <loc>https://www.mcpserver.in/topics/mcp-forge/</loc>
     <lastmod>2026-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.mcpserver.in/topics/mcp-auth-scopes-permission-prompts/</loc>
+    <loc>https://www.mcpserver.in/topics/mcp-bin/</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.mcpserver.in/topics/mcp-manual-configuration/</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.mcpserver.in/topics/mcp-ecosystem-growth/</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.mcpserver.in/topics/top-mcp-servers-developers/</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.mcpserver.in/topics/free-vs-paid-mcp-servers/</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.mcpserver.in/topics/remote-mcp-trends/</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.mcpserver.in/topics/mcp-monetization/</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.mcpserver.in/topics/mcp-directory-listing/</loc>
     <lastmod>2026-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>

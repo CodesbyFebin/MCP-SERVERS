@@ -85,10 +85,6 @@ export default function Hero() {
             <div className="text-xs text-white/40 mt-1">Requests / Day</div>
           </div>
           <div>
-            <div className="text-2xl sm:text-3xl font-display font-bold text-white">{siteConfig.stats.countries}</div>
-            <div className="text-xs text-white/40 mt-1">Countries</div>
-          </div>
-          <div>
             <div className="text-2xl sm:text-3xl font-display font-bold text-white">{siteConfig.stats.uptime}</div>
             <div className="text-xs text-white/40 mt-1">Uptime</div>
           </div>

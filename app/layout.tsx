@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import React from "react";
+import Script from "next/script";
+import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "../src/index.css";
 import ThemeAndAuthProvider from "../src/components/ThemeAndAuthProvider";
 import Header from "../src/components/Header";
@@ -7,13 +9,34 @@ import Footer from "../src/components/Footer";
 import SchemaJsonLd from "../src/components/SchemaJsonLd";
 import { getOrganizationSchema, getWebSiteSchema, getWebApplicationSchema } from "../src/lib/schema";
 
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  display: "swap",
+  variable: "--font-inter",
+});
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  weight: ["500", "700"],
+  display: "swap",
+  variable: "--font-space-grotesk",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  display: "swap",
+  variable: "--font-jetbrains-mono",
+});
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.mcpserver.in"),
   title: {
     default: "MCPserver.in — Hosted MCP Platform for AI Agents",
     template: "%s | MCPserver.in"
   },
-  description: "Hosted MCP platform for discovering, deploying, securing and monitoring production MCP servers with India-focused edge and compliance controls.",
+  description: "Discover, deploy and manage production-ready MCP servers on India-first infrastructure. DPDP & RBI compliant, sub-50ms latency from Mumbai and Bengaluru.",
   keywords: ["MCP server hosting India", "hosted MCP platform", "DPDP compliant AI tools", "MCP servers Mumbai", "MCP servers Bengaluru", "low latency MCP India", "RBI compliant LLM tools", "MCP infrastructure India", "Model Context Protocol hosting"],
   authors: [{ name: "MCPserver.in Engineering" }],
   creator: "MCPserver.in",
@@ -42,7 +65,7 @@ export const metadata: Metadata = {
     url: "https://www.mcpserver.in",
     siteName: "MCPserver.in",
     title: "MCPserver.in — Hosted MCP Platform for AI Agents",
-    description: "Hosted MCP platform for discovering, deploying, securing and monitoring production MCP servers with India-focused edge and compliance controls.",
+    description: "Discover, deploy and manage production-ready MCP servers on India-first infrastructure. DPDP & RBI compliant, sub-50ms latency from Mumbai and Bengaluru.",
     locale: "en_IN",
   },
   twitter: {
@@ -69,8 +92,49 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" className={`dark ${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}>
+      <head>
+        {process.env.NEXT_PUBLIC_GTM_ID && (
+          <Script id="gtm-script" strategy="afterInteractive">
+            {`
+              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+              })(window,document,'script','dataLayer','${process.env.NEXT_PUBLIC_GTM_ID}');
+            `}
+          </Script>
+        )}
+        {process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID && (
+          <Script
+            src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID}`}
+            strategy="afterInteractive"
+          />
+        )}
+        {process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID && (
+          <Script id="ga4-init" strategy="afterInteractive">
+            {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID}', {
+                page_path: window.location.pathname,
+              });
+            `}
+          </Script>
+        )}
+      </head>
       <body className="antialiased selection:bg-cyan-500/30 selection:text-cyan-200">
+        {process.env.NEXT_PUBLIC_GTM_ID && (
+          <noscript>
+            <iframe
+              src={`https://www.googletagmanager.com/ns.html?id=${process.env.NEXT_PUBLIC_GTM_ID}`}
+              height="0"
+              width="0"
+              style={{ display: 'none', visibility: 'hidden' }}
+            />
+          </noscript>
+        )}
         <ThemeAndAuthProvider>
           <div className="flex flex-col min-h-screen bg-[#050505] text-[#e0e0e0] font-sans relative overflow-x-hidden transition-colors duration-200">
             {/* Background Glows */}

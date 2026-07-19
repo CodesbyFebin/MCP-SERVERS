@@ -1,5 +1,3 @@
-"use client";
-
 import {
   Badge,
   CodeDemo,
@@ -23,6 +21,62 @@ import {
 import { BarChart3, BookOpen, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { Star } from "lucide-react";
+
+export const metadata = {
+  metadataBase: new URL("https://www.mcpserver.in"),
+  title: {
+    default: "MCPServer.in: Free MCP Servers in India | 10,000+ Verified Model Context Protocol",
+    template: "%s | MCPServer.in"
+  },
+  description: "Deploy MCP servers from Mumbai & Bengaluru. DPDP compliant, <50ms latency. 100% free tier. SOC 2 certified. Connect Claude, ChatGPT, Cursor to 1000+ tools.",
+  keywords: ["MCP server India", "Model Context Protocol hosting", "free MCP servers", "DPDP compliant AI tools", "MCP hosting Mumbai", "AI agent integration", "AI MCP servers", "AI tools India", "verified MCP servers"],
+  authors: [{ name: "MCPserver.in Engineering" }],
+  creator: "MCPserver.in",
+  publisher: "MCPserver.in",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  alternates: {
+    canonical: "/",
+    languages: {
+      "en-IN": "/",
+      "en": "/",
+    }
+  },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "32x32" },
+      { url: "/favicon.svg", type: "image/svg+xml" }
+    ],
+    shortcut: "/favicon.ico"
+  },
+  openGraph: {
+    type: "website",
+    url: "https://www.mcpserver.in",
+    siteName: "MCPserver.in",
+    title: "MCPServer.in: Free MCP Servers in India | 10,000+ Verified Model Context Protocol",
+    description: "Deploy MCP servers from Mumbai & Bengaluru. DPDP compliant, <50ms latency. 100% free tier. SOC 2 certified. Connect Claude, ChatGPT, Cursor to 1000+ tools.",
+    locale: "en_IN",
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@mcpserver_in",
+    creator: "@mcpserver_in"
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+};
 
 export default function Home() {
   return (

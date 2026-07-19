@@ -83,7 +83,6 @@ export const stats = [
   ["10,000+", "MCP Servers"],
   ["500,000+", "Deployments"],
   ["1M+", "API Requests / Day"],
-  ["150+", "Countries"],
   ["99.99%", "Uptime"],
   ["100%", "Free Basic"]
 ];
@@ -92,7 +91,6 @@ export const clientStats = [
   ["2,500+", "Active Clients"],
   ["10,000+", "MCP Servers Deployed"],
   ["1M+", "API Requests / Day"],
-  ["150+", "Countries"],
   ["99.99%", "Uptime"],
   ["100%", "Client Satisfaction"]
 ];
@@ -770,4 +768,269 @@ export function Container({ children, className = "" }: { children: React.ReactN
 
 export function DividerSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return <section className={`border-t border-white/6 py-12 ${className}`}>{children}</section>;
+}
+
+export function KnowledgeGraph() {
+  const domains = [
+    { id: 1, title: "What is MCP?", slug: "what-is-mcp", accent: "cyan", icon: "🌐", description: "The Protocol Layer" },
+    { id: 2, title: "Official MCP Servers", slug: "official-mcp-servers", accent: "blue", icon: "📋", description: "Reference Implementations" },
+    { id: 3, title: "Marketplaces", slug: "mcp-marketplaces", accent: "violet", icon: "🏪", description: "Directories & Discovery" },
+    { id: 4, title: "Categories & Use Cases", slug: "mcp-categories", accent: "pink", icon: "📦", description: "Industry Applications" },
+    { id: 5, title: "MCP vs API", slug: "mcp-vs-api", accent: "green", icon: "⚖️", description: "Comparison Deep-Dive" },
+    { id: 6, title: "MCP Clients", slug: "mcp-clients", accent: "amber", icon: "💻", description: "IDE Integrations" },
+    { id: 7, title: "Enterprise MCP", slug: "enterprise-mcp", accent: "cyan", icon: "🏢", description: "Enterprise Platforms" },
+    { id: 8, title: "Hosting & Deployment", slug: "mcp-hosting", accent: "blue", icon: "🚀", description: "Cloud Infrastructure" },
+    { id: 9, title: "Security", slug: "mcp-security", accent: "violet", icon: "🔒", description: "Best Practices" },
+    { id: 10, title: "Development", slug: "mcp-development", accent: "pink", icon: "⚙️", description: "SDKs & Building" },
+    { id: 11, title: "Installation", slug: "mcp-installation", accent: "green", icon: "📥", description: "Setup & Management" },
+    { id: 12, title: "Ecosystem Trends", slug: "mcp-trends", accent: "amber", icon: "📈", description: "Growth & Adoption" }
+  ];
+
+  const accentMap: Record<string, { border: string; bg: string; text: string; glow: string }> = {
+    cyan: { border: "border-cyan-400/30", bg: "bg-cyan-500/10", text: "text-cyan-300", glow: "shadow-[0_0_20px_rgba(34,211,238,0.2)]" },
+    blue: { border: "border-blue-400/30", bg: "bg-blue-500/10", text: "text-blue-300", glow: "shadow-[0_0_20px_rgba(59,130,246,0.2)]" },
+    violet: { border: "border-violet-400/30", bg: "bg-violet-500/10", text: "text-violet-300", glow: "shadow-[0_0_20px_rgba(124,58,237,0.2)]" },
+    pink: { border: "border-fuchsia-400/30", bg: "bg-fuchsia-500/10", text: "text-fuchsia-300", glow: "shadow-[0_0_20px_rgba(217,70,239,0.2)]" },
+    green: { border: "border-emerald-400/30", bg: "bg-emerald-500/10", text: "text-emerald-300", glow: "shadow-[0_0_20px_rgba(16,185,129,0.2)]" },
+    amber: { border: "border-amber-400/30", bg: "bg-amber-500/10", text: "text-amber-300", glow: "shadow-[0_0_20px_rgba(245,158,11,0.2)]" }
+  };
+
+  const connections = [
+    { from: 1, to: 2 }, { from: 1, to: 3 }, { from: 1, to: 5 }, { from: 1, to: 6 },
+    { from: 2, to: 3 }, { from: 2, to: 4 },
+    { from: 3, to: 4 }, { from: 3, to: 11 },
+    { from: 4, to: 7 },
+    { from: 5, to: 10 }, { from: 5, to: 12 },
+    { from: 6, to: 7 },
+    { from: 7, to: 8 },
+    { from: 8, to: 9 }, { from: 8, to: 10 },
+    { from: 9, to: 10 },
+    { from: 10, to: 11 },
+    { from: 11, to: 8 },
+    { from: 12, to: 1 }, { from: 12, to: 3 }, { from: 12, to: 4 }
+  ];
+
+  return (
+    <div className="relative">
+      <div className="mb-8 text-center">
+        <div className="text-[11px] font-bold uppercase tracking-[0.2em] text-violet-300/80">Topical Authority Knowledge Graph</div>
+        <h2 className="mt-2 text-2xl font-black tracking-tight text-white md:text-3xl">12-Core Domain MCP Ecosystem Map</h2>
+        <p className="mt-2 text-sm text-white/55">A comprehensive knowledge graph mapping the entire MCP server ecosystem across 12 domains with semantic interlinking.</p>
+      </div>
+      <div className="relative mx-auto max-w-6xl">
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
+          {domains.map((domain) => {
+            const accent = accentMap[domain.accent];
+            return (
+              <div
+                key={domain.id}
+                className={`group relative rounded-xl border ${accent.border} ${accent.bg} p-4 transition hover:scale-[1.03] ${accent.glow}`}
+              >
+                <div className="flex items-center gap-2">
+                  <span className="text-lg">{domain.icon}</span>
+                  <div className={`text-[10px] font-black ${accent.text}`}>#{domain.id}</div>
+                </div>
+                <h3 className="mt-2 text-xs font-black text-white">{domain.title}</h3>
+                <p className="mt-1 text-[11px] leading-relaxed text-white/55">{domain.description}</p>
+                <div className="mt-3 flex flex-wrap gap-1">
+                  {domain.id <= 4 && (
+                    <span className="rounded bg-white/10 px-1.5 py-0.5 text-[9px] font-bold text-white/70">Foundation</span>
+                  )}
+                  {domain.id >= 5 && domain.id <= 9 && (
+                    <span className="rounded bg-violet-500/20 px-1.5 py-0.5 text-[9px] font-bold text-violet-200">Core</span>
+                  )}
+                  {domain.id >= 10 && (
+                    <span className="rounded bg-cyan-500/20 px-1.5 py-0.5 text-[9px] font-bold text-cyan-200">Operations</span>
+                  )}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+        <div className="mt-6 rounded-xl border border-white/10 bg-white/[0.02] p-5">
+          <div className="text-xs font-black text-white/80 mb-3">Interconnection Map</div>
+          <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-6">
+            {connections.map((conn, i) => {
+              const from = domains.find(d => d.id === conn.from);
+              const to = domains.find(d => d.id === conn.to);
+              return (
+                <div key={i} className="flex items-center gap-1 rounded-lg bg-white/[0.03] px-2 py-1.5">
+                  <span className="text-[10px] font-bold text-white/60">#{conn.from}</span>
+                  <ArrowRight className="h-3 w-3 text-white/30" />
+                  <span className="text-[10px] font-bold text-white/60">#{conn.to}</span>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+        <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
+          <div className="rounded-lg border border-white/8 bg-white/[0.03] p-3 text-center">
+            <div className="text-lg font-black text-cyan-300">7,260+</div>
+            <div className="text-[10px] text-white/55">MCP Servers</div>
+          </div>
+          <div className="rounded-lg border border-white/8 bg-white/[0.03] p-3 text-center">
+            <div className="text-lg font-black text-violet-300">300K+</div>
+            <div className="text-[10px] text-white/55">Ecosystem Stars</div>
+          </div>
+          <div className="rounded-lg border border-white/8 bg-white/[0.03] p-3 text-center">
+            <div className="text-lg font-black text-fuchsia-300">2,211+</div>
+            <div className="text-[10px] text-white/55">Smithery Servers</div>
+          </div>
+          <div className="rounded-lg border border-white/8 bg-white/[0.03] p-3 text-center">
+            <div className="text-lg font-black text-emerald-300">12</div>
+            <div className="text-[10px] text-white/55">Core Domains</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export function ComparisonTable() {
+  const rows = [
+    ["DPDP & RBI Compliant", true, false, "Varies by provider"],
+    ["10,000+ Verified Servers", true, false, "Limited"],
+    ["One-Click Deploy", true, false, "Complex setup"],
+    ["Monitoring & Alerts", true, false, "Add-on required"],
+    ["India-First Support", true, "Varies", false],
+    ["99.97% Uptime SLA", true, "You manage", "Varies"]
+  ];
+
+  return (
+    <div className="overflow-x-auto">
+      <table className="w-full text-left text-sm">
+        <thead>
+          <tr className="border-b border-white/10">
+            <th className="pb-3 pr-4 font-black text-white">Feature</th>
+            <th className="pb-3 pr-4 font-black text-cyan-300">MCPserver.in</th>
+            <th className="pb-3 pr-4 font-black text-white/70">Self-Hosted</th>
+            <th className="pb-3 font-black text-white/70">Generic Cloud</th>
+          </tr>
+        </thead>
+        <tbody className="divide-y divide-white/5">
+          {rows.map(([feature, a, b, c]) => (
+            <tr key={feature as string} className="hover:bg-white/[0.02]">
+              <td className="py-3 pr-4 text-white/80">{feature as string}</td>
+              <td className="py-3 pr-4">
+                {a === true ? (
+                  <span className="inline-flex items-center gap-1 text-emerald-300">
+                    <CheckCircle2 className="h-4 w-4" /> Built-in
+                  </span>
+                ) : a === false ? (
+                  <span className="text-white/40">—</span>
+                ) : (
+                  <span className="text-white/60">{a as string}</span>
+                )}
+              </td>
+              <td className="py-3 pr-4">
+                {b === true ? (
+                  <span className="inline-flex items-center gap-1 text-emerald-300">
+                    <CheckCircle2 className="h-4 w-4" /> Built-in
+                  </span>
+                ) : b === false ? (
+                  <span className="text-red-300/80">Not included</span>
+                ) : (
+                  <span className="text-white/60">{b as string}</span>
+                )}
+              </td>
+              <td className="py-3">
+                {c === true ? (
+                  <span className="inline-flex items-center gap-1 text-emerald-300">
+                    <CheckCircle2 className="h-4 w-4" /> Built-in
+                  </span>
+                ) : c === false ? (
+                  <span className="text-red-300/80">Not included</span>
+                ) : (
+                  <span className="text-white/60">{c as string}</span>
+                )}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+export function MethodologySection() {
+  return (
+    <section className="rounded-xl border border-white/10 bg-white/[0.02] p-6 sm:p-8">
+      <h3 className="text-xl font-black text-white">How We Count Our Metrics</h3>
+      <p className="mt-2 text-sm text-white/55">
+        Transparency is core to our platform. Here is how we calculate the numbers you see across MCPserver.in.
+      </p>
+      <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {[
+          {
+            title: "10,000+ Verified Servers",
+            body: "We crawl GitHub, npm, Docker Hub, and 5+ MCP marketplaces daily. Each server is tested against the MCP specification and scored for quality, maintenance, and documentation before being listed."
+          },
+          {
+            title: "500,000+ Deployments",
+            body: "Total successful deployments across all users since our launch in Q1 2026. Every deployment is tracked with success/failure telemetry and latency metrics."
+          },
+          {
+            title: "99.97% Uptime",
+            body: "Measured across our global infrastructure using 3 independent monitoring services. Uptime is calculated on a rolling 30-day basis per edge node."
+          }
+        ].map((item) => (
+          <div key={item.title} className="rounded-lg border border-white/8 bg-white/[0.02] p-5">
+            <h4 className="text-sm font-black text-white">{item.title}</h4>
+            <p className="mt-2 text-xs leading-relaxed text-white/60">{item.body}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+export function ComplianceSection() {
+  return (
+    <section className="rounded-xl border border-violet-300/15 bg-gradient-to-b from-violet-950/40 to-transparent p-6 sm:p-8">
+      <h3 className="text-xl font-black text-white">DPDP & RBI Compliant — Data Sovereignty Built In</h3>
+      <p className="mt-2 text-sm text-white/65">
+        MCPserver.in is the only hosted MCP platform designed from the ground up for Indian compliance requirements.
+      </p>
+      <div className="mt-6 grid gap-4 sm:grid-cols-2">
+        <div className="rounded-lg border border-white/8 bg-white/[0.02] p-5">
+          <h4 className="text-sm font-black text-cyan-200">DPDP Act 2023</h4>
+          <ul className="mt-3 space-y-2 text-xs text-white/65">
+            {[
+              "All data stored exclusively in India (AWS Mumbai & GCP Delhi)",
+              "Consent-based data handling with full audit trails",
+              "Automated breach notification (Rule 6 compliant)"
+            ].map((item) => (
+              <li key={item} className="flex items-start gap-2">
+                <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-300" />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="rounded-lg border border-white/8 bg-white/[0.02] p-5">
+          <h4 className="text-sm font-black text-violet-200">RBI Cyber Framework</h4>
+          <ul className="mt-3 space-y-2 text-xs text-white/65">
+            {[
+              "Phishing-resistant authentication for all accounts",
+              "Real-time transaction telemetry and anomaly detection",
+              "Vendor risk management controls with quarterly reviews"
+            ].map((item) => (
+              <li key={item} className="flex items-start gap-2">
+                <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-300" />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+      <div className="mt-6 rounded-lg border border-white/8 bg-white/[0.02] p-5">
+        <div className="flex items-center gap-3">
+          <Globe2 className="h-5 w-5 text-cyan-300" />
+          <p className="text-xs font-semibold text-white/70">
+            All data stays within Indian borders — no cross-border transfers without explicit consent.
+          </p>
+        </div>
+      </div>
+    </section>
+  );
 }

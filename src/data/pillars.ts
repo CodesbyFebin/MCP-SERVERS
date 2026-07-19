@@ -11,103 +11,123 @@ export interface Pillar {
 
 export const pillars: Pillar[] = [
   {
-    slug: "mcp-server-pricing-india",
-    title: "MCP Server Pricing & Cost in India",
-    subtitle: "Explore free MCP servers, AWS Mumbai pricing, Google Cloud India, and startup-friendly hosting options.",
-    shortAnswer: "MCP server pricing in India ranges from completely free serverless options to enterprise-grade managed hosting. Free MCP servers are often well-suited for developers and startups, while AWS Mumbai, Google Cloud India, and Azure Central India offer competitive pricing for scale. Managed MCP hosting in India provides predictable monthly costs with included support.",
-    description: "The MCP server pricing landscape in India offers excellent options for developers at all stages. Free MCP servers leverage serverless platforms like Railway India, while major cloud providers offer significant discounts with region-specific pricing in Mumbai, Bengaluru, and other Indian metros. Enterprise options provide comprehensive SLAs with INR billing and compliant data centers.",
-    primaryKeyword: "mcp server pricing india",
-    faqCluster: "mcp-pricing",
-    related: ["mcp-server-performance-latency", "dppd-data-compliance", "mcp-vs-rest-graphql"]
+    slug: "what-is-mcp",
+    title: "What is MCP? — The Protocol Layer",
+    subtitle: "Understanding the Model Context Protocol as the standardization layer for AI-tool interaction.",
+    shortAnswer: "MCP is an open protocol that standardizes how applications provide context to language models. APIs connect machines; MCP connects intelligence to machines.",
+    description: "MCP does not replace REST/gRPC — it is the layer that lets LLM agents discover and use tools. MCP client (AI agent) sends requests; MCP server exposes tools/data. MCP is an open protocol that standardizes how applications provide context to LLMs.",
+    primaryKeyword: "model context protocol",
+    faqCluster: "mcp-protocol",
+    related: ["official-mcp-servers", "mcp-vs-api", "mcp-clients"]
   },
   {
-    slug: "mcp-server-performance-latency",
-    title: "MCP Server Performance & Latency",
-    subtitle: "Master edge deployment in Bengaluru, Mumbai latency optimization, and real-time monitoring across India.",
-    shortAnswer: "MCP server performance in India is optimized through strategic edge deployment in Bengaluru and Mumbai. Cloudflare Workers and Fly.io India provide sub-50ms latency, while offline-first bundles and network optimization ensure reliable AI agent performance even with variable connectivity.",
-    description: "MCP server performance in the Indian context focuses on overcoming unique challenges like monsoon network disruptions and regional connectivity issues. Strategic edge deployment across major Indian cities (Bengaluru, Mumbai, Delhi) combined with intelligent caching and local infrastructure optimization delivers the low-latency experience AI applications demand.",
-    primaryKeyword: "mcp server performance india",
-    faqCluster: "mcp-performance",
-    related: ["mcp-server-pricing-india", "mcp-deployment-hosting", "mcp-monitoring-security-observability"]
+    slug: "official-mcp-servers",
+    title: "Official MCP Servers & Reference Implementations",
+    subtitle: "Servers maintained by the MCP steering group and official company integrations.",
+    shortAnswer: "The modelcontextprotocol/servers repo houses reference implementations and community submissions maintained by the MCP steering group.",
+    description: "The MCP Servers Repository lists servers maintained by companies in the Official Integrations section and community implementations in the Community section. Browse published servers at registry.modelcontextprotocol.io.",
+    primaryKeyword: "official mcp servers",
+    faqCluster: "mcp-official",
+    related: ["what-is-mcp", "mcp-marketplaces", "mcp-categories"]
   },
   {
-    slug: "dppd-data-compliance",
-    title: "DPDP & Data Compliance",
-    subtitle: "Navigate India's Digital Personal Data Protection Act (DPDP) with confidence.",
-    shortAnswer: "The DPDP Act requires MCP servers to implement strict data protection measures including consent management, data localization, and breach notification. Indian businesses must ensure MCP implementations comply with PII detection, audit logging, and provide users with comprehensive data rights.",
-    description: "India's DPDP Act introduces comprehensive data protection requirements that significantly impact MCP server implementations. Businesses must implement robust consent mechanisms, data localization strategies, and comprehensive audit trails to ensure compliance while leveraging MCP's capabilities for secure data processing and integration.",
-    primaryKeyword: "dppd data compliance india",
-    faqCluster: "mcp-compliance",
-    related: ["mcp-server-pricing-india", "mcp-security-compliance", "mcp-deployment-hosting"]
+    slug: "mcp-marketplaces",
+    title: "MCP Server Marketplaces & Directories",
+    subtitle: "Where to find, discover, and list MCP servers.",
+    shortAnswer: "Smithery.ai is the primary MCP server marketplace with 2,211+ servers. Glama.ai, MCP.so, PulseMCP, and Docker MCP Catalog are other key discovery platforms.",
+    description: "A server listed on Glama is often also on MCP.so and PulseMCP. Smithery supports npm packages, GitHub repos, and Docker images. Browse published servers at registry.modelcontextprotocol.io.",
+    primaryKeyword: "mcp marketplace",
+    faqCluster: "mcp-marketplaces",
+    related: ["official-mcp-servers", "mcp-categories", "mcp-installation"]
   },
   {
-    slug: "mcp-vs-rest-graphql",
-    title: "MCP vs REST vs GraphQL",
-    subtitle: "Comprehensive comparison tailored for Indian enterprises and developers.",
-    shortAnswer: "MCP offers significant advantages over REST and GraphQL for Indian enterprises, providing true client-server architecture with built-in context management, superior developer productivity, and seamless AI integration. While REST and GraphQL serve traditional API needs, MCP excels at AI-powered automation and tool orchestration.",
-    description: "MCP represents a paradigm shift from traditional API architectures, specifically designed for the AI-first requirements of modern Indian enterprises. The protocol's ability to manage context windows, integrate with business intelligence tools, and support real-time AI agent workflows makes it particularly valuable for India's rapidly digitizing economy.",
-    primaryKeyword: "mcp vs rest graphql india",
+    slug: "mcp-categories",
+    title: "MCP Server Categories & Use Cases",
+    subtitle: "The diverse applications of MCP servers across industries and functions.",
+    shortAnswer: "MCP servers span development tools, databases, design, ITSM, cloud infrastructure, browser automation, knowledge management, DevOps, and cryptocurrency.",
+    description: "MCP is the open standard for connecting AI assistants to external tools. Categories include Developer Tools, Database & Analytics, Design & Creative, ITSM & Enterprise, Cloud Infrastructure, Browser Automation, Knowledge Management, DevOps, and Cryptocurrency.",
+    primaryKeyword: "mcp server categories",
+    faqCluster: "mcp-categories",
+    related: ["official-mcp-servers", "mcp-marketplaces", "enterprise-mcp"]
+  },
+  {
+    slug: "mcp-vs-api",
+    title: "MCP Server vs API — The Comparison Deep-Dive",
+    subtitle: "Understanding when to use MCP servers vs traditional APIs.",
+    shortAnswer: "APIs are resource-based; MCP servers are task-based. An MCP server sits above APIs, packaging them into workflows with sequencing, validation, and guardrails.",
+    description: "An API is a human-oriented interface for software-to-software communication; MCP is an AI-oriented protocol. APIs are not simply converted into MCP servers; API functionality is exposed through an MCP server.",
+    primaryKeyword: "mcp vs api",
     faqCluster: "mcp-comparisons",
-    related: ["mcp-server-pricing-india", "mcp-deployment-hosting", "mcp-for-ai-agents"]
+    related: ["what-is-mcp", "mcp-development", "mcp-trends"]
   },
   {
-    slug: "mcp-deployment-hosting",
-    title: "Deployment & Hosting",
-    subtitle: "Deploy on Railway India, AWS EC2, Google Cloud Run, and enterprise-grade solutions.",
-    shortAnswer: "MCP deployment in India spans multiple options from serverless platforms like Railway India and Vercel to traditional cloud services like AWS EC2 and Google Cloud Run. Docker containers, Kubernetes, and enterprise-grade hosting provide scalable solutions for Indian businesses of all sizes.",
-    description: "The deployment landscape for MCP servers in India offers flexibility ranging from serverless to enterprise-grade solutions. Railway India provides affordable serverless options perfect for startups, while AWS EC2, Google Cloud Run, and Fly.io offer scalable options for growing enterprises. Kubernetes and on-premise deployments serve large organizations requiring maximum control.",
-    primaryKeyword: "mcp deployment hosting india",
-    faqCluster: "mcp-deployment",
-    related: ["mcp-server-performance-latency", "mcp-monitoring-security-observability", "mcp-server-pricing-india"]
+    slug: "mcp-clients",
+    title: "MCP Server Clients & Integrations",
+    subtitle: "Which AI tools and IDEs support MCP servers.",
+    shortAnswer: "VS Code is a full MCP client supporting tools, resources, prompts, sampling, and OAuth. Cursor supports remote MCP servers over Streamable HTTP natively.",
+    description: "Claude Desktop provides native MCP support via Developer settings. VS Code is a full Model Context Protocol client. Cursor supports remote MCP servers over Streamable HTTP natively.",
+    primaryKeyword: "mcp clients",
+    faqCluster: "mcp-clients",
+    related: ["what-is-mcp", "enterprise-mcp", "mcp-installation"]
   },
   {
-    slug: "mcp-industry-startups",
-    title: "Industry Verticals – Startups",
-    subtitle: "StartItUp MCP, Indian equity research, and founder communities for early-stage innovation.",
-    shortAnswer: "MCP startup ecosystems in India include specialized servers for Indian equity research, grant discovery platforms, and mentorship matching tools. These MCP integrations solve unique challenges faced by Indian startups from incorporation through growth hacking, leveraging local market insights and regulatory knowledge.",
-    description: "The Indian startup ecosystem benefits immensely from MCP servers tailored to local market dynamics. These include specialized tools for Indian equity research, grant discovery platforms that navigate complex government schemes, mentorship matching services, and legal incorporation assistance - all designed to accelerate innovation in India's vibrant entrepreneurial landscape.",
-    primaryKeyword: "mcp industry startups india",
-    faqCluster: "mcp-startups",
-    related: ["mcp-industry-fintech", "mcp-industry-ecommerce", "mcp-industry-government-education"]
+    slug: "enterprise-mcp",
+    title: "Enterprise MCP Servers",
+    subtitle: "MCP servers for enterprise-grade platforms and workflows.",
+    shortAnswer: "ServiceNow's Zurich release introduces a native MCP Server Console for publishing MCP Tools. The remote Power BI MCP server enables AI agents to query Power BI semantic models using natural language.",
+    description: "Enterprise MCP servers include ServiceNow, Power BI, Azure, AWS, Salesforce, SAP, and Workday integrations with OAuth-based authentication and native MCP support.",
+    primaryKeyword: "enterprise mcp servers",
+    faqCluster: "enterprise-mcp",
+    related: ["mcp-categories", "mcp-clients", "mcp-hosting"]
   },
   {
-    slug: "mcp-industry-fintech",
-    title: "Industry Verticals – Fintech",
-    subtitle: "Razorpay MCP, BharatPay financial tools, and compliance solutions for Indian financial services.",
-    shortAnswer: "MCP fintech servers in India provide specialized integrations for UPI payments, lending APIs, insurance solutions, and compliance tools. These MCP servers address unique Indian financial services requirements including Aadhaar integration, PAN validation, and regulatory compliance for neo-banking and traditional financial institutions.",
-    description: "Indian fintech companies leverage MCP servers to navigate complex regulatory requirements while delivering innovative financial services. From UPI integration and payment processing to lending APIs and insurance MCP solutions, these tools enable financial institutions to build robust, compliant AI-powered services that serve India's unique market needs.",
-    primaryKeyword: "mcp industry fintech india",
-    faqCluster: "mcp-fintech",
-    related: ["mcp-industry-startups", "mcp-industry-ecommerce", "mcp-monitoring-security-observability"]
+    slug: "mcp-hosting",
+    title: "MCP Server Hosting & Deployment",
+    subtitle: "Where and how to host MCP servers.",
+    shortAnswer: "The best free hosting for an MCP server in 2026 is CreateOS — $0 tier with native MCP auto-discovery. AWS Lambda works well for lightweight, stateless tool endpoints with bursty traffic patterns.",
+    description: "Azure Container Apps supports two hosting models for MCP servers. Docker enables containerized MCP server deployment. Remote MCP servers are hosted endpoints accessible via HTTP.",
+    primaryKeyword: "mcp server hosting",
+    faqCluster: "mcp-hosting",
+    related: ["enterprise-mcp", "mcp-security", "mcp-development"]
   },
   {
-    slug: "mcp-industry-ecommerce",
-    title: "Industry Verticals – E-commerce & Retail",
-    subtitle: "Amazon.in MCP, Flipkart MCP, and Myntra Fashion integration for Indian retail transformation.",
-    description: "Indian e-commerce and retail leverage MCP servers to automate inventory management, customer support AI, and price comparison across platforms like Amazon.in, Flipkart, and BigBasket. These MCP integrations enable retailers to deliver personalized shopping experiences and optimize supply chain operations.",
-    shortAnswer: "MCP e-commerce and retail solutions in India include Amazon.in MCP, Flipkart MCP, and specialized tools for inventory management, price comparison, and customer support AI. These MCP integrations transform Indian retail by enabling real-time inventory synchronization, personalized shopping experiences, and automated customer service.",
-    primaryKeyword: "mcp industry ecommerce india",
-    faqCluster: "mcp-ecommerce",
-    related: ["mcp-industry-fintech", "mcp-industry-government-education", "mcp-monitoring-security-observability"]
+    slug: "mcp-security",
+    title: "MCP Server Security",
+    subtitle: "Best practices for securing MCP server deployments.",
+    shortAnswer: "Never expose MCP over the public internet without mTLS or equivalent. Replace .env files with runtime secret injection. Containerize your MCP servers and run them outside of your corporate/private network.",
+    description: "Security best practices include mTLS, least privilege, input validation, credential management, containerization, logging & monitoring, and comprehensive security checklists.",
+    primaryKeyword: "mcp security",
+    faqCluster: "mcp-security",
+    related: ["mcp-vs-api", "mcp-hosting", "mcp-development"]
   },
   {
-    slug: "mcp-industry-government-education",
-    title: "Industry Verticals – Government & Education",
-    subtitle: "NSO e‑Sankhyiki, UDISE+, and Skill India initiatives transforming public services.",
-    shortAnswer: "MCP server applications in India's government and education sectors include NSO e‑Sankhyiki for statistical data, UDISE+ for educational tracking, and Skill India for workforce development. These MCP solutions enable data-driven decision making, efficient public service delivery, and skills gap analysis across India's vast public sector.",
-    description: "The Indian government and educational sectors leverage MCP servers to improve service delivery and operational efficiency. From statistical data platforms like NSO e‑Sankhyiki to educational tracking systems like UDISE+, and workforce development initiatives like Skill India, MCP implementations are transforming how public services are delivered and managed across India's 1.4 billion population.",
-    primaryKeyword: "mcp industry government education india",
-    faqCluster: "mcp-government-education",
-    related: ["mcp-industry-ecommerce", "mcp-industry-fintech", "mcp-monitoring-security-observability"]
+    slug: "mcp-development",
+    title: "MCP Server Development",
+    subtitle: "How to build, test, and deploy MCP servers.",
+    shortAnswer: "Python, TypeScript, and .NET SDKs are available for building MCP servers. MCP Archetypes demonstrates implementations using different frameworks, transports, and authorization methods.",
+    description: "The project shows how to define tools (@tool) that can be consumed by LLMs. ServiceNow MCP server uses Server-Sent Events (SSE) for communication.",
+    primaryKeyword: "build mcp server",
+    faqCluster: "mcp-development",
+    related: ["mcp-vs-api", "mcp-hosting", "mcp-security"]
   },
-   {
-     slug: "mcp-monitoring-security-observability",
-     title: "Monitoring, Security & Observability",
-     subtitle: "Grafana Dashboards, mcp‑pulse monitoring, and enterprise security for Indian deployments.",
-     shortAnswer: "MCP monitoring, security, and observability solutions for India include Grafana dashboards, mcp‑pulse monitoring tools, and comprehensive security scanners. These tools ensure compliance with Indian regulations, provide real-time performance monitoring, and enable incident response across diverse MCP deployments from Bengaluru to global edge locations.",
-     description: "Monitoring, security, and observability for MCP servers in India require specialized tools that address local regulatory requirements and operational challenges. Grafana dashboards, mcp‑pulse monitoring, and enterprise security solutions provide comprehensive visibility into MCP performance, ensure compliance with Indian data protection laws, and enable rapid incident response across distributed deployments.",
-     primaryKeyword: "mcp monitoring security observability india",
-     faqCluster: "mcp-monitoring-security",
-     related: ["mcp-deployment-hosting", "mcp-security-compliance", "mcp-industry-fintech"]
-   }
+  {
+    slug: "mcp-installation",
+    title: "MCP Server Installation & Management",
+    subtitle: "How to install, configure, and manage MCP servers.",
+    shortAnswer: "Smithery's CLI (npx @smithery/cli install) handles config automatically. mcp-forge is a cross-platform CLI to install, run, and manage MCP servers.",
+    description: "Smithery CLI handles config automatically. mcp-forge provides cross-platform CLI for install, run, and manage. mcp-bin runs prebuilt binaries from GitHub/GitLab releases.",
+    primaryKeyword: "install mcp server",
+    faqCluster: "mcp-installation",
+    related: ["mcp-marketplaces", "mcp-hosting", "mcp-development"]
+  },
+  {
+    slug: "mcp-trends",
+    title: "MCP Server Trends & Ecosystem Growth",
+    subtitle: "The expanding MCP ecosystem and future trends.",
+    shortAnswer: "The broader MCP Ecosystem has 300K+ stars (servers, clients, etc.). 7,260 MCP servers as of May 30, 2025. MCP is being adopted rapidly — security guidance is lagging behind.",
+    description: "300K+ stars across MCP ecosystem, 155K+ stars across 30+ official repos, 7,260+ MCP servers as of May 2025. Paid MCP servers and marketplace models are emerging.",
+    primaryKeyword: "mcp ecosystem",
+    faqCluster: "mcp-trends",
+    related: ["what-is-mcp", "mcp-marketplaces", "mcp-categories"]
+  }
 ];

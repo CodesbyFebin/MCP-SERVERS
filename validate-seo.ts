@@ -9,6 +9,7 @@ import { glossaryTerms } from "./src/data/glossary";
 import { comparisons } from "./src/data/comparisons";
 import { categories } from "./src/data/categories";
 import { docsPages, getDocsPath } from "./src/data/docs";
+import { blogPosts, clusters } from "./src/data/blogPosts";
 
 console.log("--------------------------------------------------");
 console.log("🔍 STARTING STRICT METADATA, SCHEMA & SEO AUDIT");
@@ -42,6 +43,7 @@ const validPaths = new Set<string>([
   "/privacy/",
   "/terms/",
   "/compare/",
+  "/complete-guide-mcp-servers/",
 ]);
 
 // Register dynamic route entities with trailing slash
@@ -70,14 +72,9 @@ const toolSlugs = [
 ];
 toolSlugs.forEach((ts) => validPaths.add(`/tools/${ts}/`));
 
-const blogPostSlugs = [
-  "mcp-p99-latency-in-india",
-  "dppd-compliant-llm-tools",
-  "evaluate-mcp-server-security",
-  "rest-api-to-mcp-connector",
-  "india-first-mcp-stack-fintech",
-];
+const blogPostSlugs = blogPosts.map((post) => post.slug);
 blogPostSlugs.forEach((slug) => validPaths.add(`/blog/${slug}/`));
+clusters.forEach((cluster) => validPaths.add(`/blog/cluster/${cluster.slug}/`));
 
 console.log(`✅ Loaded ${validPaths.size} highly structured canonical paths from Knowledge Graph data lists.`);
 

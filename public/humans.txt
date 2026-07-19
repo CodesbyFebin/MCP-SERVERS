@@ -1,0 +1,9 @@
+/* humans.txt */
+Author: MCPserver.in Team
+Website: https://www.mcpserver.in/
+Location: Bengaluru, Karnataka, India
+GitHub: https://github.com/mcpserver-in
+Twitter: https://twitter.com/mcpserver_in
+Discord: https://discord.gg/mcpserver
+Email: support@mcpserver.in
+Last Updated: 2026-07-19
