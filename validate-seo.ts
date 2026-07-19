@@ -36,6 +36,10 @@ const validPaths = new Set<string>([
   "/blog/",
   "/faq/",
   "/learn/",
+  "/learn/mcp-production-deployment/",
+  "/learn/dpdp-compliance-guide/",
+  "/learn/india-mcp-benchmarks/",
+  "/community/",
   "/state-of-mcp/",
   "/security/",
   "/about/",
@@ -69,6 +73,7 @@ const toolSlugs = [
   "mcp-schema-viewer",
   "mcp-config-validator",
   "mcp-endpoint-tester",
+  "dpdp-compliance-scanner",
 ];
 toolSlugs.forEach((ts) => validPaths.add(`/tools/${ts}/`));
 

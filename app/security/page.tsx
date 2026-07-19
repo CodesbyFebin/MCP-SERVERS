@@ -98,6 +98,22 @@ export default function Security() {
           </div>
         </div>
 
+        {/* DPDP Compliance Scanner CTA */}
+        <div className="mt-8 bg-cyan-950/10 border border-cyan-900/30 rounded-2xl p-6 sm:p-8 text-center">
+          <h3 className="font-sans font-bold text-sm text-white mb-2">
+            Check Any MCP Server's Compliance Signals
+          </h3>
+          <p className="text-xs text-gray-400 leading-relaxed max-w-2xl mx-auto mb-5">
+            Run our free DPDP Compliance Scanner against a GitHub repository or a live server endpoint — real, live checks for license, security policy, data-handling disclosure, HTTPS, and access control. No mock data, no certification claims — just verifiable technical signals with a full breakdown.
+          </p>
+          <a
+            href="/tools/dpdp-compliance-scanner"
+            className="inline-flex items-center gap-2 rounded-md bg-cyan-500 px-5 py-2.5 text-xs font-black text-black"
+          >
+            Run the DPDP Compliance Scanner
+          </a>
+        </div>
+
       </div>
     </div>
   );

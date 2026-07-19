@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import DeveloperToolsClient from "../../../src/components/DeveloperToolsClient";
+import DpdpScannerClient from "../../../src/components/DpdpScannerClient";
 import { notFound } from "next/navigation";
 
 interface PageProps {
@@ -14,6 +15,7 @@ const VALID_TOOLS = new Set([
   "mcp-schema-viewer",
   "mcp-config-validator",
   "mcp-endpoint-tester",
+  "dpdp-compliance-scanner",
 ]);
 
 export async function generateStaticParams() {
@@ -27,6 +29,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!VALID_TOOLS.has(toolSlug)) {
     return {
       title: "Tool Not Found - MCPserver.in",
+    };
+  }
+
+  if (toolSlug === "dpdp-compliance-scanner") {
+    return {
+      title: "DPDP Compliance Scanner - MCPserver.in",
+      description:
+        "Run live technical compliance checks against a GitHub repository or a live MCP server endpoint: license, security policy, data-handling disclosure, HTTPS, and access control.",
     };
   }
 
@@ -52,6 +62,10 @@ export default async function ToolsPage({ params }: PageProps) {
 
   if (!VALID_TOOLS.has(toolSlug)) {
     notFound();
+  }
+
+  if (toolSlug === "dpdp-compliance-scanner") {
+    return <DpdpScannerClient />;
   }
 
   return <DeveloperToolsClient toolSlug={toolSlug} />;
