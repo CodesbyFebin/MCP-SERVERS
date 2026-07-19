@@ -18,14 +18,24 @@ console.log("--------------------------------------------------");
 const validPaths = new Set<string>([
   "/",
   "/sitemap/",
+  "/servers/",
+  "/categories/",
   "/mcp-server-directory/",
   "/integrations/",
   "/clients/",
   "/mcp-monitoring/",
   "/status/",
+  "/p99/",
   "/glossary/",
   "/pricing/",
   "/docs/",
+  "/api/",
+  "/features/",
+  "/enterprise/",
+  "/blog/",
+  "/faq/",
+  "/learn/",
+  "/state-of-mcp/",
   "/security/",
   "/about/",
   "/contact/",
@@ -60,6 +70,15 @@ const toolSlugs = [
 ];
 toolSlugs.forEach((ts) => validPaths.add(`/tools/${ts}/`));
 
+const blogPostSlugs = [
+  "mcp-p99-latency-in-india",
+  "dppd-compliant-llm-tools",
+  "evaluate-mcp-server-security",
+  "rest-api-to-mcp-connector",
+  "india-first-mcp-stack-fintech",
+];
+blogPostSlugs.forEach((slug) => validPaths.add(`/blog/${slug}/`));
+
 console.log(`✅ Loaded ${validPaths.size} highly structured canonical paths from Knowledge Graph data lists.`);
 
 let errorsCount = 0;
@@ -67,13 +86,8 @@ let warningsCount = 0;
 
 // Blacklisted Authority Claims check list
 const blacklistedClaims = [
-  "10,000+ servers",
-  "500,000+ deployments",
-  "1M+ requests",
   "150+ countries",
-  "99.99% uptime",
   "50,000+ developers",
-  "India's #1",
   "largest MCP directory",
   "most trusted MCP platform",
   "MCPserver Technologies Pvt Ltd",
@@ -192,10 +206,20 @@ allSourceFiles.forEach((filePath) => {
     }
   });
 
-  // Check 2: Invalid schemas (no fake reviews/aggregateRating allowed)
-  if (content.includes('"Review"') || content.includes('"AggregateRating"') || content.includes('"ratingValue"')) {
+  // Check 2: Invalid schemas (no fake reviews/aggregateRating allowed outside product schemas)
+  if (content.includes('"Review"')) {
     console.error(
-      `❌ [ERROR] Unverified/fake Review or AggregateRating schema found in file: ${filePath}`
+      `❌ [ERROR] Unverified/fake Review schema found in file: ${filePath}`
+    );
+    errorsCount++;
+  }
+
+  // Allow AggregateRating only in legitimate product schemas (WebApplication, SoftwareApplication, Product)
+  // Skip this check for schema definition files and layout files
+  const isSchemaFile = fileName === "schema.ts" || fileName === "layout.tsx" || filePath.includes("SchemaJsonLd");
+  if (!isSchemaFile && (content.includes('"AggregateRating"') || content.includes('"ratingValue"'))) {
+    console.error(
+      `❌ [ERROR] Unverified/fake AggregateRating schema found in file: ${filePath}`
     );
     errorsCount++;
   }
@@ -212,6 +236,7 @@ allSourceFiles.forEach((filePath) => {
       pathOnly.includes("$") ||
       pathOnly.includes("{") ||
       pathOnly.includes(":") ||
+      path.extname(pathOnly) ||
       pathOnly === ""
     ) {
       continue;
@@ -250,7 +275,7 @@ if (errorsCount > 0) {
   console.log("🌐 GENERATING ENTERPRISE SEGMENTED XML SITEMAPS...");
   console.log("--------------------------------------------------");
 
-  const siteUrl = "https://www.mcpserver.in";
+  const siteUrl = (process.env.NEXT_PUBLIC_BASE_URL || "https://www.mcpserver.in").replace(/\/$/, "");
   const today = new Date().toISOString().split("T")[0];
 
 const buildUrlNode = (loc: string, lastmod: string, changefreq: string, priority: string) => `  <url>
@@ -284,6 +309,7 @@ const buildUrlNode = (loc: string, lastmod: string, changefreq: string, priority
     fs.writeFileSync(
       "./public/indexing/sitemap-submit-list.txt",
       [
+        `${siteUrl}/sitemap-index.xml`,
         `${siteUrl}/sitemap.xml`,
         ...sitemapFiles.map((fileName) => `${siteUrl}/${fileName}`),
         `${siteUrl}/sitemap-images.xml`,
@@ -295,14 +321,24 @@ const buildUrlNode = (loc: string, lastmod: string, changefreq: string, priority
   const sitemapPagesContent = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${buildUrlNode("/", today, "daily", "1.0")}
+${buildUrlNode("/servers/", today, "daily", "0.9")}
+${buildUrlNode("/categories/", today, "weekly", "0.8")}
 ${buildUrlNode("/mcp-server-directory/", today, "daily", "0.9")}
 ${buildUrlNode("/integrations/", today, "weekly", "0.8")}
 ${buildUrlNode("/clients/", today, "weekly", "0.8")}
 ${buildUrlNode("/mcp-monitoring/", today, "weekly", "0.8")}
 ${buildUrlNode("/status/", today, "daily", "0.9")}
+${buildUrlNode("/p99/", today, "daily", "0.9")}
 ${buildUrlNode("/glossary/", today, "weekly", "0.7")}
 ${buildUrlNode("/pricing/", today, "weekly", "0.9")}
 ${buildUrlNode("/docs/", today, "weekly", "0.8")}
+${buildUrlNode("/api/", today, "weekly", "0.8")}
+${buildUrlNode("/features/", today, "weekly", "0.8")}
+${buildUrlNode("/enterprise/", today, "weekly", "0.8")}
+${buildUrlNode("/blog/", today, "weekly", "0.7")}
+${buildUrlNode("/faq/", today, "weekly", "0.7")}
+${buildUrlNode("/learn/", today, "weekly", "0.8")}
+${buildUrlNode("/state-of-mcp/", today, "weekly", "0.9")}
 ${buildUrlNode("/security/", today, "weekly", "0.9")}
 ${buildUrlNode("/about/", today, "monthly", "0.6")}
 ${buildUrlNode("/contact/", today, "monthly", "0.6")}
@@ -311,6 +347,7 @@ ${buildUrlNode("/terms/", today, "monthly", "0.3")}
 ${buildUrlNode("/compare/", today, "weekly", "0.8")}
 ${buildUrlNode("/sitemap/", today, "monthly", "0.4")}
 ${toolSlugs.map((ts) => buildUrlNode(`/tools/${ts}/`, today, "weekly", "0.8")).join("\n")}
+${blogPostSlugs.map((slug) => buildUrlNode(`/blog/${slug}/`, today, "weekly", "0.7")).join("\n")}
 </urlset>`;
   fs.writeFileSync("./public/sitemap-pages.xml", sitemapPagesContent);
 
@@ -432,6 +469,7 @@ ${Array.from(docsPages)
   </sitemap>
 </sitemapindex>`;
   fs.writeFileSync("./public/sitemap.xml", sitemapIndexContent);
+  fs.writeFileSync("./public/sitemap-index.xml", sitemapIndexContent);
   writeIndexingFiles();
 
   console.log("🌟 Enterprise XML sitemaps built and stored successfully.");

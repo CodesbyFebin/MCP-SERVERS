@@ -5,7 +5,6 @@ Disallow: /admin/
 Disallow: /dashboard/
 Disallow: /profile/
 Disallow: /auth/
-Disallow: /api/
 Disallow: /private/
 
 User-agent: Bingbot
@@ -14,7 +13,6 @@ Disallow: /admin/
 Disallow: /dashboard/
 Disallow: /profile/
 Disallow: /auth/
-Disallow: /api/
 Disallow: /private/
 
 User-agent: Google-Extended
@@ -23,7 +21,6 @@ Disallow: /admin/
 Disallow: /dashboard/
 Disallow: /profile/
 Disallow: /auth/
-Disallow: /api/
 Disallow: /private/
 
 User-agent: GPTBot
@@ -32,7 +29,6 @@ Disallow: /admin/
 Disallow: /dashboard/
 Disallow: /profile/
 Disallow: /auth/
-Disallow: /api/
 Disallow: /private/
 
 User-agent: ClaudeBot
@@ -41,7 +37,6 @@ Disallow: /admin/
 Disallow: /dashboard/
 Disallow: /profile/
 Disallow: /auth/
-Disallow: /api/
 Disallow: /private/
 
 User-agent: PerplexityBot
@@ -50,7 +45,6 @@ Disallow: /admin/
 Disallow: /dashboard/
 Disallow: /profile/
 Disallow: /auth/
-Disallow: /api/
 Disallow: /private/
 
 User-agent: Applebot
@@ -59,7 +53,6 @@ Disallow: /admin/
 Disallow: /dashboard/
 Disallow: /profile/
 Disallow: /auth/
-Disallow: /api/
 Disallow: /private/
 
 # Standard Crawler fallback
@@ -69,8 +62,7 @@ Disallow: /admin/
 Disallow: /dashboard/
 Disallow: /profile/
 Disallow: /auth/
-Disallow: /api/
 Disallow: /private/
 
 # Sitemap index location reference
-Sitemap: https://www.mcpserver.in/sitemap.xml
+Sitemap: https://www.mcpserver.in/sitemap-index.xml

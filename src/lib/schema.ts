@@ -42,6 +42,27 @@ export function getWebSiteSchema() {
   };
 }
 
+export function getWebApplicationSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "@id": `${siteConfig.url}/#webapplication`,
+    "name": siteConfig.brand,
+    "url": siteConfig.url,
+    "description": "Hosted MCP platform for discovering, building, testing, deploying and managing production-ready Model Context Protocol servers with India-focused compliance controls.",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Cross-Platform",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "INR"
+    },
+    "publisher": {
+      "@id": `${siteConfig.url}/#organization`
+    }
+  };
+}
+
 export interface BreadcrumbStep {
   name: string;
   item: string;

@@ -9,6 +9,8 @@ import { docsPages, getDocsPath } from "../src/data/docs";
 
 export const dynamic = "force-static";
 
+const baseUrl = (process.env.NEXT_PUBLIC_BASE_URL || "https://www.mcpserver.in").replace(/\/$/, "");
+
 const popularComparisonSlugs = [
   "github-mcp-server-vs-gitlab-mcp-server",
   "postgres-mcp-server-vs-sqlite-mcp-server",
@@ -17,20 +19,29 @@ const popularComparisonSlugs = [
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://www.mcpserver.in";
   const today = new Date();
 
   // Static site pages (indexable)
   const staticPaths = [
     { url: "", changeFrequency: "daily" as const, priority: 1.0 },
+    { url: "/servers", changeFrequency: "daily" as const, priority: 0.9 },
+    { url: "/categories", changeFrequency: "weekly" as const, priority: 0.8 },
     { url: "/mcp-server-directory", changeFrequency: "daily" as const, priority: 0.9 },
     { url: "/integrations", changeFrequency: "weekly" as const, priority: 0.8 },
     { url: "/clients", changeFrequency: "weekly" as const, priority: 0.8 },
     { url: "/mcp-monitoring", changeFrequency: "weekly" as const, priority: 0.8 },
     { url: "/status", changeFrequency: "daily" as const, priority: 0.9 },
+    { url: "/p99", changeFrequency: "daily" as const, priority: 0.9 },
     { url: "/glossary", changeFrequency: "weekly" as const, priority: 0.7 },
     { url: "/pricing", changeFrequency: "weekly" as const, priority: 0.9 },
     { url: "/docs", changeFrequency: "weekly" as const, priority: 0.8 },
+    { url: "/api", changeFrequency: "weekly" as const, priority: 0.8 },
+    { url: "/features", changeFrequency: "weekly" as const, priority: 0.8 },
+    { url: "/enterprise", changeFrequency: "weekly" as const, priority: 0.8 },
+    { url: "/blog", changeFrequency: "weekly" as const, priority: 0.7 },
+    { url: "/faq", changeFrequency: "weekly" as const, priority: 0.7 },
+    { url: "/learn", changeFrequency: "weekly" as const, priority: 0.8 },
+    { url: "/state-of-mcp", changeFrequency: "weekly" as const, priority: 0.9 },
     { url: "/security", changeFrequency: "weekly" as const, priority: 0.9 },
     { url: "/about", changeFrequency: "monthly" as const, priority: 0.6 },
     { url: "/contact", changeFrequency: "monthly" as const, priority: 0.6 },

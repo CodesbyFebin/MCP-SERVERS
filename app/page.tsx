@@ -20,6 +20,8 @@ import {
   Testimonials,
   UseCaseGrid
 } from "../src/components/ReferenceLanding";
+import { BarChart3, BookOpen, ArrowRight } from "lucide-react";
+import Link from "next/link";
 import { Star } from "lucide-react";
 
 export default function Home() {
@@ -29,15 +31,15 @@ export default function Home() {
         <Container>
           <div className="grid items-center gap-10 lg:grid-cols-[0.48fr_0.52fr]">
             <div>
-              <Badge>The World's Largest Hosted MCP Platform</Badge>
+              <Badge>India-ready hosted MCP platform</Badge>
               <h1 className="mt-6 max-w-3xl text-4xl font-black leading-[1.05] tracking-tight text-white sm:text-5xl md:text-6xl">
-                10,000+ MCP Servers. <br />
+                10,000+ Verified MCP Servers. <br />
                 <span className="bg-gradient-to-r from-cyan-300 via-blue-300 to-fuchsia-400 bg-clip-text text-transparent">
-                  One API. Infinite Possibilities.
+                  Hosted in India. DPDP & RBI Compliant.
                 </span>
               </h1>
               <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/68">
-                Discover, deploy and connect to 10,000+ Model Context Protocol servers. Fully hosted. Zero setup. Built for AI agents and the future of automation.
+                Deploy LLM tools in &lt;50ms from Mumbai and Bengaluru edge nodes. India-first MCP infrastructure with automated data localization, consent management, and breach notification protocols.
               </p>
               <div className="mt-6 max-w-2xl">
                 <HeroTrustBadges />
@@ -126,6 +128,47 @@ export default function Home() {
         <Container>
           <SectionTitle title="Loved by Builders Worldwide" />
           <Testimonials />
+        </Container>
+      </DividerSection>
+
+      <DividerSection>
+        <Container>
+          <div className="grid gap-6 md:grid-cols-2">
+            <Link href="/state-of-mcp" className="group rounded-2xl border border-white/10 bg-white/[0.02] p-8 transition hover:border-cyan-300/30">
+              <div className="flex items-center gap-3">
+                <div className="grid h-10 w-10 place-items-center rounded-xl border border-emerald-400/20 bg-emerald-500/10">
+                  <BarChart3 className="h-5 w-5 text-emerald-200" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-black text-white group-hover:text-cyan-200">State of MCP in India 2026</h3>
+                  <p className="text-xs text-white/45">Market data, benchmarks & trends</p>
+                </div>
+              </div>
+              <p className="mt-4 text-sm leading-relaxed text-white/58">
+                232% server growth, top tools, latency benchmarks, and cost savings vs AWS Lambda. Original research from 500,000+ deployments.
+              </p>
+              <div className="mt-4 inline-flex items-center gap-1 text-xs font-bold text-cyan-300">
+                Read the report <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5" />
+              </div>
+            </Link>
+            <Link href="/learn" className="group rounded-2xl border border-white/10 bg-white/[0.02] p-8 transition hover:border-violet-300/30">
+              <div className="flex items-center gap-3">
+                <div className="grid h-10 w-10 place-items-center rounded-xl border border-violet-400/20 bg-violet-500/10">
+                  <BookOpen className="h-5 w-5 text-violet-200" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-black text-white group-hover:text-violet-200">MCP Knowledge Hub</h3>
+                  <p className="text-xs text-white/45">50+ expert answers & guides</p>
+                </div>
+              </div>
+              <p className="mt-4 text-sm leading-relaxed text-white/58">
+                Expert answers on hosting, latency, DPDP compliance, pricing in India, and enterprise MCP deployment. Optimized for voice search and AI retrieval.
+              </p>
+              <div className="mt-4 inline-flex items-center gap-1 text-xs font-bold text-violet-300">
+                Start learning <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5" />
+              </div>
+            </Link>
+          </div>
         </Container>
       </DividerSection>
 

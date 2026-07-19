@@ -9,6 +9,7 @@
     "lint": "tsc --noEmit",
     "typecheck": "tsc --noEmit",
     "seo:audit": "tsx validate-seo.ts",
+    "verify:production": "node scripts/verify-production.mjs",
     "clean": "rm -rf dist .next"
   },
   "dependencies": {

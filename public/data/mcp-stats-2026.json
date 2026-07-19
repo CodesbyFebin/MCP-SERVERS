@@ -1,0 +1,21 @@
+{
+  "generatedAt": "2026-07-19T00:00:00.000Z",
+  "source": "MCPserver.in public performance snapshot",
+  "targetMs": 50,
+  "series": [
+    { "time": "00:00", "p50": 7, "p90": 14, "p99": 32, "mumbai": 11, "bengaluru": 9 },
+    { "time": "03:00", "p50": 6, "p90": 13, "p99": 29, "mumbai": 10, "bengaluru": 8 },
+    { "time": "06:00", "p50": 8, "p90": 16, "p99": 35, "mumbai": 12, "bengaluru": 10 },
+    { "time": "09:00", "p50": 10, "p90": 22, "p99": 44, "mumbai": 14, "bengaluru": 12 },
+    { "time": "12:00", "p50": 9, "p90": 20, "p99": 41, "mumbai": 13, "bengaluru": 11 },
+    { "time": "15:00", "p50": 11, "p90": 24, "p99": 47, "mumbai": 15, "bengaluru": 13 },
+    { "time": "18:00", "p50": 9, "p90": 18, "p99": 38, "mumbai": 12, "bengaluru": 10 },
+    { "time": "21:00", "p50": 7, "p90": 15, "p99": 31, "mumbai": 11, "bengaluru": 9 }
+  ],
+  "regions": [
+    { "name": "Mumbai Edge", "latencyMs": 11, "uptime": "99.99%", "status": "Operational" },
+    { "name": "Bengaluru Edge", "latencyMs": 9, "uptime": "99.98%", "status": "Operational" },
+    { "name": "Secure Gateway Proxy", "latencyMs": 3, "uptime": "100%", "status": "Operational" },
+    { "name": "In-Browser Sandbox", "latencyMs": 1, "uptime": "99.95%", "status": "Operational" }
+  ]
+}

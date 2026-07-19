@@ -22,7 +22,9 @@ const columns = [
       ["API Reference", "/docs"],
       ["SDKs", "/tools/mcp-playground"],
       ["Guides", "/what-is-mcp"],
-      ["Blog", "/sitemap"]
+      ["Learn Hub", "/learn"],
+      ["State of MCP 2026", "/state-of-mcp"],
+      ["Blog", "/blog"]
     ]
   },
   {

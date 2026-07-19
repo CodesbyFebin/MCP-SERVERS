@@ -1,0 +1,67 @@
+name: Refresh MCP Stats
+
+on:
+  schedule:
+    - cron: "0 0 * * 0"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh-data:
+    runs-on: ubuntu-latest
+    env:
+      MCP_STATS_JSON_URL: ${{ vars.MCP_STATS_JSON_URL }}
+      MCP_STATS_CSV_URL: ${{ vars.MCP_STATS_CSV_URL }}
+      MCP_INDIA_STATS_CSV_URL: ${{ vars.MCP_INDIA_STATS_CSV_URL }}
+      PRODUCTION_BASE_URL: https://www.mcpserver.in
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - run: npm ci
+
+      - name: Refresh optional metrics feeds
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p public/data
+          if [ -n "${MCP_STATS_JSON_URL:-}" ]; then
+            curl --fail --show-error --location "$MCP_STATS_JSON_URL" --output public/data/mcp-stats-2026.json
+          fi
+          if [ -n "${MCP_STATS_CSV_URL:-}" ]; then
+            curl --fail --show-error --location "$MCP_STATS_CSV_URL" --output public/data/mcp-stats-2026.csv
+          fi
+          if [ -n "${MCP_INDIA_STATS_CSV_URL:-}" ]; then
+            curl --fail --show-error --location "$MCP_INDIA_STATS_CSV_URL" --output public/data/mcp-india-stats-2026.csv
+          fi
+
+      - name: Validate local build
+        run: npm run build
+
+      - name: Commit refreshed data if changed
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add public/data public/sitemap*.xml public/indexing
+          git diff --staged --quiet || git commit -m "chore: refresh MCP stats"
+
+      - name: Push refreshed data
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git log -1 --pretty=%B | grep -q "chore: refresh MCP stats"; then
+            git push
+          else
+            echo "No data changes to push."
+          fi
+
+      - name: Verify production endpoints
+        run: npm run verify:production

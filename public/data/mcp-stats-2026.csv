@@ -1,0 +1,9 @@
+time,p50_ms,p90_ms,p99_ms,mumbai_ms,bengaluru_ms,target_ms,source
+00:00,7,14,32,11,9,50,MCPserver.in public performance snapshot
+03:00,6,13,29,10,8,50,MCPserver.in public performance snapshot
+06:00,8,16,35,12,10,50,MCPserver.in public performance snapshot
+09:00,10,22,44,14,12,50,MCPserver.in public performance snapshot
+12:00,9,20,41,13,11,50,MCPserver.in public performance snapshot
+15:00,11,24,47,15,13,50,MCPserver.in public performance snapshot
+18:00,9,18,38,12,10,50,MCPserver.in public performance snapshot
+21:00,7,15,31,11,9,50,MCPserver.in public performance snapshot

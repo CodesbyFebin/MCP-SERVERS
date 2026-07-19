@@ -1,3 +1,4 @@
+https://www.mcpserver.in/sitemap-index.xml
 https://www.mcpserver.in/sitemap.xml
 https://www.mcpserver.in/sitemap-pages.xml
 https://www.mcpserver.in/sitemap-pillars.xml

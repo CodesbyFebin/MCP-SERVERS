@@ -4,22 +4,32 @@ import "../src/index.css";
 import ThemeAndAuthProvider from "../src/components/ThemeAndAuthProvider";
 import Header from "../src/components/Header";
 import Footer from "../src/components/Footer";
+import SchemaJsonLd from "../src/components/SchemaJsonLd";
+import { getOrganizationSchema, getWebSiteSchema, getWebApplicationSchema } from "../src/lib/schema";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.mcpserver.in"),
-
   title: {
-    default: "MCPserver.in — Discover, Build and Deploy MCP Servers",
+    default: "MCPserver.in — Hosted MCP Platform for AI Agents",
     template: "%s | MCPserver.in"
   },
-
-  description:
-    "Discover, build, test, deploy, secure and monitor MCP servers for AI agents, developers, startups and enterprises.",
-
-  alternates: {
-    canonical: "/"
+  description: "Hosted MCP platform for discovering, deploying, securing and monitoring production MCP servers with India-focused edge and compliance controls.",
+  keywords: ["MCP server hosting India", "hosted MCP platform", "DPDP compliant AI tools", "MCP servers Mumbai", "MCP servers Bengaluru", "low latency MCP India", "RBI compliant LLM tools", "MCP infrastructure India", "Model Context Protocol hosting"],
+  authors: [{ name: "MCPserver.in Engineering" }],
+  creator: "MCPserver.in",
+  publisher: "MCPserver.in",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
   },
-
+  alternates: {
+    canonical: "/",
+    languages: {
+      "en-IN": "/",
+      "en": "/",
+    }
+  },
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "32x32" },
@@ -27,19 +37,30 @@ export const metadata: Metadata = {
     ],
     shortcut: "/favicon.ico"
   },
-
   openGraph: {
     type: "website",
     url: "https://www.mcpserver.in",
     siteName: "MCPserver.in",
-    title: "MCPserver.in — MCP Infrastructure for AI Agents",
-    description:
-      "Discover, build, deploy and manage production MCP servers."
+    title: "MCPserver.in — Hosted MCP Platform for AI Agents",
+    description: "Hosted MCP platform for discovering, deploying, securing and monitoring production MCP servers with India-focused edge and compliance controls.",
+    locale: "en_IN",
   },
-
   twitter: {
-    card: "summary_large_image"
-  }
+    card: "summary_large_image",
+    site: "@mcpserver_in",
+    creator: "@mcpserver_in"
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default function RootLayout({
@@ -59,6 +80,9 @@ export default function RootLayout({
             
             {/* Main Content wrapper */}
             <div className="relative z-10 flex flex-col min-h-screen">
+              <SchemaJsonLd schema={getWebApplicationSchema()} />
+              <SchemaJsonLd schema={getOrganizationSchema()} />
+              <SchemaJsonLd schema={getWebSiteSchema()} />
               <Header />
               <main className="flex-1">
                 {children}

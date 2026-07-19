@@ -9,7 +9,7 @@ export const headerNav: NavItem[] = [
   { name: "Clients", href: "/clients" },
   { name: "Pricing", href: "/pricing" },
   { name: "Docs", href: "/docs" },
-  { name: "Resources", href: "/what-is-mcp" }
+  { name: "Learn", href: "/learn" }
 ];
 
 export const footerNav = {

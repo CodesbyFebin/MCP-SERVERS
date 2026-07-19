@@ -1,0 +1,11 @@
+/servers/
+  Cache-Control: public, max-age=3600, must-revalidate
+
+/categories/
+  Cache-Control: public, max-age=3600, must-revalidate
+
+/p99/
+  Cache-Control: public, max-age=900, must-revalidate
+
+/data/*
+  Cache-Control: public, max-age=3600, must-revalidate

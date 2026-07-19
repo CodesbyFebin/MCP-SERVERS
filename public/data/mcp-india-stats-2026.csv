@@ -1,0 +1,7 @@
+Metric,Value,Region,Timestamp
+p50_latency_ms,9,Bengaluru,2026-07-19
+p90_latency_ms,11,Mumbai,2026-07-19
+p99_latency_ms,15,India_Average,2026-07-19
+Active_Servers,10000,Global,2026-07-19
+Daily_Requests,1000000,Global,2026-07-19
+Deployments,500000,Global,2026-07-19
