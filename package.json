@@ -10,6 +10,7 @@
     "typecheck": "tsc --noEmit",
     "seo:audit": "tsx validate-seo.ts",
     "verify:production": "node scripts/verify-production.mjs",
+    "submit-indexnow": "node scripts/submit-indexnow.mjs",
     "clean": "rm -rf dist .next"
   },
   "dependencies": {

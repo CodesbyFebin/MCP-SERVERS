@@ -1,4 +1,4 @@
-name: Refresh MCP Stats
+name: Refresh MCP Stats & IndexNow
 
 on:
   schedule:
@@ -65,3 +65,6 @@ jobs:
 
       - name: Verify production endpoints
         run: npm run verify:production
+
+      - name: Submit updated URLs to IndexNow
+        run: npm run submit-indexnow
