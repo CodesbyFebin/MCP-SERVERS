@@ -20,6 +20,26 @@ export default function robots(): MetadataRoute.Robots {
         ],
       },
       {
+        userAgent: "Googlebot",
+        allow: "/",
+        disallow: [
+          "/login/",
+          "/register/",
+          "/profile/",
+          "/dashboard/",
+          "/admin/",
+          "/search/",
+        ],
+      },
+      {
+        userAgent: "Googlebot-Image",
+        allow: "/",
+      },
+      {
+        userAgent: "Googlebot-News",
+        allow: "/",
+      },
+      {
         userAgent: "Google-Extended",
         allow: "/",
       },

@@ -6,7 +6,16 @@ const checks = [
   {
     path: "/robots.txt",
     type: "text",
-    includes: ["User-Agent: *", "Allow: /", "GPTBot", "ClaudeBot", "PerplexityBot", "Sitemap:"],
+    includes: [
+      "User-Agent: *",
+      "User-Agent: Googlebot",
+      "User-Agent: Googlebot-Image",
+      "Allow: /",
+      "GPTBot",
+      "ClaudeBot",
+      "PerplexityBot",
+      "Sitemap:",
+    ],
   },
   {
     path: "/",

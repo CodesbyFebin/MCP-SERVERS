@@ -1,68 +1,46 @@
-# Allow primary web search crawlers and AI agents
-User-agent: Googlebot
+User-Agent: *
 Allow: /
-Disallow: /admin/
-Disallow: /dashboard/
+Disallow: /login/
+Disallow: /register/
 Disallow: /profile/
-Disallow: /auth/
-Disallow: /private/
+Disallow: /dashboard/
+Disallow: /admin/
+Disallow: /search/
 
-User-agent: Bingbot
+User-Agent: Googlebot
 Allow: /
-Disallow: /admin/
-Disallow: /dashboard/
+Disallow: /login/
+Disallow: /register/
 Disallow: /profile/
-Disallow: /auth/
-Disallow: /private/
+Disallow: /dashboard/
+Disallow: /admin/
+Disallow: /search/
 
-User-agent: Google-Extended
+User-Agent: Googlebot-Image
 Allow: /
-Disallow: /admin/
-Disallow: /dashboard/
-Disallow: /profile/
-Disallow: /auth/
-Disallow: /private/
 
-User-agent: GPTBot
+User-Agent: Googlebot-News
 Allow: /
-Disallow: /admin/
-Disallow: /dashboard/
-Disallow: /profile/
-Disallow: /auth/
-Disallow: /private/
 
-User-agent: ClaudeBot
+User-Agent: Google-Extended
 Allow: /
-Disallow: /admin/
-Disallow: /dashboard/
-Disallow: /profile/
-Disallow: /auth/
-Disallow: /private/
 
-User-agent: PerplexityBot
+User-Agent: GPTBot
 Allow: /
-Disallow: /admin/
-Disallow: /dashboard/
-Disallow: /profile/
-Disallow: /auth/
-Disallow: /private/
 
-User-agent: Applebot
+User-Agent: ChatGPT-User
 Allow: /
-Disallow: /admin/
-Disallow: /dashboard/
-Disallow: /profile/
-Disallow: /auth/
-Disallow: /private/
 
-# Standard Crawler fallback
-User-agent: *
+User-Agent: ClaudeBot
 Allow: /
-Disallow: /admin/
-Disallow: /dashboard/
-Disallow: /profile/
-Disallow: /auth/
-Disallow: /private/
 
-# Sitemap index location reference
+User-Agent: PerplexityBot
+Allow: /
+
+User-Agent: BingBot
+Allow: /
+
+User-Agent: ia_archiver
+Allow: /
+
 Sitemap: https://www.mcpserver.in/sitemap-index.xml
