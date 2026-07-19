@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "next dev --port 3000",
     "build": "tsx validate-seo.ts && next build",
+    "postbuild": "node scripts/postbuild-indexnow.mjs",
     "lint": "tsc --noEmit",
     "typecheck": "tsc --noEmit",
     "seo:audit": "tsx validate-seo.ts",

@@ -50,6 +50,7 @@ export default function UGCOrchestrator({
         );
       } else if (
         lower.includes("vote") ||
+        lower.includes("voting") ||
         lower.includes("poll") ||
         lower.includes("ranking") ||
         lower.includes("comparison")
