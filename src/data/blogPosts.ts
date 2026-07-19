@@ -10,6 +10,7 @@ export interface BlogPost {
   ugcElements: string[];
   internalLinks: string[];
   content: string;
+  faqs?: { question: string; answer: string }[];
 }
 
 export const blogPosts: BlogPost[] = [
@@ -41,45 +42,264 @@ export const blogPosts: BlogPost[] = [
     date: "2026-07-19",
     category: "Getting Started",
     cluster: "getting-started",
-    readTime: "1 min read",
-    excerpt: "Step-by-step tutorial to build your first MCP server from zero, with Python and TypeScript examples.",
+    readTime: "11 min read",
+    excerpt: "A complete, hands-on walkthrough: build a real two-tool MCP server in Python and TypeScript, test it with the MCP Inspector, and connect it to Claude Desktop.",
     keywords: ["MCP beginner guide", "Model Context Protocol tutorial", "MCP server tutorial"],
     ugcElements: ["Beginner Q&A forum", "Code sharing section"],
     internalLinks: ["mcp-server-vs-api-difference", "how-mcp-servers-work", "mcp-python-sdk-tutorial"],
-    content: `<p class="text-white/65 leading-relaxed">Welcome to MCP development. This guide walks you through building your first server in under 30 minutes, with working examples in both Python and TypeScript.</p>
+    content: `<p class="text-white/65 leading-relaxed">Model Context Protocol (MCP) is the open standard, originally released by Anthropic in November 2024, that lets an AI application discover and call external tools, read external resources, and reuse prompt templates through one consistent client-server interface. Instead of writing custom glue code for every model and every tool combination, you write one MCP server, and any MCP-compatible client — Claude Desktop, an IDE like Cursor or VS Code, or your own agent runtime — can use it immediately.</p>
+
+<p class="text-white/65 leading-relaxed">This guide builds a working MCP server from an empty folder to a tool call you can see execute inside Claude Desktop, in both Python and TypeScript. You'll type every command, read every line of code, and understand what each one does — no copy-pasting a finished repo and hoping it works. By the end you'll have a server exposing two real tools, and you'll know how to add more.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">What You'll Build</h2>
+<p class="text-white/65 leading-relaxed">A small "unit converter" MCP server with two tools: <code>convert_temperature</code>, which converts between Celsius and Fahrenheit, and <code>convert_distance</code>, which converts between kilometers and miles. It's deliberately simple — the goal is to see the full request/response cycle clearly, not to get lost in a real integration's error handling. Once this pattern clicks, wiring up a real API (Slack, GitHub, a database) is the same shape with more fields.</p>
 
 <h2 class="mt-8 text-2xl font-black text-white">Prerequisites</h2>
-<ul class="text-white/65 leading-relaxed">
-  <li>Node.js 18+ or Python 3.9+</li>
-  <li>Basic understanding of JSON-RPC</li>
-  <li>Claude Desktop or compatible MCP client</li>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li>Node.js 18 or later (for the TypeScript path) — check with <code>node --version</code>.</li>
+  <li>Python 3.10 or later (for the Python path) — check with <code>python3 --version</code>.</li>
+  <li>Claude Desktop installed, or another MCP-compatible client.</li>
+  <li>A terminal and a text editor. No prior MCP experience needed — this assumes only that you can write basic Python or TypeScript.</li>
 </ul>
+<p class="text-white/65 leading-relaxed">You don't need both languages — pick whichever you're more comfortable with. The two paths below build the identical server; skip to whichever section applies.</p>
 
-<h2 class="mt-8 text-2xl font-black text-white">TypeScript Quick Start</h2>
-<pre class="bg-gray-900 p-4 rounded-lg"><code class="language-typescript">import { Server } from "@modelcontextprotocol/sdk/server/index.js";
-import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
+<h2 class="mt-8 text-2xl font-black text-white">The Three Building Blocks, Briefly</h2>
+<p class="text-white/65 leading-relaxed">Before writing code, it helps to know what an MCP server actually exposes. There are three primitives, and this guide's example only needs the first one:</p>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li><strong>Tools</strong> — functions the model can call, each with a name, a description written for the model (not for a human reading docs), and a JSON Schema describing its inputs. This is what we're building today.</li>
+  <li><strong>Resources</strong> — read-only data addressed by URI that a client can pull into context on demand, instead of the server pushing everything up front.</li>
+  <li><strong>Prompts</strong> — reusable, parameterized message templates a client can surface to the user as a starting point for a conversation.</li>
+</ul>
+<p class="text-white/65 leading-relaxed">Communication between client and server runs over JSON-RPC 2.0. For a local server like the one you're about to build, that happens over <strong>stdio</strong> — the client launches your server as a child process and talks to it over its standard input and output streams. There's no networking, no ports, no auth to configure for this first server.</p>
 
-const server = new Server({
-  name: "hello-world",
+<h2 class="mt-8 text-2xl font-black text-white">Part 1: Building the Server in Python</h2>
+<p class="text-white/65 leading-relaxed">The official Python SDK ships a high-level <code>FastMCP</code> class that turns a plain function into a tool using a decorator — you don't hand-write JSON Schema or register request handlers yourself.</p>
+
+<h3 class="mt-6 text-lg font-black text-white">Step 1: Set Up the Project</h3>
+<pre class="bg-gray-900 p-4 rounded-lg overflow-x-auto"><code class="language-bash">mkdir unit-converter-mcp
+cd unit-converter-mcp
+python3 -m venv .venv
+source .venv/bin/activate
+pip install "mcp[cli]"</code></pre>
+<p class="text-white/65 leading-relaxed">The <code>[cli]</code> extra pulls in the MCP Inspector dependency you'll use later to test the server without Claude Desktop in the loop.</p>
+
+<h3 class="mt-6 text-lg font-black text-white">Step 2: Write the Server</h3>
+<p class="text-white/65 leading-relaxed">Create a file named <code>server.py</code>:</p>
+<pre class="bg-gray-900 p-4 rounded-lg overflow-x-auto"><code class="language-python">from mcp.server.fastmcp import FastMCP
+
+mcp = FastMCP("unit-converter")
+
+@mcp.tool()
+def convert_temperature(value: float, from_unit: str, to_unit: str) -> str:
+    """Convert a temperature between Celsius and Fahrenheit.
+
+    Args:
+        value: The numeric temperature to convert.
+        from_unit: Either "celsius" or "fahrenheit".
+        to_unit: Either "celsius" or "fahrenheit".
+    """
+    if from_unit == to_unit:
+        return f"{value} {from_unit}"
+
+    if from_unit == "celsius" and to_unit == "fahrenheit":
+        result = (value * 9 / 5) + 32
+    elif from_unit == "fahrenheit" and to_unit == "celsius":
+        result = (value - 32) * 5 / 9
+    else:
+        raise ValueError("from_unit and to_unit must be 'celsius' or 'fahrenheit'")
+
+    return f"{round(result, 2)} {to_unit}"
+
+
+@mcp.tool()
+def convert_distance(value: float, from_unit: str, to_unit: str) -> str:
+    """Convert a distance between kilometers and miles.
+
+    Args:
+        value: The numeric distance to convert.
+        from_unit: Either "km" or "miles".
+        to_unit: Either "km" or "miles".
+    """
+    if from_unit == to_unit:
+        return f"{value} {from_unit}"
+
+    if from_unit == "km" and to_unit == "miles":
+        result = value * 0.621371
+    elif from_unit == "miles" and to_unit == "km":
+        result = value / 0.621371
+    else:
+        raise ValueError("from_unit and to_unit must be 'km' or 'miles'")
+
+    return f"{round(result, 2)} {to_unit}"
+
+
+if __name__ == "__main__":
+    mcp.run()</code></pre>
+
+<p class="text-white/65 leading-relaxed">Notice what you didn't have to write: no JSON Schema, no request handler registration, no transport setup. <code>FastMCP</code> reads the function's type hints and docstring and generates the tool schema automatically. The docstring matters more than it looks — it's what the model reads to decide when and how to call the tool, so write it the way you'd explain the function to someone who can't see your code, not the way you'd write an internal comment.</p>
+
+<h3 class="mt-6 text-lg font-black text-white">Step 3: Run It</h3>
+<pre class="bg-gray-900 p-4 rounded-lg overflow-x-auto"><code class="language-bash">python3 server.py</code></pre>
+<p class="text-white/65 leading-relaxed">If nothing prints and the terminal just hangs, that's correct — the server is sitting on stdio waiting for a client to connect over stdin/stdout. Press Ctrl+C to stop it; you'll launch it properly through the Inspector or Claude Desktop next.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Part 2: Building the Same Server in TypeScript</h2>
+<p class="text-white/65 leading-relaxed">If you'd rather use TypeScript, this section builds the identical two-tool server using the official <code>@modelcontextprotocol/sdk</code> package and <code>zod</code> for schema validation.</p>
+
+<h3 class="mt-6 text-lg font-black text-white">Step 1: Set Up the Project</h3>
+<pre class="bg-gray-900 p-4 rounded-lg overflow-x-auto"><code class="language-bash">mkdir unit-converter-mcp
+cd unit-converter-mcp
+npm init -y
+npm install @modelcontextprotocol/sdk zod
+npm install -D typescript @types/node
+npx tsc --init --module nodenext --target es2022 --outDir build --rootDir src</code></pre>
+
+<h3 class="mt-6 text-lg font-black text-white">Step 2: Write the Server</h3>
+<p class="text-white/65 leading-relaxed">Create <code>src/index.ts</code>:</p>
+<pre class="bg-gray-900 p-4 rounded-lg overflow-x-auto"><code class="language-typescript">import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import { z } from "zod";
+
+const server = new McpServer({
+  name: "unit-converter",
   version: "1.0.0",
 });
 
-server.setRequestHandler("tools/list", () => ({
-  tools: [{
-    name: "greet",
-    description: "Say hello to someone",
-    inputSchema: {
-      type: "object",
-      properties: {
-        name: { type: "string" }
-      },
-      required: ["name"]
+server.tool(
+  "convert_temperature",
+  "Convert a temperature between Celsius and Fahrenheit",
+  {
+    value: z.number().describe("The numeric temperature to convert"),
+    fromUnit: z.enum(["celsius", "fahrenheit"]),
+    toUnit: z.enum(["celsius", "fahrenheit"]),
+  },
+  async ({ value, fromUnit, toUnit }) => {
+    if (fromUnit === toUnit) {
+      return { content: [{ type: "text", text: \`\${value} \${fromUnit}\` }] };
     }
-  }]
-}));</code></pre>
+
+    const result =
+      fromUnit === "celsius"
+        ? (value * 9) / 5 + 32
+        : ((value - 32) * 5) / 9;
+
+    return {
+      content: [{ type: "text", text: \`\${Math.round(result * 100) / 100} \${toUnit}\` }],
+    };
+  }
+);
+
+server.tool(
+  "convert_distance",
+  "Convert a distance between kilometers and miles",
+  {
+    value: z.number().describe("The numeric distance to convert"),
+    fromUnit: z.enum(["km", "miles"]),
+    toUnit: z.enum(["km", "miles"]),
+  },
+  async ({ value, fromUnit, toUnit }) => {
+    if (fromUnit === toUnit) {
+      return { content: [{ type: "text", text: \`\${value} \${fromUnit}\` }] };
+    }
+
+    const result = fromUnit === "km" ? value * 0.621371 : value / 0.621371;
+
+    return {
+      content: [{ type: "text", text: \`\${Math.round(result * 100) / 100} \${toUnit}\` }],
+    };
+  }
+);
+
+const transport = new StdioServerTransport();
+await server.connect(transport);</code></pre>
+
+<p class="text-white/65 leading-relaxed">The third argument to <code>server.tool()</code> is a Zod shape, not raw JSON Schema — the SDK converts it for you and validates every incoming call against it before your handler ever runs, so malformed arguments never reach your function body.</p>
+
+<h3 class="mt-6 text-lg font-black text-white">Step 3: Build and Run It</h3>
+<pre class="bg-gray-900 p-4 rounded-lg overflow-x-auto"><code class="language-bash">npx tsc
+node build/index.js</code></pre>
+<p class="text-white/65 leading-relaxed">Same as the Python version — a hanging terminal with no output means it's working correctly and waiting on stdio.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Testing With the MCP Inspector</h2>
+<p class="text-white/65 leading-relaxed">Before wiring anything into Claude Desktop, use the official Inspector to call your tools directly and see the raw JSON-RPC traffic. It's the fastest way to catch a schema mistake.</p>
+<pre class="bg-gray-900 p-4 rounded-lg overflow-x-auto"><code class="language-bash"># Python version
+npx @modelcontextprotocol/inspector python3 server.py
+
+# TypeScript version
+npx @modelcontextprotocol/inspector node build/index.js</code></pre>
+<p class="text-white/65 leading-relaxed">This opens a local web UI in your browser. Click "List Tools" to confirm both <code>convert_temperature</code> and <code>convert_distance</code> show up with the schema you expect, then use the "Call Tool" form to run one with real arguments and see the response come back. If a tool is missing or its schema looks wrong, fix it here before touching Claude Desktop's config — it's a much faster feedback loop.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Connecting to Claude Desktop</h2>
+<p class="text-white/65 leading-relaxed">Once the Inspector confirms your server works, add it to Claude Desktop's config file so Claude can launch and use it automatically.</p>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li>macOS: <code>~/Library/Application Support/Claude/claude_desktop_config.json</code></li>
+  <li>Windows: <code>%APPDATA%\\Claude\\claude_desktop_config.json</code></li>
+</ul>
+<p class="text-white/65 leading-relaxed">If the file doesn't exist yet, create it. For the Python version:</p>
+<pre class="bg-gray-900 p-4 rounded-lg overflow-x-auto"><code class="language-json">{
+  "mcpServers": {
+    "unit-converter": {
+      "command": "/absolute/path/to/.venv/bin/python3",
+      "args": ["/absolute/path/to/unit-converter-mcp/server.py"]
+    }
+  }
+}</code></pre>
+<p class="text-white/65 leading-relaxed">For the TypeScript version, point at the compiled output instead:</p>
+<pre class="bg-gray-900 p-4 rounded-lg overflow-x-auto"><code class="language-json">{
+  "mcpServers": {
+    "unit-converter": {
+      "command": "node",
+      "args": ["/absolute/path/to/unit-converter-mcp/build/index.js"]
+    }
+  }
+}</code></pre>
+<p class="text-white/65 leading-relaxed">Use absolute paths, not relative ones — Claude Desktop launches your server from its own working directory, not the one you had open in your terminal. Save the file and fully quit and reopen Claude Desktop (closing the window isn't enough on macOS; use Cmd+Q). You should see a small tools icon in the chat input once it picks up the new server — click it to confirm <code>unit-converter</code> is listed. Now ask Claude something like "Convert 100 kilometers to miles" and watch it call the tool.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Troubleshooting</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-2">
+  <li><strong>Server doesn't show up in Claude Desktop:</strong> check the path in your config is absolute and correct, and that you fully restarted the app. Claude Desktop logs MCP server output to <code>~/Library/Logs/Claude/mcp*.log</code> on macOS — check there first.</li>
+  <li><strong>"Command not found" in the logs:</strong> the <code>command</code> field needs a full path to the interpreter (e.g. your venv's <code>python3</code>, not just <code>python3</code>), since Claude Desktop doesn't inherit your shell's PATH the way a terminal does.</li>
+  <li><strong>Tool call fails with a schema error:</strong> almost always a mismatch between the type hint/Zod type and what the model actually sent. Re-check with the Inspector, which shows you the exact JSON-RPC payload.</li>
+  <li><strong>Server starts then immediately exits:</strong> usually an uncaught exception during startup. Run it directly in a terminal first (not through Claude Desktop) so you can see the Python traceback or Node stack trace.</li>
+</ul>
 
 <h2 class="mt-8 text-2xl font-black text-white">Next Steps</h2>
-<p class="text-white/65 leading-relaxed">Once your server is running, explore the <a href="/mcp-server-directory" class="text-cyan-300">MCP server directory</a> to understand how to expand your server's capabilities.</p>`
+<p class="text-white/65 leading-relaxed">From here, the natural next additions are a <strong>resource</strong> (expose read-only data by URI instead of requiring a tool call to fetch it) and moving off stdio to <strong>Streamable HTTP</strong> once you need the server to run remotely and serve more than one client at a time. Browse the <a href="/mcp-server-directory" class="text-cyan-300">MCP server directory</a> to see production servers built on the same primitives you just used, and read the <a href="/blog/mcp-server-vs-api-difference" class="text-cyan-300">MCP vs API comparison</a> if you're deciding whether an existing REST API you own should get an MCP server in front of it.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Frequently Asked Questions</h2>
+<div class="space-y-4">
+  <details class="rounded-xl border border-white/10 bg-white/[0.03] p-5">
+    <summary class="cursor-pointer font-bold text-white">Do I need both Python and TypeScript?</summary>
+    <p class="mt-3 text-white/65 leading-relaxed">No. Pick whichever language you're already comfortable with — both SDKs are officially maintained and produce functionally identical servers for this use case. Teams sometimes standardize on one language across all their internal MCP servers purely for consistency, not because one SDK is more capable than the other.</p>
+  </details>
+  <details class="rounded-xl border border-white/10 bg-white/[0.03] p-5">
+    <summary class="cursor-pointer font-bold text-white">Why does the server hang with no output when I run it directly?</summary>
+    <p class="mt-3 text-white/65 leading-relaxed">That's expected. An stdio-based MCP server communicates over its standard input and output streams, waiting for a client to send it JSON-RPC messages. With no client connected, it just sits there listening — that's correct behavior, not a crash.</p>
+  </details>
+  <details class="rounded-xl border border-white/10 bg-white/[0.03] p-5">
+    <summary class="cursor-pointer font-bold text-white">Can I test my server without installing Claude Desktop?</summary>
+    <p class="mt-3 text-white/65 leading-relaxed">Yes — the MCP Inspector (<code>npx @modelcontextprotocol/inspector &lt;command&gt;</code>) runs your server and gives you a browser UI to list and call tools directly, with no client app required. It's the recommended way to develop and debug before connecting to any real client.</p>
+  </details>
+  <details class="rounded-xl border border-white/10 bg-white/[0.03] p-5">
+    <summary class="cursor-pointer font-bold text-white">Do I need to write JSON Schema by hand?</summary>
+    <p class="mt-3 text-white/65 leading-relaxed">Not with either SDK shown here. Python's FastMCP generates the schema from your function's type hints and docstring; the TypeScript SDK generates it from the Zod shape you pass to <code>server.tool()</code>. You only write raw JSON Schema if you drop down to the SDKs' lower-level APIs, which most servers never need.</p>
+  </details>
+  <details class="rounded-xl border border-white/10 bg-white/[0.03] p-5">
+    <summary class="cursor-pointer font-bold text-white">What's the difference between a tool and a resource?</summary>
+    <p class="mt-3 text-white/65 leading-relaxed">A tool is a function the model actively calls, usually to take an action or compute something. A resource is passive, read-only data addressed by a URI that a client can pull into context when it decides it's relevant — closer to a file the model can read than a function it invokes. This guide's example only uses tools because "convert this value" is inherently an action, not a piece of data to read.</p>
+  </details>
+  <details class="rounded-xl border border-white/10 bg-white/[0.03] p-5">
+    <summary class="cursor-pointer font-bold text-white">My tool works in the Inspector but Claude Desktop never calls it — why?</summary>
+    <p class="mt-3 text-white/65 leading-relaxed">This is almost always the tool's description, not a bug. Claude decides whether to call a tool based on its name and description compared against what you asked — if the description is vague or doesn't match how you're phrasing your request, it may not get selected. Try rephrasing your prompt to more directly match the tool's stated purpose, and make the description specific about what the tool does and when to use it.</p>
+  </details>
+</div>`,
+    faqs: [
+      { question: "Do I need both Python and TypeScript?", answer: "No. Pick whichever language you're already comfortable with — both SDKs are officially maintained and produce functionally identical servers for this use case." },
+      { question: "Why does the server hang with no output when I run it directly?", answer: "That's expected. An stdio-based MCP server communicates over its standard input and output streams, waiting for a client to send it JSON-RPC messages." },
+      { question: "Can I test my server without installing Claude Desktop?", answer: "Yes — the MCP Inspector runs your server and gives you a browser UI to list and call tools directly, with no client app required." },
+      { question: "Do I need to write JSON Schema by hand?", answer: "Not with either SDK shown here. Python's FastMCP generates the schema from your function's type hints and docstring; the TypeScript SDK generates it from the Zod shape you pass to server.tool()." },
+      { question: "What's the difference between a tool and a resource?", answer: "A tool is a function the model actively calls to take an action or compute something. A resource is passive, read-only data addressed by a URI that a client can pull into context when relevant." },
+      { question: "My tool works in the Inspector but Claude Desktop never calls it — why?", answer: "This is almost always the tool's description, not a bug. Claude selects tools based on their name and description matching what you asked, so make the description specific about what the tool does and when to use it." }
+    ]
   },
   {
     slug: "how-mcp-servers-work",

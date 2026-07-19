@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Breadcrumbs from "../../../src/components/Breadcrumbs";
 import SchemaJsonLd from "../../../src/components/SchemaJsonLd";
-import { getUnifiedGraphSchema } from "../../../src/lib/schema";
+import { getUnifiedGraphSchema, getFAQSchema } from "../../../src/lib/schema";
 import { blogPosts } from "../../../src/data/blogPosts";
 import UGCOrchestrator from "../../../src/components/ugc/UGCOrchestrator";
 
@@ -48,10 +48,12 @@ export default async function BlogPostPage({ params }: { params: BlogPostPagePar
       dateModified: post.date
     }
   });
+  const faqSchema = post.faqs && post.faqs.length > 0 ? getFAQSchema(post.faqs) : null;
 
   return (
     <div id={`blog-${slug}`} className="min-h-screen bg-transparent text-white pt-6 pb-16">
       <SchemaJsonLd schema={unifiedSchema} />
+      {faqSchema && <SchemaJsonLd schema={faqSchema} />}
       <div className="mx-auto max-w-3xl px-4 sm:px-6">
         <Breadcrumbs items={[
           { name: "Blog", href: "/blog" },
