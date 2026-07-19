@@ -1,10 +1,21 @@
 const baseUrl = (process.env.PRODUCTION_BASE_URL || "https://www.mcpserver.in").replace(/\/$/, "");
+const apexUrl = process.env.PRODUCTION_APEX_URL || "https://mcpserver.in";
+const legacyHttpUrl = process.env.PRODUCTION_HTTP_URL || "http://mcpserver.in";
 
 const checks = [
   {
     path: "/robots.txt",
     type: "text",
-    includes: ["GPTBot", "ClaudeBot", "PerplexityBot", "Sitemap:"],
+    includes: ["User-Agent: *", "Allow: /", "GPTBot", "ClaudeBot", "PerplexityBot", "Sitemap:"],
+  },
+  {
+    path: "/",
+    type: "text",
+    includes: [
+      '<meta name="robots" content="index, follow"',
+      '<meta name="googlebot" content="index, follow',
+      '<link rel="canonical" href="https://www.mcpserver.in/"',
+    ],
   },
   {
     path: "/sitemap.xml",
@@ -43,6 +54,20 @@ const checks = [
   },
 ];
 
+const redirectChecks = [
+  {
+    url: `${apexUrl}/`,
+    destination: `${baseUrl}/`,
+  },
+];
+
+const finalUrlChecks = [
+  {
+    url: `${legacyHttpUrl}/`,
+    destination: `${baseUrl}/`,
+  },
+];
+
 async function readBody(response, type) {
   if (type === "json") {
     return JSON.stringify(await response.json());
@@ -71,6 +96,49 @@ for (const check of checks) {
   } catch (error) {
     failures += 1;
     console.error(`FAIL ${url}`);
+    console.error(`  ${(error && error.message) || error}`);
+  }
+}
+
+for (const check of redirectChecks) {
+  try {
+    const response = await fetch(check.url, { redirect: "manual" });
+    const location = response.headers.get("location");
+
+    if (![301, 308].includes(response.status) || location !== check.destination) {
+      failures += 1;
+      console.error(`FAIL ${check.url}`);
+      console.error(`  status: ${response.status}`);
+      console.error(`  location: ${location || "(none)"}`);
+      console.error(`  expected: ${check.destination}`);
+      continue;
+    }
+
+    console.log(`OK   ${check.url} -> ${location}`);
+  } catch (error) {
+    failures += 1;
+    console.error(`FAIL ${check.url}`);
+    console.error(`  ${(error && error.message) || error}`);
+  }
+}
+
+for (const check of finalUrlChecks) {
+  try {
+    const response = await fetch(check.url, { redirect: "follow" });
+
+    if (!response.ok || response.url !== check.destination) {
+      failures += 1;
+      console.error(`FAIL ${check.url}`);
+      console.error(`  status: ${response.status}`);
+      console.error(`  final url: ${response.url}`);
+      console.error(`  expected: ${check.destination}`);
+      continue;
+    }
+
+    console.log(`OK   ${check.url} => ${response.url}`);
+  } catch (error) {
+    failures += 1;
+    console.error(`FAIL ${check.url}`);
     console.error(`  ${(error && error.message) || error}`);
   }
 }

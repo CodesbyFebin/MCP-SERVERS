@@ -1,4 +1,17 @@
 {
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "mcpserver.in"
+        }
+      ],
+      "destination": "https://www.mcpserver.in/$1",
+      "permanent": true
+    }
+  ],
   "headers": [
     {
       "source": "/servers/",
