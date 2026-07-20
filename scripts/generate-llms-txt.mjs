@@ -3,46 +3,23 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { glossaryTerms } from '../src/data/glossary.ts';
+import { pillars } from '../src/data/pillars.ts';
+import { servers } from '../src/data/servers.ts';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const OUTPUT_PATH = path.join(__dirname, '..', 'public', 'llms.txt');
 const BASE_URL = 'https://mcpserver.in';
 
-function extractArrayCount(filePath, arrayName) {
-  try {
-    const content = fs.readFileSync(filePath, 'utf-8');
-    const declMatch = content.match(new RegExp(`export\\s+const\\s+${arrayName}\\s*:\\s*\\w+\\[\\]\\s*=\\s*\\[`));
-    if (!declMatch) return 0;
-
-    // Every entry in these data files starts with a slug field, so counting
-    // "slug:" occurrences after the array's declaration is a far more robust
-    // proxy than matching brackets/braces, which break on any string content
-    // that happens to contain literal [ ] { } characters (e.g. a definition
-    // describing a URI template like `database://{table}/schema`).
-    const arrayBody = content.slice(declMatch.index + declMatch[0].length);
-    const slugMatches = arrayBody.match(/(?:^|\n)\s*slug\s*:\s*["'`]/g);
-    return slugMatches ? slugMatches.length : 0;
-  } catch (error) {
-    console.error(`Error reading ${filePath}:`, error.message);
-    return 0;
-  }
-}
-
 function generateLLMsTxt() {
-  const glossaryCount = extractArrayCount(
-    path.join(__dirname, '..', 'src', 'data', 'glossary.ts'),
-    'glossaryTerms'
-  );
-  
-  const pillarsCount = extractArrayCount(
-    path.join(__dirname, '..', 'src', 'data', 'pillars.ts'),
-    'pillars'
-  );
-  
-  const serversCount = extractArrayCount(
-    path.join(__dirname, '..', 'src', 'data', 'servers.ts'),
-    'servers'
-  );
+  // Counting real array lengths directly (rather than regex-matching "slug:"
+  // occurrences in the source text) so entries built programmatically -
+  // e.g. servers.ts generates some entries via .map() over a template array,
+  // which only appears once in the source text but produces many objects at
+  // runtime - are counted correctly.
+  const glossaryCount = glossaryTerms.length;
+  const pillarsCount = pillars.length;
+  const serversCount = servers.length;
 
   const topPillars = [
     { slug: 'what-is-mcp', title: 'What is MCP? (Protocol Specification)', description: 'Core protocol architecture, JSON-RPC 2.0 message format, and transport options.' },

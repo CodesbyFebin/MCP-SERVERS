@@ -88,7 +88,7 @@ export default function Header() {
           </div>
           <div className="mt-4 grid gap-3 border-t border-white/10 pt-4">
             <a
-              href="https://github.com/mcpserver-in/mcpserver"
+              href="https://github.com/CodesbyFebin/MCP-SERVERS"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex min-h-10 items-center justify-center gap-2 rounded-md border border-white/15 bg-white/[0.025] text-xs font-bold text-white"

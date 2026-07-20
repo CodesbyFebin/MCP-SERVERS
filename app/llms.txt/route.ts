@@ -94,7 +94,7 @@ ${siteConfig.description}
 ## Contact & Institutional Trust
 - Email: support@mcpserver.in
 - Location: Bengaluru, Karnataka, India
-- GitHub: https://github.com/mcpserver-in
+- GitHub: https://github.com/CodesbyFebin/MCP-SERVERS
 - Twitter: https://twitter.com/mcpserver_in
 
 ## Compliance

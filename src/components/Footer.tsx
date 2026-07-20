@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ArrowRight, Github, Heart, Linkedin, Mail, Twitter } from "lucide-react";
+import { ArrowRight, Github, Heart, Mail, Twitter } from "lucide-react";
 import { BrandMark } from "./ReferenceLanding";
 
 const columns = [
@@ -89,10 +89,16 @@ export default function Footer() {
               A hosted MCP platform for connecting verified servers and integrations to power your AI agents.
             </p>
             <div className="mt-5 flex gap-2">
-              {[Twitter, Linkedin, Mail, Github].map((Icon, index) => (
+              {[
+                { Icon: Twitter, href: "https://twitter.com/mcpserver_in" },
+                { Icon: Mail, href: "mailto:support@mcpserver.in" },
+                { Icon: Github, href: "https://github.com/CodesbyFebin/MCP-SERVERS" }
+              ].map(({ Icon, href }) => (
                 <a
-                  key={index}
-                  href="https://github.com/mcpserver-in/mcpserver"
+                  key={href}
+                  href={href}
+                  target={href.startsWith("mailto:") ? undefined : "_blank"}
+                  rel={href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
                   className="grid h-8 w-8 place-items-center rounded-full border border-white/10 bg-white/[0.035] text-white/70 transition hover:text-white"
                 >
                   <Icon className="h-3.5 w-3.5" />

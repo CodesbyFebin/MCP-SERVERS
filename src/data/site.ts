@@ -343,7 +343,7 @@ export const siteConfig = {
     founded: 2025
   },
   socials: {
-    github: "https://github.com/mcpserver-in/mcpserver",
+    github: "https://github.com/CodesbyFebin/MCP-SERVERS",
     twitter: "https://twitter.com/mcpserver_in",
     discord: "https://discord.gg/mcpserver"
   },
