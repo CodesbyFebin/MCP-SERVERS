@@ -39,7 +39,21 @@ export const blogPosts: BlogPost[] = [
 <p class="text-white/65 leading-relaxed">With REST APIs, you must carefully manage prompt length. MCP's resource system allows servers to provide data on-demand without consuming the entire context window. This is the fundamental shift that enables complex multi-step workflows.</p>
 
 <h2 class="mt-8 text-2xl font-black text-white">Why This Matters in Practice</h2>
-<p class="text-white/65 leading-relaxed">Developers who've switched from hand-rolled function calling to MCP consistently point to the same thing: less time spent re-describing the same tool schema to the model in every prompt, since the server exposes it once and the client discovers it directly.</p>`
+<p class="text-white/65 leading-relaxed">Developers who've switched from hand-rolled function calling to MCP consistently point to the same thing: less time spent re-describing the same tool schema to the model in every prompt, since the server exposes it once and the client discovers it directly.</p>`,
+    faqs: [
+          {
+                "question": "Is MCP a replacement for REST APIs?",
+                "answer": "No — MCP typically sits above an existing API rather than replacing it. A server exposes your API's functionality as tools an LLM can call directly, with schema validation and discovery built in, instead of an LLM having to be told exactly which endpoint to hit."
+          },
+          {
+                "question": "Can a single MCP server call multiple backend APIs?",
+                "answer": "Yes. An MCP server is just a program — it can wrap one API, several APIs, a database, or a mix of all three behind a single set of tools."
+          },
+          {
+                "question": "Does using MCP mean giving up REST entirely?",
+                "answer": "No. Plenty of production systems keep REST for service-to-service or frontend traffic and add an MCP server specifically for the AI-agent-facing layer."
+          }
+    ]
   },
   {
     slug: "model-context-protocol-beginner-guide",
@@ -336,7 +350,21 @@ npx @modelcontextprotocol/inspector node build/index.js</code></pre>
 </ol>
 
 <h2 class="mt-8 text-2xl font-black text-white">Community Implementation</h2>
-<p class="text-white/65 leading-relaxed">Check out our <a href="/servers/github-mcp-server" class="text-cyan-300">GitHub MCP Server</a> implementation for a production-ready example of these patterns.</p>`
+<p class="text-white/65 leading-relaxed">Check out our <a href="/servers/github-mcp-server" class="text-cyan-300">GitHub MCP Server</a> implementation for a production-ready example of these patterns.</p>`,
+    faqs: [
+          {
+                "question": "Do I need to implement JSON-RPC manually?",
+                "answer": "No — both the official Python and TypeScript SDKs handle JSON-RPC message framing for you. You define tools/resources/prompts at a higher level and the SDK generates the correct wire format."
+          },
+          {
+                "question": "What happens if a client calls a tool that doesn't exist?",
+                "answer": "The server returns a JSON-RPC error response. Well-behaved clients check the result of tools/list before attempting a call, but the server should still validate and reject unknown tool names defensively."
+          },
+          {
+                "question": "Can the initialization handshake fail?",
+                "answer": "Yes — if the client and server don't support a compatible protocol version, or the transport connection can't be established, initialization fails before any tools are ever listed."
+          }
+    ]
   },
   {
     slug: "mcp-transport-methods",
@@ -361,7 +389,21 @@ npx @modelcontextprotocol/inspector node build/index.js</code></pre>
 <p class="text-white/65 leading-relaxed">Direct HTTP allows both directions but requires more complex connection management. Best for stateless operations.</p>
 
 <h2 class="mt-8 text-2xl font-black text-white">General Pattern</h2>
-<p class="text-white/65 leading-relaxed">In practice, SSE tends to dominate production and remote deployments where multiple clients need to connect over a network, while stdio remains the default for local development against a single desktop client like Claude Desktop.</p>`
+<p class="text-white/65 leading-relaxed">In practice, SSE tends to dominate production and remote deployments where multiple clients need to connect over a network, while stdio remains the default for local development against a single desktop client like Claude Desktop.</p>`,
+    faqs: [
+          {
+                "question": "Can one MCP server support more than one transport?",
+                "answer": "Yes, though most implementations pick one at a time based on how they're deployed — stdio for a locally-spawned process, and SSE or Streamable HTTP when the same server logic is deployed remotely."
+          },
+          {
+                "question": "Is SSE being deprecated in favor of Streamable HTTP?",
+                "answer": "The MCP spec has moved toward Streamable HTTP as the more general remote transport, but SSE support remains widespread in current clients, so check what your specific client supports before committing to one."
+          },
+          {
+                "question": "Which transport is easiest to debug?",
+                "answer": "Stdio, since you can watch the raw JSON-RPC lines in your terminal without a network stack in between. That's part of why it's the default for local development."
+          }
+    ]
   },
   {
     slug: "mcp-json-rpc-deep-dive",
@@ -388,7 +430,21 @@ npx @modelcontextprotocol/inspector node build/index.js</code></pre>
 }</code></pre>
 
 <h2 class="mt-8 text-2xl font-black text-white">MCP-Specific Extensions</h2>
-<p class="text-white/65 leading-relaxed">MCP adds resource templates, prompt definitions, and tool annotations that aren't part of standard JSON-RPC.</p>`
+<p class="text-white/65 leading-relaxed">MCP adds resource templates, prompt definitions, and tool annotations that aren't part of standard JSON-RPC.</p>`,
+    faqs: [
+          {
+                "question": "Are MCP's JSON-RPC extensions compatible with generic JSON-RPC 2.0 tooling?",
+                "answer": "Mostly — the base message envelope (jsonrpc, id, method, params/result/error) follows the JSON-RPC 2.0 spec exactly, so generic tooling can parse the envelope. The MCP-specific method names and param shapes (tools/call, resources/read, etc.) are what a generic JSON-RPC client wouldn't know how to interpret semantically."
+          },
+          {
+                "question": "What distinguishes a notification from a request in MCP?",
+                "answer": "A request includes an id field and expects a response; a notification omits id and is fire-and-forget — the server (or client) doesn't reply to it."
+          },
+          {
+                "question": "Do tool call errors use standard JSON-RPC error codes?",
+                "answer": "MCP uses the standard JSON-RPC error object shape (code, message, optional data), and reserves some code ranges for protocol-level errors, while individual tools can also return their own error content within a successful JSON-RPC response."
+          }
+    ]
   },
   {
     slug: "install-configure-first-mcp-server",
@@ -703,7 +759,21 @@ pip install mcp</code></pre>
 </ul>
 
 <h2 class="mt-8 text-2xl font-black text-white">Network Security</h2>
-<p class="text-white/65 leading-relaxed">Configure TLS 1.3 for all remote transports, implement rate limiting, and use IP allowlists for sensitive operations.</p>`
+<p class="text-white/65 leading-relaxed">Configure TLS 1.3 for all remote transports, implement rate limiting, and use IP allowlists for sensitive operations.</p>`,
+    faqs: [
+          {
+                "question": "Is OAuth 2.0 required for every MCP server?",
+                "answer": "No — it's the standard recommendation for remote servers accessed over a network. A purely local stdio server launched by a trusted client (like Claude Desktop) doesn't need its own auth layer, since the client process itself is the trust boundary."
+          },
+          {
+                "question": "What's the highest-priority item on a production security checklist?",
+                "answer": "Least-privilege tool scoping and a confirmation step before destructive actions tend to matter most in practice — a server with broad, unscoped permissions is the most common real-world MCP security incident, more so than transport-level issues."
+          },
+          {
+                "question": "Does audit logging need to capture full tool arguments?",
+                "answer": "Generally yes, minus any fields that are clearly secrets — you want enough detail to reconstruct what a tool call actually did, which usually means logging arguments and results, not just the tool name and timestamp."
+          }
+    ]
   },
   {
     slug: "cve-2025-6514-mcp-vulnerability",
@@ -822,7 +892,21 @@ pip install mcp</code></pre>
 <p class="text-white/65 leading-relaxed">Simple implementation for development and internal tools. Should include rate limiting and key rotation.</p>
 
 <h2 class="mt-8 text-2xl font-black text-white">JWT Token Implementation</h2>
-<p class="text-white/65 leading-relaxed">Stateless authentication with embedded claims. Ideal for distributed MCP deployments.</p>`
+<p class="text-white/65 leading-relaxed">Stateless authentication with embedded claims. Ideal for distributed MCP deployments.</p>`,
+    faqs: [
+          {
+                "question": "Can I switch authentication methods later without breaking clients?",
+                "answer": "It depends on the client's configuration surface — most MCP clients treat auth as part of the server's connection config, so switching from API keys to OAuth typically means updating that config on every client, not a transparent server-side change."
+          },
+          {
+                "question": "Is API key auth insecure for MCP servers?",
+                "answer": "Not inherently — it's simple and fine for internal tools with proper rotation and rate limiting. It becomes a liability mainly when keys are long-lived, unscoped, or shared across environments."
+          },
+          {
+                "question": "Why is PKCE specifically recommended with OAuth for MCP?",
+                "answer": "PKCE protects the authorization code exchange from interception, which matters for MCP clients that may run as native apps or CLIs without a fully trusted server-side secret store — the same reasoning that made PKCE standard for public OAuth clients generally."
+          }
+    ]
   },
   {
     slug: "mcp-oauth-2-0-implementation",
@@ -4722,20 +4806,38 @@ if __name__ == "__main__":
 </ul>
 
 <h2 class="mt-8 text-2xl font-black text-white">SSE Transport Example</h2>
-<pre class="bg-gray-900 p-4 rounded-lg"><code class="language-typescript">import { Server } from "@modelcontextprotocol/sdk/server/index.js";
+<p class="text-white/65 leading-relaxed"><code>SSEServerTransport</code> is now marked deprecated in the official SDK in favor of Streamable HTTP, but it's still in wide use and worth knowing. Unlike the local <code>StdioServerTransport</code>, it's tied to one specific HTTP response per client connection — you create a new transport inside the request handler that opens the SSE stream, not once at server startup.</p>
+<pre class="bg-gray-900 p-4 rounded-lg"><code class="language-typescript">import express from "express";
+import { Server } from "@modelcontextprotocol/sdk/server/index.js";
 import { SSEServerTransport } from "@modelcontextprotocol/sdk/server/sse.js";
 
-const server = new Server({
-  name: "remote-mcp-server",
-  version: "1.0.0",
-}, { capabilities: { tools: {} } });
+const server = new Server(
+  { name: "remote-mcp-server", version: "1.0.0" },
+  { capabilities: { tools: {} } }
+);
 
-const transport = new SSEServerTransport({
-  endpoint: "/mcp/sse",
-  messagesEndpoint: "/mcp/messages"
+const app = express();
+const transports = new Map<string, SSEServerTransport>();
+
+app.get("/mcp/sse", async (req, res) => {
+  const transport = new SSEServerTransport("/mcp/messages", res);
+  transports.set(transport.sessionId, transport);
+  res.on("close", () => transports.delete(transport.sessionId));
+  await server.connect(transport);
 });
 
-await server.connect(transport);</code></pre>
+app.post("/mcp/messages", express.json(), async (req, res) => {
+  const sessionId = req.query.sessionId as string;
+  const transport = transports.get(sessionId);
+  if (!transport) {
+    res.status(400).send("No transport found for sessionId");
+    return;
+  }
+  await transport.handlePostMessage(req, res, req.body);
+});
+
+app.listen(3000);</code></pre>
+<p class="text-white/65 leading-relaxed">The GET endpoint opens the long-lived SSE stream and hands the transport a session ID; every subsequent client-to-server message arrives as a separate POST carrying that same <code>sessionId</code>, routed to the matching transport via <code>handlePostMessage</code>.</p>
 
 <h2 class="mt-8 text-2xl font-black text-white">Cloud Deployment</h2>
 <p class="text-white/65 leading-relaxed">Deploy to AWS ECS, Azure App Service, or GCP Cloud Run with proper TLS and authentication.</p>
@@ -4755,7 +4857,6 @@ await server.connect(transport);</code></pre>
   },
 
   // India-Specific High-Intent MCP Posts
-  ,
   {
     slug: "upi-mcp-server-india",
     title: "UPI MCP Server – India Payments Automation",
