@@ -20,7 +20,6 @@ import {
 } from "../src/components/ReferenceLanding";
 import { BarChart3, BookOpen, ArrowRight } from "lucide-react";
 import Link from "next/link";
-import { Star } from "lucide-react";
 import { getUnifiedGraphSchema } from "../src/lib/schema";
 import SchemaJsonLd from "../src/components/SchemaJsonLd";
 import FAQ from "../src/components/FAQ";
@@ -155,24 +154,6 @@ export default function Home() {
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <PrimaryButton href="/mcp-server-directory">Explore MCP Servers</PrimaryButton>
                 <SecondaryButton href="/pricing">Deploy Your Own MCP</SecondaryButton>
-              </div>
-              <div className="mt-6 flex items-center gap-4 text-xs text-white/55">
-                <div className="flex -space-x-2">
-                  {["R", "P", "A", "S", "D"].map((avatar) => (
-                    <span key={avatar} className="grid h-8 w-8 place-items-center rounded-full border-2 border-[#030711] bg-gradient-to-br from-amber-300 to-violet-500 text-[10px] font-black text-white">
-                      {avatar}
-                    </span>
-                  ))}
-                </div>
-                <div>
-                  <div>Loved by developers and AI builders worldwide</div>
-                  <div className="mt-1 flex items-center gap-1 text-amber-400">
-                    {[0, 1, 2, 3, 4].map((star) => (
-                      <Star key={star} className="h-3.5 w-3.5 fill-current" />
-                    ))}
-                    <span className="ml-1 text-white/70">4.9/5</span>
-                  </div>
-                </div>
               </div>
             </div>
             <EcosystemVisual />

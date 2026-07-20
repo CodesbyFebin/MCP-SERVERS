@@ -43,14 +43,13 @@ export default function Header() {
 
           <div className="hidden items-center gap-3 sm:flex">
             <a
-              href="https://github.com/mcpserver-in/mcpserver"
+              href="https://github.com/CodesbyFebin/MCP-SERVERS"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex min-h-10 items-center gap-2 rounded-md border border-white/15 bg-white/[0.025] px-3 text-xs font-bold text-white transition hover:bg-white/[0.06]"
             >
               <Github className="h-4 w-4" />
               Star on GitHub
-              <span className="border-l border-white/10 pl-2 text-white/55">12.6k</span>
             </a>
             <Link href="/profile" className="inline-flex min-h-10 items-center rounded-md bg-violet-600 px-4 text-xs font-black text-white shadow-[0_0_24px_rgba(124,58,237,0.35)] transition hover:bg-violet-500">
               Dashboard
