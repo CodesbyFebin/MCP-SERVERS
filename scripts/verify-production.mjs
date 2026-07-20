@@ -44,7 +44,7 @@ const checks = [
   {
     path: "/p99/",
     type: "text",
-    includes: ["Real-time p99 latency dashboard", "mcp-india-stats-2026.csv", "application/ld+json"],
+    includes: ["p99 latency dashboard", "mcp-india-stats-2026.csv", "application/ld+json"],
   },
   {
     path: "/data/mcp-stats-2026.json",

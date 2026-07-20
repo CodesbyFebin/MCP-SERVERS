@@ -23,6 +23,10 @@ export default function robots(): MetadataRoute.Robots {
         ],
       },
       {
+        userAgent: ["Googlebot", "Googlebot-Image"],
+        allow: "/",
+      },
+      {
         userAgent: [
           "GPTBot",
           "ChatGPT-User",
