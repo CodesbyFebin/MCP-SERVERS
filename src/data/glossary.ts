@@ -12,6 +12,7 @@ export interface GlossaryTerm {
     [key: string]: any;
   };
   references: string[];
+  faqs?: { question: string; answer: string }[];
 }
 
 export const glossaryTerms: GlossaryTerm[] = [
@@ -404,6 +405,11 @@ export const glossaryTerms: GlossaryTerm[] = [
     references: [
       "https://github.com/ollama/ollama",
       "https://github.com/modelcontextprotocol/servers"
+    ],
+    faqs: [
+      { question: "Does Ollama require a GPU?", answer: "No — it runs on CPU too, but inference is noticeably slower without one. GPU acceleration is supported on NVIDIA, and on Apple Silicon via Metal." },
+      { question: "Can an MCP server call an Ollama model instead of a hosted LLM?", answer: "Yes — an MCP server is transport-agnostic about which LLM sits behind the client; pointing a client at a locally-run Ollama endpoint instead of a hosted API doesn't require any MCP-side changes." },
+      { question: "Is data sent to Ollama's own servers?", answer: "No. Ollama runs entirely on the local machine; nothing is sent externally unless you explicitly configure a remote endpoint." }
     ]
   },
   {

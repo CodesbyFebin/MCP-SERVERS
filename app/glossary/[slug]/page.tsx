@@ -5,6 +5,7 @@ import Breadcrumbs from "../../../src/components/Breadcrumbs";
 import AnswerBox from "../../../src/components/AnswerBox";
 import AuthorBox from "../../../src/components/AuthorBox";
 import SchemaJsonLd from "../../../src/components/SchemaJsonLd";
+import { getFAQSchema } from "../../../src/lib/schema";
 import { notFound } from "next/navigation";
 import { 
   ArrowLeft, Tag, Info, Cpu, FileText
@@ -80,9 +81,15 @@ export default async function GlossaryDetailPage({ params }: PageProps) {
     ]
   };
 
+  const faqSchema =
+    term.faqs && term.faqs.length > 0
+      ? getFAQSchema(term.faqs.map((f) => ({ question: f.question, answer: f.answer })))
+      : null;
+
   return (
     <div id="glossary-detail" className="min-h-screen bg-[#050508] text-white pt-6 pb-16 font-sans">
       <SchemaJsonLd schema={termSchema} />
+      {faqSchema && <SchemaJsonLd schema={faqSchema} />}
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <Breadcrumbs items={detailBreadcrumbs} />
@@ -158,6 +165,27 @@ export default async function GlossaryDetailPage({ params }: PageProps) {
                 <p className="text-xs sm:text-sm text-gray-300 leading-relaxed">
                   {term.useCase}
                 </p>
+              </div>
+            )}
+
+            {/* FAQ (visible content matching the FAQPage schema above) */}
+            {term.faqs && term.faqs.length > 0 && (
+              <div className="p-6 rounded-2xl bg-gray-900/10 border border-gray-900 space-y-4">
+                <h3 className="text-xs font-bold uppercase tracking-wider text-cyan-400">
+                  Frequently Asked Questions
+                </h3>
+                <div className="space-y-3">
+                  {term.faqs.map((faq) => (
+                    <details key={faq.question} className="group rounded-xl border border-gray-900 bg-black/20 p-4">
+                      <summary className="cursor-pointer list-none text-xs sm:text-sm font-bold text-white">
+                        {faq.question}
+                      </summary>
+                      <p className="mt-2 text-xs sm:text-sm text-gray-400 leading-relaxed">
+                        {faq.answer}
+                      </p>
+                    </details>
+                  ))}
+                </div>
               </div>
             )}
 

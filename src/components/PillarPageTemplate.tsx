@@ -7,6 +7,8 @@ import { getRelatedLinks } from "../lib/internalLinks";
 import { getUnifiedGraphSchema } from "../lib/schema";
 import { topics } from "../data/topics";
 import { servers } from "../data/servers";
+import { glossaryTerms } from "../data/glossary";
+import { pillarDeepContent } from "../data/pillarDeepContent";
 import Breadcrumbs from "./Breadcrumbs";
 import FAQ from "./FAQ";
 import SchemaJsonLd from "./SchemaJsonLd";
@@ -103,6 +105,28 @@ export default function PillarPageTemplate({
   };
 
   const relatedServers = getServersForPillar(slug);
+
+  // Keyword overlap between the pillar's own text and each glossary term's
+  // name/definition — pillar.related lists other pillar slugs, not glossary
+  // slugs, so there's no direct field to join on here.
+  const getRelatedGlossaryTerms = () => {
+    const stopWords = new Set(["mcp", "the", "a", "an", "of", "for", "and", "to", "in", "is", "on"]);
+    const pillarWords = new Set(
+      `${title} ${subtitle}`
+        .toLowerCase()
+        .split(/[^a-z0-9]+/)
+        .filter((w) => w.length > 3 && !stopWords.has(w))
+    );
+
+    return glossaryTerms
+      .filter((term) => {
+        const termWords = `${term.term} ${term.definition}`.toLowerCase();
+        return [...pillarWords].some((w) => termWords.includes(w));
+      })
+      .slice(0, 6);
+  };
+
+  const relatedGlossaryTerms = getRelatedGlossaryTerms();
 
   const getServerIcon = (serverSlug: string) => {
     if (serverSlug.includes("github") || serverSlug.includes("gitlab")) return <Terminal className="w-5 h-5 text-purple-400" />;
@@ -284,6 +308,32 @@ export default function PillarPageTemplate({
               </div>
             </section>
 
+            {/* In Practice — pillar-specific deep-dive content (no generic boilerplate) */}
+            {pillarDeepContent[slug] && pillarDeepContent[slug].length > 0 && (
+              <section id="in-practice" className="space-y-6">
+                <h2 className={`text-xl font-display font-bold ${isDark ? "text-white" : "text-slate-950"}`}>
+                  In Practice
+                </h2>
+                {pillarDeepContent[slug].map((section) => (
+                  <div key={section.heading} className={`p-5 rounded-2xl border ${
+                    isDark ? "bg-black/30 border-white/5" : "bg-white border-slate-200"
+                  }`}>
+                    <h3 className={`text-xs font-bold uppercase tracking-wider mb-3 flex items-center gap-1.5 ${
+                      isDark ? "text-cyan-400" : "text-cyan-700"
+                    }`}>
+                      <Zap className="w-4 h-4" />
+                      {section.heading}
+                    </h3>
+                    <div className={`space-y-3 text-xs sm:text-sm leading-relaxed ${isDark ? "text-white/65" : "text-slate-600"}`}>
+                      {section.body.map((paragraph, i) => (
+                        <p key={i}>{paragraph}</p>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </section>
+            )}
+
             {/* Related Topics Section */}
             {relatedTopics.length > 0 && (
               <section id="related-topics" className="space-y-4 pt-4">
@@ -368,6 +418,36 @@ export default function PillarPageTemplate({
                     </Link>
                   ))}
                 </div>
+              </section>
+            )}
+
+            {/* Related Glossary Terms — structured links, not injected into prose */}
+            {relatedGlossaryTerms.length > 0 && (
+              <section id="related-glossary-terms" className="space-y-4 pt-4">
+                <h2 className={`text-xl font-display font-bold ${isDark ? "text-white" : "text-slate-950"}`}>
+                  Related Glossary Terms
+                </h2>
+                <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                  {relatedGlossaryTerms.map((term) => (
+                    <li key={term.slug}>
+                      <Link
+                        href={`/glossary/${term.slug}`}
+                        className={`block rounded-xl border p-4 transition-all ${
+                          isDark
+                            ? "border-white/5 bg-white/[0.01] hover:border-cyan-500/30 hover:bg-white/[0.03]"
+                            : "border-slate-200 bg-white hover:border-cyan-500/40 hover:shadow-md"
+                        }`}
+                      >
+                        <span className={`text-sm font-semibold ${isDark ? "text-white" : "text-slate-900"}`}>
+                          {term.term}
+                        </span>
+                        <p className={`mt-1 text-xs line-clamp-2 ${isDark ? "text-white/50" : "text-slate-500"}`}>
+                          {term.definition}
+                        </p>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
               </section>
             )}
 
