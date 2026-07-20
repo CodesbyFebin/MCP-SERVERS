@@ -4768,8 +4768,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>UPI MCP Server – India Payments Automation - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "razorpay-mcp-server-india",
     title: "Razorpay MCP Server – Indian Payments Processing",
@@ -4782,8 +4781,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>Razorpay MCP Server – Indian Payments Processing - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "gst-mcp-server-tax-compliance",
     title: "GST MCP Server – Indian Tax Compliance Automation",
@@ -4796,8 +4794,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>GST MCP Server – Indian Tax Compliance Automation - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "zoho-books-mcp-accounting-india",
     title: "Zoho Books MCP Server – Indian Accounting Integration",
@@ -4810,8 +4807,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>Zoho Books MCP Server – Indian Accounting Integration - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "icici-bank-mcp-india",
     title: "ICICI Bank MCP Server – Corporate Banking Integration",
@@ -4824,8 +4820,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>ICICI Bank MCP Server – Corporate Banking Integration - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "paytm-mcp-server-india-payments",
     title: "Paytm MCP Server – India Payments Automation",
@@ -4838,8 +4833,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>Paytm MCP Server – India Payments Automation - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "phonepe-mcp-server-india",
     title: "PhonePe MCP Server – UPI Payments Integration",
@@ -4852,8 +4846,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>PhonePe MCP Server – UPI Payments Integration - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "google-pay-mcp-india",
     title: "Google Pay MCP Server – India Payments",
@@ -4866,8 +4859,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>Google Pay MCP Server – India Payments - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "upstox-mcp-trading",
     title: "Upstox MCP Server – Indian Trading Automation",
@@ -4880,8 +4872,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>Upstox MCP Server – Indian Trading Automation - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "groww-mcp-investments",
     title: "Groww MCP Server – Mutual Fund Investments",
@@ -4894,8 +4885,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>Groww MCP Server – Mutual Fund Investments - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "angel-broking-mcp-india",
     title: "Angel Broking MCP Server – Trading Integration",
@@ -4908,8 +4898,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>Angel Broking MCP Server – Trading Integration - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "fivepaisa-mcp-india",
     title: "5paisa MCP Server – Discount Broking",
@@ -4922,8 +4911,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>5paisa MCP Server – Discount Broking - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "dhan-mcp-fo-trading",
     title: "Dhan MCP Server – F&O Trading",
@@ -4936,8 +4924,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>Dhan MCP Server – F&O Trading - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "sebi-mcp-server-india",
     title: "SEBI MCP Server – Regulatory Compliance",
@@ -4950,8 +4937,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>SEBI MCP Server – Regulatory Compliance - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "nse-mcp-server-india",
     title: "NSE MCP Server – Stock Exchange Data",
@@ -4964,8 +4950,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>NSE MCP Server – Stock Exchange Data - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "bse-mcp-server-india",
     title: "BSE MCP Server – Bombay Stock Exchange",
@@ -4978,8 +4963,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>BSE MCP Server – Bombay Stock Exchange - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "moneycontrol-mcp-india",
     title: "Moneycontrol MCP Server – Financial News",
@@ -4992,8 +4976,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>Moneycontrol MCP Server – Financial News - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "screener-mcp-india",
     title: "Screener MCP Server – Stock Analysis",
@@ -5006,8 +4989,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>Screener MCP Server – Stock Analysis - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "zoho-crm-mcp-india",
     title: "Zoho CRM MCP Server – India Sales",
@@ -5020,8 +5002,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>Zoho CRM MCP Server – India Sales - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "tally-mcp-server-india",
     title: "Tally MCP Server – Indian Accounting",
@@ -5034,8 +5015,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>Tally MCP Server – Indian Accounting - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "kotak-maharaja-mcp-india",
     title: "Kotak Mahindra MCP Server – Indian Banking API",
@@ -5048,8 +5028,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>Kotak Mahindra MCP Server – Indian Banking API - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "hdfc-bank-mcp-india",
     title: "HDFC Bank MCP Server – Corporate & Retail Banking",
@@ -5062,8 +5041,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>HDFC Bank MCP Server – Corporate & Retail Banking - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "sbi-mcp-server-india-banking",
     title: "SBI MCP Server – India's Largest Bank",
@@ -5076,8 +5054,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>SBI MCP Server – India's Largest Bank - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "axis-bank-mcp-india",
     title: "Axis Bank MCP Server – Corporate Banking Solutions",
@@ -5090,8 +5067,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>Axis Bank MCP Server – Corporate Banking Solutions - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "yes-bank-mcp-india",
     title: "Yes Bank MCP Server – Indian Corporate Payments",
@@ -5104,8 +5080,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>Yes Bank MCP Server – Indian Corporate Payments - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "aubank-mcp-india",
     title: "AU Small Finance MCP Server – Indian Banking",
@@ -5118,8 +5093,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>AU Small Finance MCP Server – Indian Banking - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "idfc-first-mcp-india",
     title: "IDFC First MCP Server – Digital Banking",
@@ -5132,8 +5106,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>IDFC First MCP Server – Digital Banking - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "pnb-mcp-india",
     title: "Punjab National Bank MCP Server – PSU Banking",
@@ -5146,8 +5119,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>Punjab National Bank MCP Server – PSU Banking - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "bigbasket-mcp-india",
     title: "BigBasket MCP Server – Grocery Delivery",
@@ -5160,8 +5132,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>BigBasket MCP Server – Grocery Delivery - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "blinkit-mcp-india",
     title: "Blinkit MCP Server – Quick Commerce",
@@ -5174,8 +5145,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>Blinkit MCP Server – Quick Commerce - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "zepto-mcp-india",
     title: "Zepto MCP Server – Express Delivery",
@@ -5188,8 +5158,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>Zepto MCP Server – Express Delivery - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "amazon-india-mcp",
     title: "Amazon India MCP Server – Marketplace",
@@ -5202,8 +5171,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>Amazon India MCP Server – Marketplace - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "flipkart-mcp-india",
     title: "Flipkart MCP Server – E-commerce",
@@ -5216,8 +5184,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>Flipkart MCP Server – E-commerce - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "myntra-mcp-india",
     title: "Myntra MCP Server – Fashion E-commerce",
@@ -5230,8 +5197,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>Myntra MCP Server – Fashion E-commerce - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "zomato-mcp-india",
     title: "Zomato MCP Server – Food Delivery",
@@ -5244,8 +5210,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>Zomato MCP Server – Food Delivery - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "swiggy-mcp-india",
     title: "Swiggy MCP Server – Food & Essentials",
@@ -5258,8 +5223,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>Swiggy MCP Server – Food & Essentials - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "dunzo-mcp-india",
     title: "Dunzo MCP Server – Hyperlocal Services",
@@ -5272,8 +5236,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>Dunzo MCP Server – Hyperlocal Services - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "urbancompany-mcp-india",
     title: "Urban Company MCP Server – Home Services",
@@ -5286,8 +5249,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>Urban Company MCP Server – Home Services - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "oyo-mcp-india",
     title: "OYO MCP Server – Hotel Booking",
@@ -5300,8 +5262,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>OYO MCP Server – Hotel Booking - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "makemytrip-mcp-india",
     title: "MakeMyTrip MCP Server – Travel Booking",
@@ -5314,8 +5275,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>MakeMyTrip MCP Server – Travel Booking - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "goibibo-mcp-india",
     title: "Goibibo MCP Server – Travel Services",
@@ -5328,8 +5288,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>Goibibo MCP Server – Travel Services - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "irctc-mcp-india",
     title: "IRCTC MCP Server – Train Tickets",
@@ -5342,8 +5301,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>IRCTC MCP Server – Train Tickets - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "indian-railways-mcp-india",
     title: "Indian Railways MCP Server – Rail Services",
@@ -5356,8 +5314,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>Indian Railways MCP Server – Rail Services - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "redbus-mcp-india",
     title: "RedBus MCP Server – Bus Tickets",
@@ -5370,8 +5327,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>RedBus MCP Server – Bus Tickets - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "rapido-mcp-india",
     title: "Rapido MCP Server – Bike Taxi",
@@ -5384,8 +5340,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>Rapido MCP Server – Bike Taxi - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "uber-india-mcp",
     title: "Uber India MCP Server – Ride Services",
@@ -5398,8 +5353,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>Uber India MCP Server – Ride Services - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "ola-mcp-india",
     title: "Ola MCP Server – Ride & Mobility",
@@ -5412,8 +5366,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>Ola MCP Server – Ride & Mobility - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "cricbuzz-mcp-india",
     title: "Cricbuzz MCP Server – Live Scores",
@@ -5426,8 +5379,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>Cricbuzz MCP Server – Live Scores - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "hotstar-mcp-india",
     title: "Hotstar MCP Server – Streaming",
@@ -5440,8 +5392,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>Hotstar MCP Server – Streaming - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "jiohotstar-mcp-india",
     title: "JioHotstar MCP Server – Streaming",
@@ -5454,8 +5405,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>JioHotstar MCP Server – Streaming - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "aajtak-mcp-india",
     title: "Aaj Tak MCP Server – News",
@@ -5468,8 +5418,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>Aaj Tak MCP Server – News - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "ndtv-mcp-india",
     title: "NDTV MCP Server – News Media",
@@ -5482,8 +5431,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>NDTV MCP Server – News Media - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "delhivery-mcp-india",
     title: "Delhivery MCP Server – Courier Services",
@@ -5496,8 +5444,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>Delhivery MCP Server – Courier Services - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "ecom-express-mcp-india",
     title: "Ecom Express MCP Server – Logistics",
@@ -5510,8 +5457,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>Ecom Express MCP Server – Logistics - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "shadowfax-mcp-india",
     title: "Shadowfax MCP Server – Hyperlocal Delivery",
@@ -5524,8 +5470,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>Shadowfax MCP Server – Hyperlocal Delivery - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "fedex-india-mcp",
     title: "FedEx India MCP Server – International Shipping",
@@ -5538,8 +5483,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>FedEx India MCP Server – International Shipping - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "dhl-india-mcp",
     title: "DHL India MCP Server – Logistics",
@@ -5552,8 +5496,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>DHL India MCP Server – Logistics - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "apollo-mcp-india",
     title: "Apollo MCP Server – Healthcare",
@@ -5566,8 +5509,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>Apollo MCP Server – Healthcare - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "icici-lombard-mcp",
     title: "ICICI Lombard MCP Server – Insurance",
@@ -5580,8 +5522,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>ICICI Lombard MCP Server – Insurance - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "hdfc-ergo-mcp",
     title: "HDFC Ergo MCP Server – Insurance",
@@ -5594,8 +5535,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>HDFC Ergo MCP Server – Insurance - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "reliance-mcp-india",
     title: "Reliance MCP Server – Conglomerate",
@@ -5608,8 +5548,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>Reliance MCP Server – Conglomerate - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "tcs-mcp-india",
     title: "TCS MCP Server – IT Services",
@@ -5622,8 +5561,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>TCS MCP Server – IT Services - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "infosys-mcp-india",
     title: "Infosys MCP Server – IT Services",
@@ -5636,8 +5574,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>Infosys MCP Server – IT Services - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "wipro-mcp-india",
     title: "Wipro MCP Server – IT Services",
@@ -5650,8 +5587,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>Wipro MCP Server – IT Services - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "hcl-mcp-india",
     title: "HCL MCP Server – IT Services",
@@ -5664,8 +5600,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>HCL MCP Server – IT Services - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "airtel-mcp-india",
     title: "Airtel MCP Server – Telecom",
@@ -5678,8 +5613,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>Airtel MCP Server – Telecom - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "jio-mcp-india",
     title: "Jio MCP Server – Telecom",
@@ -5692,8 +5626,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>Jio MCP Server – Telecom - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "vi-mcp-india",
     title: "Vi MCP Server – Telecom",
@@ -5706,8 +5639,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>Vi MCP Server – Telecom - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "kmb-mcp-server-karnataka",
     title: "Karnataka Bank MCP Server – South India",
@@ -5720,8 +5652,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>Karnataka Bank MCP Server – South India - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "city-union-mcp-chennai",
     title: "City Union Bank MCP Server – Tamil Nadu",
@@ -5734,8 +5665,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>City Union Bank MCP Server – Tamil Nadu - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "federal-bank-mcp-kerala",
     title: "Federal Bank MCP Server – Kerala",
@@ -5748,8 +5678,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>Federal Bank MCP Server – Kerala - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "canara-bank-mcp-india",
     title: "Canara Bank MCP Server – India",
@@ -5762,8 +5691,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>Canara Bank MCP Server – India - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "union-bank-mcp-india",
     title: "Union Bank MCP Server – India",
@@ -5776,8 +5704,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>Union Bank MCP Server – India - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "indusind-mcp-india",
     title: "IndusInd MCP Server – India",
@@ -5790,8 +5717,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>IndusInd MCP Server – India - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "axis-bank-mcp-server",
     title: "Axis Bank MCP Server – India",
@@ -5804,8 +5730,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>Axis Bank MCP Server – India - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "yes-bank-mcp-server",
     title: "Yes Bank MCP Server – India",
@@ -5818,8 +5743,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>Yes Bank MCP Server – India - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "tamil-maharaja-mcp-tn",
     title: "Tamil Nadu Mercantile MCP Server – South India",
@@ -5832,8 +5756,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>Tamil Nadu Mercantile MCP Server – South India - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "manipal-mcp-india",
     title: "Manipal MCP Server – Healthcare",
@@ -5846,8 +5769,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>Manipal MCP Server – Healthcare - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "aiims-mcp-india",
     title: "AIIMS MCP Server – Healthcare",
@@ -5860,8 +5782,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>AIIMS MCP Server – Healthcare - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "fortis-mcp-india",
     title: "Fortis MCP Server – Healthcare",
@@ -5874,8 +5795,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>Fortis MCP Server – Healthcare - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "kmc-mcp-india",
     title: "KMC MCP Server – Healthcare",
@@ -5888,8 +5808,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>KMC MCP Server – Healthcare - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "max-healthcare-mcp",
     title: "Max Healthcare MCP Server – India",
@@ -5902,8 +5821,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>Max Healthcare MCP Server – India - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "zoho-inventory-mcp-india",
     title: "Zoho Inventory MCP Server – India",
@@ -5916,8 +5834,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>Zoho Inventory MCP Server – India - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "zoho-desk-mcp-india",
     title: "Zoho Desk MCP Server – India",
@@ -5930,8 +5847,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>Zoho Desk MCP Server – India - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "zoho-projects-mcp-india",
     title: "Zoho Projects MCP Server – India",
@@ -5944,8 +5860,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>Zoho Projects MCP Server – India - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "khatabook-mcp-india",
     title: "KhataBook MCP Server – Small Business",
@@ -5958,8 +5873,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>KhataBook MCP Server – Small Business - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "okcredit-mcp-india",
     title: "OkCredit MCP Server – Credit Management",
@@ -5972,8 +5886,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>OkCredit MCP Server – Credit Management - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "vyapar-mcp-india",
     title: "Vyapar MCP Server – GST Billing",
@@ -5986,8 +5899,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>Vyapar MCP Server – GST Billing - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "mybillbook-mcp-india",
     title: "MyBillBook MCP Server – Invoicing",
@@ -6000,8 +5912,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>MyBillBook MCP Server – Invoicing - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "profit-books-mcp-india",
     title: "ProfitBooks MCP Server – Accounting",
@@ -6014,8 +5925,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>ProfitBooks MCP Server – Accounting - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "razorpayx-mcp-india",
     title: "RazorpayX MCP Server – Business Banking",
@@ -6028,8 +5938,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>RazorpayX MCP Server – Business Banking - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "cashfree-mcp-india",
     title: "Cashfree MCP Server – Payments Gateway",
@@ -6042,8 +5951,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>Cashfree MCP Server – Payments Gateway - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "instamojo-mcp-india",
     title: "Instamojo MCP Server – Payment Links",
@@ -6056,8 +5964,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>Instamojo MCP Server – Payment Links - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "ccavenue-mcp-india",
     title: "CCAvenue MCP Server – Payment Gateway",
@@ -6070,8 +5977,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>CCAvenue MCP Server – Payment Gateway - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "payu-mcp-india",
     title: "PayU MCP Server – Payment Processing",
@@ -6084,8 +5990,7 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>PayU MCP Server – Payment Processing - detailed guide coming soon.</p>"
-  }
-  ,
+  },
   {
     slug: "billdesk-mcp-india",
     title: "BillDesk MCP Server – Bill Payments",
@@ -6098,6 +6003,111 @@ await server.connect(transport);</code></pre>
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: [],
     content: "<p>BillDesk MCP Server – Bill Payments - detailed guide coming soon.</p>"
+  },
+  {
+    slug: "matlab-mcp-server-integration-guide",
+    title: "MATLAB MCP Server: Complete Integration Guide",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "Connect an AI agent to a real MATLAB session using the official MATLAB Engine API for Python and the real MCP Python SDK — evaluate expressions, run scripts, and generate plots on demand.",
+    keywords: ["matlab mcp server", "matlab ai agent", "matlab engine api python"],
+    ugcElements: ["Code sharing section", "Beginner Q&A forum"],
+    internalLinks: ["model-context-protocol-beginner-guide", "mcp-python-sdk-tutorial"],
+    content: `<p class="text-white/65 leading-relaxed">MATLAB is widely used in engineering, research, and quantitative analysis, but it's usually operated interactively — a human running commands in the MATLAB desktop. An MCP server changes that: it lets an AI agent evaluate MATLAB expressions, run scripts, and generate plots on demand, using the real MATLAB Engine API for Python rather than shelling out to the MATLAB executable or re-implementing numerical routines in Python.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Prerequisites</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li>A licensed, installed copy of MATLAB (R2022b or later is simplest — it supports installing the engine via pip).</li>
+  <li>Python 3.9+ matching one of the versions your MATLAB release supports.</li>
+  <li>Basic familiarity with MATLAB syntax and the MCP TypeScript/Python SDK pattern.</li>
+</ul>
+
+<h2 class="mt-8 text-2xl font-black text-white">Step 1: Install the MATLAB Engine API for Python</h2>
+<p class="text-white/65 leading-relaxed">MathWorks ships an official Python package that embeds a real MATLAB session inside a Python process. On R2022b and later, install it directly from PyPI:</p>
+<pre class="bg-gray-900 p-4 rounded-lg overflow-x-auto"><code class="language-bash">pip install matlabengine</code></pre>
+<p class="text-white/65 leading-relaxed">On older releases without a PyPI package, install it from the MATLAB installation itself instead:</p>
+<pre class="bg-gray-900 p-4 rounded-lg overflow-x-auto"><code class="language-bash">cd "matlabroot/extern/engines/python"
+python setup.py install</code></pre>
+<p class="text-white/65 leading-relaxed">Verify it works before writing any MCP code:</p>
+<pre class="bg-gray-900 p-4 rounded-lg overflow-x-auto"><code class="language-python">import matlab.engine
+eng = matlab.engine.start_matlab()
+print(eng.sqrt(4.0))  # 2.0</code></pre>
+<p class="text-white/65 leading-relaxed">Starting the engine takes several seconds — MATLAB itself is booting in the background. Start it once when your server starts, not per tool call.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Step 2: Build the Server</h2>
+<p class="text-white/65 leading-relaxed">Use the real MCP Python SDK's <code>FastMCP</code> class, the same one covered in the <a href="/blog/model-context-protocol-beginner-guide" class="text-cyan-300">beginner's guide</a> — a decorated function becomes a tool automatically, with no hand-written JSON Schema.</p>
+<pre class="bg-gray-900 p-4 rounded-lg overflow-x-auto"><code class="language-python">import base64
+import os
+import tempfile
+
+import matlab.engine
+from mcp.server.fastmcp import FastMCP
+
+mcp = FastMCP("matlab-server")
+eng = matlab.engine.start_matlab()
+
+
+@mcp.tool()
+def run_matlab_expression(expression: str) -> str:
+    """Evaluate a MATLAB expression and return the result as a string.
+
+    Args:
+        expression: A MATLAB expression, e.g. "eig([1 2; 3 4])".
+    """
+    try:
+        result = eng.eval(expression, nargout=1)
+        return str(result)
+    except Exception as exc:
+        return f"MATLAB error: {exc}"
+
+
+@mcp.tool()
+def plot_expression(y_expression: str, x_range: str = "0:0.1:(2*pi)") -> str:
+    """Plot y_expression over x_range and return a base64-encoded PNG.
+
+    Args:
+        y_expression: A MATLAB expression in terms of x, e.g. "sin(x)".
+        x_range: A MATLAB range expression for x, e.g. "0:0.1:10".
+    """
+    with tempfile.TemporaryDirectory() as tmp_dir:
+        png_path = os.path.join(tmp_dir, "plot.png").replace("\\\\", "/")
+        eng.eval(
+            f"x = {x_range}; y = {y_expression}; "
+            f"fig = figure('Visible', 'off'); plot(x, y); "
+            f"saveas(fig, '{png_path}'); close(fig);",
+            nargout=0,
+        )
+        with open(png_path, "rb") as f:
+            return base64.b64encode(f.read()).decode("utf-8")
+
+
+if __name__ == "__main__":
+    mcp.run()</code></pre>
+<p class="text-white/65 leading-relaxed">Two things worth noting: <code>nargout</code> tells the engine how many return values to expect — use <code>0</code> for statements that don't return anything (like a plot command) and <code>1</code> when you want the expression's value back. And the figure is created with <code>'Visible', 'off'</code> so it renders in a headless environment without needing a display.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Step 3: Run and Connect</h2>
+<p class="text-white/65 leading-relaxed">Test it with the MCP Inspector first, exactly as covered in the beginner's guide:</p>
+<pre class="bg-gray-900 p-4 rounded-lg overflow-x-auto"><code class="language-bash">npx @modelcontextprotocol/inspector python3 matlab_server.py</code></pre>
+<p class="text-white/65 leading-relaxed">Then add it to <code>claude_desktop_config.json</code>, using an absolute path to your Python interpreter and script:</p>
+<pre class="bg-gray-900 p-4 rounded-lg overflow-x-auto"><code class="language-json">{
+  "mcpServers": {
+    "matlab": {
+      "command": "/absolute/path/to/python3",
+      "args": ["/absolute/path/to/matlab_server.py"]
+    }
+  }
+}</code></pre>
+
+<h2 class="mt-8 text-2xl font-black text-white">Security Considerations</h2>
+<p class="text-white/65 leading-relaxed"><code>eng.eval()</code> executes arbitrary MATLAB code — that's what makes this useful, and it's also a real risk if the server is ever exposed beyond a single trusted local user. There's no sandboxing built into the MATLAB engine itself. If you need to expose this to multiple users or run it remotely, put real boundaries around it: an allowlist of permitted function calls instead of raw <code>eval</code>, a timeout on long-running computations, and a dedicated OS-level user with no access to anything the MATLAB process shouldn't be able to touch. Don't rely on the MCP layer alone for isolation.</p>`,
+    faqs: [
+      { question: "Does this work with ChatGPT, not just Claude Desktop?", answer: "Yes — this is a standard MCP server, so any MCP-compatible client can connect to it, not just Claude Desktop. What matters is the client's MCP support, not which model it's built on." },
+      { question: "Do I need a full MATLAB license to run this?", answer: "Yes. The MATLAB Engine API for Python requires a licensed, locally installed copy of MATLAB — it embeds a real MATLAB session, it doesn't reimplement MATLAB's functionality." },
+      { question: "Why does starting the server take several seconds?", answer: "matlab.engine.start_matlab() is booting an actual MATLAB session in the background, the same startup cost as opening the MATLAB desktop application. Start the engine once at server startup, not per tool call." },
+      { question: "Is running arbitrary MATLAB code from an AI agent safe?", answer: "Not by default — eng.eval() has no sandboxing. It's reasonable for a single trusted user running the server locally. For anything shared or remote, add an allowlist of permitted operations rather than passing arbitrary expressions straight to eval." }
+    ]
   }
 ];
 
