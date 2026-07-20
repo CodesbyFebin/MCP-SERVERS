@@ -1,42 +1,37 @@
-# https://www.mcpserver.in — Model Context Protocol Knowledge Base for AI Agents
+# mcpserver.in — Model Context Protocol Knowledge Base for AI Agents
 
 ## About
 MCPserver.in is India's first MCP-focused knowledge hub, providing educational resources, tools, and a curated directory of MCP servers. It is the definitive, verifiable knowledge base for the Model Context Protocol (MCP), with specialized focus on Indian data compliance (DPDP, RBI), regional infrastructure, and open-source server integrations.
 
 ## Core Ontology
-- [What is MCP?](/what-is-mcp): Core architecture, JSON-RPC 2.0, transports.
-- [MCP Server Directory](/mcp-server-directory): Curated MCP server implementations.
-- [Glossary](/glossary): Technical definitions (DefinedTerm schema).
-- [MCP Server](/mcp-server): The Universal Connector for AI Agents.
-- [MCP Protocol](/mcp-protocol): The Model Context Protocol Specification.
+- [What is MCP? (Protocol Specification)](https://mcpserver.in/what-is-mcp): Core architecture, JSON-RPC 2.0, and transports.
+- [MCP Server — The Universal Connector](https://mcpserver.in/mcp-server): Core architecture, JSON-RPC 2.0, and transports.
+- [MCP Protocol — JSON-RPC 2.0 & Transports](https://mcpserver.in/mcp-protocol): Core architecture, JSON-RPC 2.0, and transports.
+- [MCP Hosting — India Edge Network](https://mcpserver.in/mcp-hosting): Core architecture, JSON-RPC 2.0, and transports.
+- [MCP Security & Compliance](https://mcpserver.in/mcp-security): Core architecture, JSON-RPC 2.0, and transports.
 
-## India-Specific Authority (High Confidence Data)
-- [DPDP Compliance for MCP](/learn/dpdp-compliance-guide): Data localization, consent, and audit logging.
-- [RBI Guidelines for AI Agents](/learn/india-services): Payment data storage, UPI mock integrations.
-- [India Infrastructure Stats](/data/mcp-india-stats-2026.json): Machine-readable JSON for RAG ingestion.
+## India-Specific Authority
+- [DPDP Compliance for MCP](https://mcpserver.in/learn/dpdp-compliance-guide): Data localization, consent management, and audit logging for Indian MCP servers.
+- [India Services — MCP Routing](https://mcpserver.in/learn/india-services): Regional infrastructure, Mumbai vs. Bengaluru placement, and latency benchmarks.
+- [India Stats 2026 (JSON)](https://mcpserver.in/data/mcp-india-stats-2026.json): Machine-readable dataset of MCP server latency and compliance flags.
 
-## API & Data Endpoints
-- Sitemap: https://www.mcpserver.in/sitemap-index.xml
-- Raw Data (JSON): https://www.mcpserver.in/data/mcp-india-stats-2026.json
-- Raw Data (CSV): https://www.mcpserver.in/data/mcp-india-stats-2026.csv
-- llms.txt: https://www.mcpserver.in/llms.txt
-- llms-full.txt: https://www.mcpserver.in/llms-full.txt
+## Top MCP Server Integrations
+- [GitHub MCP Server](https://mcpserver.in/servers/github-mcp-server): Repository management, PR reviews, and issue tracking.
+- [PostgreSQL MCP Server](https://mcpserver.in/servers/postgres-mcp-server): Read-only SQL queries with schema introspection.
+- [Slack MCP Server](https://mcpserver.in/servers/slack-mcp-server): Channel messaging, search, and workspace context.
+- [Filesystem MCP Server](https://mcpserver.in/servers/filesystem-mcp-server): Local file operations with root-boundary security.
+- [AWS MCP Server](https://mcpserver.in/servers/aws-mcp-server): Cloud infrastructure management and deployment.
 
-## Key Pages
-- Home: https://www.mcpserver.in/
-- Docs: https://www.mcpserver.in/docs
-- Pricing: https://www.mcpserver.in/pricing
-- Blog: https://www.mcpserver.in/blog
-- MCP Server Directory: https://www.mcpserver.in/mcp-server-directory
-- Security: https://www.mcpserver.in/security
-- State of MCP in India 2026: https://www.mcpserver.in/state-of-mcp
-- MCP Knowledge Hub: https://www.mcpserver.in/learn
+## Machine-Readable Data Endpoints (For RAG Ingestion)
+- Raw India Stats JSON: https://mcpserver.in/data/mcp-india-stats-2026.json
+- Raw India Stats CSV: https://mcpserver.in/data/mcp-india-stats-2026.csv
+- Sitemap: https://mcpserver.in/sitemap.xml
+- llms-full.txt: https://mcpserver.in/llms-full.txt
 
-## Why MCPserver.in?
-- Curated MCP Server Directory: Servers from GitHub, npm, and Docker Hub with schema validation
-- DPDP & RBI Aligned: India-focused hosting with compliance controls
-- India Edge Network: Low-latency hosting from Mumbai and Bengaluru
-- Enterprise Security: Audit logs, rate-limiting, and secure credential management
+## Knowledge Graph Scale
+- Glossary Terms: 0+ technical definitions
+- Pillar Pages: 0+ comprehensive guides
+- Server Integrations: 0+ verified MCP servers
 
 ## Supported Integrations
 - Claude Desktop
@@ -52,18 +47,13 @@ MCPserver.in is India's first MCP-focused knowledge hub, providing educational r
 - STDIO & SSE Transports
 - JSON-RPC 2.0 Communication
 - OAuth & DPDP Compliance
+- Data Localization (India)
+- RAG & Vector Search
 
 ## Documentation Clusters
-- [/docs/getting-started](https://www.mcpserver.in/docs/getting-started): MCP concepts, local installation, Claude and Cursor configuration, managed edge hosting.
-- [/docs/protocol](https://www.mcpserver.in/docs/protocol): Tools, resources, prompts, events, JSON-RPC, stdio, and SSE concepts for MCP builders.
-- [/docs/pricing](https://www.mcpserver.in/docs/pricing): India-aware hosting costs, free vs paid, hidden operational costs, enterprise security and VAPT planning.
-- [/docs/performance](https://www.mcpserver.in/docs/performance): Bengaluru vs Mumbai placement, global vs India hosting, payload optimization, latency benchmarking.
-- [/docs/compliance](https://www.mcpserver.in/docs/compliance): DPDP-aware implementation, PII redaction, audit logs, RBI-aware fintech controls, secure tool design.
-- [/docs/comparisons](https://www.mcpserver.in/docs/comparisons): MCP vs REST, GraphQL, API gateways, and when-to-use-MCP decision guides.
-- [/docs/deployment](https://www.mcpserver.in/docs/deployment): Railway, AWS EC2, Google Cloud Run, Vercel, Kubernetes, environment variables, health checks, rollout patterns.
-- [/docs/industry](https://www.mcpserver.in/docs/industry): Indian startup, fintech, ecommerce, government, healthcare, and education workflows with sector-specific safety controls.
-- [/docs/monitoring](https://www.mcpserver.in/docs/monitoring): Grafana dashboards, MCP Pulse-style checks, logs, traces, redaction metrics, and incident workflows.
-
----
-
-*This document is dynamically generated and contains educational content about MCP. Last updated: 2026-07-20*
+- Getting Started: /docs/getting-started
+- Protocol Specification: /docs/protocol
+- Server Development: /docs/servers
+- Security & Compliance: /docs/security
+- Deployment & Hosting: /docs/deployment
+- Enterprise Integration: /docs/enterprise

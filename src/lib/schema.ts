@@ -101,6 +101,160 @@ export function getFAQSchema(items: FAQSchemaItem[]) {
   };
 }
 
+export function generateFAQSchema(faqs: { question: string; answer: string }[] | undefined) {
+  if (!faqs || faqs.length === 0) return null;
+  return getFAQSchema(faqs);
+}
+
+export interface PillarSchemaOptions {
+  slug: string;
+  title: string;
+  description: string;
+  faqs?: { question: string; answer: string }[];
+  sameAs?: string[];
+  mentions?: { name: string; url?: string }[];
+}
+
+export function generatePillarSchema(pillar: PillarSchemaOptions) {
+  const url = `${siteConfig.url}/${pillar.slug}`;
+  const faqSchema = generateFAQSchema(pillar.faqs);
+  
+  const schema: Record<string, any> = {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "@id": `${url}#article`,
+    "headline": pillar.title,
+    "description": pillar.description,
+    "url": url,
+    "isPartOf": {
+      "@id": `${url}#webpage`
+    },
+    "inLanguage": "en",
+    "mainEntityOfPage": url,
+    "author": {
+      "@type": "Organization",
+      "name": "MCPserver.in Engineering",
+      "@id": `${siteConfig.url}/#organization`
+    },
+    "publisher": {
+      "@id": `${siteConfig.url}/#organization`
+    },
+    "datePublished": new Date().toISOString(),
+    "dateModified": new Date().toISOString(),
+    ...(pillar.sameAs && { sameAs: pillar.sameAs }),
+    ...(pillar.mentions && { mentions: pillar.mentions.map(m => ({ "@type": "Thing", ...m })) })
+  };
+
+  if (faqSchema) {
+    schema["@graph"] = [schema, faqSchema];
+  }
+
+  return schema;
+}
+
+export interface GlossaryTerm {
+  slug: string;
+  term: string;
+  definition: string;
+  detailedExplanation?: string;
+  keyTakeaways?: string[];
+  useCase?: string;
+  technicalDetails?: Record<string, any>;
+  references: string[];
+  faqs?: { question: string; answer: string }[];
+}
+
+export interface Pillar {
+  slug: string;
+  title: string;
+  subtitle: string;
+  shortAnswer: string;
+  description: string;
+  primaryKeyword: string;
+  faqCluster: string;
+  related?: string[];
+  externalLinks?: string[];
+  publishedAt?: string;
+  updatedAt?: string;
+}
+
+function generateMentions(relatedSlugs: string[] = [], externalConcepts: string[] = []) {
+  const mentions: { "@type": "Thing"; name: string; url?: string }[] = [];
+
+  relatedSlugs.forEach(slug => {
+    mentions.push({
+      "@type": "Thing",
+      "name": slug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
+      "url": `${siteConfig.url}/glossary/${slug}`
+    });
+  });
+
+  externalConcepts.forEach(concept => {
+    mentions.push({
+      "@type": "Thing",
+      "name": concept
+    });
+  });
+
+  return mentions.length > 0 ? mentions : undefined;
+}
+
+export function getDefinedTermSchema(term: GlossaryTerm, relatedSlugs: string[] = []) {
+  const url = `${siteConfig.url}/glossary/${term.slug}`;
+  const sameAs = term.references && term.references.length > 0 ? term.references : undefined;
+  const mentions = generateMentions(relatedSlugs, ['Model Context Protocol', 'AI Agents']);
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "DefinedTerm",
+    "@id": `${url}#term`,
+    "name": term.term,
+    "description": term.definition,
+    "inDefinedTermSet": {
+      "@type": "DefinedTermSet",
+      "@id": `${siteConfig.url}/glossary#termset`,
+      "name": "MCP Server India Glossary",
+      "url": `${siteConfig.url}/glossary`
+    },
+    "url": url,
+    ...(sameAs && { sameAs }),
+    ...(mentions && { mentions })
+  };
+}
+
+export function getTechArticleSchema(pillar: Pillar, relatedSlugs: string[] = []) {
+  const url = `${siteConfig.url}/${pillar.slug}`;
+  const sameAs = pillar.externalLinks && pillar.externalLinks.length > 0 
+    ? pillar.externalLinks 
+    : ["https://spec.modelcontextprotocol.io"];
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "@id": `${url}#article`,
+    "isPartOf": {
+      "@id": `${url}#webpage`
+    },
+    "headline": pillar.title,
+    "description": pillar.description,
+    "articleBody": pillar.shortAnswer,
+    "inLanguage": "en",
+    "mainEntityOfPage": url,
+    "datePublished": pillar.publishedAt || new Date().toISOString(),
+    "dateModified": pillar.updatedAt || new Date().toISOString(),
+    "author": {
+      "@type": "Organization",
+      "name": "MCPserver.in Engineering",
+      "@id": `${siteConfig.url}/#organization`
+    },
+    "publisher": {
+      "@id": `${siteConfig.url}/#organization`
+    },
+    "sameAs": sameAs,
+    "mentions": generateMentions(relatedSlugs, ['Data Localization', 'Digital Personal Data Protection Act', 'JSON-RPC 2.0'])
+  };
+}
+
 export function getSoftwareApplicationSchema(name: string, description: string) {
   return {
     "@context": "https://schema.org",
@@ -155,6 +309,8 @@ export interface UnifiedGraphOptions {
     name: string;
     description: string;
   };
+  mentions?: { name: string; url?: string }[];
+  sameAs?: string[];
 }
 
 /**
@@ -240,7 +396,7 @@ export function getUnifiedGraphSchema(options: UnifiedGraphOptions) {
 
   // 5. TechArticle or Blog mapping (for topic or pillar pages)
   if (options.article) {
-    const articleEntity = {
+    const articleEntity: Record<string, any> = {
       "@type": "TechArticle",
       "@id": `${fullPageUrl}#article`,
       "isPartOf": {
@@ -259,7 +415,9 @@ export function getUnifiedGraphSchema(options: UnifiedGraphOptions) {
       },
       "publisher": {
         "@id": `${siteConfig.url}/#organization`
-      }
+      },
+      ...(options.sameAs && { sameAs: options.sameAs }),
+      ...(options.mentions && { mentions: options.mentions.map(m => ({ "@type": "Thing", ...m })) })
     };
     webpageEntity.mainEntity = { "@id": `${fullPageUrl}#article` };
     graph.push(articleEntity);

@@ -45,3 +45,26 @@ export function getRelatedLinks(currentSlug: string, type: "pillar" | "topic" | 
 
   return links;
 }
+
+export function injectInternalLinks(content: string, maxLinks: number = 5): string {
+  const { glossaryTerms } = require('../data/glossary');
+  
+  let result = content;
+  const links: { term: string; slug: string }[] = [];
+  
+  for (const term of glossaryTerms) {
+    const regex = new RegExp(`\\b${term.term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'gi');
+    if (regex.test(result) && links.length < maxLinks) {
+      links.push({ term: term.term, slug: term.slug });
+    }
+  }
+  
+  for (const link of links) {
+    const regex = new RegExp(`\\b${link.term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'gi');
+    result = result.replace(regex, (match) => {
+      return `[${match}](/glossary/${link.slug})`;
+    });
+  }
+  
+  return result;
+}

@@ -56,7 +56,18 @@ export default function PillarPageTemplate({
       authorRole: "Platform Team",
       datePublished: "2025-11-05",
       dateModified: "2026-07-09"
-    }
+    },
+    mentions: [
+      { name: "Model Context Protocol", url: "https://spec.modelcontextprotocol.io" },
+      { name: "AI Agents" },
+      { name: "Data Localization" },
+      { name: "Digital Personal Data Protection Act" },
+      { name: "JSON-RPC 2.0" }
+    ],
+    sameAs: [
+      "https://spec.modelcontextprotocol.io",
+      "https://github.com/modelcontextprotocol"
+    ]
   });
 
   const isDark = theme === "dark";

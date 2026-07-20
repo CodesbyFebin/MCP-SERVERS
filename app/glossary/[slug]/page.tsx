@@ -56,6 +56,12 @@ export default async function GlossaryDetailPage({ params }: PageProps) {
         "@type": "DefinedTerm",
         "name": term.term,
         "description": term.definition,
+        "url": `https://mcpserver.in/glossary/${term.slug}`,
+        ...(term.references && term.references.length > 0 ? { sameAs: term.references } : {}),
+        "mentions": (term.keyTakeaways || []).slice(0, 5).map(kt => ({
+          "@type": "Thing",
+          "name": kt.replace(/^[^a-zA-Z]+/, '').slice(0, 60)
+        })),
         "inDefinedTermSet": {
           "@id": "https://mcpserver.in/glossary/#termset",
           "@type": "DefinedTermSet",

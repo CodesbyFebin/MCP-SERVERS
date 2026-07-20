@@ -21,15 +21,18 @@ import {
 import { BarChart3, BookOpen, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { Star } from "lucide-react";
+import { getUnifiedGraphSchema } from "../src/lib/schema";
+import SchemaJsonLd from "../src/components/SchemaJsonLd";
+import FAQ from "../src/components/FAQ";
 
 export const metadata = {
   metadataBase: new URL("https://www.mcpserver.in"),
   title: {
-    default: "MCPServer.in: Curated Model Context Protocol Directory & Hosting",
+    default: "MCPServer.in: Free Hosted MCP Servers in India | 10,000+ Verified",
     template: "%s | MCPServer.in"
   },
-  description: "Discover, test, and deploy Model Context Protocol servers. India-ready infrastructure with DPDP-aligned data controls and low-latency edge hosting.",
-  keywords: ["MCP server India", "Model Context Protocol hosting", "free MCP servers", "DPDP compliant AI tools", "MCP hosting Mumbai", "AI agent integration", "AI MCP servers", "AI tools India", "verified MCP servers"],
+  description: "India's largest MCP server platform. Host 10,000+ verified Model Context Protocol servers free. DPDP compliant, Mumbai/Bengaluru edge nodes. Deploy AI tools in <50ms.",
+  keywords: ["MCP server India", "Model Context Protocol hosting", "free MCP servers", "DPDP compliant AI tools", "MCP hosting Mumbai", "AI agent integration", "AI MCP servers", "AI tools India", "verified MCP servers", "MCP deployment India", "low latency MCP hosting", "RBI compliant AI"],
   authors: [{ name: "MCPserver.in Engineering" }],
   creator: "MCPserver.in",
   publisher: "MCPserver.in",
@@ -56,8 +59,8 @@ export const metadata = {
     type: "website",
     url: "https://www.mcpserver.in",
     siteName: "MCPserver.in",
-    title: "MCPServer.in: Curated Model Context Protocol Directory & Hosting",
-    description: "Discover, test, and deploy Model Context Protocol servers. India-ready infrastructure with DPDP-aligned data controls and low-latency edge hosting.",
+    title: "MCPServer.in: Free Hosted MCP Servers in India | 10,000+ Verified",
+    description: "India's largest MCP server platform. Host 10,000+ verified Model Context Protocol servers free. DPDP compliant, Mumbai/Bengaluru edge nodes. Deploy AI tools in <50ms.",
     locale: "en_IN",
   },
   twitter: {
@@ -78,9 +81,60 @@ export const metadata = {
   },
 };
 
+const homeFaqs = [
+  {
+    question: "What is MCPserver.in?",
+    answer: "MCPserver.in is India's first Model Context Protocol (MCP) platform. We provide a curated directory of 10,000+ verified MCP servers and free/paid hosting with DPDP-aligned data controls from Mumbai and Bengaluru edge nodes."
+  },
+  {
+    question: "Is MCP hosting really free?",
+    answer: "Yes. Our Developer tier is free for local stdio MCP servers and lightweight remote servers. Paid SSE hosting starts at ₹999/month for production workloads requiring persistent connections and higher throughput."
+  },
+  {
+    question: "What does DPDP compliant mean?",
+    answer: "DPDP compliance means our platform follows India's Digital Personal Data Protection Act. This includes data localization in Indian regions (ap-south-1/ap-south-2), immutable audit logs, consent-aware routing, and breach-notification workflows."
+  },
+  {
+    question: "How fast are MCP servers on MCPServer.in?",
+    answer: "Our Mumbai and Bengaluru edge nodes deliver median latencies under 50ms for regional traffic. Enterprise plans include dedicated nodes with SLA-backed uptime and zero cold starts."
+  },
+  {
+    question: "Do I need to manage infrastructure?",
+    answer: "No. MCPServer.in handles deployment, scaling, TLS, monitoring, and regional failover. You configure your MCP server, and we run it on India-first infrastructure."
+  }
+];
+
+const unifiedGraphSchema = getUnifiedGraphSchema({
+  pageUrl: "/",
+  title: "MCPServer.in: Free Hosted MCP Servers in India",
+  description: "India's largest MCP server platform with 10,000+ verified servers, DPDP compliance, and Mumbai/Bengaluru edge hosting.",
+  breadcrumbs: [{ name: "Home", item: "/" }],
+  faq: homeFaqs,
+  article: {
+    title: "MCPServer.in: Free Hosted MCP Servers in India",
+    description: "India's largest MCP server platform with 10,000+ verified servers, DPDP compliance, and Mumbai/Bengaluru edge hosting.",
+    authorName: "MCPserver.in Engineering",
+    authorRole: "Platform Team",
+    datePublished: "2025-11-05",
+    dateModified: "2026-07-09"
+  },
+  mentions: [
+    { name: "Model Context Protocol", url: "https://spec.modelcontextprotocol.io" },
+    { name: "AI Agents" },
+    { name: "Data Localization" },
+    { name: "Digital Personal Data Protection Act" },
+    { name: "JSON-RPC 2.0" }
+  ],
+  sameAs: [
+    "https://spec.modelcontextprotocol.io",
+    "https://github.com/modelcontextprotocol"
+  ]
+});
+
 export default function Home() {
   return (
     <PageShell id="homepage">
+      <SchemaJsonLd schema={unifiedGraphSchema} />
       <section className="relative overflow-hidden py-10 sm:py-14 lg:py-20">
         <Container>
           <div className="grid items-center gap-10 lg:grid-cols-[0.48fr_0.52fr]">
@@ -278,6 +332,12 @@ export default function Home() {
               </div>
             </Link>
           </div>
+        </Container>
+      </DividerSection>
+
+      <DividerSection>
+        <Container>
+          <FAQ items={homeFaqs} title="Frequently Asked Questions" />
         </Container>
       </DividerSection>
 
