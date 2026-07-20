@@ -66,5 +66,11 @@ jobs:
       - name: Verify production endpoints
         run: npm run verify:production
 
+      - name: Record SEO ranking snapshot
+        run: npm run seo:rankings
+
       - name: Submit updated URLs to IndexNow
         run: npm run submit-indexnow
+
+      - name: Generate LLMs.txt for AI indexing
+        run: npm run generate:llms

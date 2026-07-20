@@ -10,42 +10,54 @@
       ],
       "destination": "https://www.mcpserver.in/$1",
       "permanent": true
-    }
+    },
+    { "source": "/blog/mcp-server-on-freebsd/", "destination": "/blog/mcp-server-on-linux/", "permanent": true },
+    { "source": "/blog/mcp-server-on-netbsd/", "destination": "/blog/mcp-server-on-linux/", "permanent": true },
+    { "source": "/blog/mcp-server-on-openbsd/", "destination": "/blog/mcp-server-on-linux/", "permanent": true },
+    { "source": "/blog/mcp-server-on-solaris/", "destination": "/blog/mcp-server-on-linux/", "permanent": true },
+    { "source": "/blog/mcp-server-on-alpine-linux/", "destination": "/blog/mcp-server-on-linux/", "permanent": true },
+    { "source": "/blog/mcp-server-on-alpine-with-musl/", "destination": "/blog/mcp-server-on-linux/", "permanent": true },
+    { "source": "/blog/mcp-server-on-centos-stream/", "destination": "/blog/mcp-server-on-linux/", "permanent": true },
+    { "source": "/blog/mcp-server-on-rocky-linux/", "destination": "/blog/mcp-server-on-linux/", "permanent": true },
+    { "source": "/blog/mcp-server-on-alma-linux/", "destination": "/blog/mcp-server-on-linux/", "permanent": true },
+    { "source": "/blog/mcp-server-on-debian/", "destination": "/blog/mcp-server-on-linux/", "permanent": true },
+    { "source": "/blog/mcp-server-on-ubuntu-lts/", "destination": "/blog/mcp-server-on-linux/", "permanent": true },
+    { "source": "/blog/mcp-server-on-gentoo/", "destination": "/blog/mcp-server-on-linux/", "permanent": true },
+    { "source": "/blog/mcp-server-on-nixos/", "destination": "/blog/mcp-server-on-linux/", "permanent": true }
   ],
   "headers": [
     {
-      "source": "/servers/",
+      "source": "/data/(.*)\\.(json|csv)",
       "headers": [
         {
           "key": "Cache-Control",
-          "value": "public, max-age=3600, must-revalidate"
+          "value": "public, max-age=31536000, s-maxage=31536000, immutable"
         }
       ]
     },
     {
-      "source": "/categories/",
+      "source": "/api/(.*)",
       "headers": [
         {
           "key": "Cache-Control",
-          "value": "public, max-age=3600, must-revalidate"
+          "value": "no-store, must-revalidate"
         }
       ]
     },
     {
-      "source": "/p99/",
+      "source": "/(.*)",
       "headers": [
         {
-          "key": "Cache-Control",
-          "value": "public, max-age=900, must-revalidate"
-        }
-      ]
-    },
-    {
-      "source": "/data/(.*)",
-      "headers": [
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
         {
-          "key": "Cache-Control",
-          "value": "public, max-age=3600, must-revalidate"
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
         }
       ]
     }
