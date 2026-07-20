@@ -8,7 +8,7 @@ import { getFAQSchema, getUnifiedGraphSchema } from "../../src/lib/schema";
 export const metadata: Metadata = {
   title: "MCPserver.in Learn - MCP Knowledge Hub & AI Infrastructure Guides",
   description:
-    "50+ expert answers on Model Context Protocol hosting, latency, DPDP compliance, pricing in India, and enterprise MCP deployment strategies.",
+    "Answers on Model Context Protocol hosting, latency, DPDP compliance, pricing in India, and enterprise MCP deployment strategies.",
 };
 
 const learnSections = [
@@ -40,11 +40,11 @@ const learnSections = [
       },
       {
         question: "How does edge routing improve MCP performance?",
-        answer: "Edge routing places MCP server containers within 50km of end-users. Mumbai and Bengaluru nodes reduce inter-node latency by 60% compared to US-East or EU-West deployments for India-based AI agents."
+        answer: "Edge routing places MCP server containers closer to end-users. For India-based AI agents, hosting in Mumbai or Bengaluru reduces round-trip time compared to routing through US-East or EU-West deployments, since network distance is the dominant factor in latency."
       },
       {
         question: "Can MCP servers run offline or at the edge?",
-        answer: "Yes. MCP servers support Stdio (local process) and SSE (remote HTTP) transports. Edge runtimes like Cloudflare Workers, Fly.io, and Vercel Edge Functions can host MCP servers with sub-20ms cold starts."
+        answer: "Yes. MCP servers support Stdio (local process) and SSE (remote HTTP) transports. Edge runtimes like Cloudflare Workers, Fly.io, and Vercel Edge Functions can host MCP servers with fast cold starts compared to traditional VM-based deployments — exact figures depend on the runtime and workload."
       }
     ]
   },
@@ -98,7 +98,7 @@ const learnSections = [
       },
       {
         question: "How does MCP compare to REST APIs for enterprises?",
-        answer: "MCP offers built-in context management, tool orchestration, and schema discovery that REST lacks. For AI-first enterprises, MCP reduces integration overhead by 70% compared to maintaining custom REST wrappers for every data source."
+        answer: "MCP offers built-in context management, tool orchestration, and schema discovery that REST lacks. For AI-first enterprises, this typically means less custom integration code compared to maintaining bespoke REST wrappers for every data source — though the actual reduction depends on how many integrations you're consolidating."
       }
     ]
   }
@@ -110,7 +110,7 @@ export default function LearnPage() {
   const unifiedSchema = getUnifiedGraphSchema({
     pageUrl: "/learn",
     title: "MCPserver.in Learn - MCP Knowledge Hub & AI Infrastructure Guides",
-    description: "50+ expert answers on Model Context Protocol hosting, latency, DPDP compliance, pricing in India, and enterprise MCP deployment strategies.",
+    description: "Answers on Model Context Protocol hosting, latency, DPDP compliance, pricing in India, and enterprise MCP deployment strategies.",
     breadcrumbs: [
       { name: "Home", item: "/" },
       { name: "Learn", item: "/learn" }
