@@ -65,10 +65,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: p.priority,
   }));
 
-  // Pillars
+  // Pillars (includes timestamps if available)
   const pillarEntries = pillars.map((p) => ({
     url: `${baseUrl}/${p.slug}/`,
-    lastModified: today,
+    lastModified: (p as any).updatedAt || (p as any).publishedAt || today,
     changeFrequency: "weekly" as const,
     priority: 0.9,
   }));
@@ -89,10 +89,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  // Glossary Detail pages
+  // Glossary Detail pages (includes timestamps if available)
   const glossaryEntries = glossaryTerms.map((g) => ({
     url: `${baseUrl}/glossary/${g.slug}/`,
-    lastModified: today,
+    lastModified: (g as any).updatedAt || (g as any).publishedAt || today,
     changeFrequency: "weekly" as const,
     priority: 0.7,
   }));
@@ -149,10 +149,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  // Blog posts
+  // Blog posts (includes timestamps if available)
   const blogPostEntries = blogPosts.map((post) => ({
     url: `${baseUrl}/blog/${post.slug}/`,
-    lastModified: today,
+    lastModified: (post as any).updatedAt || (post as any).publishedAt || new Date(post.date),
     changeFrequency: "monthly" as const,
     priority: 0.6,
   }));

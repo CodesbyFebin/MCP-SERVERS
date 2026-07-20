@@ -1638,18 +1638,41 @@ const server = new Server({
     date: "2026-07-19",
     category: "Platform Specific",
     cluster: "platform-specific",
-    readTime: "1 min read",
+    readTime: "2 min read",
     excerpt: "Deploying MCP servers on AWS infrastructure with best practices.",
     keywords: ["AWS MCP", "MCP AWS server", "deploy MCP on AWS"],
     ugcElements: ["AWS architecture sharing", "Deployment templates"],
-    internalLinks: ["how-to-build-mcp-server-from-scratch", "mcp-server-on-azure"],
-    content: `<p class="text-white/65 leading-relaxed">Deploy MCP servers on AWS using EC2, ECS, or Lambda for scalable infrastructure.</p>
+    internalLinks: ["how-to-build-mcp-server-from-scratch", "mcp-server-on-azure", "mcp-serverless-architecture"],
+    content: `<p class="text-white/65 leading-relaxed">Which AWS service fits your MCP server depends almost entirely on which transport it speaks. A remote MCP server generally exposes the Streamable HTTP transport (a stateless HTTP endpoint, optionally upgraded to a server-sent-events stream), which fits AWS's request-driven compute well. An stdio-transport server, by contrast, is meant to be spawned as a local child process by a client like Claude Desktop — it has no business running on AWS at all.</p>
 
-<h2 class="mt-8 text-2xl font-black text-white">Deployment Options</h2>
+<h2 class="mt-8 text-2xl font-black text-white">Picking a Compute Option</h2>
 <ul class="text-white/65 leading-relaxed">
-  <li><strong>EC2:</strong> Full control over server environment</li>
-  <li><strong>ECS:</strong> Containerized deployment with orchestration</li>
-  <li><strong>Lambda:</strong> Serverless MCP server deployment</li>
+  <li><strong>EC2 / Lightsail:</strong> Run the server as a long-lived process under systemd. Simplest mental model, full control over the network path, but you own patching and scaling.</li>
+  <li><strong>ECS Fargate:</strong> Package the server as a container behind an Application Load Balancer. Good default for a team that already containerizes its services — the ALB handles TLS termination and can hold SSE connections open past typical idle timeouts if you raise <code>idle_timeout.timeout_seconds</code>.</li>
+  <li><strong>Lambda + API Gateway / Lambda Function URLs:</strong> Works for simple, stateless request/response MCP tool calls, but Lambda's execution model fights long-lived SSE streams — a function invocation has a hard 15-minute ceiling and doesn't hold a persistent connection the way a streaming response needs. If your server needs to push server-initiated notifications, Lambda is the wrong fit; use it only for tools that are genuinely one request in, one response out.</li>
+</ul>
+
+<h2 class="mt-8 text-2xl font-black text-white">Minimal ECS Fargate Task Definition</h2>
+<pre class="bg-gray-900 p-4 rounded-lg"><code class="language-json">{
+  "family": "mcp-server",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "256",
+  "memory": "512",
+  "containerDefinitions": [{
+    "name": "mcp-server",
+    "image": "&lt;account-id&gt;.dkr.ecr.&lt;region&gt;.amazonaws.com/mcp-server:latest",
+    "portMappings": [{ "containerPort": 3000 }],
+    "environment": [{ "name": "NODE_ENV", "value": "production" }],
+    "secrets": [{ "name": "API_KEY", "valueFrom": "arn:aws:secretsmanager:...:secret:mcp/api-key" }]
+  }]
+}</code></pre>
+
+<h2 class="mt-8 text-2xl font-black text-white">Common Pitfalls</h2>
+<ul class="text-white/65 leading-relaxed">
+  <li><strong>Storing API keys in plain environment variables in the task definition:</strong> use Secrets Manager or SSM Parameter Store and reference them via the <code>secrets</code> block, not <code>environment</code>.</li>
+  <li><strong>Default ALB idle timeout (60s) killing SSE streams:</strong> raise it explicitly if your server holds connections open for tool progress notifications.</li>
+  <li><strong>Trying to force a stdio-only MCP server onto Lambda:</strong> if the server you're deploying was written for stdio, it needs an HTTP transport wrapper first — there's no way to attach stdin/stdout to a Lambda invocation.</li>
 </ul>`
   },
   {
@@ -1658,12 +1681,36 @@ const server = new Server({
     date: "2026-07-19",
     category: "Platform Specific",
     cluster: "platform-specific",
-    readTime: "1 min read",
+    readTime: "2 min read",
     excerpt: "Deploying MCP servers on Microsoft Azure platforms.",
     keywords: ["Azure MCP", "MCP Azure server", "Azure Functions MCP"],
     ugcElements: ["Azure templates", "App Service examples"],
-    internalLinks: ["mcp-server-on-aws", "mcp-server-on-gcp"],
-    content: `<p class="text-white/65 leading-relaxed">Azure provides multiple options for MCP server deployment.</p>`
+    internalLinks: ["mcp-server-on-aws", "mcp-server-on-gcp", "mcp-serverless-architecture"],
+    content: `<p class="text-white/65 leading-relaxed">Azure's two realistic homes for an HTTP-transport MCP server are App Service and Azure Container Apps — Azure Functions is worth naming only to explain why it's usually the wrong choice.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">App Service vs. Container Apps vs. Functions</h2>
+<ul class="text-white/65 leading-relaxed">
+  <li><strong>App Service (Linux, Node/Python runtime stack):</strong> The straightforward option. Enable "Always On" so the process isn't idled after inactivity — an MCP server that gets cold-started mid tool-call adds latency the client didn't expect. Set secrets under Configuration &gt; Application settings, or better, reference Azure Key Vault.</li>
+  <li><strong>Azure Container Apps:</strong> If you're already shipping a Dockerfile, Container Apps gives you the same experience as App Service with more control over scaling rules, and supports scale-to-zero if you're fine with occasional cold starts on low-traffic internal tools.</li>
+  <li><strong>Azure Functions:</strong> Consumption-plan Functions time out well before a long SSE stream would naturally close, and cold starts are more pronounced than App Service. It's usable for single-shot stateless tool calls exposed over HTTP, but don't reach for it if the server needs to hold a connection open.</li>
+</ul>
+
+<h2 class="mt-8 text-2xl font-black text-white">App Service Deployment (Azure CLI)</h2>
+<pre class="bg-gray-900 p-4 rounded-lg"><code class="language-bash">az webapp create \\
+  --resource-group mcp-rg \\
+  --plan mcp-plan \\
+  --name my-mcp-server \\
+  --runtime "NODE:20-lts"
+
+az webapp config appsettings set \\
+  --resource-group mcp-rg --name my-mcp-server \\
+  --settings WEBSITES_PORT=3000
+
+az webapp deployment source config-zip \\
+  --resource-group mcp-rg --name my-mcp-server --src dist.zip</code></pre>
+
+<h2 class="mt-8 text-2xl font-black text-white">Common Pitfalls</h2>
+<p class="text-white/65 leading-relaxed">The single most common mistake is leaving "Always On" disabled on the free/shared tier (where it's unavailable anyway) and being surprised the server appears to hang on the first request after idle time — that's App Service cold-starting the worker, not a bug in the MCP server itself.</p>`
   },
   {
     slug: "mcp-server-on-gcp",
@@ -2759,47 +2806,6 @@ spec:
     content: `<p class="text-white/65 leading-relaxed">Implement effective monitoring and alerting for your MCP servers.</p>`
   },
   
-  // Additional Platform Specific posts (3 more to reach 25)
-  {
-    slug: "mcp-server-on-freebsd",
-    title: "MCP Server on FreeBSD: Installation and Configuration",
-    date: "2026-07-19",
-    category: "Platform Specific",
-    cluster: "platform-specific",
-    readTime: "1 min read",
-    excerpt: "Installing and configuring MCP servers on FreeBSD operating system.",
-    keywords: ["FreeBSD MCP", "MCP FreeBSD server", "BSD MCP"],
-    ugcElements: ["BSD-specific guides", "FreeBSD configuration"],
-    internalLinks: ["mcp-server-on-linux", "mcp-cross-platform-compatibility"],
-    content: `<p class="text-white/65 leading-relaxed">FreeBSD provides an excellent platform for MCP server deployment with its advanced networking features.</p>`
-  },
-  {
-    slug: "mcp-server-on-netbsd",
-    title: "MCP Server on NetBSD: Portability and Performance",
-    date: "2026-07-19",
-    category: "Platform Specific",
-    cluster: "platform-specific",
-    readTime: "1 min read",
-    excerpt: "Running MCP servers on NetBSD for maximum portability and performance.",
-    keywords: ["NetBSD MCP", "MCP NetBSD server", "BSD MCP"],
-    ugcElements: ["NetBSD guides", "Portability tips"],
-    internalLinks: ["mcp-server-on-linux", "mcp-cross-platform-compatibility"],
-    content: `<p class="text-white/65 leading-relaxed">NetBSD's portability makes it ideal for MCP server deployment across different hardware platforms.</p>`
-  },
-  {
-    slug: "mcp-server-on-openbsd",
-    title: "MCP Server on OpenBSD: Security-Focused Deployment",
-    date: "2026-07-19",
-    category: "Platform Specific",
-    cluster: "platform-specific",
-    readTime: "1 min read",
-    excerpt: "Deploying MCP servers on OpenBSD with a focus on security.",
-    keywords: ["OpenBSD MCP", "MCP OpenBSD server", "secure MCP deployment"],
-    ugcElements: ["OpenBSD security guides", "Hardening tips"],
-    internalLinks: ["mcp-server-security-checklist", "mcp-cross-platform-compatibility"],
-    content: `<p class="text-white/65 leading-relaxed">OpenBSD's security-first approach makes it perfect for secure MCP server deployments.</p>`
-  },
-  
   // Additional Advanced Architecture posts (4 more to reach 25)
   {
     slug: "mcp-server-for-kafka",
@@ -2919,138 +2925,6 @@ spec:
     ugcElements: ["Career tips", "Job resources"],
     internalLinks: ["mcp-server-community-join-the-conversation", "mcp-server-contributors-hall-of-fame"],
     content: `<p class="text-white/65 leading-relaxed">Explore career opportunities in the growing MCP server ecosystem.</p>`
-  },
-  
-  // Additional Platform Specific posts (9 more to reach 25)
-  {
-    slug: "mcp-server-on-solaris",
-    title: "MCP Server on Solaris: Enterprise UNIX Deployment",
-    date: "2026-07-19",
-    category: "Platform Specific",
-    cluster: "platform-specific",
-    readTime: "1 min read",
-    excerpt: "Deploying MCP servers on Oracle Solaris for enterprise environments.",
-    keywords: ["Solaris MCP", "MCP Solaris server", "UNIX MCP"],
-    ugcElements: ["Solaris guides", "Enterprise deployment"],
-    internalLinks: ["mcp-server-on-linux", "mcp-cross-platform-compatibility"],
-    content: `<p class="text-white/65 leading-relaxed">Solaris provides enterprise-grade features for MCP server deployment in large organizations.</p>`
-  },
-  {
-    slug: "mcp-server-on-alpine-linux",
-    title: "MCP Server on Alpine Linux: Lightweight Container Optimization",
-    date: "2026-07-19",
-    category: "Platform Specific",
-    cluster: "platform-specific",
-    readTime: "1 min read",
-    excerpt: "Running MCP servers on Alpine Linux for minimal container footprints.",
-    keywords: ["Alpine MCP", "MCP Alpine server", "container optimization"],
-    ugcElements: ["Alpine guides", "Container tips"],
-    internalLinks: ["mcp-server-docker-containerization", "mcp-server-on-linux"],
-    content: `<p class="text-white/65 leading-relaxed">Alpine Linux's small footprint makes it ideal for MCP server containers in resource-constrained environments.</p>`
-  },
-  {
-    slug: "mcp-server-on-centos-stream",
-    title: "MCP Server on CentOS Stream: Rolling Release Stability",
-    date: "2026-07-19",
-    category: "Platform Specific",
-    cluster: "platform-specific",
-    readTime: "1 min read",
-    excerpt: "Using CentOS Stream for MCP server deployment with rolling updates.",
-    keywords: ["CentOS MCP", "MCP CentOS server", "Linux distribution"],
-    ugcElements: ["CentOS guides", "Update strategies"],
-    internalLinks: ["mcp-server-on-linux", "mcp-cross-platform-compatibility"],
-    content: `<p class="text-white/65 leading-relaxed">CentOS Stream provides a balance of stability and recent features for MCP server deployment.</p>`
-  },
-  {
-    slug: "mcp-server-on-rocky-linux",
-    title: "MCP Server on Rocky Linux: RHEL-Compatible Deployment",
-    date: "2026-07-19",
-    category: "Platform Specific",
-    cluster: "platform-specific",
-    readTime: "1 min read",
-    excerpt: "Deploying MCP servers on Rocky Linux as a RHEL-compatible alternative.",
-    keywords: ["Rocky Linux MCP", "MCP Rocky Linux server", "RHEL alternative"],
-    ugcElements: ["Rocky Linux guides", "Migration tips"],
-    internalLinks: ["mcp-server-on-linux", "mcp-cross-platform-compatibility"],
-    content: `<p class="text-white/65 leading-relaxed">Rocky Linux provides RHEL compatibility without licensing costs for MCP server deployment.</p>`
-  },
-  {
-    slug: "mcp-server-on-alma-linux",
-    title: "MCP Server on AlmaLinux: Community-Driven RHEL Alternative",
-    date: "2026-07-19",
-    category: "Platform Specific",
-    cluster: "platform-specific",
-    readTime: "1 min read",
-    excerpt: "Using AlmaLinux for MCP server deployment as a community-driven RHEL alternative.",
-    keywords: ["AlmaLinux MCP", "MCP AlmaLinux server", "community Linux"],
-    ugcElements: ["AlmaLinux guides", "Community support"],
-    internalLinks: ["mcp-server-on-linux", "mcp-cross-platform-compatibility"],
-    content: `<p class="text-white/65 leading-relaxed">AlmaLinux offers a community-driven alternative to RHEL for MCP server deployment.</p>`
-  },
-  {
-    slug: "mcp-server-on-debian",
-    title: "MCP Server on Debian: Stable and Reliable Deployment",
-    date: "2026-07-19",
-    category: "Platform Specific",
-    cluster: "platform-specific",
-    readTime: "1 min read",
-    excerpt: "Deploying MCP servers on Debian for stability and long-term support.",
-    keywords: ["Debian MCP", "MCP Debian server", "Linux stability"],
-    ugcElements: ["Debian guides", "LTS support"],
-    internalLinks: ["mcp-server-on-linux", "mcp-cross-platform-compatibility"],
-    content: `<p class="text-white/65 leading-relaxed">Debian's stability and long-term support make it excellent for production MCP server deployment.</p>`
-  },
-  {
-    slug: "mcp-server-on-ubuntu-lts",
-    title: "MCP Server on Ubuntu LTS: Long-Term Support Deployment",
-    date: "2026-07-19",
-    category: "Platform Specific",
-    cluster: "platform-specific",
-    readTime: "1 min read",
-    excerpt: "Using Ubuntu LTS releases for MCP server deployment with extended support.",
-    keywords: ["Ubuntu LTS MCP", "MCP Ubuntu LTS", "long-term support"],
-    ugcElements: ["Ubuntu guides", "LTS benefits"],
-    internalLinks: ["mcp-server-on-linux", "mcp-cross-platform-compatibility"],
-    content: `<p class="text-white/65 leading-relaxed">Ubuntu LTS provides 5 years of support for stable MCP server deployment in production environments.</p>`
-  },
-  {
-    slug: "mcp-server-on-gentoo",
-    title: "MCP Server on Gentoo: Customizable Performance Optimization",
-    date: "2026-07-19",
-    category: "Platform Specific",
-    cluster: "platform-specific",
-    readTime: "1 min read",
-    excerpt: "Optimizing MCP server performance on Gentoo through custom compilation.",
-    keywords: ["Gentoo MCP", "MCP Gentoo server", "performance optimization"],
-    ugcElements: ["Gentoo guides", "Compile flags"],
-    internalLinks: ["mcp-server-on-linux", "mcp-cross-platform-compatibility"],
-    content: `<p class="text-white/65 leading-relaxed">Gentoo's USE flags and custom compilation allow maximum performance optimization for MCP servers.</p>`
-  },
-  {
-    slug: "mcp-server-on-alpine-with-musl",
-    title: "MCP Server on Alpine with Musl: Ultra-Lightweight Deployment",
-    date: "2026-07-19",
-    category: "Platform Specific",
-    cluster: "platform-specific",
-    readTime: "1 min read",
-    excerpt: "Running MCP servers on Alpine Linux with Musl libc for minimal resource usage.",
-    keywords: ["Alpine Musl MCP", "MCP Alpine Musl", "ultra-lightweight"],
-    ugcElements: ["Musl benefits", "Resource optimization"],
-    internalLinks: ["mcp-server-on-alpine-linux", "mcp-server-docker-containerization"],
-    content: `<p class="text-white/65 leading-relaxed">Combining Alpine Linux with Musl libc creates the most lightweight possible MCP server deployment.</p>`
-  },
-  {
-    slug: "mcp-server-on-nixos",
-    title: "MCP Server on NixOS: Reproducible and Declarative Deployment",
-    date: "2026-07-19",
-    category: "Platform Specific",
-    cluster: "platform-specific",
-    readTime: "1 min read",
-    excerpt: "Using NixOS for reproducible and declarative MCP server deployment.",
-    keywords: ["NixOS MCP", "MCP NixOS server", "declarative deployment"],
-    ugcElements: ["NixOS guides", "Reproducibility"],
-    internalLinks: ["mcp-server-on-linux", "mcp-cross-platform-compatibility"],
-    content: `<p class="text-white/65 leading-relaxed">NixOS's declarative approach ensures reproducible MCP server deployments across environments.</p>`
   },
   
   // Additional Advanced Architecture posts (10 more to reach 25)

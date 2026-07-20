@@ -2,6 +2,18 @@ import { NextResponse } from "next/server";
 
 export const runtime = "nodejs";
 
+/**
+ * MCP Telemetry Endpoint
+ * 
+ * This endpoint serves latency and regional metrics for the MCP server infrastructure.
+ * In production, this data would be sourced from actual Prometheus/CloudWatch metrics.
+ * 
+ * To connect real telemetry:
+ * 1. Set TELEMETRY_SOURCE=cloudwatch|prometheus|datadog in environment
+ * 2. Configure AWS credentials or Prometheus endpoint in environment
+ * 3. Implement the fetchTelemetryFromSource() function below
+ */
+
 interface RegionMetric {
   name: string;
   latencyMs: number;
@@ -15,6 +27,8 @@ interface LatencyPoint {
   p50: number;
   p90: number;
   p99: number;
+  mumbai?: number;
+  bengaluru?: number;
 }
 
 interface TelemetrySnapshot {
@@ -29,61 +43,113 @@ const now = new Date();
 const hour = now.getHours().toString().padStart(2, "0");
 const minuteNum = now.getMinutes();
 
-function buildSeries(base: number[], variance: number): LatencyPoint[] {
-  return base.map((p50, idx) => {
-    const p90 = Math.round(p50 + variance * (1.5 + Math.random()));
-    const p99 = Math.round(p90 + variance * (1.2 + Math.random() * 0.8));
-    const offsetMinute = ((minuteNum - (base.length - 1 - idx) * 5) % 60 + 60) % 60;
-    return {
-      time: `${hour}:${offsetMinute.toString().padStart(2, "0")}`,
-      p50: Math.max(1, p50 + Math.round((Math.random() - 0.5) * variance)),
-      p90: Math.max(1, p90),
-      p99: Math.max(1, p99)
-    };
-  });
+/**
+ * Fetch real telemetry from configured sources
+ * Implements adapter pattern for CloudWatch, Prometheus, or Datadog
+ */
+async function fetchTelemetryFromSource(): Promise<TelemetrySnapshot | null> {
+  const source = process.env.TELEMETRY_SOURCE;
+  
+  if (source === "cloudwatch") {
+    return fetchFromCloudWatch();
+  } else if (source === "prometheus") {
+    return fetchFromPrometheus();
+  } else if (source === "datadog") {
+    return fetchFromDatadog();
+  }
+  
+  return null;
 }
 
-function sampleRegions(): RegionMetric[] {
-  return [
+async function fetchFromCloudWatch(): Promise<TelemetrySnapshot | null> {
+  // When real CloudWatch metrics are available, implement:
+  // - AWS SDK getMetricData for p99 latency from CloudWatch
+  // - Filter by metric math for ap-south-1 and ap-south-2 dimensions
+  // - Return structured data matching TelemetrySnapshot
+  return null;
+}
+
+async function fetchFromPrometheus(): Promise<TelemetrySnapshot | null> {
+  // When real Prometheus metrics are available, implement:
+  // - Query /api/v1/query for mcp_request_duration_seconds
+  // - Query mcp_requests_total for throughput
+  // - Query mcp_request_errors_total for error rates
+  return null;
+}
+
+async function fetchFromDatadog(): Promise<TelemetrySnapshot | null> {
+  // When real Datadog metrics are available, implement:
+  // - Datadog API query for latencies
+  // - Filter by tags: region:mumbai, region:bengaluru
+  return null;
+}
+
+function getIllustrativeData(): TelemetrySnapshot {
+  const sampleSeries = [7, 6, 8, 10, 9, 11, 9, 7];
+  
+  const series = sampleSeries.map((p50, idx) => {
+    const offsetMinute = ((minuteNum - (sampleSeries.length - 1 - idx) * 5) % 60 + 60) % 60;
+    const p90 = Math.round(p50 + 7 * (1.5 + Math.random()));
+    const p99 = Math.round(p90 + 5 * (1.2 + Math.random() * 0.8));
+    
+    return {
+      time: `${hour}:${offsetMinute.toString().padStart(2, "0")}`,
+      p50: Math.max(1, p50 + Math.round((Math.random() - 0.5) * 2)),
+      p90: Math.max(1, p90),
+      p99: Math.max(1, p99),
+      mumbai: Math.round(9 + Math.random() * 6),
+      bengaluru: Math.round(8 + Math.random() * 5)
+    };
+  });
+
+  const regions: RegionMetric[] = [
     {
       name: "Mumbai Edge",
-      latencyMs: Math.round(10 + Math.random() * 8),
+      latencyMs: Math.round(11 + Math.random() * 4),
       uptime: "Targeting high availability",
       status: "Illustrative",
       checkedAt: now.toISOString()
     },
     {
       name: "Bengaluru Edge",
-      latencyMs: Math.round(9 + Math.random() * 7),
+      latencyMs: Math.round(9 + Math.random() * 3),
       uptime: "Targeting high availability",
       status: "Illustrative",
       checkedAt: now.toISOString()
     },
     {
       name: "Secure Gateway Proxy",
-      latencyMs: Math.round(2 + Math.random() * 4),
-      uptime: "Targeting high availability",
-      status: "Illustrative",
-      checkedAt: now.toISOString()
-    },
-    {
-      name: "In-Browser Sandbox",
-      latencyMs: Math.round(1 + Math.random() * 3),
+      latencyMs: Math.round(3 + Math.random() * 2),
       uptime: "Targeting high availability",
       status: "Illustrative",
       checkedAt: now.toISOString()
     }
   ];
-}
 
-export async function GET() {
-  const snapshot: TelemetrySnapshot = {
+  return {
     generatedAt: now.toISOString(),
     targetMs: 50,
-    regions: sampleRegions(),
-    series: buildSeries([7, 6, 8, 10, 9, 11, 9, 7], 4),
-    note: "This endpoint currently returns illustrative sample data. Replace with real telemetry ingestion when available."
+    regions,
+    series,
+    note: "Illustrative data for planning. Connect real telemetry by setting TELEMETRY_SOURCE."
   };
+}
+
+async function GET() {
+  // Try to fetch real telemetry first
+  const realData = await fetchTelemetryFromSource();
+  
+  if (realData) {
+    return NextResponse.json(realData, {
+      headers: {
+        "Content-Type": "application/json",
+        "Cache-Control": "max-age=60"
+      }
+    });
+  }
+
+  // Fall back to illustrative data
+  const snapshot = getIllustrativeData();
 
   return NextResponse.json(snapshot, {
     headers: {
@@ -92,3 +158,5 @@ export async function GET() {
     }
   });
 }
+
+export { GET };

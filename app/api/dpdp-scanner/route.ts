@@ -38,6 +38,10 @@ function parseGithubRepo(input: string): { owner: string; repo: string } | null 
   }
 }
 
+/**
+ * Technical scanner: checks observable properties only
+ * Does NOT assess legal DPDP compliance - for that, consult a qualified professional
+ */
 async function scanGithubRepo(owner: string, repo: string): Promise<CheckResult[]> {
   const checks: CheckResult[] = [];
   const headers = { "User-Agent": "mcpserver.in-dpdp-scanner", Accept: "application/vnd.github+json" };

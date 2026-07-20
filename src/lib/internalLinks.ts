@@ -1,6 +1,4 @@
-import { pillars } from "../data/pillars";
-import { topics } from "../data/topics";
-import { servers } from "../data/servers";
+import { GlossaryTerm } from '../data/glossary';
 
 export interface RelatedLink {
   title: string;
@@ -11,13 +9,14 @@ export function getRelatedLinks(currentSlug: string, type: "pillar" | "topic" | 
   const links: RelatedLink[] = [];
 
   if (type === "pillar") {
-    // Return other pillars or high-intent topics
-    const relatedPillars = pillars.filter(p => p.slug !== currentSlug).slice(0, 3);
+    const relatedPillars = [];
+    const { pillars } = require('../data/pillars');
+    relatedPillars.push(...pillars.filter(p => p.slug !== currentSlug).slice(0, 3));
     relatedPillars.forEach(p => {
       links.push({ title: p.title, href: `/${p.slug}` });
     });
   } else if (type === "topic") {
-    // Return other topics in same pillar
+    const { topics } = require('../data/topics');
     const currentTopic = topics.find(t => t.slug === currentSlug);
     if (currentTopic) {
       const related = topics.filter(t => t.pillar === currentTopic.pillar && t.slug !== currentSlug).slice(0, 3);
@@ -26,6 +25,7 @@ export function getRelatedLinks(currentSlug: string, type: "pillar" | "topic" | 
       });
     }
   } else if (type === "server") {
+    const { servers } = require('../data/servers');
     const currentServer = servers.find(s => s.slug === currentSlug);
     if (currentServer) {
       const related = servers.filter(s => s.category === currentServer.category && s.slug !== currentSlug).slice(0, 3);
@@ -35,7 +35,6 @@ export function getRelatedLinks(currentSlug: string, type: "pillar" | "topic" | 
     }
   }
 
-  // Fallback links if empty
   if (links.length === 0) {
     return [
       { title: "MCP Server Pricing & Cost in India", href: "/mcp-server-pricing-india" },

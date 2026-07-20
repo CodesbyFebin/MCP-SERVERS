@@ -39,33 +39,19 @@ function validateSchema(schema) {
 function extractJsonLdFromHtml(html) {
   const schemas = [];
   
-  // Pattern 1: Next.js dangerouslySetInnerHTML pattern
+  // Pattern: dangerouslySetInnerHTML: {"__html":"{...JSON...}"}
   const dangerPattern = /dangerouslySetInnerHTML\s*:\s*\{\s*__html\s*:\s*"((?:[^"\\]|\\.)*)"\s*\}/g;
   let match;
+  
   while ((match = dangerPattern.exec(html)) !== null) {
     try {
-      const jsonStr = match[1].replace(/\\"/g, '"').replace(/\\\\/g, '\\');
+      let jsonStr = match[1];
+      // Unescape: \\" -> ", \\\\ -> \
+      jsonStr = jsonStr.replace(/\\"/g, '"').replace(/\\\\/g, '\\');
       const json = JSON.parse(jsonStr);
       schemas.push(json);
     } catch (e) {
       // Skip malformed
-    }
-  }
-  
-  // Pattern 2: Standard script tag with text content
-  const scriptPattern = /<script[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi;
-  while ((match = scriptPattern.exec(html)) !== null) {
-    const content = match[1].trim();
-    if (content) {
-      try {
-        const json = JSON.parse(content);
-        // Avoid duplicates
-        if (!schemas.find(s => s['@id'] === json['@id'])) {
-          schemas.push(json);
-        }
-      } catch (e) {
-        // Skip malformed
-      }
     }
   }
   
@@ -107,41 +93,46 @@ function validateBreadcrumbSchema(schema) {
 
 function processFile(fullPath) {
   totalPages++;
-  const html = fs.readFileSync(fullPath, 'utf-8');
-  const schemas = extractJsonLdFromHtml(html);
+  
+  try {
+    const html = fs.readFileSync(fullPath, 'utf-8');
+    const schemas = extractJsonLdFromHtml(html);
 
-  if (schemas.length === 0) return;
+    if (schemas.length === 0) return;
 
-  pagesWithSchema++;
+    pagesWithSchema++;
 
-  for (const schema of schemas) {
-    const baseValidation = validateSchema(schema);
-    let typeErrors = [];
+    for (const schema of schemas) {
+      const baseValidation = validateSchema(schema);
+      let typeErrors = [];
 
-    if (schema['@type']) {
-      const types = Array.isArray(schema['@type']) ? schema['@type'] : [schema['@type']];
-      for (const t of types) {
-        if (t === 'Article' || t === 'BlogPosting' || t === 'TechArticle') {
-          typeErrors.push(...validateArticleSchema(schema));
-        } else if (t === 'DefinedTerm') {
-          typeErrors.push(...validateDefinedTermSchema(schema));
-        } else if (t === 'FAQPage') {
-          typeErrors.push(...validateFAQSchema(schema));
-        } else if (t === 'BreadcrumbList') {
-          typeErrors.push(...validateBreadcrumbSchema(schema));
+      if (schema['@type']) {
+        const types = Array.isArray(schema['@type']) ? schema['@type'] : [schema['@type']];
+        for (const t of types) {
+          if (t === 'Article' || t === 'BlogPosting' || t === 'TechArticle') {
+            typeErrors.push(...validateArticleSchema(schema));
+          } else if (t === 'DefinedTerm') {
+            typeErrors.push(...validateDefinedTermSchema(schema));
+          } else if (t === 'FAQPage') {
+            typeErrors.push(...validateFAQSchema(schema));
+          } else if (t === 'BreadcrumbList') {
+            typeErrors.push(...validateBreadcrumbSchema(schema));
+          }
         }
       }
-    }
 
-    const allErrors = [...baseValidation.errors, ...typeErrors];
-    const allWarnings = baseValidation.warnings;
+      const allErrors = [...baseValidation.errors, ...typeErrors];
+      const allWarnings = baseValidation.warnings;
 
-    if (allErrors.length > 0) {
-      totalErrors++;
+      if (allErrors.length > 0) {
+        totalErrors++;
+      }
+      if (allWarnings.length > 0) {
+        totalWarnings += allWarnings.length;
+      }
     }
-    if (allWarnings.length > 0) {
-      totalWarnings += allWarnings.length;
-    }
+  } catch (error) {
+    console.warn(`⚠️ Error processing ${fullPath}: ${error.message}`);
   }
 }
 

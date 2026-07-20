@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Breadcrumbs from "./Breadcrumbs";
-import { ShieldCheck, Loader2, CheckCircle2, XCircle, AlertTriangle } from "lucide-react";
+import { ShieldCheck, Loader2, CheckCircle2, XCircle, AlertTriangle, Info } from "lucide-react";
 
 interface CheckResult {
   id: string;
@@ -61,7 +61,7 @@ export default function DpdpScannerClient() {
 
   return (
     <div id="tools-page" className="min-h-screen bg-transparent text-[#e0e0e0] font-sans pt-6 pb-16">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <Breadcrumbs
           items={[
             { name: "Developer Tools", href: "/tools/mcp-playground" },
@@ -72,11 +72,27 @@ export default function DpdpScannerClient() {
         <div className="text-center py-6 mb-8 border-b border-white/5 relative">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-60 h-60 bg-cyan-500/5 rounded-full blur-[80px] pointer-events-none" />
           <h1 className="text-3xl font-display font-bold text-white tracking-tighter leading-tight">
-            DPDP Compliance Scanner
+            Technical Compliance Scanner
           </h1>
           <p className="mt-2 text-xs text-white/50 max-w-xl mx-auto leading-relaxed">
-            Runs real, live checks against a GitHub repository or a live MCP server endpoint — license, security
-            policy, data-handling disclosure, HTTPS, and access control. No mock data.
+            Checks technical indicators (license, security policy, HTTPS, access control) on GitHub repos or endpoints.
+            Does not assess legal compliance.
+          </p>
+          <div className="mt-3 p-2 rounded-lg border border-amber-500/20 bg-amber-500/5 text-amber-200 text-[10px] flex items-center gap-1.5 justify-center">
+            <Info className="w-3 h-3" />
+            Educational tool only. Scan results do not constitute legal advice.
+          </div>
+        </div>
+
+        <div className="bg-white/[0.02] border border-white/5 rounded-2xl p-6 sm:p-8 shadow-xl backdrop-blur-md">
+          <div className="flex items-center gap-2 pb-3 border-b border-white/5">
+            <ShieldCheck className="w-5 h-5 text-cyan-400" />
+            <h3 className="font-display font-bold text-base text-white">Run Technical Checks</h3>
+          </div>
+
+          <p className="mt-3 text-xs text-white/50 leading-relaxed">
+            Enter a GitHub repository URL or live endpoint to check technical indicators.
+            Each check verifies publicly available information only.
           </p>
         </div>
 

@@ -11,6 +11,9 @@ export default function robots(): MetadataRoute.Robots {
         userAgent: "*",
         allow: "/",
         disallow: [
+          "/api/",
+          "/drafts/",
+          "/internal/",
           "/login/",
           "/register/",
           "/profile/",
@@ -20,54 +23,31 @@ export default function robots(): MetadataRoute.Robots {
         ],
       },
       {
-        userAgent: "Googlebot",
-        allow: "/",
-        disallow: [
-          "/login/",
-          "/register/",
-          "/profile/",
-          "/dashboard/",
-          "/admin/",
-          "/search/",
+        userAgent: [
+          "GPTBot",
+          "ChatGPT-User",
+          "ClaudeBot",
+          "Claude-Img",
+          "PerplexityBot",
+          "Perplexity-Skimen",
+          "Google-Extended",
+          "Bytespider",
+          "Applebot-Extended",
+          "cohere-ai",
+          "cohere-training-crawler",
         ],
-      },
-      {
-        userAgent: "Googlebot-Image",
         allow: "/",
       },
       {
-        userAgent: "Googlebot-News",
-        allow: "/",
-      },
-      {
-        userAgent: "Google-Extended",
-        allow: "/",
-      },
-      {
-        userAgent: "GPTBot",
-        allow: "/",
-      },
-      {
-        userAgent: "ChatGPT-User",
-        allow: "/",
-      },
-      {
-        userAgent: "ClaudeBot",
-        allow: "/",
-      },
-      {
-        userAgent: "PerplexityBot",
-        allow: "/",
-      },
-      {
-        userAgent: "BingBot",
-        allow: "/",
-      },
-      {
-        userAgent: "ia_archiver",
-        allow: "/",
-      },
+        userAgent: [
+          "AhrefsBot",
+          "SemrushBot",
+          "MJ12bot",
+        ],
+        disallow: "/",
+      }
     ],
     sitemap: `${baseUrl}/sitemap-index.xml`,
+    host: baseUrl,
   };
 }
