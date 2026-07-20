@@ -10,6 +10,9 @@
     "lint": "tsc --noEmit",
     "typecheck": "tsc --noEmit",
     "seo:audit": "tsx validate-seo.ts",
+    "seo:rankings": "node scripts/seo-rank-tracker.mjs",
+    "generate:llms": "node scripts/generate-llms-full.mjs",
+    "generate:content": "node scripts/generate-content.mjs",
     "verify:production": "node scripts/verify-production.mjs",
     "submit-indexnow": "node scripts/submit-indexnow.mjs",
     "clean": "rm -rf dist .next"

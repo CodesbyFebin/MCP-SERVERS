@@ -8,7 +8,7 @@ import SchemaJsonLd from "../../../src/components/SchemaJsonLd";
 import { getFAQSchema } from "../../../src/lib/schema";
 import { notFound } from "next/navigation";
 import { 
-  ArrowLeft, Tag, Info, Cpu, FileText
+  ArrowLeft, Tag, Info, Cpu, FileText, Quote
 } from "lucide-react";
 
 interface PageProps {
@@ -86,10 +86,31 @@ export default async function GlossaryDetailPage({ params }: PageProps) {
       ? getFAQSchema(term.faqs.map((f) => ({ question: f.question, answer: f.answer })))
       : null;
 
+  const citeThisPage = {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "name": `${term.term} - MCP Glossary Definition`,
+    "author": {
+      "@type": "Organization",
+      "name": "MCPserver.in Engineering",
+      "url": "https://mcpserver.in"
+    },
+    "datePublished": "2026-03-24",
+    "dateModified": "2026-07-09",
+    "citation": [
+      ...term.references.map(ref => ({
+        "@type": "CreativeWork",
+        "url": ref,
+        "name": ref.replace(/^https?:\/\//, "")
+      }))
+    ]
+  };
+
   return (
     <div id="glossary-detail" className="min-h-screen bg-[#050508] text-white pt-6 pb-16 font-sans">
       <SchemaJsonLd schema={termSchema} />
       {faqSchema && <SchemaJsonLd schema={faqSchema} />}
+      <SchemaJsonLd schema={citeThisPage} />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <Breadcrumbs items={detailBreadcrumbs} />
@@ -136,8 +157,11 @@ export default async function GlossaryDetailPage({ params }: PageProps) {
               <h2 className="text-sm font-bold uppercase tracking-wider text-cyan-400 flex items-center gap-1.5">
                 <Info className="w-4 h-4" /> Technical Context & Protocol Usage
               </h2>
-              <div className="prose prose-invert max-w-none text-xs sm:text-sm text-gray-300 space-y-4 leading-relaxed">
-                <p>{term.detailedExplanation}</p>
+              <dl className="prose prose-invert max-w-none text-xs sm:text-sm text-gray-300 space-y-4 leading-relaxed">
+                <div>
+                  <dt className="text-xs font-semibold text-cyan-400">Detailed Explanation</dt>
+                  <dd className="mt-1 text-gray-300">{term.detailedExplanation}</dd>
+                </div>
                 
                 {term.technicalDetails.format && (
                   <div className="mt-4 p-4 rounded-xl bg-black/40 border border-gray-800 flex items-start gap-3">
@@ -153,19 +177,19 @@ export default async function GlossaryDetailPage({ params }: PageProps) {
                     </div>
                   </div>
                 )}
-              </div>
+              </dl>
             </div>
 
             {/* Real-World Use Case */}
             {term.useCase && (
-              <div className="p-6 rounded-2xl bg-indigo-950/10 border border-indigo-900/30 space-y-3">
-                <h3 className="text-xs font-bold uppercase tracking-wider text-indigo-400">
-                  Real-World Implementation Use Case
+              <blockquote className="p-6 rounded-2xl bg-indigo-950/10 border border-indigo-900/30 space-y-3">
+                <h3 className="text-xs font-bold uppercase tracking-wider text-indigo-400 flex items-center gap-1.5">
+                  <Quote className="w-4 h-4" /> Real-World Implementation Use Case
                 </h3>
                 <p className="text-xs sm:text-sm text-gray-300 leading-relaxed">
                   {term.useCase}
                 </p>
-              </div>
+              </blockquote>
             )}
 
             {/* FAQ (visible content matching the FAQPage schema above) */}
@@ -197,6 +221,15 @@ export default async function GlossaryDetailPage({ params }: PageProps) {
               updatedDate="2026-07-09"
               citations={term.references.map(ref => ({ label: ref.replace(/^https?:\/\//, ""), url: ref }))}
             />
+
+            {/* Cite This Page */}
+            <div className="p-4 rounded-xl bg-gray-900/10 border border-gray-900">
+              <h3 className="text-xs font-bold text-cyan-400 mb-2">Cite This Page</h3>
+              <p className="text-xs text-gray-400 mb-2">MLA Style:</p>
+              <blockquote className="text-xs text-gray-300 bg-black/20 p-3 rounded border border-gray-800">
+                <span className="text-cyan-400">MCPserver.in Engineering</span>. &quot;<span className="text-white">{term.term}</span>.&quot; <span className="text-cyan-400">MCPserver.in Knowledge Hub</span>, 09 July 2026, <span className="text-cyan-400">mcpserver.in/glossary/{term.slug}</span>.
+              </blockquote>
+            </div>
 
           </div>
 

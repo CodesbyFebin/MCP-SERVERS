@@ -2247,5 +2247,309 @@ export const glossaryTerms: GlossaryTerm[] = [
         "https://docs.anthropic.com/claude/docs/kv-cache",
         "https://huggingface.co/docs/transformers/main/en/kv_cache"
       ]
+    },
+    {
+      slug: "langchain",
+      term: "LangChain",
+      definition: "LangChain is a framework for building applications with large language models, including agents, chains, and retrieval pipelines.",
+      detailedExplanation: "LangChain provides abstractions for prompt templates, memory, tool calling, and agent loops. It integrates with MCP through connector packages, letting LangChain agents use MCP servers as tool providers.",
+      keyTakeaways: [
+        "LLM application framework",
+        "Abstractions for chains and agents",
+        "Integrates with MCP",
+        "Popular for RAG and agents"
+      ],
+      useCase: "A LangChain agent uses an MCP filesystem server as a tool for reading project files.",
+      technicalDetails: {
+        protocolLayer: "Application / Framework",
+        format: "Python and JS libraries",
+        latencyProfile: "Depends on model and tools"
+      },
+      references: ["https://python.langchain.com/docs/"]
+    },
+    {
+      slug: "langgraph",
+      term: "LangGraph",
+      definition: "LangGraph is a library for building stateful, multi-agent workflows as graphs with explicit control flow.",
+      detailedExplanation: "Unlike linear chains, LangGraph models agent steps as nodes and edges, supporting cycles, branching, and human-in-the-loop. It pairs well with MCP by treating each server as a tool node in the graph.",
+      keyTakeaways: [
+        "Graph-based agent workflows",
+        "Supports cycles and branching",
+        "Human-in-the-loop capable",
+        "Pairs with MCP tools"
+      ],
+      useCase: "A LangGraph workflow routes a research task across search, analysis, and writing agents using MCP tools.",
+      technicalDetails: {
+        protocolLayer: "Application / Orchestration",
+        format: "Python library",
+        latencyProfile: "Depends on graph complexity"
+      },
+      references: ["https://langchain-ai.github.io/langgraph/"]
+    },
+    {
+      slug: "autogen",
+      term: "Microsoft AutoGen",
+      definition: "AutoGen is a framework for building multi-agent conversations where multiple LLM agents collaborate to solve tasks.",
+      detailedExplanation: "AutoGen models agents and their dialogues, supporting customizable roles and group chats. It can integrate MCP servers as tool backends, enabling agents to call external systems during conversation.",
+      keyTakeaways: [
+        "Multi-agent conversation framework",
+        "Customizable agent roles",
+        "Group chat support",
+        "Integrates MCP as tool backend"
+      ],
+      useCase: "An AutoGen group chat uses an MCP database server to ground answers in real data.",
+      technicalDetails: {
+        protocolLayer: "Application / Multi-Agent",
+        format: "Python framework",
+        latencyProfile: "Depends on conversation length"
+      },
+      references: ["https://microsoft.github.io/autogen/"]
+    },
+    {
+      slug: "crewai",
+      term: "CrewAI",
+      definition: "CrewAI is a framework for orchestrating role-playing autonomous AI agents that collaborate on tasks as a crew.",
+      detailedExplanation: "CrewAI structures work as a crew of agents with defined roles, tasks, and a process (sequential or hierarchical). It supports MCP tools so agents can use external servers during execution.",
+      keyTakeaways: [
+        "Role-playing agent crews",
+        "Sequential or hierarchical process",
+        "Task and agent definitions",
+        "Supports MCP tools"
+      ],
+      useCase: "A CrewAI crew of researcher, writer, and reviewer agents uses MCP tools for web search and file writing.",
+      technicalDetails: {
+        protocolLayer: "Application / Orchestration",
+        format: "Python framework",
+        latencyProfile: "Depends on crew size"
+      },
+      references: ["https://docs.crewai.com/"]
+    },
+    {
+      slug: "llamaindex",
+      term: "LlamaIndex",
+      definition: "LlamaIndex is a data framework for connecting LLMs with external data sources, specializing in indexing and retrieval.",
+      detailedExplanation: "LlamaIndex turns unstructured and semi-structured data into queryable indexes, the backbone of many RAG systems. It can use MCP servers as data connectors, exposing indexed corpora to agents.",
+      keyTakeaways: [
+        "Data framework for LLMs",
+        "Indexing and retrieval focus",
+        "Backbone of many RAG systems",
+        "Uses MCP as data connector"
+      ],
+      useCase: "A LlamaIndex pipeline indexes company docs and exposes them to an MCP agent via a query tool.",
+      technicalDetails: {
+        protocolLayer: "Data / Retrieval",
+        format: "Python library",
+        latencyProfile: "Indexing: minutes; Query: 50-200ms"
+      },
+      references: ["https://docs.llamaindex.ai/"]
+    },
+    {
+      slug: "semantic-kernel",
+      term: "Semantic Kernel",
+      definition: "Semantic Kernel is Microsoft's SDK for integrating LLMs into apps with plugins, planners, and memory.",
+      detailedExplanation: "Semantic Kernel provides a skill/plugin model that maps naturally onto MCP tools. It supports C#, Python, and Java, making it suitable for enterprise .NET shops adopting MCP.",
+      keyTakeaways: [
+        "Microsoft LLM integration SDK",
+        "Plugin and planner model",
+        "Maps onto MCP tools",
+        "C#, Python, Java support"
+      ],
+      useCase: "A .NET team uses Semantic Kernel with an MCP server to add search to their copilot.",
+      technicalDetails: {
+        protocolLayer: "Application / SDK",
+        format: "C#, Python, Java SDK",
+        latencyProfile: "Depends on plugins"
+      },
+      references: ["https://learn.microsoft.com/en-us/semantic-kernel/"]
+    },
+    {
+      slug: "pinecone",
+      term: "Pinecone",
+      definition: "Pinecone is a managed vector database for building large-scale similarity search and RAG applications.",
+      detailedExplanation: "Pinecone handles indexing, sharding, and querying of embeddings at scale without infrastructure management. MCP servers can wrap Pinecone as a retrieval tool for agentic RAG.",
+      keyTakeaways: [
+        "Managed vector database",
+        "Scales embedding search",
+        "No infra management",
+        "MCP can wrap as RAG tool"
+      ],
+      useCase: "An MCP RAG server queries Pinecone to retrieve relevant support articles for an agent.",
+      technicalDetails: {
+        protocolLayer: "Data / Vector",
+        format: "gRPC/REST API",
+        latencyProfile: "Query: 10-50ms"
+      },
+      references: ["https://www.pinecone.io/docs/"]
+    },
+    {
+      slug: "weaviate",
+      term: "Weaviate",
+      definition: "Weaviate is an open-source vector database with built-in vectorization and hybrid search capabilities.",
+      detailedExplanation: "Weaviate stores objects and their vectors, supporting semantic and keyword (BM25) hybrid search. It can run self-hosted or as a managed cloud, making it flexible for MCP RAG deployments.",
+      keyTakeaways: [
+        "Open-source vector database",
+        "Built-in vectorization",
+        "Hybrid semantic + keyword search",
+        "Self-hosted or managed"
+      ],
+      useCase: "An MCP server uses Weaviate hybrid search to find documents by meaning and keywords.",
+      technicalDetails: {
+        protocolLayer: "Data / Vector",
+        format: "REST and GraphQL APIs",
+        latencyProfile: "Query: 10-100ms"
+      },
+      references: ["https://weaviate.io/developers/weaviate/"]
+    },
+    {
+      slug: "qdrant",
+      term: "Qdrant",
+      definition: "Qdrant is a vector similarity search engine and vector database written in Rust, optimized for performance.",
+      detailedExplanation: "Qdrant offers filtered vector search, quantization for memory efficiency, and a simple REST/gRPC API. MCP servers use it for fast, production-grade retrieval in RAG pipelines.",
+      keyTakeaways: [
+        "Rust-based vector database",
+        "Filtered similarity search",
+        "Quantization for efficiency",
+        "Fast production retrieval"
+      ],
+      useCase: "An MCP server queries Qdrant for nearest-neighbor documents in a RAG agent.",
+      technicalDetails: {
+        protocolLayer: "Data / Vector",
+        format: "REST and gRPC APIs",
+        latencyProfile: "Query: 5-50ms"
+      },
+      references: ["https://qdrant.tech/documentation/"]
+    },
+    {
+      slug: "chromadb",
+      term: "ChromaDB",
+      definition: "ChromaDB is an open-source embedding database designed for developer-friendly RAG prototyping.",
+      detailedExplanation: "ChromaDB runs embedded or as a server, automatically handling embedding storage and retrieval. MCP servers use it for local, lightweight RAG without external infrastructure.",
+      keyTakeaways: [
+        "Open-source embedding database",
+        "Developer-friendly RAG",
+        "Embedded or server mode",
+        "Lightweight local RAG"
+      ],
+      useCase: "A local MCP server uses ChromaDB to answer questions over a developer's notes.",
+      technicalDetails: {
+        protocolLayer: "Data / Vector",
+        format: "Python/JS client, HTTP API",
+        latencyProfile: "Local query: 1-20ms"
+      },
+      references: ["https://docs.trychroma.com/"]
+    },
+    {
+      slug: "dynamodb",
+      term: "Amazon DynamoDB",
+      definition: "DynamoDB is AWS's fully managed NoSQL key-value and document database with single-digit millisecond performance.",
+      detailedExplanation: "DynamoDB is used for MCP servers needing low-latency, serverless data access. Its on-demand capacity and global tables suit spiky agent workloads. MCP servers wrap it as a data tool with fine-grained access.",
+      keyTakeaways: [
+        "Managed NoSQL key-value store",
+        "Single-digit ms performance",
+        "Serverless scaling",
+        "MCP wraps as data tool"
+      ],
+      useCase: "An MCP server stores agent conversation state in DynamoDB for low-latency retrieval.",
+      technicalDetails: {
+        protocolLayer: "Data / Cloud",
+        format: "AWS SDK (HTTP)",
+        latencyProfile: "Single-digit ms reads"
+      },
+      references: ["https://docs.aws.amazon.com/dynamodb/"]
+    },
+    {
+      slug: "bigquery",
+      term: "Google BigQuery",
+      definition: "BigQuery is Google Cloud's serverless, highly scalable data warehouse for analytics using SQL.",
+      detailedExplanation: "BigQuery handles petabyte-scale queries with a columnar storage engine. MCP servers expose BigQuery as an analytics tool, letting agents query warehouse data with natural language translated to SQL.",
+      keyTakeaways: [
+        "Serverless data warehouse",
+        "Petabyte-scale SQL analytics",
+        "Columnar storage engine",
+        "MCP exposes as analytics tool"
+      ],
+      useCase: "An MCP server translates a user question into BigQuery SQL and returns aggregated insights.",
+      technicalDetails: {
+        protocolLayer: "Data / Warehouse",
+        format: "SQL over REST/BigQuery Storage API",
+        latencyProfile: "Query: 1-30s depending on scan"
+      },
+      references: ["https://cloud.google.com/bigquery/docs"]
+    },
+    {
+      slug: "snowflake",
+      term: "Snowflake",
+      definition: "Snowflake is a cloud data platform for data warehousing, data engineering, and analytics.",
+      detailedExplanation: "Snowflake separates storage and compute, enabling elastic scaling for concurrent queries. MCP servers wrap Snowflake so agents can query governed enterprise data with proper role-based access.",
+      keyTakeaways: [
+        "Cloud data platform",
+        "Separates storage and compute",
+        "Elastic concurrent scaling",
+        "MCP wraps with RBAC"
+      ],
+      useCase: "An MCP server runs a Snowflake query to report last quarter's revenue to an agent.",
+      technicalDetails: {
+        protocolLayer: "Data / Warehouse",
+        format: "SQL over Snowflake API",
+        latencyProfile: "Query: seconds to minutes"
+      },
+      references: ["https://docs.snowflake.com/"]
+    },
+    {
+      slug: "databricks",
+      term: "Databricks",
+      definition: "Databricks is a unified analytics platform built on Apache Spark for data engineering, ML, and analytics.",
+      detailedExplanation: "Databricks provides managed Spark, Delta Lake, and ML tooling. MCP servers can expose Databricks SQL and notebook results as tools, bridging enterprise data platforms and AI agents.",
+      keyTakeaways: [
+        "Unified analytics on Spark",
+        "Delta Lake storage",
+        "ML and data engineering",
+        "MCP exposes SQL/notebooks"
+      ],
+      useCase: "An MCP server queries a Delta Lake table via Databricks SQL for an analytics agent.",
+      technicalDetails: {
+        protocolLayer: "Data / Platform",
+        format: "SQL/Spark API",
+        latencyProfile: "Query: seconds to minutes"
+      },
+      references: ["https://docs.databricks.com/"]
+    },
+    {
+      slug: "apache-kafka",
+      term: "Apache Kafka",
+      definition: "Kafka is a distributed event streaming platform for high-throughput, fault-tolerant data pipelines.",
+      detailedExplanation: "Kafka ingests and streams events across microservices. MCP servers can consume or produce Kafka topics as tools, enabling agents to react to real-time event streams.",
+      keyTakeaways: [
+        "Distributed event streaming",
+        "High throughput, fault tolerant",
+        "Topic-based pub/sub",
+        "MCP consumes/produces topics"
+      ],
+      useCase: "An MCP server publishes an agent action to a Kafka topic for downstream processing.",
+      technicalDetails: {
+        protocolLayer: "Streaming / Messaging",
+        format: "Binary TCP protocol",
+        latencyProfile: "Publish: 1-10ms"
+      },
+      references: ["https://kafka.apache.org/documentation/"]
+    },
+    {
+      slug: "rabbitmq",
+      term: "RabbitMQ",
+      definition: "RabbitMQ is a message broker implementing AMQP for reliable message queuing between services.",
+      detailedExplanation: "RabbitMQ routes messages through exchanges and queues with flexible routing rules. MCP servers can enqueue tasks or consume messages, integrating agents into existing message-driven architectures.",
+      keyTakeaways: [
+        "Message broker (AMQP)",
+        "Reliable queuing",
+        "Flexible routing rules",
+        "MCP integrates with queues"
+      ],
+      useCase: "An MCP server enqueues a long-running job to a RabbitMQ queue for async processing.",
+      technicalDetails: {
+        protocolLayer: "Messaging / Queue",
+        format: "AMQP over TCP",
+        latencyProfile: "Publish: 1-5ms"
+      },
+      references: ["https://www.rabbitmq.com/docs"]
     }
-  ];
+];

@@ -42,6 +42,15 @@ const sections = [
       "Store logs immutably where feasible (write-once storage or an append-only log).",
     ],
   },
+  {
+    title: "RBI Payment Data Controls",
+    body: "For MCP servers handling payment data, RBI's data localization requirements apply in addition to DPDP.",
+    items: [
+      "Never cache payment card numbers or UPI transaction IDs in plain text.",
+      "Use vault-compliant storage or tokenization for any payment-related identifiers.",
+      "Ensure payment gateway integrations use Indian-registered acquiring banks.",
+    ],
+  },
 ];
 
 export default function DPDPGuidePage() {
@@ -113,7 +122,7 @@ export default function DPDPGuidePage() {
 
           <section className="rounded-2xl border border-red-400/20 bg-red-500/[0.04] p-6">
             <h2 className="text-2xl font-black text-white">
-              <span className="text-red-400">4.</span> The Cost of Non-Compliance
+              <span className="text-red-400">5.</span> The Cost of Non-Compliance
             </h2>
             <p className="mt-3 text-sm leading-relaxed text-white/65">
               Under the DPDP Act's penalty schedule, monetary penalties for significant data breaches or failure to implement reasonable security safeguards can reach up to{" "}

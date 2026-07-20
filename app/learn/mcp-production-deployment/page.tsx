@@ -168,43 +168,62 @@ export default function McpProductionDeploymentPage() {
 
           <div className="grid gap-6 lg:grid-cols-2">
             <div>
-              <h3 className="text-sm font-black text-white mb-3">Mumbai Region (ap-south-1)</h3>
-              <pre className="overflow-x-auto rounded-lg border border-white/10 bg-black/40 p-4 text-xs text-cyan-300">
-{`# terraform/mumbai/main.tf
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 5.0"
-    }
-  }
-}
-
-provider "aws" {
-  region = "ap-south-1"
-}
-
-resource "aws_instance" "mcp_server" {
-  ami           = "ami-0c1a7f89451184c8b"
-  instance_type = "t3.medium"
-  subnet_id     = var.subnet_id
+              <h3 className="text-sm font-black text-white mb-3">Mumbai Region (ap-south-1) - Full VPC Setup</h3>
+              <pre className="overflow-x-auto rounded-lg border border-white/10 bg-black/40 p-4 text-xs text-cyan-300">{`# terraform/mumbai/vpc.tf
+resource "aws_vpc" "mcp" {
+  cidr_block           = "10.0.0.0/16"
+  enable_dns_hostnames = true
+  enable_dns_support   = true
 
   tags = {
-    Name = "mcp-server-mumbai"
-    Region = "ap-south-1"
+    Name = "mcp-vpc-mumbai"
   }
 }
 
-resource "aws_lb" "mcp_lb" {
-  name               = "mcp-server-lb"
-  internal           = false
-  load_balancer_type = "application"
-  security_groups    = [aws_security_group.mcp_lb_sg.id]
-  subnets            = var.subnet_ids
+resource "aws_subnet" "public" {
+  vpc_id                  = aws_vpc.mcp.id
+  cidr_block              = "10.0.1.0/24"
+  availability_zone       = "ap-south-1a"
+  map_public_ip_on_launch = true
+
+  tags = {
+    Name = "mcp-public-mumbai"
+  }
 }
 
-resource "aws_security_group" "mcp_lb_sg" {
-  name = "mcp-lb-sg"
+resource "aws_subnet" "private" {
+  vpc_id            = aws_vpc.mcp.id
+  cidr_block        = "10.0.2.0/24"
+  availability_zone = "ap-south-1a"
+
+  tags = {
+    Name = "mcp-private-mumbai"
+  }
+}
+
+# terraform/mumbai/security.tf
+resource "aws_security_group" "mcp_server" {
+  name_prefix = "mcp-server"
+  vpc_id      = aws_vpc.mcp.id
+
+  ingress {
+    from_port       = 443
+    to_port         = 443
+    protocol        = "tcp"
+    security_groups = [aws_security_group.alb.id]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
+resource "aws_security_group" "alb" {
+  name_prefix = "mcp-alb"
+  vpc_id      = aws_vpc.mcp.id
 
   ingress {
     from_port   = 443
@@ -219,61 +238,256 @@ resource "aws_security_group" "mcp_lb_sg" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
-}`}
-              </pre>
-            </div>
+}
 
-            <div>
-              <h3 className="text-sm font-black text-white mb-3">Bengaluru Region (ap-south-2)</h3>
-              <pre className="overflow-x-auto rounded-lg border border-white/10 bg-black/40 p-4 text-xs text-emerald-300">
-{`# terraform/bengaluru/main.tf
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 5.0"
-    }
+# terraform/mumbai/iam.tf
+resource "aws_iam_role" "mcp_ec2" {
+  name = "mcp-ec2-role"
+
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [{
+      Action    = "sts:AssumeRole"
+      Effect    = "Allow"
+      Principal = { Service = "ec2.amazonaws.com" }
+    }]
+  })
+}
+
+resource "aws_iam_role_policy_attachment" "cloudwatch" {
+  role       = aws_iam_role.mcp_ec2.name
+  policy_arn = "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy"
+}
+
+# terraform/mumbai/main.tf
+resource "aws_instance" "mcp_server" {
+  ami                    = "ami-0c1a7f89451184c8b"
+  instance_type          = "t3.medium"
+  subnet_id              = aws_subnet.private.id
+  vpc_security_group_ids = [aws_security_group.mcp_server.id]
+  iam_instance_profile   = aws_iam_instance_profile.mcp_ec2.name
+
+  user_data = base64encode(<<EOF
+#!/bin/bash
+yum update -y
+curl -fsSL https://rpm.nodesource.com/setup_20.x | bash -
+yum install -y nodejs git
+# Install MCP server from your repo
+git clone YOUR_MCP_REPO /app
+cd /app && npm ci --production
+# Start with systemd or PM2
+npm install -g pm2
+pm2 start npm --name mcp-server -- start
+pm2 startup
+pm2 save
+EOF
+  )
+
+  root_block_device {
+    encrypted = true
+    volume_size = 20
+  }
+
+  tags = {
+    Name = "mcp-server-mumbai"
   }
 }
 
+resource "aws_lb" "mcp" {
+  name               = "mcp-alb-mumbai"
+  internal           = false
+  load_balancer_type = "application"
+  security_groups    = [aws_security_group.alb.id]
+  subnets            = [aws_subnet.public.id]
+
+  enable_deletion_protection = false
+
+  tags = {
+    Name = "mcp-alb-mumbai"
+  }
+}
+
+resource "aws_lb_target_group" "mcp" {
+  name        = "mcp-tg-mumbai"
+  port        = 443
+  protocol    = "HTTPS"
+  vpc_id      = aws_vpc.mcp.id
+  target_type = "instance"
+
+  health_check {
+    path                = "/health"
+    healthy_threshold   = 2
+    unhealthy_threshold = 3
+    timeout             = 5
+    interval            = 30
+  }
+}
+
+resource "aws_lb_listener" "https" {
+  load_balancer_arn = aws_lb.mcp.arn
+  port              = "443"
+  protocol          = "HTTPS"
+  ssl_policy        = "ELBSecurityPolicy-TLS13-1-2-2021-06"
+  certificate_arn   = var.acm_certificate_arn
+
+  default_action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.mcp.arn
+  }
+}
+
+# terraform/mumbai/variables.tf
+variable "acm_certificate_arn" {
+  description = "ACM certificate for HTTPS listener"
+  type        = string
+}
+
+# terraform/mumbai/cloudwatch.tf
+resource "aws_cloudwatch_metric_alarm" "high_latency" {
+  alarm_name          = "mcp-high-latency-mumbai"
+  alarm_description   = "Alert when P99 latency exceeds 50ms"
+  comparison_operator = "GreaterThanThreshold"
+  evaluation_periods  = "2"
+  metric_name         = "Latency"
+  namespace           = "AWS/ApplicationELB"
+  period              = "60"
+  statistic           = "p99"
+  threshold           = "0.050"
+  alarm_actions       = [aws_sns_topic.alerts.arn]
+}
+
+resource "aws_sns_topic" "alerts" {
+  name = "mcp-alerts-mumbai"
+}`}</pre>
+            </div>
+
+            <div>
+              <h3 className="text-sm font-black text-white mb-3">Bengaluru Region (ap-south-2) - Containerized</h3>
+              <pre className="overflow-x-auto rounded-lg border border-white/10 bg-black/40 p-4 text-xs text-emerald-300">{`# terraform/bengaluru/ecs.tf
 provider "aws" {
   region = "ap-south-2"
 }
 
-resource "aws_instance" "mcp_server" {
-  ami           = "ami-0c1a7f89451184c8b"
-  instance_type = "t3.medium"
-  subnet_id     = var.subnet_id
+resource "aws_ecs_cluster" "mcp" {
+  name = "mcp-cluster-blr"
+}
 
-  tags = {
-    Name = "mcp-server-bengaluru"
-    Region = "ap-south-2"
+resource "aws_ecs_task_definition" "mcp" {
+  family                   = "mcp-server"
+  network_mode             = "awsvpc"
+  requires_compatibilities = ["FARGATE"]
+  cpu                     = "512"
+  memory                  = "1024"
+  execution_role_arn      = aws_iam_role.ecs_task_execution.arn
+  task_role_arn           = aws_iam_role.mcp_task.arn
+
+  container_definitions = jsonencode([{
+    name      = "mcp-server"
+    image     = "YOUR_ECR_REPO:latest"
+    essential = true
+    portMappings = [{
+      containerPort = 443
+      hostPort      = 443
+      protocol      = "tcp"
+    }]
+    logConfiguration = {
+      logDriver = "awslogs"
+      options = {
+        awslogs-group         = "/ecs/mcp-server"
+        awslogs-region        = "ap-south-2"
+        awslogs-stream-prefix = "ecs"
+      }
+    }
+    environment = [
+      { name = "NODE_ENV", value = "production" },
+      { name = "LOG_LEVEL", value = "info" }
+    ]
+    secrets = [
+      { name = "MCP_API_KEY", valueFrom = aws_ssm_parameter.mcp_api_key.arn }
+    ]
+  }])
+}
+
+resource "aws_ecs_service" "mcp" {
+  name            = "mcp-service-blr"
+  cluster         = aws_ecs_cluster.mcp.id
+  task_definition = aws_ecs_task_definition.mcp.arn
+  desired_count   = 2
+  launch_type     = "FARGATE"
+
+  network_configuration {
+    subnets          = [aws_subnet.private.id]
+    security_groups  = [aws_security_group.ecs_tasks.id]
+    assign_public_ip = false
+  }
+
+  load_balancer {
+    target_group_arn = aws_lb_target_group.mcp.arn
+    container_name   = "mcp-server"
+    container_port   = 443
+  }
+
+  deployment_controller {
+    type = "CODE_DEPLOY"
   }
 }
 
-resource "aws_lb" "mcp_lb" {
-  name               = "mcp-server-lb-blr"
+resource "aws_lb" "mcp_blr" {
+  name               = "mcp-alb-blr"
   internal           = false
   load_balancer_type = "application"
-  security_groups    = [aws_security_group.mcp_lb_sg.id]
-  subnets            = var.subnet_ids
+  subnets            = [aws_subnet.public.id]
+  security_groups    = [aws_security_group.alb.id]
 }
 
-variable "subnet_id" {
-  description = "VPC subnet ID"
-  type        = string
+resource "aws_lb_target_group" "mcp_blr" {
+  name        = "mcp-tg-blr"
+  port        = 443
+  protocol    = "HTTPS"
+  vpc_id      = aws_vpc.mcp.id
+  target_type = "ip"
+
+  health_check {
+    path = "/health"
+  }
 }
 
-variable "subnet_ids" {
-  description = "VPC subnet IDs for LB"
-  type        = list(string)
-}`}
-              </pre>
+# terraform/bengaluru/autoscaling.tf
+resource "aws_appautoscaling_target" "ecs" {
+  max_capacity       = 10
+  min_capacity       = 2
+  scalable_dimension = "ecs:service:DesiredCount"
+  service_namespace  = "ecs"
+  resource_id        = "service/" + aws_ecs_cluster.mcp.name + "/" + aws_ecs_service.mcp.name
+}
+
+resource "aws_appautoscaling_policy" "scale_up" {
+  name               = "mcp-scale-up"
+  policy_type        = "TargetTrackingScaling"
+  resource_id        = aws_appautoscaling_target.ecs.resource_id
+  scalable_dimension = aws_appautoscaling_target.ecs.scalable_dimension
+  service_namespace  = aws_appautoscaling_target.ecs.service_namespace
+
+  target_tracking_scaling_policy_configuration {
+    target_value = 70
+    predefined_metric_specification {
+      predefined_metric_type = "ECSServiceAverageCPUUtilization"
+    }
+  }
+}
+
+# terraform/bengaluru/ssm.tf
+resource "aws_ssm_parameter" "mcp_api_key" {
+  name        = "/mcp/server/api-key"
+  type        = "SecureString"
+  value       = "REPLACE_WITH_YOUR_SECRET_ROTATION"
+  description = "MCP Server API Key"
+}`}</pre>
             </div>
           </div>
 
-          <div className="mt-6 p-4 rounded-lg border border-amber-500/20 bg-amber-500/5 text-xs text-amber-200">
-            <strong>Note:</strong> These are simplified examples. Production deployments should include VPC isolation, security groups, IAM roles, encrypted EBS volumes, and CloudWatch alarms. Adapt these templates to your security requirements.
+<div className="mt-6 p-4 rounded-lg border border-amber-500/20 bg-amber-500/5 text-xs text-amber-200">
+            <strong>Note:</strong> These are production-ready templates. Replace YOUR_ECR_REPO, YOUR_MCP_REPO, certificate ARNs, and secrets with your own. Always test in staging before production deployment.
           </div>
         </section>
 
