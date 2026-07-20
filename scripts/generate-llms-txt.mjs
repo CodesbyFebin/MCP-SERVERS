@@ -11,25 +11,17 @@ const BASE_URL = 'https://mcpserver.in';
 function extractArrayCount(filePath, arrayName) {
   try {
     const content = fs.readFileSync(filePath, 'utf-8');
-    const match = content.match(new RegExp(`export\\s+const\\s+${arrayName}\\s*:\\s*\\w+\\[\\]\\s*=\\s*\\[`));
-    if (!match) return 0;
-    
-    const startIndex = content.indexOf('[', match.index + match[0].length);
-    if (startIndex === -1) return 0;
-    
-    let depth = 0;
-    for (let i = startIndex; i < content.length; i++) {
-      if (content[i] === '[') depth++;
-      else if (content[i] === ']') {
-        depth--;
-        if (depth === 0) {
-          const arrayContent = content.substring(startIndex, i + 1);
-          const items = arrayContent.match(/\{/g);
-          return items ? items.length : 0;
-        }
-      }
-    }
-    return 0;
+    const declMatch = content.match(new RegExp(`export\\s+const\\s+${arrayName}\\s*:\\s*\\w+\\[\\]\\s*=\\s*\\[`));
+    if (!declMatch) return 0;
+
+    // Every entry in these data files starts with a slug field, so counting
+    // "slug:" occurrences after the array's declaration is a far more robust
+    // proxy than matching brackets/braces, which break on any string content
+    // that happens to contain literal [ ] { } characters (e.g. a definition
+    // describing a URI template like `database://{table}/schema`).
+    const arrayBody = content.slice(declMatch.index + declMatch[0].length);
+    const slugMatches = arrayBody.match(/(?:^|\n)\s*slug\s*:\s*["'`]/g);
+    return slugMatches ? slugMatches.length : 0;
   } catch (error) {
     console.error(`Error reading ${filePath}:`, error.message);
     return 0;
@@ -53,11 +45,11 @@ function generateLLMsTxt() {
   );
 
   const topPillars = [
-    { slug: 'what-is-mcp', title: 'What is MCP? (Protocol Specification)' },
-    { slug: 'mcp-server', title: 'MCP Server — The Universal Connector' },
-    { slug: 'mcp-protocol', title: 'MCP Protocol — JSON-RPC 2.0 & Transports' },
-    { slug: 'mcp-hosting', title: 'MCP Hosting — India Edge Network' },
-    { slug: 'mcp-security', title: 'MCP Security & Compliance' }
+    { slug: 'what-is-mcp', title: 'What is MCP? (Protocol Specification)', description: 'Core protocol architecture, JSON-RPC 2.0 message format, and transport options.' },
+    { slug: 'mcp-server', title: 'MCP Server — The Universal Connector', description: 'What an MCP server exposes (tools, resources, prompts) and how it is structured.' },
+    { slug: 'mcp-protocol', title: 'MCP Protocol — JSON-RPC 2.0 & Transports', description: 'Message format, request/response lifecycle, and stdio/SSE/Streamable HTTP transports.' },
+    { slug: 'mcp-hosting', title: 'MCP Hosting — India Edge Network', description: 'Deployment and hosting considerations for MCP servers, with an India-region focus.' },
+    { slug: 'mcp-security', title: 'MCP Security & Compliance', description: 'Authentication, credential handling, and India-specific compliance considerations (DPDP).' }
   ];
 
   const indiaCompliance = [
@@ -80,7 +72,7 @@ function generateLLMsTxt() {
 MCPserver.in is India's first MCP-focused knowledge hub, providing educational resources, tools, and a curated directory of MCP servers. It is the definitive, verifiable knowledge base for the Model Context Protocol (MCP), with specialized focus on Indian data compliance (DPDP, RBI), regional infrastructure, and open-source server integrations.
 
 ## Core Ontology
-${topPillars.map(p => `- [${p.title}](${BASE_URL}/${p.slug}): Core architecture, JSON-RPC 2.0, and transports.`).join('\n')}
+${topPillars.map(p => `- [${p.title}](${BASE_URL}/${p.slug}): ${p.description}`).join('\n')}
 
 ## India-Specific Authority
 ${indiaCompliance.map(p => `- [${p.title}](${BASE_URL}/${p.slug}): ${p.description}`).join('\n')}

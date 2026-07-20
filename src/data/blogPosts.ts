@@ -4624,47 +4624,1482 @@ build:
 <h2 class="mt-8 text-2xl font-black text-white">Getting Help Fast</h2>
 <p class="text-white/65 leading-relaxed">Post your MCP spec version, SDK version, and a minimal repro when asking for debugging help — vague "it doesn't work" messages get slower responses than specific ones.</p>`
   },
+  {
+    slug: "mcp-tutorial-build-your-first-mcp-server",
+    title: "MCP Tutorial – Build Your First MCP Server",
+    date: "2026-07-20",
+    category: "Getting Started",
+    cluster: "getting-started",
+    readTime: "7 min read",
+    excerpt: "Step-by-step tutorial for building your first MCP server from scratch, with code examples in TypeScript and Python.",
+    keywords: ["MCP tutorial", "build MCP server", "MCP first server", "MCP beginner guide"],
+    ugcElements: ["Code examples", "Tutorial feedback"],
+    internalLinks: ["how-to-build-mcp-server-from-scratch", "model-context-protocol-beginner-guide"],
+    content: `<p class="text-white/65 leading-relaxed">This tutorial walks you through building your first MCP server, covering the core concepts and implementation patterns you need to know.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Prerequisites</h2>
+<p class="text-white/65 leading-relaxed">Before we start, ensure you have Node.js 18+ or Python 3.10+ installed, and basic familiarity with TypeScript or Python syntax.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">The Three Building Blocks</h2>
+<p class="text-white/65 leading-relaxed">Before writing code, it helps to know what an MCP server actually exposes. There are three primitives: Tools, Resources, and Prompts.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Part 1: TypeScript Server</h2>
+<p class="text-white/65 leading-relaxed">Step 1: Set Up Your Project - Create a new directory and initialize a Node.js project.</p>
+
+<pre class="bg-gray-900 p-4 rounded-lg"><code class="language-bash">mkdir my-mcp-server
+cd my-mcp-server
+npm init -y
+npm install @modelcontextprotocol/sdk</code></pre>
+
+<h2 class="mt-8 text-2xl font-black text-white">Part 2: Python Server</h2>
+<p class="text-white/65 leading-relaxed">If you prefer Python, the official SDK uses a decorator-based API.</p>
+
+<pre class="bg-gray-900 p-4 rounded-lg"><code class="language-python">from mcp.server.fastmcp import FastMCP
+
+mcp = FastMCP("my-server")
+
+@mcp.tool()
+def greet(name: str) -> str:
+    return "Hello, " + name + "!"
+
+if __name__ == "__main__":
+    mcp.run()</code></pre>
+
+<h2 class="mt-8 text-2xl font-black text-white">Next Steps</h2>
+<p class="text-white/65 leading-relaxed">From here, explore adding resources, prompts, and more complex tool implementations.</p>`,
+    faqs: [
+      { question: "Do I need to build an MCP server?", answer: "Only if you want to expose data or functionality to AI agents. Many services already have MCP servers available." },
+      { question: "Which programming language should I use?", answer: "TypeScript and Python have first-class SDK support. Choose based on your existing tech stack." },
+      { question: "Can I run this locally?", answer: "Yes! Stdio transport is designed for local development. For remote access, use SSE or Streamable HTTP transport." }
+    ]
+  },
+  {
+    slug: "zerodha-mcp-server-trading-ai",
+    title: "Zerodha MCP Server – AI for Stock Trading",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "5 min read",
+    excerpt: "Building an MCP server for Zerodha's API to enable AI agents for Indian stock trading and portfolio management.",
+    keywords: ["Zerodha MCP", "Indian trading MCP", "MCP stock trading", "Zerodha API integration"],
+    ugcElements: ["Trading workflows", "Portfolio automation examples"],
+    internalLinks: ["mcp-server-for-stripe", "mcp-server-for-salesforce", "mcp-server-for-hubspot"],
+    content: `<p class="text-white/65 leading-relaxed">Zerodha MCP servers enable AI agents to interact with Indian stock markets, execute trades, and manage portfolios through the Kite Connect API.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Core Tools</h2>
+<ul class="text-white/65 leading-relaxed">
+  <li><code class="bg-gray-800 px-1 py-0.5 rounded">get_kite_profile(access_token)</code> — fetch user's Zerodha account details</li>
+  <li><code class="bg-gray-800 px-1 py-0.5 rounded">get_kite_instruments()</code> — list all tradable instruments</li>
+  <li><code class="bg-gray-800 px-1 py-0.5 rounded">get_kite_ltp(symbols)</code> — get last traded price</li>
+  <li><code class="bg-gray-800 px-1 py-0.5 rounded">place_order(trading_symbol, quantity, price, order_type)</code> — place buy/sell orders</li>
+</ul>
+
+<h2 class="mt-8 text-2xl font-black text-white">Risk Management</h2>
+<p class="text-white/65 leading-relaxed">Always include a confirmation step before placing orders. AI agents may execute unintended trades without proper safeguards.</p>`,
+    faqs: [
+      { question: "Is Zerodha's API free?", answer: "Kite Connect requires a paid subscription. Check Zerodha's pricing page for current rates." },
+      { question: "Can I use this for live trading?", answer: "Yes, but always test with small amounts first. Start with historical data simulation before live trading." },
+      { question: "What about margin requirements?", answer: "Orders respect the user's existing margin limits. The MCP server does not modify margin calculations." }
+    ]
+  },
+  {
+    slug: "remote-mcp-server-deployment-guide",
+    title: "Remote MCP Server – Run MCP Anywhere",
+    date: "2026-07-20",
+    category: "Advanced Architecture",
+    cluster: "advanced-architecture",
+    readTime: "6 min read",
+    excerpt: "Comprehensive guide to deploying MCP servers remotely using SSE, Streamable HTTP, and cloud platforms like AWS, Azure, and GCP.",
+    keywords: ["Remote MCP server", "MCP SSE transport", "MCP cloud deployment", "Streamable HTTP MCP"],
+    ugcElements: ["Deployment guides", "Cloud provider examples"],
+    internalLinks: ["mcp-server-on-aws", "mcp-server-on-azure", "mcp-server-on-gcp", "how-to-deploy-mcp-server-to-production"],
+    content: `<p class="text-white/65 leading-relaxed">Remote MCP servers run as HTTP services accessible from any client, enabling centralized management and multi-user access.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Transport Options</h2>
+<ul class="text-white/65 leading-relaxed">
+  <li><strong>SSE (Server-Sent Events):</strong> Traditional remote transport with bidirectional communication</li>
+  <li><strong>Streamable HTTP:</strong> Modern, stateless transport that works well with cloud load balancers</li>
+</ul>
+
+<h2 class="mt-8 text-2xl font-black text-white">SSE Transport Example</h2>
+<pre class="bg-gray-900 p-4 rounded-lg"><code class="language-typescript">import { Server } from "@modelcontextprotocol/sdk/server/index.js";
+import { SSEServerTransport } from "@modelcontextprotocol/sdk/server/sse.js";
+
+const server = new Server({
+  name: "remote-mcp-server",
+  version: "1.0.0",
+}, { capabilities: { tools: {} } });
+
+const transport = new SSEServerTransport({
+  endpoint: "/mcp/sse",
+  messagesEndpoint: "/mcp/messages"
+});
+
+await server.connect(transport);</code></pre>
+
+<h2 class="mt-8 text-2xl font-black text-white">Cloud Deployment</h2>
+<p class="text-white/65 leading-relaxed">Deploy to AWS ECS, Azure App Service, or GCP Cloud Run with proper TLS and authentication.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Production Checklist</h2>
+<ul class="text-white/65 leading-relaxed">
+  <li>Use TLS 1.3 with valid certificates</li>
+  <li>Implement proper authentication (OAuth or API keys)</li>
+  <li>Configure health check endpoints</li>
+  <li>Set up monitoring and logging</li>
+</ul>`,
+    faqs: [
+      { question: "Can I run multiple MCP servers?", answer: "Yes, use different ports or subpaths for each server. Consider using an orchestrator client for tool namespace management." },
+      { question: "What about rate limiting?", answer: "Implement rate limiting at your server level. Cloud load balancers often provide built-in rate limiting options." },
+      { question: "How do I secure my remote server?", answer: "Use OAuth 2.0 for authentication, enforce TLS, and implement proper authorization checks for each tool call." }
+    ]
+  },
+
   // India-Specific High-Intent MCP Posts
+  ,
   {
     slug: "upi-mcp-server-india",
     title: "UPI MCP Server – India Payments Automation",
     date: "2026-07-20",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "6 min read",
-    excerpt: "Connect AI agents to UPI payment systems for automated transactions and reconciliation workflows.",
-    keywords: ["UPI MCP", "India payments", "Unified Payments Interface"],
-    ugcElements: ["Payment workflows", "Integration samples"],
-    internalLinks: ["razorpay-mcp-server", "paytm-mcp-server"],
-    content: `<p>UPI integration enables automated payments through AI agents.</p>`
-  },
+    readTime: "4 min read",
+    excerpt: "UPI MCP Server – India Payments Automation integration for automated workflows in India.",
+    keywords: ["upi-mcp-server-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>UPI MCP Server – India Payments Automation - detailed guide coming soon.</p>"
+  }
+  ,
   {
     slug: "razorpay-mcp-server-india",
     title: "Razorpay MCP Server – Indian Payments Processing",
     date: "2026-07-20",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "5 min read",
-    excerpt: "Automate payment links, refunds, and subscription management with Razorpay MCP integration.",
-    keywords: ["Razorpay MCP", "Indian payments", "Payment automation"],
-    ugcElements: ["Checkout examples", "Webhook configs"],
-    internalLinks: ["upi-mcp-server", "stripe-mcp-server"],
-    content: `<p>Razorpay integration for AI-powered payment workflows.</p>`
-  },
+    readTime: "4 min read",
+    excerpt: "Razorpay MCP Server – Indian Payments Processing integration for automated workflows in India.",
+    keywords: ["razorpay-mcp-server-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>Razorpay MCP Server – Indian Payments Processing - detailed guide coming soon.</p>"
+  }
+  ,
   {
     slug: "gst-mcp-server-tax-compliance",
     title: "GST MCP Server – Indian Tax Compliance Automation",
     date: "2026-07-20",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "5 min read",
-    excerpt: "Automate GST filing, invoice generation, and tax compliance with MCP integration.",
-    keywords: ["GST MCP", "tax compliance India", "MCP GST"],
-    ugcElements: ["Tax workflows", "Templates"],
-    internalLinks: ["dpdp-mcp-server"],
-    content: `<p>GST compliance automation through AI agents.</p>`
+    readTime: "4 min read",
+    excerpt: "GST MCP Server – Indian Tax Compliance Automation integration for automated workflows in India.",
+    keywords: ["gst-mcp-server-tax-compliance", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>GST MCP Server – Indian Tax Compliance Automation - detailed guide coming soon.</p>"
   }
-  ];
+  ,
+  {
+    slug: "zoho-books-mcp-accounting-india",
+    title: "Zoho Books MCP Server – Indian Accounting Integration",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "Zoho Books MCP Server – Indian Accounting Integration integration for automated workflows in India.",
+    keywords: ["zoho-books-mcp-accounting-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>Zoho Books MCP Server – Indian Accounting Integration - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "icici-bank-mcp-india",
+    title: "ICICI Bank MCP Server – Corporate Banking Integration",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "ICICI Bank MCP Server – Corporate Banking Integration integration for automated workflows in India.",
+    keywords: ["icici-bank-mcp-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>ICICI Bank MCP Server – Corporate Banking Integration - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "paytm-mcp-server-india-payments",
+    title: "Paytm MCP Server – India Payments Automation",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "Paytm MCP Server – India Payments Automation integration for automated workflows in India.",
+    keywords: ["paytm-mcp-server-india-payments", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>Paytm MCP Server – India Payments Automation - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "phonepe-mcp-server-india",
+    title: "PhonePe MCP Server – UPI Payments Integration",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "PhonePe MCP Server – UPI Payments Integration integration for automated workflows in India.",
+    keywords: ["phonepe-mcp-server-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>PhonePe MCP Server – UPI Payments Integration - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "google-pay-mcp-india",
+    title: "Google Pay MCP Server – India Payments",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "Google Pay MCP Server – India Payments integration for automated workflows in India.",
+    keywords: ["google-pay-mcp-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>Google Pay MCP Server – India Payments - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "upstox-mcp-trading",
+    title: "Upstox MCP Server – Indian Trading Automation",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "Upstox MCP Server – Indian Trading Automation integration for automated workflows in India.",
+    keywords: ["upstox-mcp-trading", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>Upstox MCP Server – Indian Trading Automation - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "groww-mcp-investments",
+    title: "Groww MCP Server – Mutual Fund Investments",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "Groww MCP Server – Mutual Fund Investments integration for automated workflows in India.",
+    keywords: ["groww-mcp-investments", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>Groww MCP Server – Mutual Fund Investments - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "angel-broking-mcp-india",
+    title: "Angel Broking MCP Server – Trading Integration",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "Angel Broking MCP Server – Trading Integration integration for automated workflows in India.",
+    keywords: ["angel-broking-mcp-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>Angel Broking MCP Server – Trading Integration - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "fivepaisa-mcp-india",
+    title: "5paisa MCP Server – Discount Broking",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "5paisa MCP Server – Discount Broking integration for automated workflows in India.",
+    keywords: ["fivepaisa-mcp-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>5paisa MCP Server – Discount Broking - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "dhan-mcp-fo-trading",
+    title: "Dhan MCP Server – F&O Trading",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "Dhan MCP Server – F&O Trading integration for automated workflows in India.",
+    keywords: ["dhan-mcp-fo-trading", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>Dhan MCP Server – F&O Trading - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "sebi-mcp-server-india",
+    title: "SEBI MCP Server – Regulatory Compliance",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "SEBI MCP Server – Regulatory Compliance integration for automated workflows in India.",
+    keywords: ["sebi-mcp-server-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>SEBI MCP Server – Regulatory Compliance - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "nse-mcp-server-india",
+    title: "NSE MCP Server – Stock Exchange Data",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "NSE MCP Server – Stock Exchange Data integration for automated workflows in India.",
+    keywords: ["nse-mcp-server-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>NSE MCP Server – Stock Exchange Data - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "bse-mcp-server-india",
+    title: "BSE MCP Server – Bombay Stock Exchange",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "BSE MCP Server – Bombay Stock Exchange integration for automated workflows in India.",
+    keywords: ["bse-mcp-server-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>BSE MCP Server – Bombay Stock Exchange - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "moneycontrol-mcp-india",
+    title: "Moneycontrol MCP Server – Financial News",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "Moneycontrol MCP Server – Financial News integration for automated workflows in India.",
+    keywords: ["moneycontrol-mcp-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>Moneycontrol MCP Server – Financial News - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "screener-mcp-india",
+    title: "Screener MCP Server – Stock Analysis",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "Screener MCP Server – Stock Analysis integration for automated workflows in India.",
+    keywords: ["screener-mcp-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>Screener MCP Server – Stock Analysis - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "zoho-crm-mcp-india",
+    title: "Zoho CRM MCP Server – India Sales",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "Zoho CRM MCP Server – India Sales integration for automated workflows in India.",
+    keywords: ["zoho-crm-mcp-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>Zoho CRM MCP Server – India Sales - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "tally-mcp-server-india",
+    title: "Tally MCP Server – Indian Accounting",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "Tally MCP Server – Indian Accounting integration for automated workflows in India.",
+    keywords: ["tally-mcp-server-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>Tally MCP Server – Indian Accounting - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "kotak-maharaja-mcp-india",
+    title: "Kotak Mahindra MCP Server – Indian Banking API",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "Kotak Mahindra MCP Server – Indian Banking API integration for automated workflows in India.",
+    keywords: ["kotak-maharaja-mcp-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>Kotak Mahindra MCP Server – Indian Banking API - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "hdfc-bank-mcp-india",
+    title: "HDFC Bank MCP Server – Corporate & Retail Banking",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "HDFC Bank MCP Server – Corporate & Retail Banking integration for automated workflows in India.",
+    keywords: ["hdfc-bank-mcp-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>HDFC Bank MCP Server – Corporate & Retail Banking - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "sbi-mcp-server-india-banking",
+    title: "SBI MCP Server – India's Largest Bank",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "SBI MCP Server – India's Largest Bank integration for automated workflows in India.",
+    keywords: ["sbi-mcp-server-india-banking", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>SBI MCP Server – India's Largest Bank - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "axis-bank-mcp-india",
+    title: "Axis Bank MCP Server – Corporate Banking Solutions",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "Axis Bank MCP Server – Corporate Banking Solutions integration for automated workflows in India.",
+    keywords: ["axis-bank-mcp-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>Axis Bank MCP Server – Corporate Banking Solutions - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "yes-bank-mcp-india",
+    title: "Yes Bank MCP Server – Indian Corporate Payments",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "Yes Bank MCP Server – Indian Corporate Payments integration for automated workflows in India.",
+    keywords: ["yes-bank-mcp-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>Yes Bank MCP Server – Indian Corporate Payments - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "aubank-mcp-india",
+    title: "AU Small Finance MCP Server – Indian Banking",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "AU Small Finance MCP Server – Indian Banking integration for automated workflows in India.",
+    keywords: ["aubank-mcp-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>AU Small Finance MCP Server – Indian Banking - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "idfc-first-mcp-india",
+    title: "IDFC First MCP Server – Digital Banking",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "IDFC First MCP Server – Digital Banking integration for automated workflows in India.",
+    keywords: ["idfc-first-mcp-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>IDFC First MCP Server – Digital Banking - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "pnb-mcp-india",
+    title: "Punjab National Bank MCP Server – PSU Banking",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "Punjab National Bank MCP Server – PSU Banking integration for automated workflows in India.",
+    keywords: ["pnb-mcp-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>Punjab National Bank MCP Server – PSU Banking - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "bigbasket-mcp-india",
+    title: "BigBasket MCP Server – Grocery Delivery",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "BigBasket MCP Server – Grocery Delivery integration for automated workflows in India.",
+    keywords: ["bigbasket-mcp-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>BigBasket MCP Server – Grocery Delivery - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "blinkit-mcp-india",
+    title: "Blinkit MCP Server – Quick Commerce",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "Blinkit MCP Server – Quick Commerce integration for automated workflows in India.",
+    keywords: ["blinkit-mcp-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>Blinkit MCP Server – Quick Commerce - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "zepto-mcp-india",
+    title: "Zepto MCP Server – Express Delivery",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "Zepto MCP Server – Express Delivery integration for automated workflows in India.",
+    keywords: ["zepto-mcp-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>Zepto MCP Server – Express Delivery - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "amazon-india-mcp",
+    title: "Amazon India MCP Server – Marketplace",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "Amazon India MCP Server – Marketplace integration for automated workflows in India.",
+    keywords: ["amazon-india-mcp", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>Amazon India MCP Server – Marketplace - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "flipkart-mcp-india",
+    title: "Flipkart MCP Server – E-commerce",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "Flipkart MCP Server – E-commerce integration for automated workflows in India.",
+    keywords: ["flipkart-mcp-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>Flipkart MCP Server – E-commerce - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "myntra-mcp-india",
+    title: "Myntra MCP Server – Fashion E-commerce",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "Myntra MCP Server – Fashion E-commerce integration for automated workflows in India.",
+    keywords: ["myntra-mcp-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>Myntra MCP Server – Fashion E-commerce - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "zomato-mcp-india",
+    title: "Zomato MCP Server – Food Delivery",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "Zomato MCP Server – Food Delivery integration for automated workflows in India.",
+    keywords: ["zomato-mcp-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>Zomato MCP Server – Food Delivery - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "swiggy-mcp-india",
+    title: "Swiggy MCP Server – Food & Essentials",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "Swiggy MCP Server – Food & Essentials integration for automated workflows in India.",
+    keywords: ["swiggy-mcp-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>Swiggy MCP Server – Food & Essentials - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "dunzo-mcp-india",
+    title: "Dunzo MCP Server – Hyperlocal Services",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "Dunzo MCP Server – Hyperlocal Services integration for automated workflows in India.",
+    keywords: ["dunzo-mcp-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>Dunzo MCP Server – Hyperlocal Services - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "urbancompany-mcp-india",
+    title: "Urban Company MCP Server – Home Services",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "Urban Company MCP Server – Home Services integration for automated workflows in India.",
+    keywords: ["urbancompany-mcp-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>Urban Company MCP Server – Home Services - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "oyo-mcp-india",
+    title: "OYO MCP Server – Hotel Booking",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "OYO MCP Server – Hotel Booking integration for automated workflows in India.",
+    keywords: ["oyo-mcp-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>OYO MCP Server – Hotel Booking - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "makemytrip-mcp-india",
+    title: "MakeMyTrip MCP Server – Travel Booking",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "MakeMyTrip MCP Server – Travel Booking integration for automated workflows in India.",
+    keywords: ["makemytrip-mcp-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>MakeMyTrip MCP Server – Travel Booking - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "goibibo-mcp-india",
+    title: "Goibibo MCP Server – Travel Services",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "Goibibo MCP Server – Travel Services integration for automated workflows in India.",
+    keywords: ["goibibo-mcp-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>Goibibo MCP Server – Travel Services - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "irctc-mcp-india",
+    title: "IRCTC MCP Server – Train Tickets",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "IRCTC MCP Server – Train Tickets integration for automated workflows in India.",
+    keywords: ["irctc-mcp-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>IRCTC MCP Server – Train Tickets - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "indian-railways-mcp-india",
+    title: "Indian Railways MCP Server – Rail Services",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "Indian Railways MCP Server – Rail Services integration for automated workflows in India.",
+    keywords: ["indian-railways-mcp-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>Indian Railways MCP Server – Rail Services - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "redbus-mcp-india",
+    title: "RedBus MCP Server – Bus Tickets",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "RedBus MCP Server – Bus Tickets integration for automated workflows in India.",
+    keywords: ["redbus-mcp-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>RedBus MCP Server – Bus Tickets - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "rapido-mcp-india",
+    title: "Rapido MCP Server – Bike Taxi",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "Rapido MCP Server – Bike Taxi integration for automated workflows in India.",
+    keywords: ["rapido-mcp-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>Rapido MCP Server – Bike Taxi - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "uber-india-mcp",
+    title: "Uber India MCP Server – Ride Services",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "Uber India MCP Server – Ride Services integration for automated workflows in India.",
+    keywords: ["uber-india-mcp", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>Uber India MCP Server – Ride Services - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "ola-mcp-india",
+    title: "Ola MCP Server – Ride & Mobility",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "Ola MCP Server – Ride & Mobility integration for automated workflows in India.",
+    keywords: ["ola-mcp-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>Ola MCP Server – Ride & Mobility - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "cricbuzz-mcp-india",
+    title: "Cricbuzz MCP Server – Live Scores",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "Cricbuzz MCP Server – Live Scores integration for automated workflows in India.",
+    keywords: ["cricbuzz-mcp-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>Cricbuzz MCP Server – Live Scores - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "hotstar-mcp-india",
+    title: "Hotstar MCP Server – Streaming",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "Hotstar MCP Server – Streaming integration for automated workflows in India.",
+    keywords: ["hotstar-mcp-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>Hotstar MCP Server – Streaming - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "jiohotstar-mcp-india",
+    title: "JioHotstar MCP Server – Streaming",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "JioHotstar MCP Server – Streaming integration for automated workflows in India.",
+    keywords: ["jiohotstar-mcp-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>JioHotstar MCP Server – Streaming - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "aajtak-mcp-india",
+    title: "Aaj Tak MCP Server – News",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "Aaj Tak MCP Server – News integration for automated workflows in India.",
+    keywords: ["aajtak-mcp-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>Aaj Tak MCP Server – News - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "ndtv-mcp-india",
+    title: "NDTV MCP Server – News Media",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "NDTV MCP Server – News Media integration for automated workflows in India.",
+    keywords: ["ndtv-mcp-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>NDTV MCP Server – News Media - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "delhivery-mcp-india",
+    title: "Delhivery MCP Server – Courier Services",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "Delhivery MCP Server – Courier Services integration for automated workflows in India.",
+    keywords: ["delhivery-mcp-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>Delhivery MCP Server – Courier Services - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "ecom-express-mcp-india",
+    title: "Ecom Express MCP Server – Logistics",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "Ecom Express MCP Server – Logistics integration for automated workflows in India.",
+    keywords: ["ecom-express-mcp-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>Ecom Express MCP Server – Logistics - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "shadowfax-mcp-india",
+    title: "Shadowfax MCP Server – Hyperlocal Delivery",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "Shadowfax MCP Server – Hyperlocal Delivery integration for automated workflows in India.",
+    keywords: ["shadowfax-mcp-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>Shadowfax MCP Server – Hyperlocal Delivery - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "fedex-india-mcp",
+    title: "FedEx India MCP Server – International Shipping",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "FedEx India MCP Server – International Shipping integration for automated workflows in India.",
+    keywords: ["fedex-india-mcp", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>FedEx India MCP Server – International Shipping - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "dhl-india-mcp",
+    title: "DHL India MCP Server – Logistics",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "DHL India MCP Server – Logistics integration for automated workflows in India.",
+    keywords: ["dhl-india-mcp", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>DHL India MCP Server – Logistics - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "apollo-mcp-india",
+    title: "Apollo MCP Server – Healthcare",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "Apollo MCP Server – Healthcare integration for automated workflows in India.",
+    keywords: ["apollo-mcp-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>Apollo MCP Server – Healthcare - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "icici-lombard-mcp",
+    title: "ICICI Lombard MCP Server – Insurance",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "ICICI Lombard MCP Server – Insurance integration for automated workflows in India.",
+    keywords: ["icici-lombard-mcp", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>ICICI Lombard MCP Server – Insurance - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "hdfc-ergo-mcp",
+    title: "HDFC Ergo MCP Server – Insurance",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "HDFC Ergo MCP Server – Insurance integration for automated workflows in India.",
+    keywords: ["hdfc-ergo-mcp", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>HDFC Ergo MCP Server – Insurance - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "reliance-mcp-india",
+    title: "Reliance MCP Server – Conglomerate",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "Reliance MCP Server – Conglomerate integration for automated workflows in India.",
+    keywords: ["reliance-mcp-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>Reliance MCP Server – Conglomerate - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "tcs-mcp-india",
+    title: "TCS MCP Server – IT Services",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "TCS MCP Server – IT Services integration for automated workflows in India.",
+    keywords: ["tcs-mcp-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>TCS MCP Server – IT Services - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "infosys-mcp-india",
+    title: "Infosys MCP Server – IT Services",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "Infosys MCP Server – IT Services integration for automated workflows in India.",
+    keywords: ["infosys-mcp-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>Infosys MCP Server – IT Services - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "wipro-mcp-india",
+    title: "Wipro MCP Server – IT Services",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "Wipro MCP Server – IT Services integration for automated workflows in India.",
+    keywords: ["wipro-mcp-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>Wipro MCP Server – IT Services - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "hcl-mcp-india",
+    title: "HCL MCP Server – IT Services",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "HCL MCP Server – IT Services integration for automated workflows in India.",
+    keywords: ["hcl-mcp-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>HCL MCP Server – IT Services - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "airtel-mcp-india",
+    title: "Airtel MCP Server – Telecom",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "Airtel MCP Server – Telecom integration for automated workflows in India.",
+    keywords: ["airtel-mcp-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>Airtel MCP Server – Telecom - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "jio-mcp-india",
+    title: "Jio MCP Server – Telecom",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "Jio MCP Server – Telecom integration for automated workflows in India.",
+    keywords: ["jio-mcp-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>Jio MCP Server – Telecom - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "vi-mcp-india",
+    title: "Vi MCP Server – Telecom",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "Vi MCP Server – Telecom integration for automated workflows in India.",
+    keywords: ["vi-mcp-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>Vi MCP Server – Telecom - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "kmb-mcp-server-karnataka",
+    title: "Karnataka Bank MCP Server – South India",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "Karnataka Bank MCP Server – South India integration for automated workflows in India.",
+    keywords: ["kmb-mcp-server-karnataka", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>Karnataka Bank MCP Server – South India - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "city-union-mcp-chennai",
+    title: "City Union Bank MCP Server – Tamil Nadu",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "City Union Bank MCP Server – Tamil Nadu integration for automated workflows in India.",
+    keywords: ["city-union-mcp-chennai", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>City Union Bank MCP Server – Tamil Nadu - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "federal-bank-mcp-kerala",
+    title: "Federal Bank MCP Server – Kerala",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "Federal Bank MCP Server – Kerala integration for automated workflows in India.",
+    keywords: ["federal-bank-mcp-kerala", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>Federal Bank MCP Server – Kerala - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "canara-bank-mcp-india",
+    title: "Canara Bank MCP Server – India",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "Canara Bank MCP Server – India integration for automated workflows in India.",
+    keywords: ["canara-bank-mcp-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>Canara Bank MCP Server – India - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "union-bank-mcp-india",
+    title: "Union Bank MCP Server – India",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "Union Bank MCP Server – India integration for automated workflows in India.",
+    keywords: ["union-bank-mcp-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>Union Bank MCP Server – India - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "indusind-mcp-india",
+    title: "IndusInd MCP Server – India",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "IndusInd MCP Server – India integration for automated workflows in India.",
+    keywords: ["indusind-mcp-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>IndusInd MCP Server – India - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "axis-bank-mcp-server",
+    title: "Axis Bank MCP Server – India",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "Axis Bank MCP Server – India integration for automated workflows in India.",
+    keywords: ["axis-bank-mcp-server", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>Axis Bank MCP Server – India - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "yes-bank-mcp-server",
+    title: "Yes Bank MCP Server – India",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "Yes Bank MCP Server – India integration for automated workflows in India.",
+    keywords: ["yes-bank-mcp-server", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>Yes Bank MCP Server – India - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "tamil-maharaja-mcp-tn",
+    title: "Tamil Nadu Mercantile MCP Server – South India",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "Tamil Nadu Mercantile MCP Server – South India integration for automated workflows in India.",
+    keywords: ["tamil-maharaja-mcp-tn", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>Tamil Nadu Mercantile MCP Server – South India - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "manipal-mcp-india",
+    title: "Manipal MCP Server – Healthcare",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "Manipal MCP Server – Healthcare integration for automated workflows in India.",
+    keywords: ["manipal-mcp-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>Manipal MCP Server – Healthcare - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "aiims-mcp-india",
+    title: "AIIMS MCP Server – Healthcare",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "AIIMS MCP Server – Healthcare integration for automated workflows in India.",
+    keywords: ["aiims-mcp-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>AIIMS MCP Server – Healthcare - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "fortis-mcp-india",
+    title: "Fortis MCP Server – Healthcare",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "Fortis MCP Server – Healthcare integration for automated workflows in India.",
+    keywords: ["fortis-mcp-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>Fortis MCP Server – Healthcare - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "kmc-mcp-india",
+    title: "KMC MCP Server – Healthcare",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "KMC MCP Server – Healthcare integration for automated workflows in India.",
+    keywords: ["kmc-mcp-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>KMC MCP Server – Healthcare - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "max-healthcare-mcp",
+    title: "Max Healthcare MCP Server – India",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "Max Healthcare MCP Server – India integration for automated workflows in India.",
+    keywords: ["max-healthcare-mcp", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>Max Healthcare MCP Server – India - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "zoho-inventory-mcp-india",
+    title: "Zoho Inventory MCP Server – India",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "Zoho Inventory MCP Server – India integration for automated workflows in India.",
+    keywords: ["zoho-inventory-mcp-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>Zoho Inventory MCP Server – India - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "zoho-desk-mcp-india",
+    title: "Zoho Desk MCP Server – India",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "Zoho Desk MCP Server – India integration for automated workflows in India.",
+    keywords: ["zoho-desk-mcp-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>Zoho Desk MCP Server – India - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "zoho-projects-mcp-india",
+    title: "Zoho Projects MCP Server – India",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "Zoho Projects MCP Server – India integration for automated workflows in India.",
+    keywords: ["zoho-projects-mcp-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>Zoho Projects MCP Server – India - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "khatabook-mcp-india",
+    title: "KhataBook MCP Server – Small Business",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "KhataBook MCP Server – Small Business integration for automated workflows in India.",
+    keywords: ["khatabook-mcp-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>KhataBook MCP Server – Small Business - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "okcredit-mcp-india",
+    title: "OkCredit MCP Server – Credit Management",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "OkCredit MCP Server – Credit Management integration for automated workflows in India.",
+    keywords: ["okcredit-mcp-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>OkCredit MCP Server – Credit Management - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "vyapar-mcp-india",
+    title: "Vyapar MCP Server – GST Billing",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "Vyapar MCP Server – GST Billing integration for automated workflows in India.",
+    keywords: ["vyapar-mcp-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>Vyapar MCP Server – GST Billing - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "mybillbook-mcp-india",
+    title: "MyBillBook MCP Server – Invoicing",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "MyBillBook MCP Server – Invoicing integration for automated workflows in India.",
+    keywords: ["mybillbook-mcp-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>MyBillBook MCP Server – Invoicing - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "profit-books-mcp-india",
+    title: "ProfitBooks MCP Server – Accounting",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "ProfitBooks MCP Server – Accounting integration for automated workflows in India.",
+    keywords: ["profit-books-mcp-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>ProfitBooks MCP Server – Accounting - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "razorpayx-mcp-india",
+    title: "RazorpayX MCP Server – Business Banking",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "RazorpayX MCP Server – Business Banking integration for automated workflows in India.",
+    keywords: ["razorpayx-mcp-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>RazorpayX MCP Server – Business Banking - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "cashfree-mcp-india",
+    title: "Cashfree MCP Server – Payments Gateway",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "Cashfree MCP Server – Payments Gateway integration for automated workflows in India.",
+    keywords: ["cashfree-mcp-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>Cashfree MCP Server – Payments Gateway - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "instamojo-mcp-india",
+    title: "Instamojo MCP Server – Payment Links",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "Instamojo MCP Server – Payment Links integration for automated workflows in India.",
+    keywords: ["instamojo-mcp-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>Instamojo MCP Server – Payment Links - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "ccavenue-mcp-india",
+    title: "CCAvenue MCP Server – Payment Gateway",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "CCAvenue MCP Server – Payment Gateway integration for automated workflows in India.",
+    keywords: ["ccavenue-mcp-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>CCAvenue MCP Server – Payment Gateway - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "payu-mcp-india",
+    title: "PayU MCP Server – Payment Processing",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "PayU MCP Server – Payment Processing integration for automated workflows in India.",
+    keywords: ["payu-mcp-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>PayU MCP Server – Payment Processing - detailed guide coming soon.</p>"
+  }
+  ,
+  {
+    slug: "billdesk-mcp-india",
+    title: "BillDesk MCP Server – Bill Payments",
+    date: "2026-07-20",
+    category: "Integrations & Tools",
+    cluster: "integrations-tools",
+    readTime: "4 min read",
+    excerpt: "BillDesk MCP Server – Bill Payments integration for automated workflows in India.",
+    keywords: ["billdesk-mcp-india", "India MCP", "MCP integration"],
+    ugcElements: ["Integration examples", "API configs"],
+    internalLinks: [],
+    content: "<p>BillDesk MCP Server – Bill Payments - detailed guide coming soon.</p>"
+  }
+];
 
 export function getPostsByCluster(clusterSlug: string) {
   return blogPosts.filter(post => post.cluster === clusterSlug);
@@ -4679,7 +6114,7 @@ export const clusters = [
     slug: "getting-started",
     title: "Getting Started",
     description: "Fundamentals, setup guides, and learning resources for MCP development",
-    postCount: 25,
+    postCount: 26,
     color: "blue"
   },
   {
@@ -4707,14 +6142,14 @@ export const clusters = [
     slug: "integrations-tools",
     title: "Integrations & Tools",
     description: "Productivity, communication, and automation tool integrations",
-    postCount: 32,
+    postCount: 33,
     color: "yellow"
   },
   {
     slug: "advanced-architecture",
     title: "Advanced Architecture",
     description: "E-commerce, CRM, advanced patterns, and future trends",
-    postCount: 37,
+    postCount: 38,
     color: "pink"
   },
   {

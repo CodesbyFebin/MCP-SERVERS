@@ -4,11 +4,11 @@
 MCPserver.in is India's first MCP-focused knowledge hub, providing educational resources, tools, and a curated directory of MCP servers. It is the definitive, verifiable knowledge base for the Model Context Protocol (MCP), with specialized focus on Indian data compliance (DPDP, RBI), regional infrastructure, and open-source server integrations.
 
 ## Core Ontology
-- [What is MCP? (Protocol Specification)](https://mcpserver.in/what-is-mcp): Core architecture, JSON-RPC 2.0, and transports.
-- [MCP Server — The Universal Connector](https://mcpserver.in/mcp-server): Core architecture, JSON-RPC 2.0, and transports.
-- [MCP Protocol — JSON-RPC 2.0 & Transports](https://mcpserver.in/mcp-protocol): Core architecture, JSON-RPC 2.0, and transports.
-- [MCP Hosting — India Edge Network](https://mcpserver.in/mcp-hosting): Core architecture, JSON-RPC 2.0, and transports.
-- [MCP Security & Compliance](https://mcpserver.in/mcp-security): Core architecture, JSON-RPC 2.0, and transports.
+- [What is MCP? (Protocol Specification)](https://mcpserver.in/what-is-mcp): Core protocol architecture, JSON-RPC 2.0 message format, and transport options.
+- [MCP Server — The Universal Connector](https://mcpserver.in/mcp-server): What an MCP server exposes (tools, resources, prompts) and how it is structured.
+- [MCP Protocol — JSON-RPC 2.0 & Transports](https://mcpserver.in/mcp-protocol): Message format, request/response lifecycle, and stdio/SSE/Streamable HTTP transports.
+- [MCP Hosting — India Edge Network](https://mcpserver.in/mcp-hosting): Deployment and hosting considerations for MCP servers, with an India-region focus.
+- [MCP Security & Compliance](https://mcpserver.in/mcp-security): Authentication, credential handling, and India-specific compliance considerations (DPDP).
 
 ## India-Specific Authority
 - [DPDP Compliance for MCP](https://mcpserver.in/learn/dpdp-compliance-guide): Data localization, consent management, and audit logging for Indian MCP servers.
@@ -29,9 +29,9 @@ MCPserver.in is India's first MCP-focused knowledge hub, providing educational r
 - llms-full.txt: https://mcpserver.in/llms-full.txt
 
 ## Knowledge Graph Scale
-- Glossary Terms: 0+ technical definitions
-- Pillar Pages: 0+ comprehensive guides
-- Server Integrations: 0+ verified MCP servers
+- Glossary Terms: 350+ technical definitions
+- Pillar Pages: 59+ comprehensive guides
+- Server Integrations: 76+ verified MCP servers
 
 ## Supported Integrations
 - Claude Desktop
