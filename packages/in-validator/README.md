@@ -1,11 +1,11 @@
-# @mcpserver/in-validator
+# mcpserver-in-validator
 
 Validate MCP server config files against the 2026 spec and check for India-specific DPDP compliance flags.
 
 ## Install
 
 ```bash
-npm install -g @mcpserver/in-validator
+npm install -g mcpserver-in-validator
 ```
 
 ## Usage
@@ -17,7 +17,7 @@ in-validator ./mcp.json
 Or with npx:
 
 ```bash
-npx @mcpserver/in-validator ./path/to/your/mcp-config.json
+npx mcpserver-in-validator ./path/to/your/mcp-config.json
 ```
 
 ## What it checks

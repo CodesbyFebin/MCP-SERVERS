@@ -2,7 +2,7 @@
   "name": "mcpserver-in-validator",
   "version": "1.0.0",
   "private": false,
-  "description": "@mcpserver/in-validator — Validate MCP server config files against the 2026 spec with India-specific DPDP compliance checks.",
+  "description": "mcpserver-in-validator — Validate MCP server config files against the 2026 spec with India-specific DPDP compliance checks.",
   "main": "src/validator.js",
   "bin": {
     "in-validator": "./bin/validate.js"
@@ -23,11 +23,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mcpserver-in/in-validator.git"
+    "url": "git+https://github.com/CodesbyFebin/MCP-SERVERS.git",
+    "directory": "packages/in-validator"
   },
-  "homepage": "https://github.com/mcpserver-in/in-validator",
+  "homepage": "https://github.com/CodesbyFebin/MCP-SERVERS/tree/master/packages/in-validator",
   "bugs": {
-    "url": "https://github.com/mcpserver-in/in-validator/issues"
+    "url": "https://github.com/CodesbyFebin/MCP-SERVERS/issues"
   },
   "dependencies": {
     "commander": "^12.0.0",

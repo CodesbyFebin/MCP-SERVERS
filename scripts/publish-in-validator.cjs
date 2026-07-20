@@ -3,15 +3,21 @@
 /**
  * publish-in-validator.js
  *
- * Prepares and publishes the @mcpserver/in-validator npm package.
+ * Prepares and publishes the mcpserver-in-validator npm package.
  *
  * Usage:
  *   node scripts/publish-in-validator.js dry-run   # Show what would be done
  *   node scripts/publish-in-validator.js publish    # Actually publish to npm
  *
  * Prerequisites:
- *   - npm login (must have access to @mcpserver scope)
- *   - git remote set to github.com/mcpserver-in/in-validator.git
+ *   - npm login (must have publish access for the mcpserver-in-validator package name)
+ *   - This package currently lives inside the CodesbyFebin/MCP-SERVERS monorepo
+ *     (packages/in-validator) with no dedicated repo of its own. This script
+ *     assumes a standalone repo for the package (it git-inits PACKAGE_DIR as
+ *     its own repo and pushes it as `main`), so REPO_URL below is a
+ *     placeholder - replace it with a real, newly-created repo before ever
+ *     running "publish" mode. Do NOT point it at the main monorepo: this
+ *     script would push an unrelated, isolated history over it as `main`.
  */
 
 const fs = require('fs');
@@ -19,7 +25,7 @@ const path = require('path');
 const { execSync } = require('child_process');
 
 const PACKAGE_DIR = path.resolve(__dirname, '../packages/in-validator');
-const REPO_URL = 'https://github.com/mcpserver-in/in-validator.git';
+const REPO_URL = 'https://github.com/REPLACE-ME/mcpserver-in-validator.git';
 
 function log(msg) {
   console.log(`\x1b[36m[in-validator]\x1b[0m ${msg}`);
