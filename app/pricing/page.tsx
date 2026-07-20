@@ -48,7 +48,7 @@ export default function Pricing() {
               <div>
                 <h4 className="text-xs font-bold text-white">Mumbai/Bengaluru Edge Nodes</h4>
                 <p className="text-[11px] text-white/50 mt-1 leading-normal">
-                  All cloud-hosted nodes run inside localized secure containers close to key database centers to guarantee sub-50ms roundtrip execution speeds.
+                  Cloud-hosted nodes run inside localized secure containers close to key database centers, designed to minimize roundtrip latency.
                 </p>
               </div>
             </div>
@@ -70,9 +70,9 @@ export default function Pricing() {
                 <Clock className="w-4 h-4 text-blue-400" />
               </div>
               <div>
-                <h4 className="text-xs font-bold text-white">99.99% Network Uptime SLA</h4>
+                <h4 className="text-xs font-bold text-white">Resilient Connection Handling</h4>
                 <p className="text-[11px] text-white/50 mt-1 leading-normal">
-                  We guarantee continuous Server-Sent Event connection channels, automated reconnect handshakes, and active fallback traffic routers.
+                  Server-Sent Event connections use automated reconnect handshakes and fallback traffic routing to reduce disruption.
                 </p>
               </div>
             </div>

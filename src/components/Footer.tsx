@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { ArrowRight, Github, Heart, Linkedin, Mail, Twitter } from "lucide-react";
 import { BrandMark } from "./ReferenceLanding";
@@ -50,6 +51,34 @@ const columns = [
 ];
 
 export default function Footer() {
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [message, setMessage] = useState("");
+
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus("loading");
+    setMessage("");
+    try {
+      const res = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setMessage(data.error || "Subscription failed.");
+        setStatus("error");
+      } else {
+        setMessage(data.message || "Subscribed!");
+        setStatus("success");
+        setEmail("");
+      }
+    } catch {
+      setMessage("Network error. Please try again.");
+      setStatus("error");
+    }
+  };
   return (
     <footer id="app-footer" className="border-t border-white/10 bg-[#02050d] pt-10 text-white">
       <div className="mx-auto max-w-7xl px-4 pb-8 sm:px-6 lg:px-8">
@@ -91,16 +120,29 @@ export default function Footer() {
             <h4 className="mb-3 text-xs font-black text-white">Newsletter</h4>
             <p className="text-xs leading-relaxed text-white/50">Get the latest updates, tutorials and new integrations.</p>
             <div className="mt-4 flex overflow-hidden rounded-md border border-white/12 bg-white/[0.025]">
-              <input
-                className="min-h-10 min-w-0 flex-1 bg-transparent px-3 text-xs text-white outline-none placeholder:text-white/30"
-                placeholder="Enter your email"
-                autoComplete="email"
-                suppressHydrationWarning
-              />
-              <button className="grid w-11 place-items-center border-l border-white/10 text-white/75">
-                <ArrowRight className="h-4 w-4" />
-              </button>
+              <form onSubmit={handleSubscribe} className="flex w-full min-h-10">
+                <input
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="min-w-0 flex-1 bg-transparent px-3 text-xs text-white outline-none placeholder:text-white/30"
+                  placeholder="Enter your email"
+                  autoComplete="email"
+                  suppressHydrationWarning
+                />
+                <button
+                  type="submit"
+                  disabled={status === "loading"}
+                  className="grid w-11 place-items-center border-l border-white/10 text-white/75 disabled:opacity-40"
+                >
+                  <ArrowRight className="h-4 w-4" />
+                </button>
+              </form>
             </div>
+            {message && (
+              <p className={`mt-2 text-[11px] ${status === "error" ? "text-red-400" : "text-emerald-400"}`}>
+                {message}
+              </p>
+            )}
           </div>
         </div>
 

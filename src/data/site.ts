@@ -24,9 +24,9 @@ export const knowledgeGraph = {
   stats: {
     servers: "7,260+",
     stars: "300K+",
-    deployments: "500,000+",
-    requests: "1M+",
-    uptime: "99.99%",
+    deployments: "Growing",
+    requests: "Growing",
+    uptime: "Targeting high availability",
     domains: "12"
   },
   marketplaces: [
@@ -348,10 +348,10 @@ export const siteConfig = {
     discord: "https://discord.gg/mcpserver"
   },
   stats: {
-    servers: "10,000+",
-    deployments: "500,000+",
-    requests: "1M+",
-    uptime: "99.99%",
-    developers: "100%"
+    servers: "Growing",
+    deployments: "Growing",
+    requests: "Growing",
+    uptime: "Targeting high availability",
+    developers: "Growing"
   }
 };

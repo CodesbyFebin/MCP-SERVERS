@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: PageProps) {
 
   return {
     title: `${category.name} MCP Servers Directory - MCPserver.in`,
-    description: `Discover top ${category.name} Model Context Protocol (MCP) servers. ${category.description} Ready to deploy with sub-50ms latency.`,
+    description: `Discover top ${category.name} Model Context Protocol (MCP) servers. ${category.description} Ready to deploy on low-latency India infrastructure.`,
   };
 }
 

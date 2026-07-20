@@ -60,31 +60,64 @@ export default function DeveloperToolsClient({ toolSlug }: DeveloperToolsClientP
     }
   };
 
-  // Run checker simulation
-  const handleRunChecker = () => {
+  // Run checker validation
+  const handleRunChecker = async () => {
     setCheckerLogs(["Connecting to endpoint...", "Handshaking connection..."]);
-    setTimeout(() => {
+    try {
+      const res = await fetch("/api/validate-mcp", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ url: checkerUrl }),
+      });
+      const data = (await res.json()) as {
+        target: string;
+        logs: { text: string; kind: string }[];
+        checks: { label: string; passed: boolean; detail: string }[];
+        reachable: boolean;
+        protocol: string;
+        error?: string;
+      };
+      const logs = data.logs?.map((l) => `${l.kind === "error" ? "✖" : l.kind === "success" ? "✔" : "•"} ${l.text}`) ?? [];
+      const checkLogs = (data.checks ?? []).map(
+        (c) => `${c.passed ? "✔" : "✖"} ${c.label}: ${c.detail}`
+      );
+      setCheckerLogs((prev) => [...prev, ...logs, ...checkLogs]);
+    } catch (error) {
       setCheckerLogs((prev) => [
         ...prev,
-        "✔ JSON-RPC handshake complete.",
-        "✔ Exposing capabilities: [tools, resources]",
-        "✔ Server protocol conforming: standard v1.0.0",
-        "✔ Target MCP connection successful!"
+        `✖ Connection failed: ${error instanceof Error ? error.message : "Unknown network error"}`,
       ]);
-    }, 800);
+    }
   };
 
-  // Run playground simulation
-  const handleSimulateCall = () => {
+  // Run playground validation
+  const handleSimulateCall = async () => {
     setPlaygroundLogs(["Sending message: " + promptInput, "Routing query through Gateway..."]);
-    setTimeout(() => {
+    try {
+      const res = await fetch("/api/validate-mcp", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ url: "https://github.com/modelcontextprotocol/servers" }),
+      });
+      const data = (await res.json()) as {
+        target: string;
+        logs: { text: string; kind: string }[];
+        checks: { label: string; passed: boolean; detail: string }[];
+        reachable: boolean;
+        protocol: string;
+        error?: string;
+      };
+      const logs = data.logs?.map((l) => `${l.kind === "error" ? "✖" : l.kind === "success" ? "✔" : "•"} ${l.text}`) ?? [];
+      const checkLogs = (data.checks ?? []).map(
+        (c) => `${c.passed ? "✔" : "✖"} ${c.label}: ${c.detail}`
+      );
+      setPlaygroundLogs((prev) => [...prev, ...logs, ...checkLogs]);
+    } catch (error) {
       setPlaygroundLogs((prev) => [
         ...prev,
-        "✔ Matching tool found: search_db",
-        "✔ Exposing 100% secure standard sandbox execution context",
-        "✔ Response received in 12ms successfully!"
+        `✖ Request failed: ${error instanceof Error ? error.message : "Unknown network error"}`,
       ]);
-    }, 600);
+    }
   };
 
   const breadcrumbSteps = [

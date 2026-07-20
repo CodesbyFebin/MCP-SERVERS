@@ -69,9 +69,9 @@ export default function MonitoringPage() {
   const [isLiveSimulating, setIsLiveSimulating] = useState<boolean>(true);
   const [trafficMultiplier, setTrafficMultiplier] = useState<number>(1);
   const [liveLogs, setLiveLogs] = useState<string[]>([
-    "System Status: Perfect",
-    "Bengaluru-Edge-01: Exposing capabilities schema... (v1.0.0)",
-    "Mumbai-Edge-02: Handshake successful with Anthropic SDK"
+    "Monitoring dashboard is illustrative.",
+    "This page shows simulated traffic patterns for planning purposes.",
+    "For real service health, contact support@mcpserver.in"
   ]);
 
   // Live simulation ticker
@@ -79,7 +79,6 @@ export default function MonitoringPage() {
     if (!isLiveSimulating) return;
 
     const interval = setInterval(() => {
-      // Random multiplier oscillation
       setTrafficMultiplier((prev) => {
         const rand = Math.random();
         if (rand < 0.3) return Math.max(0.8, prev - 0.1);
@@ -87,11 +86,10 @@ export default function MonitoringPage() {
         return prev;
       });
 
-      // Insert fresh live logs
       const edgeNode = Math.random() > 0.5 ? "Mumbai-Edge-02" : "Bengaluru-Edge-01";
-      const latency = Math.floor(Math.random() * 6) + 9;
-      const rpcMethod = Math.random() > 0.5 ? "tools/call (execute_github)" : "resources/list";
-      const newLog = `[${new Date().toLocaleTimeString()}] ${edgeNode}: Standard JSON-RPC 2.0 -> ${rpcMethod} in ${latency}ms`;
+      const latency = Math.floor(Math.random() * 20) + 20;
+      const rpcMethod = Math.random() > 0.5 ? "tools/call" : "resources/list";
+      const newLog = `[${new Date().toLocaleTimeString()}] ${edgeNode}: Illustrative latency ${latency}ms for ${rpcMethod}`;
 
       setLiveLogs((prev) => [newLog, ...prev.slice(0, 4)]);
     }, 3000);
@@ -113,7 +111,7 @@ export default function MonitoringPage() {
 
   const breadcrumbSteps = [
     { name: "Dev Suite", href: "/tools/mcp-playground" },
-    { name: "Live Monitoring", href: "/mcp-monitoring" }
+    { name: "Monitoring Simulator", href: "/mcp-monitoring" }
   ];
 
   return (
@@ -133,12 +131,12 @@ export default function MonitoringPage() {
           <h1 className={`text-3xl font-display font-bold tracking-tighter leading-tight ${
             isDark ? "text-white" : "text-slate-900"
           }`}>
-            Live Server Health & Latency Dashboard
+            Monitoring Dashboard Simulator
           </h1>
           <p className={`mt-2 text-xs max-w-xl mx-auto leading-relaxed ${
             isDark ? "text-white/50" : "text-slate-500"
           }`}>
-            Inspect real-time request loads, packet delivery speed, and error rates of Indian regional edge clusters vs international hubs.
+            An interactive, client-side simulation of what a monitoring dashboard for India regional edge clusters could look like — the traffic and latency data below is generated locally, not pulled from live infrastructure.
           </p>
         </div>
 
@@ -235,8 +233,8 @@ export default function MonitoringPage() {
               <Activity className="w-4 h-4 text-emerald-500 shrink-0" />
             </div>
             <div className="mt-2 flex items-baseline gap-1.5">
-              <span className={`text-xl sm:text-2xl font-bold font-display ${isDark ? "text-white" : "text-slate-900"}`}>99.99%</span>
-              <span className="text-[10px] text-emerald-500 font-bold">● Live</span>
+              <span className={`text-xl sm:text-2xl font-bold font-display ${isDark ? "text-white" : "text-slate-900"}`}>Sample</span>
+              <span className="text-[10px] text-amber-400 font-bold">● Simulated</span>
             </div>
           </div>
 
@@ -251,7 +249,7 @@ export default function MonitoringPage() {
               <span className={`text-xl sm:text-2xl font-bold font-display ${isDark ? "text-white" : "text-slate-900"}`}>
                 {Math.round(totalRequests / 10)} req/s
               </span>
-              <span className="text-[10px] text-cyan-400 font-bold">+{Math.round((trafficMultiplier - 1) * 100)}%</span>
+              <span className="text-[10px] text-cyan-400 font-bold">Simulated</span>
             </div>
           </div>
 
@@ -266,7 +264,7 @@ export default function MonitoringPage() {
               <span className={`text-xl sm:text-2xl font-bold font-display ${isDark ? "text-white" : "text-slate-900"}`}>
                 {selectedCluster === "bengaluru" ? avgBengaluruLat : avgMumbaiLat}ms
               </span>
-              <span className="text-[10px] text-purple-400 font-bold">Sub-15ms Edge</span>
+              <span className="text-[10px] text-purple-400 font-bold">Simulated</span>
             </div>
           </div>
 
@@ -279,7 +277,7 @@ export default function MonitoringPage() {
             </div>
             <div className="mt-2 flex items-baseline gap-1.5">
               <span className={`text-xl sm:text-2xl font-bold font-display ${isDark ? "text-white" : "text-slate-900"}`}>{totalErrors}</span>
-              <span className="text-[10px] text-rose-500 font-bold">0.01% Share</span>
+              <span className="text-[10px] text-rose-500 font-bold">Simulated</span>
             </div>
           </div>
 
@@ -382,14 +380,14 @@ export default function MonitoringPage() {
             <div className="mb-4 flex justify-between items-start">
               <div>
                 <h3 className={`text-sm font-display font-bold ${isDark ? "text-white" : "text-slate-900"}`}>
-                  Latency Profiling (Sub-50ms Edge Performance)
+                  Latency Profiling (Simulated)
                 </h3>
                 <p className={`text-[10px] ${isDark ? "text-white/40" : "text-slate-500"}`}>
-                  Real-time milliseconds profiling across Bengaluru, Mumbai, and International hubs.
+                  Locally generated sample data illustrating latency differences across Bengaluru, Mumbai, and an international hub.
                 </p>
               </div>
               <div className="flex gap-2 text-[10px] font-mono">
-                <span className="text-emerald-500 font-bold">✔ SLA Compliant</span>
+                <span className="text-emerald-500 font-bold">✔ Within Simulated SLA</span>
               </div>
             </div>
             <div className="h-72 sm:h-80 w-full">
@@ -428,9 +426,9 @@ export default function MonitoringPage() {
           <div className="flex justify-between items-center mb-3">
             <h4 className="text-xs font-bold uppercase tracking-wider flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping shrink-0" />
-              Live Gateway Transactions Packet Logger
+              Simulated Gateway Transactions Logger
             </h4>
-            <span className="text-[10px] text-gray-500 font-mono">SSE Stream Connected</span>
+            <span className="text-[10px] text-gray-500 font-mono">{isLiveSimulating ? "Simulation running" : "Simulation paused"}</span>
           </div>
           <div className="bg-black/80 rounded-xl p-4 font-mono text-[11px] text-emerald-400 space-y-1.5 border border-white/5 max-h-40 overflow-y-auto">
             {liveLogs.map((log, index) => (

@@ -9,7 +9,7 @@ import { servers } from "../../src/data/servers";
 import { getUnifiedGraphSchema } from "../../src/lib/schema";
 
 export const metadata: Metadata = {
-  title: "MCP Servers Directory - 10,000+ Verified MCP Integrations",
+  title: "MCP Servers Directory - Curated Model Context Protocol Integrations",
   description:
     "Browse verified Model Context Protocol servers by category, authentication model, and production use case. Deploy MCP integrations on India-first edge infrastructure.",
   alternates: {
@@ -78,8 +78,8 @@ export default function ServersPage() {
 
           <div className="mt-8 grid gap-3 sm:grid-cols-3">
             {[
-              ["10,000+", "Verified MCP servers", Server],
-              ["Sub-50ms", "India edge execution", Zap],
+              ["Curated", "MCP server directory", Server],
+              ["Low", "Edge latency", Zap],
               ["Zero-trust", "Credential isolation", ShieldCheck],
             ].map(([value, label, Icon]) => (
               <div key={label as string} className="rounded-xl border border-white/10 bg-white/[0.03] p-5">

@@ -91,7 +91,7 @@ export const glossaryTerms: GlossaryTerm[] = [
       "Optimized for remote, multi-tenant cloud-hosted MCP servers.",
       "Allows cloud platforms to authenticate, log, and throttle requests securely.",
       "Uses standard HTTP/1.1 or HTTP/2 transport, bypassing strict firewall constraints.",
-      "Sub-50ms handshakes across high-speed CDN and edge points in India."
+      "Low-latency handshakes across high-speed CDN and edge points in India."
     ],
     useCase: "Connecting your local Cursor editor to a secure, remote Slack workspace database hosted on centralized edge servers in Bengaluru.",
     technicalDetails: {

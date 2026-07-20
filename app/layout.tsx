@@ -36,8 +36,8 @@ export const metadata: Metadata = {
     default: "MCPserver.in — Hosted MCP Platform for AI Agents",
     template: "%s | MCPserver.in"
   },
-  description: "Discover, deploy and manage production-ready MCP servers on India-first infrastructure. DPDP & RBI compliant, sub-50ms latency from Mumbai and Bengaluru.",
-  keywords: ["MCP server hosting India", "hosted MCP platform", "DPDP compliant AI tools", "MCP servers Mumbai", "MCP servers Bengaluru", "low latency MCP India", "RBI compliant LLM tools", "MCP infrastructure India", "Model Context Protocol hosting"],
+  description: "Discover and deploy MCP servers. Hosted infrastructure for AI agents with India-region hosting and compliance features.",
+  keywords: ["MCP server hosting India", "hosted MCP platform", "DPDP compliant AI tools", "MCP servers Mumbai", "MCP servers Bengaluru", "Model Context Protocol hosting"],
   authors: [{ name: "MCPserver.in Engineering" }],
   creator: "MCPserver.in",
   publisher: "MCPserver.in",
@@ -65,7 +65,7 @@ export const metadata: Metadata = {
     url: "https://www.mcpserver.in",
     siteName: "MCPserver.in",
     title: "MCPserver.in — Hosted MCP Platform for AI Agents",
-    description: "Discover, deploy and manage production-ready MCP servers on India-first infrastructure. DPDP & RBI compliant, sub-50ms latency from Mumbai and Bengaluru.",
+    description: "Discover and deploy MCP servers. Hosted infrastructure for AI agents with India-region hosting and compliance features.",
     locale: "en_IN",
   },
   twitter: {

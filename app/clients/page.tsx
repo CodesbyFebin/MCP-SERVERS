@@ -57,7 +57,7 @@ export default function ClientsPage() {
                   ["Production Ready", "Enterprise grade infrastructure", BadgeCheck],
                   ["Secure & Compliant", "SOC 2, GDPR ready and encrypted", ShieldCheck],
                   ["Scalable & Reliable", "High uptime and global edge network", Cloud],
-                  ["Loved by Developers", "10,000+ developers and growing", Wrench]
+                   ["Loved by Developers", "A growing community of builders", Wrench]
                 ].map(([title, body, Icon]) => (
                   <div key={title as string} className="flex gap-3">
                     <Icon className="mt-1 h-5 w-5 shrink-0 text-emerald-300" />

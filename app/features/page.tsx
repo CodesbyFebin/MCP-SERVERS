@@ -44,7 +44,7 @@ export default function FeaturesPage() {
             </p>
           </div>
           <div className="mt-8">
-            <StatStrip items={[["10,000+", "Verified servers"], ["500,000+", "Deployments"], ["1M+", "Daily requests"], ["99.99%", "Uptime"], ["9ms", "Bengaluru edge"]]} />
+            <StatStrip items={[["Growing", "Server directory"], ["Expanding", "Guides & tutorials"], ["59", "Protocol pillars"], ["25", "Glossary terms"]]} />
           </div>
         </Container>
       </section>

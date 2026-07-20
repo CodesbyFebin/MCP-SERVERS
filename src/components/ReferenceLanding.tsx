@@ -80,25 +80,25 @@ export const integrations = [
 ];
 
 export const stats = [
-  ["10,000+", "MCP Servers"],
-  ["500,000+", "Deployments"],
-  ["1M+", "API Requests / Day"],
-  ["99.99%", "Uptime"],
-  ["100%", "Free Basic"]
+  ["Curated", "MCP Server Directory"],
+  ["Growing", "Deployments"],
+  ["High", "Request Volume"],
+  ["Targeting", "High Availability"],
+  ["Free", "Basic Tier"]
 ];
 
 export const clientStats = [
-  ["2,500+", "Active Clients"],
-  ["10,000+", "MCP Servers Deployed"],
-  ["1M+", "API Requests / Day"],
-  ["99.99%", "Uptime"],
-  ["100%", "Client Satisfaction"]
+  ["Growing", "Active Users"],
+  ["Curated", "MCP Servers"],
+  ["High", "Request Volume"],
+  ["Targeting", "High Availability"],
+  ["Growing", "User Satisfaction"]
 ];
 
 export const features = [
   {
     title: "Largest MCP Registry",
-    body: "Access 10,000+ verified MCP servers across every category and use case.",
+    body: "Access a curated set of MCP servers across categories and use cases.",
     icon: Boxes,
     accent: "pink" as Accent
   },
@@ -247,7 +247,7 @@ export function EcosystemVisual({ variant = "home" }: { variant?: "home" | "clie
       ? ["Applications", "APIs", "Services"]
       : variant === "integrations"
         ? ["Notion", "Shopify", "AWS", "Stripe"]
-        : ["10,000+ Servers", "Unlimited Use Cases", "Global Edge Hosting", "Open Community"];
+        : ["100+ Servers", "Unlimited Use Cases", "Global Edge Hosting", "Open Community"];
 
   return (
     <div className="relative mx-auto min-h-[320px] w-full max-w-[620px] rounded-2xl border border-violet-300/20 bg-[#0b1020]/70 p-4 shadow-[0_0_70px_rgba(88,28,135,0.24)] sm:p-6">
@@ -318,13 +318,13 @@ export function StatStrip({ items = stats }: { items?: string[][] }) {
 
 export function LogoCloud({ client = false }: { client?: boolean }) {
   const items = client
-    ? ["zomato", "BYJU'S", "Razorpay", "CRED", "WinZO", "zepto", "Pine Labs", "Swiggy", "Flipkart", "freshworks", "Chargebee", "PayU", "innovaccer", "JUSPAY", "Practo", "druva"]
+    ? ["Fintech", "EdTech", "SaaS", "Developer Tools", "Cloud Infrastructure", "AI Agents", "Data Platforms", "DevOps"]
     : logos.map((logo) => logo.name);
 
   return (
     <div className="border-y border-white/5 py-6">
       <div className="mb-5 text-center text-[11px] font-bold uppercase tracking-[0.18em] text-white/45">
-        {client ? "Trusted by Leading Companies" : "Trusted by AI agents, developers and companies"}
+        {client ? "Built for teams across these categories" : "Trusted by AI agents, developers and companies"}
       </div>
       <div className="flex flex-wrap items-center justify-center gap-3 md:gap-5">
         {items.map((item, index) => {
@@ -404,7 +404,7 @@ export function CodeDemo() {
         <p className="mt-1 text-sm text-white/50">Get started in 3 simple steps</p>
         <div className="mt-5 space-y-3">
           {[
-            ["Discover", "Browse or search 10,000+ MCP servers across categories and integrations."],
+             ["Discover", "Browse or search a curated set of MCP servers across categories and integrations."],
             ["Connect", "Choose a server and connect via our unified MCP API."],
             ["Automate", "Use in your AI agent, app or workflow and start automating instantly."]
           ].map(([title, body], index) => (
@@ -503,8 +503,8 @@ export function SecurityBand() {
           <p className="mt-2 text-sm leading-relaxed text-white/65">Enterprise grade infrastructure with developer friendly experience.</p>
         </div>
         {[
-          ["Enterprise Security", ShieldCheck, "SOC 2, GDPR ready."],
-          ["Global Infrastructure", Globe2, "Edge hosting in 20+ regions."],
+          ["Enterprise Security", ShieldCheck, "Least-privilege access, encrypted secrets, audit logging."],
+          ["Global Infrastructure", Globe2, "India edge hosting in Mumbai and Bengaluru."],
           ["Developer First", Code2, "RESTful API, SDKs, CLI."],
           ["Observability", MonitorUp, "Logs, metrics and alerts."],
           ["Community Driven", Network, "Open source and transparent."]
@@ -523,34 +523,23 @@ export function SecurityBand() {
 export function Testimonials({ client = false }: { client?: boolean }) {
   const items = client
     ? [
-        ["MCP SERVER is the missing piece for our AI platform. Integration used to take weeks, now it takes minutes.", "Harshil Mathur", "Co-founder and CTO, Razorpay"],
-        ["The simplicity, reliability and ecosystem around MCP SERVER is unmatched. It just works.", "Divya Gokulnath", "Engineering Manager, BYJU'S"],
-        ["We connected 20+ services in a week. MCP SERVER unlocked speed and scale for our AI agents.", "Saurabh Kochhar", "Engineering Head, Swiggy"],
-        ["Security, performance and developer experience deliver on all fronts.", "Ankur Nandwani", "Tech Lead, CRED"]
+        ["Faster integration", "Wrap an existing API as an MCP server once, and any MCP-compatible AI client can use it — no per-client integration work."],
+        ["Ecosystem compatibility", "Standard JSON-RPC 2.0 transport means the same server works across Claude Desktop, Cursor, VS Code, and other MCP clients."],
+        ["Built for scale", "Deploy stdio servers locally for development, or move to SSE/HTTP-based remote servers as usage grows."],
+        ["Security by design", "Least-privilege tool scoping and explicit confirmation for destructive actions, from the first server you deploy."]
       ]
     : [
-        ["MCP SERVER is the missing piece for AI agent integrations. The ease of use is insane.", "Rohit Sharma", "AI Engineer"],
-        ["We deployed our MCP in 30 seconds and our AI agent is now connected to 100+ tools.", "Priya Patel", "Developer"],
-        ["Finally, a platform that makes MCP hosting simple, secure and free for everyone.", "Arjun Verma", "Founder"]
+        ["Quick to start", "Get a first MCP server running locally and connected to a client in under 30 minutes."],
+        ["Wide tool support", "Connect AI agents to databases, file systems, and third-party APIs through a consistent interface."],
+        ["Free to build", "The open-source SDKs and reference servers cost nothing to use for local development."]
       ];
 
   return (
     <div className={`grid gap-4 ${client ? "lg:grid-cols-4" : "lg:grid-cols-3"}`}>
-      {items.map(([quote, name, role]) => (
-        <div key={name} className="rounded-xl border border-white/10 bg-white/[0.035] p-6">
-          <div className="text-4xl font-black leading-none text-violet-400/70">"</div>
-          <p className="mt-2 min-h-20 text-sm leading-relaxed text-white/80">{quote}</p>
-          <div className="mt-5 flex items-center justify-between gap-3">
-            <div>
-              <div className="text-sm font-black text-white">{name}</div>
-              <div className="text-xs text-white/45">{role}</div>
-            </div>
-            <div className="flex gap-0.5 text-amber-400">
-              {[0, 1, 2, 3, 4].map((star) => (
-                <Star key={star} className="h-3.5 w-3.5 fill-current" />
-              ))}
-            </div>
-          </div>
+      {items.map(([title, body]) => (
+        <div key={title} className="rounded-xl border border-white/10 bg-white/[0.035] p-6">
+          <div className="text-sm font-black text-white">{title}</div>
+          <p className="mt-2 min-h-20 text-sm leading-relaxed text-white/80">{body}</p>
         </div>
       ))}
     </div>
@@ -600,7 +589,7 @@ export function SearchPanel({ showTitle = true }: { showTitle?: boolean }) {
     <div className="mx-auto max-w-3xl">
       {showTitle && (
         <h2 className="mb-5 text-center text-2xl font-black text-white">
-          Search <span className="text-violet-300">10,000+</span> MCP Servers
+          Search <span className="text-violet-300">MCP</span> Servers
         </h2>
       )}
       <div className="flex items-center overflow-hidden rounded-lg border border-white/15 bg-white shadow-lg shadow-violet-950/20">
@@ -680,10 +669,6 @@ export function IntegrationCards() {
             </div>
             <h3 className="mt-5 text-lg font-black text-white">{item.name}</h3>
             <p className="mt-2 min-h-16 text-xs leading-relaxed text-white/55">Connect, automate and manage {item.name} workflows with AI.</p>
-            <div className="mt-4 flex justify-between text-[11px] text-white/50">
-              <span className="text-amber-300">4.8</span>
-              <span>{index % 2 ? "45K+" : "50K+"} uses</span>
-            </div>
             <button className="mt-4 w-full rounded-md bg-violet-600 py-2 text-xs font-black text-white">Connect</button>
           </div>
         );
@@ -694,38 +679,29 @@ export function IntegrationCards() {
 
 export function ClientCaseStudies() {
   const cases = [
-    ["Razorpay", "Fintech", "Integrated 23+ tools and APIs using MCP SERVER to automate KYC, payments and reconciliation workflows.", ["23+", "80%", "99.99%"]],
-    ["BYJU'S", "EdTech", "Connected AI tutors with content, analytics and assessment systems seamlessly via MCP.", ["35+", "60%", "1M+"]],
-    ["Swiggy", "FoodTech", "Built AI agents for demand forecasting, route optimization and restaurant operations.", ["28+", "70%", "50M+"]],
-    ["CRED", "Fintech", "Unified multiple data sources and internal tools to power intelligent credit insights and automation.", ["40+", "90%", "100%"]]
+    ["Fintech", "Payments platform", "A typical fintech use case: expose internal KYC, payment, and reconciliation tools to an AI agent through one MCP server instead of separate custom integrations."],
+    ["EdTech", "Learning platform", "Connect AI tutoring assistants to content, analytics, and assessment systems through a consistent MCP tool interface."],
+    ["FoodTech", "Logistics platform", "Build AI agents for demand forecasting and route optimization that call into existing operations systems via MCP tools."],
+    ["Fintech", "Credit platform", "Unify multiple internal data sources behind MCP so an AI agent can reason over credit and risk signals without bespoke glue code."]
   ];
 
   return (
     <div className="rounded-xl border border-white/10 bg-white/[0.025] p-5">
       <div className="mb-5 flex items-center justify-between">
         <div>
-          <h2 className="text-xl font-black text-white">Client Success Stories</h2>
-          <p className="text-sm text-white/50">See how our clients are building amazing AI solutions with MCP SERVER.</p>
+          <h2 className="text-xl font-black text-white">Example Use Cases</h2>
+          <p className="text-sm text-white/50">Illustrative patterns for how teams in different industries typically use MCP servers.</p>
         </div>
-        <Link href="/clients" className="hidden text-xs font-bold text-violet-300 md:inline-flex">View all case studies {"->"}</Link>
+        <Link href="/clients" className="hidden text-xs font-bold text-violet-300 md:inline-flex">See more examples {"->"}</Link>
       </div>
       <div className="grid gap-4 lg:grid-cols-4">
-        {cases.map(([name, industry, body, metrics]) => (
+        {cases.map(([industry, name, body]) => (
           <div key={name as string} className="rounded-xl border border-white/10 bg-[#0c1424] p-5">
             <div className="flex items-center justify-between">
-              <h3 className="text-xl font-black text-white">{name as string}</h3>
+              <h3 className="text-lg font-black text-white">{name as string}</h3>
               <span className="rounded-md bg-white/[0.06] px-2 py-1 text-[10px] font-semibold text-white/60">{industry as string}</span>
             </div>
             <p className="mt-5 min-h-20 text-xs leading-relaxed text-white/62">{body as string}</p>
-            <div className="mt-5 grid grid-cols-3 gap-2 border-t border-white/10 pt-4 text-center">
-              {(metrics as string[]).map((metric) => (
-                <div key={metric}>
-                  <div className="text-lg font-black text-violet-300">{metric}</div>
-                  <div className="text-[10px] text-white/45">Metric</div>
-                </div>
-              ))}
-            </div>
-            <Link href="/clients" className="mt-5 inline-flex text-sm font-bold text-violet-300">Read Case Study {"->"}</Link>
           </div>
         ))}
       </div>
@@ -889,11 +865,11 @@ export function KnowledgeGraph() {
 export function ComparisonTable() {
   const rows = [
     ["DPDP & RBI Compliant", true, false, "Varies by provider"],
-    ["10,000+ Verified Servers", true, false, "Limited"],
+    ["Verified Server Directory", true, false, "Limited"],
     ["One-Click Deploy", true, false, "Complex setup"],
     ["Monitoring & Alerts", true, false, "Add-on required"],
     ["India-First Support", true, "Varies", false],
-    ["99.97% Uptime SLA", true, "You manage", "Varies"]
+    ["Custom Uptime SLA", true, "You manage", "Varies"]
   ];
 
   return (
@@ -952,44 +928,12 @@ export function ComparisonTable() {
   );
 }
 
-export function MethodologySection() {
-  return (
-    <section className="rounded-xl border border-white/10 bg-white/[0.02] p-6 sm:p-8">
-      <h3 className="text-xl font-black text-white">How We Count Our Metrics</h3>
-      <p className="mt-2 text-sm text-white/55">
-        Transparency is core to our platform. Here is how we calculate the numbers you see across MCPserver.in.
-      </p>
-      <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {[
-          {
-            title: "10,000+ Verified Servers",
-            body: "We crawl GitHub, npm, Docker Hub, and 5+ MCP marketplaces daily. Each server is tested against the MCP specification and scored for quality, maintenance, and documentation before being listed."
-          },
-          {
-            title: "500,000+ Deployments",
-            body: "Total successful deployments across all users since our launch in Q1 2026. Every deployment is tracked with success/failure telemetry and latency metrics."
-          },
-          {
-            title: "99.97% Uptime",
-            body: "Measured across our global infrastructure using 3 independent monitoring services. Uptime is calculated on a rolling 30-day basis per edge node."
-          }
-        ].map((item) => (
-          <div key={item.title} className="rounded-lg border border-white/8 bg-white/[0.02] p-5">
-            <h4 className="text-sm font-black text-white">{item.title}</h4>
-            <p className="mt-2 text-xs leading-relaxed text-white/60">{item.body}</p>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
-
 export function ComplianceSection() {
   return (
     <section className="rounded-xl border border-violet-300/15 bg-gradient-to-b from-violet-950/40 to-transparent p-6 sm:p-8">
       <h3 className="text-xl font-black text-white">DPDP & RBI Compliant — Data Sovereignty Built In</h3>
       <p className="mt-2 text-sm text-white/65">
-        MCPserver.in is the only hosted MCP platform designed from the ground up for Indian compliance requirements.
+        MCPserver.in is designed with Indian compliance requirements — DPDP and RBI-aligned data handling — in mind from the ground up.
       </p>
       <div className="mt-6 grid gap-4 sm:grid-cols-2">
         <div className="rounded-lg border border-white/8 bg-white/[0.02] p-5">

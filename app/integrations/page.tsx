@@ -35,15 +35,15 @@ export default function IntegrationsPage() {
                 Integrate Anything. <br />
                 <span className="bg-gradient-to-r from-cyan-300 via-blue-300 to-violet-400 bg-clip-text text-transparent">Power Everything.</span>
               </h1>
-              <p className="mt-6 max-w-xl text-base leading-relaxed text-white/68">
-                Connect 1,000+ apps, APIs, databases and services to MCP SERVER. One integration. Infinite possibilities.
-              </p>
+               <p className="mt-6 max-w-xl text-base leading-relaxed text-white/68">
+                 Connect apps, APIs, databases and services to MCP. Explore integrations across categories and use cases.
+               </p>
               <div className="mt-7 grid grid-cols-4 gap-4 text-sm">
                 {[
-                  ["1,000+", "Integrations"],
-                  ["20+", "Categories"],
-                  ["100+", "Enterprise Ready"],
-                  ["99.99%", "Uptime"]
+                   ["Growing", "Integrations"],
+                   ["Multiple", "Categories"],
+                   ["Several", "Enterprise Ready"],
+                   ["Targeting", "High Uptime"]
                 ].map(([value, label]) => (
                   <div key={label}>
                     <div className="font-black text-emerald-300">{value}</div>
@@ -142,7 +142,7 @@ export default function IntegrationsPage() {
             </div>
             <ApiConsole />
             <div className="grid gap-3">
-              <StatStrip items={[["1M+", "API Requests/Day"], ["99.99%", "API Uptime"], ["150+", "Countries"], ["50ms", "Avg Response Time"]]} />
+              <StatStrip items={[                   ["Growing", "API Requests/Day"], ["Targeting", "API Uptime"], ["Multiple", "Regions"], ["Low", "Response Time"]]} />
               <PrimaryButton href="/docs">View API Documentation</PrimaryButton>
             </div>
           </div>

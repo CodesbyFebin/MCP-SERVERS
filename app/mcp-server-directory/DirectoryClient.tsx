@@ -40,15 +40,15 @@ export default function DirectoryClient() {
                 Discover. Deploy. Scale. <br />
                 <span className="bg-gradient-to-r from-blue-300 to-violet-400 bg-clip-text text-transparent">Everything MCP.</span>
               </h1>
-              <p className="mt-6 max-w-xl text-base leading-relaxed text-white/68">
-                Connect any AI agent to 10,000+ MCP servers. One API. Zero infrastructure. Infinite possibilities.
-              </p>
+               <p className="mt-6 max-w-xl text-base leading-relaxed text-white/68">
+                 Connect any AI agent to MCP servers. One API. Growing ecosystem. Explore integrations across categories and use cases.
+               </p>
               <div className="mt-7 grid grid-cols-3 gap-4">
-                {[
-                  ["10,000+", "MCP Servers", Server],
-                  ["One Click", "Deploy", Rocket],
-                  ["Global", "Edge Network", ShieldCheck]
-                ].map(([value, label, Icon]) => (
+               {[
+                   ["Curated", "MCP Servers", Server],
+                   ["One Click", "Deploy", Rocket],
+                   ["Global", "Edge Network", ShieldCheck]
+                 ].map(([value, label, Icon]) => (
                   <div key={label as string} className="flex items-center gap-3">
                     <Icon className="h-8 w-8 text-cyan-300" />
                     <div>
@@ -112,16 +112,16 @@ export default function DirectoryClient() {
           <SectionTitle title="The Complete MCP Platform" subtitle="Everything you need to discover, deploy and manage MCP servers at scale." />
           <FeatureGrid
             items={[
-              { title: "Largest Registry", body: "10,000+ verified MCP servers across 100+ categories.", icon: Server, accent: "violet" },
+               { title: "Largest Registry", body: "A curated set of MCP servers across categories and use cases.", icon: Server, accent: "violet" },
               { title: "One API Gateway", body: "One endpoint to access thousands of MCP servers.", icon: Zap, accent: "cyan" },
-              { title: "Hosted Infrastructure", body: "Global edge network with 99.9% uptime guarantee.", icon: Cloud, accent: "amber" },
+               { title: "Hosted Infrastructure", body: "Managed edge hosting for MCP server workloads.", icon: Cloud, accent: "amber" },
               { title: "Enterprise Ready", body: "Advanced security, compliance and access controls.", icon: ShieldCheck, accent: "blue" },
               { title: "Developer First", body: "Open source friendly with SDKs and extensive docs.", icon: Code2, accent: "pink" },
               { title: "Marketplace", body: "Publish, monetize and discover premium MCP servers.", icon: Layers3, accent: "amber" }
             ]}
           />
           <div className="mt-10">
-            <StatStrip items={[["10,000+", "MCP Servers"], ["50,000+", "Developers"], ["1M+", "API Requests/Day"], ["99.9%", "Uptime SLA"], ["100+", "Countries"]]} />
+              <StatStrip items={[["Curated", "MCP Servers"], ["Growing", "Developers"], ["High", "Request Volume"], ["Targeting", "High Availability"], ["Multiple", "Regions"]]} />
           </div>
         </Container>
       </DividerSection>
@@ -131,7 +131,7 @@ export default function DirectoryClient() {
           <SectionTitle eyebrow="How it works" title="Deploy in 4 Simple Steps" />
           <div className="grid gap-4 md:grid-cols-4">
             {[
-              ["Choose Server", "Browse or search from 10,000+ MCP servers in our registry.", Search],
+               ["Choose Server", "Browse or search from our curated set of MCP servers.", Search],
               ["Configure", "Add your credentials and configure the server settings.", Zap],
               ["Deploy", "One click and we handle the infrastructure, scaling and security.", Cloud],
               ["Connect & Use", "Get your endpoint and start using with your AI agents.", Rocket]

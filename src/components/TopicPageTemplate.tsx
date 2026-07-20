@@ -204,7 +204,7 @@ export default function TopicPageTemplate({
               Deploy Secure Cloud Containers for Your Nodes
             </h3>
             <p className={`text-xs mt-2 ${isDark ? "text-white/55" : "text-slate-500"}`}>
-              Easily package and host your custom Model Context Protocol codebases with sub-50ms speed inside India.
+              Easily package and host your custom Model Context Protocol codebases on low-latency infrastructure inside India.
             </p>
             <div className="mt-4 flex justify-center gap-3">
               <Link

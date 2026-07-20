@@ -15,7 +15,7 @@ export default function CTA() {
             Ready to Supercharge Your AI Agents?
           </h2>
           <p className="mt-4 text-sm sm:text-base text-gray-400 max-w-2xl mx-auto leading-relaxed">
-            Join over 50,000+ software developers and enterprise AI engineers deploying low-latency Model Context Protocol nodes with MCPserver.in.
+             Join a growing community of software developers and enterprise AI engineers deploying Model Context Protocol nodes with MCPserver.in.
           </p>
 
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">

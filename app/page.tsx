@@ -25,10 +25,10 @@ import { Star } from "lucide-react";
 export const metadata = {
   metadataBase: new URL("https://www.mcpserver.in"),
   title: {
-    default: "MCPServer.in: Free MCP Servers in India | 10,000+ Verified Model Context Protocol",
+    default: "MCPServer.in: Curated Model Context Protocol Directory & Hosting",
     template: "%s | MCPServer.in"
   },
-  description: "Deploy MCP servers from Mumbai & Bengaluru. DPDP compliant, <50ms latency. 100% free tier. SOC 2 certified. Connect Claude, ChatGPT, Cursor to 1000+ tools.",
+  description: "Discover, test, and deploy Model Context Protocol servers. India-ready infrastructure with DPDP-aligned data controls and low-latency edge hosting.",
   keywords: ["MCP server India", "Model Context Protocol hosting", "free MCP servers", "DPDP compliant AI tools", "MCP hosting Mumbai", "AI agent integration", "AI MCP servers", "AI tools India", "verified MCP servers"],
   authors: [{ name: "MCPserver.in Engineering" }],
   creator: "MCPserver.in",
@@ -56,8 +56,8 @@ export const metadata = {
     type: "website",
     url: "https://www.mcpserver.in",
     siteName: "MCPserver.in",
-    title: "MCPServer.in: Free MCP Servers in India | 10,000+ Verified Model Context Protocol",
-    description: "Deploy MCP servers from Mumbai & Bengaluru. DPDP compliant, <50ms latency. 100% free tier. SOC 2 certified. Connect Claude, ChatGPT, Cursor to 1000+ tools.",
+    title: "MCPServer.in: Curated Model Context Protocol Directory & Hosting",
+    description: "Discover, test, and deploy Model Context Protocol servers. India-ready infrastructure with DPDP-aligned data controls and low-latency edge hosting.",
     locale: "en_IN",
   },
   twitter: {
@@ -87,13 +87,13 @@ export default function Home() {
             <div>
               <Badge>India-ready hosted MCP platform</Badge>
               <h1 className="mt-6 max-w-3xl text-4xl font-black leading-[1.05] tracking-tight text-white sm:text-5xl md:text-6xl">
-                10,000+ Verified MCP Servers. <br />
+                 Curated MCP Server Directory. <br />
                 <span className="bg-gradient-to-r from-cyan-300 via-blue-300 to-fuchsia-400 bg-clip-text text-transparent">
-                  Hosted in India. DPDP & RBI Compliant.
+                  Hosted in India. DPDP-aligned Infrastructure.
                 </span>
               </h1>
               <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/68">
-                Deploy LLM tools in &lt;50ms from Mumbai and Bengaluru edge nodes. India-first MCP infrastructure with automated data localization, consent management, and breach notification protocols.
+                Deploy LLM tools from India-first edge infrastructure with DPDP-aligned data controls. Explore a curated directory of MCP servers and integrations.
               </p>
               <div className="mt-6 max-w-2xl">
                 <HeroTrustBadges />
@@ -122,6 +122,61 @@ export default function Home() {
               </div>
             </div>
             <EcosystemVisual />
+          </div>
+        </Container>
+      </section>
+
+      <section className="bg-gradient-to-b from-[#030711] to-[#0a0a1a] py-16">
+        <Container>
+          <div className="mx-auto max-w-4xl">
+            <h2 className="text-3xl font-bold text-white sm:text-4xl">What is Model Context Protocol (MCP)?</h2>
+            <p className="mt-4 text-lg text-white/70">
+              Model Context Protocol (MCP) is an open standard that transforms how AI systems interact with tools, data, and services. Unlike traditional REST APIs that require complex authentication and data transformation, MCP provides a unified interface for models to access external capabilities seamlessly.
+            </p>
+            
+            <div className="mt-8 grid gap-6 md:grid-cols-2">
+              <div>
+                <h3 className="text-xl font-semibold text-white">How MCP Works</h3>
+                <p className="mt-3 space-y-3 text-white/60">
+                  <p>MCP consists of two core components:</p>
+                  <ul className="list-space-y-2 pl-4">
+                    <li><strong className="text-cyan-300">MCP Host</strong> - The AI model or application that requests tools</li>
+                    <li><strong className="text-cyan-300">MCP Client</strong> - The tool or server being accessed</li>
+                  </ul>
+                  <p>The protocol enables secure, real-time communication with automatic schema validation and consent management.</p>
+                </p>
+              </div>
+              
+              <div>
+                <h3 className="text-xl font-semibold text-white">Why MCP Matters</h3>
+                <p className="mt-3 space-y-3 text-white/60">
+                  <p>MCP eliminates vendor lock-in by providing:</p>
+                  <ul className="list-space-y-2 pl-4">
+                    <li><strong className="text-cyan-300">Interoperability</strong> - Connect any model to any tool</li>
+                    <li><strong className="text-cyan-300">Extensibility</strong> - Build custom tools without modifying models</li>
+                    <li><strong className="text-cyan-300">Security</strong> - Fine-grained permissions and audit trails</li>
+                  </ul>
+                </p>
+              </div>
+            </div>
+            
+            <div className="mt-12 rounded-xl bg-white/5 p-6">
+              <h3 className="text-2xl font-semibold text-white">MCP vs Traditional APIs</h3>
+              <div className="mt-6 grid gap-4 md:grid-cols-3">
+                <div className="rounded-lg bg-white/10 p-4">
+                  <h4 className="font-semibold text-white">Traditional API</h4>
+                  <p className="mt-2 text-sm text-white/60">Separate auth, manual schema mapping, no model awareness</p>
+                </div>
+                <div className="rounded-lg bg-cyan-500/20 p-4">
+                  <h4 className="font-semibold text-cyan-300">MCP</h4>
+                  <p className="mt-2 text-sm">Unified protocol, automatic discovery, native model integration</p>
+                </div>
+                <div className="rounded-lg bg-white/10 p-4">
+                  <h4 className="font-semibold text-white">MCP Server India</h4>
+                  <p className="mt-2 text-sm">DPDP-aligned controls, low-latency edge hosting, and a curated directory of MCP servers.</p>
+                </div>
+              </div>
+            </div>
           </div>
         </Container>
       </section>
@@ -199,7 +254,7 @@ export default function Home() {
                 </div>
               </div>
               <p className="mt-4 text-sm leading-relaxed text-white/58">
-                232% server growth, top tools, latency benchmarks, and cost savings vs AWS Lambda. Original research from 500,000+ deployments.
+                Community research on MCP server growth, tooling trends, and architectural considerations for edge deployments. Illustrative examples for planning purposes.
               </p>
               <div className="mt-4 inline-flex items-center gap-1 text-xs font-bold text-cyan-300">
                 Read the report <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5" />

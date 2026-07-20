@@ -134,9 +134,9 @@ export default function P99DashboardClient() {
               <AlertTriangle className="h-4 w-4 text-amber-200" />
               <h2 className="text-sm font-black text-white">Alert policy</h2>
             </div>
-            <p className="mt-3 text-xs leading-relaxed text-amber-100/70">
-              Page on-call when p99 exceeds 50ms for 5 consecutive minutes or error rate crosses 0.1% per region.
-            </p>
+              <p className="mt-3 text-xs leading-relaxed text-amber-100/70">
+                Illustrative alert example: page on-call when latency exceeds a chosen threshold or error rate rises above a configured level.
+              </p>
           </div>
           <div className="rounded-xl border border-white/10 bg-white/[0.03] p-5">
             <h2 className="text-sm font-black text-white">Implementation source</h2>

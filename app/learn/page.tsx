@@ -90,7 +90,7 @@ const learnSections = [
     questions: [
       {
         question: "Can MCP servers handle 1M+ requests per day?",
-        answer: "Yes. MCPserver.in's managed runtime auto-scales container replicas based on request volume, with built-in load balancing, circuit breakers, and graceful degradation to handle traffic spikes without downtime."
+        answer: "Managed runtimes can scale container replicas based on request volume, with load balancing, circuit breakers, and graceful degradation to handle traffic spikes."
       },
       {
         question: "What enterprise identity features are available?",
@@ -170,6 +170,12 @@ export default function LearnPage() {
             </Link>
             <Link href="/mcp-server-directory" className="inline-flex items-center gap-2 rounded-md border border-white/10 bg-white/[0.04] px-5 py-2.5 text-xs font-black text-white">
               Browse Servers <ArrowRight className="h-4 w-4" />
+            </Link>
+            <Link
+              href="/learn/indic-nlp-guide"
+              className="inline-flex items-center gap-2 rounded-md border border-indigo-500/40 bg-indigo-500/10 px-5 py-2.5 text-xs font-black text-indigo-200"
+            >
+              🇮🇳 Indic NLP Guide <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
         </section>
