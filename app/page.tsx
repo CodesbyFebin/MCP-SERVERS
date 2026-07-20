@@ -1,5 +1,3 @@
-"use client";
-
 import {
   Badge,
   CodeDemo,
@@ -30,11 +28,11 @@ import FAQ from "../src/components/FAQ";
 export const metadata = {
   metadataBase: new URL("https://www.mcpserver.in"),
   title: {
-    default: "MCPServer.in: Free Hosted MCP Servers in India | 10,000+ Verified",
+    default: "MCPServer.in: Curated Model Context Protocol Directory & Hosting",
     template: "%s | MCPServer.in"
   },
-  description: "India's largest MCP server platform. Host 10,000+ verified Model Context Protocol servers free. DPDP compliant, Mumbai/Bengaluru edge nodes. Deploy AI tools in <50ms.",
-  keywords: ["MCP server India", "Model Context Protocol hosting", "free MCP servers", "DPDP compliant AI tools", "MCP hosting Mumbai", "AI agent integration", "AI MCP servers", "AI tools India", "verified MCP servers", "MCP deployment India", "low latency MCP hosting", "RBI compliant AI"],
+  description: "Discover and deploy MCP servers. Hosted infrastructure for AI agents with India-region hosting and compliance features.",
+  keywords: ["MCP server India", "Model Context Protocol hosting", "free MCP servers", "DPDP compliant AI tools", "MCP hosting Mumbai", "AI agent integration", "AI MCP servers", "AI tools India", "MCP deployment India"],
   authors: [{ name: "MCPserver.in Engineering" }],
   creator: "MCPserver.in",
   publisher: "MCPserver.in",
@@ -61,8 +59,8 @@ export const metadata = {
     type: "website",
     url: "https://www.mcpserver.in",
     siteName: "MCPserver.in",
-    title: "MCPServer.in: Free Hosted MCP Servers in India | 10,000+ Verified",
-    description: "India's largest MCP server platform. Host 10,000+ verified Model Context Protocol servers free. DPDP compliant, Mumbai/Bengaluru edge nodes. Deploy AI tools in <50ms.",
+    title: "MCPServer.in: Curated Model Context Protocol Directory & Hosting",
+    description: "Discover, test, and deploy Model Context Protocol servers. India-ready infrastructure with DPDP-aligned data controls and low-latency edge hosting.",
     locale: "en_IN",
   },
   twitter: {
@@ -86,7 +84,7 @@ export const metadata = {
 const homeFaqs = [
   {
     question: "What is MCPserver.in?",
-    answer: "MCPserver.in is India's first Model Context Protocol (MCP) platform. We provide a curated directory of 10,000+ verified MCP servers and free/paid hosting with DPDP-aligned data controls from Mumbai and Bengaluru edge nodes."
+    answer: "MCPserver.in is an India-focused Model Context Protocol (MCP) platform. We provide a curated directory of MCP servers and free/paid hosting with DPDP-aligned data controls from Mumbai and Bengaluru edge nodes."
   },
   {
     question: "Is MCP hosting really free?",
@@ -98,7 +96,7 @@ const homeFaqs = [
   },
   {
     question: "How fast are MCP servers on MCPServer.in?",
-    answer: "Our Mumbai and Bengaluru edge nodes deliver median latencies under 50ms for regional traffic. Enterprise plans include dedicated nodes with SLA-backed uptime and zero cold starts."
+    answer: "Latency depends on where you deploy and where your data lives. Hosting close to your users and data source — Mumbai or Bengaluru for Indian traffic — reduces round-trip time versus routing through a distant global region. Enterprise plans include a negotiated uptime SLA."
   },
   {
     question: "Do I need to manage infrastructure?",
@@ -109,12 +107,12 @@ const homeFaqs = [
 const unifiedGraphSchema = getUnifiedGraphSchema({
   pageUrl: "/",
   title: "MCPServer.in: Free Hosted MCP Servers in India",
-  description: "India's largest MCP server platform with 10,000+ verified servers, DPDP compliance, and Mumbai/Bengaluru edge hosting.",
+  description: "Curated Model Context Protocol directory and hosting with DPDP-aligned compliance and Mumbai/Bengaluru edge hosting.",
   breadcrumbs: [{ name: "Home", item: "/" }],
   faq: homeFaqs,
   article: {
     title: "MCPServer.in: Free Hosted MCP Servers in India",
-    description: "India's largest MCP server platform with 10,000+ verified servers, DPDP compliance, and Mumbai/Bengaluru edge hosting.",
+    description: "Curated Model Context Protocol directory and hosting with DPDP-aligned compliance and Mumbai/Bengaluru edge hosting.",
     authorName: "MCPserver.in Engineering",
     authorRole: "Platform Team",
     datePublished: "2025-11-05",

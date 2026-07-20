@@ -19,7 +19,6 @@ import {
 import {
   BadgeCheck,
   Cloud,
-  Code2,
   Database,
   GraduationCap,
   HeartPulse,
@@ -28,8 +27,7 @@ import {
   ShoppingCart,
   Sparkles,
   Truck,
-  Wrench,
-  Zap
+  Wrench
 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -106,12 +104,12 @@ export default function ClientsPage() {
           <SectionTitle title="Why Clients Choose MCP SERVER" subtitle="Everything you need to build, connect and scale AI with confidence." />
           <FeatureGrid
             items={[
-              { title: "Easy Integration", body: "One API. Connect to a growing directory of tools, apps and data sources.", icon: Sparkles, accent: "cyan" },
-              { title: "Enterprise Security", body: "SOC 2, GDPR ready with end-to-end encryption and access control.", icon: ShieldCheck, accent: "violet" },
-              { title: "Global Infrastructure", body: "Hosted on a global edge network for low latency and high availability.", icon: Cloud, accent: "green" },
-              { title: "Developer First", body: "Beautiful APIs, SDKs, docs and tools that developers love.", icon: Code2, accent: "pink" },
-              { title: "Scalable by Design", body: "From prototypes to millions of requests, we scale with you.", icon: Database, accent: "cyan" },
-              { title: "Active Support", body: "24/7 expert support from real engineers who care.", icon: Zap, accent: "violet" }
+              { title: "Easy Integration", body: "One API. Connect to a growing directory of tools, apps and data sources.", icon: "Sparkles", accent: "cyan" },
+              { title: "Enterprise Security", body: "SOC 2, GDPR ready with end-to-end encryption and access control.", icon: "ShieldCheck", accent: "violet" },
+              { title: "Global Infrastructure", body: "Hosted on a global edge network for low latency and high availability.", icon: "Cloud", accent: "green" },
+              { title: "Developer First", body: "Beautiful APIs, SDKs, docs and tools that developers love.", icon: "Code2", accent: "pink" },
+              { title: "Scalable by Design", body: "From prototypes to millions of requests, we scale with you.", icon: "Database", accent: "cyan" },
+              { title: "Active Support", body: "24/7 expert support from real engineers who care.", icon: "Zap", accent: "violet" }
             ]}
           />
         </Container>

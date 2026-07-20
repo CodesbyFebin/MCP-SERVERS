@@ -110,12 +110,12 @@ export default function IntegrationsPage() {
               <h2 className="text-2xl font-black text-white">Powerful Integration Capabilities</h2>
               <FeatureGrid
                 items={[
-                  { title: "Secure & OAuth 2.0", body: "Enterprise-grade security with OAuth 2.0, API keys and role-based access.", icon: KeyRound, accent: "cyan" },
-                  { title: "Real-time Sync", body: "Bi-directional sync and real-time data updates.", icon: PlugZap, accent: "cyan" },
-                  { title: "No-Code Connectors", body: "Connect your tools without writing a single line of code.", icon: Settings2, accent: "blue" },
-                  { title: "Custom Workflows", body: "Build custom automation and workflows across integrations.", icon: CheckCircle2, accent: "violet" },
-                  { title: "Data Mapping", body: "Map fields, transform data and create powerful pipelines.", icon: ArrowRight, accent: "pink" },
-                  { title: "Monitoring & Logs", body: "Track usage, monitor health and debug with detailed logs.", icon: CheckCircle2, accent: "pink" }
+                  { title: "Secure & OAuth 2.0", body: "Enterprise-grade security with OAuth 2.0, API keys and role-based access.", icon: "KeyRound", accent: "cyan" },
+                  { title: "Real-time Sync", body: "Bi-directional sync and real-time data updates.", icon: "PlugZap", accent: "cyan" },
+                  { title: "No-Code Connectors", body: "Connect your tools without writing a single line of code.", icon: "Settings2", accent: "blue" },
+                  { title: "Custom Workflows", body: "Build custom automation and workflows across integrations.", icon: "CheckCircle2", accent: "violet" },
+                  { title: "Data Mapping", body: "Map fields, transform data and create powerful pipelines.", icon: "ArrowRight", accent: "pink" },
+                  { title: "Monitoring & Logs", body: "Track usage, monitor health and debug with detailed logs.", icon: "CheckCircle2", accent: "pink" }
                 ]}
               />
             </div>

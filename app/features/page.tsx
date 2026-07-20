@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Activity, Boxes, Globe2, LockKeyhole, Network, Rocket, ShieldCheck, Workflow, Zap } from "lucide-react";
+import { LockKeyhole, Network, ShieldCheck, Zap } from "lucide-react";
 import SchemaJsonLd from "../../src/components/SchemaJsonLd";
 import { Container, DividerSection, FeatureGrid, PageShell, SectionTitle, StatStrip } from "../../src/components/ReferenceLanding";
 import { getUnifiedGraphSchema } from "../../src/lib/schema";
@@ -54,12 +54,12 @@ export default function FeaturesPage() {
           <SectionTitle title="Core feature set" subtitle="Built for developers first, with enough control for enterprise platform teams." />
           <FeatureGrid
             items={[
-              { title: "Server Directory", body: "Search verified MCP servers by category, auth model, and use case.", icon: Boxes, accent: "cyan" },
-              { title: "Hosted Runtime", body: "Deploy stdio and SSE servers behind managed HTTPS endpoints.", icon: Rocket, accent: "violet" },
-              { title: "Zero-Trust Gateway", body: "Validate auth, payloads, scopes, and tool policies before execution.", icon: ShieldCheck, accent: "green" },
-              { title: "India Edge", body: "Route traffic through Mumbai and Bengaluru for lower regional latency.", icon: Globe2, accent: "amber" },
-              { title: "Observability", body: "Track latency percentiles, errors, logs, traces, and audit events.", icon: Activity, accent: "blue" },
-              { title: "Workflows", body: "Compose server calls into governed multi-agent workflows.", icon: Workflow, accent: "pink" },
+              { title: "Server Directory", body: "Search verified MCP servers by category, auth model, and use case.", icon: "Boxes", accent: "cyan" },
+              { title: "Hosted Runtime", body: "Deploy stdio and SSE servers behind managed HTTPS endpoints.", icon: "Rocket", accent: "violet" },
+              { title: "Zero-Trust Gateway", body: "Validate auth, payloads, scopes, and tool policies before execution.", icon: "ShieldCheck", accent: "green" },
+              { title: "India Edge", body: "Route traffic through Mumbai and Bengaluru for lower regional latency.", icon: "Globe2", accent: "amber" },
+              { title: "Observability", body: "Track latency percentiles, errors, logs, traces, and audit events.", icon: "Activity", accent: "blue" },
+              { title: "Workflows", body: "Compose server calls into governed multi-agent workflows.", icon: "Workflow", accent: "pink" },
             ]}
           />
         </Container>

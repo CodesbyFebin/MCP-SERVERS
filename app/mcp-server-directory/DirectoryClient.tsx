@@ -112,12 +112,12 @@ export default function DirectoryClient() {
           <SectionTitle title="The Complete MCP Platform" subtitle="Everything you need to discover, deploy and manage MCP servers at scale." />
           <FeatureGrid
             items={[
-               { title: "Largest Registry", body: "A curated set of MCP servers across categories and use cases.", icon: Server, accent: "violet" },
-              { title: "One API Gateway", body: "One endpoint to access thousands of MCP servers.", icon: Zap, accent: "cyan" },
-               { title: "Hosted Infrastructure", body: "Managed edge hosting for MCP server workloads.", icon: Cloud, accent: "amber" },
-              { title: "Enterprise Ready", body: "Advanced security, compliance and access controls.", icon: ShieldCheck, accent: "blue" },
-              { title: "Developer First", body: "Open source friendly with SDKs and extensive docs.", icon: Code2, accent: "pink" },
-              { title: "Marketplace", body: "Publish, monetize and discover premium MCP servers.", icon: Layers3, accent: "amber" }
+               { title: "Curated Registry", body: "A curated set of MCP servers across categories and use cases.", icon: "Server", accent: "violet" },
+              { title: "One API Gateway", body: "One endpoint to access a growing set of MCP servers.", icon: "Zap", accent: "cyan" },
+               { title: "Hosted Infrastructure", body: "Managed edge hosting for MCP server workloads.", icon: "Cloud", accent: "amber" },
+              { title: "Enterprise Ready", body: "Advanced security, compliance and access controls.", icon: "ShieldCheck", accent: "blue" },
+              { title: "Developer First", body: "Open source friendly with SDKs and extensive docs.", icon: "Code2", accent: "pink" },
+              { title: "Marketplace", body: "Publish, monetize and discover premium MCP servers.", icon: "Layers3", accent: "amber" }
             ]}
           />
           <div className="mt-10">

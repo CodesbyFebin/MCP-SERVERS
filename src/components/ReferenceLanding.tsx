@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import {
+  Activity,
   ArrowRight,
   BadgeCheck,
   Boxes,
@@ -16,6 +17,7 @@ import {
   Github,
   Globe2,
   Grid2X2,
+  KeyRound,
   Layers3,
   LockKeyhole,
   MessageSquare,
@@ -25,6 +27,7 @@ import {
   Rocket,
   Search,
   Server,
+  Settings2,
   ShieldCheck,
   Sparkles,
   Star,
@@ -346,11 +349,28 @@ export function LogoCloud({ client = false }: { client?: boolean }) {
   );
 }
 
-export function FeatureGrid({ items = features }: { items?: typeof features }) {
+const iconByName: Record<string, typeof Boxes> = {
+  Sparkles, ShieldCheck, Cloud, Code2, Database, Zap, Boxes, Rocket, Globe2,
+  Activity, Workflow, KeyRound, PlugZap, Settings2, CheckCircle2, ArrowRight,
+  Network, MessageSquare, Terminal, Server, LockKeyhole, Fingerprint, Github,
+};
+
+interface FeatureGridItem {
+  title: string;
+  body: string;
+  icon: typeof Boxes | string;
+  accent: Accent;
+}
+
+export function FeatureGrid({ items = features }: { items?: FeatureGridItem[] }) {
   return (
     <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
       {items.map((feature) => {
-        const Icon = feature.icon;
+        // Server Components can't pass component references as props to a
+        // Client Component (RSC serialization forbids functions) - callers
+        // outside this file should pass an icon name string instead, which
+        // gets resolved to the real component here, inside the client boundary.
+        const Icon = typeof feature.icon === "string" ? (iconByName[feature.icon] ?? Sparkles) : feature.icon;
         return (
           <div key={feature.title} className="rounded-xl border border-white/10 bg-white/[0.035] p-5 transition hover:border-violet-300/40 hover:bg-white/[0.055]">
             <IconTile icon={Icon} accent={feature.accent} />
