@@ -36,7 +36,7 @@ const learnSections = [
     questions: [
       {
         question: "What is the p99 latency for MCP servers in India?",
-        answer: "MCPserver.in delivers a p99 latency of 11ms in Mumbai and 9ms in Bengaluru, ensuring sub-50ms roundtrip execution for 99.9% of requests from Indian users."
+        answer: "Latency depends on where your MCP server and its data actually run. Hosting close to your users and data source — for Indian teams, typically Mumbai or Bengaluru — minimizes network round-trip time compared to routing through a distant global region."
       },
       {
         question: "How does edge routing improve MCP performance?",

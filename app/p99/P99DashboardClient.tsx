@@ -39,10 +39,10 @@ const fallbackLatencySeries: LatencyPoint[] = [
 ];
 
 const fallbackRegions: RegionMetric[] = [
-  { name: "Mumbai Edge", latencyMs: 11, uptime: "99.99%", status: "Operational" },
-  { name: "Bengaluru Edge", latencyMs: 9, uptime: "99.98%", status: "Operational" },
-  { name: "Secure Gateway Proxy", latencyMs: 3, uptime: "100%", status: "Operational" },
-  { name: "In-Browser Sandbox", latencyMs: 1, uptime: "99.95%", status: "Operational" },
+  { name: "Mumbai Edge", latencyMs: 12, uptime: "Targeting high availability", status: "Illustrative" },
+  { name: "Bengaluru Edge", latencyMs: 11, uptime: "Targeting high availability", status: "Illustrative" },
+  { name: "Secure Gateway Proxy", latencyMs: 4, uptime: "Targeting high availability", status: "Illustrative" },
+  { name: "In-Browser Sandbox", latencyMs: 2, uptime: "Targeting high availability", status: "Illustrative" },
 ];
 
 export default function P99DashboardClient() {
@@ -75,7 +75,7 @@ export default function P99DashboardClient() {
               <ShieldCheck className="h-4 w-4 text-emerald-300" />
             </div>
             <div className="mt-4 text-3xl font-black text-cyan-200">{region.latencyMs}ms</div>
-            <div className="mt-1 text-xs text-white/45">Current median route latency</div>
+            <div className="mt-1 text-xs text-white/45">Illustrative route latency estimate</div>
             <div className="mt-4 flex items-center justify-between border-t border-white/8 pt-3 text-[11px]">
               <span className="text-white/45">90-day uptime</span>
               <span className="font-bold text-emerald-200">{region.uptime} {region.status}</span>
@@ -90,7 +90,7 @@ export default function P99DashboardClient() {
             <div>
               <h2 className="text-lg font-black text-white">Latency percentiles</h2>
               <p className="mt-1 text-xs text-white/45">
-                Loaded from `/data/mcp-stats-2026.json`. Snapshot generated {new Date(snapshot.generatedAt).toLocaleDateString("en-IN")}.
+                Example data from `/data/mcp-stats-2026.json` — illustrative, not live telemetry. Sample generated {new Date(snapshot.generatedAt).toLocaleDateString("en-IN")}.
               </p>
             </div>
             <Activity className="h-5 w-5 text-cyan-300" />
@@ -122,11 +122,11 @@ export default function P99DashboardClient() {
         </div>
 
         <aside className="space-y-4">
-          <div className="rounded-xl border border-emerald-400/20 bg-emerald-500/10 p-5">
-            <h2 className="text-sm font-black text-white">SLA state</h2>
-            <div className="mt-4 text-3xl font-black text-emerald-200">Passing</div>
-            <p className="mt-2 text-xs leading-relaxed text-emerald-100/70">
-              P99 remains below the sub-50ms target for 99.9% of sampled execution windows.
+          <div className="rounded-xl border border-amber-400/20 bg-amber-500/10 p-5">
+            <h2 className="text-sm font-black text-white">Example data</h2>
+            <div className="mt-4 text-lg font-black text-amber-200">Illustrative, not live</div>
+            <p className="mt-2 text-xs leading-relaxed text-amber-100/70">
+              This panel demonstrates what SLA-target tracking could look like once connected to a real metrics source. Figures shown are sample data.
             </p>
           </div>
           <div className="rounded-xl border border-amber-400/20 bg-amber-500/10 p-5">

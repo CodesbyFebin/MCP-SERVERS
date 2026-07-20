@@ -95,7 +95,7 @@ export const pricingPlans: PricingPlan[] = [
       "Complete Single-Sign-On (SSO / SAML)",
       "24/7 dedicated telephone hotline",
       "Custom security audits & certification support",
-      "99.99% Uptime SLA Guarantee"
+      "Negotiated uptime SLA"
     ],
     cta: "Request Demo",
     badge: "Enterprise Ready"

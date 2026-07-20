@@ -6,58 +6,51 @@ import SchemaJsonLd from "../../src/components/SchemaJsonLd";
 import { getUnifiedGraphSchema } from "../../src/lib/schema";
 
 export const metadata: Metadata = {
-  title: "State of MCP in India 2026 - Market Data & Trends",
+  title: "State of MCP in India 2026 - Community Trends & Illustrative Estimates",
   description:
-    "Interactive report on MCP adoption in India: 232% server growth, top tools, latency benchmarks, cost savings vs AWS Lambda, and regional deployment patterns.",
+    "Community trends and illustrative examples for MCP adoption in India: regional considerations, tooling patterns, and sample cost comparisons for planning purposes.",
 };
 
 const stats = [
-  { label: "MCP Server Growth (YoY)", value: "232%", sub: "India registry" },
-  { label: "Daily API Requests", value: "1M+", sub: "Mumbai + Bengaluru" },
-  { label: "Avg Edge Latency", value: "11ms", sub: "p99 Mumbai" },
-  { label: "Active Developers", value: "50,000+", sub: "Indian subcontinent" },
-  { label: "Data Residency", value: "100%", sub: "INR billing, DPDP" },
+  { label: "Community Interest", value: "Growing", sub: "Developer surveys" },
+  { label: "India Edge Adoption", value: "Expanding", sub: "Mumbai & Bengaluru" },
+  { label: "Regional Latency", value: "Variable", sub: "Depends on deployment" },
+  { label: "Developer Engagement", value: "Rising", sub: "Indian subcontinent" },
+  { label: "Data Residency", value: "Available", sub: "INR billing, DPDP-aligned" },
 ];
 
 const topTools = [
-  { name: "GitHub", category: "Developer Tools", growth: "+180%", latency: "8ms" },
-  { name: "PostgreSQL", category: "Databases", growth: "+145%", latency: "9ms" },
-  { name: "Slack", category: "Productivity", growth: "+120%", latency: "10ms" },
-  { name: "Razorpay", category: "Finance", growth: "+310%", latency: "7ms" },
-  { name: "Notion", category: "Productivity", growth: "+95%", latency: "11ms" },
-  { name: "Docker", category: "DevOps", growth: "+160%", latency: "8ms" },
+  { name: "GitHub", category: "Developer Tools", growth: "Growing", latency: "Varies" },
+  { name: "PostgreSQL", category: "Databases", growth: "Growing", latency: "Varies" },
+  { name: "Slack", category: "Productivity", growth: "Growing", latency: "Varies" },
+  { name: "Razorpay", category: "Finance", growth: "Growing", latency: "Varies" },
+  { name: "Notion", category: "Productivity", growth: "Growing", latency: "Varies" },
+  { name: "Docker", category: "DevOps", growth: "Growing", latency: "Varies" },
 ];
 
 const regionalData = [
-  { region: "Mumbai", servers: "3,200+", latency: "11ms", useCase: "Fintech, BFSI, DPDP workloads" },
-  { region: "Bengaluru", servers: "2,800+", latency: "9ms", useCase: "Startups, SaaS, AI/ML" },
-  { region: "Delhi NCR", servers: "1,500+", latency: "14ms", useCase: "Enterprise, Government, EdTech" },
-  { region: "Hyderabad", servers: "900+", latency: "12ms", useCase: "Pharma, Biotech, Core ML" },
-];
-
-const costComparison = [
-  { metric: "Cold start (p50)", awsLambda: "450ms", mcpEdge: "18ms", savings: "96%" },
-  { metric: "Warm execution (p95)", awsLambda: "120ms", mcpEdge: "11ms", savings: "91%" },
-  { metric: "Monthly cost (10M invocations)", awsLambda: "₹24,000", mcpEdge: "₹4,500", savings: "81%" },
-  { metric: "Data egress (1TB/mo)", awsLambda: "₹8,500", mcpEdge: "₹1,200", savings: "86%" },
+  { region: "Mumbai", servers: "Active deployments", latency: "Varies", useCase: "Fintech, BFSI, regulated workloads" },
+  { region: "Bengaluru", servers: "Active deployments", latency: "Varies", useCase: "Startups, SaaS, AI/ML" },
+  { region: "Delhi NCR", servers: "Active deployments", latency: "Varies", useCase: "Enterprise, Government, EdTech" },
+  { region: "Hyderabad", servers: "Active deployments", latency: "Varies", useCase: "Pharma, Biotech, ML workloads" },
 ];
 
 export default function StateOfMcpPage() {
   const unifiedSchema = getUnifiedGraphSchema({
     pageUrl: "/state-of-mcp",
-    title: "State of MCP in India 2026 - Market Data & Trends",
-    description: "Interactive report on MCP adoption in India: 232% server growth, top tools, latency benchmarks, cost savings vs AWS Lambda, and regional deployment patterns.",
+    title: "State of MCP in India 2026 - Community Trends & Illustrative Estimates",
+    description: "Community trends and illustrative examples for MCP adoption in India: regional considerations, tooling patterns, and sample cost comparisons for planning purposes.",
     breadcrumbs: [
       { name: "Home", item: "/" },
       { name: "State of MCP", item: "/state-of-mcp" }
     ],
     article: {
       title: "State of MCP in India 2026",
-      description: "Interactive report on MCP adoption in India: 232% server growth, top tools, latency benchmarks, cost savings vs AWS Lambda, and regional deployment patterns.",
-      authorName: "MCPserver.in Research",
-      authorRole: "Platform Intelligence",
+      description: "Community trends and illustrative examples for MCP adoption in India: regional considerations, tooling patterns, and sample cost comparisons for planning purposes.",
+      authorName: "MCPserver.in Engineering",
+      authorRole: "Platform Team",
       datePublished: "2026-07-19",
-      dateModified: "2026-07-19"
+      dateModified: "2026-07-20"
     }
   });
 
@@ -70,13 +63,13 @@ export default function StateOfMcpPage() {
         <section className="py-10">
           <div className="inline-flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-500/10 px-3 py-1 text-[11px] font-bold text-emerald-200">
             <TrendingUp className="h-3.5 w-3.5" />
-            2026 Market Report
+            Illustrative Community Trends
           </div>
           <h1 className="mt-5 text-4xl font-black tracking-tight text-white sm:text-5xl">
             State of MCP in India 2026
           </h1>
           <p className="mt-4 max-w-3xl text-base leading-relaxed text-white/68">
-            Original research from 500,000+ deployments across Mumbai, Bengaluru, Delhi, and Hyderabad. The definitive source for AI infrastructure trends on the Indian subcontinent.
+            Illustrative community examples for MCP adoption in India. Numbers shown are sample estimates for planning only and do not represent measured production telemetry.
           </p>
         </section>
 
@@ -96,7 +89,7 @@ export default function StateOfMcpPage() {
             <h2 className="text-2xl font-black text-white">Top MCP Tools in India</h2>
           </div>
           <p className="mt-2 text-sm text-white/58">
-            Ranked by 2026 adoption growth across 50,000+ Indian developers.
+            Illustrative regional examples for MCP deployment considerations across India.
           </p>
           <div className="mt-6 overflow-x-auto">
             <table className="w-full text-left text-sm">
@@ -121,7 +114,7 @@ export default function StateOfMcpPage() {
             </table>
           </div>
           <p className="mt-3 text-xs text-white/45">
-            Source: MCPserver.in registry analytics, Jan-Jun 2026. <Link href="/mcp-server-directory" className="text-cyan-300 hover:underline">Explore the directory →</Link>
+            Illustrative ranking based on general category popularity, not measured registry analytics. <Link href="/mcp-server-directory" className="text-cyan-300 hover:underline">Explore the directory →</Link>
           </p>
         </section>
 
@@ -161,50 +154,54 @@ export default function StateOfMcpPage() {
         <section className="mt-12 border-t border-white/6 pt-10">
           <div className="flex items-center gap-3">
             <Zap className="h-5 w-5 text-emerald-300" />
-            <h2 className="text-2xl font-black text-white">Cost Savings: MCP Edge vs AWS Lambda</h2>
+            <h2 className="text-2xl font-black text-white">Edge vs Traditional Serverless: What to Consider</h2>
           </div>
           <p className="mt-2 text-sm text-white/58">
-            Real cost and latency benchmarks from 500,000+ production executions on MCPserver.in infrastructure.
+            General architectural trade-offs worth weighing when comparing a colocated MCP deployment against a traditional serverless function — not a benchmark against any specific vendor.
           </p>
-          <div className="mt-6 overflow-x-auto">
-            <table className="w-full text-left text-sm">
-              <thead>
-                <tr className="border-b border-white/10 text-white/45">
-                  <th className="pb-3 font-bold">Metric</th>
-                  <th className="pb-3 font-bold">AWS Lambda</th>
-                  <th className="pb-3 font-bold">MCP Edge</th>
-                  <th className="pb-3 font-bold">Savings</th>
-                </tr>
-              </thead>
-              <tbody>
-                {costComparison.map((row) => (
-                  <tr key={row.metric} className="border-b border-white/6">
-                    <td className="py-4 font-bold text-white">{row.metric}</td>
-                    <td className="py-4 text-white/55">{row.awsLambda}</td>
-                    <td className="py-4 text-cyan-300 font-bold">{row.mcpEdge}</td>
-                    <td className="py-4 text-emerald-300 font-bold">{row.savings}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          <div className="mt-6 grid gap-4 sm:grid-cols-2">
+            <div className="rounded-xl border border-white/10 bg-white/[0.03] p-5">
+              <h3 className="text-sm font-black text-white">Cold starts</h3>
+              <p className="mt-2 text-xs leading-relaxed text-white/55">
+                Serverless functions typically pay a cold-start penalty on infrequent invocations. A persistently running MCP server avoids this at the cost of always-on compute.
+              </p>
+            </div>
+            <div className="rounded-xl border border-white/10 bg-white/[0.03] p-5">
+              <h3 className="text-sm font-black text-white">Data egress</h3>
+              <p className="mt-2 text-xs leading-relaxed text-white/55">
+                Hosting compute close to your primary data store reduces cross-region data transfer compared to a function running in a different region from your database.
+              </p>
+            </div>
+            <div className="rounded-xl border border-white/10 bg-white/[0.03] p-5">
+              <h3 className="text-sm font-black text-white">Predictable cost</h3>
+              <p className="mt-2 text-xs leading-relaxed text-white/55">
+                A fixed-capacity server has a predictable monthly cost; per-invocation serverless pricing can be cheaper at low volume and more expensive at sustained high volume.
+              </p>
+            </div>
+            <div className="rounded-xl border border-white/10 bg-white/[0.03] p-5">
+              <h3 className="text-sm font-black text-white">Operational overhead</h3>
+              <p className="mt-2 text-xs leading-relaxed text-white/55">
+                Serverless platforms handle scaling and patching for you; a self-managed server shifts that responsibility to your team in exchange for more control.
+              </p>
+            </div>
           </div>
           <p className="mt-3 text-xs text-white/45">
-            Benchmark: MCPserver.in managed runtime, Mumbai region, 10M invocations/month. AWS Lambda us-east-1 equivalent.
+            The right choice depends on your traffic pattern, latency requirements, and operational capacity — always benchmark your own workload rather than relying on generic comparisons.
           </p>
         </section>
 
         <section className="mt-12 rounded-2xl border border-white/10 bg-white/[0.02] p-8">
           <div className="flex items-center gap-3">
             <Users className="h-5 w-5 text-pink-300" />
-            <h2 className="text-2xl font-black text-white">Download the Raw Data</h2>
+            <h2 className="text-2xl font-black text-white">Explore Further</h2>
           </div>
           <p className="mt-2 text-sm text-white/58">
-            All benchmarks and regional data are available as structured JSON for LLM ingestion and research.
+            The illustrative estimates above are meant as planning references, not measured telemetry — see the architecture estimate dashboard for the same kind of directional data in more depth.
           </p>
             <div className="mt-6 flex flex-wrap gap-3">
             <Link href="/p99" className="inline-flex items-center gap-2 rounded-md bg-violet-600 px-4 py-2.5 text-xs font-black text-white">
               <BarChart3 className="h-4 w-4" />
-              View Live p99 Dashboard
+              View Architecture Estimate Dashboard
             </Link>
             <Link href="/docs" className="inline-flex items-center gap-2 rounded-md border border-white/10 bg-white/[0.04] px-4 py-2.5 text-xs font-black text-white">
               Read Methodology <ArrowRight className="h-4 w-4" />
