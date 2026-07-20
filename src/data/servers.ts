@@ -568,6 +568,120 @@ export const servers: ServerIntegration[] = [
     features: ["Dispute monitoring", "Transaction audits", "Risk scoring metrics", "Payout trackers"]
   },
 
+  // AI/ML Model Providers (6)
+  {
+    name: "OpenAI",
+    slug: "openai-mcp-server",
+    category: "AI Models",
+    description: "Connect to OpenAI models (GPT-4, GPT-3.5-turbo) for chat completions, embeddings, and image generation.",
+    auth: "OpenAI API Key",
+    useCases: ["Generate code completions", "Embed documents for search", "Create images from prompts"],
+    related: ["anthropic-mcp-server", "google-gemini-mcp-server", "ollama-mcp-server"],
+    features: ["Chat completions", "Embeddings", "Image generation", "Model listing"]
+  },
+  {
+    name: "Anthropic",
+    slug: "anthropic-mcp-server",
+    category: "AI Models",
+    description: "Access Claude models (Claude 3 Opus, Sonnet, Haiku) for reasoning-intensive tasks with constitutional AI.",
+    auth: "Anthropic API Key",
+    useCases: ["Analyze long documents", "Execute complex reasoning", "Format structured output"],
+    related: ["openai-mcp-server", "google-gemini-mcp-server"],
+    features: ["Chat completions", "Vision analysis", "Long context windows", "JSON mode"]
+  },
+  {
+    name: "Google Gemini",
+    slug: "google-gemini-mcp-server",
+    category: "AI Models",
+    description: "Use Gemini models (Gemini 1.5 Pro, Flash) for multimodal reasoning and Google Workspace integration.",
+    auth: "Google AI API Key",
+    useCases: ["Analyze PDFs and images", "Query Google Drive", "Multilingual chat"],
+    related: ["openai-mcp-server", "anthropic-mcp-server"],
+    features: ["Multimodal input", "Google Workspace integration", "Long context", "Embedding search"]
+  },
+  {
+    name: "Ollama",
+    slug: "ollama-mcp-server",
+    category: "AI Models",
+    description: "Run open-weight models locally (Llama 3, Mistral, Gemma) with no data leaving your infrastructure.",
+    auth: "None (local)",
+    useCases: ["Private inference", "Air-gapped deployment", "Cost-controlled inference"],
+    related: ["openai-mcp-server", "lm-studio-mcp-server"],
+    features: ["Local inference", "Model library", "GPU acceleration", "REST API"]
+  },
+  {
+    name: "Mistral",
+    slug: "mistral-mcp-server",
+    category: "AI Models",
+    description: "Access Mistral models (Mixtral, Mistral 7B) optimized for code and multilingual tasks.",
+    auth: "Mistral API Key",
+    useCases: ["Code generation", "French/English translation", "Fast inference"],
+    related: ["openai-mcp-server", "cohere-mcp-server"],
+    features: ["Function calling", "Code expertise", "Multilingual", "REST API"]
+  },
+  {
+    name: "Cohere",
+    slug: "cohere-mcp-server",
+    category: "AI Models",
+    description: "Use Cohere models (Command R, Command R+) for enterprise-grade retrieval and multilingual chat.",
+    auth: "Cohere API Key",
+    useCases: ["Enterprise RAG", "Multilingual support", "Document analysis"],
+    related: ["openai-mcp-server", "mistral-mcp-server"],
+    features: ["RAG optimized", "Multilingual", "Embeddings", "Chat API"]
+  },
+
+  // Observability Tools (5)
+  {
+    name: "Prometheus",
+    slug: "prometheus-mcp-server",
+    category: "Observability",
+    description: "Query Prometheus metrics, check alert rules, and analyze time-series data for MCP server performance monitoring.",
+    auth: "Prometheus Bearer Token",
+    useCases: ["Check p99 latency for MCP tools", "Query active connections", "List alert rule violations"],
+    related: ["grafana-mcp-server", "aws-mcp-server", "kubernetes-mcp-server"],
+    features: ["Metric queries", "Alert rule inspection", "Time-series analysis", "Query builder"]
+  },
+  {
+    name: "Grafana",
+    slug: "grafana-mcp-server",
+    category: "Observability",
+    description: "Manage Grafana dashboards, query data sources, and visualize MCP server metrics through natural language.",
+    auth: "Grafana API Key",
+    useCases: ["Create latency dashboards", "Share observability reports", "Configure alert channels"],
+    related: ["prometheus-mcp-server", "datadog-mcp-server", "newrelic-mcp-server"],
+    features: ["Dashboard management", "Query builder", "Alert configuration", "Report sharing"]
+  },
+  {
+    name: "Datadog",
+    slug: "datadog-mcp-server",
+    category: "Observability",
+    description: "Monitor cloud infrastructure, check APM traces, and analyze logs for MCP server deployments.",
+    auth: "Datadog API Key",
+    useCases: ["Check MCP server memory usage", "Query error logs", "Analyze request latency distributions"],
+    related: ["prometheus-mcp-server", "grafana-mcp-server", "aws-mcp-server"],
+    features: ["APM tracing", "Log analysis", "Metric queries", "Alert management"]
+  },
+  {
+    name: "New Relic",
+    slug: "newrelic-mcp-server",
+    category: "Observability",
+    description: "Query New Relic telemetry, manage dashboards, and troubleshoot MCP server performance via NRQL.",
+    auth: "New Relic API Key",
+    useCases: ["Query NRQL for latency spikes", "Manage synthetic monitors", "Create custom dashboards"],
+    related: ["datadog-mcp-server", "grafana-mcp-server", "aws-mcp-server"],
+    features: ["NRQL queries", "Dashboard builder", "Alert policies", "Entity search"]
+  },
+  {
+    name: "OpenTelemetry",
+    slug: "opentelemetry-mcp-server",
+    category: "Observability",
+    description: "Collect traces, metrics, and logs from MCP servers with OpenTelemetry Collector and query telemetry data.",
+    auth: "OTLP Endpoint",
+    useCases: ["Export traces from tools", "Query metrics by span", "Analyze log patterns"],
+    related: ["prometheus-mcp-server", "grafana-mcp-server", "kubernetes-mcp-server"],
+    features: ["Trace collection", "Metric export", "Log aggregation", "Query interface"]
+  },
+
   // Cloud Platforms (10)
   {
     name: "AWS",
