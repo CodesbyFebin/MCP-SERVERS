@@ -193,7 +193,7 @@ export default function WhatIsMcpClient() {
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-cyan-400 mt-0.5">•</span>
-                      <span><strong>70% reduction</strong> in integration overhead compared to maintaining custom REST wrappers for AI agents</span>
+                      <span><strong>Less integration code</strong> than maintaining custom REST wrappers per data source — the actual reduction depends on how many integrations you're consolidating</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-cyan-400 mt-0.5">•</span>

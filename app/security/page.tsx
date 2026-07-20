@@ -4,7 +4,7 @@ import { ShieldAlert, Lock, Server, Users, FileText } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Security, Compliance & Trust - MCPserver.in",
-  description: "Learn about secure hosting, zero-knowledge keys, Docker sandboxes, SOC 2, and DPDP compliance for Model Context Protocol servers.",
+  description: "Learn about secure hosting practices, credential handling, Docker sandboxes, and DPDP-aligned data handling for Model Context Protocol servers.",
 };
 
 export default function Security() {
@@ -79,21 +79,21 @@ export default function Security() {
             Regulatory Compliance and Standards
           </h3>
           <p className="text-xs text-gray-400 leading-relaxed text-center max-w-2xl mx-auto mb-8">
-            MCPserver.in aligns with international information protection benchmarks, offering complete compliance with localized Indian data storage requirements.
+            MCPserver.in's infrastructure and data-handling practices are designed with international security benchmarks and India's data localization requirements in mind.
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
             <div className="p-4 rounded-lg bg-gray-950/40 border border-gray-900">
-              <span className="text-xs font-bold text-white block mb-1">DPDP Act Compliant</span>
-              <p className="text-[10px] text-gray-500">Fully compliant with India's Digital Personal Data Protection (DPDP) Act rules for localized data storage.</p>
+              <span className="text-xs font-bold text-white block mb-1">DPDP-Aligned Data Handling</span>
+              <p className="text-[10px] text-gray-500">Data localization and consent-handling practices designed around India's Digital Personal Data Protection (DPDP) Act.</p>
             </div>
             <div className="p-4 rounded-lg bg-gray-950/40 border border-gray-900">
-              <span className="text-xs font-bold text-white block mb-1">SOC 2 Type II Ready</span>
-              <p className="text-[10px] text-gray-500">Rigorous quarterly external security auditing to ensure security, availability, and process integrity.</p>
+              <span className="text-xs font-bold text-white block mb-1">Security-First Architecture</span>
+              <p className="text-[10px] text-gray-500">Least-privilege access, encrypted secrets, and audit logging built into the platform design.</p>
             </div>
             <div className="p-4 rounded-lg bg-gray-950/40 border border-gray-900">
-              <span className="text-xs font-bold text-white block mb-1">ISO 27001 Certified</span>
-              <p className="text-[10px] text-gray-500">Our physical hosting clusters in Bengaluru and Mumbai operate inside ISO-certified state-of-the-art facilities.</p>
+              <span className="text-xs font-bold text-white block mb-1">India Hosting Regions</span>
+              <p className="text-[10px] text-gray-500">Infrastructure options in Bengaluru and Mumbai for teams with India data-residency requirements.</p>
             </div>
           </div>
         </div>

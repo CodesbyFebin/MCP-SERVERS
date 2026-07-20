@@ -587,5 +587,1665 @@ export const glossaryTerms: GlossaryTerm[] = [
       "https://ollama.com/search?q=indic",
       "https://ai4bharat.iitm.ac.in"
     ]
-  }
-];
+   },
+   {
+     slug: "streamable-http",
+     term: "Streamable HTTP Transport",
+     definition: "A modern HTTP-based MCP transport that supports both streaming and single-response patterns over a single endpoint, replacing the older SSE+POST hybrid.",
+     detailedExplanation: "Streamable HTTP transport is the next-generation remote transport for MCP. It consolidates client-to-server requests and server-to-client notifications into a single HTTP endpoint using standard HTTP semantics. Clients POST requests and can receive streaming or single responses, making it compatible with most HTTP infrastructure including reverse proxies, API gateways, and CDNs.",
+     keyTakeaways: [
+       "Single-endpoint HTTP transport replacing the SSE+POST split.",
+       "Supports both streaming and non-streaming responses.",
+       "Works cleanly behind reverse proxies and API gateways.",
+       "Recommended for new remote MCP server deployments."
+     ],
+     useCase: "Deploying a remote MCP server behind a standard load balancer or CDN without needing separate SSE and POST endpoints.",
+     technicalDetails: {
+       protocolLayer: "Transport Layer (HTTP Bound)",
+       format: "HTTP/1.1 or HTTP/2, single endpoint",
+       latencyProfile: "Comparable to standard HTTP APIs"
+     },
+     references: [
+       "https://spec.modelcontextprotocol.io/specification/basic/transports/"
+     ]
+   },
+   {
+     slug: "mcp-sampling",
+     term: "MCP Sampling",
+     definition: "An MCP feature that allows servers to request the client to generate text completions from an LLM, enabling servers to perform inference without embedding model credentials.",
+     detailedExplanation: "Sampling lets an MCP server ask the client to sample an LLM. The client controls which model is used, the temperature, and any safety filters, while the server simply provides a prompt and receives the completion. This preserves client-side control over model selection and costs, and prevents servers from exfiltrating sensitive context to arbitrary models.",
+     keyTakeaways: [
+       "Server requests client-side LLM inference.",
+       "Client maintains full control over model, credentials, and safety.",
+       "Protects sensitive context from leaving the client's trusted environment.",
+       "Useful for agents that need to summarize or rephrase data without an explicit LLM backend."
+     ],
+     useCase: "An MCP server that processes a large log file asks the client to generate a concise summary rather than returning the entire raw text.",
+     technicalDetails: {
+       protocolLayer: "Inference Request / Client Capability Layer",
+       format: "MCP sampling request/response messages",
+       latencyProfile: "Depends on client-side model inference speed"
+     },
+     references: [
+       "https://spec.modelcontextprotocol.io/specification/basic/sampling/"
+     ]
+   },
+   {
+     slug: "mcp-roots",
+     term: "MCP Roots",
+     definition: "URI-based boundary declarations from the client that tell the server which file system locations or namespaces the client has granted access to.",
+     detailedExplanation: "Roots prevent MCP servers from accessing files outside an agreed-upon boundary. The client sends a list of root URIs (e.g., `file:///Users/alice/projects`) during initialization. The server must respect these boundaries when exposing resources or executing tools. This is a critical security control for filesystem MCP servers.",
+     keyTakeaways: [
+       "Client-declared access boundaries for filesystem or namespace resources.",
+       "Prevents servers from reading files outside the agreed scope.",
+       "Sent during the client's initialize request.",
+       "Essential for secure filesystem MCP integrations."
+     ],
+     useCase: "Claude Desktop declares `file:///Users/alice/work` as its only root, so a filesystem MCP server cannot read `file:///Users/alice/private`.",
+     technicalDetails: {
+       protocolLayer: "Client Capability / Access Control Layer",
+       format: "List of root URI strings",
+       latencyProfile: "Evaluated at initialization; minimal ongoing overhead"
+     },
+     references: [
+       "https://spec.modelcontextprotocol.io/specification/basic/roots/"
+     ]
+   },
+   {
+     slug: "mcp-initialization",
+     term: "MCP Initialization",
+     definition: "The first handshake exchange between an MCP client and server where they negotiate protocol version, capabilities, and implementation details.",
+     detailedExplanation: "Initialization begins with the client sending an `initialize` request containing its protocol version, capabilities (like `roots`, `sampling`, `elicitation`), and client info. The server responds with its own version, capabilities, and instructions. The client then sends an `initialized` notification to complete the handshake. Only after this exchange can tool calls and resource requests proceed.",
+     keyTakeaways: [
+       "First mandatory exchange in every MCP session.",
+       "Negotiates protocol version and supported capabilities.",
+       "Client declares its capabilities (roots, sampling, etc.).",
+       "Server responds with its capabilities and instructions."
+     ],
+     useCase: "When Claude Desktop starts an MCP filesystem server, it negotiates capabilities during initialization before listing any tools.",
+     technicalDetails: {
+       protocolLayer: "Protocol Handshake Layer",
+       format: "JSON-RPC 2.0 initialize request and response",
+       latencyProfile: "One-time cost per session; typically under 50ms"
+     },
+     references: [
+       "https://spec.modelcontextprotocol.io/specification/basic/lifecycle/"
+     ]
+   },
+   {
+     slug: "mcp-ping-pong",
+     term: "MCP Ping/Pong",
+     definition: "A lightweight keepalive mechanism in MCP that helps clients and servers detect broken connections without waiting for a timeout.",
+     detailedExplanation: "Ping/pong messages allow either side to check if the connection is still alive. The client or server sends a ping and expects a pong response within a reasonable timeframe. If no pong arrives, the connection can be considered dead and re-established. This is especially important for SSE and remote HTTP transports where network intermediaries may silently drop idle connections.",
+     keyTakeaways: [
+       "Lightweight connection health check.",
+       "Detects broken connections without waiting for TCP timeouts.",
+       "Especially important for remote SSE and HTTP transports.",
+       "Helps clients decide when to reconnect."
+     ],
+     useCase: "An MCP gateway sends periodic pings to remote MCP servers to detect stale SSE connections before routing tool calls.",
+     technicalDetails: {
+       protocolLayer: "Connection Health Layer",
+       format: "JSON-RPC ping request and empty result response",
+       latencyProfile: "Low overhead; timeout-based detection"
+     },
+     references: [
+       "https://spec.modelcontextprotocol.io/specification/basic/lifecycle/"
+     ]
+   },
+   {
+     slug: "mcp-cancel",
+     term: "MCP Cancel",
+     definition: "A request from the client to abort an in-progress tool call or long-running operation on the server.",
+     detailedExplanation: "When a tool call takes too long or the user cancels an action, the client sends a cancel request. The server should stop the underlying operation, clean up any resources, and return an error indicating cancellation. Servers that support cancellation must handle partial results and ensure they do not leave side effects (like partially written files or database rows) behind.",
+     keyTakeaways: [
+       "Client-initiated abort of an in-progress operation.",
+       "Server must clean up partial side effects.",
+       "Critical for responsive user experience in agentic workflows.",
+       "Related to elicitation: a client can cancel while waiting for user input."
+     ],
+     useCase: "A user cancels a long-running database migration tool call in their IDE before it completes.",
+     technicalDetails: {
+       protocolLayer: "Lifecycle / Cancellation Layer",
+       format: "JSON-RPC cancel request tied to a specific request ID",
+       latencyProfile: "Depends on server's ability to interrupt the operation"
+     },
+     references: [
+       "https://spec.modelcontextprotocol.io/specification/basic/lifecycle/"
+     ]
+   },
+   {
+     slug: "mcp-progress",
+     term: "MCP Progress",
+     definition: "A notification mechanism allowing an MCP server to stream incremental progress updates to the client during long-running operations.",
+     detailedExplanation: "For operations that take seconds or minutes, servers can emit progress notifications with a progress token, a percentage or absolute value, and an optional message. The client uses these to render progress bars or status indicators to the user. This prevents the client from appearing frozen and enables better UX for agentic workflows.",
+     keyTakeaways: [
+       "Server-to-client progress streaming for long operations.",
+       "Tied to a progress token from the original request.",
+       "Enables progress bars and status indicators in clients.",
+       "Does not block the main response channel."
+     ],
+     useCase: "An MCP file upload tool streams progress updates so the client can show a percentage-complete bar to the user.",
+     technicalDetails: {
+       protocolLayer: "UX / Progress Reporting Layer",
+       format: "JSON-RPC progress notification",
+       latencyProfile: "Low overhead; fired at application-defined intervals"
+     },
+     references: [
+       "https://spec.modelcontextprotocol.io/specification/basic/progress/"
+     ]
+   },
+   {
+     slug: "mcp-logging",
+     term: "MCP Logging",
+     definition: "A structured logging feature where MCP servers emit log messages (debug, info, warning, error) to the client, which routes them to the appropriate logging infrastructure.",
+     detailedExplanation: "MCP logging provides a standard channel for servers to send diagnostic information to clients without relying on stderr or external logging frameworks. Servers emit `logging/message` notifications with a severity level and message string. The client is responsible for displaying or persisting these logs. This is particularly useful for stdio-based servers where traditional logging may interfere with JSON-RPC message framing.",
+     keyTakeaways: [
+       "Standardized server-to-client log message channel.",
+       "Uses severity levels: debug, info, warning, error.",
+       "Replaces unreliable stderr logging in stdio transport.",
+       "Clients decide how to display or store logs."
+     ],
+     useCase: "An MCP database server logs query execution times and slow query warnings through the MCP logging channel for visibility in the client's log panel.",
+     technicalDetails: {
+       protocolLayer: "Diagnostics / Observability Layer",
+       format: "JSON-RPC logging/message notification",
+       latencyProfile: "Minimal overhead; non-blocking notifications"
+     },
+     references: [
+       "https://spec.modelcontextprotocol.io/specification/basic/logging/"
+     ]
+   },
+   {
+     slug: "mcp-elicitation",
+     term: "MCP Elicitation",
+     definition: "A client-initiated flow where the server requests additional structured information from the user through the client during an interaction.",
+     detailedExplanation: "Elicitation allows an MCP server to pause its current flow and ask the user for missing information. For example, a booking tool might need a date that was not provided. The server sends an elicitation request with a schema, the client renders a form to the user, and returns the filled values. This keeps the server logic clean while leveraging the client's UI capabilities.",
+     keyTakeaways: [
+       "Server requests user input through the client.",
+       "Input is structured using JSON Schema.",
+       "Enables interactive multi-turn workflows within tools.",
+       "Client controls the UI; server controls the data schema."
+     ],
+     useCase: "An MCP travel booking server needs a travel date from the user; it elicits this through a date-picker form rendered by the client.",
+     technicalDetails: {
+       protocolLayer: "User Interaction / Elicitation Layer",
+       format: "JSON-RPC elicitation request/response with JSON Schema",
+       latencyProfile: "Depends on user response time; server awaits result"
+     },
+     references: [
+       "https://spec.modelcontextprotocol.io/specification/basic/elicitation/"
+     ]
+   },
+   {
+     slug: "mcp-tool-list-changed",
+     term: "MCP Tool List Changed",
+     definition: "A server-to-client notification that the set of available tools has changed, prompting the client to refresh its cached tool list.",
+     detailedExplanation: "Servers may dynamically add or remove tools at runtime (e.g., when a user authenticates a new data source). The `tools/list_changed` notification tells the client to re-fetch the tool list. Clients must listen for this notification and update their internal tool registry, which may also require re-rendering UI elements.",
+     keyTakeaways: [
+       "Server-side dynamic tool registry updates.",
+       "Client must re-query tools/list upon receiving this notification.",
+       "Useful for multi-tenant or role-based tool access.",
+       "Part of the standard MCP notification set."
+     ],
+     useCase: "An MCP server adds new database connection tools after a user completes OAuth; it sends `tools/list_changed` so the client updates its tool palette.",
+     technicalDetails: {
+       protocolLayer: "Dynamic Capability Layer",
+       format: "JSON-RPC notification (no response expected)",
+       latencyProfile: "Minimal; triggers a tool list refresh"
+     },
+     references: [
+       "https://spec.modelcontextprotocol.io/specification/basic/tools/"
+     ]
+   },
+   {
+     slug: "mcp-resource-list-changed",
+     term: "MCP Resource List Changed",
+     definition: "A server-to-client notification that the set of available resources has changed, prompting the client to refresh its resource list.",
+     detailedExplanation: "Similar to `tools/list_changed`, this notification signals that the server's resource catalog has been updated. Clients should re-fetch `resources/list` and update any UI that displays available resources. This enables dynamic resource discovery in multi-tenant or stateful server environments.",
+     keyTakeaways: [
+       "Server-side dynamic resource catalog updates.",
+       "Client should re-query resources/list upon receiving this notification.",
+       "Useful for dynamic data sources.",
+       "Part of the standard MCP notification set."
+     ],
+     useCase: "An MCP server representing a database adds a new table and sends `resources/list_changed` so connected clients know a new resource is available.",
+     technicalDetails: {
+       protocolLayer: "Dynamic Capability Layer",
+       format: "JSON-RPC notification (no response expected)",
+       latencyProfile: "Minimal; triggers a resource list refresh"
+     },
+     references: [
+       "https://spec.modelcontextprotocol.io/specification/basic/resources/"
+     ]
+   },
+   {
+     slug: "mcp-resource-updated",
+     term: "MCP Resource Updated",
+     definition: "A server-to-client notification that the contents of a specific resource have changed, allowing the client to refresh its cached copy.",
+     detailedExplanation: "Servers can notify clients that a specific resource URI has been updated. This enables clients to keep their context current without polling. For example, a log file resource can emit `resources/updated` whenever new lines are appended. Clients can then re-read the resource to show the user the latest data.",
+     keyTakeaways: [
+       "Per-resource invalidation signal from server to client.",
+       "Client can re-read the resource to stay current.",
+       "Reduces unnecessary polling.",
+       "Useful for time-series data like logs or metrics."
+     ],
+     useCase: "A monitoring MCP server sends `resources/updated` for `logs://application/today` when new log entries appear, prompting the client to refresh.",
+     technicalDetails: {
+       protocolLayer: "Data Freshness / Push Notification Layer",
+       format: "JSON-RPC notification with resource URI",
+       latencyProfile: "Minimal; triggered by server-side change events"
+     },
+     references: [
+       "https://spec.modelcontextprotocol.io/specification/basic/resources/"
+     ]
+   },
+   {
+     slug: "mcp-prompt-list-changed",
+     term: "MCP Prompt List Changed",
+     definition: "A server-to-client notification that the set of available prompt templates has changed, prompting the client to refresh its prompt list.",
+     detailedExplanation: "Servers may dynamically register or remove prompt templates. The `prompts/list_changed` notification tells clients to re-fetch the prompt list. This is useful for servers that load prompt definitions from a database or CMS at runtime.",
+     keyTakeaways: [
+       "Server-side dynamic prompt catalog updates.",
+       "Client should re-query prompts/list upon receiving this notification.",
+       "Useful for content-management-backed prompt libraries.",
+       "Part of the standard MCP notification set."
+     ],
+     useCase: "A marketing MCP server adds a new campaign analysis prompt template and sends `prompts/list_changed` to update the client's prompt menu.",
+     technicalDetails: {
+       protocolLayer: "Dynamic Capability Layer",
+       format: "JSON-RPC notification (no response expected)",
+       latencyProfile: "Minimal; triggers a prompt list refresh"
+     },
+     references: [
+       "https://spec.modelcontextprotocol.io/specification/basic/prompts/"
+     ]
+   },
+   {
+     slug: "mcp-client-capabilities",
+     term: "MCP Client Capabilities",
+     definition: "The set of features a client declares it supports during MCP initialization, such as roots, sampling, or elicitation.",
+     detailedExplanation: "During the initialize handshake, the client sends a `capabilities` object describing what it can do. This might include `roots` (filesystem boundary enforcement), `sampling` (client-side LLM inference), or `elicitation` (rendering forms for user input). The server uses this information to decide which features it can safely use.",
+     keyTakeaways: [
+       "Declared during the initialize handshake.",
+       "Tells the server what client-side features are available.",
+       "Includes roots, sampling, elicitation, and experimental features.",
+       "Server must not use features the client did not declare."
+     ],
+     useCase: "Claude Desktop declares `roots` and `sampling` capabilities, so an MCP filesystem server knows it can enforce root boundaries and request client-side sampling.",
+     technicalDetails: {
+       protocolLayer: "Protocol Handshake Layer",
+       format: "JSON object in the initialize request params",
+       latencyProfile: "Evaluated once at session start"
+     },
+     references: [
+       "https://spec.modelcontextprotocol.io/specification/basic/lifecycle/"
+     ]
+   },
+   {
+     slug: "mcp-server-capabilities",
+     term: "MCP Server Capabilities",
+     definition: "The set of features a server declares it supports during MCP initialization, such as tools, resources, prompts, or logging.",
+     detailedExplanation: "In its initialize response, the server sends a `capabilities` object listing what it offers: `tools` (executable functions), `resources` (read-only data), `prompts` (templates), `logging` (diagnostics), and `experimental` features. The client uses this to understand what it can request from the server.",
+     keyTakeaways: [
+       "Declared during the initialize handshake.",
+       "Tells the client what server-side features are available.",
+       "Includes tools, resources, prompts, and logging.",
+       "Can include experimental capabilities under the `experimental` key."
+     ],
+     useCase: "An MCP database server declares `tools` and `resources` capabilities so the client knows it can execute queries and read schema information.",
+     technicalDetails: {
+       protocolLayer: "Protocol Handshake Layer",
+       format: "JSON object in the initialize response result",
+       latencyProfile: "Evaluated once at session start"
+     },
+     references: [
+       "https://spec.modelcontextprotocol.io/specification/basic/lifecycle/"
+     ]
+   },
+   {
+     slug: "mcp-tool-result",
+     term: "MCP Tool Result",
+     definition: "The structured response returned by an MCP server after successfully executing a tool call.",
+     detailedExplanation: "When a tool executes successfully, the server returns a JSON-RPC response with a `result` object containing the tool's output. The structure is defined by the tool's output schema. Results can be text, images, audio, or structured data. Large results may be truncated or streamed depending on the transport.",
+     keyTakeaways: [
+       "Successful execution response from a tool call.",
+       "Must conform to the tool's declared output schema.",
+       "Can contain text, structured data, or binary content.",
+       "Large results may be chunked or streamed."
+     ],
+     useCase: "A `database_query` tool returns a JSON array of rows in its tool result after executing a SELECT statement.",
+     technicalDetails: {
+       protocolLayer: "Execution / Response Layer",
+       format: "JSON-RPC 2.0 response with result object",
+       latencyProfile: "Bounded by tool execution time"
+     },
+     references: [
+       "https://spec.modelcontextprotocol.io/specification/basic/tools/"
+     ]
+   },
+   {
+     slug: "mcp-tool-error",
+     term: "MCP Tool Error",
+     definition: "A structured error response returned by an MCP server when a tool call fails to execute.",
+     detailedExplanation: "If a tool call fails (bad input, server error, timeout), the server returns a JSON-RPC error response with a numeric code, message, and optional data. Standard codes include `-32600` (invalid request), `-32601` (method not found), and `-32603` (internal error). Servers can also define custom error codes for domain-specific failures.",
+     keyTakeaways: [
+       "Structured failure response for a tool call.",
+       "Uses standard JSON-RPC error codes with optional custom codes.",
+       "Includes a human-readable message and optional data.",
+       "Clients should handle errors gracefully and retry when appropriate."
+     ],
+     useCase: "A `database_query` tool returns an error when given a malformed SQL query, with a code and message explaining the syntax error.",
+     technicalDetails: {
+       protocolLayer: "Execution / Error Handling Layer",
+       format: "JSON-RPC 2.0 error response object",
+       latencyProfile: "Typically returned quickly on validation failure"
+     },
+     references: [
+       "https://spec.modelcontextprotocol.io/specification/basic/tools/"
+     ]
+   },
+   {
+     slug: "mcp-json-schema",
+     term: "MCP JSON Schema",
+     definition: "The standard schema format used in MCP to describe tool input parameters, output structures, and resource contents.",
+     detailedExplanation: "MCP uses JSON Schema (typically Draft 7) to define the shape of tool inputs and outputs. This allows clients to validate arguments before sending them to the server, and allows models to understand exactly what parameters a tool expects. Schema descriptions are also used to generate UI forms and documentation.",
+     keyTakeaways: [
+       "Used for tool input/output schemas and resource content.",
+       "Typically Draft 7 JSON Schema.",
+       "Enables client-side validation and model understanding.",
+       "Powers UI form generation and documentation."
+     ],
+     useCase: "A `send_email` tool defines its input schema with `to`, `subject`, and `body` properties, enabling the client to validate arguments before calling.",
+     technicalDetails: {
+       protocolLayer: "Schema / Validation Layer",
+       format: "JSON Schema Draft 7",
+       latencyProfile: "Validation is client-side and fast"
+     },
+     references: [
+       "https://json-schema.org/",
+       "https://spec.modelcontextprotocol.io/specification/basic/tools/"
+     ]
+   },
+   {
+     slug: "mcp-uri-scheme",
+     term: "MCP URI Scheme",
+     definition: "The custom URI scheme used by MCP resources to identify data sources, such as `file://`, `postgres://`, or `github://`.",
+     detailedExplanation: "MCP resources are identified by URIs with custom schemes. The scheme indicates the resource type and the authority indicates the source. For example, `postgres://production/users` identifies a PostgreSQL table. The scheme must be registered by the server during initialization, and clients use it to route resource requests appropriately.",
+     keyTakeaways: [
+       "Custom URI schemes identify MCP resource types.",
+       "Scheme is registered by the server during initialization.",
+       "Enables consistent resource addressing across different backends.",
+       "Examples: file://, postgres://, github://, logs://"
+     ],
+     useCase: "An MCP server registers `github://` as its scheme, allowing clients to reference GitHub issues and PRs as resources.",
+     technicalDetails: {
+       protocolLayer: "Resource Identification Layer",
+       format: "URI with custom scheme (RFC 3986)",
+       latencyProfile: "No overhead; purely a naming convention"
+     },
+     references: [
+       "https://spec.modelcontextprotocol.io/specification/basic/resources/"
+     ]
+   },
+   {
+     slug: "mcp-annotation",
+     term: "MCP Annotation",
+     definition: "Optional metadata attached to MCP tools, resources, or prompts to provide additional hints to clients and models.",
+     detailedExplanation: "Annotations are key-value pairs that provide extra context beyond the basic schema. For example, a tool might have an annotation indicating it requires human approval, or that it modifies external state. Clients can use annotations to render UI cues or enforce policies. Models may use annotations to make better decisions about when to use a tool.",
+     keyTakeaways: [
+       "Optional metadata attached to protocol elements.",
+       "Provides hints for UI rendering and policy enforcement.",
+       "Can indicate side effects, approval requirements, or audience.",
+       "Not a replacement for the primary schema."
+     ],
+     useCase: "A `delete_file` tool has an annotation `sideEffects: write` so the client warns the user before execution.",
+     technicalDetails: {
+       protocolLayer: "Metadata / Policy Layer",
+       format: "Key-value pairs in tool/resource/prompt definitions",
+       latencyProfile: "No overhead; metadata-only"
+     },
+     references: [
+       "https://spec.modelcontextprotocol.io/specification/basic/tools/"
+     ]
+   },
+   {
+     slug: "mcp-tool-input-schema",
+     term: "MCP Tool Input Schema",
+     definition: "The JSON Schema that defines the valid parameters for an MCP tool, including types, required fields, and descriptions.",
+     detailedExplanation: "Every MCP tool must declare an `inputSchema` object describing its expected parameters. This schema is used by clients to validate arguments before sending them to the server, and by models to understand what values to provide. A well-defined input schema reduces errors and improves the quality of tool calls.",
+     keyTakeaways: [
+       "Defines valid parameters for a tool.",
+       "Used for client-side validation and model guidance.",
+       "Should include types, descriptions, and required fields.",
+       "Follows JSON Schema Draft 7."
+     ],
+     useCase: "A `weather_lookup` tool defines its input schema with a required `city` string parameter and an optional `unit` enum.",
+     technicalDetails: {
+       protocolLayer: "Schema / Validation Layer",
+       format: "JSON Schema Draft 7",
+       latencyProfile: "Validation is client-side and fast"
+     },
+     references: [
+       "https://spec.modelcontextprotocol.io/specification/basic/tools/"
+     ]
+   },
+   {
+     slug: "mcp-tool-output-schema",
+     term: "MCP Tool Output Schema",
+     definition: "The JSON Schema that defines the expected structure of an MCP tool's successful result.",
+     detailedExplanation: "While less commonly enforced than input schemas, output schemas describe what a tool returns on success. This helps clients and models understand the result structure and enables automated documentation generation. Output schemas are optional but recommended for complex tool results.",
+     keyTakeaways: [
+       "Describes the structure of a tool's successful result.",
+       "Optional but recommended for complex results.",
+       "Helps clients and models understand output structure.",
+       "Follows JSON Schema Draft 7."
+     ],
+     useCase: "A `database_query` tool declares an output schema describing an array of row objects with typed columns.",
+     technicalDetails: {
+       protocolLayer: "Schema / Response Layer",
+       format: "JSON Schema Draft 7",
+       latencyProfile: "No overhead; documentation and validation aid"
+     },
+     references: [
+       "https://spec.modelcontextprotocol.io/specification/basic/tools/"
+     ]
+   },
+   {
+     slug: "mcp-resource-contents",
+     term: "MCP Resource Contents",
+     definition: "The actual data payload returned when a client reads an MCP resource, which can be text, binary, or structured data.",
+     detailedExplanation: "When a client reads a resource, the server returns a `contents` array containing one or more content items. Each item has a URI, MIME type, and either a `text` or `blob` field. Text content is UTF-8 encoded; binary content is base64-encoded. The MIME type tells the client how to render or process the content.",
+     keyTakeaways: [
+       "Actual data payload of an MCP resource.",
+       "Can be text (UTF-8) or binary (base64-encoded blob).",
+       "Includes MIME type for client rendering.",
+       "A single resource can have multiple content items."
+     ],
+     useCase: "Reading a `file:///config.json` resource returns a JSON text content item with MIME type `application/json`.",
+     technicalDetails: {
+       protocolLayer: "Data / Content Layer",
+       format: "UTF-8 text or base64-encoded binary blob",
+       latencyProfile: "Depends on resource size and transport"
+     },
+     references: [
+       "https://spec.modelcontextprotocol.io/specification/basic/resources/"
+     ]
+   },
+   {
+     slug: "mcp-resource-template",
+     term: "MCP Resource Template",
+     definition: "A parameterized URI pattern that allows clients to dynamically construct resource URIs, enabling on-demand resource access.",
+     detailedExplanation: "Resource templates are URI patterns with placeholders (e.g., `database://{table}/schema`) that clients can fill in to request specific resources. This allows servers to expose dynamic resources without pre-registering every possible URI. Clients discover templates via `resources/list` and use them to construct requests.",
+     keyTakeaways: [
+       "Parameterized URI patterns for dynamic resources.",
+       "Clients fill in placeholders to construct URIs.",
+       "Enables on-demand resource access without pre-registration.",
+       "Supports `resources/template` in the protocol."
+     ],
+     useCase: "A database server exposes `database://{table}/rows` as a template, letting clients request rows from any table dynamically.",
+     technicalDetails: {
+       protocolLayer: "Dynamic Resource Layer",
+       format: "URI template with placeholders",
+       latencyProfile: "Template expansion is instant; resource fetch cost varies"
+     },
+     references: [
+       "https://spec.modelcontextprotocol.io/specification/basic/resources/"
+     ]
+   },
+   {
+     slug: "mcp-prompt-argument",
+     term: "MCP Prompt Argument",
+     definition: "A named parameter that a client must provide when invoking an MCP prompt template.",
+     detailedExplanation: "Prompt templates can declare required and optional arguments. When a client calls `prompts/get`, it must provide values for any required arguments. The server then fills these into the template to produce the final prompt. This allows prompts to be dynamically customized for specific contexts.",
+     keyTakeaways: [
+       "Named parameters for MCP prompt templates.",
+       "Can be required or optional.",
+       "Filled in by the client when calling `prompts/get`.",
+       "Enables dynamic prompt customization."
+     ],
+     useCase: "A `code_review` prompt template requires a `language` argument; the client provides `TypeScript` to customize the review instructions.",
+     technicalDetails: {
+       protocolLayer: "Prompt Template Layer",
+       format: "JSON Schema for argument validation",
+       latencyProfile: "Template rendering is instant"
+     },
+     references: [
+       "https://spec.modelcontextprotocol.io/specification/basic/prompts/"
+     ]
+   },
+   {
+     slug: "mcp-protocol-version",
+     term: "MCP Protocol Version",
+     definition: "The negotiated version of the Model Context Protocol used for a client-server session, ensuring both sides speak the same dialect.",
+     detailedExplanation: "MCP uses semantic versioning. During initialization, the client proposes a version and the server responds with its supported version. If they differ, the session may fall back to the lowest common version or fail to establish. Servers and clients should document which MCP versions they support.",
+     keyTakeaways: [
+       "Negotiated during the initialize handshake.",
+       "Uses semantic versioning.",
+       "Mismatched versions may cause session failure.",
+       "Always specify the supported version in client/server configs."
+     ],
+     useCase: "A client requests MCP version `2024-11-05`; the server supports `2024-11-05` and confirms the session can proceed.",
+     technicalDetails: {
+       protocolLayer: "Protocol Negotiation Layer",
+       format: "Semantic version string (e.g., `2024-11-05`)",
+       latencyProfile: "Evaluated once at session start"
+     },
+     references: [
+       "https://spec.modelcontextprotocol.io/specification/basic/lifecycle/"
+     ]
+   },
+   {
+     slug: "mcp-capability-negotiation",
+     term: "MCP Capability Negotiation",
+     definition: "The process during MCP initialization where the client and server agree on which features (tools, resources, sampling, etc.) to enable for the session.",
+     detailedExplanation: "Capability negotiation is the foundation of MCP's extensibility. The client declares its capabilities (roots, sampling, elicitation), and the server declares its own (tools, resources, prompts, logging). Both sides then know which features they can safely use. Unilateral use of undeclared capabilities is a protocol violation.",
+     keyTakeaways: [
+       "Happens during the initialize handshake.",
+       "Client and server declare their respective capabilities.",
+       "Enables safe, feature-aware communication.",
+       "Undeclared capability usage is a protocol violation."
+     ],
+     useCase: "A client declares `sampling` capability; a server that supports sampling can now request client-side LLM inference when needed.",
+     technicalDetails: {
+       protocolLayer: "Protocol Handshake Layer",
+       format: "JSON objects in initialize request/response",
+       latencyProfile: "One-time cost per session"
+     },
+     references: [
+       "https://spec.modelcontextprotocol.io/specification/basic/lifecycle/"
+     ]
+   },
+   {
+     slug: "mcp-request-id",
+     term: "MCP Request ID",
+     definition: "A unique identifier included in every JSON-RPC request message, used to match responses and support cancellation.",
+     detailedExplanation: "Each JSON-RPC request carries an `id` field (a number or string). The server must include the same `id` in its response. This allows clients to correlate responses with outstanding requests, handle out-of-order responses, and target specific requests for cancellation.",
+     keyTakeaways: [
+       "Unique identifier per JSON-RPC request.",
+       "Used to correlate requests with responses.",
+       "Required for targeting requests for cancellation.",
+       "Can be a number or string."
+     ],
+     useCase: "A client sends three concurrent tool calls with IDs 1, 2, and 3; it matches the server's responses back to the original calls by ID.",
+     technicalDetails: {
+       protocolLayer: "Message Correlation Layer",
+       format: "JSON-RPC `id` field (number or string)",
+       latencyProfile: "No overhead; metadata-only"
+     },
+     references: [
+       "https://www.jsonrpc.org/specification"
+     ]
+   },
+   {
+     slug: "mcp-method",
+     term: "MCP Method",
+     definition: "A named RPC action in the Model Context Protocol, such as `initialize`, `tools/call`, or `resources/read`.",
+     detailedExplanation: "Methods are the core verbs of MCP. Each JSON-RPC message contains a `method` string identifying the action. Methods are categorized as requests (expect a response), notifications (one-way), or responses. The method name uses a slash-separated namespace (e.g., `tools/call`) to group related actions.",
+     keyTakeaways: [
+       "Named RPC actions in JSON-RPC messages.",
+       "Namespaced with slashes (e.g., `tools/call`).",
+       "Three types: requests, notifications, and responses.",
+       "The set of valid methods is defined by the MCP specification."
+     ],
+     useCase: "An MCP client sends a `resources/read` method request to fetch a file from a filesystem MCP server.",
+     technicalDetails: {
+       protocolLayer: "RPC Method Layer",
+       format: "String identifier in JSON-RPC message",
+       latencyProfile: "No overhead; method routing is internal"
+     },
+     references: [
+       "https://spec.modelcontextprotocol.io/specification/basic/transports/"
+     ]
+   },
+   {
+     slug: "mcp-params",
+     term: "MCP Params",
+     definition: "The structured parameters object passed in a JSON-RPC request message, containing the data needed for the method.",
+     detailedExplanation: "Params is an optional JSON object in a JSON-RPC request that carries the arguments for the method. For MCP, this might include tool arguments, resource URIs, or initialization options. The structure is defined per-method in the specification. Servers must validate params against the expected schema before processing.",
+     keyTakeaways: [
+       "Structured arguments for JSON-RPC requests.",
+       "Structure is defined per-method in the MCP spec.",
+       "Must be validated by the server before processing.",
+       "Optional: some methods take no parameters."
+     ],
+     useCase: "A `tools/call` request carries params with `name` (the tool name) and `arguments` (an object of parameter values).",
+     technicalDetails: {
+       protocolLayer: "RPC Parameter Layer",
+       format: "JSON object (or array) per JSON-RPC 2.0",
+       latencyProfile: "No overhead; parsing is fast"
+     },
+     references: [
+       "https://www.jsonrpc.org/specification"
+     ]
+   },
+   {
+     slug: "mcp-result",
+     term: "MCP Result",
+     definition: "The successful response payload in a JSON-RPC response message, containing the data returned by the server.",
+     detailedExplanation: "In a successful JSON-RPC response, the `result` field contains the server's answer. For MCP, this might be a tool result, a resource contents array, or a capability object. The shape of the result depends entirely on the method that was called. The `id` field must match the original request's `id`.",
+     keyTakeaways: [
+       "Successful response payload in JSON-RPC.",
+       "Shape depends on the called method.",
+       "Paired with the original request via the `id` field.",
+       "Absent in error responses (which have `error` instead)."
+     ],
+     useCase: "A successful `tools/list` response returns a result object containing an array of tool definitions.",
+     technicalDetails: {
+       protocolLayer: "RPC Response Layer",
+       format: "JSON object per JSON-RPC 2.0",
+       latencyProfile: "No overhead; response serialization"
+     },
+     references: [
+       "https://www.jsonrpc.org/specification"
+     ]
+   },
+   {
+     slug: "mcp-error",
+     term: "MCP Error",
+     definition: "The error payload in a JSON-RPC response message, containing a code, message, and optional data when a request fails.",
+     detailedExplanation: "When a JSON-RPC request fails, the response contains an `error` object with a numeric `code`, a string `message`, and optional `data`. Standard codes include `-32700` (parse error), `-32600` (invalid request), `-32601` (method not found), and `-32603` (internal error). Servers can also define custom codes for domain-specific errors.",
+     keyTakeaways: [
+       "Failure response payload in JSON-RPC.",
+       "Contains code, message, and optional data.",
+       "Standard codes defined by the JSON-RPC spec.",
+       "Custom codes can be defined for domain-specific errors."
+     ],
+     useCase: "A client calls a tool that does not exist; the server responds with error code `-32601` (method not found).",
+     technicalDetails: {
+       protocolLayer: "RPC Error Layer",
+       format: "JSON object per JSON-RPC 2.0",
+       latencyProfile: "No overhead; error serialization"
+     },
+     references: [
+       "https://www.jsonrpc.org/specification"
+     ]
+   },
+   {
+     slug: "mcp-notification",
+     term: "MCP Notification",
+     definition: "A one-way JSON-RPC message from server to client (or client to server) that does not expect a response.",
+     detailedExplanation: "Notifications are fire-and-forget messages used for events like `initialized` (client confirms handshake), `cancelled` (server cancels a request), or `progress` (server reports progress). The `id` field is absent, and the receiver must not send a response. Notifications are essential for event-driven workflows in MCP.",
+     keyTakeaways: [
+       "One-way JSON-RPC message with no response expected.",
+       "No `id` field in the message.",
+       "Used for events like progress, cancellation, and list changes.",
+       "Sender does not wait for acknowledgement."
+     ],
+     useCase: "A server sends a `notifications/progress` notification to update the client on a long-running tool's progress.",
+     technicalDetails: {
+       protocolLayer: "Event / Notification Layer",
+       format: "JSON-RPC message without `id`",
+       latencyProfile: "No overhead; one-way delivery"
+     },
+     references: [
+       "https://www.jsonrpc.org/specification"
+     ]
+   },
+   {
+     slug: "mcp-feature-flags",
+     term: "MCP Feature Flags",
+     definition: "Optional capabilities or experimental features declared in the `experimental` field of the capabilities object during MCP initialization.",
+     detailedExplanation: "Feature flags allow servers and clients to opt into experimental or version-specific features without breaking compatibility. For example, a server might declare an experimental structuredOutput flag set to true to indicate it supports structured tool outputs. Clients must check for these flags before using the corresponding features.",
+     keyTakeaways: [
+       "Declared under the `experimental` key in capabilities.",
+       "Allow safe rollout of experimental features.",
+       "Clients must check flags before using features.",
+       "Can be used for version-specific extensions."
+     ],
+     useCase: "A server declares an experimental streamingResults flag set to true to indicate it supports streaming tool results; the client checks this before using the feature.",
+     technicalDetails: {
+       protocolLayer: "Protocol Extension Layer",
+       format: "JSON object in capabilities.experimental",
+       latencyProfile: "Evaluated once at session start"
+     },
+     references: [
+       "https://spec.modelcontextprotocol.io/specification/basic/lifecycle/"
+     ]
+   },
+   {
+     slug: "large-language-model",
+     term: "Large Language Model (LLM)",
+     definition: "A deep neural network trained on massive text corpora to predict and generate human-like text, forming the intelligence core of modern AI agents and MCP-connected systems.",
+     detailedExplanation: "Large Language Models are transformer-based architectures with billions of parameters trained on trillions of tokens. They power the reasoning, planning, and language understanding capabilities of AI agents. In MCP contexts, LLMs serve as the 'brain' that decides which tools to call, interprets tool results, and generates user-facing responses. Popular models include GPT-4, Claude, Gemini, and Llama.",
+     keyTakeaways: [
+       "Transformer-based models trained on massive text corpora.",
+       "Power reasoning, planning, and tool selection in AI agents.",
+       "Context window limits how much text can be considered at once.",
+       "Quality varies significantly by model size, training data, and alignment."
+     ],
+     useCase: "A Claude model analyzes a user's request and decides to call a `database_query` MCP tool to fetch data before composing an answer.",
+     technicalDetails: {
+       protocolLayer: "Model / Inference Layer",
+       format: "Model weights (various formats: GPTQ, GGUF, safetensors)",
+       latencyProfile: "First-token latency: 200ms-2s depending on model and hardware"
+     },
+     references: [
+       "https://openai.com/research",
+       "https://ai.meta.com/llama/"
+     ]
+   },
+   {
+     slug: "transformer-architecture",
+     term: "Transformer Architecture",
+     definition: "A neural network architecture based on self-attention mechanisms that processes sequences of data in parallel, forming the foundation of modern LLMs.",
+     detailedExplanation: "The transformer architecture, introduced in the 'Attention Is All You Need' paper (2017), replaced recurrent networks with multi-head self-attention. This allows the model to weigh the importance of different tokens in a sequence simultaneously. Transformers scale efficiently with data and compute, making them the backbone of LLMs like GPT, Claude, and Llama.",
+     keyTakeaways: [
+       "Based on self-attention rather than recurrence.",
+       "Enables parallel processing of sequences.",
+       "Scales efficiently with data and compute.",
+       "Foundation of all modern LLMs."
+     ],
+     useCase: "GPT-4 and Claude both use transformer architectures to process user prompts and generate responses.",
+     technicalDetails: {
+       protocolLayer: "Model Architecture Layer",
+       format: "Self-attention layers, feed-forward networks, positional encodings",
+       latencyProfile: "Scales quadratically with sequence length for full attention"
+     },
+     references: [
+       "https://arxiv.org/abs/1706.03762"
+     ]
+   },
+   {
+     slug: "token",
+     term: "Token",
+     definition: "The fundamental unit of text processed by LLMs, representing a word, subword, or character chunk that the model encodes and decodes.",
+     detailedExplanation: "Tokens are the building blocks of LLM input and output. A token can be as short as a character or as long as a word, depending on the tokenizer. Models have a context window measured in tokens (e.g., 8K, 128K tokens). When a user sends a prompt, it is tokenized into a sequence of token IDs that the model processes. Billing for most LLM APIs is per-token.",
+     keyTakeaways: [
+       "Fundamental unit of text for LLMs.",
+       "Context windows are measured in tokens.",
+       "Billing is typically per-token for API usage.",
+       "A rough rule of thumb: 1 token ~ 4 characters in English."
+     ],
+     useCase: "A 1,000-word prompt might be ~1,300 tokens, costing a fraction of a cent at current API rates.",
+     technicalDetails: {
+       protocolLayer: "Model Encoding Layer",
+       format: "Integer IDs mapped to vocabulary entries",
+       latencyProfile: "Tokenization is near-instant; model inference scales with token count"
+     },
+     references: [
+       "https://platform.openai.com/docs/guides/chat/introduction",
+       "https://huggingface.co/learn/nlp-course/chapter2/4"
+     ]
+   },
+   {
+     slug: "embedding",
+     term: "Embedding",
+     definition: "A dense vector representation of text (or other data) that captures semantic meaning, enabling similarity search and retrieval-augmented generation.",
+     detailedExplanation: "Embeddings map discrete text tokens or documents into continuous high-dimensional vectors. Similar texts produce similar vectors, enabling semantic search. In MCP and RAG systems, embeddings allow agents to find relevant context by meaning rather than exact keyword matches. Models like OpenAI's `text-embedding-3-large` and open-source models like `e5` and `bge` are commonly used.",
+     keyTakeaways: [
+       "Dense vector representations of text or data.",
+       "Similar texts produce similar vectors.",
+       "Enables semantic search and RAG.",
+       "Dimension typically ranges from 384 to 3072."
+     ],
+     useCase: "An MCP RAG server embeds user queries and compares them against embedded document chunks to find the most relevant context.",
+     technicalDetails: {
+       protocolLayer: "Data / Representation Layer",
+       format: "Dense float vectors (typically 384-3072 dimensions)",
+       latencyProfile: "Embedding generation: 10-100ms per text chunk"
+     },
+     references: [
+       "https://platform.openai.com/docs/guides/embeddings",
+       "https://huggingface.co/blog/embeddings"
+     ]
+   },
+   {
+     slug: "vector-database",
+     term: "Vector Database",
+     definition: "A specialized database optimized for storing and querying high-dimensional embedding vectors, enabling fast semantic similarity search at scale.",
+     detailedExplanation: "Vector databases like Pinecone, Weaviate, Qdrant, and Milvus store embeddings alongside metadata and support approximate nearest neighbor (ANN) search. They are the storage backbone of RAG systems, allowing agents to retrieve relevant documents by semantic similarity. MCP servers can expose vector databases as tools for storing and querying agent memory.",
+     keyTakeaways: [
+       "Optimized for high-dimensional vector storage and ANN search.",
+       "Core component of RAG and semantic search systems.",
+       "Can be self-hosted (Qdrant, Weaviate) or managed (Pinecone).",
+       "Supports metadata filtering alongside vector similarity."
+     ],
+     useCase: "An agent uses an MCP server backed by Qdrant to store conversation summaries and retrieve relevant past context by semantic similarity.",
+     technicalDetails: {
+       protocolLayer: "Data / Storage Layer",
+       format: "HNSW, IVF, or other ANN indexes on dense vectors",
+       latencyProfile: "Sub-second for typical collection sizes"
+     },
+     references: [
+       "https://qdrant.tech/documentation",
+       "https://www.pinecone.io/learn/vector-database/"
+     ]
+   },
+   {
+     slug: "rag",
+     term: "RAG (Retrieval-Augmented Generation)",
+     definition: "An AI technique that enhances LLM responses by retrieving relevant external documents at query time, reducing hallucinations and providing up-to-date information.",
+     detailedExplanation: "RAG works by embedding a user's query, searching a knowledge base for similar documents, and feeding those documents as context to the LLM. This grounds the model's response in real data rather than its training cutoff. In MCP, RAG is a common pattern: an MCP server exposes tools or resources that perform retrieval, allowing the client to augment the model's context dynamically.",
+     keyTakeaways: [
+       "Retrieves relevant documents at query time to augment LLM context.",
+       "Reduces hallucinations by grounding responses in real data.",
+       "Common pattern in MCP servers for knowledge base access.",
+       "Requires an embedding model and a vector or keyword store."
+     ],
+     useCase: "An MCP server implements RAG by embedding user questions, searching a company wiki, and returning the top relevant sections as context to the LLM.",
+     technicalDetails: {
+       protocolLayer: "Retrieval / Augmentation Layer",
+       format: "Embedding + vector/keyword search + LLM context injection",
+       latencyProfile: "Adds 50-500ms of retrieval latency per query"
+     },
+     references: [
+       "https://arxiv.org/abs/2005.11401",
+       "https://docs.llamaindex.ai"
+     ]
+   },
+   {
+     slug: "fine-tuning",
+     term: "Fine-tuning",
+     definition: "The process of further training a pre-trained LLM on a domain-specific dataset to improve its performance on specialized tasks.",
+     detailedExplanation: "Fine-tuning takes a base model (like Llama or Mistral) and trains it on a smaller, task-specific dataset. This can improve performance on domain-specific language, tone, or formats. In MCP contexts, fine-tuned models may be better at selecting the right tools or formatting tool arguments correctly. Techniques like LoRA and QLoRA make fine-tuning more accessible.",
+     keyTakeaways: [
+       "Further trains a base model on domain-specific data.",
+       "Improves performance on specialized tasks and language.",
+       "Techniques like LoRA reduce compute and data requirements.",
+       "Does not add new knowledge; adapts existing knowledge."
+     ],
+     useCase: "A company fine-tunes Llama on its internal support ticket data so it better understands domain terminology when using MCP tools.",
+     technicalDetails: {
+       protocolLayer: "Model Training / Adaptation Layer",
+       format: "Additional training epochs on domain-specific dataset",
+       latencyProfile: "Training: hours to days; inference: similar to base model"
+     },
+     references: [
+       "https://huggingface.co/docs/transformers/training",
+       "https://arxiv.org/abs/2106.09685"
+     ]
+   },
+   {
+     slug: "prompt-engineering",
+     term: "Prompt Engineering",
+     definition: "The practice of designing and optimizing prompts to elicit desired behaviors from LLMs, including tool selection, output format, and reasoning quality.",
+     detailedExplanation: "Prompt engineering involves crafting system prompts, few-shot examples, and instructions to guide model behavior. In MCP, good prompt engineering helps the model select the right tools, format arguments correctly, and handle edge cases. MCP servers can export prompt templates to standardize this across clients.",
+     keyTakeaways: [
+       "Crafting prompts to guide LLM behavior.",
+       "Critical for reliable tool selection and argument formatting in MCP.",
+       "Can be standardized via MCP prompt templates.",
+       "Iterative process involving testing and refinement."
+     ],
+     useCase: "An MCP server exports a `code-reviewer` prompt template that instructs the model to use specific analysis tools in a particular order.",
+     technicalDetails: {
+       protocolLayer: "Prompt / Persona Layer",
+       format: "Natural language instructions, few-shot examples, system prompts",
+       latencyProfile: "No overhead; affects token usage and model behavior"
+     },
+     references: [
+       "https://platform.openai.com/docs/guides/prompt-engineering",
+       "https://www.promptingguide.ai/"
+     ]
+   },
+   {
+     slug: "context-window",
+     term: "Context Window",
+     definition: "The maximum number of tokens an LLM can process in a single request, including the prompt, conversation history, and tool results.",
+     detailedExplanation: "The context window is a hard limit on LLM input. Models like GPT-4 have 128K token windows, while others may have 32K or 1M. In MCP, the context window is shared between the system prompt, conversation history, tool definitions, and tool results. When the window is exceeded, older messages may be truncated or summarized, potentially losing important context.",
+     keyTakeaways: [
+       "Maximum tokens an LLM can process in one request.",
+       "Shared between prompt, history, tools, and results.",
+       "Exceeding the window causes truncation or summarization.",
+       "Larger windows enable more complex agentic workflows."
+     ],
+     useCase: "An agent with a 128K context window can hold a long conversation with many tool calls before older context is lost.",
+     technicalDetails: {
+       protocolLayer: "Model / Inference Layer",
+       format: "Token count (e.g., 128K tokens)",
+       latencyProfile: "Larger contexts increase inference latency quadratically for full-attention models"
+     },
+     references: [
+       "https://platform.openai.com/docs/guides/chat/introduction",
+       "https://www.anthropic.com/claude"
+     ]
+   },
+   {
+     slug: "temperature",
+     term: "Temperature",
+     definition: "A sampling parameter that controls the randomness of LLM output, where lower values produce more deterministic text and higher values produce more creative variations.",
+     detailedExplanation: "Temperature is a float parameter typically between 0 and 2. At temperature 0, the model always selects the most likely next token (greedy decoding), producing deterministic output. At higher temperatures (0.7-1.0), the model samples from a broader distribution, producing more varied and creative text. For MCP tool calling, lower temperatures (0-0.3) are usually preferred to ensure reliable, repeatable tool selection.",
+     keyTakeaways: [
+       "Controls randomness in LLM output generation.",
+       "0 = deterministic/greedy; higher = more random/creative.",
+       "Lower temperatures are better for tool calling and structured output.",
+       "Higher temperatures are better for creative writing and ideation."
+     ],
+     useCase: "Setting temperature to 0.1 for an MCP agent ensures it consistently selects the correct database query tool rather than improvising.",
+     technicalDetails: {
+       protocolLayer: "Model Inference Parameter",
+       format: "Float (typically 0.0 to 2.0)",
+       latencyProfile: "No direct latency impact; affects output variability"
+     },
+     references: [
+       "https://platform.openai.com/docs/guides/text-generation",
+       "https://huggingface.co/docs/transformers/generation_strategies"
+     ]
+   },
+   {
+     slug: "top-p-nucleus-sampling",
+     term: "Top-p (Nucleus Sampling)",
+     definition: "A sampling strategy that selects from the smallest set of top probable tokens whose cumulative probability exceeds a threshold p, balancing quality and diversity.",
+     detailedExplanation: "Top-p sampling dynamically adjusts the candidate token set based on probability mass. At p=0.9, the model considers only the most probable tokens that together account for 90% of the probability mass. This prevents the model from considering extremely unlikely tokens while maintaining diversity. It is often used alongside temperature to control output characteristics.",
+     keyTakeaways: [
+       "Dynamically selects tokens based on cumulative probability.",
+       "Balances output quality and diversity.",
+       "Typically set between 0.9 and 1.0 for balanced output.",
+       "Often used with temperature for fine-grained control."
+     ],
+     useCase: "Setting top-p to 0.95 for a creative writing agent ensures varied but coherent prose generation.",
+     technicalDetails: {
+       protocolLayer: "Model Inference Parameter",
+       format: "Float between 0.0 and 1.0",
+       latencyProfile: "No direct latency impact; affects output variability"
+     },
+     references: [
+       "https://arxiv.org/abs/1904.09751",
+       "https://huggingface.co/docs/transformers/main_classes/text_generation"
+     ]
+   },
+   {
+     slug: "few-shot-learning",
+     term: "Few-shot Learning",
+     definition: "An LLM capability where the model performs a task after seeing only a few examples in the prompt, without additional training.",
+     detailedExplanation: "Few-shot learning leverages the in-context learning ability of large LLMs. By including 2-5 examples of the desired input-output pattern in the prompt, the model can generalize to new inputs. In MCP, few-shot examples can be included in prompt templates to teach the model how to use specific tools or format responses in a particular way.",
+     keyTakeaways: [
+       "Model learns from examples in the prompt.",
+       "No additional training required.",
+       "2-5 examples typically sufficient for simple tasks.",
+       "Used in MCP prompt templates to guide tool usage."
+     ],
+     useCase: "An MCP prompt template includes 3 examples of correct tool-calling format so the model learns to structure requests properly.",
+     technicalDetails: {
+       protocolLayer: "Model Behavior / Prompt Layer",
+       format: "Prompt with input-output example pairs",
+       latencyProfile: "No overhead; uses context window tokens"
+     },
+     references: [
+       "https://arxiv.org/abs/2005.14165",
+       "https://platform.openai.com/docs/guides/prompt-engineering"
+     ]
+   },
+   {
+     slug: "zero-shot-learning",
+     term: "Zero-shot Learning",
+     definition: "An LLM capability where the model performs a task without any task-specific examples, relying only on the instruction in the prompt.",
+     detailedExplanation: "Zero-shot learning is the default mode for most LLM interactions. The model relies on its pre-training to understand the task from a natural language instruction alone. In MCP, zero-shot tool selection means the model must infer how to use a tool from its schema and description alone, without additional examples in the prompt.",
+     keyTakeaways: [
+       "Model performs tasks without examples in the prompt.",
+       "Relies on pre-training knowledge.",
+       "Default mode for most LLM interactions.",
+       "Works best with clear tool schemas and descriptions."
+     ],
+     useCase: "An agent uses a `weather_lookup` tool with zero-shot learning, inferring from the tool description that it should provide a city name.",
+     technicalDetails: {
+       protocolLayer: "Model Behavior / Prompt Layer",
+       format: "Prompt with instruction only, no examples",
+       latencyProfile: "No overhead; uses context window tokens"
+     },
+     references: [
+       "https://arxiv.org/abs/1905.03197",
+       "https://huggingface.co/docs/transformers/tasks/zero_shot_classification"
+     ]
+   },
+   {
+     slug: "chain-of-thought",
+     term: "Chain of Thought (CoT)",
+     definition: "A prompting technique that asks the LLM to show its reasoning step-by-step before providing a final answer, improving accuracy on complex tasks.",
+     detailedExplanation: "Chain of Thought prompting elicits intermediate reasoning steps, which helps models solve multi-step problems more accurately. In MCP, CoT can improve tool selection and argument construction by making the model's decision process explicit. Some MCP servers include CoT instructions in their prompt templates to guide the model through complex workflows.",
+     keyTakeaways: [
+       "Prompts model to show step-by-step reasoning.",
+       "Improves accuracy on complex, multi-step tasks.",
+       "Can be included in MCP prompt templates.",
+       "Increases token usage due to intermediate steps."
+     ],
+     useCase: "An MCP prompt template instructs the model to 'think step by step' before selecting and calling database query tools.",
+     technicalDetails: {
+       protocolLayer: "Prompt / Reasoning Layer",
+       format: "Prompt instruction requesting intermediate reasoning steps",
+       latencyProfile: "Increases token usage; no direct latency impact"
+     },
+     references: [
+       "https://arxiv.org/abs/2201.11903",
+       "https://www.promptingguide.ai/techniques/cot"
+     ]
+   },
+   {
+     slug: "react",
+     term: "ReAct (Reason + Act)",
+     definition: "A framework that interleaves reasoning (thinking) and acting (tool calling) in LLM agents, enabling more robust and interpretable problem-solving.",
+     detailedExplanation: "ReAct combines chain-of-thought reasoning with action execution. The model alternates between thought steps (reasoning about the current state) and action steps (calling tools or taking actions). This pattern is fundamental to modern AI agents and is well-supported by MCP, where each action step corresponds to an MCP tool call.",
+     keyTakeaways: [
+       "Interleaves reasoning and action in agent workflows.",
+       "Produces more interpretable and robust agent behavior.",
+       "Naturally maps to MCP tool-calling patterns.",
+       "Reduces hallucination by grounding actions in reasoning."
+     ],
+     useCase: "An agent uses ReAct to reason about a user's request, call an MCP `search` tool, reason about the results, then call a `summarize` tool before answering.",
+     technicalDetails: {
+       protocolLayer: "Agent Reasoning / Orchestration Layer",
+       format: "Alternating thought and action steps in prompt",
+       latencyProfile: "Increases interaction rounds; improves accuracy"
+     },
+     references: [
+       "https://arxiv.org/abs/2210.03629",
+       "https://www.promptingguide.ai/techniques/react"
+     ]
+   },
+   {
+     slug: "agent",
+     term: "AI Agent",
+     definition: "An autonomous or semi-autonomous system that uses an LLM to reason, plan, and execute actions through tools to achieve user-defined goals.",
+     detailedExplanation: "AI agents extend LLMs with the ability to take actions in the world. An agent typically has a reasoning loop: observe the environment, decide on an action, execute the action (often via MCP tools), observe the result, and repeat. Agents can be simple (single-step tool callers) or complex (multi-step planners with memory and reflection). MCP is a key enabler for agents by providing a standardized tool interface.",
+     keyTakeaways: [
+       "Autonomous or semi-autonomous systems using LLMs for reasoning.",
+       "Execute actions through tools (often MCP tools).",
+       "Follow an observe-reason-act loop.",
+       "Range from simple tool callers to complex multi-step planners."
+     ],
+     useCase: "A coding agent uses MCP tools to read files, run tests, and make edits based on user instructions, iterating until the task is complete.",
+     technicalDetails: {
+       protocolLayer: "Agent / Orchestration Layer",
+       format: "Reasoning loop with tool execution",
+       latencyProfile: "Varies from seconds to minutes depending on task complexity"
+     },
+     references: [
+       "https://www.anthropic.com/engineering/building-effective-agents",
+       "https://arxiv.org/abs/2308.00352"
+     ]
+   },
+   {
+     slug: "tool-calling",
+     term: "Tool Calling (Function Calling)",
+     definition: "An LLM capability to select and invoke external functions (tools) with structured arguments, enabling models to perform actions beyond text generation.",
+     detailedExplanation: "Tool calling allows an LLM to output a structured request to call a function with specific arguments. The LLM does not execute the function itself; it generates a function call specification that the host system (like an MCP client) executes. Modern models like GPT-4, Claude, and Gemini all support tool calling natively. MCP standardizes the tool definition and calling interface across models.",
+     keyTakeaways: [
+       "LLM outputs structured function call specifications.",
+       "Host system executes the actual function.",
+       "Supported natively by GPT-4, Claude, Gemini, and others.",
+       "MCP standardizes tool definitions across models."
+     ],
+     useCase: "Claude decides to call an MCP `database_query` tool, generating a structured call with SQL parameters that the MCP client executes.",
+     technicalDetails: {
+       protocolLayer: "Model Output / Tool Invocation Layer",
+       format: "Structured JSON function call specification",
+       latencyProfile: "No overhead from model side; execution depends on tool"
+     },
+     references: [
+       "https://platform.openai.com/docs/guides/function-calling",
+       "https://docs.anthropic.com/claude/docs/tool-use"
+     ]
+   },
+   {
+     slug: "hallucination",
+     term: "Hallucination",
+     definition: "When an LLM generates confident but factually incorrect or unsupported information, a major challenge in AI systems including MCP-connected agents.",
+     detailedExplanation: "Hallucinations occur when LLMs fill gaps in their knowledge with plausible-sounding but false information. In MCP systems, hallucinations are mitigated by grounding the model in real tool results and retrieved context. When an agent has access to tools, it can fetch real data instead of guessing. However, models can still hallucinate about tool results or misrepresent retrieved information.",
+     keyTakeaways: [
+       "LLMs can generate confident but incorrect information.",
+       "MCP mitigates hallucinations by providing real tool results.",
+       "Models can still hallucinate about or misrepresent tool outputs.",
+       "Retrieval and tool grounding are key mitigation strategies."
+     ],
+     useCase: "Without MCP tools, an LLM might hallucinate a customer's order status. With an MCP `get_order_status` tool, it fetches real data instead.",
+     technicalDetails: {
+       protocolLayer: "Model Reliability Layer",
+       format: "Natural language (inherent to LLM training)",
+       latencyProfile: "No direct latency impact; affects accuracy"
+     },
+     references: [
+       "https://arxiv.org/abs/2305.14552",
+       "https://docs.anthropic.com/claude/docs/hallucinations"
+     ]
+   },
+   {
+     slug: "alignment",
+     term: "Alignment",
+     definition: "The process of ensuring an AI system's behavior matches human intentions and values, a critical concern for autonomous agents using MCP tools.",
+     detailedExplanation: "Alignment is about making sure AI systems do what humans actually want them to do. Techniques include RLHF (reinforcement learning from human feedback), Constitutional AI, and prompt-based guardrails. For MCP agents, alignment is particularly important because tools can have real-world effects (modifying databases, sending emails). Misaligned agents could cause harm by misusing tools.",
+     keyTakeaways: [
+       "Ensuring AI behavior matches human intentions.",
+       "Critical for agents with real-world tool access.",
+       "Achieved through RLHF, Constitutional AI, and guardrails.",
+       "An ongoing challenge as agents become more autonomous."
+     ],
+     useCase: "An MCP-connected email agent must be aligned to only send approved messages, not draft or send arbitrary emails without user confirmation.",
+     technicalDetails: {
+       protocolLayer: "Model Safety / Alignment Layer",
+       format: "Training techniques (RLHF), runtime guardrails, prompt engineering",
+       latencyProfile: "No direct latency impact; affects behavior"
+     },
+     references: [
+       "https://arxiv.org/abs/2203.02155",
+       "https://docs.anthropic.com/claude/docs/alignment"
+     ]
+   },
+   {
+     slug: "rlhf",
+     term: "RLHF (Reinforcement Learning from Human Feedback)",
+     definition: "A training technique that uses human preferences to fine-tune LLMs, aligning their outputs with human values and instructions.",
+     detailedExplanation: "RLHF involves training a reward model on human preference data, then using reinforcement learning (typically PPO) to optimize the LLM's policy. This is how models like ChatGPT and Claude are aligned to be helpful, harmless, and honest. For MCP use cases, RLHF-trained models are more likely to correctly interpret tool schemas and produce safe, appropriate tool calls.",
+     keyTakeaways: [
+       "Uses human feedback to align LLM outputs with preferences.",
+       "Involves training a reward model and then optimizing with RL.",
+       "Key technique behind ChatGPT and Claude alignment.",
+       "Improves tool-use reliability in MCP systems."
+     ],
+     useCase: "An RLHF-trained model is more likely to correctly interpret an MCP tool schema and refuse to call a tool in an unsafe context.",
+     technicalDetails: {
+       protocolLayer: "Model Training / Alignment Layer",
+       format: "Human preference data + reward model + PPO",
+       latencyProfile: "Training: weeks to months; inference: similar to base model"
+     },
+     references: [
+       "https://arxiv.org/abs/1706.03741",
+       "https://huggingface.co/blog/RLHF"
+     ]
+   },
+   {
+     slug: "guardrails",
+     term: "Guardrails",
+     definition: "Runtime constraints and filters applied to LLM inputs and outputs to prevent harmful, unsafe, or off-topic behavior in production AI systems.",
+     detailedExplanation: "Guardrails are a practical safety layer that operates at runtime, independent of the model's training. They can filter inputs for prompt injection, block outputs containing sensitive data, or enforce output schemas. In MCP systems, guardrails are especially important because tool calls have real-world effects. Input guardrails protect the model from malicious prompts; output guardrails prevent the model from producing dangerous tool arguments.",
+     keyTakeaways: [
+       "Runtime constraints on LLM inputs and outputs.",
+       "Operate independently of model training.",
+       "Critical for MCP systems with real-world tool effects.",
+       "Can filter prompts, validate tool arguments, and block harmful outputs."
+     ],
+     useCase: "An MCP gateway applies output guardrails to strip any API keys or PII from tool results before they reach the LLM context.",
+     technicalDetails: {
+       protocolLayer: "Safety / Runtime Layer",
+       format: "Input/output filters, schema validators, regex rules",
+       latencyProfile: "Adds milliseconds per request"
+     },
+     references: [
+       "https://docs.anthropic.com/claude/docs/guardrails",
+       "https://www.nvidia.com/en-us/security/guardrails/"
+     ]
+   },
+   {
+     slug: "prompt-injection",
+     term: "Prompt Injection",
+     definition: "An attack where malicious input manipulates an LLM into ignoring its instructions or system prompt, potentially causing it to misuse tools or leak sensitive data.",
+     detailedExplanation: "Prompt injection attacks exploit the fact that LLMs treat user input and system instructions as part of the same context. A malicious user can craft input that overrides the system prompt, causing the model to ignore safety guidelines or misuse MCP tools. Defenses include input sanitization, instruction hierarchy, and output validation. In MCP systems, prompt injection is particularly dangerous because it can cause the model to call tools with malicious arguments.",
+     keyTakeaways: [
+       "Malicious input that manipulates LLM behavior.",
+       "Can cause models to ignore safety instructions.",
+       "Particularly dangerous in MCP systems with tool access.",
+       "Defenses include sanitization, instruction hierarchy, and validation."
+     ],
+     useCase: "A user crafts a prompt injection that tricks the model into calling an MCP `delete_file` tool on a sensitive system file.",
+     technicalDetails: {
+       protocolLayer: "Security / Input Validation Layer",
+       format: "Crafted adversarial text input",
+       latencyProfile: "No direct latency impact; requires detection overhead"
+     },
+     references: [
+       "https://arxiv.org/abs/2302.12173",
+       "https://owasp.org/www-project-top-10-for-large-language-model-applications/"
+     ]
+   },
+   {
+     slug: "system-prompt",
+     term: "System Prompt",
+     definition: "The hidden instruction set provided to an LLM at the start of a conversation, defining its role, behavior, and tool-usage guidelines.",
+     detailedExplanation: "The system prompt sets the model's persona and operational rules. In MCP systems, the system prompt often includes instructions on how to use available tools, when to ask for clarification, and what safety rules to follow. Some MCP clients allow servers to contribute to or override parts of the system prompt. System prompts are not visible to end users but significantly influence model behavior.",
+     keyTakeaways: [
+       "Hidden instructions that define model behavior.",
+       "Sets role, tone, and tool-usage guidelines.",
+       "Can be contributed to by MCP servers.",
+       "Significantly influences output quality and safety."
+     ],
+     useCase: "Claude Desktop's system prompt includes instructions on how to use configured MCP tools, what to do when a tool fails, and how to present results to users.",
+     technicalDetails: {
+       protocolLayer: "Model Configuration Layer",
+       format: "Natural language instructions",
+       latencyProfile: "No overhead; part of the context window"
+     },
+     references: [
+       "https://docs.anthropic.com/claude/docs/system-prompts",
+       "https://platform.openai.com/docs/guides/prompt-engineering"
+     ]
+   },
+   {
+     slug: "model-context",
+     term: "Model Context",
+     definition: "The total information available to an LLM in a single request, including the system prompt, conversation history, tool definitions, and retrieved documents.",
+     detailedExplanation: "Model context is everything the LLM 'sees' when generating a response. In MCP systems, context includes the system prompt, the conversation so far, definitions of all available tools, any retrieved documents (from RAG), and previous tool results. The context window limits how much information can be included. Effective MCP implementations optimize context usage to include only the most relevant information.",
+     keyTakeaways: [
+       "Total information available to the LLM in one request.",
+       "Includes prompt, history, tools, and retrieved documents.",
+       "Limited by the model's context window.",
+       "Optimizing context is key to effective MCP agent performance."
+     ],
+     useCase: "An MCP client carefully manages context by truncating old messages and only including relevant tool definitions to stay within the 128K token window.",
+     technicalDetails: {
+       protocolLayer: "Model Input Layer",
+       format: "Combined text and structured data within context window",
+       latencyProfile: "Larger contexts increase inference latency and cost"
+     },
+     references: [
+       "https://platform.openai.com/docs/guides/chat/introduction",
+       "https://www.anthropic.com/claude"
+     ]
+   },
+   {
+     slug: "inference",
+     term: "Inference",
+     definition: "The process of running a trained ML model to generate predictions or outputs from input data, the primary operation of LLMs in production.",
+     detailedExplanation: "Inference is the 'forward pass' of a neural network: given input tokens, the model predicts the next token (or sequence of tokens). For LLMs, this happens autoregressively, generating one token at a time. In MCP contexts, inference occurs when the LLM decides which tool to call, generates the tool arguments, or produces a final response. Inference can run locally (Ollama, LM Studio) or remotely (OpenAI, Anthropic APIs).",
+     keyTakeaways: [
+       "Running a trained model to generate outputs.",
+       "Autoregressive for LLMs: one token at a time.",
+       "Can be local (Ollama) or remote (API).",
+       "Primary cost and latency consideration in AI systems."
+     ],
+     useCase: "An MCP client sends a user prompt to the LLM for inference, receives a tool call decision, executes the tool, and sends the result back for another inference round.",
+     technicalDetails: {
+       protocolLayer: "Model / Inference Layer",
+       format: "Input tokens -> model forward pass -> output tokens",
+       latencyProfile: "First token: 200ms-2s; subsequent tokens: 10-100ms each"
+     },
+     references: [
+       "https://huggingface.co/docs/transformers/main_classes/text_generation",
+       "https://docs.anthropic.com/claude/docs/inference"
+     ]
+   },
+   {
+     slug: "quantization",
+     term: "Quantization",
+     definition: "The process of reducing the precision of model weights from 32-bit floats to lower-bit formats (4-bit, 8-bit) to reduce model size and speed up inference with minimal accuracy loss.",
+     detailedExplanation: "Quantization reduces the memory footprint and compute requirements of LLMs, making them runnable on consumer hardware. Common quantization formats include GPTQ, AWQ, GGUF, and bitsandbytes. Quantized models can run on CPUs and older GPUs that lack the VRAM for full-precision models. The tradeoff is a small loss in model quality, which is often negligible for practical use.",
+     keyTakeaways: [
+       "Reduces model weight precision to save memory and speed up inference.",
+       "Common formats: 4-bit, 8-bit, GGUF, GPTQ, AWQ.",
+       "Enables running LLMs on consumer hardware.",
+       "Small quality tradeoff; often negligible in practice."
+     ],
+     useCase: "A 70B parameter Llama model quantized to 4-bit requires ~35GB VRAM instead of 140GB, making it runnable on a single high-end GPU.",
+     technicalDetails: {
+       protocolLayer: "Model Optimization / Deployment Layer",
+       format: "Reduced precision weights (INT4, INT8, FP16)",
+       latencyProfile: "2-4x faster inference than full-precision on supported hardware"
+     },
+     references: [
+       "https://huggingface.co/docs/transformers/quantization",
+       "https://ollama.com/blog/quantization"
+     ]
+   },
+   {
+     slug: "gguf",
+     term: "GGUF",
+     definition: "A file format for quantized LLM weights developed by Georgi Gerganov, used by llama.cpp and Ollama for efficient local inference on CPU and GPU.",
+     detailedExplanation: "GGUF (GPT-Generated Unified Format) is the modern format for storing quantized LLM weights. It supports multiple quantization levels, metadata, and efficient memory mapping. GGUF models can be loaded partially into memory, enabling large models to run on hardware with limited RAM. Ollama uses GGUF as its primary model format, pulling pre-quantized models from the Ollama library.",
+     keyTakeaways: [
+       "File format for quantized LLM weights.",
+       "Used by llama.cpp and Ollama.",
+       "Supports multiple quantization levels (Q4_K_M, Q5_K_M, Q8_0, etc.).",
+       "Enables efficient partial loading for large models."
+     ],
+     useCase: "An MCP server backed by Ollama loads a Llama 3 GGUF model to provide local inference for an offline agent.",
+     technicalDetails: {
+       protocolLayer: "Model Format / Deployment Layer",
+       format: "GGUF binary format",
+       latencyProfile: "Optimized for fast CPU and GPU inference"
+     },
+     references: [
+       "https://github.com/ggerganov/llama.cpp",
+       "https://ollama.com/blog/gguf"
+     ]
+   },
+   {
+     slug: "lora",
+     term: "LoRA (Low-Rank Adaptation)",
+     definition: "A parameter-efficient fine-tuning technique that freezes the base LLM weights and trains small low-rank adapter matrices, reducing compute and storage requirements.",
+     detailedExplanation: "LoRA decomposes weight updates into two smaller matrices, avoiding the need to retrain the full model. This makes fine-tuning accessible on consumer GPUs. QLoRA extends this by quantizing the base model to 4-bit, further reducing memory. In MCP contexts, LoRA can be used to create domain-specific model variants without the cost of full fine-tuning.",
+     keyTakeaways: [
+       "Parameter-efficient fine-tuning technique.",
+       "Trains small adapter matrices instead of full model weights.",
+       "QLoRA adds 4-bit quantization for even lower memory usage.",
+       "Enables consumer-GPU fine-tuning of large models."
+     ],
+     useCase: "A team fine-tunes a LoRA adapter on customer support data, achieving domain-specific behavior with a single RTX 4090 GPU.",
+     technicalDetails: {
+       protocolLayer: "Model Training / Adaptation Layer",
+       format: "Low-rank adapter matrices (trainable) + frozen base weights",
+       latencyProfile: "Training: hours to days on consumer GPUs; inference: similar to base model"
+     },
+     references: [
+       "https://arxiv.org/abs/2106.09685",
+       "https://huggingface.co/docs/peft"
+     ]
+   },
+   {
+     slug: "semantic-search",
+     term: "Semantic Search",
+     definition: "A search technique that uses embedding similarity to find documents relevant to a query's meaning, rather than relying solely on keyword matching.",
+     detailedExplanation: "Semantic search converts both the query and documents into embedding vectors, then finds the nearest neighbors to the query vector. This captures synonyms, paraphrases, and conceptual relationships that keyword search misses. In MCP RAG servers, semantic search is the primary retrieval mechanism for finding relevant context for the LLM.",
+     keyTakeaways: [
+       "Finds documents by meaning, not just keywords.",
+       "Uses embedding vectors and similarity metrics.",
+       "Captures synonyms and conceptual relationships.",
+       "Core retrieval mechanism in MCP RAG systems."
+     ],
+     useCase: "An MCP RAG server uses semantic search to find documents about 'employee leave policy' even when the query uses synonyms like 'vacation days'.",
+     technicalDetails: {
+       protocolLayer: "Retrieval / Search Layer",
+       format: "Embedding vectors + cosine similarity or other distance metrics",
+       latencyProfile: "50-200ms per query for typical index sizes"
+     },
+     references: [
+       "https://www.pinecone.io/learn/semantic-search/",
+       "https://huggingface.co/blog/embeddings"
+     ]
+   },
+   {
+     slug: "hybrid-search",
+     term: "Hybrid Search",
+     definition: "A search technique that combines semantic (vector) search with keyword (BM25) search to improve retrieval quality across diverse query types.",
+     detailedExplanation: "Hybrid search addresses the limitations of pure semantic or pure keyword search. Semantic search excels at conceptual queries but can miss exact terms; keyword search excels at exact matches but misses synonyms. By combining scores from both methods (e.g., weighted sum or reciprocal rank fusion), hybrid search achieves better recall and precision. MCP RAG servers often implement hybrid search for robust retrieval.",
+     keyTakeaways: [
+       "Combines semantic and keyword search.",
+       "Improves recall and precision over either method alone.",
+       "Uses fusion methods like weighted sum or RRF.",
+       "Recommended for robust MCP RAG implementations."
+     ],
+     useCase: "An MCP RAG server uses hybrid search to find a specific error code (keyword match) while also finding related troubleshooting guides (semantic match).",
+     technicalDetails: {
+       protocolLayer: "Retrieval / Search Layer",
+       format: "Vector similarity + BM25 score fusion",
+       latencyProfile: "Slightly slower than pure semantic search"
+     },
+     references: [
+       "https://www.elastic.co/search-labs/hybrid-search",
+       "https://docs.llamaindex.ai/en/stable/module_guides/retrieving/retrievers/bm25_retriever/"
+     ]
+   },
+   {
+     slug: "cosine-similarity",
+     term: "Cosine Similarity",
+     definition: "A metric that measures the cosine of the angle between two vectors, commonly used to compare embedding vectors for semantic similarity.",
+     detailedExplanation: "Cosine similarity ranges from -1 (opposite) to 1 (identical), with values close to 1 indicating high similarity. It is the most common similarity metric for dense embeddings because it captures directional similarity regardless of vector magnitude. In MCP RAG systems, cosine similarity is used to rank documents by their relevance to a query embedding.",
+     keyTakeaways: [
+       "Measures directional similarity between vectors.",
+       "Ranges from -1 to 1; 1 means identical direction.",
+       "Most common metric for embedding similarity.",
+       "Ignores vector magnitude, focusing on direction."
+     ],
+     useCase: "An MCP RAG server computes cosine similarity between a query embedding and document embeddings to rank results by relevance.",
+     technicalDetails: {
+       protocolLayer: "Similarity / Ranking Layer",
+       format: "Dot product of normalized vectors",
+       latencyProfile: "O(n) per query where n is the number of vectors to compare"
+     },
+     references: [
+       "https://en.wikipedia.org/wiki/Cosine_similarity",
+       "https://qdrant.tech/documentation/concepts/vectors/"
+     ]
+   },
+   {
+     slug: "hnsw",
+     term: "HNSW (Hierarchical Navigable Small World)",
+     definition: "An approximate nearest neighbor (ANN) algorithm that organizes vectors into a hierarchical graph for fast similarity search in high-dimensional spaces.",
+     detailedExplanation: "HNSW builds a multi-layered graph where each layer is a navigable small world graph. Search starts at the top layer (coarse) and descends to lower layers (fine), efficiently narrowing down the nearest neighbors. HNSW is the most popular ANN index for vector databases like Qdrant and Weaviate, offering excellent recall-speed tradeoffs.",
+     keyTakeaways: [
+       "Hierarchical graph-based ANN algorithm.",
+       "Offers excellent recall-speed tradeoffs.",
+       "Used by Qdrant, Weaviate, and other vector databases.",
+       "Parameters like M and ef_construction tune the index."
+     ],
+     useCase: "A Qdrant collection uses HNSW indexing to enable sub-second semantic search over millions of embedding vectors.",
+     technicalDetails: {
+       protocolLayer: "Data / Index Layer",
+       format: "Hierarchical navigable small world graph",
+       latencyProfile: "Sub-second for millions of vectors with proper configuration"
+     },
+     references: [
+       "https://qdrant.tech/documentation/concepts/indexing/",
+       "https://arxiv.org/abs/1603.09320"
+     ]
+   },
+   {
+     slug: "tokenizer",
+     term: "Tokenizer",
+     definition: "A preprocessing component that converts raw text into token IDs and back, serving as the interface between human language and LLM processing.",
+     detailedExplanation: "Tokenizers split text into discrete units (tokens) that the model can process. Common algorithms include BPE (Byte Pair Encoding), WordPiece, and SentencePiece. Each model has its own tokenizer with a specific vocabulary size (e.g., 100K tokens for Llama 3). Tokenizers are critical for MCP systems because they determine how tool arguments, resource contents, and prompts are encoded.",
+     keyTakeaways: [
+       "Converts text to token IDs and back.",
+       "Common algorithms: BPE, WordPiece, SentencePiece.",
+       "Each model has its own tokenizer with a fixed vocabulary.",
+       "Affects context window usage and multilingual performance."
+     ],
+     useCase: "An MCP client tokenizes a user's 500-character prompt using the Llama 3 tokenizer, producing 125 tokens for the model's context window.",
+     technicalDetails: {
+       protocolLayer: "Text Encoding / Preprocessing Layer",
+       format: "Vocabulary lookup for BPE/WordPiece/SentencePiece",
+       latencyProfile: "Near-instant for typical prompt lengths"
+     },
+     references: [
+       "https://huggingface.co/learn/nlp-course/chapter2/4",
+       "https://github.com/google/sentencepiece"
+     ]
+   },
+   {
+     slug: "bpe",
+     term: "BPE (Byte Pair Encoding)",
+     definition: "A tokenization algorithm that iteratively merges the most frequent pairs of tokens in a corpus, used by models like GPT and Llama.",
+     detailedExplanation: "BPE starts with individual bytes as tokens and repeatedly merges the most frequent adjacent pairs. This produces a vocabulary of subword units that balances vocabulary size and token count. For example, 'tokenization' might become ['token', 'ization'] rather than individual characters or the full word. BPE is efficient for English and many other languages but can struggle with rare words or code.",
+     keyTakeaways: [
+       "Iteratively merges frequent token pairs.",
+       "Produces subword units balancing vocabulary and token count.",
+       "Used by GPT, Llama, and many other models.",
+       "Efficient for common words; less so for rare words."
+     ],
+     useCase: "Llama 3's tokenizer uses BPE to encode text, producing a 128K-token vocabulary optimized for multilingual performance.",
+     technicalDetails: {
+       protocolLayer: "Text Encoding / Tokenization Layer",
+       format: "Subword vocabulary with merge rules",
+       latencyProfile: "Fast vocabulary lookup with merge table"
+     },
+     references: [
+       "https://arxiv.org/abs/1508.07909",
+       "https://huggingface.co/learn/nlp-course/chapter2/4"
+     ]
+   },
+   {
+     slug: "multimodal-llm",
+     term: "Multimodal LLM",
+     definition: "An LLM that can process and generate multiple modalities of data, such as text, images, audio, or video, beyond pure text.",
+     detailedExplanation: "Multimodal LLMs extend traditional text-only models with vision encoders, audio encoders, or other modality processors. Models like GPT-4V, Claude 3, and Gemini can analyze images, read documents with diagrams, and process audio. In MCP contexts, multimodal models can use visual MCP tools that return images, enabling agents to 'see' and reason about visual data.",
+     keyTakeaways: [
+       "Processes and generates multiple data modalities.",
+       "Common modalities: text, images, audio, video.",
+       "Examples: GPT-4V, Claude 3, Gemini.",
+       "Enables visual MCP tools and richer agent capabilities."
+     ],
+     useCase: "An MCP agent uses a multimodal model to analyze a screenshot returned by a `capture_screen` tool, identifying UI elements from the image.",
+     technicalDetails: {
+       protocolLayer: "Model / Multimodal Inference Layer",
+       format: "Combined text + image/audio encoders",
+       latencyProfile: "Higher latency than text-only models due to additional encoders"
+     },
+     references: [
+       "https://openai.com/research/gpt-4v",
+       "https://www.anthropic.com/claude"
+     ]
+   },
+   {
+     slug: "vision-language-model",
+     term: "Vision-Language Model (VLM)",
+     definition: "An AI model that can understand and reason about both images and text, bridging visual and linguistic modalities.",
+     detailedExplanation: "VLMs like CLIP, LLaVA, and GPT-4V combine a vision encoder (e.g., ViT) with a language model to enable image understanding and visual question answering. In MCP systems, VLMs can process visual data from MCP tools (screenshots, diagrams, photos) and answer questions about them. This expands agent capabilities to visual tasks.",
+     keyTakeaways: [
+       "Understands and reasons about images and text together.",
+       "Combines vision encoders with language models.",
+       "Examples: CLIP, LLaVA, GPT-4V.",
+       "Enables visual MCP tool capabilities."
+     ],
+     useCase: "An MCP agent uses a VLM to analyze a screenshot from a `get_screenshot` tool, identifying a UI element and generating a click action.",
+     technicalDetails: {
+       protocolLayer: "Model / Vision-Language Inference Layer",
+       format: "Vision encoder + language decoder",
+       latencyProfile: "Higher than text-only; depends on image size and model"
+     },
+     references: [
+       "https://openai.com/research/gpt-4v",
+       "https://llava-vl.github.io/"
+     ]
+   },
+   {
+     slug: "clip",
+     term: "CLIP (Contrastive Language-Image Pre-training)",
+     definition: "An OpenAI model that learns visual concepts from natural language supervision, enabling zero-shot image classification and image-text similarity.",
+     detailedExplanation: "CLIP is trained on 400M image-text pairs to align image and text representations in the same embedding space. This allows it to perform zero-shot image classification by comparing image embeddings to text class embeddings. CLIP embeddings are used in MCP systems for image search, visual grounding, and as components of multimodal agents.",
+     keyTakeaways: [
+       "Aligns image and text representations in the same space.",
+       "Enables zero-shot image classification.",
+       "Trained on 400M image-text pairs.",
+       "Used for image search and visual grounding in MCP systems."
+     ],
+     useCase: "An MCP server uses CLIP to find images in a collection that match a text description like 'sunset over mountains'.",
+     technicalDetails: {
+       protocolLayer: "Model / Vision-Language Embedding Layer",
+       format: "Vision encoder (ViT/ResNet) + text encoder",
+       latencyProfile: "Image encoding: 50-200ms; text encoding: 10-50ms"
+     },
+     references: [
+       "https://openai.com/research/clip",
+       "https://arxiv.org/abs/2103.00020"
+     ]
+   },
+   {
+     slug: "whisper",
+     term: "Whisper",
+     definition: "An OpenAI speech recognition model that transcribes and translates audio into text, enabling voice-based MCP agent interactions.",
+     detailedExplanation: "Whisper is a transformer-based ASR model trained on 680K hours of multilingual audio. It supports transcription, translation, and language identification. In MCP systems, Whisper can power voice input tools that transcribe user speech into text for the agent. Whisper's multilingual capabilities enable voice agents for non-English users, including Indic languages.",
+     keyTakeaways: [
+       "OpenAI's multilingual speech recognition model.",
+       "Supports transcription, translation, and language ID.",
+       "Trained on 680K hours of diverse audio.",
+       "Enables voice-based MCP agent interactions."
+     ],
+     useCase: "An MCP `transcribe_audio` tool uses Whisper to convert a user's voice message to text before the agent processes the request.",
+     technicalDetails: {
+       protocolLayer: "Model / Speech Recognition Layer",
+       format: "Transformer-based encoder-decoder",
+       latencyProfile: "Realtime to 2x depending on model size and hardware"
+     },
+     references: [
+       "https://openai.com/research/whisper",
+       "https://github.com/openai/whisper"
+     ]
+   },
+   {
+     slug: "tts",
+     term: "TTS (Text-to-Speech)",
+     definition: "Technology that converts written text into spoken audio, enabling MCP agents to communicate with users through voice.",
+     detailedExplanation: "TTS systems use neural models to generate natural-sounding speech from text. Modern TTS models like ElevenLabs, Coqui, and OpenAI's TTS API produce high-quality speech with natural prosody. In MCP systems, TTS tools enable agents to respond to users via voice, which is particularly useful for accessibility, hands-free interactions, and Indic-language support.",
+     keyTakeaways: [
+       "Converts text to spoken audio.",
+       "Modern neural TTS produces natural-sounding speech.",
+       "Enables voice responses from MCP agents.",
+       "Important for accessibility and Indic-language support."
+     ],
+     useCase: "An MCP agent uses a TTS tool to read a summary aloud to a user who prefers audio output.",
+     technicalDetails: {
+       protocolLayer: "Model / Audio Generation Layer",
+       format: "Neural TTS models (e.g., ElevenLabs, Coqui, OpenAI TTS)",
+       latencyProfile: "Real-time to 2x depending on model and hardware"
+     },
+     references: [
+       "https://platform.openai.com/docs/guides/text-to-speech",
+       "https://coqui.ai/"
+     ]
+   },
+   {
+     slug: "asr",
+     term: "ASR (Automatic Speech Recognition)",
+     definition: "Technology that converts spoken audio into written text, the first step in voice-based MCP agent interactions.",
+     detailedExplanation: "ASR systems transcribe audio into text that LLMs can understand. Modern ASR models like Whisper, Google Speech-to-Text, and Deepgram provide high-accuracy transcription in multiple languages. In MCP systems, ASR tools enable voice input, allowing users to speak their requests instead of typing them.",
+     keyTakeaways: [
+       "Converts spoken audio to written text.",
+       "Modern models achieve high accuracy in multiple languages.",
+       "First step in voice-based MCP agent workflows.",
+       "Supports multilingual and Indic-language inputs."
+     ],
+     useCase: "A user speaks a request in Hindi to an MCP agent; an ASR tool transcribes it to text for the LLM to process.",
+     technicalDetails: {
+       protocolLayer: "Model / Speech Recognition Layer",
+       format: "Neural ASR models (e.g., Whisper, Google STT)",
+       latencyProfile: "Realtime to 2x depending on model and hardware"
+     },
+     references: [
+       "https://cloud.google.com/speech-to-text",
+       "https://openai.com/research/whisper"
+     ]
+   },
+   {
+     slug: "llm-ops",
+     term: "LLMOps",
+     definition: "The set of practices and tools for operating LLM applications in production, including monitoring, evaluation, versioning, and deployment.",
+     detailedExplanation: "LLMOps extends MLOps to the specific needs of LLM applications. It covers prompt versioning, model monitoring (latency, quality, cost), A/B testing between model versions, evaluation frameworks, and deployment pipelines. For MCP systems, LLMOps includes monitoring tool call success rates, context window usage, and agent behavior quality.",
+     keyTakeaways: [
+       "Operations practices for LLM applications in production.",
+       "Covers monitoring, evaluation, versioning, and deployment.",
+       "Includes prompt and model version management.",
+       "Critical for maintaining MCP agent reliability."
+     ],
+     useCase: "A team uses LLMOps tools to track the success rate of MCP tool calls, monitor latency, and A/B test different prompt templates.",
+     technicalDetails: {
+       protocolLayer: "Operations / Monitoring Layer",
+       format: "Observability platforms, evaluation frameworks, CI/CD pipelines",
+       latencyProfile: "Monitoring overhead is minimal; adds telemetry collection"
+     },
+     references: [
+       "https://docs.anthropic.com/claude/docs/llm-observability",
+       "https://www.evidentlyai.com/"
+     ]
+   },
+   {
+     slug: "model-serving",
+     term: "Model Serving",
+     definition: "The infrastructure and patterns for deploying ML models to handle inference requests at scale, including API endpoints, batching, and autoscaling.",
+     detailedExplanation: "Model serving exposes trained models through APIs or other interfaces for production use. Key considerations include throughput (tokens per second), latency (time to first token), autoscaling, batching, and cost optimization. In MCP contexts, model serving can be local (Ollama, vLLM on-premise) or remote (OpenAI, Anthropic, AWS Bedrock APIs).",
+     keyTakeaways: [
+       "Deploying models for production inference.",
+       "Key metrics: throughput, latency, cost.",
+       "Can be local (Ollama) or remote (API).",
+       "Involves batching, autoscaling, and load balancing."
+     ],
+     useCase: "A team deploys Llama 3 with vLLM for high-throughput local inference, serving an MCP client that needs offline LLM access.",
+     technicalDetails: {
+       protocolLayer: "Model Deployment / Serving Layer",
+       format: "REST API, gRPC, or direct integration",
+       latencyProfile: "P50: 200-500ms; P99: 1-5s depending on load"
+     },
+     references: [
+       "https://docs.vllm.ai",
+       "https://huggingface.co/docs/text-generation-inference"
+     ]
+   },
+   {
+      slug: "kv-cache",
+      term: "KV Cache",
+      definition: "A caching mechanism that stores key-value pairs from previous transformer attention computations to speed up LLM inference by avoiding redundant calculations.",
+      detailedExplanation: "During autoregressive generation, the KV cache stores the key and value tensors from previous tokens. This avoids recomputing attention for the entire context on every new token, dramatically speeding up generation. KV cache size is proportional to sequence length and model dimensions. In MCP systems with long conversations or many tool results, KV cache management is critical for performance.",
+      keyTakeaways: [
+        "Stores attention key-value pairs to speed up inference.",
+        "Avoids redundant computation across tokens.",
+        "Size grows with sequence length and model dimensions.",
+        "Critical for long-context MCP agent conversations."
+      ],
+      useCase: "An MCP agent with a 100K token conversation history relies on KV cache to maintain acceptable inference latency during long interactions.",
+      technicalDetails: {
+        protocolLayer: "Model Inference Optimization Layer",
+        format: "In-memory tensor storage (key-value pairs per layer)",
+        latencyProfile: "Reduces per-token latency from O(n^2) to O(n)"
+      },
+      references: [
+        "https://docs.anthropic.com/claude/docs/kv-cache",
+        "https://huggingface.co/docs/transformers/main/en/kv_cache"
+      ]
+    }
+  ];

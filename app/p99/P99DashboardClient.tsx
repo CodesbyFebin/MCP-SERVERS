@@ -54,9 +54,9 @@ export default function P99DashboardClient() {
   });
 
   useEffect(() => {
-    fetch("/data/mcp-stats-2026.json")
+    fetch("/api/telemetry/p99")
       .then((response) => {
-        if (!response.ok) throw new Error("p99 snapshot unavailable");
+        if (!response.ok) throw new Error("telemetry unavailable");
         return response.json() as Promise<P99Snapshot>;
       })
       .then(setSnapshot)

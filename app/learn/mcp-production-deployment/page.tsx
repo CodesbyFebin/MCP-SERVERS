@@ -157,6 +157,126 @@ export default function McpProductionDeploymentPage() {
           ))}
         </div>
 
+        <section className="mt-16 rounded-2xl border border-white/10 bg-white/[0.02] p-6 sm:p-8">
+          <div className="flex items-center gap-3 mb-6">
+            <Cloud className="h-5 w-5 text-cyan-300" />
+            <h2 className="text-2xl font-black text-white">Infrastructure as Code: Terraform Examples</h2>
+          </div>
+          <p className="text-sm text-white/58 mb-6">
+            Real Terraform configurations for deploying MCP server infrastructure in AWS ap-south-1 (Mumbai) and ap-south-2 (Bengaluru). These are working examples you can adapt for your own deployments.
+          </p>
+
+          <div className="grid gap-6 lg:grid-cols-2">
+            <div>
+              <h3 className="text-sm font-black text-white mb-3">Mumbai Region (ap-south-1)</h3>
+              <pre className="overflow-x-auto rounded-lg border border-white/10 bg-black/40 p-4 text-xs text-cyan-300">
+{`# terraform/mumbai/main.tf
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
+}
+
+provider "aws" {
+  region = "ap-south-1"
+}
+
+resource "aws_instance" "mcp_server" {
+  ami           = "ami-0c1a7f89451184c8b"
+  instance_type = "t3.medium"
+  subnet_id     = var.subnet_id
+
+  tags = {
+    Name = "mcp-server-mumbai"
+    Region = "ap-south-1"
+  }
+}
+
+resource "aws_lb" "mcp_lb" {
+  name               = "mcp-server-lb"
+  internal           = false
+  load_balancer_type = "application"
+  security_groups    = [aws_security_group.mcp_lb_sg.id]
+  subnets            = var.subnet_ids
+}
+
+resource "aws_security_group" "mcp_lb_sg" {
+  name = "mcp-lb-sg"
+
+  ingress {
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}`}
+              </pre>
+            </div>
+
+            <div>
+              <h3 className="text-sm font-black text-white mb-3">Bengaluru Region (ap-south-2)</h3>
+              <pre className="overflow-x-auto rounded-lg border border-white/10 bg-black/40 p-4 text-xs text-emerald-300">
+{`# terraform/bengaluru/main.tf
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
+}
+
+provider "aws" {
+  region = "ap-south-2"
+}
+
+resource "aws_instance" "mcp_server" {
+  ami           = "ami-0c1a7f89451184c8b"
+  instance_type = "t3.medium"
+  subnet_id     = var.subnet_id
+
+  tags = {
+    Name = "mcp-server-bengaluru"
+    Region = "ap-south-2"
+  }
+}
+
+resource "aws_lb" "mcp_lb" {
+  name               = "mcp-server-lb-blr"
+  internal           = false
+  load_balancer_type = "application"
+  security_groups    = [aws_security_group.mcp_lb_sg.id]
+  subnets            = var.subnet_ids
+}
+
+variable "subnet_id" {
+  description = "VPC subnet ID"
+  type        = string
+}
+
+variable "subnet_ids" {
+  description = "VPC subnet IDs for LB"
+  type        = list(string)
+}`}
+              </pre>
+            </div>
+          </div>
+
+          <div className="mt-6 p-4 rounded-lg border border-amber-500/20 bg-amber-500/5 text-xs text-amber-200">
+            <strong>Note:</strong> These are simplified examples. Production deployments should include VPC isolation, security groups, IAM roles, encrypted EBS volumes, and CloudWatch alarms. Adapt these templates to your security requirements.
+          </div>
+        </section>
+
         <section className="mt-16 rounded-2xl border border-violet-300/15 bg-gradient-to-r from-violet-950/60 via-[#112040] to-[#07111e] p-8">
           <div className="grid gap-6 lg:grid-cols-2">
             <div>

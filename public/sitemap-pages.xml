@@ -193,6 +193,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.mcpserver.in/tools/dpdp-compliance-checklist/</loc>
+    <lastmod>2026-07-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.mcpserver.in/blog/mcp-server-vs-api-difference/</loc>
     <lastmod>2026-07-20</lastmod>
     <changefreq>weekly</changefreq>

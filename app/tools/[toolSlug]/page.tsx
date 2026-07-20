@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import DeveloperToolsClient from "../../../src/components/DeveloperToolsClient";
 import DpdpScannerClient from "../../../src/components/DpdpScannerClient";
+import DpdpComplianceChecklist from "../../../src/components/DpdpComplianceChecklist";
 import { notFound } from "next/navigation";
 
 interface PageProps {
@@ -16,6 +17,7 @@ const VALID_TOOLS = new Set([
   "mcp-config-validator",
   "mcp-endpoint-tester",
   "dpdp-compliance-scanner",
+  "dpdp-compliance-checklist",
 ]);
 
 export async function generateStaticParams() {
@@ -37,6 +39,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title: "DPDP Compliance Scanner - MCPserver.in",
       description:
         "Run live technical compliance checks against a GitHub repository or a live MCP server endpoint: license, security policy, data-handling disclosure, HTTPS, and access control.",
+    };
+  }
+
+  if (toolSlug === "dpdp-compliance-checklist") {
+    return {
+      title: "DPDP & RBI Compliance Checklist - MCPserver.in",
+      description:
+        "Educational compliance checklist for MCP deployments in India. Covers DPDP Act 2023, RBI guidelines, data localization, consent management, and breach notification requirements.",
     };
   }
 
@@ -66,6 +76,10 @@ export default async function ToolsPage({ params }: PageProps) {
 
   if (toolSlug === "dpdp-compliance-scanner") {
     return <DpdpScannerClient />;
+  }
+
+  if (toolSlug === "dpdp-compliance-checklist") {
+    return <DpdpComplianceChecklist />;
   }
 
   return <DeveloperToolsClient toolSlug={toolSlug} />;
