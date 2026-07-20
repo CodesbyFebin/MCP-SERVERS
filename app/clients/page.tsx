@@ -106,7 +106,7 @@ export default function ClientsPage() {
           <SectionTitle title="Why Clients Choose MCP SERVER" subtitle="Everything you need to build, connect and scale AI with confidence." />
           <FeatureGrid
             items={[
-              { title: "Easy Integration", body: "One API. Connect to 1000+ tools, apps and data sources.", icon: Sparkles, accent: "cyan" },
+              { title: "Easy Integration", body: "One API. Connect to a growing directory of tools, apps and data sources.", icon: Sparkles, accent: "cyan" },
               { title: "Enterprise Security", body: "SOC 2, GDPR ready with end-to-end encryption and access control.", icon: ShieldCheck, accent: "violet" },
               { title: "Global Infrastructure", body: "Hosted on a global edge network for low latency and high availability.", icon: Cloud, accent: "green" },
               { title: "Developer First", body: "Beautiful APIs, SDKs, docs and tools that developers love.", icon: Code2, accent: "pink" },
@@ -146,7 +146,7 @@ export default function ClientsPage() {
 
       <DividerSection className="pb-14">
         <Container>
-          <CtaBanner title="Join 2,500+ Happy Clients" subtitle="Build smarter AI agents. Integrate anything. Scale everything." primaryHref="/integrations" primaryLabel="Start Integrating Now" />
+          <CtaBanner title="Start Building With MCP" subtitle="Build smarter AI agents. Integrate anything. Scale everything." primaryHref="/integrations" primaryLabel="Start Integrating Now" />
         </Container>
       </DividerSection>
     </PageShell>

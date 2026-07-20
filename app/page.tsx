@@ -205,7 +205,7 @@ export default function Home() {
         <Container>
           <SectionTitle
             title={<>Connect to Anything. <span className="text-cyan-300">Automate Everything.</span></>}
-            subtitle="Our MCP servers integrate with 1,000+ tools and platforms."
+            subtitle="Directory of MCP servers across databases, dev tools, and popular SaaS platforms."
           />
           <IntegrationRail />
         </Container>
@@ -267,7 +267,7 @@ export default function Home() {
                 </div>
                 <div>
                   <h3 className="text-lg font-black text-white group-hover:text-violet-200">MCP Knowledge Hub</h3>
-                  <p className="text-xs text-white/45">50+ expert answers & guides</p>
+                  <p className="text-xs text-white/45">Guides on hosting, security, and deployment</p>
                 </div>
               </div>
               <p className="mt-4 text-sm leading-relaxed text-white/58">

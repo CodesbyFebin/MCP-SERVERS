@@ -33,8 +33,8 @@ export const blogPosts: BlogPost[] = [
 <h2 class="mt-8 text-2xl font-black text-white">Context Window Management</h2>
 <p class="text-white/65 leading-relaxed">With REST APIs, you must carefully manage prompt length. MCP's resource system allows servers to provide data on-demand without consuming the entire context window. This is the fundamental shift that enables complex multi-step workflows.</p>
 
-<h2 class="mt-8 text-2xl font-black text-white">What the Community Says</h2>
-<p class="text-white/65 leading-relaxed">In our community discussions, developers consistently report 40% less prompt engineering effort when using MCP versus traditional function calling patterns.</p>`
+<h2 class="mt-8 text-2xl font-black text-white">Why This Matters in Practice</h2>
+<p class="text-white/65 leading-relaxed">Developers who've switched from hand-rolled function calling to MCP consistently point to the same thing: less time spent re-describing the same tool schema to the model in every prompt, since the server exposes it once and the client discovers it directly.</p>`
   },
   {
     slug: "model-context-protocol-beginner-guide",
@@ -355,8 +355,8 @@ npx @modelcontextprotocol/inspector node build/index.js</code></pre>
 <h2 class="mt-8 text-2xl font-black text-white">HTTP: Direct Request Pattern</h2>
 <p class="text-white/65 leading-relaxed">Direct HTTP allows both directions but requires more complex connection management. Best for stateless operations.</p>
 
-<h2 class="mt-8 text-2xl font-black text-white">Community Poll Results</h2>
-<p class="text-white/65 leading-relaxed">Based on community feedback, 78% of production MCP servers use SSE, while 92% of local development uses stdio.</p>`
+<h2 class="mt-8 text-2xl font-black text-white">General Pattern</h2>
+<p class="text-white/65 leading-relaxed">In practice, SSE tends to dominate production and remote deployments where multiple clients need to connect over a network, while stdio remains the default for local development against a single desktop client like Claude Desktop.</p>`
   },
   {
     slug: "mcp-json-rpc-deep-dive",

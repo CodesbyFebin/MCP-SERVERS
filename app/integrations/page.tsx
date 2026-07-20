@@ -66,7 +66,7 @@ export default function IntegrationsPage() {
             <SectionTitle title="How Integrations Work" subtitle="Connect your favorite tools in minutes." />
             <div className="grid gap-6 md:grid-cols-4">
               {[
-                ["Choose Integration", "Browse from 1,000+ pre-built integrations.", PlugZap],
+                ["Choose Integration", "Browse the directory of pre-built integrations.", PlugZap],
                 ["Authenticate", "Securely connect your account in one click.", KeyRound],
                 ["Configure", "Set permissions, map data and customize settings.", Settings2],
                 ["Activate", "Start using the integration with your AI agents.", CheckCircle2]

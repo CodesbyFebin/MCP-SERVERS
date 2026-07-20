@@ -102,7 +102,7 @@ export default function DirectoryClient() {
 
       <DividerSection>
         <Container>
-          <SectionTitle title={<>Connect with <span className="text-violet-300">1,000+ Integrations</span></>} subtitle="MCP servers for all your favorite tools and platforms." />
+          <SectionTitle title={<>Connect with <span className="text-violet-300">Real Integrations</span></>} subtitle="MCP servers for all your favorite tools and platforms." />
           <IntegrationRail />
         </Container>
       </DividerSection>
