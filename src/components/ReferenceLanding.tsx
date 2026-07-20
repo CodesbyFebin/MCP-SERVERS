@@ -353,6 +353,7 @@ const iconByName: Record<string, typeof Boxes> = {
   Sparkles, ShieldCheck, Cloud, Code2, Database, Zap, Boxes, Rocket, Globe2,
   Activity, Workflow, KeyRound, PlugZap, Settings2, CheckCircle2, ArrowRight,
   Network, MessageSquare, Terminal, Server, LockKeyhole, Fingerprint, Github,
+  Layers3,
 };
 
 interface FeatureGridItem {
@@ -764,8 +765,8 @@ export function Container({ children, className = "" }: { children: React.ReactN
   return <div className={`mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 ${className}`}>{children}</div>;
 }
 
-export function DividerSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-  return <section className={`border-t border-white/6 py-12 ${className}`}>{children}</section>;
+export function DividerSection({ children, className = "", id }: { children: React.ReactNode; className?: string; id?: string }) {
+  return <section id={id} className={`border-t border-white/6 py-12 ${className}`}>{children}</section>;
 }
 
 export function KnowledgeGraph() {
