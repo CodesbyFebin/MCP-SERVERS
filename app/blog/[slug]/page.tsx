@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import Breadcrumbs from "../../../src/components/Breadcrumbs";
 import SchemaJsonLd from "../../../src/components/SchemaJsonLd";
 import { getUnifiedGraphSchema, getFAQSchema } from "../../../src/lib/schema";
+import { computeReadTime } from "../../../src/lib/readTime";
 import { blogPosts } from "../../../src/data/blogPosts";
 import UGCOrchestrator from "../../../src/components/ugc/UGCOrchestrator";
 
@@ -65,7 +66,7 @@ export default async function BlogPostPage({ params }: { params: BlogPostPagePar
             <div className="flex flex-wrap items-center gap-3 text-[11px] font-bold text-white/45">
               <span className="rounded-md bg-violet-500/15 px-2 py-1 text-violet-200">{post.category}</span>
               <span>{post.date}</span>
-              <span>{post.readTime}</span>
+              <span>{computeReadTime(post.content)}</span>
             </div>
             <h1 className="mt-5 text-3xl font-black tracking-tight text-white sm:text-4xl">{post.title}</h1>
             <p className="mt-4 text-base leading-relaxed text-white/58">{post.excerpt}</p>

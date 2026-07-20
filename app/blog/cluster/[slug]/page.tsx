@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import Breadcrumbs from "../../../../src/components/Breadcrumbs";
 import SchemaJsonLd from "../../../../src/components/SchemaJsonLd";
 import { getUnifiedGraphSchema } from "../../../../src/lib/schema";
+import { computeReadTime } from "../../../../src/lib/readTime";
 import { clusters, getPostsByCluster } from "../../../../src/data/blogPosts";
 
 export const dynamic = "force-static";
@@ -72,7 +73,7 @@ export default async function BlogClusterPage({ params }: { params: ClusterPageP
                 <div className="flex flex-wrap items-center gap-3 text-[11px] font-bold text-white/45">
                   <span className="rounded-md bg-violet-500/15 px-2 py-1 text-violet-200">{post.category}</span>
                   <span>{post.date}</span>
-                  <span>{post.readTime}</span>
+                  <span>{computeReadTime(post.content)}</span>
                 </div>
                 <h2 className="mt-4 text-xl font-black text-white">
                   <Link href={`/blog/${post.slug}`} className="hover:text-cyan-300">
