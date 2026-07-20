@@ -1,0 +1,9 @@
+version=1
+protocol=mcp
+transport=sse,stdio,streamable-http
+endpoints=https://www.mcpserver.in/mcp
+capabilities=tools,resources,prompts,logging,sampling
+vendor=MCPserver.in
+region=ap-south-1,ap-south-2
+compliance=dpdp,rbi-data-localization
+contact=support@mcpserver.in
