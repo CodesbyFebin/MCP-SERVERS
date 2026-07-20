@@ -37,6 +37,7 @@ const validPaths = new Set<string>([
   "/faq/",
   "/learn/",
   "/learn/mcp-production-deployment/",
+  "/learn/india-services/",
   "/learn/dpdp-compliance-guide/",
   "/learn/india-mcp-benchmarks/",
   "/community/",

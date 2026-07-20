@@ -50,8 +50,8 @@ export default function PillarPageTemplate({
     article: {
       title: title,
       description: shortAnswer,
-      authorName: "Dr. Devashish Sen",
-      authorRole: "Lead Systems & Protocol Architect",
+      authorName: "MCPserver.in Engineering",
+      authorRole: "Platform Team",
       datePublished: "2025-11-05",
       dateModified: "2026-07-09"
     }
@@ -155,10 +155,9 @@ export default function PillarPageTemplate({
               question={`What is the core meaning and value of ${title}?`}
               answer={shortAnswer}
               keyTakeaways={[
-                "Sub-15ms connection latency inside India (Mumbai, Bengaluru edge regions)",
                 "Standardized JSON-RPC 2.0 communication format",
-                "Fully compatible with Claude Desktop, Cursor, and custom LLM routers",
-                "Eliminates hardcoded custom translation codebases"
+                "Compatible with Claude Desktop, Cursor, and other MCP-speaking clients",
+                "Replaces one-off API integrations with a single client-server interface"
               ]}
             />
 
@@ -374,8 +373,8 @@ export default function PillarPageTemplate({
 
             {/* Author Attribution & Sources (EEAT) */}
             <AuthorBox
-              authorName="Dr. Devashish Sen"
-              authorRole="Lead Systems & Protocol Architect, MCPserver India"
+              authorName="MCPserver.in Engineering"
+              authorRole="Platform Team"
               publishedDate="2025-11-05"
               updatedDate="2026-07-09"
               citations={[
@@ -414,7 +413,7 @@ export default function PillarPageTemplate({
               <ul className={`space-y-2 text-xs ${isDark ? "text-white/60" : "text-slate-600"}`}>
                 <li className="flex items-center gap-1.5">
                   <Zap className="w-3.5 h-3.5 text-cyan-400" />
-                  Sub-50ms handshakes
+                  Standard JSON-RPC handshake
                 </li>
                 <li className="flex items-center gap-1.5">
                   <ShieldCheck className="w-3.5 h-3.5 text-cyan-400" />

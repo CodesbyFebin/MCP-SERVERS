@@ -52,8 +52,8 @@ export default function TopicPageTemplate({
     article: {
       title: title,
       description: shortAnswer,
-      authorName: "Rahul K. Gupta",
-      authorRole: "Principal Integration Architect",
+      authorName: "MCPserver.in Engineering",
+      authorRole: "Platform Team",
       datePublished: "2026-04-18",
       dateModified: "2026-07-09"
     }
@@ -226,8 +226,8 @@ export default function TopicPageTemplate({
 
           {/* Author Attribution & Sources (EEAT) */}
           <AuthorBox
-            authorName="Rahul K. Gupta"
-            authorRole="Principal Integration Architect, MCPserver India"
+            authorName="MCPserver.in Engineering"
+            authorRole="Platform Team"
             publishedDate="2026-04-18"
             updatedDate="2026-07-09"
             citations={[

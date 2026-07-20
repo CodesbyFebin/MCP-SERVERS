@@ -30,7 +30,7 @@ export const glossaryTerms: GlossaryTerm[] = [
     technicalDetails: {
       protocolLayer: "Application / Context Layer",
       format: "JSON-RPC 2.0 Specification",
-      latencyProfile: "Extremely low overhead (<2ms locally, <15ms at Indian Edge nodes)"
+      latencyProfile: "Low overhead relative to REST — no per-request schema negotiation once a session is established"
     },
     references: [
       "https://spec.modelcontextprotocol.io",
@@ -382,6 +382,204 @@ export const glossaryTerms: GlossaryTerm[] = [
     references: [
       "https://mcpserver.in/llm-robotics",
       "https://mcpserver.in/docs/protocol/tools"
+    ]
+  },
+  {
+    slug: "ollama-mcp",
+    term: "Ollama MCP Integration",
+    definition: "Ollama is an open-source runtime for downloading and running open-weight language models (Llama, Mistral, Qwen, and others) locally, exposing them through a local HTTP API that MCP clients and servers can use as a self-hosted alternative to cloud LLM providers.",
+    detailedExplanation: "Ollama packages model weights, a GGUF-based inference engine, and a REST API into a single CLI-installable binary that listens on localhost (port 11434 by default). In an MCP context, Ollama typically fills one of two roles: as the model backend for an MCP-compatible client that needs to run entirely offline or on-premise, or as the target of an MCP server that exposes tools for managing local models — pulling new weights, listing installed models, or routing a tool call to a specific local model instead of a hosted one. Because everything runs on the caller's own hardware, no prompt or context data leaves the machine, which is the main reason teams reach for it in regulated or air-gapped environments.",
+    keyTakeaways: [
+      "Runs entirely on local hardware — no API key, no data leaving the machine.",
+      "Exposes an OpenAI-compatible-ish REST API on localhost:11434 by default.",
+      "Commonly paired with MCP servers that need an offline or self-hosted LLM backend.",
+      "Model quality and speed depend on local GPU/RAM, unlike hosted providers with fixed SLAs."
+    ],
+    useCase: "A financial services team runs Ollama with a locally hosted model on an air-gapped server, with an MCP server layered on top so an internal agent can query transaction data without any request ever leaving the private network.",
+    technicalDetails: {
+      protocolLayer: "Model Backend / Inference Layer",
+      format: "REST over HTTP (localhost by default)",
+      latencyProfile: "Depends entirely on local hardware — GPU inference is fast, CPU-only inference is significantly slower than hosted APIs"
+    },
+    references: [
+      "https://github.com/ollama/ollama",
+      "https://github.com/modelcontextprotocol/servers"
+    ]
+  },
+  {
+    slug: "lm-studio-mcp",
+    term: "LM Studio MCP Integration",
+    definition: "LM Studio is a desktop application for discovering, downloading, and running open-weight LLMs locally through a graphical interface, which also starts a local OpenAI-compatible API server that MCP-aware tools can connect to instead of a cloud provider.",
+    detailedExplanation: "Unlike Ollama's CLI-first workflow, LM Studio targets users who want a GUI for browsing Hugging Face model files, tuning context length and GPU offload settings, and chatting with a model directly in the app. Its 'Local Server' tab spins up an HTTP endpoint matching OpenAI's chat completions API shape, so any MCP client or server built against that interface can point at LM Studio instead of a hosted model with no code changes beyond the base URL. This makes it a common choice for developers prototyping MCP servers who want to iterate against a local model before wiring up a production LLM.",
+    keyTakeaways: [
+      "GUI-first alternative to Ollama for running local models.",
+      "Local server mode exposes an OpenAI-compatible chat completions endpoint.",
+      "Useful for prototyping MCP servers against a local model before switching to a hosted one.",
+      "Model performance is bound by local hardware, same as any local-inference tool."
+    ],
+    useCase: "A developer builds and tests a new MCP server's tool-calling logic entirely against a model running in LM Studio, then repoints the same client config at a hosted model for production.",
+    technicalDetails: {
+      protocolLayer: "Model Backend / Inference Layer",
+      format: "OpenAI-compatible REST API (local)",
+      latencyProfile: "Local hardware-bound, similar profile to Ollama"
+    },
+    references: [
+      "https://lmstudio.ai/docs",
+      "https://spec.modelcontextprotocol.io"
+    ]
+  },
+  {
+    slug: "gpt4all-mcp",
+    term: "GPT4All",
+    definition: "GPT4All is an open-source ecosystem from Nomic AI for running compact, quantized language models locally on consumer-grade CPUs without requiring a dedicated GPU, distributed as a desktop chat app and a set of language bindings (Python, Node.js) that can back an MCP server.",
+    detailedExplanation: "GPT4All's focus is accessibility: its supported models are quantized to run acceptably on ordinary laptops, and its bindings let a developer embed a local model directly inside a Node.js or Python MCP server process rather than calling out to a separate local server like Ollama or LM Studio. This trades some model capability for simpler deployment — a single process handles both the MCP protocol layer and the inference, with no separate server to keep running. It's a reasonable fit for lightweight, fully offline MCP tools where GPU hardware isn't a given.",
+    keyTakeaways: [
+      "Designed to run on CPU-only consumer hardware, not just GPU rigs.",
+      "Ships as a desktop app plus Python/Node.js bindings for embedding in your own process.",
+      "Can be embedded directly inside an MCP server rather than run as a separate local API.",
+      "Model capability is generally more limited than larger hosted or GPU-run models."
+    ],
+    useCase: "A CLI tool ships with an embedded MCP server that uses GPT4All's Node.js bindings to summarize local log files completely offline, with no separate inference server to install.",
+    technicalDetails: {
+      protocolLayer: "Model Backend / Inference Layer",
+      format: "Embedded library bindings (Python, Node.js) rather than a network API",
+      latencyProfile: "CPU-bound; slower than GPU-backed local or hosted inference"
+    },
+    references: [
+      "https://github.com/nomic-ai/gpt4all",
+      "https://docs.gpt4all.io"
+    ]
+  },
+  {
+    slug: "llamaindex-mcp",
+    term: "LlamaIndex MCP Integration",
+    definition: "LlamaIndex is a data framework for connecting LLM applications to private or domain-specific data sources — documents, databases, APIs — through indexing and retrieval abstractions, and it ships official MCP support for exposing a LlamaIndex index as MCP tools and resources.",
+    detailedExplanation: "LlamaIndex's core job is turning unstructured or semi-structured data into a queryable index (vector-based, keyword-based, or a hybrid) that an LLM application can retrieve from at query time — the standard building block for retrieval-augmented generation (RAG). Its MCP integration wraps that retrieval layer as a server: a `query` tool that lets an MCP client ask natural-language questions against the underlying index, and resource endpoints for browsing the indexed documents directly. This means a RAG pipeline built in LlamaIndex can be exposed to any MCP client — Claude Desktop, Cursor, or a custom agent — without re-implementing the retrieval logic as a bespoke API.",
+    keyTakeaways: [
+      "A data framework for RAG (retrieval-augmented generation), not an agent framework itself.",
+      "Official MCP support exposes a LlamaIndex index as MCP tools and resources.",
+      "Lets any MCP client query a RAG pipeline without a custom API layer.",
+      "Distinct from vector databases (Qdrant, Pinecone) — LlamaIndex sits above them as an orchestration layer."
+    ],
+    useCase: "A company indexes its internal engineering wiki with LlamaIndex, exposes it as an MCP server, and lets Claude Desktop answer engineering questions by querying the index directly instead of relying on the model's training data.",
+    technicalDetails: {
+      protocolLayer: "Retrieval / Data Orchestration Layer",
+      format: "MCP tools + resources over stdio or SSE, per the official LlamaIndex MCP integration",
+      latencyProfile: "Depends on index size and the underlying vector store's query latency"
+    },
+    references: [
+      "https://docs.llamaindex.ai",
+      "https://github.com/run-llama/llama_index"
+    ]
+  },
+  {
+    slug: "crewai-mcp",
+    term: "CrewAI MCP Integration",
+    definition: "CrewAI is a Python framework for orchestrating multiple LLM-driven agents with distinct roles, goals, and tools that collaborate on a task, and it supports connecting to MCP servers so any agent in a crew can call MCP-exposed tools alongside its own native ones.",
+    detailedExplanation: "Where a single-agent setup calls tools directly, CrewAI structures a workflow as a 'crew' of agents — for example a researcher, a writer, and a reviewer — each with its own system prompt, tool access, and delegation rules, coordinated by a process (sequential or hierarchical) that passes work between them. Its MCP client support means any of those agents can be given access to an external MCP server's tools (a database, a ticketing system, a search index) the same way it would use a tool defined natively in CrewAI, without CrewAI needing custom integration code for every external system.",
+    keyTakeaways: [
+      "A multi-agent orchestration framework, not a single-agent tool-calling library.",
+      "Agents have distinct roles, goals, and tool access within a coordinated 'crew'.",
+      "MCP client support lets any agent in the crew use MCP server tools alongside native ones.",
+      "Distinct from LangChain/LlamaIndex, which focus more on single-chain or retrieval workflows."
+    ],
+    useCase: "A CrewAI 'crew' with a researcher agent and a writer agent uses an MCP-connected search server for the researcher's fact-finding step, then hands structured findings to the writer agent to draft a report.",
+    technicalDetails: {
+      protocolLayer: "Agent Orchestration Layer",
+      format: "MCP client integration within CrewAI's tool-calling interface",
+      latencyProfile: "Additive across agent hops — total latency depends on how many agents/tool calls the crew's process chains together"
+    },
+    references: [
+      "https://docs.crewai.com",
+      "https://github.com/crewAIInc/crewAI"
+    ]
+  },
+  {
+    slug: "qdrant-mcp",
+    term: "Qdrant MCP Integration",
+    definition: "Qdrant is an open-source vector similarity search engine written in Rust, used to store and query embedding vectors for semantic search and RAG, with an official MCP server that exposes stored collections as tools an MCP client can search and write to.",
+    detailedExplanation: "Qdrant stores high-dimensional vectors (typically embeddings produced by an LLM or embedding model) alongside metadata payloads, and answers approximate nearest-neighbor queries efficiently at scale. The official `mcp-server-qdrant` exposes two primary tools to an MCP client: one to store a piece of information as a vector plus metadata, and one to search for semantically similar entries given a natural-language query — effectively turning Qdrant into a persistent 'memory' an agent can write to and recall from across sessions, rather than just a backend for a one-off RAG pipeline.",
+    keyTakeaways: [
+      "An open-source, Rust-based vector database, comparable to Pinecone or Weaviate.",
+      "The official MCP server exposes store/search tools rather than raw database access.",
+      "Commonly used to give an agent persistent 'memory' across separate conversations.",
+      "Self-hostable, which matters for teams with data residency or cost constraints around managed vector DBs."
+    ],
+    useCase: "An agent stores summaries of every completed task in a Qdrant collection via the MCP server's store tool, then searches that collection at the start of a new conversation to recall relevant past work.",
+    technicalDetails: {
+      protocolLayer: "Data / Storage Layer",
+      format: "MCP tools (store, find) over the official Qdrant MCP server",
+      latencyProfile: "Sub-second for typical collection sizes; scales with vector count and index configuration"
+    },
+    references: [
+      "https://github.com/qdrant/mcp-server-qdrant",
+      "https://qdrant.tech/documentation"
+    ]
+  },
+  {
+    slug: "mcp-systemd-service",
+    term: "MCP Server as a systemd Service",
+    definition: "Running an MCP server as a systemd unit means registering it with Linux's systemd init system so it starts automatically on boot, restarts if it crashes, and has its logs captured by journald — the standard way to keep a remote MCP server (SSE or Streamable HTTP) alive in production on a Linux host.",
+    detailedExplanation: "A locally-run stdio MCP server is launched and supervised by its client (Claude Desktop starts and stops it as needed), but a remote server has no client process to keep it running — it needs to survive reboots, crashes, and deploys on its own. systemd solves this with a unit file that declares the command to run, the user to run it as, a restart policy (e.g. `Restart=on-failure`), and resource limits. Once enabled with `systemctl enable`, the server starts on boot and systemd's supervisor restarts it automatically if the process exits unexpectedly, with all stdout/stderr output queryable through `journalctl -u <service-name>`.",
+    keyTakeaways: [
+      "Only relevant to remote MCP servers (SSE/Streamable HTTP) — local stdio servers are supervised by the client instead.",
+      "Provides auto-restart on crash and auto-start on boot, without a separate process manager.",
+      "Centralizes logs through journald, queryable with journalctl.",
+      "The standard choice on most production Linux distributions; PM2 is the equivalent convention in Node-centric deployments."
+    ],
+    useCase: "A team deploys a remote MCP server on a bare Ubuntu VM, wrapping it in a systemd unit with `Restart=on-failure` so a transient database connection error doesn't take the server down permanently.",
+    technicalDetails: {
+      protocolLayer: "Process Supervision / Deployment Layer",
+      format: "systemd unit file (.service)",
+      latencyProfile: "No inherent latency impact — purely a process-lifecycle concern"
+    },
+    references: [
+      "https://www.freedesktop.org/software/systemd/man/systemd.service.html",
+      "https://spec.modelcontextprotocol.io/specification/basic/transports/"
+    ]
+  },
+  {
+    slug: "mcp-pm2-process-manager",
+    term: "MCP Server with PM2",
+    definition: "PM2 is a Node.js process manager commonly used to keep a Node/TypeScript-based remote MCP server running in production, providing automatic restarts, log management, and zero-downtime reloads without needing to write a systemd unit by hand.",
+    detailedExplanation: "For teams whose MCP server is written in Node.js or TypeScript, PM2 offers a lighter-weight alternative to systemd that lives entirely inside the Node ecosystem — installed via npm, configured through a simple `ecosystem.config.js` file, and managed with commands like `pm2 start`, `pm2 restart`, and `pm2 logs`. It handles the same core job as systemd (restart on crash, start on boot via `pm2 startup`), plus Node-specific conveniences like cluster mode for running multiple instances behind PM2's built-in load balancer, and `pm2 reload` for restarting a server without dropping in-flight connections.",
+    keyTakeaways: [
+      "A Node-ecosystem alternative to systemd for keeping a remote MCP server alive.",
+      "Configured via ecosystem.config.js rather than a systemd unit file.",
+      "Supports cluster mode for running multiple server instances with built-in load balancing.",
+      "pm2 startup + pm2 save replicates systemd's 'start on boot' behavior for Node processes."
+    ],
+    useCase: "A TypeScript MCP server is deployed to a VPS and managed with PM2 in cluster mode, running four instances behind PM2's load balancer to handle concurrent client connections.",
+    technicalDetails: {
+      protocolLayer: "Process Supervision / Deployment Layer",
+      format: "PM2 ecosystem.config.js + PM2 daemon",
+      latencyProfile: "No inherent latency impact — cluster mode can improve throughput under concurrent load"
+    },
+    references: [
+      "https://pm2.keymetrics.io/docs/usage/quick-start/",
+      "https://spec.modelcontextprotocol.io/specification/basic/transports/"
+    ]
+  },
+  {
+    slug: "indic-language-mcp-server",
+    term: "Indic Language MCP Server (Local, Offline)",
+    definition: "A local MCP server backed by an open-weight model with genuine Hindi, Tamil, or other Indic-language capability, run entirely on local hardware via Ollama so no text ever leaves the machine — distinct from routing Indic-language requests through a general-purpose hosted model.",
+    detailedExplanation: "Two separate tool categories get conflated here and shouldn't be: encoder models like AI4Bharat's IndicBERT and IndicTrans2 (published on Hugging Face) are built for classification, embeddings, and translation — they are not chat/generation models and are not run through Ollama, which serves decoder-only generative models in GGUF format. For a local, offline, generative Indic-language MCP server, the practical path today is a genuinely multilingual generative model available in Ollama's own library — for example the Sarvam model family ('Multilingual Indian LLM, converted and packaged for Ollama'), pulled and run the same way as any other local Ollama model, with an MCP server layered on top the same way it would be for an English-only local model. For translation or classification tasks specifically, AI4Bharat's IndicTrans2/IndicBERT are better fits, but they run through Hugging Face's transformers library inside a Python MCP server, not through Ollama.",
+    keyTakeaways: [
+      "AI4Bharat's IndicBERT/IndicTrans2 are encoder/translation models on Hugging Face, not Ollama-compatible chat models.",
+      "For local generative Hindi/Indic chat, Ollama's own library includes real multilingual Indian models (e.g. the Sarvam family).",
+      "Running locally means no request text leaves the machine — relevant for DPDP-sensitive workloads.",
+      "Translation/classification tasks and generative chat tasks call for different models and different serving stacks; don't assume one tool runs both."
+    ],
+    useCase: "A support tool needs to summarize Hindi-language customer messages without sending any of that text to a third-party API. It runs a Sarvam model locally via Ollama, with a minimal MCP server exposing a single summarize tool over stdio.",
+    technicalDetails: {
+      protocolLayer: "Model Backend / Inference Layer",
+      format: "Local Ollama REST API (for generation) or Hugging Face transformers (for AI4Bharat's translation/classification models)",
+      latencyProfile: "Local hardware-bound, same profile as any other Ollama-served model"
+    },
+    references: [
+      "https://ollama.com/search?q=indic",
+      "https://ai4bharat.iitm.ac.in"
     ]
   }
 ];

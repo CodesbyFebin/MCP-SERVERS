@@ -199,8 +199,8 @@ export default function ServerIntegrationPageTemplate({
 
             {/* Author Attribution & Sources (EEAT) */}
             <AuthorBox
-              authorName="Dr. Devashish Sen"
-              authorRole="Lead Systems & Protocol Architect, MCPserver India"
+              authorName="MCPserver.in Engineering"
+              authorRole="Platform Team"
               publishedDate="2026-03-12"
               updatedDate="2026-07-09"
               citations={[

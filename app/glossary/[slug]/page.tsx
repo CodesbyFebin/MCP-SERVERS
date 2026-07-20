@@ -162,9 +162,9 @@ export default async function GlossaryDetailPage({ params }: PageProps) {
             )}
 
             {/* Author and Trust Box (EEAT) */}
-            <AuthorBox 
-              authorName="Rahul K. Gupta"
-              authorRole="Lead Systems & Protocol Architect, MCPserver India"
+            <AuthorBox
+              authorName="MCPserver.in Engineering"
+              authorRole="Platform Team"
               publishedDate="2026-03-24"
               updatedDate="2026-07-09"
               citations={term.references.map(ref => ({ label: ref.replace(/^https?:\/\//, ""), url: ref }))}

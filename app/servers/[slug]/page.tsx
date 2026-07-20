@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
   return {
     title: `${server.name} MCP Server Integration Guide - MCPserver.in`,
-    description: `Deploy and configure the ${server.name} Model Context Protocol (MCP) server. Sub-50ms latency from Mumbai/Bengaluru. Expose secure data tools to Claude and Cursor.`,
+    description: `Deploy and configure the ${server.name} Model Context Protocol (MCP) server. Expose secure data tools to Claude and Cursor.`,
   };
 }
 
