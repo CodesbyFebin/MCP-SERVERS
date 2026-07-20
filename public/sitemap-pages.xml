@@ -1722,7 +1722,6 @@
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-
   <url>
     <loc>https://www.mcpserver.in/blog/upi-mcp-server-india/</loc>
     <lastmod>2026-07-20</lastmod>
@@ -2295,6 +2294,12 @@
   </url>
   <url>
     <loc>https://www.mcpserver.in/blog/billdesk-mcp-india/</loc>
+    <lastmod>2026-07-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.mcpserver.in/blog/matlab-mcp-server-integration-guide/</loc>
     <lastmod>2026-07-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>

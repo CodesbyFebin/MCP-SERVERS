@@ -381,6 +381,7 @@ https://www.mcpserver.in/blog/instamojo-mcp-india/
 https://www.mcpserver.in/blog/ccavenue-mcp-india/
 https://www.mcpserver.in/blog/payu-mcp-india/
 https://www.mcpserver.in/blog/billdesk-mcp-india/
+https://www.mcpserver.in/blog/matlab-mcp-server-integration-guide/
 https://www.mcpserver.in/mcp-server/
 https://www.mcpserver.in/mcp-hosting/
 https://www.mcpserver.in/mcp-tutorial/
