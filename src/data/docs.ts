@@ -66,6 +66,9 @@ const officialCitations = {
   splunk: "https://docs.splunk.com/",
   clickhouse: "https://clickhouse.com/docs",
   snowflake: "https://docs.snowflake.com/",
+  elasticsearch: "https://www.elastic.co/docs",
+  supabase: "https://supabase.com/docs",
+  dynamodb: "https://docs.aws.amazon.com/dynamodb/",
 };
 
 const commonConfigCode = `{
@@ -259,7 +262,7 @@ export const docsClusters: DocsCluster[] = [
     title: "Development Practices",
     description: "Testing strategies and error-handling patterns for building production-grade MCP servers.",
     answer: "Test MCP servers at three levels (unit, integration, and load), and handle every tool call with categorized error handling so validation, runtime, timeout, and network failures each return a clear, user-facing message instead of crashing the server.",
-    links: ["/docs/development/testing-strategies", "/docs/development/error-handling", "/docs/development/publishing", "/docs/development/bigquery-integration", "/docs/development/clickhouse-integration", "/docs/development/snowflake-integration"],
+    links: ["/docs/development/testing-strategies", "/docs/development/error-handling", "/docs/development/publishing", "/docs/development/bigquery-integration", "/docs/development/clickhouse-integration", "/docs/development/snowflake-integration", "/docs/development/elasticsearch-integration", "/docs/development/supabase-integration", "/docs/development/dynamodb-integration"],
   },
   {
     slug: "advanced",
@@ -3929,6 +3932,170 @@ async function queryTool(sql: string) {
     ],
     citations: [officialCitations.snowflake, officialCitations.mcp],
     related: ["/docs/development/bigquery-integration", "/docs/development/clickhouse-integration", "/docs/development/testing-strategies"],
+  }),
+  page({
+    slug: ["development", "elasticsearch-integration"],
+    title: "Building an Elasticsearch MCP Server",
+    description: "Expose full-text search over Elasticsearch as an MCP tool, restricted to search-only queries against a fixed set of indices.",
+    category: "development",
+    cluster: "elasticsearch-integration",
+    tags: ["elasticsearch", "full-text-search", "search"],
+    targetKeywords: ["elasticsearch mcp server", "mcp elasticsearch integration", "ai full text search"],
+    schemaType: "TechArticle",
+    priority: 0.65,
+    changefreq: "monthly",
+    directAnswer: "An Elasticsearch MCP server uses the official @elastic/elasticsearch client to run search queries via the Query DSL, restricted to a fixed list of indices and forbidding any query that would delete or modify documents.",
+    keyTakeaways: [
+      "Restrict the tool to a fixed, server-side list of allowed indices - never let a model-supplied index name reach the client unchecked.",
+      "Use the _search endpoint exclusively; the client can also delete indices and documents, so those methods should never be wired into the tool at all.",
+      "A match query is usually the right default for natural-language search; reserve term queries for exact-value filters like status codes or IDs.",
+    ],
+    sections: [
+      {
+        heading: "A restricted search tool",
+        body: [
+          "The official client exposes the full Elasticsearch API, including destructive operations, so the safety boundary here is which client methods the tool code calls - only .search() - combined with validating the requested index against an allowlist before the call is made.",
+        ],
+        code: `import { Client } from "@elastic/elasticsearch";
+
+const client = new Client({
+  node: process.env.ELASTICSEARCH_URL!,
+  auth: { apiKey: process.env.ELASTICSEARCH_API_KEY! },
+});
+
+const ALLOWED_INDICES = (process.env.ELASTICSEARCH_ALLOWED_INDICES ?? "").split(",").filter(Boolean);
+
+async function searchTool(index: string, query: string, size = 20) {
+  if (!ALLOWED_INDICES.includes(index)) {
+    throw new Error(\`Index "\${index}" is not in the allowed list.\`);
+  }
+
+  const result = await client.search({
+    index,
+    query: { match: { content: query } },
+    size,
+  });
+
+  return result.hits.hits.map((hit) => ({ score: hit._score, ...hit._source as object }));
+}`,
+      },
+    ],
+    faqs: [
+      { question: "Can this tool be used for log analysis like Splunk or Datadog?", answer: "Yes - Elasticsearch (often paired with Kibana as the ELK stack) is a common log-analytics backend. The pattern is the same: restrict to search, scope to specific indices, and add a time-range filter for log-style data." },
+      { question: "What happens if the model asks for an index that doesn't exist?", answer: "The allowlist check happens before the search call, so an unlisted index is rejected with a clear error rather than reaching Elasticsearch and returning an ambiguous 404." },
+      { question: "Should fuzzy matching be enabled by default?", answer: "It depends on the data - fuzzy matching helps with typos in natural-language queries but can also return lower-relevance false positives. Start with exact match and add fuzziness only if search results seem too narrow." },
+    ],
+    citations: [officialCitations.elasticsearch, officialCitations.mcp],
+    related: ["/docs/development/clickhouse-integration", "/docs/monitoring/splunk-search", "/docs/development/testing-strategies"],
+  }),
+  page({
+    slug: ["development", "supabase-integration"],
+    title: "Building a Supabase MCP Server",
+    description: "Query Supabase's hosted Postgres through its client library as an MCP tool, scoped with row-level security rather than the service-role key.",
+    category: "development",
+    cluster: "supabase-integration",
+    tags: ["supabase", "postgres", "backend-as-a-service"],
+    targetKeywords: ["supabase mcp server", "mcp supabase integration", "ai supabase queries"],
+    schemaType: "TechArticle",
+    priority: 0.65,
+    changefreq: "monthly",
+    directAnswer: "A Supabase MCP server should authenticate with the anon key and rely on the project's row-level security policies to scope what data is reachable, rather than using the service-role key, which bypasses RLS entirely.",
+    keyTakeaways: [
+      "Supabase is Postgres underneath - the same parameterized-query and read-only discipline that applies to a plain Postgres MCP server applies here too.",
+      "The service-role key bypasses row-level security entirely - using it in an MCP tool means the model can see every row in every table, regardless of any RLS policy.",
+      "Prefer the anon key plus RLS policies scoped to a dedicated read-only database role, so access control is enforced by Postgres itself, not just by the tool's application code.",
+    ],
+    sections: [
+      {
+        heading: "Querying through the client, not raw SQL",
+        body: [
+          "The supabase-js client's query builder (.from().select().match()) is the idiomatic interface and composes cleanly with RLS. Reaching for supabase.rpc() to run arbitrary SQL should be avoided for the same reason string-interpolated SQL is avoided in a plain Postgres tool.",
+        ],
+        code: `import { createClient } from "@supabase/supabase-js";
+
+const supabase = createClient(
+  process.env.SUPABASE_URL!,
+  process.env.SUPABASE_ANON_KEY!, // not the service-role key
+);
+
+async function queryTable(table: string, filters: Record<string, string>, limit = 100) {
+  const ALLOWED_TABLES = ["products", "orders", "support_tickets"];
+  if (!ALLOWED_TABLES.includes(table)) {
+    throw new Error(\`Table "\${table}" is not exposed to this tool.\`);
+  }
+
+  let query = supabase.from(table).select("*").limit(limit);
+  for (const [column, value] of Object.entries(filters)) {
+    query = query.eq(column, value);
+  }
+
+  const { data, error } = await query;
+  if (error) throw new Error(error.message);
+  return data;
+}`,
+      },
+    ],
+    faqs: [
+      { question: "Why avoid the service-role key entirely?", answer: "It's designed for trusted server-side code that intentionally needs to bypass RLS - an AI agent generating queries from user input is exactly the kind of untrusted caller RLS exists to constrain." },
+      { question: "Does this tool need its own Postgres role, separate from the app's normal RLS policies?", answer: "It's worth considering a dedicated read-only role with its own narrower RLS policies specifically for the MCP tool, rather than reusing whatever policies were written for the main application's authenticated users." },
+      { question: "Can this same approach reach Supabase's realtime or storage features?", answer: "The client also supports realtime subscriptions and file storage, but those are separate concerns from a query tool - a realtime feed doesn't fit the request-response shape of an MCP tool call well and would need a different pattern." },
+    ],
+    citations: [officialCitations.supabase, officialCitations.mcp],
+    related: ["/docs/servers/postgres-mcp-server", "/docs/security/authentication", "/docs/development/testing-strategies"],
+  }),
+  page({
+    slug: ["development", "dynamodb-integration"],
+    title: "Building a DynamoDB MCP Server",
+    description: "Read items from DynamoDB with GetCommand and QueryCommand as MCP tools, and understand why Scan should stay out of the tool surface.",
+    category: "development",
+    cluster: "dynamodb-integration",
+    tags: ["dynamodb", "aws", "nosql"],
+    targetKeywords: ["dynamodb mcp server", "mcp dynamodb integration", "ai dynamodb queries"],
+    schemaType: "TechArticle",
+    priority: 0.6,
+    changefreq: "monthly",
+    directAnswer: "A DynamoDB MCP server should expose GetItem and Query, which use indexes and stay fast and cheap at any table size, while leaving out Scan, which reads the entire table and is the easiest way for a model-generated request to become slow and expensive.",
+    keyTakeaways: [
+      "Query requires a partition key and uses an index; Scan reads every item in the table regardless of filters applied afterward - the cost difference at scale is enormous.",
+      "DynamoDB bills read/write capacity separately from storage, so an unbounded Scan tool is a direct, uncapped cost risk in a way a Query tool isn't.",
+      "The DynamoDBDocumentClient wrapper handles marshalling JS types to DynamoDB's attribute-value format automatically, which the lower-level DynamoDBClient does not.",
+    ],
+    sections: [
+      {
+        heading: "Get and Query, deliberately without Scan",
+        body: [
+          "DynamoDBDocumentClient.from() wraps the base client so tool code works with plain JS objects instead of DynamoDB's { S: \"value\" }-style attribute maps. Only GetCommand and QueryCommand are wired into tools here - ScanCommand exists in the SDK but is intentionally left unused.",
+        ],
+        code: `import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
+import { DynamoDBDocumentClient, GetCommand, QueryCommand } from "@aws-sdk/lib-dynamodb";
+
+const client = new DynamoDBClient({ region: "ap-south-1" });
+const docClient = DynamoDBDocumentClient.from(client);
+
+async function getItem(tableName: string, key: Record<string, string>) {
+  const result = await docClient.send(new GetCommand({ TableName: tableName, Key: key }));
+  return result.Item ?? null;
+}
+
+async function queryItems(tableName: string, partitionKey: string, partitionValue: string, limit = 50) {
+  const result = await docClient.send(new QueryCommand({
+    TableName: tableName,
+    KeyConditionExpression: "#pk = :pkval",
+    ExpressionAttributeNames: { "#pk": partitionKey },
+    ExpressionAttributeValues: { ":pkval": partitionValue },
+    Limit: limit,
+  }));
+  return result.Items ?? [];
+}`,
+      },
+    ],
+    faqs: [
+      { question: "What if the model needs to search by a non-key attribute?", answer: "Add a Global Secondary Index (GSI) on that attribute and query the GSI - that keeps the request an efficient Query instead of reaching for Scan." },
+      { question: "Is Query always cheap regardless of result size?", answer: "It's cheap relative to Scan, but a Query without a Limit can still return a large result set - keep an explicit Limit and pass LastEvaluatedKey-based pagination back to the caller rather than looping internally." },
+      { question: "Why use the DocumentClient instead of the base DynamoDBClient?", answer: "The base client requires manually specifying DynamoDB's typed attribute format ({ S: ... }, { N: ... }) for every value, which is easy to get wrong; the DocumentClient marshals plain JS objects automatically." },
+    ],
+    citations: [officialCitations.dynamodb, officialCitations.mcp],
+    related: ["/docs/development/supabase-integration", "/docs/deployment/aws-ec2-deployment", "/docs/development/testing-strategies"],
   }),
 ];
 
