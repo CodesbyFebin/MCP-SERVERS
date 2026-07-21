@@ -35,7 +35,7 @@ export default function TopicPageTemplate({
   primaryKeyword
 }: TopicPageTemplateProps) {
   const { theme } = useTheme();
-  const faqs = getFaqsForPage(slug, title);
+  const faqs = getFaqsForPage(slug);
   const relatedLinks = getRelatedLinks(slug, "topic");
 
   const breadcrumbSteps = [

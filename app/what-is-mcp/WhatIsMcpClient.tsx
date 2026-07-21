@@ -27,7 +27,7 @@ export default function WhatIsMcpClient() {
   const shortAnswer = "The Model Context Protocol (MCP) is an open-source standard created by Anthropic that allows Large Language Models (LLMs) to seamlessly connect to external systems, data sources, and developers' tools through a unified API. Instead of writing custom integration glue-code for every AI agent and API, MCP provides a standard client-server architecture.";
   const description = "Model Context Protocol solves the modern AI fragmentation problem. Today, building AI agents requires writing custom integrations for GitHub, Postgres, Slack, and other APIs. MCP replaces these custom connectors with a standardized client-server interface. AI clients (like Claude Desktop, Cursor, or ChatGPT) connect to MCP servers that expose tools, resources, and prompts in a structured, safe format.";
 
-  const faqs = getFaqsForPage(slug, title);
+  const faqs = getFaqsForPage(slug);
   const relatedLinks = getRelatedLinks(slug, "pillar");
 
   const breadcrumbSteps = [{ name: "What Is MCP?", href: `/${slug}` }];

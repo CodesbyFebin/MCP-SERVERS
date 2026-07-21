@@ -1,8 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { FAQItem } from "../data/faqs";
 import { ChevronDown, ChevronUp, HelpCircle } from "lucide-react";
+
+export interface FAQItem {
+  question: string;
+  answer: string;
+}
 
 export interface FAQProps {
   items: FAQItem[];

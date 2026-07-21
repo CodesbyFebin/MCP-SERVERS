@@ -35,7 +35,7 @@ export default function ServerIntegrationPageTemplate({
   features
 }: ServerIntegrationPageTemplateProps) {
   const { theme } = useTheme();
-  const faqs = getFaqsForPage(slug, `${name} MCP Server`, category);
+  const faqs = getFaqsForPage(slug);
   const relatedLinks = getRelatedLinks(slug, "server");
 
   const breadcrumbSteps = [

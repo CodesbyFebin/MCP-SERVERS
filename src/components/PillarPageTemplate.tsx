@@ -38,7 +38,7 @@ export default function PillarPageTemplate({
   faqCluster
 }: PillarPageTemplateProps) {
   const { theme } = useTheme();
-  const faqs = getFaqsForPage(slug, title);
+  const faqs = getFaqsForPage(slug);
   const relatedLinks = getRelatedLinks(slug, "pillar");
 
   const breadcrumbSteps = [{ name: title, href: `/${slug}` }];
