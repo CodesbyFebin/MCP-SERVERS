@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import Breadcrumbs from "../../../src/components/Breadcrumbs";
 import SchemaJsonLd from "../../../src/components/SchemaJsonLd";
 import { getUnifiedGraphSchema, getFAQSchema } from "../../../src/lib/schema";
+import { getContentDates } from "../../../src/lib/contentDates";
 import { computeReadTime } from "../../../src/lib/readTime";
 import { blogPosts } from "../../../src/data/blogPosts";
 import UGCOrchestrator from "../../../src/components/ugc/UGCOrchestrator";
@@ -38,6 +39,7 @@ export default async function BlogPostPage({ params }: { params: BlogPostPagePar
   const post = blogPosts.find(p => p.slug === slug);
   if (!post) notFound();
 
+  const dates = getContentDates(`blog:${slug}`);
   const unifiedSchema = getUnifiedGraphSchema({
     pageUrl: `/blog/${slug}`,
     title: post.title,
@@ -52,15 +54,40 @@ export default async function BlogPostPage({ params }: { params: BlogPostPagePar
       description: post.excerpt,
       authorName: "MCPserver.in Engineering",
       authorRole: "Platform Team",
-      datePublished: post.date,
-      dateModified: post.date
+      datePublished: dates.datePublished,
+      dateModified: dates.dateModified
     }
   });
+  const newsArticleSchema = {
+    "@context": "https://schema.org",
+    "@type": "NewsArticle",
+    "@id": `https://www.mcpserver.in/blog/${slug}#newsarticle`,
+    headline: post.title,
+    description: post.excerpt,
+    datePublished: dates.datePublished,
+    dateModified: dates.dateModified,
+    author: {
+      "@type": "Organization",
+      "name": "MCPserver.in Engineering",
+      "url": "https://www.mcpserver.in/"
+    },
+    publisher: {
+      "@type": "Organization",
+      "name": "MCPserver.in",
+      "url": "https://www.mcpserver.in/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.mcpserver.in/logo.svg"
+      }
+    },
+    mainEntityOfPage: `https://www.mcpserver.in/blog/${slug}`
+  };
   const faqSchema = post.faqs && post.faqs.length > 0 ? getFAQSchema(post.faqs) : null;
 
   return (
     <div id={`blog-${slug}`} className="min-h-screen bg-transparent text-white pt-6 pb-16">
       <SchemaJsonLd schema={unifiedSchema} />
+      <SchemaJsonLd schema={newsArticleSchema} />
       {faqSchema && <SchemaJsonLd schema={faqSchema} />}
       <div className="mx-auto max-w-3xl px-4 sm:px-6">
         <Breadcrumbs items={[
@@ -72,7 +99,7 @@ export default async function BlogPostPage({ params }: { params: BlogPostPagePar
           <header>
             <div className="flex flex-wrap items-center gap-3 text-[11px] font-bold text-white/45">
               <span className="rounded-md bg-violet-500/15 px-2 py-1 text-violet-200">{post.category}</span>
-              <span>{post.date}</span>
+              <span>{dates.datePublished}</span>
               <span>{computeReadTime(post.content)}</span>
             </div>
             <h1 className="mt-5 text-3xl font-black tracking-tight text-white sm:text-4xl">{post.title}</h1>

@@ -23,6 +23,7 @@ export default function EnterprisePage() {
     pageUrl: "/enterprise",
     title: "Enterprise MCP Platform",
     description: "Enterprise MCPserver.in capabilities for private deployments, RBAC, SAML/SSO, VPC peering, audit logs, DPDP reporting, and India data localization.",
+    speakable: ["#enterprise-page"],
     breadcrumbs: [
       { name: "Home", item: "/" },
       { name: "Enterprise", item: "/enterprise" }

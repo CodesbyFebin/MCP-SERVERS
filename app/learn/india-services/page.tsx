@@ -3,6 +3,7 @@ import { ShieldAlert } from "lucide-react";
 import Breadcrumbs from "../../../src/components/Breadcrumbs";
 import SchemaJsonLd from "../../../src/components/SchemaJsonLd";
 import { getUnifiedGraphSchema } from "../../../src/lib/schema";
+import { getContentDates } from "../../../src/lib/contentDates";
 import { indiaServices } from "../../../src/data/india-services";
 
 export const metadata: Metadata = {
@@ -19,7 +20,9 @@ export const metadata: Metadata = {
 };
 
 export default function IndiaServicesPage() {
+  const dates = getContentDates("learn:india-services");
   const unifiedSchema = getUnifiedGraphSchema({
+    speakable: ["#indiaServices"],
     pageUrl: "/learn/india-services",
     title: "India Services Integration Hub",
     description:
@@ -34,8 +37,8 @@ export default function IndiaServicesPage() {
       description: "Real, working MCP server examples for Razorpay and Zoho CRM.",
       authorName: "MCPserver.in Engineering",
       authorRole: "Platform Team",
-      datePublished: "2026-07-20",
-      dateModified: "2026-07-20",
+      datePublished: dates.datePublished,
+      dateModified: dates.dateModified,
     },
   });
 

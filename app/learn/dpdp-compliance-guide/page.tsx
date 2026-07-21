@@ -4,6 +4,7 @@ import { ShieldAlert, ArrowRight } from "lucide-react";
 import Breadcrumbs from "../../../src/components/Breadcrumbs";
 import SchemaJsonLd from "../../../src/components/SchemaJsonLd";
 import { getUnifiedGraphSchema } from "../../../src/lib/schema";
+import { getContentDates } from "../../../src/lib/contentDates";
 
 export const metadata: Metadata = {
   title: "DPDP Compliance Checklist for MCP Servers | MCPserver.in",
@@ -58,7 +59,9 @@ const sections = [
 ];
 
 export default function DPDPGuidePage() {
+  const dates = getContentDates("learn:dpdp-compliance-guide");
   const unifiedSchema = getUnifiedGraphSchema({
+    speakable: ["#dpdpComplianceGuide"],
     pageUrl: "/learn/dpdp-compliance-guide",
     title: "DPDP Compliance Checklist for MCP Servers",
     description:
@@ -74,8 +77,8 @@ export default function DPDPGuidePage() {
         "A practical educational checklist for aligning MCP server deployments with India's Digital Personal Data Protection Act (DPDP) 2023.",
       authorName: "MCPserver.in Engineering",
       authorRole: "Platform Team",
-      datePublished: "2026-07-20",
-      dateModified: "2026-07-20",
+      datePublished: dates.datePublished,
+      dateModified: dates.dateModified,
     },
   });
 

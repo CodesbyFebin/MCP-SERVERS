@@ -5,6 +5,7 @@ import Breadcrumbs from "../../../src/components/Breadcrumbs";
 import SchemaJsonLd from "../../../src/components/SchemaJsonLd";
 import FAQ from "../../../src/components/FAQ";
 import { getUnifiedGraphSchema } from "../../../src/lib/schema";
+import { getContentDates } from "../../../src/lib/contentDates";
 
 const title = "MCP vs LangChain: An Honest Technical Comparison";
 const description =
@@ -39,10 +40,12 @@ export default function McpVsLangchainPage() {
     { question: "Which one should a small team start with?", answer: "If the immediate need is connecting an AI client to a database or internal API, start with MCP — it's the smaller surface area. Reach for LangChain (or similar) once you need multi-step planning, memory across turns, or complex agent orchestration." },
   ];
 
+  const dates = getContentDates("learn:mcp-vs-langchain");
   const unifiedGraphSchema = getUnifiedGraphSchema({
     pageUrl: "/learn/mcp-vs-langchain",
     title,
     description,
+    speakable: ["#mcp-vs-langchain-page"],
     breadcrumbs: [
       { name: "Learn", item: "/learn" },
       { name: "MCP vs LangChain", item: "/learn/mcp-vs-langchain" },
@@ -52,8 +55,8 @@ export default function McpVsLangchainPage() {
       description,
       authorName: "MCPserver.in Engineering",
       authorRole: "Infrastructure & Platform Team",
-      datePublished: "2026-07-21",
-      dateModified: "2026-07-21",
+      datePublished: dates.datePublished,
+      dateModified: dates.dateModified,
     },
     faq: faqs,
   });

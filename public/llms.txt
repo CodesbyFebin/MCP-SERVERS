@@ -30,7 +30,7 @@ MCPserver.in is India's first MCP-focused knowledge hub, providing educational r
 ## Knowledge Graph Scale
 - Glossary Terms: 320+ technical definitions
 - Pillar Pages: 59+ comprehensive guides
-- Server Integrations: 116+ verified MCP servers
+- Server Integrations: 76+ verified MCP servers
 
 ## Supported Integrations
 - Claude Desktop

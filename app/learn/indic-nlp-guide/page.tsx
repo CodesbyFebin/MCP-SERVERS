@@ -4,6 +4,7 @@ import { Languages, ArrowRight } from "lucide-react";
 import Breadcrumbs from "../../../src/components/Breadcrumbs";
 import SchemaJsonLd from "../../../src/components/SchemaJsonLd";
 import { getUnifiedGraphSchema } from "../../../src/lib/schema";
+import { getContentDates } from "../../../src/lib/contentDates";
 
 export const metadata: Metadata = {
   title: "Indic NLP Guide: Local AI Models for Indian Languages | MCPserver.in",
@@ -19,7 +20,9 @@ export const metadata: Metadata = {
 };
 
 export default function IndicNLPGuidePage() {
+  const dates = getContentDates("learn:indic-nlp-guide");
   const unifiedSchema = getUnifiedGraphSchema({
+    speakable: ["#indicNlpGuide"],
     pageUrl: "/learn/indic-nlp-guide",
     title: "Indic NLP Guide: Local AI Models for Indian Languages",
     description:
@@ -35,8 +38,8 @@ export default function IndicNLPGuidePage() {
         "Run Hindi, Tamil, Telugu, Bengali, and other Indian-language NLP models locally, with no cloud data sharing.",
       authorName: "MCPserver.in Engineering",
       authorRole: "Platform Team",
-      datePublished: "2026-07-20",
-      dateModified: "2026-07-20",
+      datePublished: dates.datePublished,
+      dateModified: dates.dateModified,
     },
   });
 

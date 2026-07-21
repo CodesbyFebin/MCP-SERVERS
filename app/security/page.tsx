@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Breadcrumbs from "../../src/components/Breadcrumbs";
-import { ShieldAlert, Lock, Server, Users, FileText } from "lucide-react";
+import { ShieldAlert, Lock, Server, Users, FileText, KeyRound, ShieldCheck } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Security, Compliance & Trust - MCPserver.in",
@@ -76,6 +76,26 @@ export default function Security() {
             </h3>
             <p className="text-xs text-gray-400 leading-relaxed">
               Examine every single JSON-RPC packet transmitted between your models and your server. Audit timestamps, roundtrip latencies, command parameters, and execution outcomes live on our dashboard or stream logs to external SIEMs.
+            </p>
+          </div>
+
+          <div className="p-6 rounded-xl bg-gray-900/20 border border-gray-900">
+            <h3 className="text-sm font-sans font-bold text-white mb-3 flex items-center gap-2">
+              <ShieldCheck className="w-4.5 h-4.5 text-cyan-400" />
+              5. Rate Limiting & DDoS Mitigation
+            </h3>
+            <p className="text-xs text-gray-400 leading-relaxed">
+              Auto-scaling gateways with per-tenant rate limits, connection throttling, and IP reputation filtering protect your MCP endpoints from abuse without manual intervention.
+            </p>
+          </div>
+
+          <div className="p-6 rounded-xl bg-gray-900/20 border border-gray-900">
+            <h3 className="text-sm font-sans font-bold text-white mb-3 flex items-center gap-2">
+              <KeyRound className="w-4.5 h-4.5 text-cyan-400" />
+              6. Secret Rotation & Lifecycle Management
+            </h3>
+            <p className="text-xs text-gray-400 leading-relaxed">
+              Automate API key, token, and certificate rotations with zero-downtime rollovers. Secrets are versioned, auditable, and redeployed across container replicas without human error.
             </p>
           </div>
 

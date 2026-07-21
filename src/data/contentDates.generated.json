@@ -1,11 +1,11 @@
 {
   "page:home": {
     "datePublished": "2026-07-15",
-    "dateModified": "2026-07-20"
+    "dateModified": "2026-07-22"
   },
   "page:what-is-mcp": {
     "datePublished": "2026-07-15",
-    "dateModified": "2026-07-21"
+    "dateModified": "2026-07-22"
   },
   "pillar:mcp-server": {
     "datePublished": "2026-07-20",
@@ -548,7 +548,7 @@
   },
   "server:scaleway-mcp-server": {
     "datePublished": "2026-07-15",
-    "dateModified": "2026-07-15"
+    "dateModified": "2026-07-21"
   },
   "server:__fileLastModified": {
     "dateModified": "2026-07-20"
@@ -2119,6 +2119,1389 @@
   "topic:__fileLastModified": {
     "dateModified": "2026-07-20"
   },
+  "blog:mcp-server-vs-api-difference": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:model-context-protocol-beginner-guide": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:how-mcp-servers-work": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:mcp-transport-methods": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:mcp-json-rpc-deep-dive": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:install-configure-first-mcp-server": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-configuration-files": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:connect-claude-to-mcp-server": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:openai-gpt-with-mcp": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:google-gemini-mcp-support": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:best-mcp-server-tutorials": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-certification-review": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-video-courses-ranked": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-documentation-resources": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-books-essentials": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-github-repositories": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-community-forums": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-support-channels": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-on-reddit": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:contributing-to-mcp": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-python-sdk-tutorial": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-javascript-sdk-tutorial": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-nodejs-implementation": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-cli-tools-guide": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-client-libraries": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-security-checklist": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:cve-2025-6514-mcp-vulnerability": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-exploits-real-attack-scenarios": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-threat-model": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-security-risk-assessment": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-authentication-methods-comparison": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:mcp-oauth-2-0-implementation": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-jwt-token-implementation": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-api-key-authentication": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-role-based-access-control": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-production-deployment-checklist": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:how-to-deploy-mcp-server-to-production": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-ci-cd-pipeline-setup": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-devops-automating-server-management": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-testing-before-deployment": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-monitoring-setup": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-logging-best-practices": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-debugging-troubleshooting-common-issues": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-health-checks": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-error-handling-patterns": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-security-audit": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-compliance-gdpr-soc2": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-governance-framework": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-policy-as-code": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-enterprise-standards": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:how-to-build-mcp-server-from-scratch": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-development-best-practices": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-programming-patterns": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-architecture-patterns": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-workflow-automation": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-automation-strategies": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-pipeline-architecture": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-performance-optimization": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:how-to-scale-mcp-servers-horizontally": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-load-balancing-strategies": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-caching-strategies": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-context-window-management": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-database-connection-pooling": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:how-to-build-mcp-server-for-postgresql": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-for-mysql": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-for-mongodb": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-for-redis": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:how-to-build-mcp-server-for-elasticsearch": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-for-vector-database": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:pinecone-mcp-server": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-on-aws": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:mcp-server-on-azure": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:mcp-server-on-gcp": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-serverless-architecture": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-cloud-deployment-comparison": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-docker-containerization": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-kubernetes-deployment": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-ci-cd-with-github-actions": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-on-linux": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-on-windows": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-on-macos": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-cross-platform-compatibility": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-anthropic-official-sdk": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-for-slack": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-for-gmail": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-for-google-calendar": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-for-notion": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-for-jira": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-for-trello": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-for-hubspot": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-for-salesforce": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-for-stripe": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-for-razorpay": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-for-shopify": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-for-zapier": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-for-make-com": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-for-ifttt": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-for-n8n": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-for-sendgrid": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-for-twilio": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-for-google-sheets": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-for-airtable": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-for-dropbox": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-for-onedrive": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-for-box": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-for-zoom": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-for-discord": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-for-msteams": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-for-woocommerce": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-for-salesforce-crm": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-multi-agent-systems": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-agent-squad": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:how-to-migrate-from-rag-to-mcp": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-vs-langchain": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-2026-roadmap": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-trends-what-s-exploding": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-innovations-latest-research": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-future-predictions-expert-roundup": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-beyond-2026-long-term-vision": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:how-i-built-my-first-mcp-server": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-success-stories": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:enterprise-mcp-implementation-case-studies": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-failures-lessons-learned": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-migration-stories-from-api-to-mcp": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-faq-community-answered": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-troubleshooting-guide-community-solutions": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-questions-unanswered-and-answered": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-beginner-questions-no-question-too-small": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-code-snippets-community-library": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-templates-download-and-customize": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-boilerplates-quick-start-collection": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-examples-real-world-implementations": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-starter-kits-community-favorites": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-showcase-community-projects": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-of-the-month-community-voting": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-hall-of-fame-best-implementations": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-challenges-community-competitions": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-meetups-local-events": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-conferences-event-calendar": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-webinars-recording-archive": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-community-join-the-conversation": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-contributors-hall-of-fame": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-help-center-getting-assistance": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-support-where-to-find-help": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-documentation-community-wiki": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-advanced-typescript-patterns": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-testing-strategies": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-debugging-techniques": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-performance-benchmarking": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-monitoring-alerting": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "blog:mcp-server-for-kafka": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-for-rabbitmq": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-for-redis-streams": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-for-nats": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-local-meetup-guide": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-online-workshop-guide": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-beginner-tutorial-series": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-advanced-techniques-guide": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-career-guide": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "blog:mcp-server-for-pulsar": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-for-mqtt": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-for-amazon-kinesis": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-for-google-pubsub": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-for-apache-pulsar-geo": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-for-websocket-scale": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-for-grpc-streaming": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-for-event-driven-architecture": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-for-cqrs-pattern": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-for-event-sourcing": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-for-saga-pattern": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-contributing-to-open-source-mcp": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-code-review-best-practices": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-mentorship-program": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-hackathon-guide": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-documentation-sprint": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-translation-initiative": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-diversity-inclusion": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-accessibility-guide": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-sustainability-guide": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-ethics-guide": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-future-trends-workshop": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-coding-standards-style-guides": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:how-to-create-custom-mcp-tools": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-design-patterns-production": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-microservices-architecture": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-standards-internal-guidelines": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-gitlab-ci-integration": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-cursor-ide-integration": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-replit-browser-development": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-vertex-ai-integration": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-saas-platforms-deployment": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-startup-guide-budget": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-enterprise-large-scale-deployment": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-startups-vs-enterprise": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-pricing-cost-comparison": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-free-servers-open-source-list": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-trends-2025-whats-hot": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-for-asana": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-for-gitlab-devops": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-for-monday": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-for-outlook": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-for-workato": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-for-square": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-for-pipedrive": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-for-freshsales": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-for-zendesk": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-for-intercom": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-for-freshdesk": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-for-help-scout": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-for-crisp": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-orchestration-managing-multiple-servers": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-advanced-questions-expert-challenges": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-reviews-user-ratings": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-comparison-side-by-side": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-alternatives-options-compared": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-video-tutorials-youtube": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-step-by-step-guides-wiki": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-cheat-sheets": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-checklists-deployment-setup": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-debates-hot-topics": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-opinions-community-perspectives": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-predictions-community-forecasts": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-controversies-addressing-concerns": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-philosophy-design-principles": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-resources-curated-links": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-tools-community-recommended": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-news-weekly-roundup": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-updates-changelog-tracker": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-forum-discussion-board": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:weaviate-mcp-server-semantic-search": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:chromadb-mcp-server-open-source": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:azure-mcp-server-functions-app-service": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:how-to-create-mcp-server-for-github": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-for-google-drive": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-for-paypal": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-for-zoho-crm": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-directory-complete-list": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:mcp-server-discord-live-chat-community": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:mcp-tutorial-build-your-first-mcp-server": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:zerodha-mcp-server-trading-ai": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "blog:remote-mcp-server-deployment-guide": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:upi-mcp-server-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "blog:razorpay-mcp-server-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:gst-mcp-server-tax-compliance": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "blog:zoho-books-mcp-accounting-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:icici-bank-mcp-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:paytm-mcp-server-india-payments": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:phonepe-mcp-server-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "blog:google-pay-mcp-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:upstox-mcp-trading": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:groww-mcp-investments": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:angel-broking-mcp-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:fivepaisa-mcp-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:dhan-mcp-fo-trading": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:sebi-mcp-server-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:nse-mcp-server-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:bse-mcp-server-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:moneycontrol-mcp-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:screener-mcp-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:zoho-crm-mcp-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:tally-mcp-server-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:kotak-maharaja-mcp-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:hdfc-bank-mcp-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:sbi-mcp-server-india-banking": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:axis-bank-mcp-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:yes-bank-mcp-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:aubank-mcp-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:idfc-first-mcp-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:pnb-mcp-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:bigbasket-mcp-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:blinkit-mcp-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:zepto-mcp-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:amazon-india-mcp": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:flipkart-mcp-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:myntra-mcp-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:zomato-mcp-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "blog:swiggy-mcp-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "blog:dunzo-mcp-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:urbancompany-mcp-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:oyo-mcp-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:makemytrip-mcp-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:goibibo-mcp-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:irctc-mcp-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:indian-railways-mcp-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:redbus-mcp-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:rapido-mcp-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:uber-india-mcp": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:ola-mcp-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:cricbuzz-mcp-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:hotstar-mcp-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:jiohotstar-mcp-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:aajtak-mcp-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:ndtv-mcp-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:delhivery-mcp-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:ecom-express-mcp-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:shadowfax-mcp-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:fedex-india-mcp": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:dhl-india-mcp": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:apollo-mcp-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:icici-lombard-mcp": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:hdfc-ergo-mcp": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:reliance-mcp-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:tcs-mcp-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:infosys-mcp-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:wipro-mcp-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:hcl-mcp-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:airtel-mcp-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:jio-mcp-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:vi-mcp-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:kmb-mcp-server-karnataka": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:city-union-mcp-chennai": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:federal-bank-mcp-kerala": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:canara-bank-mcp-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:union-bank-mcp-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:indusind-mcp-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:axis-bank-mcp-server": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:yes-bank-mcp-server": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:tamil-maharaja-mcp-tn": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:manipal-mcp-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:aiims-mcp-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:fortis-mcp-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:kmc-mcp-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:max-healthcare-mcp": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:zoho-inventory-mcp-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:zoho-desk-mcp-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:zoho-projects-mcp-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:khatabook-mcp-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:okcredit-mcp-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:vyapar-mcp-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:mybillbook-mcp-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:profit-books-mcp-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:razorpayx-mcp-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:cashfree-mcp-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:instamojo-mcp-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:ccavenue-mcp-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:payu-mcp-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:billdesk-mcp-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:matlab-mcp-server-integration-guide": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:getting-started": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:security-production": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:development-coding": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:platform-specific": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:integrations-tools": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:advanced-architecture": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "blog:ugc-community-hub": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "blog:__fileLastModified": {
+    "dateModified": "2026-07-21"
+  },
   "docs:getting-started/what-is-mcp": {
     "datePublished": "2026-07-16",
     "dateModified": "2026-07-21"
@@ -2404,6 +3787,6 @@
     "dateModified": "2026-07-21"
   },
   "docs:__fileLastModified": {
-    "dateModified": "2026-07-21"
+    "dateModified": "2026-07-22"
   }
 }

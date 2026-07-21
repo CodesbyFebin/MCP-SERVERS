@@ -3,6 +3,7 @@ import { Gauge } from "lucide-react";
 import Breadcrumbs from "../../../src/components/Breadcrumbs";
 import SchemaJsonLd from "../../../src/components/SchemaJsonLd";
 import { getUnifiedGraphSchema } from "../../../src/lib/schema";
+import { getContentDates } from "../../../src/lib/contentDates";
 
 export const metadata: Metadata = {
   title: "India MCP Infrastructure Benchmarks | MCPserver.in",
@@ -26,7 +27,9 @@ const regionalComparison = [
 ];
 
 export default function IndiaBenchmarksPage() {
+  const dates = getContentDates("learn:india-mcp-benchmarks");
   const unifiedSchema = getUnifiedGraphSchema({
+    speakable: ["#indiaMcpBenchmarks"],
     pageUrl: "/learn/india-mcp-benchmarks",
     title: "India MCP Infrastructure Benchmarks",
     description:

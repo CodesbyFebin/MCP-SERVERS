@@ -15,6 +15,7 @@ const TARGETS = [
   { file: "src/data/servers.ts", pattern: /^\s*slug:\s*"([^"]+)"\s*,?\s*$/, keyPrefix: "server:" },
   { file: "src/data/glossary.ts", pattern: /^\s*slug:\s*"([^"]+)"\s*,?\s*$/, keyPrefix: "glossary:" },
   { file: "src/data/topics.ts", pattern: /^\s*slug:\s*"([^"]+)"\s*,?\s*$/, keyPrefix: "topic:" },
+  { file: "src/data/blogPosts.ts", pattern: /^\s*slug:\s*"([^"]+)"\s*,?\s*$/, keyPrefix: "blog:" },
   {
     file: "src/data/docs.ts",
     pattern: /^\s*slug:\s*\[([^\]]+)\]\s*,?\s*$/,

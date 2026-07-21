@@ -194,6 +194,7 @@ export interface UnifiedGraphOptions {
   description: string;
   breadcrumbs?: BreadcrumbStep[];
   faq?: FAQSchemaItem[];
+  speakable?: string[];
   article?: {
     title: string;
     description: string;
@@ -273,6 +274,9 @@ export function getUnifiedGraphSchema(options: UnifiedGraphOptions) {
       "@id": `${siteConfig.url}/#organization`
     }
   };
+  if (options.speakable && options.speakable.length > 0) {
+    webpageEntity.speakable = options.speakable;
+  }
 
   const graph: any[] = [organizationEntity, websiteEntity, webpageEntity];
 

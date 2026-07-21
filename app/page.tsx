@@ -111,6 +111,7 @@ const unifiedGraphSchema = getUnifiedGraphSchema({
   title: "MCPServer.in: Free Hosted MCP Servers in India",
   description: "Curated Model Context Protocol directory and hosting with DPDP-aligned compliance and Mumbai/Bengaluru edge hosting.",
   breadcrumbs: [{ name: "Home", item: "/" }],
+  speakable: ["#homepage"],
   faq: homeFaqs,
   article: {
     title: "MCPServer.in: Free Hosted MCP Servers in India",

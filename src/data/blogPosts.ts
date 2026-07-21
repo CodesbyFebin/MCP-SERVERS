@@ -4586,31 +4586,66 @@ if __name__ == "__main__":
   },
   {
     slug: "zerodha-mcp-server-trading-ai",
-    title: "Zerodha MCP Server – AI for Stock Trading",
-    date: "2026-07-20",
+    title: "Zerodha Kite MCP: Zerodha's Official AI Trading Assistant Server",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
     readTime: "5 min read",
-    excerpt: "Building an MCP server for Zerodha's API to enable AI agents for Indian stock trading and portfolio management.",
-    keywords: ["Zerodha MCP", "Indian trading MCP", "MCP stock trading", "Zerodha API integration"],
+    excerpt: "Kite MCP is Zerodha's own official Model Context Protocol server, launched May 2025, that connects Claude, ChatGPT, and other AI assistants to your live Zerodha portfolio in read-only mode.",
+    keywords: ["Zerodha MCP", "Kite MCP", "Indian trading MCP", "MCP stock trading", "Zerodha API integration"],
     ugcElements: ["Trading workflows", "Portfolio automation examples"],
-    internalLinks: ["mcp-server-for-stripe", "mcp-server-for-salesforce", "mcp-server-for-hubspot"],
-    content: `<p class="text-white/65 leading-relaxed">Zerodha MCP servers enable AI agents to interact with Indian stock markets, execute trades, and manage portfolios through the Kite Connect API.</p>
+    internalLinks: ["upi-mcp-server-india", "mcp-server-for-slack", "what-is-mcp"],
+    content: `<p class="text-white/65 leading-relaxed">Most "MCP server for [brand]" posts on the internet describe unofficial, community-built wrappers around a company's public API. Zerodha's is different: <strong class="text-white">Kite MCP is a first-party server built and maintained by Zerodha itself</strong>, publicly announced on Zerodha's own Z-Connect blog and open-sourced on GitHub as <code class="bg-gray-800 px-1 py-0.5 rounded">zerodha/kite-mcp-server</code>. It launched on May 20, 2025, making it one of the earliest official MCP integrations shipped by a major Indian financial company.</p>
 
-<h2 class="mt-8 text-2xl font-black text-white">Core Tools</h2>
-<ul class="text-white/65 leading-relaxed">
-  <li><code class="bg-gray-800 px-1 py-0.5 rounded">get_kite_profile(access_token)</code> — fetch user's Zerodha account details</li>
-  <li><code class="bg-gray-800 px-1 py-0.5 rounded">get_kite_instruments()</code> — list all tradable instruments</li>
-  <li><code class="bg-gray-800 px-1 py-0.5 rounded">get_kite_ltp(symbols)</code> — get last traded price</li>
-  <li><code class="bg-gray-800 px-1 py-0.5 rounded">place_order(trading_symbol, quantity, price, order_type)</code> — place buy/sell orders</li>
+<h2 class="mt-8 text-2xl font-black text-white">What Kite MCP Actually Is</h2>
+<p class="text-white/65 leading-relaxed">Kite MCP exposes your live Zerodha trading account — the same account behind the Kite web and mobile apps — to any MCP-compatible AI client. Instead of building a custom ChatGPT plugin or a bespoke API integration, Zerodha built one standards-based server that works with Claude Desktop, VS Code with GitHub Copilot, and any other MCP host at once. Zerodha's own framing is that it lets AI assistants "interact with real-world data and services" rather than reasoning from static, pre-trained knowledge about the market.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">The Full Tool List — 22 Tools Across Five Groups</h2>
+<p class="text-white/65 leading-relaxed">The <code class="bg-gray-800 px-1 py-0.5 rounded">zerodha/kite-mcp-server</code> repository's own README documents exactly 22 tools, grouped as:</p>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li><strong class="text-white">Setup &amp; authentication (1):</strong> <code class="bg-gray-800 px-1 py-0.5 rounded">login</code></li>
+  <li><strong class="text-white">Market data (5):</strong> <code class="bg-gray-800 px-1 py-0.5 rounded">get_quotes</code>, <code class="bg-gray-800 px-1 py-0.5 rounded">get_ltp</code>, <code class="bg-gray-800 px-1 py-0.5 rounded">get_ohlc</code>, <code class="bg-gray-800 px-1 py-0.5 rounded">get_historical_data</code>, <code class="bg-gray-800 px-1 py-0.5 rounded">search_instruments</code></li>
+  <li><strong class="text-white">Portfolio &amp; account (5):</strong> <code class="bg-gray-800 px-1 py-0.5 rounded">get_profile</code>, <code class="bg-gray-800 px-1 py-0.5 rounded">get_margins</code>, <code class="bg-gray-800 px-1 py-0.5 rounded">get_holdings</code>, <code class="bg-gray-800 px-1 py-0.5 rounded">get_positions</code>, <code class="bg-gray-800 px-1 py-0.5 rounded">get_mf_holdings</code></li>
+  <li><strong class="text-white">Orders &amp; trading (7):</strong> <code class="bg-gray-800 px-1 py-0.5 rounded">place_order</code>, <code class="bg-gray-800 px-1 py-0.5 rounded">modify_order</code>, <code class="bg-gray-800 px-1 py-0.5 rounded">cancel_order</code>, <code class="bg-gray-800 px-1 py-0.5 rounded">get_orders</code>, <code class="bg-gray-800 px-1 py-0.5 rounded">get_trades</code>, <code class="bg-gray-800 px-1 py-0.5 rounded">get_order_history</code>, <code class="bg-gray-800 px-1 py-0.5 rounded">get_order_trades</code></li>
+  <li><strong class="text-white">GTT orders (4):</strong> <code class="bg-gray-800 px-1 py-0.5 rounded">get_gtts</code>, <code class="bg-gray-800 px-1 py-0.5 rounded">place_gtt_order</code>, <code class="bg-gray-800 px-1 py-0.5 rounded">modify_gtt_order</code>, <code class="bg-gray-800 px-1 py-0.5 rounded">delete_gtt_order</code></li>
 </ul>
+<p class="text-white/65 leading-relaxed">In practice this means you can ask an AI assistant something like "what's my current portfolio allocation across sectors?" or "show me my open GTT orders" and get an answer computed from your actual live account, not a hallucinated estimate.</p>
 
-<h2 class="mt-8 text-2xl font-black text-white">Risk Management</h2>
-<p class="text-white/65 leading-relaxed">Always include a confirmation step before placing orders. AI agents may execute unintended trades without proper safeguards.</p>`,
+<h2 class="mt-8 text-2xl font-black text-white">Hosted vs. Self-Hosted: A Distinction That Actually Matters</h2>
+<p class="text-white/65 leading-relaxed">Here's the detail that most casual coverage of Kite MCP glosses over: the codebase itself includes full order-placement tools (<code class="bg-gray-800 px-1 py-0.5 rounded">place_order</code>, <code class="bg-gray-800 px-1 py-0.5 rounded">modify_order</code>, <code class="bg-gray-800 px-1 py-0.5 rounded">cancel_order</code>), but Zerodha's own <strong class="text-white">hosted instance at <code class="bg-gray-800 px-1 py-0.5 rounded">mcp.kite.trade</code> deliberately excludes potentially destructive trading operations for security</strong>, per the project's own README. That's a meaningful design choice: the public, zero-setup version most people will actually connect to is scoped down from what the open-source code is technically capable of.</p>
+<p class="text-white/65 leading-relaxed">If you self-host the server instead — running the open-source code yourself rather than using Zerodha's hosted endpoint — you get access to the full 22-tool set, including live order placement, but you're also the one responsible for whatever safeguards you put around an LLM that can now place real trades. This is exactly the "capability vs. exposure" tradeoff worth understanding before connecting any financial MCP server to an autonomous agent loop.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Transport Modes and Self-Hosting Requirements</h2>
+<p class="text-white/65 leading-relaxed">The server supports four transport modes: <code class="bg-gray-800 px-1 py-0.5 rounded">stdio</code>, <code class="bg-gray-800 px-1 py-0.5 rounded">http</code>, <code class="bg-gray-800 px-1 py-0.5 rounded">sse</code>, and a hybrid mode recommended for production. HTTP is Zerodha's own recommendation for better performance and reliability over stdio.</p>
+<p class="text-white/65 leading-relaxed">For the hosted version, Zerodha's README states plainly: "no installation or API keys required" — you just add the remote MCP URL to your client. For self-hosting, you'll need your own Kite Connect developer credentials, supplied as <code class="bg-gray-800 px-1 py-0.5 rounded">KITE_API_KEY</code> and <code class="bg-gray-800 px-1 py-0.5 rounded">KITE_API_SECRET</code> environment variables — meaning a Kite Connect developer subscription, which Zerodha prices separately from a regular trading account. The repository is MIT licensed, so self-hosting and modifying it is explicitly permitted.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Read-Only by Design (For the Hosted Version)</h2>
+<p class="text-white/65 leading-relaxed">Zerodha built three explicit safety constraints into the hosted Kite MCP experience, and they matter more than any single feature:</p>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li><strong class="text-white">Limited access</strong> — the AI client can only reach data and actions you've explicitly authorized.</li>
+  <li><strong class="text-white">No credential storage</strong> — your Zerodha credentials never pass through Claude, ChatGPT, or any other AI client. Authentication happens directly with Zerodha's own two-factor login flow.</li>
+  <li><strong class="text-white">Read-only by default</strong> — on the hosted instance, everything except GTT (conditional, pre-defined) orders is read-only. Full order placement exists in the open-source code but is excluded from the public hosted endpoint specifically for security.</li>
+</ul>
+<p class="text-white/65 leading-relaxed">If a guide anywhere tells you to wire an LLM directly into unattended live order placement, understand that requires self-hosting and deliberately opting back into the destructive-operations tools Zerodha excluded by default — not something to do without your own explicit confirmation step on every trade.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Connecting Kite MCP to Claude Desktop</h2>
+<p class="text-white/65 leading-relaxed">Zerodha's documented setup path for Claude Desktop, using the hosted instance, is:</p>
+<ol class="text-white/65 leading-relaxed list-decimal pl-5 space-y-1">
+  <li>Install Node.js if you don't already have it.</li>
+  <li>Add Zerodha's remote MCP server URL (<code class="bg-gray-800 px-1 py-0.5 rounded">mcp.kite.trade</code>) to Claude Desktop's developer/MCP configuration.</li>
+  <li>Restart Claude Desktop so it picks up the new server entry.</li>
+  <li>Authorize the connection through Zerodha's normal two-factor authentication flow — this happens on Zerodha's own login page, not inside Claude.</li>
+</ol>
+<p class="text-white/65 leading-relaxed">VS Code follows the same pattern: add the server to your MCP settings in <code class="bg-gray-800 px-1 py-0.5 rounded">settings.json</code>, then verify the connection from the Copilot Chat panel. If you're running the stdio transport of a self-hosted build instead, the project's own README specifically warns to use the full absolute path to your built binary in the client config, rather than a relative path that may not resolve correctly across different working directories.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Why an Official Brokerage MCP Server Matters</h2>
+<p class="text-white/65 leading-relaxed">Zerodha is India's largest stockbroker by active client count, so an official, first-party MCP server from them is a meaningfully different signal than the many unofficial wrappers that exist for other Indian brokers and platforms — several of which (Groww, Upstox, ICICI Direct) are covered elsewhere on this site and are genuinely useful, but are community-maintained rather than shipped by the broker itself. Kite MCP is a real, working example of exactly the pattern this site's guides describe elsewhere: an existing production API (Kite Connect) exposed through a standard protocol, with authentication kept outside the AI client and the blast radius of what the model can do deliberately capped on the default, hosted path.</p>`,
     faqs: [
-      { question: "Is Zerodha's API free?", answer: "Kite Connect requires a paid subscription. Check Zerodha's pricing page for current rates." },
-      { question: "Can I use this for live trading?", answer: "Yes, but always test with small amounts first. Start with historical data simulation before live trading." },
-      { question: "What about margin requirements?", answer: "Orders respect the user's existing margin limits. The MCP server does not modify margin calculations." }
+      { question: "Is Kite MCP an official Zerodha product?", answer: "Yes. Unlike most brand-named MCP servers, Kite MCP is built and published by Zerodha itself, announced on Zerodha's own Z-Connect blog and open-sourced at github.com/zerodha/kite-mcp-server under an MIT license." },
+      { question: "Can an AI assistant place trades on my behalf through Kite MCP?", answer: "On Zerodha's hosted instance (mcp.kite.trade), only GTT (Good-Till-Triggered) conditional orders are available as a write operation — destructive trading tools like place_order are deliberately excluded from the hosted version for security, even though the open-source code includes them." },
+      { question: "Does Claude or ChatGPT ever see my Zerodha password?", answer: "No. Authentication happens directly with Zerodha's own two-factor login flow; credentials are never passed through or stored by the AI client." },
+      { question: "How many tools does Kite MCP expose, and can I get all of them?", answer: "22 total, across setup, market data, portfolio/account, orders/trading, and GTT orders. The hosted version excludes live order-placement tools; self-hosting the MIT-licensed code with your own Kite Connect API key gives access to the full set." },
+      { question: "What transport protocols does the server support?", answer: "stdio, HTTP, SSE, and a hybrid mode Zerodha recommends for production; HTTP is called out as offering better performance and reliability than stdio." }
     ]
   },
   {
@@ -4686,16 +4721,34 @@ app.listen(3000);</code></pre>
   // India-Specific High-Intent MCP Posts
   {
     slug: "upi-mcp-server-india",
-    title: "UPI MCP Server – India Payments Automation",
-    date: "2026-07-20",
+    title: "UPI MCP Servers: What's Real, What's a Community Project, What's Just Talk",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "4 min read",
-    excerpt: "UPI MCP Server – India Payments Automation integration for automated workflows in India.",
-    keywords: ["upi-mcp-server-india", "India MCP", "MCP integration"],
+    readTime: "6 min read",
+    excerpt: "There is no single 'official UPI MCP server' from NPCI. What actually exists: Setu's open-source UPI Deeplinks MCP, a community India Stack MCP server, and Pine Labs publicly discussing autonomous UPI payments with NPCI.",
+    keywords: ["upi-mcp-server-india", "UPI MCP", "India MCP", "MCP payments"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
-    content: "<p>UPI MCP Server – India Payments Automation - detailed guide coming soon.</p>"
+    internalLinks: ["zomato-mcp-india", "razorpay-mcp-server-india", "what-is-mcp"],
+    content: `<p class="text-white/65 leading-relaxed">"UPI MCP server" is a phrase that gets used loosely, so it's worth being precise about what actually exists as of mid-2026. There is no single, official, NPCI-operated MCP server that every AI assistant talks to for UPI. What exists instead is a small but real and growing set of separate projects, each covering a different slice of UPI.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Setu's UPI Deeplinks MCP Server (Real, Open-Source)</h2>
+<p class="text-white/65 leading-relaxed">Setu — a licensed account aggregator and fintech infrastructure company — publishes an open-source MCP server, <code class="bg-gray-800 px-1 py-0.5 rounded">setu_mcp_upi_deeplinks</code>, that lets an AI assistant generate and manage UPI payment deeplinks using Setu's own payment infrastructure. The package itself is free and open-source (the code is on GitHub under <code class="bg-gray-800 px-1 py-0.5 rounded">SetuHQ/setu-mcps</code>); the underlying transactions it triggers still go through Setu's standard payment infrastructure and fees. This is the closest thing to a "real, working, official UPI MCP server" that currently exists — it's just scoped to deeplink generation, not a full UPI-network-level API.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">India Stack MCP Server (Real, Community-Built)</h2>
+<p class="text-white/65 leading-relaxed">A community project, listed on the Awesome MCP Servers directory as <code class="bg-gray-800 px-1 py-0.5 rounded">rehan1020/mcp-india-stack</code>, packages together several India Stack building blocks — GSTIN lookup, IFSC codes, PAN validation, UPI, PIN code data, and HSN/SAC codes — into one offline-first MCP server. It's a genuinely useful reference implementation for anyone building India-specific tooling, but it's a third-party project wrapping public data, not an NPCI product.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Pine Labs and NPCI: In Discussion, Not Yet Shipped</h2>
+<p class="text-white/65 leading-relaxed">MediaNama reported that Pine Labs is in discussions with the National Payments Corporation of India (NPCI) about enabling "autonomous" UPI and card payments for merchants through its own MCP server. As of this writing that's a reported discussion, not a confirmed, generally-available product — worth watching, not something to build a dependency on yet.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">What This Means If You're Building Something</h2>
+<p class="text-white/65 leading-relaxed">If you need UPI payment functionality inside an AI agent today, your realistic options are: (1) Setu's UPI Deeplinks MCP server for deeplink-based payment requests, (2) building your own MCP wrapper around a licensed payment aggregator's existing API (the same pattern covered in this site's <a href="/servers/stripe-mcp-server" class="text-cyan-300 hover:text-cyan-200">Stripe MCP guide</a>), or (3) using a platform-specific official server where one exists — Zomato's and PhonePe's, for instance, already handle their own UPI-based checkout internally rather than exposing raw UPI as a general-purpose tool.</p>
+<p class="text-white/65 leading-relaxed">What you should not do is assume a generic "UPI MCP server" gives you unrestricted, real-time initiation of arbitrary UPI transfers on someone's behalf — no widely-available server currently offers that, and for good reason: unrestricted payment-initiation tools handed to an LLM are exactly the kind of high-blast-radius capability this site's <a href="/security" class="text-cyan-300 hover:text-cyan-200">security guidance</a> argues should be scoped down, confirmed, and audited, not exposed directly.</p>`,
+    faqs: [
+      { question: "Is there one official UPI MCP server run by NPCI?", answer: "No. What exists is a set of separate projects — Setu's open-source UPI Deeplinks MCP server, a community India Stack MCP server, and Pine Labs publicly discussing (but not yet shipping) autonomous UPI payments with NPCI." },
+      { question: "What does Setu's UPI Deeplinks MCP server actually do?", answer: "It lets an AI assistant generate and manage UPI payment deeplinks through Setu's payment infrastructure. The MCP package is open-source and free; the underlying transactions still go through Setu's standard fees." },
+      { question: "Can an AI agent initiate arbitrary UPI transfers today?", answer: "Not through any widely-available general-purpose server. Platforms with real payment flows (Zomato, PhonePe) handle UPI checkout internally rather than exposing raw, unrestricted transfer capability as a public tool." }
+    ]
   },
   {
     slug: "razorpay-mcp-server-india",
@@ -4712,16 +4765,38 @@ app.listen(3000);</code></pre>
   },
   {
     slug: "gst-mcp-server-tax-compliance",
-    title: "GST MCP Server – Indian Tax Compliance Automation",
-    date: "2026-07-20",
+    title: "GST MCP Servers: Real Options for AI-Assisted Tax Compliance",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "4 min read",
-    excerpt: "GST MCP Server – Indian Tax Compliance Automation integration for automated workflows in India.",
-    keywords: ["gst-mcp-server-tax-compliance", "India MCP", "MCP integration"],
+    readTime: "5 min read",
+    excerpt: "GST doesn't have one official government MCP server, but a handful of real, working ones already exist — from community India-Stack toolkits to commercial global tax platforms extending into GST/e-Invoice compliance.",
+    keywords: ["gst-mcp-server-tax-compliance", "GST MCP", "India MCP", "MCP tax compliance"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
-    content: "<p>GST MCP Server – Indian Tax Compliance Automation - detailed guide coming soon.</p>"
+    internalLinks: ["upi-mcp-server-india", "zoho-books-mcp-accounting-india", "what-is-mcp"],
+    content: `<p class="text-white/65 leading-relaxed">There is no MCP server operated by the GST Network (GSTN) itself. What does exist is a small ecosystem of community and commercial servers that expose GST-adjacent data and workflows through the protocol — useful for AI-assisted bookkeeping and compliance tooling, but worth understanding precisely rather than assuming a single authoritative "GST MCP" exists.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">India Stack MCP Server (Community)</h2>
+<p class="text-white/65 leading-relaxed">The community-built <code class="bg-gray-800 px-1 py-0.5 rounded">rehan1020/mcp-india-stack</code> server bundles GSTIN lookup alongside IFSC, PAN, UPI, PIN code, and HSN/SAC data into one offline-first MCP server. For an AI agent that just needs to validate a GSTIN format or look up HSN/SAC codes during an invoicing workflow, this kind of server is a reasonable, low-stakes building block.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Bharat MCP</h2>
+<p class="text-white/65 leading-relaxed">Bharat MCP is a broader India-business-tools project that includes a dedicated <code class="bg-gray-800 px-1 py-0.5 rounded">bharat-mcp-gst</code> module among roughly ten India-specific business tools exposed through configuration. It's positioned as general-purpose "India's business brain for AI" tooling rather than a single-purpose GST filer.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Commercial Tax Platforms Extending Into MCP</h2>
+<p class="text-white/65 leading-relaxed">Two established, real tax-compliance vendors have published their own MCP servers, and while they're US-centric first, both are relevant to how GST-focused tooling is likely to evolve:</p>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li><strong class="text-white">Avalara</strong> — a well-known global tax compliance platform — has published MCP servers and a developer primer on "agentic tax and compliance," documented on their own engineering blog.</li>
+  <li><strong class="text-white">TaxBandits</strong> — a US tax-filing platform — publishes its own MCP documentation for AI-assisted filing workflows.</li>
+</ul>
+<p class="text-white/65 leading-relaxed">Neither is a GST-specific product today, but they establish the pattern larger compliance vendors are following: expose real filing/lookup APIs through MCP rather than requiring bespoke integration per AI client. It's a reasonable bet that GST-specific commercial tooling (from providers like ClearTax, Zoho Books, or Tally) will follow the same pattern as MCP adoption grows — see this site's <a href="/blog/zoho-books-mcp-accounting-india" class="text-cyan-300 hover:text-cyan-200">Zoho Books MCP coverage</a> for where that's already heading on the accounting side.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">What to Actually Use Today</h2>
+<p class="text-white/65 leading-relaxed">If you're building GST-aware AI tooling right now, the honest options are: use a community server like India Stack MCP or Bharat MCP for lookup/validation tasks (GSTIN format, HSN/SAC codes), or build your own thin MCP wrapper directly around your existing GST-filing software's API — the same pattern this site documents for <a href="/docs/development/bigquery-integration" class="text-cyan-300 hover:text-cyan-200">wrapping any existing production API</a> in an MCP server rather than waiting for an official one to appear.</p>`,
+    faqs: [
+      { question: "Does GSTN (the GST Network) run an official MCP server?", answer: "No. Everything currently available is either a community project (India Stack MCP, Bharat MCP) or a commercial tax platform's MCP server that isn't GST-specific yet." },
+      { question: "Can an MCP server file my GST returns automatically?", answer: "Not through any confirmed, GST-specific public server as of this writing. Commercial tax platforms like Avalara and TaxBandits have published MCP servers for their own filing workflows, which is the direction GST-specific tooling is likely to follow." },
+      { question: "What can I realistically use a GST-related MCP server for today?", answer: "Lookup and validation tasks — GSTIN format checks, HSN/SAC code lookups — via community servers like India Stack MCP or Bharat MCP, or a custom wrapper around your own accounting software's API." }
+    ]
   },
   {
     slug: "zoho-books-mcp-accounting-india",
@@ -4764,16 +4839,44 @@ app.listen(3000);</code></pre>
   },
   {
     slug: "phonepe-mcp-server-india",
-    title: "PhonePe MCP Server – UPI Payments Integration",
-    date: "2026-07-20",
+    title: "PhonePe's Official MCP Server: Documentation, Not Payments",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
     readTime: "4 min read",
-    excerpt: "PhonePe MCP Server – UPI Payments Integration integration for automated workflows in India.",
-    keywords: ["phonepe-mcp-server-india", "India MCP", "MCP integration"],
+    excerpt: "PhonePe publishes its own official MCP server — but it's a read-only developer-documentation assistant for the PhonePe Payment Gateway, not a way to move real money through an AI client.",
+    keywords: ["phonepe-mcp-server-india", "PhonePe MCP", "India MCP", "MCP payments documentation"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
-    content: "<p>PhonePe MCP Server – UPI Payments Integration - detailed guide coming soon.</p>"
+    internalLinks: ["upi-mcp-server-india", "zomato-mcp-india", "what-is-mcp"],
+    content: `<p class="text-white/65 leading-relaxed">PhonePe publishes an official, open-source MCP server at <code class="bg-gray-800 px-1 py-0.5 rounded">phonepe/phonepe-pg-docs-mcp</code> on GitHub. The name is precise about what it is: a documentation and knowledge-base server for the PhonePe Payment Gateway (PG), aimed at developers integrating PhonePe PG — it is not a server that lets an AI assistant move money or initiate transactions on your behalf.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">What It Exposes: A Three-Tier Knowledge Base</h2>
+<p class="text-white/65 leading-relaxed">The server organizes documentation access into three tiers, each trading off speed for depth:</p>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li><strong class="text-white">Tier 1 — Instant (~0ms):</strong> a curated YAML knowledge base covering product features, FAQs, and error codes.</li>
+  <li><strong class="text-white">Tier 2 — Fast (~2ms):</strong> full-text search across 241 documentation sections using SQLite FTS5.</li>
+  <li><strong class="text-white">Tier 3 — Fallback (~1–2s):</strong> live web scraping from developer.phonepe.com when the first two tiers don't have an answer.</li>
+</ul>
+<p class="text-white/65 leading-relaxed">Ten tools sit on top of this, including <code class="bg-gray-800 px-1 py-0.5 rounded">ask_knowledge_base</code>, <code class="bg-gray-800 px-1 py-0.5 rounded">list_products</code>, <code class="bg-gray-800 px-1 py-0.5 rounded">get_feature_support</code>, <code class="bg-gray-800 px-1 py-0.5 rounded">get_error_code_info</code>, and <code class="bg-gray-800 px-1 py-0.5 rounded">search_docs</code>, plus endpoint and environment reference lookups.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Installing It</h2>
+<p class="text-white/65 leading-relaxed">The package is distributed on PyPI and installable either way:</p>
+<pre class="bg-gray-900 border border-gray-800 rounded p-3 text-xs overflow-x-auto"><code>uvx --from phonepe-pg-docs-mcp phonepe-pg-docs
+# or
+pip install phonepe-pg-docs-mcp</code></pre>
+<p class="text-white/65 leading-relaxed">Configure it in Claude Desktop, Cursor, GitHub Copilot, or Windsurf by pointing your client's MCP config at the installed server, then ask natural questions directly in your editor — "Does PhonePe support recurring payments?" or "What does error code X mean?" — without leaving your IDE to search docs manually.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">What It Is Not</h2>
+<p class="text-white/65 leading-relaxed">This is the important part: <strong class="text-white">no PhonePe credentials are required</strong>, because the server doesn't touch real payment infrastructure at all. It doesn't process transactions, doesn't handle merchant credentials, and doesn't initiate UPI transfers. It's purely a reference tool for the integration and debugging phase of building against PhonePe's real Payment Gateway API — the actual payment calls still go through your own direct integration with PhonePe PG, following their standard authentication and API flow.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Why This Distinction Matters</h2>
+<p class="text-white/65 leading-relaxed">It's easy to see "PhonePe" and "MCP server" in the same sentence and assume it means AI-initiated payments, especially given how <a href="/blog/zomato-mcp-india" class="text-cyan-300 hover:text-cyan-200">Zomato's MCP server</a> does handle real checkout. PhonePe's is a different category entirely — a documentation accelerator for engineers, not a payments API exposed to an LLM. If you need actual UPI payment initiation through an AI client, look at platform-specific servers that have built that capability deliberately (with the safeguards that requires), rather than assuming a docs server implies transaction capability.</p>`,
+    faqs: [
+      { question: "Can PhonePe's MCP server initiate a real payment?", answer: "No. It's a read-only documentation and knowledge-base server for developers integrating PhonePe Payment Gateway — it doesn't process transactions or require PhonePe credentials." },
+      { question: "Is this an official PhonePe project?", answer: "Yes — it's published under PhonePe's own GitHub organization (github.com/phonepe/phonepe-pg-docs-mcp)." },
+      { question: "How do I install it?", answer: "Via uvx (\`uvx --from phonepe-pg-docs-mcp phonepe-pg-docs\`) or pip (\`pip install phonepe-pg-docs-mcp\`), then configure it in Claude Desktop, Cursor, GitHub Copilot, or Windsurf." },
+      { question: "What does it actually search?", answer: "A tiered system: an instant YAML knowledge base, full-text search across 241 documentation sections, and a live-scraping fallback against developer.phonepe.com." }
+    ]
   },
   {
     slug: "google-pay-mcp-india",
@@ -5128,29 +5231,91 @@ app.listen(3000);</code></pre>
   },
   {
     slug: "zomato-mcp-india",
-    title: "Zomato MCP Server – Food Delivery",
-    date: "2026-07-20",
+    title: "Zomato MCP Server: Ordering Food Through Claude and ChatGPT",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "4 min read",
-    excerpt: "Zomato MCP Server – Food Delivery integration for automated workflows in India.",
-    keywords: ["zomato-mcp-india", "India MCP", "MCP integration"],
+    readTime: "5 min read",
+    excerpt: "Zomato shipped its own official MCP server in 2025, letting AI assistants search restaurants, browse menus, build a cart, and check out with a UPI QR code — all through natural language.",
+    keywords: ["zomato-mcp-india", "Zomato MCP", "India MCP", "MCP food ordering"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
-    content: "<p>Zomato MCP Server – Food Delivery - detailed guide coming soon.</p>"
+    internalLinks: ["swiggy-mcp-india", "upi-mcp-server-india", "what-is-mcp"],
+    content: `<p class="text-white/65 leading-relaxed">Zomato's MCP server is one of the few India-focused MCP integrations that's both official and genuinely transaction-capable — it doesn't just answer questions about restaurants, it can complete an order. Zomato launched the server in 2025 as a Node.js implementation of the Model Context Protocol that translates a conversational request into the same structured API calls Zomato's own apps use.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">What It Actually Does</h2>
+<p class="text-white/65 leading-relaxed">Zomato's MCP server exposes four real capability groups:</p>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li><strong class="text-white">Restaurant discovery</strong> — search by location, cuisine type, price tier, or rating.</li>
+  <li><strong class="text-white">Menu browsing</strong> — pull detailed menu items with descriptions, prices, and customization options.</li>
+  <li><strong class="text-white">Cart management</strong> — add, remove, and adjust items in an order before checkout.</li>
+  <li><strong class="text-white">Checkout and payment</strong> — place the order and generate a UPI QR code to complete payment.</li>
+</ul>
+<p class="text-white/65 leading-relaxed">That last capability is the notable part. Most brand-named MCP servers in this space are read-only (market data, documentation lookups); Zomato's is one of the few that closes the loop from "I'm hungry" to a paid, placed order, entirely through an AI chat interface.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Connecting to Claude, ChatGPT, and Others</h2>
+<p class="text-white/65 leading-relaxed">Setup differs slightly per client:</p>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li><strong class="text-white">Claude Desktop</strong> — add the Zomato MCP server entry to Claude's config file, then authenticate via OAuth the first time you use it.</li>
+  <li><strong class="text-white">ChatGPT</strong> — use OpenAI's official Connector framework, pointing it at the Zomato MCP server URL with the correct OAuth redirect URL configured.</li>
+  <li><strong class="text-white">Gemini CLI and VS Code</strong> — similar JSON-based configuration pointing at the same MCP server endpoint.</li>
+</ul>
+<p class="text-white/65 leading-relaxed">Zomato currently allow-lists specific OAuth redirect URLs, which in practice means the smoothest path is connecting through one of the standard, already-supported clients rather than a fully custom integration.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Why This Is a Useful Reference Case</h2>
+<p class="text-white/65 leading-relaxed">For anyone building their own India-facing MCP server, Zomato's is worth studying precisely because it goes past the read-only demo stage most brand integrations stop at. It handles real payment initiation (via UPI), real cart state across a multi-step conversation, and OAuth-gated access to a production consumer platform — the same class of problem covered in this site's <a href="/servers/stripe-mcp-server" class="text-cyan-300 hover:text-cyan-200">Stripe MCP guide</a> and the broader <a href="/blog/upi-mcp-server-india" class="text-cyan-300 hover:text-cyan-200">UPI MCP overview</a>.</p>`,
+    faqs: [
+      { question: "Is Zomato's MCP server official?", answer: "Yes. It was built and launched by Zomato itself in 2025, not a third-party wrapper." },
+      { question: "Can I actually complete an order through Claude or ChatGPT?", answer: "Yes — the server supports cart management and checkout, including generating a UPI QR code for payment, not just restaurant search." },
+      { question: "Which AI clients are supported?", answer: "Claude Desktop, ChatGPT (via OpenAI's Connector framework), Gemini CLI, and VS Code have documented setup paths." },
+      { question: "Do I need special approval to connect a custom app?", answer: "Zomato currently allow-lists specific OAuth redirect URLs, so integrations beyond the standard supported clients may need Zomato's sign-off." }
+    ]
   },
   {
     slug: "swiggy-mcp-india",
-    title: "Swiggy MCP Server – Food & Essentials",
-    date: "2026-07-20",
+    title: "Swiggy MCP: 3 Official Servers, 35 Tools, Food to Instamart to Dineout",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "4 min read",
-    excerpt: "Swiggy MCP Server – Food & Essentials integration for automated workflows in India.",
-    keywords: ["swiggy-mcp-india", "India MCP", "MCP integration"],
+    readTime: "5 min read",
+    excerpt: "Swiggy Builders Club exposes three separate official MCP servers — Food, Instamart, and Dineout — with 35 tools total, connectable from Claude, ChatGPT, Cursor, and VS Code.",
+    keywords: ["swiggy-mcp-india", "Swiggy MCP", "India MCP", "MCP quick commerce"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
-    content: "<p>Swiggy MCP Server – Food & Essentials - detailed guide coming soon.</p>"
+    internalLinks: ["zomato-mcp-india", "upi-mcp-server-india", "what-is-mcp"],
+    content: `<p class="text-white/65 leading-relaxed">Swiggy runs its official MCP integration through what it calls the <strong class="text-white">Swiggy Builders Club</strong> — and unlike most single-server brand integrations, Swiggy actually ships three independent MCP servers, one per business line, rather than one server trying to cover everything.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Three Servers, Not One</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li><strong class="text-white">Food</strong> (<code class="bg-gray-800 px-1 py-0.5 rounded">mcp.swiggy.com/food</code>) — 14 tools covering restaurant discovery, menus, ordering, and order tracking.</li>
+  <li><strong class="text-white">Instamart</strong> (<code class="bg-gray-800 px-1 py-0.5 rounded">mcp.swiggy.com/im</code>) — 13 tools for quick-commerce grocery shopping.</li>
+  <li><strong class="text-white">Dineout</strong> (<code class="bg-gray-800 px-1 py-0.5 rounded">mcp.swiggy.com/dineout</code>) — 8 tools for restaurant table reservations.</li>
+</ul>
+<p class="text-white/65 leading-relaxed">That's 35 tools total across the three servers — but they are deliberately siloed: carts, orders, and sessions are not shared between Food, Instamart, and Dineout. An AI agent talking to the Food server has no visibility into an Instamart cart, and vice versa.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Who It's Built For</h2>
+<p class="text-white/65 leading-relaxed">Swiggy's documentation names three real audiences:</p>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li>Agent developers building on OpenAI, Anthropic, LangGraph, or Vercel AI SDKs</li>
+  <li>Agent platform operators running things like voice assistants or in-app agents at scale</li>
+  <li>Individual users connecting Swiggy directly to Claude Desktop, ChatGPT, Cursor, or VS Code</li>
+</ul>
+<p class="text-white/65 leading-relaxed">Authentication is OAuth 2.1 with PKCE over standard JSON-RPC — a genuinely modern, spec-compliant setup rather than a bolted-on API key.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">The Honest Limitations</h2>
+<p class="text-white/65 leading-relaxed">Two real constraints are worth knowing before you build against this:</p>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li><strong class="text-white">India-only, for now.</strong> Access is currently restricted to India-based users.</li>
+  <li><strong class="text-white">Production access is gated.</strong> Moving beyond a personal/testing setup to production scale requires whitelist onboarding and a partner contract with Swiggy — this isn't an open, self-serve API key signup.</li>
+</ul>
+<p class="text-white/65 leading-relaxed">Separately, reporting from MediaNama has noted that ordering via ChatGPT on Swiggy hasn't always worked smoothly end-to-end in practice, particularly on the Instamart side, where grocery checkout has at times fallen back to the regular app rather than completing fully inside the AI chat. That's a useful reminder that "official MCP server exists" and "every flow works flawlessly through every AI client" are two different claims — worth testing directly before relying on it for anything production-critical.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Why Three Servers Instead of One</h2>
+<p class="text-white/65 leading-relaxed">Splitting Food, Instamart, and Dineout into separate MCP servers with separate tool sets and separate sessions is a deliberate architectural choice, and a reasonable one: it keeps each server's tool list small and specific rather than one bloated 35-tool server trying to do everything, and it means a client that only cares about restaurant reservations (Dineout) never has to reason about grocery-cart tools it'll never use.</p>`,
+    faqs: [
+      { question: "Is there one Swiggy MCP server or several?", answer: "Three separate official servers — Food, Instamart, and Dineout — with 35 tools combined, and no shared cart/session state between them." },
+      { question: "What authentication does Swiggy MCP use?", answer: "OAuth 2.1 with PKCE over standard JSON-RPC." },
+      { question: "Can I use Swiggy MCP outside India?", answer: "No — access is currently restricted to India-based users." },
+      { question: "Does every flow work end-to-end through AI chat?", answer: "Not always in practice — MediaNama has reported cases where Instamart grocery checkout via ChatGPT fell back to the regular app rather than completing in-chat, so it's worth testing your specific flow before depending on it." }
+    ]
   },
   {
     slug: "dunzo-mcp-india",

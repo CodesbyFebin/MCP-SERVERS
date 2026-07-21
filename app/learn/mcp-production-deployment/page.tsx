@@ -4,6 +4,7 @@ import { ArrowRight, BookOpen, ShieldCheck, Zap, Cloud, Server } from "lucide-re
 import Breadcrumbs from "../../../src/components/Breadcrumbs";
 import SchemaJsonLd from "../../../src/components/SchemaJsonLd";
 import { getUnifiedGraphSchema } from "../../../src/lib/schema";
+import { getContentDates } from "../../../src/lib/contentDates";
 
 export const metadata: Metadata = {
   title: "MCP Production Deployment Guide - Step-by-Step",
@@ -20,11 +21,13 @@ export const metadata: Metadata = {
 
 export default function McpProductionDeploymentPage() {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://www.mcpserver.in";
+  const dates = getContentDates("learn:mcp-production-deployment");
   
   const unifiedGraphSchema = getUnifiedGraphSchema({
     pageUrl: "/learn/mcp-production-deployment",
     title: "MCP Production Deployment Guide - Step-by-Step",
     description: "Complete guide to deploying MCP servers in production. Covering hosting, security, monitoring, scaling, and compliance for enterprise MCP deployments.",
+    speakable: ["#mcp-production-deployment-page"],
     breadcrumbs: [
       { name: "Learn", item: "/learn" },
       { name: "MCP Production Deployment", item: "/learn/mcp-production-deployment" }
@@ -34,8 +37,8 @@ export default function McpProductionDeploymentPage() {
       description: "Complete guide to deploying MCP servers in production. Covering hosting, security, monitoring, scaling, and compliance for enterprise MCP deployments.",
       authorName: "MCPserver.in Engineering",
       authorRole: "Infrastructure & Platform Team",
-      datePublished: "2026-07-20",
-      dateModified: "2026-07-20"
+      datePublished: dates.datePublished,
+      dateModified: dates.dateModified
     }
   });
 

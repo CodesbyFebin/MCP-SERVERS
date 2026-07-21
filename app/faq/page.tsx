@@ -62,6 +62,7 @@ export default function FaqPage() {
     pageUrl: "/faq",
     title: "MCPserver.in FAQ - Hosting, Security, Pricing and MCP Setup",
     description: "Answers to common MCPserver.in questions covering Model Context Protocol basics, managed hosting, security controls, pricing, and India-ready compliance.",
+    speakable: ["#faq-page"],
     breadcrumbs: [
       { name: "Home", item: "/" },
       { name: "FAQ", item: "/faq" }
