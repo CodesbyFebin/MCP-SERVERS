@@ -6470,4 +6470,204 @@ export const glossaryTerms: GlossaryTerm[] = [
       "https://docs.aws.amazon.com/dynamodb/"
     ]
   },
+  {
+    slug: "mcp-inspector",
+    term: "MCP Inspector",
+    definition: "The official interactive testing and debugging tool for MCP servers, run via npx @modelcontextprotocol/inspector, which connects to a server and lets a developer list and manually invoke its tools, resources, and prompts without needing a full AI client.",
+    detailedExplanation: "Before wiring a new MCP server into Claude Desktop, Cursor, or any other client, the Inspector is the standard way to verify it actually works: it launches the server (over stdio or by connecting to an HTTP/SSE endpoint), lists whatever tools/resources/prompts it declares, and provides a UI (or --cli flag for headless/scripted use) to call them directly and inspect the raw JSON-RPC responses. This makes it useful both for interactive development and as a CI smoke test - running it with --cli in a deploy pipeline to confirm tool registration didn't silently break is a common pattern.",
+    keyTakeaways: [
+      "Launched via npx @modelcontextprotocol/inspector - no separate installation needed for most workflows.",
+      "Works against both local stdio servers and remote HTTP/SSE endpoints.",
+      "The --cli flag enables headless, scriptable use - useful as an automated smoke test in a CI pipeline, not just interactive debugging."
+    ],
+    useCase: "Before adding a new server to claude_desktop_config.json, a developer runs npx @modelcontextprotocol/inspector node server.js to confirm its tools list correctly and that a sample tool call returns the expected result.",
+    technicalDetails: {
+      protocolLayer: "Development/testing tooling, official but external to the runtime protocol itself",
+      format: "Node.js CLI/web tool communicating over the same JSON-RPC transport as any MCP client",
+      latencyProfile: "Not applicable - a development-time tool, not a production runtime component"
+    },
+    references: [
+      "https://modelcontextprotocol.io/specification/"
+    ]
+  },
+  {
+    slug: "tool-annotations",
+    term: "Tool Annotations",
+    definition: "Optional metadata a server can attach to a tool definition describing its behavior to the client - the MCP spec explicitly requires clients to treat these as untrusted hints unless the server itself is trusted, since a malicious server could otherwise mislabel a destructive tool as safe.",
+    detailedExplanation: "A tool's definition can include an annotations field alongside its name, description, and inputSchema, giving the client additional context about how the tool behaves that isn't otherwise derivable from its schema alone. The MCP specification is explicit that annotations must be treated as untrusted unless they come from a trusted server - a client cannot safely assume a tool is actually read-only or non-destructive just because its annotations claim so, which matters directly for the human-in-the-loop confirmation UI clients are expected to show before risky tool calls.",
+    keyTakeaways: [
+      "Annotations are optional, additional metadata on a tool definition beyond name/description/inputSchema.",
+      "The spec explicitly warns clients to treat annotations as untrusted unless the server itself is trusted - they are hints, not guarantees.",
+      "This directly affects how much a client's confirmation UI can rely on annotations before a potentially destructive tool call."
+    ],
+    useCase: "A client's UI uses a tool's annotations to decide whether to show a lighter-weight confirmation versus a more prominent warning before executing it, while still not treating the annotation as a security guarantee from an untrusted server.",
+    technicalDetails: {
+      protocolLayer: "Application layer, part of the tool definition in the MCP specification",
+      format: "Optional JSON properties alongside a tool's name/description/inputSchema",
+      latencyProfile: "Not applicable - static metadata, not a runtime operation"
+    },
+    references: [
+      "https://modelcontextprotocol.io/specification/2025-06-18/server/tools"
+    ]
+  },
+  {
+    slug: "docker-mcp",
+    term: "Docker (MCP integration)",
+    definition: "A container runtime that an MCP server can wrap via the dockerode client library to let an AI agent list, start, and stop containers - typically restricted to specific images and resource limits rather than arbitrary container creation.",
+    detailedExplanation: "The dockerode Node.js client talks to the Docker daemon (over its Unix socket or a TCP endpoint) to list containers, inspect their state, and control their lifecycle. An MCP tool built on it should constrain what the model can actually do - restricting to specific approved images, setting memory/CPU limits on any container the tool starts, and avoiding exposing arbitrary docker run-equivalent flexibility, since letting a model construct arbitrary container configurations is a meaningfully larger attack surface than a fixed, narrow set of operations.",
+    keyTakeaways: [
+      "dockerode talks to the Docker daemon directly - via its Unix socket locally or a TCP endpoint remotely.",
+      "Restrict container creation to an approved set of images rather than accepting an arbitrary image name from the model.",
+      "Apply explicit memory/CPU limits on any container the tool starts, rather than inheriting the daemon's defaults."
+    ],
+    useCase: "An MCP tool lists running containers via docker.listContainers() and exposes a narrowly-scoped start/stop tool restricted to containers matching a specific label, rather than exposing full container lifecycle control.",
+    technicalDetails: {
+      protocolLayer: "Container runtime integration, external to the MCP spec itself",
+      format: "Docker Engine API via the dockerode Node.js client",
+      latencyProfile: "Milliseconds for most inspect/list operations; seconds for container start/stop"
+    },
+    references: [
+      "https://docs.docker.com/reference/api/engine/"
+    ]
+  },
+  {
+    slug: "kubernetes-mcp",
+    term: "Kubernetes (MCP integration)",
+    definition: "A container orchestration platform that an MCP server can query and manage through the official @kubernetes/client-node library, typically scoped to specific namespaces and read-heavy operations rather than open-ended cluster administration.",
+    detailedExplanation: "The @kubernetes/client-node package provides typed API clients (CoreV1Api for pods/services, AppsV1Api for deployments, and others) that mirror kubectl's own capabilities programmatically. An MCP integration should scope what it exposes carefully - listing pods or deployment status in a specific namespace is comparatively low-risk, while operations like scaling a deployment or deleting a pod are meaningfully higher-stakes and should be restricted via RBAC on the service account the tool authenticates as, not just by omission in the tool code.",
+    keyTakeaways: [
+      "@kubernetes/client-node mirrors kubectl's capabilities programmatically via typed API clients (CoreV1Api, AppsV1Api, etc.).",
+      "Scope operations to specific namespaces rather than cluster-wide access wherever the use case allows it.",
+      "Enforce restrictions at the RBAC/service-account level, not just by which methods the tool code happens to call - defense in depth."
+    ],
+    useCase: "An MCP tool uses CoreV1Api.listNamespacedPod to report pod status in a specific namespace, authenticating as a service account whose RBAC role grants only read access to that namespace.",
+    technicalDetails: {
+      protocolLayer: "Container orchestration integration, external to the MCP spec itself",
+      format: "Kubernetes API via the official @kubernetes/client-node library",
+      latencyProfile: "Milliseconds for most list/read operations against the API server"
+    },
+    references: [
+      "https://kubernetes.io/docs/concepts/overview/"
+    ]
+  },
+  {
+    slug: "pinecone-mcp",
+    term: "Pinecone (MCP vector search)",
+    definition: "A managed vector database queried through the official @pinecone-database/pinecone client, where an MCP tool typically exposes similarity search (query) against a fixed, allowlisted index rather than arbitrary index management.",
+    detailedExplanation: "Pinecone stores embeddings and serves approximate nearest-neighbor similarity search as a managed service, so an MCP integration is usually a thin wrapper: embed a query (via whatever embedding model the application already uses), call index.query() with that vector plus a topK count, and return the matched records. Index creation, deletion, and namespace management are administrative operations that should stay out of a model-facing tool, similar to how a database MCP tool keeps DDL operations out of its query surface.",
+    keyTakeaways: [
+      "A thin wrapper pattern is typical: embed the query text, then call index.query() with the resulting vector.",
+      "Index creation/deletion and namespace management are administrative and should be kept out of a model-facing tool.",
+      "topK (how many nearest matches to return) is the main cost/relevance lever, similar to a row LIMIT in a SQL tool."
+    ],
+    useCase: "An MCP tool embeds a natural-language query, calls index.query({ vector, topK: 5 }) against a fixed, pre-configured index, and returns the matched document IDs and scores.",
+    technicalDetails: {
+      protocolLayer: "Vector database integration, external to the MCP spec itself",
+      format: "REST/gRPC via the official @pinecone-database/pinecone client",
+      latencyProfile: "Tens of milliseconds for a typical similarity query"
+    },
+    references: [
+      "https://docs.pinecone.io/"
+    ]
+  },
+  {
+    slug: "weaviate-mcp",
+    term: "Weaviate (MCP vector search)",
+    definition: "An open-source vector database that can be self-hosted or used as a managed cloud service, queried via the weaviate-client package using GraphQL-based semantic search (nearText) or vector search (nearVector).",
+    detailedExplanation: "Weaviate distinguishes itself from some vector databases by supporting nearText queries directly - it can call out to a configured embedding model itself to convert query text into a vector server-side - as an alternative to nearVector, where the client supplies an already-computed embedding. An MCP tool typically exposes one search mode with a fixed collection/class name and a limit on returned results, keeping schema and collection management (creating or deleting classes) as a separate, non-model-facing concern.",
+    keyTakeaways: [
+      "Supports nearText (server-side embedding of query text) as an alternative to nearVector (client-supplied embedding).",
+      "Can be self-hosted or used as a managed cloud service - the MCP integration pattern is the same either way.",
+      "Keep collection/class management separate from the model-facing search tool, the same way DDL is kept separate from queries in a SQL tool."
+    ],
+    useCase: "An MCP tool calls a nearText query against a fixed collection with a result limit, letting Weaviate handle the text-to-vector embedding step server-side.",
+    technicalDetails: {
+      protocolLayer: "Vector database integration, external to the MCP spec itself",
+      format: "GraphQL API via the official weaviate-client package",
+      latencyProfile: "Tens of milliseconds for vector search; additional latency if nearText triggers server-side embedding"
+    },
+    references: [
+      "https://weaviate.io/developers/weaviate"
+    ]
+  },
+  {
+    slug: "chromadb-mcp",
+    term: "ChromaDB (MCP vector search)",
+    definition: "A lightweight, embeddable vector database queried via the chromadb npm client, well-suited to local development or smaller-scale MCP deployments compared to a fully managed service like Pinecone.",
+    detailedExplanation: "Chroma can run embedded in-process for local development or as a standalone server for shared use, with the same client API either way - collection.query() with either raw text (using Chroma's configured embedding function) or a pre-computed vector, returning the nearest matches. Its lighter operational footprint makes it a reasonable default for an MCP server that doesn't yet need a fully managed vector database, with a straightforward migration path to a managed service later if scale demands it.",
+    keyTakeaways: [
+      "Can run embedded in-process (no separate server) or as a standalone service, using the same client API either way.",
+      "Lower operational overhead than a managed service, making it a common default for local development or smaller deployments.",
+      "collection.query() accepts either raw text or a pre-computed embedding vector, depending on how the collection is configured."
+    ],
+    useCase: "A local MCP server embeds Chroma directly, calling collection.query({ queryTexts: [userQuery], nResults: 5 }) to retrieve semantically similar documents without a separate database process.",
+    technicalDetails: {
+      protocolLayer: "Vector database integration, external to the MCP spec itself",
+      format: "Client API (embedded or HTTP) via the official chromadb npm package",
+      latencyProfile: "Single-digit to tens of milliseconds for embedded use; comparable to other vector DBs over HTTP"
+    },
+    references: [
+      "https://docs.trychroma.com/"
+    ]
+  },
+  {
+    slug: "milvus-mcp",
+    term: "Milvus (MCP vector search)",
+    definition: "An open-source vector database built for large-scale similarity search, queried via the @zilliz/milvus2-sdk-node client, distinguished by support for multiple index types (e.g. IVF, HNSW) with different recall/speed tradeoffs.",
+    detailedExplanation: "Milvus is designed for larger-scale vector workloads than something like Chroma, and its index type choice - IVF-family indexes trade some recall for speed at large scale, while HNSW favors recall and query speed at higher memory cost - is a real tuning decision made when a collection is created, not something an MCP tool itself needs to reason about at query time. An MCP integration is typically a thin search wrapper over an already-configured collection, similar in shape to the Pinecone or Weaviate pattern.",
+    keyTakeaways: [
+      "Built for larger-scale vector search than something like Chroma, with multiple index type options (IVF, HNSW, and others).",
+      "Index type is a collection-creation-time tradeoff between recall, speed, and memory - not something the query-time MCP tool needs to manage.",
+      "The MCP integration pattern mirrors other vector databases: a thin search wrapper over an already-configured collection."
+    ],
+    useCase: "An MCP tool calls collection.search() with a query vector and topK against a Milvus collection already configured with an HNSW index for low-latency recall.",
+    technicalDetails: {
+      protocolLayer: "Vector database integration, external to the MCP spec itself",
+      format: "gRPC via the official @zilliz/milvus2-sdk-node client",
+      latencyProfile: "Milliseconds to tens of milliseconds, dependent on index type and collection size"
+    },
+    references: [
+      "https://milvus.io/docs"
+    ]
+  },
+  {
+    slug: "rabbitmq-mcp",
+    term: "RabbitMQ (MCP integration)",
+    definition: "A message broker queried or published to via the amqplib client library, letting an MCP tool check queue depth, publish a message, or read (without necessarily consuming) messages from a queue for an AI agent.",
+    detailedExplanation: "RabbitMQ implements AMQP, a protocol built around exchanges (which route messages) and queues (which hold them for consumers), and amqplib is the standard Node.js client for both publishing and consuming. An MCP tool built on it is typically narrow in scope - publishing a message to a specific, pre-configured exchange/routing key, or checking a queue's message count - rather than exposing general-purpose queue or exchange management, since letting a model declare or delete queues/exchanges is a much larger blast radius than a fixed publish/inspect surface.",
+    keyTakeaways: [
+      "AMQP's core concepts are exchanges (route messages) and queues (hold them for consumers) - distinct roles, not interchangeable terms.",
+      "amqplib is the standard Node.js client for both publishing and consuming messages.",
+      "Scope an MCP tool to a fixed exchange/routing key or queue-depth check, rather than exposing general queue/exchange management to the model."
+    ],
+    useCase: "An MCP tool publishes a structured message to a pre-configured exchange and routing key via amqplib, or reports the current message count on a specific queue without consuming from it.",
+    technicalDetails: {
+      protocolLayer: "Message broker integration, external to the MCP spec itself",
+      format: "AMQP 0-9-1 via the official amqplib Node.js client",
+      latencyProfile: "Single-digit milliseconds for publish; queue depth checks are similarly fast"
+    },
+    references: [
+      "https://www.rabbitmq.com/docs"
+    ]
+  },
+  {
+    slug: "kafka-mcp",
+    term: "Kafka (MCP integration)",
+    definition: "A distributed event-streaming platform queried or produced to via the kafkajs client library, where an MCP tool typically publishes to or reads recent messages from a specific, pre-configured topic rather than managing topics or consumer groups.",
+    detailedExplanation: "Kafka retains a durable, ordered log of messages per topic (partitioned for scale), which kafkajs exposes through separate producer and consumer APIs - producing is a straightforward send() call, while consuming involves subscribing to a topic and processing a stream of messages rather than a single request/response. An MCP tool is a poor fit for long-running stream consumption directly, so integrations typically either produce a single message on demand, or read a bounded, recent slice of a topic (e.g. the last N messages) rather than exposing an open-ended subscription through a request/response tool call.",
+    keyTakeaways: [
+      "kafkajs exposes separate producer and consumer APIs - producing a single message is a simple send(); consuming is inherently stream-oriented, not request/response.",
+      "An MCP tool call is a poor fit for long-running stream consumption directly - integrations typically produce single messages or read a bounded recent slice of a topic.",
+      "Topic and consumer-group management should stay administrative, similar to how index/table management stays separate from query tools elsewhere."
+    ],
+    useCase: "An MCP tool calls producer.send() to publish a single event to a pre-configured topic, or reads the most recent N messages from a topic's latest offset as a bounded, one-shot operation.",
+    technicalDetails: {
+      protocolLayer: "Event-streaming platform integration, external to the MCP spec itself",
+      format: "Kafka wire protocol via the official kafkajs Node.js client",
+      latencyProfile: "Single-digit milliseconds for a single produce; bounded reads depend on how many messages are requested"
+    },
+    references: [
+      "https://kafka.js.org/"
+    ]
+  },
 ];
