@@ -6,6 +6,13 @@ export const metadata: Metadata = {
     index: false,
     follow: false,
   },
+  alternates: {
+    canonical: "/register",
+    languages: {
+      "en-IN": "/register",
+      "en": "/register",
+    }
+  },
 };
 
 export default function RegisterPage() {

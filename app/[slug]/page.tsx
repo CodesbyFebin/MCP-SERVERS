@@ -24,6 +24,13 @@ export async function generateMetadata({ params }: PageProps) {
   return {
     title: `${pillar.title} - Model Context Protocol Hub`,
     description: pillar.shortAnswer,
+    alternates: {
+      canonical: `/${slug}`,
+      languages: {
+        "en-IN": `/${slug}`,
+        "en": `/${slug}`,
+      }
+    },
   };
 }
 

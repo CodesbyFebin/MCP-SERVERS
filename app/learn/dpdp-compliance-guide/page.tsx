@@ -11,6 +11,10 @@ export const metadata: Metadata = {
     "A practical educational checklist for aligning MCP server deployments with India's Digital Personal Data Protection Act (DPDP) 2023 — data localization, consent, and audit logging.",
   alternates: {
     canonical: "/learn/dpdp-compliance-guide",
+    languages: {
+    "en-IN": "/learn/dpdp-compliance-guide",
+    "en": "/learn/dpdp-compliance-guide",
+  },
   },
 };
 

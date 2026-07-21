@@ -11,6 +11,10 @@ export const metadata: Metadata = {
     "Run Hindi, Tamil, Telugu, Bengali, and other Indian-language NLP models locally with Ollama or Hugging Face Transformers, and expose them to AI agents through MCP.",
   alternates: {
     canonical: "/learn/indic-nlp-guide",
+    languages: {
+    "en-IN": "/learn/indic-nlp-guide",
+    "en": "/learn/indic-nlp-guide",
+  },
   },
 };
 

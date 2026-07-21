@@ -10,6 +10,10 @@ export const metadata: Metadata = {
     "Illustrative architecture estimates for MCP server latency and throughput when deploying from Indian cloud regions versus international ones.",
   alternates: {
     canonical: "/learn/india-mcp-benchmarks",
+    languages: {
+    "en-IN": "/learn/india-mcp-benchmarks",
+    "en": "/learn/india-mcp-benchmarks",
+  },
   },
 };
 

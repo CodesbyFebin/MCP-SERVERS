@@ -24,6 +24,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: `${topic.title} - Model Context Protocol Guide`,
     description: topic.shortAnswer,
+    alternates: {
+      canonical: `/topics/${slug}`,
+      languages: {
+        "en-IN": `/topics/${slug}`,
+        "en": `/topics/${slug}`,
+      }
+    },
   };
 }
 

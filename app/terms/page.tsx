@@ -5,6 +5,14 @@ import { Scale, ShieldCheck } from "lucide-react";
 export const metadata: Metadata = {
   title: "Terms of Service - MCPserver.in",
   description: "Read the service terms and acceptable usage rules for our managed Model Context Protocol hosting.",
+  alternates: {
+    canonical: "/terms",
+    languages: {
+      "en-IN": "/terms",
+      "en": "/terms",
+    }
+  },
+
 };
 
 export default function TermsPage() {

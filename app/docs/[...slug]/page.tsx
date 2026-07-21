@@ -8,6 +8,7 @@ import FAQ from "../../../src/components/FAQ";
 import SchemaJsonLd from "../../../src/components/SchemaJsonLd";
 import MermaidDiagram from "../../../src/components/MermaidDiagram";
 import { docsPages, findDocsPage, getDocsPath } from "../../../src/data/docs";
+import { getHowToSchema } from "../../../src/lib/schema";
 import { ArrowLeft, ArrowRight, BookOpen, CheckCircle2, ExternalLink } from "lucide-react";
 
 interface PageProps {
@@ -36,6 +37,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     keywords: page.targetKeywords,
     alternates: {
       canonical: `https://www.mcpserver.in${getDocsPath(page)}/`,
+      languages: {
+        "en-IN": `https://www.mcpserver.in${getDocsPath(page)}/`,
+        "en": `https://www.mcpserver.in${getDocsPath(page)}/`,
+      }
     },
   };
 }
@@ -82,6 +87,22 @@ function buildSchema(page: NonNullable<ReturnType<typeof findDocsPage>>) {
                 priceCurrency: "INR",
                 availability: "https://schema.org/InStock",
               },
+            },
+          ]
+        : []),
+      ...(page.schemaType === "HowTo"
+        ? [
+            {
+              "@type": "HowTo",
+              "@id": `${url}#howto`,
+              "name": page.title,
+              "description": page.description,
+              "step": page.sections.slice(0, 5).map((section, idx) => ({
+                "@type": "HowToStep",
+                "position": idx + 1,
+                "name": section.heading,
+                "text": section.body[0] || section.heading,
+              })),
             },
           ]
         : []),

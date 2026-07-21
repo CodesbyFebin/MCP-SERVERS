@@ -19,6 +19,14 @@ export const metadata: Metadata = {
   title: "MCPserver.in Learn - MCP Knowledge Hub & AI Infrastructure Guides",
   description:
     "Answers on Model Context Protocol hosting, latency, DPDP compliance, pricing in India, and enterprise MCP deployment strategies.",
+  alternates: {
+    canonical: "/learn",
+    languages: {
+      "en-IN": "/learn",
+      "en": "/learn",
+    }
+  },
+
 };
 
 const learnSections = [

@@ -10,6 +10,10 @@ export const metadata: Metadata = {
     "An illustrative example of a p50/p90/p99 latency dashboard across Mumbai, Bengaluru, secure gateway, and browser sandbox infrastructure — sample data, not live telemetry.",
   alternates: {
     canonical: "/p99",
+    languages: {
+    "en-IN": "/p99",
+    "en": "/p99",
+  },
   },
 };
 

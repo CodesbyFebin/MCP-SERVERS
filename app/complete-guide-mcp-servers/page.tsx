@@ -15,6 +15,10 @@ export const metadata: Metadata = {
     "Everything you need to know about Model Context Protocol: architecture, security, production deployment, platform support, integrations, and where MCP is headed in 2026. The pillar guide for every MCP server cluster on this site.",
   alternates: {
     canonical: "/complete-guide-mcp-servers",
+    languages: {
+    "en-IN": "/complete-guide-mcp-servers",
+    "en": "/complete-guide-mcp-servers",
+  },
   },
 };
 

@@ -13,6 +13,10 @@ export const metadata: Metadata = {
     "Explore MCP server categories for developer tools, databases, productivity workflows, finance systems, and enterprise AI agent infrastructure.",
   alternates: {
     canonical: "/categories",
+    languages: {
+    "en-IN": "/categories",
+    "en": "/categories",
+  },
   },
 };
 

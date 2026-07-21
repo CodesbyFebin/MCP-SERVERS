@@ -11,6 +11,10 @@ export const metadata: Metadata = {
     "Public API overview for MCPserver.in server discovery, categories, p99 latency stats, deployments, and secure MCP gateway access.",
   alternates: {
     canonical: "/api",
+    languages: {
+    "en-IN": "/api",
+    "en": "/api",
+  },
   },
 };
 

@@ -23,6 +23,13 @@ export async function generateMetadata({ params }: { params: BlogPostPageParams 
   return {
     title: `${post.title} | MCPserver.in Blog`,
     description: post.excerpt,
+    alternates: {
+      canonical: `/blog/${slug}`,
+      languages: {
+        "en-IN": `/blog/${slug}`,
+        "en": `/blog/${slug}`,
+      }
+    },
   };
 }
 

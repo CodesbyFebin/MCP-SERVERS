@@ -11,6 +11,10 @@ export const metadata: Metadata = {
     "Enterprise MCPserver.in capabilities for private deployments, RBAC, SAML/SSO, VPC peering, audit logs, DPDP reporting, and India data localization.",
   alternates: {
     canonical: "/enterprise",
+    languages: {
+    "en-IN": "/enterprise",
+    "en": "/enterprise",
+  },
   },
 };
 

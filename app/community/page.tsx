@@ -8,6 +8,14 @@ import { BarChart3, BookOpen } from "lucide-react";
 export const metadata: Metadata = {
   title: "MCP Community - Discussions, Polls, Code Sharing & Q&A",
   description: "Join the MCPserver.in community. Share code snippets, ask questions, vote on best practices, and discuss Model Context Protocol implementations.",
+  alternates: {
+    canonical: "/community",
+    languages: {
+      "en-IN": "/community",
+      "en": "/community",
+    }
+  },
+
 };
 
 const communitySections = [

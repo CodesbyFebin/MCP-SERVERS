@@ -43,8 +43,8 @@ export default function WhatIsMcpClient() {
     article: {
       title: title,
       description: shortAnswer,
-      authorName: "Dr. Devashish Sen",
-      authorRole: "Lead Systems & Protocol Architect, MCPserver India",
+      authorName: "MCPserver.in Engineering",
+      authorRole: "Platform Team",
       datePublished,
       dateModified
     }
@@ -420,8 +420,8 @@ export default function WhatIsMcpClient() {
 
             {/* Author Attribution */}
             <AuthorBox
-              authorName="Dr. Devashish Sen"
-              authorRole="Lead Systems & Protocol Architect, MCPserver India"
+              authorName="MCPserver.in Engineering"
+              authorRole="Platform Team"
               publishedDate={datePublished}
               updatedDate={dateModified}
               citations={[

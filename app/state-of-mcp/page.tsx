@@ -9,6 +9,14 @@ export const metadata: Metadata = {
   title: "State of MCP in India 2026 - Community Trends & Illustrative Estimates",
   description:
     "Community trends and illustrative examples for MCP adoption in India: regional considerations, tooling patterns, and sample cost comparisons for planning purposes.",
+  alternates: {
+    canonical: "/state-of-mcp",
+    languages: {
+      "en-IN": "/state-of-mcp",
+      "en": "/state-of-mcp",
+    }
+  },
+
 };
 
 const stats = [

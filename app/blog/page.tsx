@@ -13,6 +13,10 @@ export const metadata: Metadata = {
     "Read MCPserver.in updates, technical guides, and India-first AI infrastructure articles on MCP latency, DPDP, security, and hosted servers.",
   alternates: {
     canonical: "/blog",
+    languages: {
+    "en-IN": "/blog",
+    "en": "/blog",
+  },
   },
 };
 

@@ -5,6 +5,14 @@ import { ShieldAlert, Lock, Server, Users, FileText } from "lucide-react";
 export const metadata: Metadata = {
   title: "Security, Compliance & Trust - MCPserver.in",
   description: "Learn about secure hosting practices, credential handling, Docker sandboxes, and DPDP-aligned data handling for Model Context Protocol servers.",
+  alternates: {
+    canonical: "/security",
+    languages: {
+      "en-IN": "/security",
+      "en": "/security",
+    }
+  },
+
 };
 
 export default function Security() {

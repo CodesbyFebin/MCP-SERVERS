@@ -11,6 +11,10 @@ export const metadata: Metadata = {
     "Real, working MCP server examples for Indian SaaS and payment platforms — Razorpay and Zoho CRM — using the official SDKs and MCP TypeScript SDK.",
   alternates: {
     canonical: "/learn/india-services",
+    languages: {
+    "en-IN": "/learn/india-services",
+    "en": "/learn/india-services",
+  },
   },
 };
 

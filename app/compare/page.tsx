@@ -5,6 +5,14 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Compare MCP Server Integrations - Side-by-Side - MCPserver.in",
   description: "Select and compare two or more Model Context Protocol (MCP) server integrations side-by-side. Analyze auth methods, features, key use cases, and deployment options.",
+  alternates: {
+    canonical: "/compare",
+    languages: {
+      "en-IN": "/compare",
+      "en": "/compare",
+    }
+  },
+
 };
 
 export default function ComparePage() {

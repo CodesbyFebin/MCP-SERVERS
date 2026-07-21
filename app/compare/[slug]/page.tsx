@@ -39,6 +39,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return {
       title: `${comparison.title} - MCPserver.in`,
       description: comparison.shortAnswer,
+      alternates: {
+        canonical: `/compare/${slug}`,
+        languages: {
+          "en-IN": `/compare/${slug}`,
+          "en": `/compare/${slug}`,
+        }
+      },
     };
   }
 
@@ -52,6 +59,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         return {
           title: `Compare ${serverA.name} vs ${serverB.name} MCP Server Integration - MCPserver.in`,
           description: `Analyze and compare ${serverA.name} vs ${serverB.name} Model Context Protocol (MCP) integrations. View features, use cases, security controls, and authentication side-by-side.`,
+          alternates: {
+            canonical: `/compare/${slug}`,
+            languages: {
+              "en-IN": `/compare/${slug}`,
+              "en": `/compare/${slug}`,
+            }
+          },
         };
       }
     }
@@ -59,6 +73,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   return {
     title: "Comparison Not Found",
+    alternates: {
+      canonical: `/compare/${slug}`,
+      languages: {
+        "en-IN": `/compare/${slug}`,
+        "en": `/compare/${slug}`,
+      }
+    },
   };
 }
 

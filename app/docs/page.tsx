@@ -11,6 +11,10 @@ export const metadata: Metadata = {
   description: "Explore India-first MCP docs for setup, pricing, compliance, deployment, performance, monitoring, and glossary topics.",
   alternates: {
     canonical: "https://www.mcpserver.in/docs/",
+    languages: {
+    "en-IN": "/https://www.mcpserver.in/docs/",
+    "en": "/https://www.mcpserver.in/docs/",
+  },
   },
 };
 

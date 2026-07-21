@@ -6,6 +6,13 @@ export const metadata: Metadata = {
     index: false,
     follow: false,
   },
+  alternates: {
+    canonical: "/profile",
+    languages: {
+      "en-IN": "/profile",
+      "en": "/profile",
+    }
+  },
 };
 
 export default function ProfilePage() {

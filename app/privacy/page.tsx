@@ -5,6 +5,14 @@ import { Scale, ShieldCheck } from "lucide-react";
 export const metadata: Metadata = {
   title: "Privacy Policy - MCPserver.in",
   description: "Examine the privacy rules, encryption guarantees, and data collection standards for MCPserver.in.",
+  alternates: {
+    canonical: "/privacy",
+    languages: {
+      "en-IN": "/privacy",
+      "en": "/privacy",
+    }
+  },
+
 };
 
 export default function PrivacyPage() {

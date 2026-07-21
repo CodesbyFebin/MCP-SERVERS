@@ -1,0 +1,63 @@
+{
+  "version": "1.0",
+  "site": "MCPserver.in",
+  "description": "Model Context Protocol knowledge base for AI agents — India-first MCP hosting, documentation, server directory, and compliance guides.",
+  "url": "https://www.mcpserver.in",
+  "languages": ["en", "en-IN"],
+  "indexed_pages": [
+    "https://www.mcpserver.in/",
+    "https://www.mcpserver.in/docs",
+    "https://www.mcpserver.in/servers",
+    "https://www.mcpserver.in/mcp-server-directory",
+    "https://www.mcpserver.in/learn",
+    "https://www.mcpserver.in/security",
+    "https://www.mcpserver.in/pricing",
+    "https://www.mcpserver.in/blog",
+    "https://www.mcpserver.in/faq",
+    "https://www.mcpserver.in/glossary",
+    "https://www.mcpserver.in/compare",
+    "https://www.mcpserver.in/tools",
+    "https://www.mcpserver.in/state-of-mcp",
+    "https://www.mcpserver.in/llms.txt",
+    "https://www.mcpserver.in/llms-full.txt"
+  ],
+  "primary_topics": [
+    "Model Context Protocol",
+    "MCP servers",
+    "MCP hosting India",
+    "DPDP compliance",
+    "MCP security",
+    "MCP clients",
+    "MCP deployment",
+    "MCP monitoring",
+    "MCP integrations",
+    "JSON-RPC",
+    "Stdio transport",
+    "SSE transport"
+  ],
+  "entities": {
+    "organization": {
+      "@type": "Organization",
+      "name": "MCPserver.in",
+      "url": "https://www.mcpserver.in",
+      "email": "support@mcpserver.in",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Bengaluru",
+        "addressRegion": "Karnataka",
+        "addressCountry": "IN"
+      }
+    },
+    "web_application": {
+      "@type": "WebApplication",
+      "name": "MCPserver.in",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Cross-Platform"
+    }
+  },
+  "crawl_policy": {
+    "allow": ["/"],
+    "disallow": ["/api/", "/drafts/", "/login/", "/register/", "/profile/", "/dashboard/", "/admin/", "/search/"]
+  },
+  "last_updated": "2026-07-21T20:40:24+05:30"
+}

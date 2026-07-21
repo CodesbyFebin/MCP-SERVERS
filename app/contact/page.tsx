@@ -2,9 +2,9 @@
 
 import React, { useState } from "react";
 import Breadcrumbs from "../../src/components/Breadcrumbs";
-import { Mail, Building, Landmark, CheckCircle2 } from "lucide-react";
+import { Mail, CheckCircle2 } from "lucide-react";
 
-export default function AboutContactPage() {
+export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
 
@@ -15,58 +15,28 @@ export default function AboutContactPage() {
     }
   };
 
-  const breadcrumbSteps = [{ name: "About & Contact", href: "/contact" }];
+  const breadcrumbSteps = [{ name: "Contact", href: "/contact" }];
 
   return (
-    <div id="about-contact-page" className="min-h-screen bg-[#050508] text-white pt-6 pb-16 font-sans">
+    <div id="contact-page" className="min-h-screen bg-[#050508] text-white pt-6 pb-16 font-sans">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Breadcrumbs */}
         <Breadcrumbs items={breadcrumbSteps} />
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mt-6">
-          
-          {/* Left Column: About Info */}
-          <div className="lg:col-span-5 space-y-6">
-            <div>
-              <h1 className="text-2xl sm:text-3xl font-sans font-bold text-white tracking-tight">
-                About MCPserver
-              </h1>
-              <p className="mt-3 text-xs sm:text-sm text-gray-400 leading-relaxed">
-                MCPserver.in is an India-first Model Context Protocol integration and developer resource platform. 
-              </p>
-              <p className="mt-2 text-xs sm:text-sm text-gray-400 leading-relaxed">
-                Our mission is to help developer teams, AI startups, and enterprise engineers build secure connection layers that safely expose data assets and tools to LLM models.
-              </p>
-            </div>
+        <div className="mt-6">
+          <h1 className="text-2xl sm:text-3xl font-sans font-bold text-white tracking-tight">
+            Contact MCPserver
+          </h1>
+          <p className="mt-3 text-xs sm:text-sm text-gray-400 leading-relaxed max-w-2xl">
+            Have enterprise questions? Looking to request custom server builds or discuss hosting requirements? Fill out our form below.
+          </p>
 
-            {/* Platform Identification */}
-            <div className="p-4 rounded-xl bg-gray-900/20 border border-gray-900 space-y-3.5 text-xs text-gray-400">
-              <h3 className="font-bold text-white">Platform Information</h3>
-              
-              <div className="flex items-center gap-2">
-                <Building className="w-4 h-4 text-cyan-400" />
-                <span>Bengaluru, Karnataka, India</span>
-              </div>
-
-              <div className="flex items-center gap-2">
-                <Mail className="w-4 h-4 text-cyan-400" />
-                <span>support@mcpserver.in</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Right Column: Contact form */}
-          <div className="lg:col-span-7 bg-[#09090e] border border-gray-800 rounded-2xl p-6 sm:p-8">
-            <h2 className="text-lg font-sans font-bold text-white mb-2">Connect with our Solutions Team</h2>
-            <p className="text-xs text-gray-400 mb-6">Have enterprise questions? Looking to request custom server builds? Fill out our form below.</p>
-
+          <div className="mt-8 max-w-2xl">
             {submitted ? (
               <div className="p-6 rounded-xl bg-emerald-950/20 border border-emerald-900/40 text-center space-y-3">
                 <CheckCircle2 className="w-8 h-8 text-emerald-500 mx-auto" />
                 <h3 className="text-sm font-bold text-white">Message Transmitted Successfully!</h3>
                 <p className="text-xs text-gray-400 leading-relaxed">
-                  Thank you for connecting with us. An solutions engineer from our Bengaluru office will follow up with you shortly.
+                  Thank you for connecting with us. A solutions engineer from our Bengaluru office will follow up with you shortly.
                 </p>
                 <button
                   onClick={() => setSubmitted(false)}
@@ -125,7 +95,6 @@ export default function AboutContactPage() {
               </form>
             )}
           </div>
-
         </div>
 
       </div>

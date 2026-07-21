@@ -6,6 +6,13 @@ export const metadata: Metadata = {
     index: false,
     follow: false,
   },
+  alternates: {
+    canonical: "/login",
+    languages: {
+      "en-IN": "/login",
+      "en": "/login",
+    }
+  },
 };
 
 export default function LoginPage() {

@@ -7,6 +7,14 @@ import { getUnifiedGraphSchema } from "../../src/lib/schema";
 export const metadata: Metadata = {
   title: "Platform Status - MCPserver India",
   description: "How to check MCPserver.in service status and report an incident.",
+  alternates: {
+    canonical: "/status",
+    languages: {
+      "en-IN": "/status",
+      "en": "/status",
+    }
+  },
+
 };
 
 export default function StatusPage() {

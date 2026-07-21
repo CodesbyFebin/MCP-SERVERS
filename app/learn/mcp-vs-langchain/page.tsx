@@ -12,7 +12,14 @@ const description =
 
 export const metadata: Metadata = {
   title,
-  description,
+  description,  alternates: {
+    canonical: "/learn/mcp-vs-langchain",
+    languages: {
+      "en-IN": "/learn/mcp-vs-langchain",
+      "en": "/learn/mcp-vs-langchain",
+    }
+  },
+
 };
 
 const comparisonRows: [string, string, string][] = [

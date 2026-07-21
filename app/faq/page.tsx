@@ -10,6 +10,10 @@ export const metadata: Metadata = {
     "Answers to common MCPserver.in questions covering Model Context Protocol basics, managed hosting, security controls, pricing, and India-ready compliance.",
   alternates: {
     canonical: "/faq",
+    languages: {
+    "en-IN": "/faq",
+    "en": "/faq",
+  },
   },
 };
 

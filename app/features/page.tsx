@@ -10,6 +10,10 @@ export const metadata: Metadata = {
     "Explore MCPserver.in features for server discovery, managed hosting, zero-trust security, observability, India edge latency, and enterprise governance.",
   alternates: {
     canonical: "/features",
+    languages: {
+    "en-IN": "/features",
+    "en": "/features",
+  },
   },
 };
 

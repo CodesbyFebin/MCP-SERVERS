@@ -8,6 +8,14 @@ import { getUnifiedGraphSchema } from "../../../src/lib/schema";
 export const metadata: Metadata = {
   title: "MCP Production Deployment Guide - Step-by-Step",
   description: "Complete guide to deploying MCP servers in production. Covering hosting, security, monitoring, scaling, and compliance for enterprise MCP deployments.",
+  alternates: {
+    canonical: "/learn/mcp-production-deployment",
+    languages: {
+      "en-IN": "/learn/mcp-production-deployment",
+      "en": "/learn/mcp-production-deployment",
+    }
+  },
+
 };
 
 export default function McpProductionDeploymentPage() {

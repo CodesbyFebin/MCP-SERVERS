@@ -22,6 +22,13 @@ export async function generateMetadata({ params }: { params: ClusterPageParams }
   return {
     title: `${cluster.title} Blog Posts | MCPserver.in`,
     description: `All ${cluster.postCount} posts in the ${cluster.title} cluster.`,
+    alternates: {
+      canonical: `/blog/cluster/${slug}`,
+      languages: {
+        "en-IN": `/blog/cluster/${slug}`,
+        "en": `/blog/cluster/${slug}`,
+      }
+    },
   };
 }
 

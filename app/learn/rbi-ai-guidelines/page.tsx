@@ -13,7 +13,14 @@ const description =
 
 export const metadata: Metadata = {
   title,
-  description,
+  description,  alternates: {
+    canonical: "/learn/rbi-ai-guidelines",
+    languages: {
+      "en-IN": "/learn/rbi-ai-guidelines",
+      "en": "/learn/rbi-ai-guidelines",
+    }
+  },
+
 };
 
 const checklist = [

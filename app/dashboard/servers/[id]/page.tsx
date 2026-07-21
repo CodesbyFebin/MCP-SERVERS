@@ -1,4 +1,14 @@
 import { MicroBillingDashboard } from '../../../../src/components/dashboard/MicroBillingDashboard';
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Server Dashboard - MCPserver.in",
+  description: "Managed MCP server dashboard for deployments, logs, and health monitoring.",
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
 
 export default async function ServerDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id: serverId } = await params;

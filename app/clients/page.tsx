@@ -33,6 +33,14 @@ import {
 export const metadata: Metadata = {
   title: "MCP Clients - Trusted by Innovators",
   description: "See companies, client stories and industries using MCP SERVER to power AI agents at scale.",
+  alternates: {
+    canonical: "/clients",
+    languages: {
+      "en-IN": "/clients",
+      "en": "/clients",
+    }
+  },
+
 };
 
 export default function ClientsPage() {

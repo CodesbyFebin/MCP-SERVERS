@@ -21,6 +21,14 @@ import { ArrowRight, CheckCircle2, KeyRound, PlugZap, Settings2 } from "lucide-r
 export const metadata: Metadata = {
   title: "MCP Integrations - Connect Apps, APIs and Databases",
   description: "Browse MCP SERVER integrations for apps, APIs, databases, cloud platforms and developer tools.",
+  alternates: {
+    canonical: "/integrations",
+    languages: {
+      "en-IN": "/integrations",
+      "en": "/integrations",
+    }
+  },
+
 };
 
 export default function IntegrationsPage() {

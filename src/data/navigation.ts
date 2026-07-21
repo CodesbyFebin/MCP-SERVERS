@@ -16,20 +16,18 @@ export const headerNav: NavItem[] = [
 
 export const footerNav = {
   platform: [
-    { name: "MCP Servers Hub", href: "/mcp-server" },
+    { name: "MCP Servers", href: "/mcp-server-directory" },
     { name: "Directory", href: "/mcp-server-directory" },
-    { name: "Hosting Platform", href: "/mcp-server-hosting" },
-    { name: "Gateway Proxy", href: "/mcp-gateway" },
-    { name: "Pricing Plans", href: "/pricing" },
-    { name: "Uptime Status", href: "/security" }
+    { name: "Pricing", href: "/pricing" },
+    { name: "Status", href: "/status" }
   ],
   resources: [
     { name: "Developer Docs", href: "/docs" },
-    { name: "MCP Security Guide", href: "/mcp-security" },
+    { name: "Security", href: "/security" },
     { name: "What Is MCP?", href: "/what-is-mcp" },
-    { name: "How to Build MCP", href: "/topics/how-to-build-mcp-server" },
+    { name: "Production Deployment", href: "/learn/mcp-production-deployment" },
     { name: "Playground", href: "/tools/mcp-playground" },
-    { name: "Sitemap", href: "/sitemap.xml" }
+    { name: "Sitemap", href: "/sitemap" }
   ],
   company: [
     { name: "About Us", href: "/about" },
