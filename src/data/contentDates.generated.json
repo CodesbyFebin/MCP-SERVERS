@@ -1,0 +1,2409 @@
+{
+  "page:home": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-20"
+  },
+  "page:what-is-mcp": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-21"
+  },
+  "pillar:mcp-server": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "pillar:mcp-hosting": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "pillar:mcp-tutorial": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "pillar:mcp-tools": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "pillar:mcp-reddit": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "pillar:mcp-deployment": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-20"
+  },
+  "pillar:mcp-integration": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "pillar:mcp-claude": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "pillar:mcp-chatgpt": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "pillar:mcp-security": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "pillar:mcp-authentication": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "pillar:mcp-database": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "pillar:mcp-filesystem": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "pillar:mcp-vs-api": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "pillar:mcp-cursor": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "pillar:mcp-list": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "pillar:mcp-marketplace": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "pillar:mcp-docker": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "pillar:mcp-kubernetes": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "pillar:mcp-production": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "pillar:mcp-reddit-scraper": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "pillar:mcp-data-extraction": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "pillar:mcp-sentiment-analysis": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "pillar:mcp-server-monitoring": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "pillar:mcp-validator": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "pillar:mcp-python": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "pillar:mcp-typescript": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "pillar:mcp-india": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "pillar:mcp-dpdp": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "pillar:mcp-zerodha": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "pillar:mcp-grafana": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "pillar:mcp-agent": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "pillar:mcp-automation": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "pillar:mcp-workflow": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "pillar:mcp-enterprise": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "pillar:mcp-cloud": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "pillar:mcp-local": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "pillar:mcp-remote": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "pillar:mcp-api": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "pillar:mcp-protocol": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "pillar:mcp-client": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "pillar:mcp-config": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "pillar:mcp-install": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "pillar:mcp-setup": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "pillar:mcp-examples": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "pillar:mcp-boilerplate": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "pillar:mcp-testing": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "pillar:mcp-debugging": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "pillar:mcp-performance": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-20"
+  },
+  "pillar:mcp-scaling": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "pillar:what-is-mcp": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "pillar:official-mcp-servers": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "pillar:mcp-marketplaces": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "pillar:mcp-categories": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "pillar:mcp-clients": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "pillar:enterprise-mcp": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "pillar:mcp-development": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "pillar:mcp-installation": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "pillar:mcp-trends": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "pillar:__fileLastModified": {
+    "dateModified": "2026-07-20"
+  },
+  "server:github-mcp-server": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "server:gitlab-mcp-server": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "server:bitbucket-mcp-server": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "server:docker-mcp-server": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "server:kubernetes-mcp-server": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "server:vercel-mcp-server": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "server:cloudflare-mcp-server": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "server:sentry-mcp-server": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "server:postman-mcp-server": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "server:sonarqube-mcp-server": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "server:circleci-mcp-server": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "server:heroku-mcp-server": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "server:jenkins-mcp-server": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "server:gitbook-mcp-server": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "server:swagger-mcp-server": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "server:postgres-mcp-server": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "server:mysql-mcp-server": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "server:mongodb-mcp-server": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "server:sqlite-mcp-server": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "server:redis-mcp-server": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "server:supabase-mcp-server": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "server:firebase-mcp-server": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "server:pinecone-mcp-server": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "server:vector-database-mcp-server": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "server:cassandra-mcp-server": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "server:neo4j-mcp-server": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "server:dynamodb-mcp-server": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "server:clickhouse-mcp-server": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "server:elasticsearch-mcp-server": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "server:oracle-mcp-server": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "server:slack-mcp-server": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "server:gmail-mcp-server": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "server:google-calendar-mcp-server": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "server:google-drive-mcp-server": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "server:notion-mcp-server": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "server:jira-mcp-server": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "server:linear-mcp-server": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "server:trello-mcp-server": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "server:hubspot-mcp-server": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "server:salesforce-mcp-server": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "server:ms-teams-mcp-server": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "server:zoom-mcp-server": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "server:discord-mcp-server": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "server:figma-mcp-server": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "server:asana-mcp-server": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "server:stripe-mcp-server": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "server:razorpay-mcp-server": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "server:shopify-mcp-server": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "server:paypal-mcp-server": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "server:quickbooks-mcp-server": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "server:woocommerce-mcp-server": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "server:xero-mcp-server": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "server:chargebee-mcp-server": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "server:paddle-mcp-server": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "server:adyen-mcp-server": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-20"
+  },
+  "server:openai-mcp-server": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "server:anthropic-mcp-server": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "server:google-gemini-mcp-server": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "server:ollama-mcp-server": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "server:mistral-mcp-server": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "server:cohere-mcp-server": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "server:prometheus-mcp-server": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "server:grafana-mcp-server": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "server:datadog-mcp-server": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "server:newrelic-mcp-server": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "server:opentelemetry-mcp-server": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "server:aws-mcp-server": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "server:google-cloud-mcp-server": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "server:azure-mcp-server": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "server:digitalocean-mcp-server": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "server:linode-mcp-server": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "server:supabase-cloud-mcp-server": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "server:fly-io-mcp-server": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "server:railway-mcp-server": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "server:render-mcp-server": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "server:scaleway-mcp-server": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "server:__fileLastModified": {
+    "dateModified": "2026-07-20"
+  },
+  "glossary:model-context-protocol": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:json-rpc": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "glossary:stdio": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "glossary:sse": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-server": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "glossary:mcp-client": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "glossary:gateway": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "glossary:tool": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "glossary:resource": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "glossary:prompt": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "glossary:oauth": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "glossary:dpdp": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "glossary:ros": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "glossary:mcp-robot-control": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "glossary:ros2-mcp-bridge": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "glossary:simulation-mcp": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "glossary:hardware-abstraction-mcp": {
+    "datePublished": "2026-07-16",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:ollama-mcp": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:lm-studio-mcp": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:gpt4all-mcp": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:llamaindex-mcp": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:crewai-mcp": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:qdrant-mcp": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-systemd-service": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-pm2-process-manager": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:indic-language-mcp-server": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:streamable-http": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-sampling": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-roots": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-initialization": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-ping-pong": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-cancel": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-progress": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-logging": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-elicitation": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-tool-list-changed": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-resource-list-changed": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-resource-updated": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-prompt-list-changed": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-client-capabilities": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-server-capabilities": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-tool-result": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-tool-error": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-json-schema": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-uri-scheme": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-annotation": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-tool-input-schema": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-tool-output-schema": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-resource-contents": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-resource-template": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-prompt-argument": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-protocol-version": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-capability-negotiation": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-request-id": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-method": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-params": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-result": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-error": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-notification": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-feature-flags": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:large-language-model": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:transformer-architecture": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:token": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:embedding": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:vector-database": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:rag": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:fine-tuning": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:prompt-engineering": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:context-window": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:temperature": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:top-p-nucleus-sampling": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:few-shot-learning": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:zero-shot-learning": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:chain-of-thought": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:react": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:agent": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:tool-calling": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:hallucination": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:alignment": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:rlhf": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:guardrails": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:prompt-injection": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:system-prompt": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:model-context": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:inference": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:quantization": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:gguf": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:lora": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:semantic-search": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:hybrid-search": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:cosine-similarity": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:hnsw": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:tokenizer": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:bpe": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:multimodal-llm": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:vision-language-model": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:clip": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:whisper": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:tts": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:asr": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:llm-ops": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:model-serving": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:kv-cache": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:cve-management": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:input-validation": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:rate-limiting": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:encryption-in-transit": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:sla-monitoring": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-readiness-probe": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-langchain": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-autogen": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-autogpt": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-babyagi": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-dynamodb": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-bigquery": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-pinecone": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-weaviate": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-chromadb": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-milvus": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-qdrant": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-clickhouse": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-reddit-api": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-reddit-pipeline": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-reddit-sentiment": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-reddit-trends": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-cursor-editor": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-vscode": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-jetbrains": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-zed-editor": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-data-localization": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-rbi-guidelines": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-sebi-compliance": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-india-latency": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-soc-2": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-iso-27001": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-gdpr": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-ccpa": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-prometheus": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-grafana-dashboards": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-datadog": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-newrelic": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-gitlab": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-discord": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-teams": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-excel": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-indian-languages": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-hindi-support": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-tamil-support": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-telugu-support": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-bengali-support": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-india-government": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-india-banking": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-india-fintech": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-india-healthcare": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-india-education": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-india-ecommerce": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-agent-orchestration": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-agent-workflow": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-agent-tools": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-agent-memory": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-agent-planning": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-agent-reflection": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-agent-collaboration": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-agent-delegation": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-woocommerce": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-bigcommerce": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-hubspot": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-zendesk": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-intercom": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-freshdesk": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-versioning": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-discovery": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-timeout": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-retry-logic": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-graceful-shutdown": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-key-rotation": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-secrets-manager": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-hashicorp-vault": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-self-hosted": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-private-cloud": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-on-premise": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-p95-latency": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-alerting": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20"
+  },
+  "glossary:mcp-auto-scaling-0": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-container-registry-1": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-secret-management-2": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-dns-provider-3": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-cdn-service-4": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-message-broker-5": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-event-bus-6": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-task-queue-7": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-workflow-engine-8": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-cache-layer-9": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-search-engine-10": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-analytics-platform-11": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-monitoring-tool-12": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-logging-service-13": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-api-gateway-14": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-load-balancer-15": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-traffic-manager-16": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-rate-limiter-17": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-auth-provider-18": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-identity-service-19": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-file-storage-20": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-object-store-21": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-block-storage-22": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-database-service-23": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-nosql-db-24": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-document-store-25": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-key-value-store-26": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-graph-database-27": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-time-series-db-28": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-vector-store-29": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-ml-model-serving-30": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-data-pipeline-31": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-etl-tool-32": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-stream-processing-33": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-batch-processing-34": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-feature-store-35": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-model-registry-36": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-experiment-tracker-37": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-hyperparameter-tune-38": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-a-b-test-39": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-canary-deploy-40": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-blue-green-deploy-41": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-rolling-update-42": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-health-check-43": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-readiness-probe-44": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-liveness-probe-45": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-config-map-46": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-secret-store-47": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-certificate-manager-48": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-ssl-terminator-49": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-http-cache-50": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-edge-compute-51": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-serverless-func-52": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-function-orchestrator-53": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-job-scheduler-54": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-cron-service-55": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-backup-service-56": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-disaster-recovery-57": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-replication-service-58": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-sync-engine-59": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-data-migrator-60": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-schema-registry-61": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-message-router-62": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-event-processor-63": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-stream-aggregator-64": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-log-aggregator-65": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-metric-collector-66": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-trace-collector-67": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-alert-manager-68": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-notification-service-69": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-email-service-70": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-sms-gateway-71": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-push-notification-72": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-webhook-receiver-73": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-callback-handler-74": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-file-watcher-75": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-cron-trigger-76": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-web-scraper-77": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-api-client-78": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-graphql-gateway-79": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-grpc-proxy-80": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-http-proxy-81": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-tcp-proxy-82": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-udp-proxy-83": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-websocket-proxy-84": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-sse-gateway-85": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-websocket-server-86": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-socket-adapter-87": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-polling-service-88": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-subscription-manager-89": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-pubsub-system-90": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-message-queue-91": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-job-queue-92": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-task-runner-93": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-worker-pool-94": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-thread-pool-95": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-process-manager-96": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-process-monitor-97": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-process-restart-98": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-log-rotation-99": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-log-export-100": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-metric-export-101": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-trace-export-102": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-audit-logger-103": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-compliance-checker-104": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-security-scanner-105": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-vulnerability-scan-106": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-dependency-check-107": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-license-checker-108": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-policy-engine-109": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-rule-engine-110": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-state-machine-113": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-fact-checker-116": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-data-validator-117": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-schema-validator-118": {
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:prometheus-mcp": {
+    "datePublished": "2026-07-21",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:github-actions-mcp": {
+    "datePublished": "2026-07-21",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:bigquery-mcp": {
+    "datePublished": "2026-07-21",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:terraform-mcp": {
+    "datePublished": "2026-07-21",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:datadog-mcp": {
+    "datePublished": "2026-07-21",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:new-relic-mcp": {
+    "datePublished": "2026-07-21",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:splunk-mcp": {
+    "datePublished": "2026-07-21",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:clickhouse-mcp": {
+    "datePublished": "2026-07-21",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:snowflake-mcp": {
+    "datePublished": "2026-07-21",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:elasticsearch-mcp": {
+    "datePublished": "2026-07-21",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:supabase-mcp": {
+    "datePublished": "2026-07-21",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:dynamodb-mcp": {
+    "datePublished": "2026-07-21",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:mcp-inspector": {
+    "datePublished": "2026-07-21",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:tool-annotations": {
+    "datePublished": "2026-07-21",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:docker-mcp": {
+    "datePublished": "2026-07-21",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:kubernetes-mcp": {
+    "datePublished": "2026-07-21",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:pinecone-mcp": {
+    "datePublished": "2026-07-21",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:weaviate-mcp": {
+    "datePublished": "2026-07-21",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:chromadb-mcp": {
+    "datePublished": "2026-07-21",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:milvus-mcp": {
+    "datePublished": "2026-07-21",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:rabbitmq-mcp": {
+    "datePublished": "2026-07-21",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:kafka-mcp": {
+    "datePublished": "2026-07-21",
+    "dateModified": "2026-07-21"
+  },
+  "glossary:__fileLastModified": {
+    "dateModified": "2026-07-21"
+  },
+  "topic:what-is-mcp": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-19"
+  },
+  "topic:mcp-architecture": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-19"
+  },
+  "topic:mcp-vs-api": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-19"
+  },
+  "topic:mcp-vs-a2a": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "topic:mcp-clients": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "topic:how-mcp-works": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-19"
+  },
+  "topic:official-mcp-servers": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-19"
+  },
+  "topic:official-mcp-integrations": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "topic:mcp-steering-group": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "topic:mcp-marketplaces": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "topic:smithery-mcp": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "topic:glama-mcp": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "topic:mcpso-mcp": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "topic:pulsemcp": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "topic:github-mcp-registry": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "topic:docker-mcp-catalog": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "topic:awesome-mcp-registries": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "topic:archestra-mcp-catalog": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "topic:mcp-categories-guide": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "topic:mcp-developer-tools": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "topic:mcp-database-analytics": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "topic:mcp-design-tools": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "topic:mcp-cloud-infrastructure": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "topic:mcp-browser-automation": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "topic:mcp-knowledge-management": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "topic:mcp-vs-rest-api": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "topic:mcp-task-based-vs-resource-based": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "topic:mcp-as-control-layer": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "topic:mcp-claude-desktop": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "topic:mcp-vscode": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "topic:mcp-cursor": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "topic:mcp-github-copilot": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "topic:mcp-azure-ai": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "topic:servicenow-mcp": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "topic:powerbi-mcp": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "topic:azure-mcp-hosting": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "topic:aws-mcp-hosting": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "topic:salesforce-mcp": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "topic:sap-mcp": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "topic:workday-mcp": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "topic:mcp-local-server": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "topic:mcp-remote-server": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "topic:mcp-docker-hosting": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "topic:free-mcp-hosting": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "topic:azure-mcp-hosting-options": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "topic:aws-mcp-hosting-options": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "topic:mcp-security-best-practices": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "topic:mcp-authentication": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-19"
+  },
+  "topic:mcp-least-privilege": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "topic:mcp-credential-management": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "topic:mcp-containerization": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "topic:mcp-logging-monitoring": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "topic:mcp-security-checklist": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "topic:build-mcp-server": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-19"
+  },
+  "topic:mcp-sdk": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "topic:mcp-tools-definition": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "topic:mcp-transport": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "topic:mcp-server-examples": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "topic:mcp-server-testing": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "topic:install-mcp-server": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "topic:smithery-cli": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "topic:mcp-forge": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "topic:mcp-bin": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "topic:mcp-manual-configuration": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "topic:mcp-ecosystem-growth": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "topic:top-mcp-servers-developers": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "topic:free-vs-paid-mcp-servers": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "topic:remote-mcp-trends": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "topic:mcp-monetization": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "topic:mcp-directory-listing": {
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19"
+  },
+  "topic:__fileLastModified": {
+    "dateModified": "2026-07-20"
+  },
+  "docs:getting-started/what-is-mcp": {
+    "datePublished": "2026-07-16",
+    "dateModified": "2026-07-21"
+  },
+  "docs:getting-started/quickstart": {
+    "datePublished": "2026-07-21",
+    "dateModified": "2026-07-21"
+  },
+  "docs:getting-started/local-installation": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "docs:getting-started/claude-cursor-config": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "docs:getting-started/managed-edge-hosting": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "docs:protocol/tools": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "docs:protocol/resources": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "docs:protocol/prompts": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "docs:protocol/events": {
+    "datePublished": "2026-07-16",
+    "dateModified": "2026-07-21"
+  },
+  "docs:protocol/transports": {
+    "datePublished": "2026-07-21",
+    "dateModified": "2026-07-21"
+  },
+  "docs:pricing/india-pricing-comparison": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "docs:pricing/free-vs-paid": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "docs:pricing/hidden-costs": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "docs:pricing/enterprise-pricing": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "docs:performance/latency-benchmarks-india": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "docs:performance/bengaluru-vs-mumbai": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "docs:performance/global-vs-india": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "docs:performance/optimization-guide": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "docs:compliance/dpdp-compliance-guide": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "docs:compliance/dpdp-checklist": {
+    "datePublished": "2026-07-16",
+    "dateModified": "2026-07-21"
+  },
+  "docs:compliance/rbi-compliance": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "docs:compliance/security-best-practices": {
+    "datePublished": "2026-07-16",
+    "dateModified": "2026-07-21"
+  },
+  "docs:comparisons/mcp-vs-rest-2026": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "docs:comparisons/mcp-vs-graphql": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "docs:comparisons/mcp-vs-api-gateway": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "docs:comparisons/when-to-use-mcp": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "docs:deployment/railway-deployment": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "docs:deployment/aws-ec2-deployment": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "docs:deployment/google-cloud-run": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "docs:deployment/vercel-deployment": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "docs:deployment/kubernetes-deployment": {
+    "datePublished": "2026-07-16",
+    "dateModified": "2026-07-21"
+  },
+  "docs:industry/startups": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "docs:industry/fintech": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "docs:industry/ecommerce": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "docs:industry/government": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "docs:industry/healthcare": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "docs:industry/education": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "docs:monitoring": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "docs:monitoring/grafana-dashboard": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "docs:monitoring/mcp-pulse-guide": {
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15"
+  },
+  "docs:monitoring/observability-best-practices": {
+    "datePublished": "2026-07-16",
+    "dateModified": "2026-07-21"
+  },
+  "docs:troubleshooting/common-issues": {
+    "datePublished": "2026-07-21",
+    "dateModified": "2026-07-21"
+  },
+  "docs:advanced/multi-agent-orchestration": {
+    "datePublished": "2026-07-21",
+    "dateModified": "2026-07-21"
+  },
+  "docs:advanced/streaming": {
+    "datePublished": "2026-07-21",
+    "dateModified": "2026-07-21"
+  },
+  "docs:development/testing-strategies": {
+    "datePublished": "2026-07-21",
+    "dateModified": "2026-07-21"
+  },
+  "docs:development/error-handling": {
+    "datePublished": "2026-07-21",
+    "dateModified": "2026-07-21"
+  },
+  "docs:compliance/rate-limiting": {
+    "datePublished": "2026-07-21",
+    "dateModified": "2026-07-21"
+  },
+  "docs:protocol/webhooks": {
+    "datePublished": "2026-07-21",
+    "dateModified": "2026-07-21"
+  },
+  "docs:pricing/cost-optimization": {
+    "datePublished": "2026-07-21",
+    "dateModified": "2026-07-21"
+  },
+  "docs:compliance/output-sanitization": {
+    "datePublished": "2026-07-21",
+    "dateModified": "2026-07-21"
+  },
+  "docs:compliance/secret-management": {
+    "datePublished": "2026-07-21",
+    "dateModified": "2026-07-21"
+  },
+  "docs:compliance/audit-logging": {
+    "datePublished": "2026-07-21",
+    "dateModified": "2026-07-21"
+  },
+  "docs:development/publishing": {
+    "datePublished": "2026-07-21",
+    "dateModified": "2026-07-21"
+  },
+  "docs:internationalization/multi-language-support": {
+    "datePublished": "2026-07-21",
+    "dateModified": "2026-07-21"
+  },
+  "docs:industry/upi-integration": {
+    "datePublished": "2026-07-21",
+    "dateModified": "2026-07-21"
+  },
+  "docs:industry/gst-integration": {
+    "datePublished": "2026-07-21",
+    "dateModified": "2026-07-21"
+  },
+  "docs:industry/aadhaar-verification": {
+    "datePublished": "2026-07-21",
+    "dateModified": "2026-07-21"
+  },
+  "docs:protocol/json-rpc": {
+    "datePublished": "2026-07-21",
+    "dateModified": "2026-07-21"
+  },
+  "docs:protocol/lifecycle": {
+    "datePublished": "2026-07-21",
+    "dateModified": "2026-07-21"
+  },
+  "docs:monitoring/prometheus-metrics": {
+    "datePublished": "2026-07-21",
+    "dateModified": "2026-07-21"
+  },
+  "docs:deployment/github-actions-cicd": {
+    "datePublished": "2026-07-21",
+    "dateModified": "2026-07-21"
+  },
+  "docs:development/bigquery-integration": {
+    "datePublished": "2026-07-21",
+    "dateModified": "2026-07-21"
+  },
+  "docs:deployment/terraform-infrastructure": {
+    "datePublished": "2026-07-21",
+    "dateModified": "2026-07-21"
+  },
+  "docs:monitoring/datadog-integration": {
+    "datePublished": "2026-07-21",
+    "dateModified": "2026-07-21"
+  },
+  "docs:monitoring/newrelic-integration": {
+    "datePublished": "2026-07-21",
+    "dateModified": "2026-07-21"
+  },
+  "docs:monitoring/splunk-search": {
+    "datePublished": "2026-07-21",
+    "dateModified": "2026-07-21"
+  },
+  "docs:development/clickhouse-integration": {
+    "datePublished": "2026-07-21",
+    "dateModified": "2026-07-21"
+  },
+  "docs:development/snowflake-integration": {
+    "datePublished": "2026-07-21",
+    "dateModified": "2026-07-21"
+  },
+  "docs:development/elasticsearch-integration": {
+    "datePublished": "2026-07-21",
+    "dateModified": "2026-07-21"
+  },
+  "docs:development/supabase-integration": {
+    "datePublished": "2026-07-21",
+    "dateModified": "2026-07-21"
+  },
+  "docs:development/dynamodb-integration": {
+    "datePublished": "2026-07-21",
+    "dateModified": "2026-07-21"
+  },
+  "docs:__fileLastModified": {
+    "dateModified": "2026-07-21"
+  }
+}

@@ -5,6 +5,7 @@ import { useTheme } from "./ThemeAndAuthProvider";
 import { getFaqsForPage } from "../data/faqs";
 import { getRelatedLinks } from "../lib/internalLinks";
 import { getUnifiedGraphSchema } from "../lib/schema";
+import { getContentDates } from "../lib/contentDates";
 import Breadcrumbs from "./Breadcrumbs";
 import FAQ from "./FAQ";
 import SchemaJsonLd from "./SchemaJsonLd";
@@ -37,6 +38,7 @@ export default function TopicPageTemplate({
   const { theme } = useTheme();
   const faqs = getFaqsForPage(slug);
   const relatedLinks = getRelatedLinks(slug, "topic");
+  const { datePublished, dateModified } = getContentDates(`topic:${slug}`);
 
   const breadcrumbSteps = [
     { name: "Pillars Hub", href: `/${pillar}` },
@@ -54,8 +56,8 @@ export default function TopicPageTemplate({
       description: shortAnswer,
       authorName: "MCPserver.in Engineering",
       authorRole: "Platform Team",
-      datePublished: "2026-04-18",
-      dateModified: "2026-07-09"
+      datePublished,
+      dateModified
     }
   });
 
@@ -228,8 +230,8 @@ export default function TopicPageTemplate({
           <AuthorBox
             authorName="MCPserver.in Engineering"
             authorRole="Platform Team"
-            publishedDate="2026-04-18"
-            updatedDate="2026-07-09"
+            publishedDate={datePublished}
+            updatedDate={dateModified}
             citations={[
               { label: "Anthropic Model Context Protocol SDK Reference", url: "https://spec.modelcontextprotocol.io" },
               { label: "Standard JSON-RPC 2.0 Specification", url: "https://www.jsonrpc.org/specification" }

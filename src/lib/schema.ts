@@ -208,6 +208,7 @@ export interface UnifiedGraphOptions {
   };
   mentions?: { name: string; url?: string }[];
   sameAs?: string[];
+  itemList?: { name: string; url: string; description?: string }[];
 }
 
 /**
@@ -362,6 +363,25 @@ export function getUnifiedGraphSchema(options: UnifiedGraphOptions) {
       }))
     };
     graph.push(faqEntity);
+  }
+
+  // 8. ItemList mapping (for directory/collection pages)
+  if (options.itemList && options.itemList.length > 0) {
+    const itemListEntity = {
+      "@type": "ItemList",
+      "@id": `${fullPageUrl}#itemlist`,
+      "isPartOf": {
+        "@id": `${fullPageUrl}#webpage`
+      },
+      "itemListElement": options.itemList.map((entry, idx) => ({
+        "@type": "ListItem",
+        "position": idx + 1,
+        "name": entry.name,
+        "url": entry.url.startsWith("http") ? entry.url : `${siteConfig.url}${entry.url}`,
+        ...(entry.description && { description: entry.description })
+      }))
+    };
+    graph.push(itemListEntity);
   }
 
   return {

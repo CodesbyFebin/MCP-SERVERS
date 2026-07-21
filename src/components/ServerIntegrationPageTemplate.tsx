@@ -5,6 +5,7 @@ import { useTheme } from "./ThemeAndAuthProvider";
 import { getFaqsForPage } from "../data/faqs";
 import { getRelatedLinks } from "../lib/internalLinks";
 import { getUnifiedGraphSchema } from "../lib/schema";
+import { getContentDates } from "../lib/contentDates";
 import Breadcrumbs from "./Breadcrumbs";
 import FAQ from "./FAQ";
 import SchemaJsonLd from "./SchemaJsonLd";
@@ -37,6 +38,7 @@ export default function ServerIntegrationPageTemplate({
   const { theme } = useTheme();
   const faqs = getFaqsForPage(slug);
   const relatedLinks = getRelatedLinks(slug, "server");
+  const { datePublished, dateModified } = getContentDates(`server:${slug}`);
 
   const breadcrumbSteps = [
     { name: "Directory", href: "/mcp-server-directory" },
@@ -206,8 +208,8 @@ export default function ServerIntegrationPageTemplate({
             <AuthorBox
               authorName="MCPserver.in Engineering"
               authorRole="Platform Team"
-              publishedDate="2026-03-12"
-              updatedDate="2026-07-09"
+              publishedDate={datePublished}
+              updatedDate={dateModified}
               citations={[
                 { label: "Model Context Protocol Specification v1.0", url: "https://spec.modelcontextprotocol.io" },
                 { label: `Verified ${name} Connector GitHub Repository`, url: `https://github.com/modelcontextprotocol/servers/tree/main/src/${slug.replace("-mcp-server", "")}` }

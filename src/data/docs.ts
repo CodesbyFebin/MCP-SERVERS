@@ -1,3 +1,5 @@
+import { getContentDates } from "../lib/contentDates";
+
 export interface DocsFaq {
   question: string;
   answer: string;
@@ -44,9 +46,6 @@ export interface DocsCluster {
   answer: string;
   links: string[];
 }
-
-const publishedAt = "2026-07-19";
-const modifiedAt = "2026-07-19";
 
 const officialCitations = {
   mcp: "https://modelcontextprotocol.io/specification/",
@@ -104,7 +103,8 @@ function table(headers: string[], rows: string[][]): DocsTable {
 }
 
 function page(input: Omit<DocsPage, "publishedAt" | "modifiedAt">): DocsPage {
-  return { ...input, publishedAt, modifiedAt };
+  const dates = getContentDates(`docs:${input.slug.join("/")}`, "docs:__fileLastModified");
+  return { ...input, publishedAt: dates.datePublished, modifiedAt: dates.dateModified };
 }
 
 export const docsClusters: DocsCluster[] = [

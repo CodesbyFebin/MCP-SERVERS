@@ -9,6 +9,7 @@ import { topics } from "../data/topics";
 import { servers } from "../data/servers";
 import { glossaryTerms } from "../data/glossary";
 import { pillarDeepContent } from "../data/pillarDeepContent";
+import { getContentDates } from "../lib/contentDates";
 import Breadcrumbs from "./Breadcrumbs";
 import FAQ from "./FAQ";
 import SchemaJsonLd from "./SchemaJsonLd";
@@ -40,6 +41,7 @@ export default function PillarPageTemplate({
   const { theme } = useTheme();
   const faqs = getFaqsForPage(slug);
   const relatedLinks = getRelatedLinks(slug, "pillar");
+  const { datePublished, dateModified } = getContentDates(`pillar:${slug}`);
 
   const breadcrumbSteps = [{ name: title, href: `/${slug}` }];
   
@@ -54,8 +56,8 @@ export default function PillarPageTemplate({
       description: shortAnswer,
       authorName: "MCPserver.in Engineering",
       authorRole: "Platform Team",
-      datePublished: "2025-11-05",
-      dateModified: "2026-07-09"
+      datePublished,
+      dateModified
     },
     mentions: [
       { name: "Model Context Protocol", url: "https://spec.modelcontextprotocol.io" },
@@ -471,8 +473,8 @@ export default function PillarPageTemplate({
             <AuthorBox
               authorName="MCPserver.in Engineering"
               authorRole="Platform Team"
-              publishedDate="2025-11-05"
-              updatedDate="2026-07-09"
+              publishedDate={datePublished}
+              updatedDate={dateModified}
               citations={[
                 { label: "Model Context Protocol Specification v1.0", url: "https://spec.modelcontextprotocol.io" },
                 { label: "Anthropic MCP Core Specification GitHub Docs", url: "https://github.com/modelcontextprotocol" }

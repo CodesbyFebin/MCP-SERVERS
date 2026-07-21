@@ -8,6 +8,7 @@ import { servers } from "../../src/data/servers";
 import { getFaqsForPage } from "../../src/data/faqs";
 import { getRelatedLinks } from "../../src/lib/internalLinks";
 import { getUnifiedGraphSchema } from "../../src/lib/schema";
+import { getContentDates } from "../../src/lib/contentDates";
 import Breadcrumbs from "../../src/components/Breadcrumbs";
 import FAQ from "../../src/components/FAQ";
 import SchemaJsonLd from "../../src/components/SchemaJsonLd";
@@ -29,6 +30,7 @@ export default function WhatIsMcpClient() {
 
   const faqs = getFaqsForPage(slug);
   const relatedLinks = getRelatedLinks(slug, "pillar");
+  const { datePublished, dateModified } = getContentDates("page:what-is-mcp");
 
   const breadcrumbSteps = [{ name: "What Is MCP?", href: `/${slug}` }];
   
@@ -43,8 +45,8 @@ export default function WhatIsMcpClient() {
       description: shortAnswer,
       authorName: "Dr. Devashish Sen",
       authorRole: "Lead Systems & Protocol Architect, MCPserver India",
-      datePublished: "2025-11-05",
-      dateModified: "2026-07-20"
+      datePublished,
+      dateModified
     }
   });
 
@@ -420,8 +422,8 @@ export default function WhatIsMcpClient() {
             <AuthorBox
               authorName="Dr. Devashish Sen"
               authorRole="Lead Systems & Protocol Architect, MCPserver India"
-              publishedDate="2025-11-05"
-              updatedDate="2026-07-20"
+              publishedDate={datePublished}
+              updatedDate={dateModified}
               citations={[
                 { label: "Model Context Protocol Specification v1.0", url: "https://spec.modelcontextprotocol.io" },
                 { label: "Anthropic MCP Core Specification GitHub Docs", url: "https://github.com/modelcontextprotocol" }

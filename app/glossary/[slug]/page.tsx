@@ -6,6 +6,7 @@ import AnswerBox from "../../../src/components/AnswerBox";
 import AuthorBox from "../../../src/components/AuthorBox";
 import SchemaJsonLd from "../../../src/components/SchemaJsonLd";
 import { getFAQSchema } from "../../../src/lib/schema";
+import { getContentDates } from "../../../src/lib/contentDates";
 import { notFound } from "next/navigation";
 import { 
   ArrowLeft, Tag, Info, Cpu, FileText, Quote
@@ -32,6 +33,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: `${term.term} - MCP Glossary Definition - MCPserver.in`,
     description: term.definition,
+    alternates: {
+      canonical: `/glossary/${slug}`,
+      languages: {
+        "en-IN": `/glossary/${slug}`,
+        "en": `/glossary/${slug}`,
+      }
+    },
   };
 }
 
@@ -47,6 +55,8 @@ export default async function GlossaryDetailPage({ params }: PageProps) {
     { name: "Glossary", href: "/glossary" },
     { name: term.term, href: `/glossary/${term.slug}` }
   ];
+
+  const { datePublished, dateModified } = getContentDates(`glossary:${term.slug}`);
 
   const termSchema = {
     "@context": "https://schema.org",
@@ -101,8 +111,8 @@ export default async function GlossaryDetailPage({ params }: PageProps) {
       "name": "MCPserver.in Engineering",
       "url": "https://mcpserver.in"
     },
-    "datePublished": "2026-03-24",
-    "dateModified": "2026-07-09",
+    "datePublished": datePublished,
+    "dateModified": dateModified,
     "citation": [
       ...term.references.map(ref => ({
         "@type": "CreativeWork",
@@ -228,8 +238,8 @@ export default async function GlossaryDetailPage({ params }: PageProps) {
             <AuthorBox
               authorName="MCPserver.in Engineering"
               authorRole="Platform Team"
-              publishedDate="2026-03-24"
-              updatedDate="2026-07-09"
+              publishedDate={datePublished}
+              updatedDate={dateModified}
               citations={term.references.map(ref => ({ label: ref.replace(/^https?:\/\//, ""), url: ref }))}
             />
 
@@ -238,7 +248,7 @@ export default async function GlossaryDetailPage({ params }: PageProps) {
               <h3 className="text-xs font-bold text-cyan-400 mb-2">Cite This Page</h3>
               <p className="text-xs text-gray-400 mb-2">MLA Style:</p>
               <blockquote className="text-xs text-gray-300 bg-black/20 p-3 rounded border border-gray-800">
-                <span className="text-cyan-400">MCPserver.in Engineering</span>. &quot;<span className="text-white">{term.term}</span>.&quot; <span className="text-cyan-400">MCPserver.in Knowledge Hub</span>, 09 July 2026, <span className="text-cyan-400">mcpserver.in/glossary/{term.slug}</span>.
+                <span className="text-cyan-400">MCPserver.in Engineering</span>. &quot;<span className="text-white">{term.term}</span>.&quot; <span className="text-cyan-400">MCPserver.in Knowledge Hub</span>, {new Date(dateModified).toLocaleDateString("en-GB", { day: "2-digit", month: "long", year: "numeric" })}, <span className="text-cyan-400">mcpserver.in/glossary/{term.slug}</span>.
               </blockquote>
             </div>
 

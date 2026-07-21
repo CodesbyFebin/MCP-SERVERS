@@ -14,6 +14,10 @@ export const metadata: Metadata = {
     "Browse verified Model Context Protocol servers by category, authentication model, and production use case. Deploy MCP integrations on India-first edge infrastructure.",
   alternates: {
     canonical: "/servers",
+    languages: {
+    "en-IN": "/servers",
+    "en": "/servers",
+  },
   },
 };
 
@@ -30,7 +34,12 @@ export default function ServersPage() {
     softwareApplication: {
       name: "MCPserver.in Server Directory",
       description: "Directory and deployment surface for production-ready Model Context Protocol integrations."
-    }
+    },
+    itemList: featuredServers.map((server) => ({
+      name: server.name,
+      url: `/servers/${server.slug}`,
+      description: server.description
+    }))
   });
 
   return (

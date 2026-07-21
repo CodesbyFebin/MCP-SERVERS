@@ -21,6 +21,7 @@ import {
 import { BarChart3, BookOpen, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { getUnifiedGraphSchema } from "../src/lib/schema";
+import { getContentDates } from "../src/lib/contentDates";
 import SchemaJsonLd from "../src/components/SchemaJsonLd";
 import FAQ from "../src/components/FAQ";
 
@@ -103,6 +104,8 @@ const homeFaqs = [
   }
 ];
 
+const { datePublished: homeDatePublished, dateModified: homeDateModified } = getContentDates("page:home");
+
 const unifiedGraphSchema = getUnifiedGraphSchema({
   pageUrl: "/",
   title: "MCPServer.in: Free Hosted MCP Servers in India",
@@ -114,8 +117,8 @@ const unifiedGraphSchema = getUnifiedGraphSchema({
     description: "Curated Model Context Protocol directory and hosting with DPDP-aligned compliance and Mumbai/Bengaluru edge hosting.",
     authorName: "MCPserver.in Engineering",
     authorRole: "Platform Team",
-    datePublished: "2025-11-05",
-    dateModified: "2026-07-09"
+    datePublished: homeDatePublished,
+    dateModified: homeDateModified
   },
   mentions: [
     { name: "Model Context Protocol", url: "https://spec.modelcontextprotocol.io" },

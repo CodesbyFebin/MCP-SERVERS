@@ -44,6 +44,7 @@ const columns = [
       ["Privacy Policy", "/privacy"],
       ["Terms of Service", "/terms"],
       ["Security", "/security"],
+      ["Editorial Policy", "/editorial-policy"],
       ["Data Processing", "/privacy"],
       ["DPA", "/terms"]
     ]
@@ -90,15 +91,16 @@ export default function Footer() {
             </p>
             <div className="mt-5 flex gap-2">
               {[
-                { Icon: Twitter, href: "https://twitter.com/mcpserver_in" },
-                { Icon: Mail, href: "mailto:support@mcpserver.in" },
-                { Icon: Github, href: "https://github.com/CodesbyFebin/MCP-SERVERS" }
-              ].map(({ Icon, href }) => (
+                { Icon: Twitter, href: "https://twitter.com/mcpserver_in", label: "Follow us on Twitter" },
+                { Icon: Mail, href: "mailto:support@mcpserver.in", label: "Email support" },
+                { Icon: Github, href: "https://github.com/CodesbyFebin/MCP-SERVERS", label: "View source on GitHub" }
+              ].map(({ Icon, href, label }) => (
                 <a
                   key={href}
                   href={href}
                   target={href.startsWith("mailto:") ? undefined : "_blank"}
                   rel={href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
+                  aria-label={label}
                   className="grid h-8 w-8 place-items-center rounded-full border border-white/10 bg-white/[0.035] text-white/70 transition hover:text-white"
                 >
                   <Icon className="h-3.5 w-3.5" />
@@ -109,7 +111,7 @@ export default function Footer() {
 
           {columns.map((column) => (
             <div key={column.title}>
-              <h4 className="mb-4 text-xs font-black text-white">{column.title}</h4>
+              <h3 className="mb-4 text-xs font-black text-white">{column.title}</h3>
               <ul className="space-y-2.5">
                 {column.links.map(([label, href]) => (
                   <li key={label}>
@@ -123,7 +125,7 @@ export default function Footer() {
           ))}
 
           <div>
-            <h4 className="mb-3 text-xs font-black text-white">Newsletter</h4>
+            <h3 className="mb-3 text-xs font-black text-white">Newsletter</h3>
             <p className="text-xs leading-relaxed text-white/50">Get the latest updates, tutorials and new integrations.</p>
             <div className="mt-4 flex overflow-hidden rounded-md border border-white/12 bg-white/[0.025]">
               <form onSubmit={handleSubscribe} className="flex w-full min-h-10">
@@ -138,6 +140,7 @@ export default function Footer() {
                 <button
                   type="submit"
                   disabled={status === "loading"}
+                  aria-label="Subscribe to newsletter"
                   className="grid w-11 place-items-center border-l border-white/10 text-white/75 disabled:opacity-40"
                 >
                   <ArrowRight className="h-4 w-4" />
@@ -152,7 +155,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-8 flex flex-col gap-3 border-t border-white/8 pt-6 text-xs text-white/40 md:flex-row md:items-center md:justify-between">
+        <div className="mt-8 flex flex-col gap-3 border-t border-white/8 pt-6 text-xs text-white/60 md:flex-row md:items-center md:justify-between">
           <span>© 2026 MCP SERVER. All rights reserved.</span>
           <span className="inline-flex items-center gap-1.5">
             Made with <Heart className="h-3 w-3 fill-red-500 text-red-500" /> in India
