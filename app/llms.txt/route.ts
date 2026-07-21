@@ -15,7 +15,7 @@ ${siteConfig.description}
 ## Core Ontology
 - [What is MCP?](/what-is-mcp): Core architecture, JSON-RPC 2.0, transports.
 - [MCP Server Directory](/mcp-server-directory): Verified MCP server implementations.
-- [Glossary](/glossary): 350+ technical definitions (DefinedTerm schema).
+- [Glossary](/glossary): ${glossaryTerms.length}+ technical definitions (DefinedTerm schema).
 - [MCP Protocol](/mcp-protocol): The Model Context Protocol Specification.
 
 ## India-Specific Authority (High Confidence Data)
@@ -75,19 +75,19 @@ ${siteConfig.description}
     { slug: "monitoring", title: "Monitoring", description: "Grafana dashboards, MCP Pulse-style checks, logs, traces, redaction metrics, and incident workflows." },
   ];
 
-  const clusterLinks = docsClusters.map(c => `- [/docs/${c.slug}](https://www.mcpserver.in/docs/${c.slug}): ${c.description}`).join("\\n");
+  const clusterLinks = docsClusters.map(c => `- [/docs/${c.slug}](https://www.mcpserver.in/docs/${c.slug}): ${c.description}`).join("\n");
 
   const pillarSection = `
 ## Core Pillars (MCP Topics)
 `;
 
-  const pillarLinks = pillars.slice(0, 20).map(p => `- [${p.title}](https://www.mcpserver.in/${p.slug}): ${p.shortAnswer}`).join("\\n");
+  const pillarLinks = pillars.slice(0, 20).map(p => `- [${p.title}](https://www.mcpserver.in/${p.slug}): ${p.shortAnswer}`).join("\n");
 
   const glossarySection = `
 ## Glossary Terms (${glossaryTerms.length} key MCP concepts)
 `;
 
-  const glossaryLinks = glossaryTerms.slice(0, 50).map(g => `- [${g.term}](https://www.mcpserver.in/glossary/${g.slug}): ${g.definition.substring(0, 100)}...`).join("\\n");
+  const glossaryLinks = glossaryTerms.slice(0, 50).map(g => `- [${g.term}](https://www.mcpserver.in/glossary/${g.slug}): ${g.definition.substring(0, 100)}...`).join("\n");
 
   const footer = `
 ## Contact & Institutional Trust

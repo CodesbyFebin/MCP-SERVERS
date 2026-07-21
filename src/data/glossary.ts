@@ -6230,4 +6230,244 @@ export const glossaryTerms: GlossaryTerm[] = [
       "https://spec.modelcontextprotocol.io/specification/2025-06-18/server/tools/"
     ]
   },
-                                                                                                                                                                                                ];
+  {
+    slug: "prometheus-mcp",
+    term: "Prometheus (MCP monitoring)",
+    definition: "An open-source metrics system that MCP servers can export tool-call counts and latency histograms to, via a scraped /metrics endpoint, so PromQL queries can answer questions like error rate or p95 latency.",
+    detailedExplanation: "Prometheus works by periodically scraping a plain-text /metrics endpoint rather than receiving pushed events, so instrumenting an MCP server means exposing counters (e.g. total tool calls, labeled by server/tool/status) and histograms (call duration, bucketed) via a library like prom-client, then letting Prometheus pull that endpoint on an interval. Once scraped, PromQL - a purpose-built query language distinct from SQL - answers operational questions directly, like error rate over a 5-minute window or p95 latency per tool via histogram_quantile.",
+    keyTakeaways: [
+      "Pull-based, not push-based: Prometheus scrapes a /metrics endpoint on an interval rather than receiving events.",
+      "Use a histogram for call duration, not just an average, so p50/p95/p99 can be derived after the fact.",
+      "Label metrics by server and tool name only - never by user ID, email, or request content, since labels are effectively public within the metrics endpoint."
+    ],
+    useCase: "An MCP server exports mcp_tool_calls_total and mcp_tool_duration_seconds via prom-client; Prometheus scrapes it every 15-30 seconds, and a PromQL query charts p95 latency per tool over the last hour.",
+    technicalDetails: {
+      protocolLayer: "Observability / operations layer, external to the MCP spec itself",
+      format: "Prometheus text exposition format, scraped over HTTP",
+      latencyProfile: "Scrape interval of 15-30s is typical; not real-time, but fast enough for alerting"
+    },
+    references: [
+      "https://prometheus.io/docs/introduction/overview/"
+    ]
+  },
+  {
+    slug: "github-actions-mcp",
+    term: "GitHub Actions (MCP CI/CD)",
+    definition: "GitHub's built-in CI/CD platform, used to test, build, and deploy an MCP server automatically on push - typically install, typecheck, test, build, then deploy, failing fast before a broken build reaches production.",
+    detailedExplanation: "A GitHub Actions workflow for an MCP server is a YAML file under .github/workflows/ that runs a sequence of steps on a trigger such as push to main: checking out the repo, installing dependencies with a locked lockfile, running the type checker and test suite, building, and only then deploying - each step gating the next, so a failing test blocks the deploy step from ever running. Secrets referenced as \${{ secrets.NAME }} are pulled from GitHub's encrypted secret store and automatically masked in logs, never written into the workflow file itself.",
+    keyTakeaways: [
+      "Order matters: install, typecheck, test, build, deploy - each step should fail fast before the next runs.",
+      "Secrets are referenced via \${{ secrets.NAME }} and pulled from GitHub's encrypted store, never hardcoded in the YAML.",
+      "A smoke test (e.g. running the MCP Inspector headlessly against the built server) before promoting a deploy catches a broken tool registration before real traffic hits it."
+    ],
+    useCase: "A workflow triggers on push to main, runs npm ci && npm run typecheck && npm test && npm run build, then deploys only if every prior step exited successfully.",
+    technicalDetails: {
+      protocolLayer: "CI/CD tooling, external to the MCP spec itself",
+      format: "YAML workflow files under .github/workflows/",
+      latencyProfile: "Minutes per run, not relevant to MCP request latency itself"
+    },
+    references: [
+      "https://docs.github.com/en/actions"
+    ]
+  },
+  {
+    slug: "bigquery-mcp",
+    term: "BigQuery (MCP integration)",
+    definition: "Google's serverless, petabyte-scale SQL data warehouse, exposed to AI agents through an MCP tool that runs parameterized queries with a maximumBytesBilled cap, since BigQuery bills by bytes scanned rather than rows returned.",
+    detailedExplanation: "A BigQuery MCP tool built on the official @google-cloud/bigquery client should always use parameterized queries (query_params), never string-interpolated SQL, and set maximumBytesBilled so a single model-generated query can't run up an unbounded bill. Because BigQuery's on-demand pricing is per byte scanned, an unfiltered query on a large table is expensive even when the returned result set is small - partitioned and clustered tables let a WHERE clause skip scanning irrelevant partitions entirely, which is usually the single biggest cost lever available.",
+    keyTakeaways: [
+      "Bills by bytes scanned, not rows returned - an unfiltered query on a large table is expensive regardless of result size.",
+      "Set maximumBytesBilled on every query so a model-generated request has a hard cost ceiling rather than an open-ended bill.",
+      "Filtering on a partitioned column is usually the biggest cost lever available, bigger than most query-level tuning."
+    ],
+    useCase: "An MCP tool accepts a parameterized SELECT query, rejects it if it contains INSERT/UPDATE/DELETE keywords, and caps the query at 1 GB of billed bytes before executing it against a Mumbai-region dataset.",
+    technicalDetails: {
+      protocolLayer: "Data warehouse integration, external to the MCP spec itself",
+      format: "Standard SQL via the BigQuery REST/gRPC API",
+      latencyProfile: "Seconds per query typically, dependent on bytes scanned and partition pruning"
+    },
+    references: [
+      "https://cloud.google.com/bigquery/docs"
+    ]
+  },
+  {
+    slug: "terraform-mcp",
+    term: "Terraform (MCP infrastructure)",
+    definition: "A declarative infrastructure-as-code CLI tool that an MCP server can wrap to let an AI agent propose plan output for human review, with apply gated behind an explicit approval flag rather than run automatically.",
+    detailedExplanation: "Terraform has no first-party Node SDK, so an MCP integration wraps the terraform CLI itself via a child process, restricted to an allowlist of working directories so a model can't be steered into operating against an unintended state file. The safe pattern splits plan (read-only, safe to call freely) from apply (requires an explicit approved: true argument the model can only set after a human has actually reviewed the plan output) - never letting a single tool call both propose and execute a change in one turn.",
+    keyTakeaways: [
+      "No first-party SDK exists - integrations wrap the CLI itself via a child process, restricted to an allowlisted set of directories.",
+      "plan is safe to expose freely since it's read-only; apply should require an explicit approval flag set only after a human reviews the plan.",
+      "Remote state backends with locking (e.g. S3 + DynamoDB) prevent concurrent applies from corrupting state."
+    ],
+    useCase: "An MCP tool runs terraform plan in an allowlisted directory and returns the diff for the user to review before a separate apply tool (requiring approved: true) is ever called.",
+    technicalDetails: {
+      protocolLayer: "Infrastructure-as-code tooling, external to the MCP spec itself",
+      format: "HCL configuration files, executed via the terraform CLI",
+      latencyProfile: "Seconds to minutes per plan/apply, dependent on the number of resources involved"
+    },
+    references: [
+      "https://developer.hashicorp.com/terraform/docs"
+    ]
+  },
+  {
+    slug: "datadog-mcp",
+    term: "Datadog (MCP observability)",
+    definition: "A unified metrics, logs, and APM SaaS platform that an MCP server can query via the official @datadog/datadog-api-client SDK, authenticated with both an API key and an application key together.",
+    detailedExplanation: "Datadog requires two separate credentials for API access: an API key that identifies which account is being billed, and an application key that authorizes the specific integration's access to endpoints - both are needed together for metric and log queries. An MCP tool typically exposes read-only metric queries (via v1.MetricsApi) and log search (via v1.LogsApi), always with explicit from/to time bounds, since an unbounded query is the easiest way to accidentally scan a large volume of data.",
+    keyTakeaways: [
+      "Requires two credentials together: an API key (identifies the account) and an application key (authorizes the specific call).",
+      "Always bound metric and log queries with explicit from/to timestamps - an unbounded query can scan far more data than intended.",
+      "Dashboard and monitor mutation endpoints exist in the same client as read queries and should be kept out of a read-only tool."
+    ],
+    useCase: "An MCP tool calls metricsApi.queryMetrics with an explicit one-hour time window to chart a service's error rate, using both DD_API_KEY and DD_APP_KEY from environment variables.",
+    technicalDetails: {
+      protocolLayer: "Observability SaaS integration, external to the MCP spec itself",
+      format: "REST API via the official @datadog/datadog-api-client SDK",
+      latencyProfile: "Sub-second to a few seconds per query, dependent on time range and data volume"
+    },
+    references: [
+      "https://docs.datadoghq.com/"
+    ]
+  },
+  {
+    slug: "new-relic-mcp",
+    term: "New Relic (MCP observability)",
+    definition: "A full-stack observability platform queried through NerdGraph, its single GraphQL API endpoint, using NRQL - a SQL-like query language scoped to a specific New Relic account ID.",
+    detailedExplanation: "Unlike some observability tools that expose multiple REST paths, New Relic funnels all programmatic access through one GraphQL endpoint (api.newrelic.com/graphql) called NerdGraph, with the actual query expressed as an NRQL string embedded in the GraphQL request body. NRQL reads like SQL (SELECT ... FROM ... WHERE ... FACET ... SINCE) over New Relic's stored event data, and every query must specify an account ID, since a single API key can have access to multiple accounts.",
+    keyTakeaways: [
+      "All access goes through one GraphQL endpoint (NerdGraph) rather than multiple REST paths.",
+      "NRQL is SQL-like but specific to New Relic's event data model - FACET for grouping, SINCE/UNTIL for time windows.",
+      "Every query needs an explicit account ID, since one API key can have access to more than one account."
+    ],
+    useCase: "An MCP tool sends the NRQL query \"SELECT average(duration) FROM Transaction SINCE 1 hour ago\" through NerdGraph, scoped to a specific account ID, to check a service's average response time.",
+    technicalDetails: {
+      protocolLayer: "Observability SaaS integration, external to the MCP spec itself",
+      format: "GraphQL (NerdGraph) with NRQL query strings embedded in the request",
+      latencyProfile: "Sub-second to a few seconds per query, dependent on the underlying NRQL"
+    },
+    references: [
+      "https://docs.newrelic.com/"
+    ]
+  },
+  {
+    slug: "splunk-mcp",
+    term: "Splunk (MCP log search)",
+    definition: "A SIEM and log-analytics platform whose REST API runs searches as asynchronous jobs - create the job, optionally poll until it's done, then retrieve results - using SPL, its pipeline-based query language.",
+    detailedExplanation: "Splunk searches are asynchronous by default: a client POSTs a search job (getting back a search ID, or SID), then either polls GET /services/search/jobs/{SID} until dispatchState reports DONE, or - more simply for shorter queries - sets exec_mode=blocking so the creation call itself waits for completion. SPL pipes commands together with |, conventionally starting from an index= filter and narrowing down from there; an MCP tool should reject searches lacking an index filter and always pass an explicit earliest_time, since an unscoped, all-time search over a large index is slow and expensive.",
+    keyTakeaways: [
+      "Searches are asynchronous: create a job, then poll or use exec_mode=blocking, rather than a single synchronous call.",
+      "SPL pipes commands together starting from an index= filter - always scope to a specific index rather than searching everything.",
+      "Always pass an explicit earliest_time; an unscoped, all-time search over a large index is slow and can be expensive."
+    ],
+    useCase: "An MCP tool submits the SPL query \"index=web status=5* | stats count by uri_path\" with earliest_time=-1h and exec_mode=blocking to summarize recent server errors.",
+    technicalDetails: {
+      protocolLayer: "SIEM / log-analytics integration, external to the MCP spec itself",
+      format: "REST API, search jobs expressed in Splunk Processing Language (SPL)",
+      latencyProfile: "Seconds to tens of seconds per search, dependent on index size and time range"
+    },
+    references: [
+      "https://docs.splunk.com/"
+    ]
+  },
+  {
+    slug: "clickhouse-mcp",
+    term: "ClickHouse (MCP analytics)",
+    definition: "A column-oriented OLAP database queried through the official @clickhouse/client package, where an MCP tool enforces a row LIMIT on every query and rejects INSERT/ALTER/DROP to keep the tool read-only.",
+    detailedExplanation: "Because ClickHouse is column-oriented, selecting only the columns actually needed matters far more for performance than in a row-oriented database, and its query() method returns a stream-like result resolved to JSON. An MCP tool should append a LIMIT to any query that doesn't already have one before executing it - trusting a model to always include a LIMIT is exactly the kind of assumption that leads to a single bad query returning millions of rows - and reject write statements the same way a read-only Postgres tool would, since ingestion belongs in a dedicated pipeline, not a query tool.",
+    keyTakeaways: [
+      "Column-oriented storage means selecting only needed columns matters more for performance than in a typical row-oriented database.",
+      "Enforce a LIMIT on every query before execution rather than trusting the model-generated SQL to include one.",
+      "Reject INSERT/ALTER/DROP/TRUNCATE in the tool layer - ingestion belongs in a dedicated pipeline, not a query tool."
+    ],
+    useCase: "An MCP tool checks a query for write keywords, appends 'LIMIT 500' if none is present, and executes it via @clickhouse/client's HTTP interface.",
+    technicalDetails: {
+      protocolLayer: "OLAP database integration, external to the MCP spec itself",
+      format: "SQL over ClickHouse's native HTTP interface",
+      latencyProfile: "Often sub-second even over large datasets, due to columnar storage and vectorized execution"
+    },
+    references: [
+      "https://clickhouse.com/docs"
+    ]
+  },
+  {
+    slug: "snowflake-mcp",
+    term: "Snowflake (MCP data warehouse)",
+    definition: "A cloud data warehouse queried through the official snowflake-sdk Node driver, billed by warehouse compute time rather than bytes scanned - the opposite cost model from BigQuery, which changes what the right guardrail looks like.",
+    detailedExplanation: "Snowflake bills by warehouse size multiplied by time running, not by query - a small warehouse left active costs the same whether or not it's actively running a query, which is the inverse of BigQuery's per-byte-scanned model. The Node driver's connection.execute() takes a completion callback rather than returning a promise natively, so integrations typically wrap it once in a small promise-based helper; SHOW and DESCRIBE commands are the idiomatic way to discover schema, avoiding a full INFORMATION_SCHEMA metadata scan.",
+    keyTakeaways: [
+      "Bills by warehouse compute time, not bytes scanned - the opposite cost model from BigQuery, so the right guardrail differs.",
+      "connection.execute() is callback-based, not promise-native - wrap it once rather than repeating the callback pattern per tool.",
+      "Use SHOW and DESCRIBE for schema discovery instead of querying INFORMATION_SCHEMA directly."
+    ],
+    useCase: "An MCP tool wraps snowflake-sdk's execute() in a promise helper, rejects any query containing INSERT/UPDATE/DELETE/MERGE, and caps returned rows after retrieval.",
+    technicalDetails: {
+      protocolLayer: "Cloud data warehouse integration, external to the MCP spec itself",
+      format: "SQL via the official snowflake-sdk Node driver",
+      latencyProfile: "Seconds per query, plus warehouse resume time if it was suspended"
+    },
+    references: [
+      "https://docs.snowflake.com/"
+    ]
+  },
+  {
+    slug: "elasticsearch-mcp",
+    term: "Elasticsearch (MCP search)",
+    definition: "A distributed full-text search engine whose official @elastic/elasticsearch client exposes destructive operations alongside search, so an MCP tool's safety boundary is restricting the tool code to only call .search() against an allowlisted set of indices.",
+    detailedExplanation: "The official Elasticsearch client exposes its full API surface, including index deletion and document mutation, so a safe MCP integration is defined by which client methods the tool code actually calls - only .search() - combined with validating any model-supplied index name against a server-side allowlist before the call is made, rather than trusting an index name to reach the client unchecked. A match query is the right default for natural-language search, reserving term queries for exact-value filters like status codes or IDs.",
+    keyTakeaways: [
+      "The client exposes destructive methods (delete, index mutation) alongside search - the safety boundary is which methods the tool code calls, not a permission the client enforces.",
+      "Validate any model-supplied index name against a server-side allowlist before the call is made, never passing it through unchecked.",
+      "match queries suit natural-language search; term queries suit exact-value filters like status codes or IDs."
+    ],
+    useCase: "An MCP tool checks a requested index against ELASTICSEARCH_ALLOWED_INDICES, then calls client.search() with a match query - no other client method is ever wired into the tool.",
+    technicalDetails: {
+      protocolLayer: "Full-text search integration, external to the MCP spec itself",
+      format: "Query DSL (JSON) via the official @elastic/elasticsearch client",
+      latencyProfile: "Sub-second for most queries, due to inverted-index lookups"
+    },
+    references: [
+      "https://www.elastic.co/docs"
+    ]
+  },
+  {
+    slug: "supabase-mcp",
+    term: "Supabase (MCP integration)",
+    definition: "A hosted Postgres platform whose MCP integration should authenticate with the anon key and rely on row-level security (RLS) policies to scope access, since the alternative service-role key bypasses RLS entirely and would let a model see every row in every table.",
+    detailedExplanation: "Supabase is Postgres underneath, so the same parameterized-query and read-only discipline that applies to a plain Postgres MCP tool applies here too, but it adds one Supabase-specific risk: the service-role key exists for trusted server-side code that intentionally needs to bypass row-level security, and using it in an MCP tool means the model can read every row in every table regardless of any RLS policy. The supabase-js client's query builder (.from().select().match()) is the idiomatic interface and composes cleanly with RLS - reaching for supabase.rpc() to run arbitrary SQL should be avoided for the same reason string-interpolated SQL is avoided elsewhere.",
+    keyTakeaways: [
+      "Use the anon key with RLS policies scoped to a read-only role, never the service-role key, which bypasses RLS entirely.",
+      "The query builder (.from().select().match()) composes cleanly with RLS; supabase.rpc() for arbitrary SQL should be avoided.",
+      "Postgres itself enforces the access boundary via RLS, rather than relying only on the tool's own application code."
+    ],
+    useCase: "An MCP tool authenticates with the anon key and queries a fixed allowlist of tables via the query builder, relying on the project's RLS policies to scope what rows are actually returned.",
+    technicalDetails: {
+      protocolLayer: "Backend-as-a-service integration built on Postgres, external to the MCP spec itself",
+      format: "PostgREST-backed query builder via the supabase-js client",
+      latencyProfile: "Comparable to direct Postgres access, typically tens of milliseconds"
+    },
+    references: [
+      "https://supabase.com/docs"
+    ]
+  },
+  {
+    slug: "dynamodb-mcp",
+    term: "DynamoDB (MCP integration)",
+    definition: "AWS's serverless NoSQL database, where an MCP integration should expose GetItem and Query - both index-based and cheap at any table size - while deliberately leaving out Scan, which reads the entire table regardless of filters applied afterward.",
+    detailedExplanation: "Query requires a partition key and uses an index, staying fast and cheap regardless of table size, while Scan reads every item in the table and only filters afterward - the cost difference at scale is enormous, and DynamoDB bills read/write capacity separately from storage, making an unbounded Scan tool a direct, uncapped cost risk in a way a Query tool isn't. The DynamoDBDocumentClient wrapper (from @aws-sdk/lib-dynamodb) marshals plain JS objects to DynamoDB's typed attribute-value format automatically, which the lower-level DynamoDBClient does not do on its own.",
+    keyTakeaways: [
+      "Query uses an index and stays cheap at any table size; Scan reads the whole table regardless of filters - the cost gap is enormous.",
+      "DynamoDBDocumentClient marshals plain JS objects automatically; the base DynamoDBClient requires manually typed attribute maps.",
+      "For query patterns on non-key attributes, add a Global Secondary Index (GSI) rather than reaching for Scan."
+    ],
+    useCase: "An MCP tool exposes GetCommand and QueryCommand against DynamoDBDocumentClient, with ScanCommand intentionally never wired into any tool definition.",
+    technicalDetails: {
+      protocolLayer: "Serverless NoSQL database integration, external to the MCP spec itself",
+      format: "AWS SDK v3 (@aws-sdk/client-dynamodb + @aws-sdk/lib-dynamodb)",
+      latencyProfile: "Single-digit milliseconds for Get/Query at any table size"
+    },
+    references: [
+      "https://docs.aws.amazon.com/dynamodb/"
+    ]
+  },
+];
