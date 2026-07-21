@@ -376,7 +376,7 @@ npx @modelcontextprotocol/inspector node build/index.js</code></pre>
     excerpt: "Comparison of MCP transport protocols with performance benchmarks and use cases.",
     keywords: ["MCP transport", "MCP SSE", "MCP HTTP", "MCP WebSocket"],
     ugcElements: ["Method preference poll", "Performance benchmarks"],
-    internalLinks: ["how-mcp-servers-work", "mcp-server-architecture-patterns", "remote-mcp-server"],
+    internalLinks: ["how-mcp-servers-work", "mcp-server-architecture-patterns", "mcp-server-vs-api-difference"],
     content: `<p class="text-white/65 leading-relaxed">Choosing the right transport method is critical for MCP server performance and security.</p>
 
 <h2 class="mt-8 text-2xl font-black text-white">Stdio: Local Development Standard</h2>
@@ -480,7 +480,7 @@ pip install mcp</code></pre>
     excerpt: "Reference guide for MCP server configuration files including JSON schema and common options.",
     keywords: ["MCP configure", "MCP CLI", "mcp.json"],
     ugcElements: ["Config file sharing", "Configuration tips"],
-    internalLinks: ["install-configure-first-mcp-server", "mcp-cli-tools"],
+    internalLinks: ["install-configure-first-mcp-server", "mcp-cli-tools-guide"],
     content: `<p class="text-white/65 leading-relaxed">MCP server configuration is defined in JSON files that specify tools, resources, and server metadata.</p>
 
 <h2 class="mt-8 text-2xl font-black text-white">Configuration Schema</h2>
@@ -552,7 +552,7 @@ pip install mcp</code></pre>
     excerpt: "Community-voted list of the best MCP server tutorials for beginners.",
     keywords: ["MCP tutorial", "MCP learning", "MCP beginner tutorials"],
     ugcElements: ["User-submitted tutorials", "Rating system"],
-    internalLinks: ["model-context-protocol-beginner-guide", "mcp-video-courses"],
+    internalLinks: ["model-context-protocol-beginner-guide", "mcp-server-vs-api-difference"],
     content: `<p class="text-white/65 leading-relaxed">Our community has curated the best MCP tutorials from across the web. Here are the top-rated options:</p>`
   },
   {
@@ -565,7 +565,7 @@ pip install mcp</code></pre>
     excerpt: "Comprehensive review of MCP certification programs and their value for developers.",
     keywords: ["MCP certification", "MCP certification value", "Model Context Protocol certification"],
     ugcElements: ["Certification experience sharing", "Value assessment"],
-    internalLinks: ["best-mcp-server-tutorials", "mcp-video-courses"],
+    internalLinks: ["best-mcp-server-tutorials", "mcp-server-vs-api-difference"],
     content: `<p class="text-white/65 leading-relaxed">The MCP certification landscape is evolving. Here's what you need to know before investing time.</p>`
   },
   {
@@ -708,7 +708,7 @@ pip install mcp</code></pre>
     excerpt: "Guide to implementing MCP servers with Node.js including package setup and configuration.",
     keywords: ["MCP Node.js", "Node.js MCP server", "MCP server Node.js"],
     ugcElements: ["NPM package recommendations", "Setup guides"],
-    internalLinks: ["mcp-javascript-sdk-tutorial", "mcp-cli-tools"],
+    internalLinks: ["mcp-javascript-sdk-tutorial", "mcp-server-vs-api-difference"],
     content: `<p class="text-white/65 leading-relaxed">Implement MCP servers in Node.js with this comprehensive setup guide.</p>`
   },
   {
@@ -747,7 +747,7 @@ pip install mcp</code></pre>
     excerpt: "Comprehensive checklist for securing MCP servers in production environments.",
     keywords: ["MCP security", "MCP server security", "secure MCP servers"],
     ugcElements: ["Security audit sharing", "Hardening checklists"],
-    internalLinks: ["mcp-authentication-methods", "mcp-server-production-deployment"],
+    internalLinks: ["mcp-authentication-methods-comparison", "mcp-server-production-deployment-checklist"],
     content: `<p class="text-white/65 leading-relaxed">Security is non-negotiable for production MCP servers. Follow this complete checklist.</p>
 
 <h2 class="mt-8 text-2xl font-black text-white">Authentication & Access Control</h2>
@@ -1101,7 +1101,7 @@ jobs:
     excerpt: "Comprehensive testing strategy for MCP servers before production deployment.",
     keywords: ["test MCP server", "MCP server testing", "MCP testing strategy"],
     ugcElements: ["Testing framework sharing", "Test suite examples"],
-    internalLinks: ["mcp-devops-automating-server-management", "mcp-monitoring-setup"],
+    internalLinks: ["mcp-devops-automating-server-management", "mcp-server-security-checklist"],
     content: `<p class="text-white/65 leading-relaxed">Thorough testing prevents production issues and security vulnerabilities.</p>
 
 <h2 class="mt-8 text-2xl font-black text-white">Test Categories</h2>
@@ -1718,7 +1718,7 @@ const server = new Server({
     excerpt: "Building MCP servers for Pinecone vector database services.",
     keywords: ["Pinecone MCP", "MCP Pinecone server", "Pinecone vector MCP"],
     ugcElements: ["Pinecone setups", "Vector search examples"],
-    internalLinks: ["mcp-server-for-vector-database", "mcp-server-for-postgres"],
+    internalLinks: ["mcp-server-for-vector-database", "how-to-build-mcp-server-from-scratch"],
     content: `<p class="text-white/65 leading-relaxed">Pinecone MCP servers provide managed vector search capabilities.</p>`
   },
   {
@@ -1825,7 +1825,7 @@ CMD ["node", "dist/index.js"]</code></pre>`
     excerpt: "Deploying MCP servers on Kubernetes with Helm charts and manifests.",
     keywords: ["Kubernetes MCP", "MCP Kubernetes server", "K8s MCP deployment"],
     ugcElements: ["K8s YAML sharing", "Helm chart examples"],
-    internalLinks: ["mcp-server-docker-containerization", "mcp-server-ci-cd-pipeline-setup"],
+    internalLinks: ["mcp-server-docker-containerization", "mcp-server-on-aws"],
     content: `<p class="text-white/65 leading-relaxed">Kubernetes provides orchestration for scalable MCP server deployments.</p>
 
 <h2 class="mt-8 text-2xl font-black text-white">Deployment Manifest</h2>
@@ -1859,7 +1859,7 @@ spec:
     excerpt: "Setting up continuous integration and deployment for MCP servers using GitHub Actions.",
     keywords: ["GitHub Actions MCP", "MCP CI/CD GitHub", "MCP deployment automation"],
     ugcElements: ["Workflow templates", "CI/CD configurations"],
-    internalLinks: ["mcp-server-kubernetes-deployment", "mcp-server-ci-cd-pipeline-setup"],
+    internalLinks: ["mcp-server-kubernetes-deployment", "mcp-server-on-aws"],
     content: `<p class="text-white/65 leading-relaxed">Automate MCP server testing and deployment with GitHub Actions.</p>`
   },
   {
@@ -1885,7 +1885,7 @@ spec:
     excerpt: "Installing MCP servers on Windows operating systems.",
     keywords: ["MCP Windows", "Windows MCP server", "MCP Windows setup"],
     ugcElements: ["Windows configs", "Windows deployment guides"],
-    internalLinks: ["mcp-server-on-linux", "mcp-server-on-macOS"],
+    internalLinks: ["mcp-server-on-linux", "mcp-server-on-aws"],
     content: `<p class="text-white/65 leading-relaxed">Windows support for MCP servers requires specific configuration.</p>`
   },
   {
@@ -2482,7 +2482,7 @@ spec:
     excerpt: "Common failures and lessons learned from MCP server implementations.",
     keywords: ["MCP failures", "MCP lessons learned", "MCP server mistakes"],
     ugcElements: ["Failure stories", "Lessons learned"],
-    internalLinks: ["enterprise-mcp-implementation-case-studies", "mcp-migration-stories"],
+    internalLinks: ["enterprise-mcp-implementation-case-studies", "how-i-built-my-first-mcp-server"],
     content: `<p class="text-white/65 leading-relaxed">Learning from failures helps the entire MCP community improve.</p>`
   },
   {
@@ -2952,7 +2952,7 @@ spec:
     excerpt: "Advanced techniques and expert tips for experienced MCP server developers.",
     keywords: ["MCP advanced techniques", "MCP expert guide", "MCP mastery"],
     ugcElements: ["Expert tips", "Advanced examples"],
-    internalLinks: ["mcp-server-development-best-practices", "mcp-server-performance-optimization"],
+    internalLinks: ["mcp-server-performance-optimization", "how-i-built-my-first-mcp-server"],
     content: `<p class="text-white/65 leading-relaxed">Learn advanced techniques to take your MCP server development to the next level.</p>`
   },
   {
@@ -3138,7 +3138,7 @@ spec:
     excerpt: "Best practices for conducting effective code reviews in MCP server development.",
     keywords: ["MCP code review", "code review best practices", "peer review MCP"],
     ugcElements: ["Review checklists", "Feedback examples"],
-    internalLinks: ["mcp-server-advanced-techniques-guide", "mcp-server-development-best-practices"],
+    internalLinks: ["mcp-server-advanced-techniques-guide", "how-i-built-my-first-mcp-server"],
     content: `<p class="text-white/65 leading-relaxed">Implement effective code review processes to improve MCP server code quality.</p>`
   },
   {
@@ -3216,7 +3216,7 @@ spec:
     excerpt: "Guidance for developing accessible MCP servers that work for users with disabilities.",
     keywords: ["MCP accessibility", "accessible development", "inclusive design"],
     ugcElements: ["Accessibility standards", "WCAG compliance"],
-    internalLinks: ["mcp-server-advanced-techniques-guide", "mcp-server-development-best-practices"],
+    internalLinks: ["mcp-server-advanced-techniques-guide", "how-i-built-my-first-mcp-server"],
     content: `<p class="text-white/65 leading-relaxed">Ensure your MCP servers are accessible to all users, including those with disabilities.</p>`
   },
   {
@@ -3229,7 +3229,7 @@ spec:
     excerpt: "Practices for sustainable and environmentally friendly MCP server development and deployment.",
     keywords: ["MCP sustainability", "green computing", "eco-friendly development"],
     ugcElements: ["Sustainability tips", "Environmental impact"],
-    internalLinks: ["mcp-server-advanced-techniques-guide", "mcp-server-development-best-practices"],
+    internalLinks: ["mcp-server-advanced-techniques-guide", "how-i-built-my-first-mcp-server"],
     content: `<p class="text-white/65 leading-relaxed">Implement sustainable practices in your MCP server development to reduce environmental impact.</p>`
   },
   {
@@ -4594,7 +4594,7 @@ if __name__ == "__main__":
     excerpt: "Kite MCP is Zerodha's own official Model Context Protocol server, launched May 2025, that connects Claude, ChatGPT, and other AI assistants to your live Zerodha portfolio in read-only mode.",
     keywords: ["Zerodha MCP", "Kite MCP", "Indian trading MCP", "MCP stock trading", "Zerodha API integration"],
     ugcElements: ["Trading workflows", "Portfolio automation examples"],
-    internalLinks: ["upi-mcp-server-india", "mcp-server-for-slack", "what-is-mcp"],
+    internalLinks: ["upi-mcp-server-india", "mcp-server-for-slack", "model-context-protocol-beginner-guide"],
     content: `<p class="text-white/65 leading-relaxed">Most "MCP server for [brand]" posts on the internet describe unofficial, community-built wrappers around a company's public API. Zerodha's is different: <strong class="text-white">Kite MCP is a first-party server built and maintained by Zerodha itself</strong>, publicly announced on Zerodha's own Z-Connect blog and open-sourced on GitHub as <code class="bg-gray-800 px-1 py-0.5 rounded">zerodha/kite-mcp-server</code>. It launched on May 20, 2025, making it one of the earliest official MCP integrations shipped by a major Indian financial company.</p>
 
 <h2 class="mt-8 text-2xl font-black text-white">What Kite MCP Actually Is</h2>
@@ -4729,7 +4729,7 @@ app.listen(3000);</code></pre>
     excerpt: "There is no single 'official UPI MCP server' from NPCI. What actually exists: Setu's open-source UPI Deeplinks MCP, a community India Stack MCP server, and Pine Labs publicly discussing autonomous UPI payments with NPCI.",
     keywords: ["upi-mcp-server-india", "UPI MCP", "India MCP", "MCP payments"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["zomato-mcp-india", "razorpay-mcp-server-india", "what-is-mcp"],
+    internalLinks: ["zomato-mcp-india", "razorpay-mcp-server-india", "model-context-protocol-beginner-guide"],
     content: `<p class="text-white/65 leading-relaxed">"UPI MCP server" is a phrase that gets used loosely, so it's worth being precise about what actually exists as of mid-2026. There is no single, official, NPCI-operated MCP server that every AI assistant talks to for UPI. What exists instead is a small but real and growing set of separate projects, each covering a different slice of UPI.</p>
 
 <h2 class="mt-8 text-2xl font-black text-white">Setu's UPI Deeplinks MCP Server (Real, Open-Source)</h2>
@@ -4752,16 +4752,46 @@ app.listen(3000);</code></pre>
   },
   {
     slug: "razorpay-mcp-server-india",
-    title: "Razorpay MCP Server – Indian Payments Processing",
-    date: "2026-07-20",
+    title: "Razorpay MCP Server: India's First Official Payment Gateway MCP",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "4 min read",
-    excerpt: "Razorpay MCP Server – Indian Payments Processing integration for automated workflows in India.",
-    keywords: ["razorpay-mcp-server-india", "India MCP", "MCP integration"],
+    readTime: "5 min read",
+    excerpt: "Razorpay was the first payment provider in India to ship an official MCP server, offering both a hosted remote endpoint and a self-hosted option for payment links, orders, and refunds.",
+    keywords: ["razorpay-mcp-server-india", "Razorpay MCP", "India MCP", "MCP payments"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
-    content: "<p>Razorpay MCP Server – Indian Payments Processing - detailed guide coming soon.</p>"
+    internalLinks: ["cashfree-mcp-india", "payu-mcp-india", "upi-mcp-server-india"],
+    content: `<p class="text-white/65 leading-relaxed">Razorpay holds a notable distinction in India's MCP ecosystem: reporting on the space consistently describes it as the first Indian payment provider to bring an official MCP server to market, ahead of competitors like PayU and Cashfree who followed with their own official servers afterward. The project is open-sourced at <code class="bg-gray-800 px-1 py-0.5 rounded">razorpay/razorpay-mcp-server</code> on GitHub, with documentation hosted directly at razorpay.com/docs/mcp-server/.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">What It Exposes</h2>
+<p class="text-white/65 leading-relaxed">The server wraps Razorpay's core commercial functions as standardized MCP tools, encapsulating payment processing so that both technical and non-technical users can call them through natural language. Documented capabilities include:</p>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li><strong class="text-white">Payment details</strong> — fetching and inspecting individual payment records</li>
+  <li><strong class="text-white">Payment links</strong> — creating shareable payment links programmatically</li>
+  <li><strong class="text-white">Order management</strong> — creating and tracking orders</li>
+  <li><strong class="text-white">Refunds</strong> — processing refunds against existing payments</li>
+</ul>
+<p class="text-white/65 leading-relaxed">The framing Razorpay itself uses is workflow automation and "agentic applications" — AI-powered tools that interact with the payment ecosystem programmatically, rather than a human clicking through the merchant dashboard for every action.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Two Ways to Run It</h2>
+<p class="text-white/65 leading-relaxed">Razorpay documents two deployment paths:</p>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li><strong class="text-white">Remote MCP Server (recommended)</strong> — hosted by Razorpay directly, giving instant access to Razorpay APIs with no local setup at all.</li>
+  <li><strong class="text-white">Self-hosted</strong> — build from source or run via Docker if you need to run it inside your own infrastructure, alongside your own credential and network policies.</li>
+</ul>
+<p class="text-white/65 leading-relaxed">For most merchants and developers, Razorpay's own guidance points to the hosted remote server as the simpler starting point — you skip the deployment and credential-management overhead entirely and connect your AI client straight to Razorpay's endpoint.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Why "First to Market" Matters Here</h2>
+<p class="text-white/65 leading-relaxed">Razorpay leading the pack has a real practical consequence: the tool schemas, safety patterns, and documentation style it established became a reference point competitors were measured against. When Cashfree and PayU rolled out their own official MCP servers afterward, coverage of both explicitly framed them as following Razorpay's lead into "agentic AI" for Indian payments — worth knowing if you're comparing the three, since Razorpay's has simply had more time in production and more independent write-ups scrutinizing it.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">What to Watch For</h2>
+<p class="text-white/65 leading-relaxed">Refunds and order creation are real money-moving and money-returning actions. As with any payment-capable MCP server, the same caution applies here as with Zerodha's trading tools or Zomato's checkout flow: an AI client that can call <code class="bg-gray-800 px-1 py-0.5 rounded">refund</code> or <code class="bg-gray-800 px-1 py-0.5 rounded">create_order</code> autonomously should have a human confirmation step in front of it in any production workflow, regardless of what the underlying server technically permits.</p>`,
+    faqs: [
+      { question: "Is Razorpay's MCP server official?", answer: "Yes — it's published under Razorpay's own GitHub organization (razorpay/razorpay-mcp-server) with documentation at razorpay.com/docs/mcp-server/, and reporting consistently credits Razorpay as the first Indian payment provider to ship one." },
+      { question: "Do I need to host it myself?", answer: "No — Razorpay recommends its hosted Remote MCP Server for instant access with no local setup. Self-hosting via Docker or building from source is available if you need it inside your own infrastructure." },
+      { question: "What can it actually do?", answer: "Fetch payment details, create payment links, manage orders, and process refunds, exposed as standardized MCP tools." },
+      { question: "Can refunds happen automatically without confirmation?", answer: "The server exposes a refund tool, but whether it fires without human confirmation is a decision made by whoever wires the AI agent's workflow — treat it the same as any other money-moving action and add a confirmation step." }
+    ]
   },
   {
     slug: "gst-mcp-server-tax-compliance",
@@ -4773,7 +4803,7 @@ app.listen(3000);</code></pre>
     excerpt: "GST doesn't have one official government MCP server, but a handful of real, working ones already exist — from community India-Stack toolkits to commercial global tax platforms extending into GST/e-Invoice compliance.",
     keywords: ["gst-mcp-server-tax-compliance", "GST MCP", "India MCP", "MCP tax compliance"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["upi-mcp-server-india", "zoho-books-mcp-accounting-india", "what-is-mcp"],
+    internalLinks: ["upi-mcp-server-india", "zoho-books-mcp-accounting-india", "model-context-protocol-beginner-guide"],
     content: `<p class="text-white/65 leading-relaxed">There is no MCP server operated by the GST Network (GSTN) itself. What does exist is a small ecosystem of community and commercial servers that expose GST-adjacent data and workflows through the protocol — useful for AI-assisted bookkeeping and compliance tooling, but worth understanding precisely rather than assuming a single authoritative "GST MCP" exists.</p>
 
 <h2 class="mt-8 text-2xl font-black text-white">India Stack MCP Server (Community)</h2>
@@ -4808,21 +4838,42 @@ app.listen(3000);</code></pre>
     excerpt: "Zoho Books MCP Server – Indian Accounting Integration integration for automated workflows in India.",
     keywords: ["zoho-books-mcp-accounting-india", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["tally-mcp-server-india", "razorpay-mcp-server-india", "icici-bank-mcp-india"],
     content: "<p>Zoho Books MCP Server – Indian Accounting Integration - detailed guide coming soon.</p>"
   },
   {
     slug: "icici-bank-mcp-india",
-    title: "ICICI Bank MCP Server – Corporate Banking Integration",
-    date: "2026-07-20",
+    title: "Building an MCP Server on ICICI Bank's Real API Banking Portal",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "4 min read",
-    excerpt: "ICICI Bank MCP Server – Corporate Banking Integration integration for automated workflows in India.",
-    keywords: ["icici-bank-mcp-india", "India MCP", "MCP integration"],
+    readTime: "5 min read",
+    excerpt: "ICICI Bank hasn't published an official MCP server, but it does run India's largest API Banking portal — nearly 250 real, documented APIs — which is a genuine, usable foundation for building one yourself.",
+    keywords: ["icici-bank-mcp-india", "ICICI Bank API", "India MCP", "MCP banking"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
-    content: "<p>ICICI Bank MCP Server – Corporate Banking Integration - detailed guide coming soon.</p>"
+    internalLinks: ["hdfc-bank-mcp-india", "razorpay-mcp-server-india", "upstox-mcp-trading"],
+    content: `<p class="text-white/65 leading-relaxed">There is no official, ICICI Bank-branded MCP server as of this writing. What ICICI Bank does have — and it's substantial — is its own API Banking portal, which the bank itself describes as India's largest, launched with nearly 250 documented APIs spanning payments, collections, trade finance, and account services. That's real, existing infrastructure, and it's exactly the kind of thing this site's guides elsewhere show being wrapped in a thin MCP layer rather than waiting for a vendor to ship one.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">What Actually Exists Today</h2>
+<p class="text-white/65 leading-relaxed">Separately from the corporate API Banking portal, there is a real, community-built MCP server for <strong class="text-white">ICICI Direct</strong> — ICICI's brokerage arm — that wraps the Breeze API to let AI assistants query market data and manage trading sessions. That's a different product from corporate/retail banking APIs, and it's community-maintained, not an ICICI Bank official release. If your interest is trading rather than banking operations, similar community-built broker MCP servers exist for <a href="/blog/upstox-mcp-trading" class="text-cyan-300 hover:text-cyan-200">Upstox</a> and <a href="/blog/groww-mcp-investments" class="text-cyan-300 hover:text-cyan-200">Groww</a>, following the same unofficial, third-party pattern.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">What You'd Actually Build</h2>
+<p class="text-white/65 leading-relaxed">To wrap ICICI's API Banking portal in an MCP server, the real steps look like:</p>
+<ol class="text-white/65 leading-relaxed list-decimal pl-5 space-y-1">
+  <li>Register for a developer account on ICICI Bank's API Banking portal and complete their onboarding/KYC process for API access.</li>
+  <li>Obtain sandbox credentials and test against ICICI's documented endpoints before requesting production access.</li>
+  <li>Pick a narrow, well-defined slice of the ~250 available APIs — account statement retrieval or payment initiation status, for example — rather than trying to wrap the entire surface at once.</li>
+  <li>Expose that slice as MCP tools with explicit, scoped permissions, following the same pattern this site documents for wrapping any existing production API in an MCP server.</li>
+  <li>Keep write operations (payment initiation, fund transfers) behind an explicit confirmation step — the same rule that applies to every payment- or banking-capable MCP server covered on this site.</li>
+</ol>
+
+<h2 class="mt-8 text-2xl font-black text-white">Why No Official One Exists Yet</h2>
+<p class="text-white/65 leading-relaxed">Banking APIs carry regulatory and security obligations well beyond a typical SaaS integration — KYC, RBI compliance, audit trails, and liability for erroneous transactions all apply. That's almost certainly why India's major banks have invested in API Banking portals (real, documented, developer-facing infrastructure) rather than rushing to publish an AI-facing MCP layer on top of it the way consumer platforms like Zomato or Swiggy have. If ICICI or another major bank does ship an official MCP server, it will very likely sit behind the same kind of onboarding, sandboxing, and compliance review their existing API Banking portal already requires.</p>`,
+    faqs: [
+      { question: "Does ICICI Bank have an official MCP server?", answer: "Not that's been confirmed as of this writing. What exists is ICICI's real API Banking portal (nearly 250 documented APIs) and a separate, community-built MCP server for ICICI Direct's brokerage Breeze API." },
+      { question: "Can I build my own MCP server against ICICI's banking APIs?", answer: "Yes, in principle — you'd register as a developer on ICICI's API Banking portal, get sandbox access, and wrap a narrow, well-scoped set of endpoints as MCP tools, the same pattern used for any existing production API." },
+      { question: "Why haven't major Indian banks shipped official MCP servers yet, when payment apps like Zomato and Swiggy have?", answer: "Banking carries heavier regulatory obligations (KYC, RBI compliance, transaction liability) than a food-delivery checkout flow, which likely explains the more cautious pace compared to consumer platforms." }
+    ]
   },
   {
     slug: "paytm-mcp-server-india-payments",
@@ -4834,7 +4885,7 @@ app.listen(3000);</code></pre>
     excerpt: "Paytm MCP Server – India Payments Automation integration for automated workflows in India.",
     keywords: ["paytm-mcp-server-india-payments", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["google-pay-mcp-india", "razorpay-mcp-server-india", "upstox-mcp-trading"],
     content: "<p>Paytm MCP Server – India Payments Automation - detailed guide coming soon.</p>"
   },
   {
@@ -4847,7 +4898,7 @@ app.listen(3000);</code></pre>
     excerpt: "PhonePe publishes its own official MCP server — but it's a read-only developer-documentation assistant for the PhonePe Payment Gateway, not a way to move real money through an AI client.",
     keywords: ["phonepe-mcp-server-india", "PhonePe MCP", "India MCP", "MCP payments documentation"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["upi-mcp-server-india", "zomato-mcp-india", "what-is-mcp"],
+    internalLinks: ["upi-mcp-server-india", "zomato-mcp-india", "model-context-protocol-beginner-guide"],
     content: `<p class="text-white/65 leading-relaxed">PhonePe publishes an official, open-source MCP server at <code class="bg-gray-800 px-1 py-0.5 rounded">phonepe/phonepe-pg-docs-mcp</code> on GitHub. The name is precise about what it is: a documentation and knowledge-base server for the PhonePe Payment Gateway (PG), aimed at developers integrating PhonePe PG — it is not a server that lets an AI assistant move money or initiate transactions on your behalf.</p>
 
 <h2 class="mt-8 text-2xl font-black text-white">What It Exposes: A Three-Tier Knowledge Base</h2>
@@ -4888,7 +4939,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "Google Pay MCP Server – India Payments integration for automated workflows in India.",
     keywords: ["google-pay-mcp-india", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["paytm-mcp-server-india-payments", "razorpay-mcp-server-india", "zoho-crm-mcp-india"],
     content: "<p>Google Pay MCP Server – India Payments - detailed guide coming soon.</p>"
   },
   {
@@ -4901,7 +4952,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "Upstox MCP Server – Indian Trading Automation integration for automated workflows in India.",
     keywords: ["upstox-mcp-trading", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["razorpay-mcp-server-india", "zoho-books-mcp-accounting-india", "paytm-mcp-server-india-payments"],
     content: "<p>Upstox MCP Server – Indian Trading Automation - detailed guide coming soon.</p>"
   },
   {
@@ -4914,7 +4965,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "Groww MCP Server – Mutual Fund Investments integration for automated workflows in India.",
     keywords: ["groww-mcp-investments", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["razorpay-mcp-server-india", "zoho-books-mcp-accounting-india", "icici-bank-mcp-india"],
     content: "<p>Groww MCP Server – Mutual Fund Investments - detailed guide coming soon.</p>"
   },
   {
@@ -4927,7 +4978,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "Angel Broking MCP Server – Trading Integration integration for automated workflows in India.",
     keywords: ["angel-broking-mcp-india", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["zoho-books-mcp-accounting-india", "icici-bank-mcp-india", "upstox-mcp-trading"],
     content: "<p>Angel Broking MCP Server – Trading Integration - detailed guide coming soon.</p>"
   },
   {
@@ -4940,7 +4991,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "5paisa MCP Server – Discount Broking integration for automated workflows in India.",
     keywords: ["fivepaisa-mcp-india", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["angel-broking-mcp-india", "razorpay-mcp-server-india", "zoho-books-mcp-accounting-india"],
     content: "<p>5paisa MCP Server – Discount Broking - detailed guide coming soon.</p>"
   },
   {
@@ -4953,7 +5004,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "Dhan MCP Server – F&O Trading integration for automated workflows in India.",
     keywords: ["dhan-mcp-fo-trading", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["upstox-mcp-trading", "angel-broking-mcp-india", "razorpay-mcp-server-india"],
     content: "<p>Dhan MCP Server – F&O Trading - detailed guide coming soon.</p>"
   },
   {
@@ -4966,7 +5017,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "SEBI MCP Server – Regulatory Compliance integration for automated workflows in India.",
     keywords: ["sebi-mcp-server-india", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["razorpay-mcp-server-india", "zoho-books-mcp-accounting-india", "icici-bank-mcp-india"],
     content: "<p>SEBI MCP Server – Regulatory Compliance - detailed guide coming soon.</p>"
   },
   {
@@ -4979,7 +5030,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "NSE MCP Server – Stock Exchange Data integration for automated workflows in India.",
     keywords: ["nse-mcp-server-india", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["bse-mcp-server-india", "screener-mcp-india", "razorpay-mcp-server-india"],
     content: "<p>NSE MCP Server – Stock Exchange Data - detailed guide coming soon.</p>"
   },
   {
@@ -4992,7 +5043,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "BSE MCP Server – Bombay Stock Exchange integration for automated workflows in India.",
     keywords: ["bse-mcp-server-india", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["nse-mcp-server-india", "screener-mcp-india", "razorpay-mcp-server-india"],
     content: "<p>BSE MCP Server – Bombay Stock Exchange - detailed guide coming soon.</p>"
   },
   {
@@ -5005,7 +5056,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "Moneycontrol MCP Server – Financial News integration for automated workflows in India.",
     keywords: ["moneycontrol-mcp-india", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["aajtak-mcp-india", "ndtv-mcp-india", "razorpay-mcp-server-india"],
     content: "<p>Moneycontrol MCP Server – Financial News - detailed guide coming soon.</p>"
   },
   {
@@ -5018,7 +5069,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "Screener MCP Server – Stock Analysis integration for automated workflows in India.",
     keywords: ["screener-mcp-india", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["nse-mcp-server-india", "bse-mcp-server-india", "razorpay-mcp-server-india"],
     content: "<p>Screener MCP Server – Stock Analysis - detailed guide coming soon.</p>"
   },
   {
@@ -5031,21 +5082,43 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "Zoho CRM MCP Server – India Sales integration for automated workflows in India.",
     keywords: ["zoho-crm-mcp-india", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["zoho-inventory-mcp-india", "zoho-desk-mcp-india", "zoho-projects-mcp-india"],
     content: "<p>Zoho CRM MCP Server – India Sales - detailed guide coming soon.</p>"
   },
   {
     slug: "tally-mcp-server-india",
-    title: "Tally MCP Server – Indian Accounting",
-    date: "2026-07-20",
+    title: "Tally MCP Server: Community-Built, Not (Yet) Official — And a Naming Trap",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "4 min read",
-    excerpt: "Tally MCP Server – Indian Accounting integration for automated workflows in India.",
-    keywords: ["tally-mcp-server-india", "India MCP", "MCP integration"],
+    readTime: "5 min read",
+    excerpt: "TallyPrime's most established MCP server is a community project exposing 19 tools for Tally ERP data — and it's frequently confused with the unrelated, officially-branded MCP for Tally.so, a different company entirely.",
+    keywords: ["tally-mcp-server-india", "Tally MCP", "TallyPrime MCP", "India MCP"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
-    content: "<p>Tally MCP Server – Indian Accounting - detailed guide coming soon.</p>"
+    internalLinks: ["zoho-books-mcp-accounting-india", "razorpay-mcp-server-india", "gst-mcp-server-tax-compliance"],
+    content: `<p class="text-white/65 leading-relaxed">Search for "Tally MCP server" and you'll immediately hit a naming collision worth clearing up before anything else: there are at least three unrelated products called some variant of "Tally" in the MCP ecosystem, and only one of them is the accounting software most Indian businesses actually mean when they say "Tally."</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Three Different "Tally" Products</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li><strong class="text-white">TallyPrime</strong> — the accounting and ERP software used across Indian small and medium businesses. This is almost certainly what you mean if you're reading this post.</li>
+  <li><strong class="text-white">Tally.so</strong> — an unrelated form-builder product, which has its own official MCP integration for managing forms via natural language (developers.tally.so/api-reference/mcp). Different company, different product, same name.</li>
+  <li><strong class="text-white">Tallyfy</strong> — a workflow and process-automation platform, also unrelated to either of the above.</li>
+</ul>
+<p class="text-white/65 leading-relaxed">If you land on documentation for an "official Tally MCP server," check carefully which of these three it's actually describing — Tally.so's official server will not help you connect an AI assistant to your TallyPrime accounting data.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">What Exists for TallyPrime Specifically</h2>
+<p class="text-white/65 leading-relaxed">For TallyPrime, the most-referenced implementation is a community, open-source project — <code class="bg-gray-800 px-1 py-0.5 rounded">dhananjay1405/tally-mcp-server</code> on GitHub — described as a Tally Prime MCP Server implementation to feed Tally ERP data to LLMs like Claude and ChatGPT. It currently exposes 19 MCP tools. It is not a Tally Solutions-branded, officially-maintained product — it's a third-party integration against Tally's data layer.</p>
+<p class="text-white/65 leading-relaxed">A second option comes from CData Software: a read-only MCP server that connects to Tally data via CData's own JDBC drivers, aimed at Claude Desktop specifically. CData also sells a separate, full-CRUD commercial MCP server for Tally if read-only access isn't sufficient for your use case.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">What This Means Practically</h2>
+<p class="text-white/65 leading-relaxed">If you're building AI tooling against TallyPrime data today, you have two realistic, real options: the open-source community server (free, read/write depending on the build, but unofficial and unmaintained by Tally Solutions itself) or CData's commercial driver-based servers (paid, vendor-supported, available in both read-only and full-CRUD variants). Neither is an official Tally Solutions product — worth setting expectations accordingly, especially around long-term support and compatibility with future TallyPrime releases.</p>
+<p class="text-white/65 leading-relaxed">For GST-aware accounting workflows built on top of Tally data, see this site's <a href="/blog/gst-mcp-server-tax-compliance" class="text-cyan-300 hover:text-cyan-200">GST MCP server coverage</a>, which covers the adjacent compliance-tooling landscape these Tally integrations typically feed into.</p>`,
+    faqs: [
+      { question: "Is there an official MCP server from Tally Solutions for TallyPrime?", answer: "Not that's been confirmed. The most established TallyPrime MCP server (dhananjay1405/tally-mcp-server) is a community, open-source project, not an official Tally Solutions product." },
+      { question: "Why do some search results show an 'official Tally MCP server'?", answer: "That's very likely referring to Tally.so — an unrelated form-builder company that does have its own official MCP integration — not TallyPrime, the accounting software. The names are a genuine collision." },
+      { question: "How many tools does the community TallyPrime MCP server expose?", answer: "19, per the dhananjay1405/tally-mcp-server GitHub repository." },
+      { question: "Are there commercial alternatives?", answer: "Yes — CData Software offers both a read-only MCP server (via JDBC drivers, for Claude Desktop) and a separate paid full-CRUD MCP server for Tally." }
+    ]
   },
   {
     slug: "kotak-maharaja-mcp-india",
@@ -5057,21 +5130,35 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "Kotak Mahindra MCP Server – Indian Banking API integration for automated workflows in India.",
     keywords: ["kotak-maharaja-mcp-india", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["aubank-mcp-india", "razorpay-mcp-server-india", "zoho-books-mcp-accounting-india"],
     content: "<p>Kotak Mahindra MCP Server – Indian Banking API - detailed guide coming soon.</p>"
   },
   {
     slug: "hdfc-bank-mcp-india",
-    title: "HDFC Bank MCP Server – Corporate & Retail Banking",
-    date: "2026-07-20",
+    title: "HDFC Bank Has No MCP Server — But Its Partner API Gateway Is Real",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
     readTime: "4 min read",
-    excerpt: "HDFC Bank MCP Server – Corporate & Retail Banking integration for automated workflows in India.",
-    keywords: ["hdfc-bank-mcp-india", "India MCP", "MCP integration"],
+    excerpt: "HDFC Bank hasn't published an MCP server, but it has run real API Banking Summits since 2019 and exposes partner APIs across payments, customer sourcing, and servicing — a real foundation for anyone building one.",
+    keywords: ["hdfc-bank-mcp-india", "HDFC Bank API", "India MCP", "MCP banking"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
-    content: "<p>HDFC Bank MCP Server – Corporate & Retail Banking - detailed guide coming soon.</p>"
+    internalLinks: ["icici-bank-mcp-india", "axis-bank-mcp-india", "razorpay-mcp-server-india"],
+    content: `<p class="text-white/65 leading-relaxed">No official HDFC Bank MCP server exists as of this writing. What does exist: HDFC Bank has run its own API Banking Summit since at least December 2019, bringing together corporates, fintechs, aggregators, and startups around delivering internal banking services through an external-facing API gateway. Partner APIs are documented across domains including payments, customer sourcing, and servicing.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">What This Means in Practice</h2>
+<p class="text-white/65 leading-relaxed">HDFC's API program is a partner-facing gateway rather than an open, self-serve developer portal in the way ICICI Bank's ~250-API portal is — access typically runs through a formal partnership rather than a public sign-up. That distinction matters if you're evaluating how realistic building your own MCP wrapper is: it's a real, existing API surface, but likely gated behind a business relationship with the bank rather than a sandbox you can register for directly online.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">The Honest Comparison Across India's Major Private Banks</h2>
+<p class="text-white/65 leading-relaxed">Looking across HDFC, ICICI, and Axis together: ICICI has published the most self-serve-friendly developer portal of the three, HDFC's program is real but runs through formal partner relationships rather than open registration, and none of the three has shipped an AI-facing MCP layer yet. That's a meaningfully different maturity curve than payments (Razorpay, Cashfree, PayU) or food delivery (Zomato, Swiggy), where official MCP servers already exist and are in production use.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Why Banking Is Moving Slower on MCP Specifically</h2>
+<p class="text-white/65 leading-relaxed">The gap isn't a lack of API infrastructure — both ICICI and HDFC clearly have real, substantial API programs. It's that handing an AI agent write access to banking operations carries regulatory weight (RBI compliance, KYC, transaction liability, audit requirements) that a food-delivery checkout or a documentation lookup simply doesn't. Expect banking-specific MCP servers, when they arrive, to ship with correspondingly heavier authentication, scoping, and audit-logging built in from day one — not the "no API keys required" simplicity of something like Zerodha's read-only Kite MCP.</p>`,
+    faqs: [
+      { question: "Does HDFC Bank have an MCP server?", answer: "No official one exists as of this writing. HDFC Bank does run a real partner API gateway (since its API Banking Summit in December 2019) covering payments, customer sourcing, and servicing." },
+      { question: "Can I sign up for HDFC's API access the way I could for ICICI's developer portal?", answer: "Not in the same open, self-serve way — HDFC's program runs more through formal partner relationships than a public sandbox registration, based on available reporting." },
+      { question: "Why don't major Indian banks have official MCP servers yet, when payment apps do?", answer: "Banking operations carry heavier regulatory obligations (RBI compliance, KYC, transaction liability) than a checkout flow, which plausibly explains the slower pace compared to consumer platforms." }
+    ]
   },
   {
     slug: "sbi-mcp-server-india-banking",
@@ -5083,7 +5170,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "SBI MCP Server – India's Largest Bank integration for automated workflows in India.",
     keywords: ["sbi-mcp-server-india-banking", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["kmb-mcp-server-karnataka", "canara-bank-mcp-india", "union-bank-mcp-india"],
     content: "<p>SBI MCP Server – India's Largest Bank - detailed guide coming soon.</p>"
   },
   {
@@ -5096,7 +5183,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "Axis Bank MCP Server – Corporate Banking Solutions integration for automated workflows in India.",
     keywords: ["axis-bank-mcp-india", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["icici-bank-mcp-india", "hdfc-bank-mcp-india", "yes-bank-mcp-india"],
     content: "<p>Axis Bank MCP Server – Corporate Banking Solutions - detailed guide coming soon.</p>"
   },
   {
@@ -5109,7 +5196,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "Yes Bank MCP Server – Indian Corporate Payments integration for automated workflows in India.",
     keywords: ["yes-bank-mcp-india", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["razorpay-mcp-server-india", "icici-bank-mcp-india", "hdfc-bank-mcp-india"],
     content: "<p>Yes Bank MCP Server – Indian Corporate Payments - detailed guide coming soon.</p>"
   },
   {
@@ -5122,7 +5209,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "AU Small Finance MCP Server – Indian Banking integration for automated workflows in India.",
     keywords: ["aubank-mcp-india", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["kotak-maharaja-mcp-india", "razorpay-mcp-server-india", "zoho-books-mcp-accounting-india"],
     content: "<p>AU Small Finance MCP Server – Indian Banking - detailed guide coming soon.</p>"
   },
   {
@@ -5135,7 +5222,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "IDFC First MCP Server – Digital Banking integration for automated workflows in India.",
     keywords: ["idfc-first-mcp-india", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["icici-bank-mcp-india", "kotak-maharaja-mcp-india", "hdfc-bank-mcp-india"],
     content: "<p>IDFC First MCP Server – Digital Banking - detailed guide coming soon.</p>"
   },
   {
@@ -5148,7 +5235,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "Punjab National Bank MCP Server – PSU Banking integration for automated workflows in India.",
     keywords: ["pnb-mcp-india", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["icici-bank-mcp-india", "hdfc-bank-mcp-india", "axis-bank-mcp-india"],
     content: "<p>Punjab National Bank MCP Server – PSU Banking - detailed guide coming soon.</p>"
   },
   {
@@ -5161,7 +5248,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "BigBasket MCP Server – Grocery Delivery integration for automated workflows in India.",
     keywords: ["bigbasket-mcp-india", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["zepto-mcp-india", "shadowfax-mcp-india", "razorpay-mcp-server-india"],
     content: "<p>BigBasket MCP Server – Grocery Delivery - detailed guide coming soon.</p>"
   },
   {
@@ -5174,7 +5261,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "Blinkit MCP Server – Quick Commerce integration for automated workflows in India.",
     keywords: ["blinkit-mcp-india", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["flipkart-mcp-india", "myntra-mcp-india", "razorpay-mcp-server-india"],
     content: "<p>Blinkit MCP Server – Quick Commerce - detailed guide coming soon.</p>"
   },
   {
@@ -5187,7 +5274,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "Zepto MCP Server – Express Delivery integration for automated workflows in India.",
     keywords: ["zepto-mcp-india", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["bigbasket-mcp-india", "ecom-express-mcp-india", "shadowfax-mcp-india"],
     content: "<p>Zepto MCP Server – Express Delivery - detailed guide coming soon.</p>"
   },
   {
@@ -5200,7 +5287,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "Amazon India MCP Server – Marketplace integration for automated workflows in India.",
     keywords: ["amazon-india-mcp", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["paytm-mcp-server-india-payments", "google-pay-mcp-india", "zoho-crm-mcp-india"],
     content: "<p>Amazon India MCP Server – Marketplace - detailed guide coming soon.</p>"
   },
   {
@@ -5213,7 +5300,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "Flipkart MCP Server – E-commerce integration for automated workflows in India.",
     keywords: ["flipkart-mcp-india", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["blinkit-mcp-india", "myntra-mcp-india", "razorpay-mcp-server-india"],
     content: "<p>Flipkart MCP Server – E-commerce - detailed guide coming soon.</p>"
   },
   {
@@ -5226,7 +5313,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "Myntra MCP Server – Fashion E-commerce integration for automated workflows in India.",
     keywords: ["myntra-mcp-india", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["blinkit-mcp-india", "flipkart-mcp-india", "razorpay-mcp-server-india"],
     content: "<p>Myntra MCP Server – Fashion E-commerce - detailed guide coming soon.</p>"
   },
   {
@@ -5239,7 +5326,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "Zomato shipped its own official MCP server in 2025, letting AI assistants search restaurants, browse menus, build a cart, and check out with a UPI QR code — all through natural language.",
     keywords: ["zomato-mcp-india", "Zomato MCP", "India MCP", "MCP food ordering"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["swiggy-mcp-india", "upi-mcp-server-india", "what-is-mcp"],
+    internalLinks: ["swiggy-mcp-india", "upi-mcp-server-india", "model-context-protocol-beginner-guide"],
     content: `<p class="text-white/65 leading-relaxed">Zomato's MCP server is one of the few India-focused MCP integrations that's both official and genuinely transaction-capable — it doesn't just answer questions about restaurants, it can complete an order. Zomato launched the server in 2025 as a Node.js implementation of the Model Context Protocol that translates a conversational request into the same structured API calls Zomato's own apps use.</p>
 
 <h2 class="mt-8 text-2xl font-black text-white">What It Actually Does</h2>
@@ -5280,7 +5367,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "Swiggy Builders Club exposes three separate official MCP servers — Food, Instamart, and Dineout — with 35 tools total, connectable from Claude, ChatGPT, Cursor, and VS Code.",
     keywords: ["swiggy-mcp-india", "Swiggy MCP", "India MCP", "MCP quick commerce"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["zomato-mcp-india", "upi-mcp-server-india", "what-is-mcp"],
+    internalLinks: ["zomato-mcp-india", "upi-mcp-server-india", "model-context-protocol-beginner-guide"],
     content: `<p class="text-white/65 leading-relaxed">Swiggy runs its official MCP integration through what it calls the <strong class="text-white">Swiggy Builders Club</strong> — and unlike most single-server brand integrations, Swiggy actually ships three independent MCP servers, one per business line, rather than one server trying to cover everything.</p>
 
 <h2 class="mt-8 text-2xl font-black text-white">Three Servers, Not One</h2>
@@ -5327,7 +5414,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "Dunzo MCP Server – Hyperlocal Services integration for automated workflows in India.",
     keywords: ["dunzo-mcp-india", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["urbancompany-mcp-india", "goibibo-mcp-india", "indian-railways-mcp-india"],
     content: "<p>Dunzo MCP Server – Hyperlocal Services - detailed guide coming soon.</p>"
   },
   {
@@ -5340,7 +5427,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "Urban Company MCP Server – Home Services integration for automated workflows in India.",
     keywords: ["urbancompany-mcp-india", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["dunzo-mcp-india", "goibibo-mcp-india", "indian-railways-mcp-india"],
     content: "<p>Urban Company MCP Server – Home Services - detailed guide coming soon.</p>"
   },
   {
@@ -5353,7 +5440,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "OYO MCP Server – Hotel Booking integration for automated workflows in India.",
     keywords: ["oyo-mcp-india", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["makemytrip-mcp-india", "razorpay-mcp-server-india", "zoho-books-mcp-accounting-india"],
     content: "<p>OYO MCP Server – Hotel Booking - detailed guide coming soon.</p>"
   },
   {
@@ -5366,7 +5453,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "MakeMyTrip MCP Server – Travel Booking integration for automated workflows in India.",
     keywords: ["makemytrip-mcp-india", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["oyo-mcp-india", "goibibo-mcp-india", "razorpay-mcp-server-india"],
     content: "<p>MakeMyTrip MCP Server – Travel Booking - detailed guide coming soon.</p>"
   },
   {
@@ -5379,7 +5466,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "Goibibo MCP Server – Travel Services integration for automated workflows in India.",
     keywords: ["goibibo-mcp-india", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["dunzo-mcp-india", "urbancompany-mcp-india", "makemytrip-mcp-india"],
     content: "<p>Goibibo MCP Server – Travel Services - detailed guide coming soon.</p>"
   },
   {
@@ -5392,7 +5479,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "IRCTC MCP Server – Train Tickets integration for automated workflows in India.",
     keywords: ["irctc-mcp-india", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["redbus-mcp-india", "razorpay-mcp-server-india", "zoho-books-mcp-accounting-india"],
     content: "<p>IRCTC MCP Server – Train Tickets - detailed guide coming soon.</p>"
   },
   {
@@ -5405,7 +5492,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "Indian Railways MCP Server – Rail Services integration for automated workflows in India.",
     keywords: ["indian-railways-mcp-india", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["razorpay-mcp-server-india", "zoho-books-mcp-accounting-india", "upstox-mcp-trading"],
     content: "<p>Indian Railways MCP Server – Rail Services - detailed guide coming soon.</p>"
   },
   {
@@ -5418,7 +5505,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "RedBus MCP Server – Bus Tickets integration for automated workflows in India.",
     keywords: ["redbus-mcp-india", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["irctc-mcp-india", "razorpay-mcp-server-india", "zoho-books-mcp-accounting-india"],
     content: "<p>RedBus MCP Server – Bus Tickets - detailed guide coming soon.</p>"
   },
   {
@@ -5431,7 +5518,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "Rapido MCP Server – Bike Taxi integration for automated workflows in India.",
     keywords: ["rapido-mcp-india", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["razorpay-mcp-server-india", "zoho-books-mcp-accounting-india", "icici-bank-mcp-india"],
     content: "<p>Rapido MCP Server – Bike Taxi - detailed guide coming soon.</p>"
   },
   {
@@ -5444,7 +5531,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "Uber India MCP Server – Ride Services integration for automated workflows in India.",
     keywords: ["uber-india-mcp", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["paytm-mcp-server-india-payments", "google-pay-mcp-india", "zoho-crm-mcp-india"],
     content: "<p>Uber India MCP Server – Ride Services - detailed guide coming soon.</p>"
   },
   {
@@ -5457,7 +5544,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "Ola MCP Server – Ride & Mobility integration for automated workflows in India.",
     keywords: ["ola-mcp-india", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["uber-india-mcp", "razorpay-mcp-server-india", "zoho-books-mcp-accounting-india"],
     content: "<p>Ola MCP Server – Ride & Mobility - detailed guide coming soon.</p>"
   },
   {
@@ -5470,7 +5557,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "Cricbuzz MCP Server – Live Scores integration for automated workflows in India.",
     keywords: ["cricbuzz-mcp-india", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["razorpay-mcp-server-india", "zoho-books-mcp-accounting-india", "icici-bank-mcp-india"],
     content: "<p>Cricbuzz MCP Server – Live Scores - detailed guide coming soon.</p>"
   },
   {
@@ -5483,7 +5570,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "Hotstar MCP Server – Streaming integration for automated workflows in India.",
     keywords: ["hotstar-mcp-india", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["jiohotstar-mcp-india", "razorpay-mcp-server-india", "zoho-books-mcp-accounting-india"],
     content: "<p>Hotstar MCP Server – Streaming - detailed guide coming soon.</p>"
   },
   {
@@ -5496,7 +5583,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "JioHotstar MCP Server – Streaming integration for automated workflows in India.",
     keywords: ["jiohotstar-mcp-india", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["hotstar-mcp-india", "razorpay-mcp-server-india", "zoho-books-mcp-accounting-india"],
     content: "<p>JioHotstar MCP Server – Streaming - detailed guide coming soon.</p>"
   },
   {
@@ -5509,7 +5596,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "Aaj Tak MCP Server – News integration for automated workflows in India.",
     keywords: ["aajtak-mcp-india", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["moneycontrol-mcp-india", "ndtv-mcp-india", "razorpay-mcp-server-india"],
     content: "<p>Aaj Tak MCP Server – News - detailed guide coming soon.</p>"
   },
   {
@@ -5522,7 +5609,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "NDTV MCP Server – News Media integration for automated workflows in India.",
     keywords: ["ndtv-mcp-india", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["moneycontrol-mcp-india", "aajtak-mcp-india", "razorpay-mcp-server-india"],
     content: "<p>NDTV MCP Server – News Media - detailed guide coming soon.</p>"
   },
   {
@@ -5535,7 +5622,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "Delhivery MCP Server – Courier Services integration for automated workflows in India.",
     keywords: ["delhivery-mcp-india", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["dunzo-mcp-india", "urbancompany-mcp-india", "goibibo-mcp-india"],
     content: "<p>Delhivery MCP Server – Courier Services - detailed guide coming soon.</p>"
   },
   {
@@ -5548,7 +5635,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "Ecom Express MCP Server – Logistics integration for automated workflows in India.",
     keywords: ["ecom-express-mcp-india", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["zepto-mcp-india", "dhl-india-mcp", "razorpay-mcp-server-india"],
     content: "<p>Ecom Express MCP Server – Logistics - detailed guide coming soon.</p>"
   },
   {
@@ -5561,7 +5648,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "Shadowfax MCP Server – Hyperlocal Delivery integration for automated workflows in India.",
     keywords: ["shadowfax-mcp-india", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["bigbasket-mcp-india", "zepto-mcp-india", "dunzo-mcp-india"],
     content: "<p>Shadowfax MCP Server – Hyperlocal Delivery - detailed guide coming soon.</p>"
   },
   {
@@ -5574,7 +5661,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "FedEx India MCP Server – International Shipping integration for automated workflows in India.",
     keywords: ["fedex-india-mcp", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["paytm-mcp-server-india-payments", "google-pay-mcp-india", "zoho-crm-mcp-india"],
     content: "<p>FedEx India MCP Server – International Shipping - detailed guide coming soon.</p>"
   },
   {
@@ -5587,7 +5674,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "DHL India MCP Server – Logistics integration for automated workflows in India.",
     keywords: ["dhl-india-mcp", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["paytm-mcp-server-india-payments", "google-pay-mcp-india", "zoho-crm-mcp-india"],
     content: "<p>DHL India MCP Server – Logistics - detailed guide coming soon.</p>"
   },
   {
@@ -5600,7 +5687,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "Apollo MCP Server – Healthcare integration for automated workflows in India.",
     keywords: ["apollo-mcp-india", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["manipal-mcp-india", "aiims-mcp-india", "fortis-mcp-india"],
     content: "<p>Apollo MCP Server – Healthcare - detailed guide coming soon.</p>"
   },
   {
@@ -5613,7 +5700,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "ICICI Lombard MCP Server – Insurance integration for automated workflows in India.",
     keywords: ["icici-lombard-mcp", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["icici-bank-mcp-india", "hdfc-ergo-mcp", "razorpay-mcp-server-india"],
     content: "<p>ICICI Lombard MCP Server – Insurance - detailed guide coming soon.</p>"
   },
   {
@@ -5626,7 +5713,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "HDFC Ergo MCP Server – Insurance integration for automated workflows in India.",
     keywords: ["hdfc-ergo-mcp", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["hdfc-bank-mcp-india", "icici-lombard-mcp", "razorpay-mcp-server-india"],
     content: "<p>HDFC Ergo MCP Server – Insurance - detailed guide coming soon.</p>"
   },
   {
@@ -5639,7 +5726,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "Reliance MCP Server – Conglomerate integration for automated workflows in India.",
     keywords: ["reliance-mcp-india", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["razorpay-mcp-server-india", "zoho-books-mcp-accounting-india", "icici-bank-mcp-india"],
     content: "<p>Reliance MCP Server – Conglomerate - detailed guide coming soon.</p>"
   },
   {
@@ -5652,7 +5739,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "TCS MCP Server – IT Services integration for automated workflows in India.",
     keywords: ["tcs-mcp-india", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["dunzo-mcp-india", "urbancompany-mcp-india", "goibibo-mcp-india"],
     content: "<p>TCS MCP Server – IT Services - detailed guide coming soon.</p>"
   },
   {
@@ -5665,7 +5752,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "Infosys MCP Server – IT Services integration for automated workflows in India.",
     keywords: ["infosys-mcp-india", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["dunzo-mcp-india", "urbancompany-mcp-india", "goibibo-mcp-india"],
     content: "<p>Infosys MCP Server – IT Services - detailed guide coming soon.</p>"
   },
   {
@@ -5678,7 +5765,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "Wipro MCP Server – IT Services integration for automated workflows in India.",
     keywords: ["wipro-mcp-india", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["dunzo-mcp-india", "urbancompany-mcp-india", "goibibo-mcp-india"],
     content: "<p>Wipro MCP Server – IT Services - detailed guide coming soon.</p>"
   },
   {
@@ -5691,7 +5778,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "HCL MCP Server – IT Services integration for automated workflows in India.",
     keywords: ["hcl-mcp-india", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["dunzo-mcp-india", "urbancompany-mcp-india", "goibibo-mcp-india"],
     content: "<p>HCL MCP Server – IT Services - detailed guide coming soon.</p>"
   },
   {
@@ -5704,7 +5791,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "Airtel MCP Server – Telecom integration for automated workflows in India.",
     keywords: ["airtel-mcp-india", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["jio-mcp-india", "vi-mcp-india", "razorpay-mcp-server-india"],
     content: "<p>Airtel MCP Server – Telecom - detailed guide coming soon.</p>"
   },
   {
@@ -5717,7 +5804,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "Jio MCP Server – Telecom integration for automated workflows in India.",
     keywords: ["jio-mcp-india", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["airtel-mcp-india", "vi-mcp-india", "razorpay-mcp-server-india"],
     content: "<p>Jio MCP Server – Telecom - detailed guide coming soon.</p>"
   },
   {
@@ -5730,7 +5817,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "Vi MCP Server – Telecom integration for automated workflows in India.",
     keywords: ["vi-mcp-india", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["airtel-mcp-india", "jio-mcp-india", "razorpay-mcp-server-india"],
     content: "<p>Vi MCP Server – Telecom - detailed guide coming soon.</p>"
   },
   {
@@ -5743,7 +5830,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "Karnataka Bank MCP Server – South India integration for automated workflows in India.",
     keywords: ["kmb-mcp-server-karnataka", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["sbi-mcp-server-india-banking", "canara-bank-mcp-india", "union-bank-mcp-india"],
     content: "<p>Karnataka Bank MCP Server – South India - detailed guide coming soon.</p>"
   },
   {
@@ -5756,7 +5843,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "City Union Bank MCP Server – Tamil Nadu integration for automated workflows in India.",
     keywords: ["city-union-mcp-chennai", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["union-bank-mcp-india", "tamil-maharaja-mcp-tn", "icici-bank-mcp-india"],
     content: "<p>City Union Bank MCP Server – Tamil Nadu - detailed guide coming soon.</p>"
   },
   {
@@ -5769,7 +5856,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "Federal Bank MCP Server – Kerala integration for automated workflows in India.",
     keywords: ["federal-bank-mcp-kerala", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["icici-bank-mcp-india", "hdfc-bank-mcp-india", "sbi-mcp-server-india-banking"],
     content: "<p>Federal Bank MCP Server – Kerala - detailed guide coming soon.</p>"
   },
   {
@@ -5782,7 +5869,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "Canara Bank MCP Server – India integration for automated workflows in India.",
     keywords: ["canara-bank-mcp-india", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["sbi-mcp-server-india-banking", "kmb-mcp-server-karnataka", "union-bank-mcp-india"],
     content: "<p>Canara Bank MCP Server – India - detailed guide coming soon.</p>"
   },
   {
@@ -5795,7 +5882,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "Union Bank MCP Server – India integration for automated workflows in India.",
     keywords: ["union-bank-mcp-india", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["sbi-mcp-server-india-banking", "kmb-mcp-server-karnataka", "city-union-mcp-chennai"],
     content: "<p>Union Bank MCP Server – India - detailed guide coming soon.</p>"
   },
   {
@@ -5808,7 +5895,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "IndusInd MCP Server – India integration for automated workflows in India.",
     keywords: ["indusind-mcp-india", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["paytm-mcp-server-india-payments", "google-pay-mcp-india", "zoho-crm-mcp-india"],
     content: "<p>IndusInd MCP Server – India - detailed guide coming soon.</p>"
   },
   {
@@ -5821,7 +5908,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "Axis Bank MCP Server – India integration for automated workflows in India.",
     keywords: ["axis-bank-mcp-server", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["sbi-mcp-server-india-banking", "axis-bank-mcp-india", "kmb-mcp-server-karnataka"],
     content: "<p>Axis Bank MCP Server – India - detailed guide coming soon.</p>"
   },
   {
@@ -5834,7 +5921,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "Yes Bank MCP Server – India integration for automated workflows in India.",
     keywords: ["yes-bank-mcp-server", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["sbi-mcp-server-india-banking", "kmb-mcp-server-karnataka", "canara-bank-mcp-india"],
     content: "<p>Yes Bank MCP Server – India - detailed guide coming soon.</p>"
   },
   {
@@ -5847,7 +5934,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "Tamil Nadu Mercantile MCP Server – South India integration for automated workflows in India.",
     keywords: ["tamil-maharaja-mcp-tn", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["kmb-mcp-server-karnataka", "city-union-mcp-chennai", "paytm-mcp-server-india-payments"],
     content: "<p>Tamil Nadu Mercantile MCP Server – South India - detailed guide coming soon.</p>"
   },
   {
@@ -5860,7 +5947,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "Manipal MCP Server – Healthcare integration for automated workflows in India.",
     keywords: ["manipal-mcp-india", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["apollo-mcp-india", "aiims-mcp-india", "fortis-mcp-india"],
     content: "<p>Manipal MCP Server – Healthcare - detailed guide coming soon.</p>"
   },
   {
@@ -5873,7 +5960,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "AIIMS MCP Server – Healthcare integration for automated workflows in India.",
     keywords: ["aiims-mcp-india", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["apollo-mcp-india", "manipal-mcp-india", "fortis-mcp-india"],
     content: "<p>AIIMS MCP Server – Healthcare - detailed guide coming soon.</p>"
   },
   {
@@ -5886,7 +5973,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "Fortis MCP Server – Healthcare integration for automated workflows in India.",
     keywords: ["fortis-mcp-india", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["apollo-mcp-india", "manipal-mcp-india", "aiims-mcp-india"],
     content: "<p>Fortis MCP Server – Healthcare - detailed guide coming soon.</p>"
   },
   {
@@ -5899,7 +5986,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "KMC MCP Server – Healthcare integration for automated workflows in India.",
     keywords: ["kmc-mcp-india", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["apollo-mcp-india", "manipal-mcp-india", "aiims-mcp-india"],
     content: "<p>KMC MCP Server – Healthcare - detailed guide coming soon.</p>"
   },
   {
@@ -5912,7 +5999,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "Max Healthcare MCP Server – India integration for automated workflows in India.",
     keywords: ["max-healthcare-mcp", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["paytm-mcp-server-india-payments", "google-pay-mcp-india", "zoho-crm-mcp-india"],
     content: "<p>Max Healthcare MCP Server – India - detailed guide coming soon.</p>"
   },
   {
@@ -5925,7 +6012,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "Zoho Inventory MCP Server – India integration for automated workflows in India.",
     keywords: ["zoho-inventory-mcp-india", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["zoho-crm-mcp-india", "zoho-desk-mcp-india", "zoho-projects-mcp-india"],
     content: "<p>Zoho Inventory MCP Server – India - detailed guide coming soon.</p>"
   },
   {
@@ -5938,7 +6025,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "Zoho Desk MCP Server – India integration for automated workflows in India.",
     keywords: ["zoho-desk-mcp-india", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["zoho-crm-mcp-india", "zoho-inventory-mcp-india", "zoho-projects-mcp-india"],
     content: "<p>Zoho Desk MCP Server – India - detailed guide coming soon.</p>"
   },
   {
@@ -5951,7 +6038,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "Zoho Projects MCP Server – India integration for automated workflows in India.",
     keywords: ["zoho-projects-mcp-india", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["zoho-crm-mcp-india", "zoho-inventory-mcp-india", "zoho-desk-mcp-india"],
     content: "<p>Zoho Projects MCP Server – India - detailed guide coming soon.</p>"
   },
   {
@@ -5964,7 +6051,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "KhataBook MCP Server – Small Business integration for automated workflows in India.",
     keywords: ["khatabook-mcp-india", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["aubank-mcp-india", "razorpayx-mcp-india", "razorpay-mcp-server-india"],
     content: "<p>KhataBook MCP Server – Small Business - detailed guide coming soon.</p>"
   },
   {
@@ -5977,7 +6064,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "OkCredit MCP Server – Credit Management integration for automated workflows in India.",
     keywords: ["okcredit-mcp-india", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["razorpay-mcp-server-india", "zoho-books-mcp-accounting-india", "icici-bank-mcp-india"],
     content: "<p>OkCredit MCP Server – Credit Management - detailed guide coming soon.</p>"
   },
   {
@@ -5990,7 +6077,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "Vyapar MCP Server – GST Billing integration for automated workflows in India.",
     keywords: ["vyapar-mcp-india", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["razorpay-mcp-server-india", "zoho-books-mcp-accounting-india", "icici-bank-mcp-india"],
     content: "<p>Vyapar MCP Server – GST Billing - detailed guide coming soon.</p>"
   },
   {
@@ -6003,7 +6090,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "MyBillBook MCP Server – Invoicing integration for automated workflows in India.",
     keywords: ["mybillbook-mcp-india", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["razorpay-mcp-server-india", "zoho-books-mcp-accounting-india", "icici-bank-mcp-india"],
     content: "<p>MyBillBook MCP Server – Invoicing - detailed guide coming soon.</p>"
   },
   {
@@ -6016,7 +6103,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "ProfitBooks MCP Server – Accounting integration for automated workflows in India.",
     keywords: ["profit-books-mcp-india", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["zoho-books-mcp-accounting-india", "tally-mcp-server-india", "razorpay-mcp-server-india"],
     content: "<p>ProfitBooks MCP Server – Accounting - detailed guide coming soon.</p>"
   },
   {
@@ -6029,21 +6116,35 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "RazorpayX MCP Server – Business Banking integration for automated workflows in India.",
     keywords: ["razorpayx-mcp-india", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["icici-bank-mcp-india", "kotak-maharaja-mcp-india", "hdfc-bank-mcp-india"],
     content: "<p>RazorpayX MCP Server – Business Banking - detailed guide coming soon.</p>"
   },
   {
     slug: "cashfree-mcp-india",
-    title: "Cashfree MCP Server – Payments Gateway",
-    date: "2026-07-20",
+    title: "Cashfree's Remote MCP: Payments Over WhatsApp and Chat",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
     readTime: "4 min read",
-    excerpt: "Cashfree MCP Server – Payments Gateway integration for automated workflows in India.",
-    keywords: ["cashfree-mcp-india", "India MCP", "MCP integration"],
+    excerpt: "Cashfree Payments launched an official Remote MCP server that lets merchants initiate and manage payments through conversational interfaces like WhatsApp, without writing integration code.",
+    keywords: ["cashfree-mcp-india", "Cashfree MCP", "India MCP", "MCP payments"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
-    content: "<p>Cashfree MCP Server – Payments Gateway - detailed guide coming soon.</p>"
+    internalLinks: ["razorpay-mcp-server-india", "payu-mcp-india", "upi-mcp-server-india"],
+    content: `<p class="text-white/65 leading-relaxed">Cashfree Payments is one of the first Indian fintechs to ship a Remote MCP server, following its introduction of Model Context Protocol support earlier in the year, according to coverage from YourStory. The pitch is squarely aimed at India's large base of small and medium merchants: initiate and manage payments through conversational interfaces — WhatsApp being the headline example — without any coding or complex integration work.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Why WhatsApp Specifically</h2>
+<p class="text-white/65 leading-relaxed">For a huge share of Indian SMEs, WhatsApp is already the primary business communication channel — invoices, order confirmations, and customer support routinely happen there already. Cashfree's Remote MCP approach means a merchant's AI assistant, running wherever it's connected, can trigger a real payment action against Cashfree's infrastructure directly from that same conversational surface, rather than requiring a separate app, dashboard login, or custom-built bot.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Part of a Wider Trend, Not a One-Off</h2>
+<p class="text-white/65 leading-relaxed">Cashfree's launch sits alongside Razorpay's and PayU's own official MCP servers — reporting on the space explicitly frames Cashfree and PayU as following Razorpay's earlier move into agentic AI for payments. That's worth knowing if you're evaluating providers: all three major Indian payment aggregators now have some form of official MCP offering, which means the comparison point for choosing between them is shifting from "does it have an MCP server" to "which one's tool set and hosting model fits your setup."</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">What This Means If You're Building on It</h2>
+<p class="text-white/65 leading-relaxed">As with every payment-capable MCP server covered on this site — Razorpay's, Zomato's, Zerodha's GTT orders — the same rule applies: a "no-code, conversational" payment flow is still a real financial transaction. Treat merchant-facing conversational payment tools the same way you'd treat any other production payment integration: confirm amounts before charging, log every action, and don't assume "it's just chat" means the stakes are lower than a traditional API call.</p>`,
+    faqs: [
+      { question: "Is Cashfree's MCP server official?", answer: "Yes — Cashfree Payments launched its own Remote MCP server, reported by YourStory as one of the first from an Indian fintech." },
+      { question: "Can I really take payments through WhatsApp with this?", answer: "Yes — that's the headline use case: initiating and managing payments through conversational interfaces like WhatsApp without custom integration work." },
+      { question: "Is Cashfree the only Indian payment provider doing this?", answer: "No — Razorpay was first to market, and PayU has also launched its own official MCP server. All three major Indian payment aggregators now offer some form of MCP integration." }
+    ]
   },
   {
     slug: "instamojo-mcp-india",
@@ -6055,7 +6156,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "Instamojo MCP Server – Payment Links integration for automated workflows in India.",
     keywords: ["instamojo-mcp-india", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["ccavenue-mcp-india", "payu-mcp-india", "razorpay-mcp-server-india"],
     content: "<p>Instamojo MCP Server – Payment Links - detailed guide coming soon.</p>"
   },
   {
@@ -6068,21 +6169,35 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "CCAvenue MCP Server – Payment Gateway integration for automated workflows in India.",
     keywords: ["ccavenue-mcp-india", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["cashfree-mcp-india", "instamojo-mcp-india", "payu-mcp-india"],
     content: "<p>CCAvenue MCP Server – Payment Gateway - detailed guide coming soon.</p>"
   },
   {
     slug: "payu-mcp-india",
-    title: "PayU MCP Server – Payment Processing",
-    date: "2026-07-20",
+    title: "PayU MCP Server: Merchant AI Assistants Meet the Payment Stack",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
     readTime: "4 min read",
-    excerpt: "PayU MCP Server – Payment Processing integration for automated workflows in India.",
-    keywords: ["payu-mcp-india", "India MCP", "MCP integration"],
+    excerpt: "PayU rolled out an official MCP server letting merchants connect AI assistants like Claude directly to PayU's payment systems, part of a broader AI-powered tech stack push for its merchant base.",
+    keywords: ["payu-mcp-india", "PayU MCP", "India MCP", "MCP payments"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
-    content: "<p>PayU MCP Server – Payment Processing - detailed guide coming soon.</p>"
+    internalLinks: ["razorpay-mcp-server-india", "cashfree-mcp-india", "upi-mcp-server-india"],
+    content: `<p class="text-white/65 leading-relaxed">PayU rolled out an official Model Context Protocol server, reported across multiple Indian business outlets — Business Standard, CRN India, IBS Intelligence, and The NFA Post among them — as part of an expanded AI-powered tech stack aimed at its merchant base. The framing PayU itself uses, echoed in that coverage, is the now-familiar MCP metaphor: a "universal connector" — like a USB-C port — that lets AI assistants such as Claude or VS Code talk to PayU's payment systems through one standard interface instead of a bespoke integration per client.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">What It's For</h2>
+<p class="text-white/65 leading-relaxed">PayU's own documentation (docs.payu.in/docs/payu-mcp-server) positions the server around merchant workflow automation — connecting an AI assistant to payment operations so merchants can query and act on payment data conversationally rather than navigating a dashboard for every task. This mirrors the pattern set by Razorpay (first to market in India) and matched shortly after by Cashfree — all three of India's largest payment aggregators now ship an official MCP integration aimed at reducing the friction between "I want to check/do X with a payment" and actually doing it.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Where BillDesk Fits</h2>
+<p class="text-white/65 leading-relaxed">One detail worth knowing if you're mapping out India's payment landscape: BillDesk — long a dominant player in bill payments and banking infrastructure — is now part of PayU. There's no confirmed BillDesk-branded MCP server independent of PayU's; any BillDesk-related payment workflows going through MCP today would run through PayU's server rather than a separate BillDesk one.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Same Caution as Every Payment MCP Server</h2>
+<p class="text-white/65 leading-relaxed">PayU's server, like Razorpay's and Cashfree's, gives an AI agent the ability to act on real payment infrastructure. The general guidance holds: confirm before any money-moving action executes, log what the agent actually did, and don't treat "it's just a chat interface" as a reason to skip the safeguards you'd put around a normal payment API integration.</p>`,
+    faqs: [
+      { question: "Is PayU's MCP server official?", answer: "Yes — PayU rolled it out itself, documented at docs.payu.in/docs/payu-mcp-server, and covered by multiple Indian business publications as part of its AI-powered merchant tech stack." },
+      { question: "How is PayU's MCP server different from Razorpay's or Cashfree's?", answer: "All three are official, first-party servers from their respective companies aimed at merchant workflow automation. Razorpay was first to market in India, with Cashfree and PayU following." },
+      { question: "Does BillDesk have its own MCP server?", answer: "Not as a separate product — BillDesk is now part of PayU, so BillDesk-related payment workflows run through PayU's MCP server." }
+    ]
   },
   {
     slug: "billdesk-mcp-india",
@@ -6094,7 +6209,7 @@ pip install phonepe-pg-docs-mcp</code></pre>
     excerpt: "BillDesk MCP Server – Bill Payments integration for automated workflows in India.",
     keywords: ["billdesk-mcp-india", "India MCP", "MCP integration"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: [],
+    internalLinks: ["razorpay-mcp-server-india", "paytm-mcp-server-india-payments", "google-pay-mcp-india"],
     content: "<p>BillDesk MCP Server – Bill Payments - detailed guide coming soon.</p>"
   },
   {

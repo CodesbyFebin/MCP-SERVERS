@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Breadcrumbs from "../../src/components/Breadcrumbs";
+import SchemaJsonLd from "../../src/components/SchemaJsonLd";
 import { Mail, Building, Landmark } from "lucide-react";
+import { getOrganizationSchema } from "../../src/lib/schema";
 
 export const metadata: Metadata = {
   title: "About MCPserver.in - India-first MCP Platform",
@@ -17,9 +19,11 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   const breadcrumbSteps = [{ name: "About", href: "/about" }];
+  const orgSchema = getOrganizationSchema();
 
   return (
     <div id="about-page" className="min-h-screen bg-[#050508] text-white pt-6 pb-16 font-sans">
+      <SchemaJsonLd schema={orgSchema} />
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <Breadcrumbs items={breadcrumbSteps} />
 
