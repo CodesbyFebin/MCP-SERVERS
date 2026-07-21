@@ -369,6 +369,102 @@ WHERE table_schema = 'public';`,
       ],
     },
   ],
+  "mysql-mcp-server": [
+    {
+      heading: "Read-only query tool with connection pooling",
+      body: [
+        "Use a connection pool rather than a single connection per call, block write keywords before executing, and always pass arguments as bind parameters rather than interpolating them into the SQL string.",
+      ],
+      code: `const pool = createPool({ host: process.env.MYSQL_HOST, connectionLimit: 10, waitForConnections: true });
+
+server.setRequestHandler(CallToolRequestSchema, async (request) => {
+  const { sql, params } = QuerySchema.parse(request.params.arguments);
+  if (/INSERT|UPDATE|DELETE|DROP|TRUNCATE/i.test(sql)) {
+    throw new Error("Only SELECT queries are allowed");
+  }
+  const [rows] = await pool.execute(sql, params ?? []);
+  return { content: [{ type: "text", text: JSON.stringify(rows, null, 2) }] };
+});`,
+    },
+    {
+      heading: "Caching repeated queries",
+      body: [
+        "Cache the result of identical, frequently-issued read queries in memory with a bounded size, so repeated agent questions do not each round-trip to the database.",
+      ],
+    },
+  ],
+  "redis-mcp-server": [
+    {
+      heading: "Scoped read/write tools per data type",
+      body: [
+        "Expose narrow tools per Redis data structure (get/set, hash, list) instead of a single generic command-passthrough tool, so each tool's input schema can constrain what the agent can actually do.",
+      ],
+      code: `server.setRequestHandler(CallToolRequestSchema, async (request) => {
+  if (request.params.name === "redis_get") {
+    const { key } = request.params.arguments as { key: string };
+    return { content: [{ type: "text", text: (await redis.get(key)) ?? "null" }] };
+  }
+  if (request.params.name === "redis_set") {
+    const { key, value, ttl } = request.params.arguments as { key: string; value: string; ttl?: number };
+    ttl ? await redis.setex(key, ttl, value) : await redis.set(key, value);
+    return { content: [{ type: "text", text: "OK" }] };
+  }
+});`,
+    },
+    {
+      heading: "Operational guardrails",
+      body: [
+        "Use SCAN instead of KEYS for pattern matching in production, since KEYS blocks the single-threaded server on large keyspaces. Set a TTL on anything the agent writes so a bug cannot silently fill memory.",
+      ],
+    },
+  ],
+  "dynamodb-mcp-server": [
+    {
+      heading: "Get and Query tools",
+      body: [
+        "Prefer Query over Scan wherever possible — Query uses an index and is efficient; Scan reads the whole table and is expensive at any real scale. Always cap results with a Limit.",
+      ],
+      code: `server.setRequestHandler(CallToolRequestSchema, async (request) => {
+  if (request.params.name === "dynamodb_query") {
+    const { tableName, keyCondition, expressionValues } = request.params.arguments as Record<string, string>;
+    const result = await docClient.send(new QueryCommand({
+      TableName: tableName,
+      KeyConditionExpression: keyCondition,
+      ExpressionAttributeValues: JSON.parse(expressionValues),
+      Limit: 100,
+    }));
+    return { content: [{ type: "text", text: JSON.stringify(result.Items) }] };
+  }
+});`,
+    },
+    {
+      heading: "Capacity mode",
+      body: [
+        "On-demand capacity suits unpredictable AI-agent traffic patterns; provisioned capacity with auto-scaling is cheaper once the workload is steady and well understood.",
+      ],
+    },
+  ],
+  "github-mcp-server": [
+    {
+      heading: "Issue and pull-request tools",
+      body: [
+        "Wrap specific GitHub operations (create an issue, list open pull requests) as individual tools rather than exposing the whole Octokit surface, so each tool's permissions can be scoped to what it actually needs.",
+      ],
+      code: `server.setRequestHandler(CallToolRequestSchema, async (request) => {
+  if (request.params.name === "github_create_issue") {
+    const { owner, repo, title, body } = request.params.arguments as Record<string, string>;
+    const issue = await octokit.issues.create({ owner, repo, title, body });
+    return { content: [{ type: "text", text: \`Issue created: \${issue.data.html_url}\` }] };
+  }
+});`,
+    },
+    {
+      heading: "Token scope and rate limits",
+      body: [
+        "Scope the GitHub token to the minimum permissions the exposed tools actually need (read-only tools should use a read-only token), and implement retry with backoff for the authenticated rate limit rather than failing immediately on a 403.",
+      ],
+    },
+  ],
 };
 
 const generatedServerDocsPages: DocsPage[] = servers.map((server) =>
