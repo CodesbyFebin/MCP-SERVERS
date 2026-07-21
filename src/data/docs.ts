@@ -13,6 +13,7 @@ export interface DocsSection {
   body: string[];
   code?: string;
   table?: DocsTable;
+  diagram?: string;
 }
 
 export interface DocsPage {
@@ -333,6 +334,12 @@ const serverSectionOverrides: Record<string, DocsSection[]> = {
       body: [
         "Give the agent a single, tightly-scoped read tool rather than raw query execution. Validate the query with Zod, reject write keywords with a heuristic check (a production build should use a real SQL parser instead of string matching), and always execute through parameterized statements, never string concatenation.",
       ],
+      diagram: `graph LR
+  A[AI Agent] -->|tools/call| B[MCP Server]
+  B -->|Parameterized query| C[(PostgreSQL)]
+  C -->|Result set| B
+  B -->|Audit entry| D[(Audit log store)]
+  B -->|JSON response| A`,
       code: `const QuerySchema = z.object({
   sql_query: z.string().describe("A read-only SELECT query."),
   parameters: z.array(z.any()).optional(),

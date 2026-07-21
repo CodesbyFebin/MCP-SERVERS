@@ -6,6 +6,7 @@ import AnswerBox from "../../../src/components/AnswerBox";
 import AuthorBox from "../../../src/components/AuthorBox";
 import FAQ from "../../../src/components/FAQ";
 import SchemaJsonLd from "../../../src/components/SchemaJsonLd";
+import MermaidDiagram from "../../../src/components/MermaidDiagram";
 import { docsPages, findDocsPage, getDocsPath } from "../../../src/data/docs";
 import { ArrowLeft, ArrowRight, BookOpen, CheckCircle2, ExternalLink } from "lucide-react";
 
@@ -233,6 +234,8 @@ export default async function DocsDetailPage({ params }: PageProps) {
                       <code>{section.code}</code>
                     </pre>
                   )}
+
+                  {section.diagram && <MermaidDiagram chart={section.diagram} />}
                 </section>
               );
             })}
