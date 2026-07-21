@@ -133,6 +133,8 @@ export const docsClusters: DocsCluster[] = [
       "/docs/protocol/events",
       "/docs/protocol/transports",
       "/docs/protocol/webhooks",
+      "/docs/protocol/json-rpc",
+      "/docs/protocol/lifecycle",
     ],
   },
   {
@@ -3219,6 +3221,116 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
     ],
     citations: [officialCitations.dpdp],
     related: ["/docs/compliance/dpdp-checklist", "/docs/industry/upi-integration", "/docs/industry/fintech"],
+  }),
+  page({
+    slug: ["protocol", "json-rpc"],
+    title: "MCP JSON-RPC 2.0 Message Format",
+    description: "The request, response, notification, and error message shapes MCP uses for every client-server exchange, and the standard error codes.",
+    category: "protocol",
+    cluster: "json-rpc",
+    tags: ["json-rpc", "protocol", "messages"],
+    targetKeywords: ["mcp json-rpc", "mcp message format", "json-rpc 2.0 mcp"],
+    schemaType: "TechArticle",
+    priority: 0.65,
+    changefreq: "weekly",
+    directAnswer: "Every MCP message is JSON-RPC 2.0: a request carries an id, method, and params and expects a matching response; a notification has no id and expects no response; an error response uses a standard numeric code such as -32602 for invalid params. Getting this shape right is what makes a server interoperable with any MCP client.",
+    keyTakeaways: [
+      "Requests and responses are correlated by a shared id field; notifications omit id and get no response.",
+      "Standard JSON-RPC error codes (-32700 to -32603) cover transport-level failures; tool-specific failures use isError: true in a normal result instead.",
+      "Always include jsonrpc: \"2.0\" — a client can reject a message missing it.",
+    ],
+    sections: [
+      {
+        heading: "Request, response, and notification shapes",
+        body: [
+          "A request expects a response with a matching id. A notification is fire-and-forget: no id, and the server must not reply to it.",
+        ],
+        code: `// Request
+{ "jsonrpc": "2.0", "id": 1, "method": "tools/call",
+  "params": { "name": "get_weather", "arguments": { "location": "Mumbai" } } }
+
+// Response
+{ "jsonrpc": "2.0", "id": 1,
+  "result": { "content": [{ "type": "text", "text": "28C, Partly Cloudy" }] } }
+
+// Notification (no id, no response expected)
+{ "jsonrpc": "2.0", "method": "notifications/initialized" }`,
+      },
+      {
+        heading: "Standard error codes",
+        body: [
+          "Reserve these codes for transport and protocol-level failures. A tool that fails for a business reason (bad input, downstream API down) should usually return a normal result with isError: true and a clear text message instead, so the model sees it as content rather than a raw protocol error.",
+        ],
+        table: table(
+          ["Code", "Meaning"],
+          [
+            ["-32700", "Parse error — malformed JSON"],
+            ["-32600", "Invalid request — not a valid JSON-RPC object"],
+            ["-32601", "Method not found"],
+            ["-32602", "Invalid params"],
+            ["-32603", "Internal error"],
+          ]
+        ),
+      },
+    ],
+    faqs: [
+      { question: "Can I batch multiple requests in one message?", answer: "JSON-RPC 2.0 supports batching, but most MCP clients and servers process requests one at a time in practice; do not rely on batch support being present." },
+      { question: "Is there a maximum message size?", answer: "Not at the protocol level. Keep responses well under a few MB in practice so they don't blow out the model's context window or strain the transport." },
+      { question: "Should a tool-level failure use a JSON-RPC error or isError: true?", answer: "Use isError: true on a normal result for business-logic failures (bad input, downstream failure) so the model can read and react to the message. Reserve JSON-RPC error codes for protocol-level problems." },
+    ],
+    citations: [officialCitations.jsonRpc, officialCitations.mcp],
+    related: ["/docs/protocol/lifecycle", "/docs/protocol/tools", "/docs/development/error-handling"],
+  }),
+  page({
+    slug: ["protocol", "lifecycle"],
+    title: "MCP Connection Lifecycle",
+    description: "The initialize, discover, invoke, and terminate phases every MCP connection goes through, and what breaks when a phase is skipped.",
+    category: "protocol",
+    cluster: "lifecycle",
+    tags: ["lifecycle", "initialization", "handshake"],
+    targetKeywords: ["mcp lifecycle", "mcp initialization", "mcp handshake"],
+    schemaType: "TechArticle",
+    priority: 0.65,
+    changefreq: "weekly",
+    directAnswer: "Every MCP connection goes through four phases in order: initialize (client and server exchange protocol version and capabilities), discover (client lists the server's tools, resources, and prompts), invoke (client calls them), and terminate (the connection closes). Skipping initialize is the most common cause of a client that connects but sees no tools.",
+    keyTakeaways: [
+      "The client must send initialize before anything else, and the server must respond with its actual capabilities before the client sends the initialized notification.",
+      "A server can add or remove capabilities mid-session by sending a listChanged notification; the client should re-list rather than caching the original discovery response forever.",
+      "MCP is stateless by design — don't rely on a server remembering anything about earlier calls in the same connection unless you've deliberately built that yourself.",
+    ],
+    sections: [
+      {
+        heading: "Initialize and discover",
+        body: [
+          "The client opens with an initialize request declaring its protocol version and capabilities; the server responds with its own capabilities (which tool/resource/prompt types it actually supports) before the client confirms with an initialized notification. Only after that handshake should the client call tools/list, resources/list, or prompts/list.",
+        ],
+        code: `// Client -> Server
+{ "jsonrpc": "2.0", "id": 1, "method": "initialize",
+  "params": { "protocolVersion": "2025-06-18", "capabilities": {}, "clientInfo": { "name": "claude-desktop", "version": "1.0.0" } } }
+
+// Server -> Client
+{ "jsonrpc": "2.0", "id": 1,
+  "result": { "protocolVersion": "2025-06-18",
+    "capabilities": { "tools": { "listChanged": true } },
+    "serverInfo": { "name": "my-server", "version": "1.0.0" } } }
+
+// Client -> Server (notification, no response)
+{ "jsonrpc": "2.0", "method": "notifications/initialized" }`,
+      },
+      {
+        heading: "Invoke and terminate",
+        body: [
+          "Once initialized, the client can call tools, read resources, and fetch prompts freely and in any order. Termination differs by transport: a stdio server exits when its client process closes the pipe; an HTTP/SSE server closes the session on an explicit disconnect or a timeout.",
+        ],
+      },
+    ],
+    faqs: [
+      { question: "Can I skip initialization to save a round trip?", answer: "No. A client that skips it will typically see zero tools or get a protocol error, since the server hasn't yet declared what it supports." },
+      { question: "What happens if the server doesn't support a capability the client expected?", answer: "The server simply omits it from its initialize response. The client should check for a capability before relying on it rather than assuming it's present." },
+      { question: "Can a server's capabilities change mid-session?", answer: "Yes, via a listChanged notification. The client should re-run the corresponding list call rather than trusting its first snapshot for the whole session." },
+    ],
+    citations: [officialCitations.mcp, officialCitations.jsonRpc],
+    related: ["/docs/protocol/json-rpc", "/docs/getting-started/quickstart", "/docs/protocol/events"],
   }),
 ];
 
