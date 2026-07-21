@@ -11,6 +11,7 @@
     "lint": "tsc --noEmit",
     "typecheck": "tsc --noEmit",
     "seo:audit": "tsx validate-seo.ts",
+    "audit:schema": "tsx scripts/audit-schema.mjs",
     "seo:rankings": "node scripts/seo-rank-tracker.mjs",
     "verify:p99": "node scripts/verify-production.mjs",
     "generate:llms": "node scripts/generate-llms-full.mjs",
