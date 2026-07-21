@@ -947,6 +947,8 @@
   "https://www.mcpserver.in/docs/deployment/",
   "https://www.mcpserver.in/docs/industry/",
   "https://www.mcpserver.in/docs/troubleshooting/",
+  "https://www.mcpserver.in/docs/development/",
+  "https://www.mcpserver.in/docs/advanced/",
   "https://www.mcpserver.in/docs/servers/github-mcp-server/",
   "https://www.mcpserver.in/docs/servers/gitlab-mcp-server/",
   "https://www.mcpserver.in/docs/servers/bitbucket-mcp-server/",
@@ -1104,5 +1106,12 @@
   "https://www.mcpserver.in/docs/monitoring/grafana-dashboard/",
   "https://www.mcpserver.in/docs/monitoring/mcp-pulse-guide/",
   "https://www.mcpserver.in/docs/monitoring/observability-best-practices/",
-  "https://www.mcpserver.in/docs/troubleshooting/common-issues/"
+  "https://www.mcpserver.in/docs/troubleshooting/common-issues/",
+  "https://www.mcpserver.in/docs/advanced/multi-agent-orchestration/",
+  "https://www.mcpserver.in/docs/advanced/streaming/",
+  "https://www.mcpserver.in/docs/development/testing-strategies/",
+  "https://www.mcpserver.in/docs/development/error-handling/",
+  "https://www.mcpserver.in/docs/compliance/rate-limiting/",
+  "https://www.mcpserver.in/docs/protocol/webhooks/",
+  "https://www.mcpserver.in/docs/pricing/cost-optimization/"
 ]

@@ -131,6 +131,7 @@ export const docsClusters: DocsCluster[] = [
       "/docs/protocol/prompts",
       "/docs/protocol/events",
       "/docs/protocol/transports",
+      "/docs/protocol/webhooks",
     ],
   },
   {
@@ -143,6 +144,7 @@ export const docsClusters: DocsCluster[] = [
       "/docs/pricing/free-vs-paid",
       "/docs/pricing/hidden-costs",
       "/docs/pricing/enterprise-pricing",
+      "/docs/pricing/cost-optimization",
     ],
   },
   {
@@ -167,6 +169,7 @@ export const docsClusters: DocsCluster[] = [
       "/docs/compliance/dpdp-checklist",
       "/docs/compliance/rbi-compliance",
       "/docs/compliance/security-best-practices",
+      "/docs/compliance/rate-limiting",
     ],
   },
   {
@@ -226,6 +229,20 @@ export const docsClusters: DocsCluster[] = [
     description: "Fixes for the most common MCP connection, authentication, tool-execution, and performance errors.",
     answer: "Most MCP issues trace back to three causes: an incorrect command path in the client config, a missing environment variable, or a network or firewall restriction. Check those first before deeper debugging.",
     links: ["/docs/troubleshooting/common-issues"],
+  },
+  {
+    slug: "development",
+    title: "Development Practices",
+    description: "Testing strategies and error-handling patterns for building production-grade MCP servers.",
+    answer: "Test MCP servers at three levels (unit, integration, and load), and handle every tool call with categorized error handling so validation, runtime, timeout, and network failures each return a clear, user-facing message instead of crashing the server.",
+    links: ["/docs/development/testing-strategies", "/docs/development/error-handling"],
+  },
+  {
+    slug: "advanced",
+    title: "Advanced Patterns",
+    description: "Multi-agent orchestration and real-time streaming patterns for production MCP architectures.",
+    answer: "Advanced MCP deployments coordinate multiple specialized servers behind a supervisor agent and stream long-running tool progress over SSE instead of blocking on a single request-response cycle.",
+    links: ["/docs/advanced/multi-agent-orchestration", "/docs/advanced/streaming"],
   },
 ];
 
@@ -1698,7 +1715,7 @@ docker run -d --restart unless-stopped \\
     priority: 0.85,
     changefreq: "weekly",
     directAnswer: "Kubernetes fits MCP platforms that need multiple services, strict isolation, custom networking, autoscaling, secret management, and mature observability.",
-    keyTakeaways: ["Use probes.", "Separate namespaces by environment.", "Centralize logs and policies."],
+    keyTakeaways: ["Use probes.", "Separate namespaces by environment.", "Centralize logs and policies.", "Externalize secrets rather than storing them in plain Kubernetes Secret manifests."],
     sections: [
       {
         heading: "Minimal deployment",
@@ -1723,11 +1740,52 @@ spec:
           ports:
             - containerPort: 8080`,
       },
+      {
+        heading: "Multi-stage Docker build",
+        body: [
+          "Build with a multi-stage Dockerfile so the production image ships only compiled output and production dependencies, not the TypeScript toolchain, and run the process as a non-root user.",
+        ],
+        code: `FROM node:20-alpine AS builder
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci --only=production
+COPY . .
+RUN npm run build
+
+FROM node:20-alpine
+WORKDIR /app
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/dist ./dist
+USER node
+EXPOSE 3000
+CMD ["node", "dist/index.js"]`,
+      },
+      {
+        heading: "Autoscaling and externalized secrets",
+        body: [
+          "Scale on both CPU and memory utilization rather than CPU alone, since MCP tool handlers that buffer large tool outputs can be memory-bound before they are CPU-bound. Pull secrets from a manager such as AWS Secrets Manager or Vault instead of committing them as plain Kubernetes Secret manifests.",
+        ],
+        code: `apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: mcp-server-hpa
+spec:
+  scaleTargetRef: { apiVersion: apps/v1, kind: Deployment, name: mcp-server }
+  minReplicas: 2
+  maxReplicas: 10
+  metrics:
+    - type: Resource
+      resource: { name: cpu, target: { type: Utilization, averageUtilization: 70 } }
+    - type: Resource
+      resource: { name: memory, target: { type: Utilization, averageUtilization: 80 } }`,
+      },
     ],
     faqs: [
       { question: "When is Kubernetes worth it?", answer: "When you need multi-service operations, scaling, policy, and existing platform expertise." },
       { question: "Can MCP scale horizontally?", answer: "Stateless HTTP servers can scale horizontally if sessions and streams are handled correctly." },
       { question: "Should each server get a namespace?", answer: "Sensitive environments often benefit from namespace separation and scoped secrets." },
+      { question: "Should I scale on CPU or memory?", answer: "Both. Tools that buffer large outputs or hold open streaming connections can become memory-bound before CPU-bound, so a memory target catches scaling needs a CPU-only HPA would miss." },
+      { question: "How should secrets reach the pod?", answer: "Prefer an external secrets operator syncing from a manager such as AWS Secrets Manager or Vault over hand-maintained Kubernetes Secret manifests, so rotation does not require a manual redeploy." },
     ],
     citations: [officialCitations.mcp],
     related: ["/docs/deployment/aws-ec2-deployment", "/docs/monitoring/grafana-dashboard", "/docs/compliance/security-best-practices"],
@@ -2150,6 +2208,467 @@ for await (const row of stream) {
     ],
     citations: [officialCitations.mcp, officialCitations.jsonRpc],
     related: ["/docs/getting-started/quickstart", "/docs/protocol/transports", "/docs/compliance/security-best-practices", "/docs/monitoring/observability-best-practices"],
+  }),
+  page({
+    slug: ["advanced", "multi-agent-orchestration"],
+    title: "Multi-Agent Orchestration with MCP",
+    description: "Coordinate multiple specialized MCP servers behind a supervisor agent, with task delegation, parallel execution, and resilient error handling.",
+    category: "advanced",
+    cluster: "multi-agent-orchestration",
+    tags: ["multi-agent", "orchestration", "supervisor"],
+    targetKeywords: ["mcp multi-agent", "mcp orchestration", "ai agent workflow"],
+    schemaType: "TechArticle",
+    priority: 0.7,
+    changefreq: "weekly",
+    directAnswer: "Multi-agent MCP systems decompose a complex task into sub-tasks, route each to a specialized MCP-backed worker, run independent work in parallel, and let a supervisor synthesize the results. This avoids overloading a single agent's context window and isolates failures to one worker instead of the whole workflow.",
+    keyTakeaways: [
+      "A supervisor pattern routes sub-tasks to specialized workers by required tool, then synthesizes their results.",
+      "Wrap cross-agent calls in a circuit breaker so one failing worker cannot cascade into the whole workflow.",
+      "Start with two or three agents and clear single-responsibility boundaries before scaling further.",
+    ],
+    sections: [
+      {
+        heading: "Supervisor pattern",
+        body: [
+          "A central agent decomposes the incoming task, assigns each sub-task to the worker whose MCP tools match what it needs, executes independent sub-tasks in parallel, and synthesizes a final result from the worker outputs.",
+        ],
+        code: `class SupervisorAgent {
+  private workers: Map<string, MCPClient> = new Map();
+
+  async executeTask(task: string) {
+    const subtasks = await this.decomposeTask(task);
+    const results = await Promise.all(
+      subtasks.map((subtask) => {
+        const worker = this.selectWorker(subtask);
+        return worker.callTool(subtask.tool, subtask.args);
+      })
+    );
+    return this.synthesize(task, results);
+  }
+
+  private selectWorker(subtask: { requires: string[] }): MCPClient {
+    if (subtask.requires.includes("database")) return this.workers.get("analysis-agent")!;
+    if (subtask.requires.includes("web")) return this.workers.get("research-agent")!;
+    throw new Error("No worker registered for this subtask");
+  }
+}`,
+      },
+      {
+        heading: "Resilience: circuit breakers and retries",
+        body: [
+          "A worker agent going down should not take the whole workflow with it. A circuit breaker stops calling a consistently-failing worker for a cooldown window, and exponential backoff spaces out retries for transient failures such as a rate limit or a brief network blip.",
+        ],
+        code: `class CircuitBreaker {
+  private failures = 0;
+  private lastFailure = 0;
+  constructor(private threshold = 5, private cooldownMs = 60000) {}
+
+  async execute<T>(fn: () => Promise<T>): Promise<T> {
+    if (this.failures >= this.threshold && Date.now() - this.lastFailure < this.cooldownMs) {
+      throw new Error("Circuit breaker open");
+    }
+    try {
+      const result = await fn();
+      this.failures = 0;
+      return result;
+    } catch (error) {
+      this.failures++;
+      this.lastFailure = Date.now();
+      throw error;
+    }
+  }
+}`,
+      },
+    ],
+    faqs: [
+      { question: "How do agents share context?", answer: "Pass context through the supervisor, or use a shared resource such as a database or file store that every agent can reach via MCP resources." },
+      { question: "What happens if one agent fails?", answer: "Wrap cross-agent calls in a circuit breaker and give the supervisor a fallback: retry, skip the sub-task, or route to an alternative worker." },
+      { question: "Can agents run in different languages?", answer: "Yes. MCP is language-agnostic, so a Python agent, a Node.js agent, and a Go agent can all participate in the same workflow." },
+    ],
+    citations: [officialCitations.mcp],
+    related: ["/docs/mcp-for-ai-agents", "/docs/advanced/streaming", "/docs/monitoring/observability-best-practices"],
+  }),
+  page({
+    slug: ["advanced", "streaming"],
+    title: "MCP Streaming and Real-Time Data",
+    description: "Stream long-running MCP tool progress and live updates to clients over Server-Sent Events instead of blocking on a single request-response cycle.",
+    category: "advanced",
+    cluster: "streaming",
+    tags: ["streaming", "sse", "real-time"],
+    targetKeywords: ["mcp streaming", "mcp sse", "mcp real-time updates"],
+    schemaType: "TechArticle",
+    priority: 0.7,
+    changefreq: "weekly",
+    directAnswer: "MCP servers stream real-time updates over the HTTP/SSE transport: the client opens a persistent SSE connection, the server keeps a handle to that connection keyed by session, and long-running tools push incremental progress notifications through it instead of returning only a single final response.",
+    keyTakeaways: [
+      "SSE is the recommended streaming approach for MCP because it is plain HTTP and works through standard firewalls and load balancers.",
+      "Track each client's transport by session ID so a long-running tool can find the right connection to push updates to.",
+      "Clean up the session map when the connection closes to avoid leaking references to dead clients.",
+    ],
+    sections: [
+      {
+        heading: "Serving SSE connections",
+        body: [
+          "Each client opens a long-lived GET connection that the server upgrades to SSE, and posts subsequent messages to a companion endpoint. Track the transport per session so tool handlers can find the right connection later.",
+        ],
+        code: `const connections = new Map<string, SSEServerTransport>();
+
+app.get("/sse", async (req, res) => {
+  const transport = new SSEServerTransport("/messages", res);
+  const sessionId = crypto.randomUUID();
+  connections.set(sessionId, transport);
+
+  res.on("close", () => connections.delete(sessionId));
+  await server.connect(transport);
+});
+
+app.post("/messages", async (req, res) => {
+  const transport = connections.get(req.query.sessionId as string);
+  if (!transport) return res.status(404).json({ error: "Session not found" });
+  await transport.handlePostMessage(req, res);
+});`,
+      },
+      {
+        heading: "When to stream versus return a single response",
+        body: [
+          "Use streaming for operations with meaningful intermediate progress, such as processing a large dataset or a multi-step agent workflow. For a fast, single-shot lookup, a normal request-response tool call is simpler and has less to break.",
+        ],
+      },
+    ],
+    faqs: [
+      { question: "Is SSE better than WebSockets for MCP?", answer: "SSE is the recommended default because it is one-directional, plain HTTP, and needs no special proxy configuration. WebSockets add complexity that most MCP streaming use cases do not need." },
+      { question: "What happens if the client disconnects mid-stream?", answer: "The server's close handler should remove the session from its connection map immediately so no tool handler tries to write to a dead connection." },
+      { question: "Can stdio servers stream too?", answer: "Stdio can deliver notifications, but true concurrent multi-client streaming needs the HTTP/SSE transport since stdio is tied to a single client process." },
+    ],
+    citations: [officialCitations.mcp, officialCitations.sse],
+    related: ["/docs/protocol/transports", "/docs/protocol/events", "/docs/advanced/multi-agent-orchestration"],
+  }),
+  page({
+    slug: ["development", "testing-strategies"],
+    title: "MCP Server Testing Strategies",
+    description: "Test MCP servers at three levels: unit tests for individual tools, integration tests for the server-client lifecycle, and load tests for production readiness.",
+    category: "development",
+    cluster: "testing-strategies",
+    tags: ["testing", "unit-tests", "integration-tests"],
+    targetKeywords: ["mcp testing", "mcp unit tests", "mcp integration tests"],
+    schemaType: "HowTo",
+    priority: 0.75,
+    changefreq: "weekly",
+    directAnswer: "Test MCP servers at three levels: unit tests that exercise individual tool functions in isolation, integration tests that connect a real MCP client to the running server to verify tool listing and execution, and load tests that measure latency and error rate under concurrent traffic before a production launch.",
+    keyTakeaways: [
+      "Unit test tool logic directly; integration test the server through a real MCP client connection.",
+      "Assert both the happy path and the schema-validation failure path for every tool.",
+      "Run a load test before every major release, not only once before the first launch.",
+    ],
+    sections: [
+      {
+        heading: "Unit and integration tests",
+        body: [
+          "Unit tests call a tool's implementation function directly with valid and invalid input. Integration tests go through the protocol layer itself: connect a real MCP client over stdio to the built server, list its tools, and call one to confirm the full request-response cycle works end to end.",
+        ],
+        code: `import { Client } from "@modelcontextprotocol/sdk/client/index.js";
+import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
+
+describe("MCP server integration", () => {
+  it("lists tools and executes one", async () => {
+    const transport = new StdioClientTransport({ command: "node", args: ["dist/index.js"] });
+    const client = new Client({ name: "test-client", version: "1.0.0" });
+    await client.connect(transport);
+
+    const { tools } = await client.listTools();
+    expect(tools.length).toBeGreaterThan(0);
+
+    const result = await client.callTool({ name: tools[0].name, arguments: {} });
+    expect(result.content[0].type).toBe("text");
+  });
+});`,
+      },
+      {
+        heading: "Load testing before production",
+        body: [
+          "Run several concurrent MCP clients against the server for a fixed duration, record success rate and latency percentiles, and compare against your target before rolling out to production traffic.",
+        ],
+        table: table(
+          ["Metric", "What it tells you"],
+          [
+            ["P95 latency", "Typical worst-case response time"],
+            ["Error rate", "Stability under concurrent load"],
+            ["Requests per second", "Throughput ceiling for capacity planning"],
+          ]
+        ),
+      },
+    ],
+    faqs: [
+      { question: "How do I test tools that call external APIs?", answer: "Mock the external call (for example with a test double or a mocking library) so the test exercises your tool logic without depending on a real network call." },
+      { question: "What is the difference between integration and load testing?", answer: "Integration tests confirm correctness of the server-client protocol exchange. Load tests confirm the server holds up under concurrent traffic and measure latency under that load." },
+      { question: "How often should I run load tests?", answer: "Before every major release, and periodically in production to catch performance regressions introduced by new tools or dependencies." },
+    ],
+    citations: [officialCitations.mcp],
+    related: ["/docs/getting-started/quickstart", "/docs/development/error-handling", "/docs/troubleshooting/common-issues"],
+  }),
+  page({
+    slug: ["development", "error-handling"],
+    title: "MCP Error Handling Patterns",
+    description: "Categorize and handle MCP tool errors so validation, runtime, timeout, and network failures each return a clear message instead of crashing the server.",
+    category: "development",
+    cluster: "error-handling",
+    tags: ["error-handling", "resilience", "validation"],
+    targetKeywords: ["mcp error handling", "mcp validation errors", "mcp graceful degradation"],
+    schemaType: "HowTo",
+    priority: 0.75,
+    changefreq: "weekly",
+    directAnswer: "Wrap every MCP tool call in a try-catch, classify the failure (input validation, runtime, timeout, or downstream network error), log the full error with context server-side, and return a short, user-facing message with isError set to true rather than surfacing a raw stack trace to the client.",
+    keyTakeaways: [
+      "Classify errors: validation, runtime, timeout, and network failures each need a different response.",
+      "Never return a raw stack trace to the client; log it server-side and return a short message instead.",
+      "For non-critical failures, fall back to cached or partial data instead of failing the whole call.",
+    ],
+    sections: [
+      {
+        heading: "Classifying and returning errors",
+        body: [
+          "Zod validation failures mean the client sent bad input; timeouts mean an operation ran too long; everything else that throws during execution is a runtime error. Each should produce a distinct, short message back to the client.",
+        ],
+        code: `server.setRequestHandler(CallToolRequestSchema, async (request) => {
+  try {
+    return await withTimeout(executeTool(request), 30000);
+  } catch (error) {
+    if (error instanceof ZodError) {
+      return { content: [{ type: "text", text: \`Validation error: \${error.message}\` }], isError: true };
+    }
+    if (String(error).includes("timed out")) {
+      return { content: [{ type: "text", text: "Operation timed out. Try a smaller request." }], isError: true };
+    }
+    console.error("Tool execution failed:", { tool: request.params.name, error });
+    return { content: [{ type: "text", text: \`Tool execution failed: \${(error as Error).message}\` }], isError: true };
+  }
+});
+
+async function withTimeout<T>(promise: Promise<T>, ms: number): Promise<T> {
+  return Promise.race([
+    promise,
+    new Promise<never>((_, reject) => setTimeout(() => reject(new Error("timed out")), ms)),
+  ]);
+}`,
+      },
+      {
+        heading: "Graceful degradation",
+        body: [
+          "When a non-critical dependency fails, prefer returning cached or partial data with a flag over failing the whole tool call. Reserve hard failures for cases where a partial answer would be misleading or unsafe.",
+        ],
+        code: `try {
+  return await fetchRealTimeAnalytics();
+} catch (error) {
+  console.warn("Falling back to cached analytics:", error);
+  const cached = await getCachedAnalytics();
+  return { ...cached, _cached: true };
+}`,
+      },
+    ],
+    faqs: [
+      { question: "Should I return stack traces to the client?", answer: "No. Stack traces are for server-side debugging. Log the full error there and return a short, user-facing message to the client." },
+      { question: "How do I handle partial failures across multiple data sources?", answer: "Return the results that succeeded along with a _partial: true flag rather than failing the whole request because one source was unavailable." },
+      { question: "What is a good retry strategy for network errors?", answer: "Exponential backoff with a small random jitter added to each delay, so multiple retrying clients do not all retry at exactly the same moment." },
+    ],
+    citations: [officialCitations.mcp],
+    related: ["/docs/development/testing-strategies", "/docs/troubleshooting/common-issues", "/docs/monitoring/observability-best-practices"],
+  }),
+  page({
+    slug: ["compliance", "rate-limiting"],
+    title: "MCP Rate Limiting Guide",
+    description: "Prevent abuse and ensure fair usage of MCP servers with token-bucket rate limiting, per-tier limits, and distributed limiting across multiple instances.",
+    category: "compliance",
+    cluster: "rate-limiting",
+    tags: ["rate-limiting", "abuse-prevention", "throttling"],
+    targetKeywords: ["mcp rate limiting", "mcp api throttling", "mcp abuse prevention"],
+    schemaType: "HowTo",
+    priority: 0.75,
+    changefreq: "weekly",
+    directAnswer: "Rate limit MCP servers with a token-bucket algorithm keyed by user or API key rather than IP address, since IP-based limits can be bypassed by proxies or unfairly affect multiple users behind the same NAT. Return HTTP 429 with a retry-after header, and use a shared store such as Redis once you run more than one server instance.",
+    keyTakeaways: [
+      "Token bucket allows short bursts while holding to an average rate, which fits real client behavior better than a fixed window.",
+      "Key limits by authenticated user or API key, not raw IP, for fairness and to resist bypass through proxies.",
+      "Once you run multiple instances, rate-limit state must live in a shared store such as Redis, not in local memory.",
+    ],
+    sections: [
+      {
+        heading: "Token bucket limiter",
+        body: [
+          "A token bucket refills at a constant rate up to a cap and spends one token per request. This allows short bursts while still enforcing a long-run average rate, which suits typical MCP client traffic better than a hard fixed-window counter.",
+        ],
+        code: `class TokenBucketLimiter {
+  private buckets = new Map<string, { tokens: number; lastRefill: number }>();
+  constructor(private maxTokens: number, private refillPerMs: number) {}
+
+  isAllowed(key: string): boolean {
+    const now = Date.now();
+    const bucket = this.buckets.get(key) ?? { tokens: this.maxTokens, lastRefill: now };
+    bucket.tokens = Math.min(this.maxTokens, bucket.tokens + (now - bucket.lastRefill) * this.refillPerMs);
+    bucket.lastRefill = now;
+    this.buckets.set(key, bucket);
+    if (bucket.tokens < 1) return false;
+    bucket.tokens -= 1;
+    return true;
+  }
+}`,
+      },
+      {
+        heading: "Per-tier limits and distributed limiting",
+        body: [
+          "Different plan tiers should get different bucket sizes. Once the MCP server runs as more than one instance behind a load balancer, move the counters to Redis so every instance enforces the same limit against the same key.",
+        ],
+        table: table(
+          ["Tier", "Suggested limit"],
+          [
+            ["Free / readonly", "10 requests/sec"],
+            ["Pro", "100 requests/sec"],
+            ["Enterprise", "1000 requests/sec"],
+          ]
+        ),
+      },
+    ],
+    faqs: [
+      { question: "Should I rate-limit by IP or by user ID?", answer: "By authenticated user or API key. IP-based limiting can be bypassed with proxies and can unfairly throttle multiple legitimate users behind the same NAT." },
+      { question: "What should a rate-limited response look like?", answer: "HTTP 429 with a Retry-After header, plus X-RateLimit-Limit and X-RateLimit-Remaining headers so well-behaved clients can back off correctly." },
+      { question: "How do I rate limit across multiple server instances?", answer: "Move the counters into a shared store such as Redis so every instance checks and updates the same count for a given key." },
+    ],
+    citations: [officialCitations.mcp],
+    related: ["/docs/compliance/security-best-practices", "/docs/mcp-gateway", "/docs/monitoring/observability-best-practices"],
+  }),
+  page({
+    slug: ["protocol", "webhooks"],
+    title: "MCP Webhook Integration Guide",
+    description: "React to external events in real time by pairing MCP servers with signed incoming webhooks and a retrying outgoing webhook sender.",
+    category: "protocol",
+    cluster: "webhooks",
+    tags: ["webhooks", "events", "integrations"],
+    targetKeywords: ["mcp webhooks", "mcp event processing", "mcp real-time integration"],
+    schemaType: "TechArticle",
+    priority: 0.7,
+    changefreq: "weekly",
+    directAnswer: "Webhooks turn an MCP server from purely request-response into event-driven: an incoming webhook lets an external service notify the server the moment something changes, while an outgoing webhook lets the server notify other systems after a tool executes. Always verify incoming webhook signatures and retry outgoing deliveries with backoff.",
+    keyTakeaways: [
+      "Verify every incoming webhook's signature with a timing-safe comparison before trusting its payload.",
+      "Queue outgoing webhook deliveries and retry with backoff instead of sending them inline and dropping failures.",
+      "Treat webhook payloads as untrusted input and validate them the same way you validate tool arguments.",
+    ],
+    sections: [
+      {
+        heading: "Incoming webhooks",
+        body: [
+          "Verify the provider's HMAC signature with a timing-safe comparison before processing the payload, so a forged request cannot trigger downstream MCP notifications.",
+        ],
+        code: `function verifySignature(payload: string, signature: string, secret: string): boolean {
+  const expected = crypto.createHmac("sha256", secret).update(payload).digest("hex");
+  return crypto.timingSafeEqual(Buffer.from(signature), Buffer.from(\`sha256=\${expected}\`));
+}
+
+app.post("/webhook/github", async (req, res) => {
+  const signature = req.headers["x-hub-signature-256"] as string;
+  if (!verifySignature(JSON.stringify(req.body), signature, process.env.GITHUB_WEBHOOK_SECRET!)) {
+    return res.status(401).json({ error: "Invalid signature" });
+  }
+  if (req.body.action === "push") {
+    await notifyClients("github_push", { repo: req.body.repository.full_name });
+  }
+  res.status(200).json({ received: true });
+});`,
+      },
+      {
+        heading: "Outgoing webhooks",
+        body: [
+          "Queue deliveries rather than sending inline during a tool call, and retry failed deliveries with backoff so a slow or momentarily-down subscriber does not slow down or fail the original tool response.",
+        ],
+        code: `class WebhookSender {
+  private queue: Array<{ url: string; payload: unknown }> = [];
+  private sending = false;
+
+  send(url: string, event: string, data: unknown) {
+    this.queue.push({ url, payload: { event, data, timestamp: new Date().toISOString() } });
+    if (!this.sending) this.drain();
+  }
+
+  private async drain() {
+    this.sending = true;
+    while (this.queue.length) {
+      const { url, payload } = this.queue.shift()!;
+      try {
+        await fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
+      } catch {
+        this.queue.push({ url, payload });
+        await new Promise((r) => setTimeout(r, 5000));
+      }
+    }
+    this.sending = false;
+  }
+}`,
+      },
+    ],
+    faqs: [
+      { question: "Do I need to verify webhook signatures?", answer: "Yes, always. Without signature verification, anyone who finds the endpoint URL can send forged events into your MCP server." },
+      { question: "What happens if an outgoing webhook delivery fails?", answer: "Requeue it and retry with a delay. Track repeated failures per endpoint so a permanently dead subscriber does not retry forever." },
+      { question: "Should webhook payloads be trusted as-is?", answer: "No. Validate them the same way you validate MCP tool arguments before acting on their contents." },
+    ],
+    citations: [officialCitations.mcp],
+    related: ["/docs/protocol/events", "/docs/compliance/security-best-practices", "/docs/mcp-integrations"],
+  }),
+  page({
+    slug: ["pricing", "cost-optimization"],
+    title: "MCP Server Cost Optimization Guide",
+    description: "Concrete techniques to cut MCP infrastructure costs: connection pooling, query and response caching, auto-scaling, and right-sizing.",
+    category: "pricing",
+    cluster: "cost-optimization",
+    tags: ["cost", "caching", "auto-scaling"],
+    targetKeywords: ["mcp cost optimization", "reduce mcp costs", "mcp infrastructure costs"],
+    schemaType: "HowTo",
+    priority: 0.7,
+    changefreq: "weekly",
+    directAnswer: "The three biggest cost levers for an MCP server are database connection pooling, caching repeated tool responses, and matching compute to actual demand with auto-scaling instead of static over-provisioning. Address those three before looking at reserved or spot instance pricing.",
+    keyTakeaways: [
+      "Connection pooling and response caching are the highest-leverage, lowest-effort cost cuts.",
+      "Auto-scale to demand instead of statically provisioning for peak load.",
+      "Reserved or spot instances only help after the workload itself is already efficient.",
+    ],
+    sections: [
+      {
+        heading: "Pooling and caching first",
+        body: [
+          "Opening a new database connection per request is one of the most common sources of avoidable cost and latency. Pool connections, and cache tool responses that are expensive to compute but do not change on every call.",
+        ],
+        code: `const pool = new Pool({ max: 20, idleTimeoutMillis: 30000 });
+const responseCache = new Map<string, unknown>();
+
+server.setRequestHandler(CallToolRequestSchema, async (request) => {
+  const key = \`\${request.params.name}:\${JSON.stringify(request.params.arguments)}\`;
+  if (responseCache.has(key)) return responseCache.get(key);
+  const result = await executeTool(request);
+  responseCache.set(key, result);
+  return result;
+});`,
+      },
+      {
+        heading: "Right-sizing and scaling to demand",
+        body: [
+          "Static provisioning for peak load wastes money the rest of the time. Auto-scale compute to actual demand, and only commit to reserved or spot pricing once the workload itself is efficient, since discounting an over-provisioned baseline still leaves money on the table.",
+        ],
+        table: table(
+          ["Lever", "Typical savings"],
+          [
+            ["Connection pooling", "Fewer wasted DB connections"],
+            ["Response caching", "Cuts repeat compute for identical calls"],
+            ["Auto-scaling vs static", "Avoids paying for idle peak capacity"],
+            ["Reserved instances (1-3yr)", "Meaningful discount on a stable baseline"],
+          ]
+        ),
+      },
+    ],
+    faqs: [
+      { question: "What's the fastest way to cut MCP hosting costs?", answer: "Connection pooling and response caching first. Both are low-effort and address the most common sources of waste before touching infrastructure pricing." },
+      { question: "Serverless or containers for cost?", answer: "Serverless suits sporadic, low-volume traffic since you pay only for actual invocations. Containers with auto-scaling suit steady, predictable traffic." },
+      { question: "When do reserved or spot instances make sense?", answer: "Only after the workload itself is efficient. Discounting an over-provisioned or unoptimized baseline still wastes money relative to fixing the baseline first." },
+    ],
+    citations: [officialCitations.awsMumbai],
+    related: ["/docs/pricing/hidden-costs", "/docs/performance/optimization-guide", "/docs/deployment/kubernetes-deployment"],
   }),
 ];
 
