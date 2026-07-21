@@ -60,6 +60,12 @@ const officialCitations = {
   prometheus: "https://prometheus.io/docs/introduction/overview/",
   bigquery: "https://cloud.google.com/bigquery/docs",
   githubActions: "https://docs.github.com/en/actions",
+  terraform: "https://developer.hashicorp.com/terraform/docs",
+  datadog: "https://docs.datadoghq.com/",
+  newrelic: "https://docs.newrelic.com/",
+  splunk: "https://docs.splunk.com/",
+  clickhouse: "https://clickhouse.com/docs",
+  snowflake: "https://docs.snowflake.com/",
 };
 
 const commonConfigCode = `{
@@ -205,6 +211,7 @@ export const docsClusters: DocsCluster[] = [
       "/docs/deployment/vercel-deployment",
       "/docs/deployment/kubernetes-deployment",
       "/docs/deployment/github-actions-cicd",
+      "/docs/deployment/terraform-infrastructure",
     ],
   },
   {
@@ -235,6 +242,9 @@ export const docsClusters: DocsCluster[] = [
       "/docs/monitoring/mcp-pulse-guide",
       "/docs/monitoring/observability-best-practices",
       "/docs/monitoring/prometheus-metrics",
+      "/docs/monitoring/datadog-integration",
+      "/docs/monitoring/newrelic-integration",
+      "/docs/monitoring/splunk-search",
     ],
   },
   {
@@ -249,7 +259,7 @@ export const docsClusters: DocsCluster[] = [
     title: "Development Practices",
     description: "Testing strategies and error-handling patterns for building production-grade MCP servers.",
     answer: "Test MCP servers at three levels (unit, integration, and load), and handle every tool call with categorized error handling so validation, runtime, timeout, and network failures each return a clear, user-facing message instead of crashing the server.",
-    links: ["/docs/development/testing-strategies", "/docs/development/error-handling", "/docs/development/publishing", "/docs/development/bigquery-integration"],
+    links: ["/docs/development/testing-strategies", "/docs/development/error-handling", "/docs/development/publishing", "/docs/development/bigquery-integration", "/docs/development/clickhouse-integration", "/docs/development/snowflake-integration"],
   },
   {
     slug: "advanced",
@@ -3564,6 +3574,361 @@ async function runBigQueryTool(args: unknown) {
     ],
     citations: [officialCitations.bigquery, officialCitations.mcp],
     related: ["/docs/servers/postgres-mcp-server", "/docs/development/testing-strategies", "/docs/monitoring/prometheus-metrics"],
+  }),
+  page({
+    slug: ["deployment", "terraform-infrastructure"],
+    title: "Managing Infrastructure with a Terraform MCP Server",
+    description: "Let an AI agent propose Terraform plans for review, with apply gated behind explicit human approval and a working-directory allowlist.",
+    category: "deployment",
+    cluster: "terraform-infrastructure",
+    tags: ["terraform", "infrastructure-as-code", "deployment"],
+    targetKeywords: ["terraform mcp server", "mcp infrastructure as code", "ai terraform"],
+    schemaType: "HowTo",
+    priority: 0.75,
+    changefreq: "monthly",
+    directAnswer: "A Terraform MCP server should expose a read-only plan tool freely, but gate apply behind an explicit approval flag and a working-directory allowlist, since an AI agent proposing infrastructure changes is very different from one being allowed to apply them unsupervised.",
+    keyTakeaways: [
+      "Never let a tool call both plan and apply in one turn - the plan output needs a human to actually read it first.",
+      "Wrap the Terraform CLI via a child process; there is no official Terraform Node.js SDK, so this is the standard integration pattern.",
+      "Restrict which directories the server can operate in with an explicit allowlist, so a model can't be steered into running terraform against an unintended state file.",
+    ],
+    sections: [
+      {
+        heading: "A plan-then-apply tool pair",
+        body: [
+          "Terraform has no first-party SDK - the CLI itself is the interface, so the server wraps it with a child process. Keep plan and apply as two separate tools: plan is safe to call freely since it's read-only, while apply requires an explicit approved: true argument the model can only set after showing the plan output to the user and getting confirmation.",
+        ],
+        code: `import { execFile } from "node:child_process";
+import { promisify } from "node:util";
+import path from "node:path";
+
+const execFileAsync = promisify(execFile);
+const ALLOWED_DIRS = (process.env.TERRAFORM_ALLOWED_DIRS ?? "").split(",").filter(Boolean);
+
+function assertAllowedDir(workingDir: string) {
+  const resolved = path.resolve(workingDir);
+  const ok = ALLOWED_DIRS.some((dir) => resolved.startsWith(path.resolve(dir)));
+  if (!ok) throw new Error(\`\${workingDir} is not in TERRAFORM_ALLOWED_DIRS\`);
+}
+
+async function terraformPlan(workingDir: string) {
+  assertAllowedDir(workingDir);
+  const { stdout } = await execFileAsync("terraform", ["plan", "-no-color", "-input=false"], {
+    cwd: workingDir,
+    timeout: 120_000,
+  });
+  return stdout;
+}
+
+async function terraformApply(workingDir: string, approved: boolean) {
+  assertAllowedDir(workingDir);
+  if (!approved) {
+    throw new Error("apply requires approved: true - show the plan to the user and get confirmation first.");
+  }
+  const { stdout } = await execFileAsync("terraform", ["apply", "-auto-approve", "-no-color", "-input=false"], {
+    cwd: workingDir,
+    timeout: 600_000,
+  });
+  return stdout;
+}`,
+      },
+      {
+        heading: "State locking and blast radius",
+        body: [
+          "Use a remote backend (S3 with a DynamoDB lock table, or Terraform Cloud) so concurrent applies fail loudly with a lock error instead of corrupting state. For an AI-proposed change, prefer -target to scope an apply to the specific resource under discussion rather than the whole configuration, keeping blast radius small if the model's reasoning about the change was wrong.",
+        ],
+      },
+    ],
+    faqs: [
+      { question: "Should apply ever run without a human approving first?", answer: "Not for anything touching production. A non-production sandbox environment with its own isolated state file is the reasonable place to allow fully automated applies." },
+      { question: "What stops the model from just editing the .tf files to remove restrictions?", answer: "Nothing at the Terraform layer - that has to be enforced by not giving the MCP server (or the model) filesystem write access to the .tf files themselves, only to running plan/apply against them." },
+      { question: "Does this need the Terraform Cloud API instead of the CLI?", answer: "Not necessarily. Terraform Cloud has its own REST API for remote runs, which is an alternative to CLI-wrapping if you're already using it, but the CLI approach works with any backend." },
+    ],
+    citations: [officialCitations.terraform, officialCitations.mcp],
+    related: ["/docs/deployment/kubernetes-deployment", "/docs/deployment", "/docs/development/error-handling"],
+  }),
+  page({
+    slug: ["monitoring", "datadog-integration"],
+    title: "Query Datadog Metrics and Logs from an MCP Server",
+    description: "Expose Datadog metric queries and log search as MCP tools, with both an API key and an application key.",
+    category: "monitoring",
+    cluster: "datadog-integration",
+    tags: ["datadog", "observability", "logs"],
+    targetKeywords: ["datadog mcp", "mcp datadog integration", "ai datadog queries"],
+    schemaType: "TechArticle",
+    priority: 0.7,
+    changefreq: "monthly",
+    directAnswer: "A Datadog MCP server uses the official @datadog/datadog-api-client SDK, authenticated with both an API key and an application key, to expose metric queries and log search as read-only tools.",
+    keyTakeaways: [
+      "Datadog requires two credentials, not one: an API key identifies the account, an application key authorizes the specific API call.",
+      "Metric and log-search endpoints are rate-limited separately from each other, so cache repeated queries within a session where possible.",
+      "Keep the tool read-only - dashboard and monitor mutation endpoints exist in the same client and should not be wired up without a separate approval step.",
+    ],
+    sections: [
+      {
+        heading: "Querying metrics and logs",
+        body: [
+          "The v1.MetricsApi and v1.LogsApi clients from @datadog/datadog-api-client cover the two most common agent requests: a time-series metric query and a log search. Both need explicit from/to time bounds - an unbounded query is the easiest way to accidentally scan a huge amount of data.",
+        ],
+        code: `import { client, v1 } from "@datadog/datadog-api-client";
+
+const configuration = client.createConfiguration({
+  authMethods: {
+    apiKeyAuth: process.env.DD_API_KEY!,
+    appKeyAuth: process.env.DD_APP_KEY!,
+  },
+});
+
+const metricsApi = new v1.MetricsApi(configuration);
+const logsApi = new v1.LogsApi(configuration);
+
+async function queryMetrics(query: string, fromSeconds: number, toSeconds: number) {
+  return metricsApi.queryMetrics({ query, from: fromSeconds, to: toSeconds });
+}
+
+async function searchLogs(query: string, from: string, to: string, limit = 100) {
+  return logsApi.listLogs({
+    body: { filter: { query, from, to }, page: { limit }, sort: "-timestamp" },
+  });
+}`,
+      },
+    ],
+    faqs: [
+      { question: "What's the difference between the API key and the application key?", answer: "The API key identifies which Datadog account is being billed; the application key authorizes what that specific integration is allowed to call. Both are required together for most endpoints." },
+      { question: "Can this tool trigger or acknowledge alerts?", answer: "The client supports it via v1.MonitorsApi, but that's a write operation and should be a separate, explicitly-approved tool rather than bundled with read-only queries." },
+      { question: "Is there an India-region Datadog deployment?", answer: "Datadog's regions are US and EU; there is no dedicated India region as of this writing, which is worth factoring into a DPDP-sensitive monitoring setup." },
+    ],
+    citations: [officialCitations.datadog, officialCitations.mcp],
+    related: ["/docs/monitoring/prometheus-metrics", "/docs/monitoring/grafana-dashboard", "/docs/monitoring"],
+  }),
+  page({
+    slug: ["monitoring", "newrelic-integration"],
+    title: "Query New Relic with NRQL from an MCP Server",
+    description: "Run NRQL queries against New Relic's NerdGraph API from an MCP tool, for APM and infrastructure telemetry.",
+    category: "monitoring",
+    cluster: "newrelic-integration",
+    tags: ["newrelic", "nrql", "apm"],
+    targetKeywords: ["new relic mcp", "nrql mcp server", "mcp apm integration"],
+    schemaType: "TechArticle",
+    priority: 0.65,
+    changefreq: "monthly",
+    directAnswer: "A New Relic MCP server sends NRQL queries through NerdGraph, New Relic's GraphQL API, authenticated with a User API key and scoped to a specific account ID.",
+    keyTakeaways: [
+      "NRQL is SQL-like but specific to New Relic's event data model - FACET for grouping and SINCE/UNTIL for time windows are the two clauses used most often.",
+      "All access goes through one GraphQL endpoint (NerdGraph), not a REST API with multiple paths.",
+      "Every query needs an account ID - a single API key can have access to multiple accounts.",
+    ],
+    sections: [
+      {
+        heading: "Sending an NRQL query through NerdGraph",
+        body: [
+          "There's no dedicated New Relic Node SDK for this - NerdGraph is just GraphQL over HTTPS, so a plain fetch with the query embedded in the GraphQL body is the standard approach.",
+        ],
+        code: `async function runNrql(accountId: number, nrql: string) {
+  const response = await fetch("https://api.newrelic.com/graphql", {
+    method: "POST",
+    headers: {
+      "Api-Key": process.env.NEW_RELIC_API_KEY!,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      query: \`query($accountId: Int!, $nrql: Nrql!) {
+        actor {
+          account(id: $accountId) {
+            nrql(query: $nrql) { results }
+          }
+        }
+      }\`,
+      variables: { accountId, nrql },
+    }),
+  });
+
+  const { data, errors } = await response.json();
+  if (errors?.length) throw new Error(errors[0].message);
+  return data.actor.account.nrql.results;
+}
+
+// Example: average transaction duration, last hour
+await runNrql(accountId, "SELECT average(duration) FROM Transaction SINCE 1 hour ago");`,
+      },
+    ],
+    faqs: [
+      { question: "How is NRQL different from PromQL?", answer: "NRQL reads like SQL (SELECT ... FROM ... WHERE ... FACET ... SINCE) over New Relic's stored events, while PromQL is a functional expression language over Prometheus's in-memory time series. They aren't interchangeable syntax." },
+      { question: "What permissions does the API key need?", answer: "A User API key with at least data-read access to the target account is enough for query-only tools." },
+      { question: "Can one query span multiple accounts?", answer: "A single NRQL call is scoped to one account ID. Querying multiple accounts means multiple calls, one per account." },
+    ],
+    citations: [officialCitations.newrelic, officialCitations.mcp],
+    related: ["/docs/monitoring/datadog-integration", "/docs/monitoring/prometheus-metrics", "/docs/monitoring"],
+  }),
+  page({
+    slug: ["monitoring", "splunk-search"],
+    title: "Run Splunk Searches from an MCP Server",
+    description: "Execute SPL searches against Splunk's REST API as an MCP tool, handling the asynchronous create-poll-retrieve job lifecycle.",
+    category: "monitoring",
+    cluster: "splunk-search",
+    tags: ["splunk", "spl", "log-search"],
+    targetKeywords: ["splunk mcp", "mcp splunk integration", "spl search ai agent"],
+    schemaType: "HowTo",
+    priority: 0.65,
+    changefreq: "monthly",
+    directAnswer: "Splunk searches run as asynchronous jobs through the REST API: create the job, poll its status until it reports done, then fetch results - a single blocking HTTP call is not enough on its own.",
+    keyTakeaways: [
+      "Splunk search jobs are asynchronous by default; exec_mode=blocking simplifies this to one call but still has its own timeout to manage.",
+      "SPL pipes commands together with |, starting from an index filter and narrowing down - always scope to a specific index rather than searching all indexes.",
+      "Always pass an explicit earliest_time - an unscoped search over all time on a large index is expensive and slow.",
+    ],
+    sections: [
+      {
+        heading: "Creating and reading a search job",
+        body: [
+          "With exec_mode set to blocking, the create call itself waits for the search to finish (up to its own timeout), which avoids a manual poll loop for most queries short enough to run inline.",
+        ],
+        code: `async function splunkSearch(query: string, earliestTime = "-1h", maxResults = 100) {
+  const base = process.env.SPLUNK_URL!; // e.g. https://splunk.example.com:8089
+  const auth = { Authorization: \`Bearer \${process.env.SPLUNK_TOKEN}\` };
+
+  const createRes = await fetch(\`\${base}/services/search/jobs?output_mode=json\`, {
+    method: "POST",
+    headers: { ...auth, "Content-Type": "application/x-www-form-urlencoded" },
+    body: new URLSearchParams({
+      search: \`search \${query}\`,
+      earliest_time: earliestTime,
+      latest_time: "now",
+      max_count: String(maxResults),
+      exec_mode: "blocking",
+    }),
+  });
+  const { sid } = await createRes.json();
+
+  const resultsRes = await fetch(
+    \`\${base}/services/search/jobs/\${sid}/results?output_mode=json\`,
+    { headers: auth },
+  );
+  const { results } = await resultsRes.json();
+  return results;
+}
+
+// Example: SPL scoped to one index with a time bound
+await splunkSearch('index=web status=5* | stats count by uri_path', "-1h");`,
+      },
+    ],
+    faqs: [
+      { question: "What if a search takes longer than the HTTP timeout?", answer: "Fall back to exec_mode=normal: create the job, poll GET /services/search/jobs/{sid} until dispatchState is DONE, then fetch results separately." },
+      { question: "Should the tool allow arbitrary SPL?", answer: "Reject searches that omit an index= filter and cap earliest_time to a reasonable maximum lookback, the same way an unscoped SQL query would be rejected by a database tool." },
+      { question: "How is authentication set up?", answer: "Generate a token via Splunk's token-based auth (Settings > Tokens) rather than passing a username/password on every request." },
+    ],
+    citations: [officialCitations.splunk, officialCitations.mcp],
+    related: ["/docs/monitoring/datadog-integration", "/docs/monitoring", "/docs/development/error-handling"],
+  }),
+  page({
+    slug: ["development", "clickhouse-integration"],
+    title: "Building a ClickHouse MCP Server",
+    description: "Query a ClickHouse columnar warehouse from an MCP tool, with an enforced row limit and read-only guardrails.",
+    category: "development",
+    cluster: "clickhouse-integration",
+    tags: ["clickhouse", "analytics", "olap"],
+    targetKeywords: ["clickhouse mcp server", "mcp clickhouse integration", "ai olap queries"],
+    schemaType: "TechArticle",
+    priority: 0.65,
+    changefreq: "monthly",
+    directAnswer: "A ClickHouse MCP server uses the official @clickhouse/client package to run read-only SQL over the HTTP interface, with an enforced LIMIT so a model-generated query can't return an unbounded result set.",
+    keyTakeaways: [
+      "ClickHouse is column-oriented - selecting only the columns actually needed matters far more for performance than in a row-oriented database.",
+      "Append a LIMIT to any query that doesn't already have one before executing it, rather than trusting the model to include one.",
+      "Reject INSERT/ALTER/DROP the same way a read-only Postgres tool would - ingestion belongs in a dedicated pipeline, not a query tool.",
+    ],
+    sections: [
+      {
+        heading: "A row-limited query tool",
+        body: [
+          "The @clickhouse/client package's query() method returns a stream-like result you resolve to JSON; wrapping every query with a LIMIT check before execution keeps a single bad query from returning millions of rows to the model.",
+        ],
+        code: `import { createClient } from "@clickhouse/client";
+
+const client = createClient({
+  url: process.env.CLICKHOUSE_URL ?? "http://localhost:8123",
+  username: process.env.CLICKHOUSE_USER,
+  password: process.env.CLICKHOUSE_PASSWORD,
+});
+
+async function runQuery(sql: string, maxRows = 500) {
+  if (/\\b(INSERT|ALTER|DROP|TRUNCATE)\\b/i.test(sql)) {
+    throw new Error("Only SELECT queries are permitted through this tool.");
+  }
+  const bounded = /LIMIT\\s+\\d+/i.test(sql) ? sql : \`\${sql} LIMIT \${maxRows}\`;
+
+  const resultSet = await client.query({ query: bounded, format: "JSONEachRow" });
+  return resultSet.json();
+}`,
+      },
+    ],
+    faqs: [
+      { question: "Why not just use the Postgres pattern for this?", answer: "The safety pattern (parameterize, cap rows, reject writes) is the same, but ClickHouse's performance characteristics differ enough - column selection and partition filtering matter far more here - that it's worth documenting separately." },
+      { question: "Does ClickHouse support parameterized queries?", answer: "Yes, via query_params in the client options, which should be used for any user- or model-supplied filter values instead of string-interpolating them into the SQL." },
+      { question: "What's a reasonable default row limit?", answer: "A few hundred rows is usually enough context for a model; anything larger is better summarized with an aggregation query than returned raw." },
+    ],
+    citations: [officialCitations.clickhouse, officialCitations.mcp],
+    related: ["/docs/development/bigquery-integration", "/docs/development/snowflake-integration", "/docs/development/testing-strategies"],
+  }),
+  page({
+    slug: ["development", "snowflake-integration"],
+    title: "Building a Snowflake MCP Server",
+    description: "Query a Snowflake warehouse from an MCP tool, with a bounded row count and awareness of per-second compute billing.",
+    category: "development",
+    cluster: "snowflake-integration",
+    tags: ["snowflake", "data-warehouse", "sql"],
+    targetKeywords: ["snowflake mcp server", "mcp snowflake integration", "ai snowflake queries"],
+    schemaType: "TechArticle",
+    priority: 0.65,
+    changefreq: "monthly",
+    directAnswer: "A Snowflake MCP server uses the official snowflake-sdk driver to run read-only SQL, with results capped after retrieval since Snowflake bills by warehouse compute time rather than bytes scanned like BigQuery.",
+    keyTakeaways: [
+      "Snowflake bills by warehouse size times time running, not by query - a small warehouse left running idle costs the same as one running a query.",
+      "The Node driver uses a callback-based execute() API, not promises natively - wrap it once in a helper rather than repeating the callback pattern per tool.",
+      "Use SHOW and DESCRIBE commands for schema discovery instead of querying INFORMATION_SCHEMA directly - they're the idiomatic Snowflake approach and avoid a full metadata scan.",
+    ],
+    sections: [
+      {
+        heading: "A promise-wrapped query helper",
+        body: [
+          "snowflake-sdk's connection.execute() takes a completion callback rather than returning a promise, so the first thing worth writing is a thin wrapper that turns it into one the rest of the tool code can await normally.",
+        ],
+        code: `import snowflake from "snowflake-sdk";
+
+const connection = snowflake.createConnection({
+  account: process.env.SNOWFLAKE_ACCOUNT!,
+  username: process.env.SNOWFLAKE_USER!,
+  password: process.env.SNOWFLAKE_PASSWORD!,
+  warehouse: process.env.SNOWFLAKE_WAREHOUSE ?? "COMPUTE_WH",
+  database: process.env.SNOWFLAKE_DATABASE,
+});
+
+function execute(sqlText: string, binds: unknown[] = []): Promise<Record<string, unknown>[]> {
+  return new Promise((resolve, reject) => {
+    connection.execute({
+      sqlText,
+      binds: binds as snowflake.Binds,
+      complete: (err, _stmt, rows) => (err ? reject(err) : resolve(rows ?? [])),
+    });
+  });
+}
+
+async function queryTool(sql: string) {
+  if (/\\b(INSERT|UPDATE|DELETE|DROP|MERGE)\\b/i.test(sql)) {
+    throw new Error("Only SELECT queries are permitted through this tool.");
+  }
+  const rows = await execute(sql);
+  return rows.slice(0, 200);
+}`,
+      },
+    ],
+    faqs: [
+      { question: "Should the tool be able to switch warehouses?", answer: "Only within an explicit allowlist of non-production warehouse names - letting a model freely USE WAREHOUSE means it can pick an oversized one and drive up compute cost." },
+      { question: "How does this differ from the BigQuery approach?", answer: "BigQuery bills per byte scanned regardless of how long the warehouse runs, so BigQuery's guardrail is a bytes cap. Snowflake bills per second the warehouse is active, so the guardrail is closer to a query timeout plus using the smallest workable warehouse size." },
+      { question: "Does Snowflake support query result caching like BigQuery?", answer: "Yes - Snowflake caches identical query results for 24 hours by default, and a cached result doesn't consume warehouse compute time." },
+    ],
+    citations: [officialCitations.snowflake, officialCitations.mcp],
+    related: ["/docs/development/bigquery-integration", "/docs/development/clickhouse-integration", "/docs/development/testing-strategies"],
   }),
 ];
 
