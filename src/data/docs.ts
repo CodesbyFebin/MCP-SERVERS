@@ -69,6 +69,7 @@ const officialCitations = {
   elasticsearch: "https://www.elastic.co/docs",
   supabase: "https://supabase.com/docs",
   dynamodb: "https://docs.aws.amazon.com/dynamodb/",
+  mcpReferenceServers: "https://github.com/modelcontextprotocol/servers",
 };
 
 const commonConfigCode = `{
@@ -2422,7 +2423,7 @@ for await (const row of stream) {
       { question: "Can agents run in different languages?", answer: "Yes. MCP is language-agnostic, so a Python agent, a Node.js agent, and a Go agent can all participate in the same workflow." },
     ],
     citations: [officialCitations.mcp],
-    related: ["/docs/mcp-for-ai-agents", "/docs/advanced/streaming", "/docs/monitoring/observability-best-practices"],
+    related: ["/mcp-agent", "/docs/advanced/streaming", "/docs/monitoring/observability-best-practices"],
   }),
   page({
     slug: ["advanced", "streaming"],
@@ -3521,6 +3522,12 @@ jobs:
     ],
     sections: [
       {
+        heading: "Why not just copy a reference implementation?",
+        body: [
+          "The official MCP servers repository is explicit about its own scope: \"The servers in this repository are intended as reference implementations to demonstrate MCP features and SDK usage... not as production-ready solutions.\" That's a reasonable design choice for an educational repo, but it means a naive tool built by following the same pattern typically has no cost cap, no read-only enforcement, and no row limit - exactly the three things a BigQuery tool needs given its per-byte billing model.",
+        ],
+      },
+      {
         heading: "A cost-bounded query tool",
         body: [
           "The official @google-cloud/bigquery client supports parameterized queries and a maximumBytesBilled cap, which turns an open-ended 'let the model query the warehouse' tool into one with a hard cost ceiling per call.",
@@ -3575,7 +3582,7 @@ async function runBigQueryTool(args: unknown) {
       { question: "Does query caching help with repeated model queries?", answer: "Yes - BigQuery caches identical query results for a period by default, so a model re-running the same exploratory query typically isn't billed twice." },
       { question: "What region should queries run in?", answer: "Run the query in the same region as the dataset. Cross-region queries either fail or require an explicit cross-region configuration, and add latency either way." },
     ],
-    citations: [officialCitations.bigquery, officialCitations.mcp],
+    citations: [officialCitations.bigquery, officialCitations.mcp, officialCitations.mcpReferenceServers],
     related: ["/docs/servers/postgres-mcp-server", "/docs/development/testing-strategies", "/docs/monitoring/prometheus-metrics"],
   }),
   page({
@@ -3842,6 +3849,12 @@ await splunkSearch('index=web status=5* | stats count by uri_path', "-1h");`,
     ],
     sections: [
       {
+        heading: "Why not just copy a reference implementation?",
+        body: [
+          "The official MCP servers repository states its own scope plainly: \"The servers in this repository are intended as reference implementations to demonstrate MCP features and SDK usage... not as production-ready solutions.\" A tool built by following that same educational pattern against ClickHouse typically has no row cap and no rejection of write statements - both are added explicitly below, not inherited for free from the SDK.",
+        ],
+      },
+      {
         heading: "A row-limited query tool",
         body: [
           "The @clickhouse/client package's query() method returns a stream-like result you resolve to JSON; wrapping every query with a LIMIT check before execution keeps a single bad query from returning millions of rows to the model.",
@@ -3870,7 +3883,7 @@ async function runQuery(sql: string, maxRows = 500) {
       { question: "Does ClickHouse support parameterized queries?", answer: "Yes, via query_params in the client options, which should be used for any user- or model-supplied filter values instead of string-interpolating them into the SQL." },
       { question: "What's a reasonable default row limit?", answer: "A few hundred rows is usually enough context for a model; anything larger is better summarized with an aggregation query than returned raw." },
     ],
-    citations: [officialCitations.clickhouse, officialCitations.mcp],
+    citations: [officialCitations.clickhouse, officialCitations.mcp, officialCitations.mcpReferenceServers],
     related: ["/docs/development/bigquery-integration", "/docs/development/snowflake-integration", "/docs/development/testing-strategies"],
   }),
   page({
@@ -3891,6 +3904,12 @@ async function runQuery(sql: string, maxRows = 500) {
       "Use SHOW and DESCRIBE commands for schema discovery instead of querying INFORMATION_SCHEMA directly - they're the idiomatic Snowflake approach and avoid a full metadata scan.",
     ],
     sections: [
+      {
+        heading: "Why not just copy a reference implementation?",
+        body: [
+          "The official MCP servers repository is upfront about its purpose: \"The servers in this repository are intended as reference implementations to demonstrate MCP features and SDK usage... not as production-ready solutions.\" That pattern, applied to Snowflake, means no write-statement rejection and no bound on how many rows come back - both are handled explicitly in the helper below rather than assumed.",
+        ],
+      },
       {
         heading: "A promise-wrapped query helper",
         body: [
@@ -3930,7 +3949,7 @@ async function queryTool(sql: string) {
       { question: "How does this differ from the BigQuery approach?", answer: "BigQuery bills per byte scanned regardless of how long the warehouse runs, so BigQuery's guardrail is a bytes cap. Snowflake bills per second the warehouse is active, so the guardrail is closer to a query timeout plus using the smallest workable warehouse size." },
       { question: "Does Snowflake support query result caching like BigQuery?", answer: "Yes - Snowflake caches identical query results for 24 hours by default, and a cached result doesn't consume warehouse compute time." },
     ],
-    citations: [officialCitations.snowflake, officialCitations.mcp],
+    citations: [officialCitations.snowflake, officialCitations.mcp, officialCitations.mcpReferenceServers],
     related: ["/docs/development/bigquery-integration", "/docs/development/clickhouse-integration", "/docs/development/testing-strategies"],
   }),
   page({
@@ -3951,6 +3970,12 @@ async function queryTool(sql: string) {
       "A match query is usually the right default for natural-language search; reserve term queries for exact-value filters like status codes or IDs.",
     ],
     sections: [
+      {
+        heading: "Why not just copy a reference implementation?",
+        body: [
+          "The official MCP servers repository says directly: \"The servers in this repository are intended as reference implementations to demonstrate MCP features and SDK usage... not as production-ready solutions.\" Applied naively to Elasticsearch, that pattern would wire up the full client - including delete and index-management methods - rather than the search-only surface used below.",
+        ],
+      },
       {
         heading: "A restricted search tool",
         body: [
@@ -3985,7 +4010,7 @@ async function searchTool(index: string, query: string, size = 20) {
       { question: "What happens if the model asks for an index that doesn't exist?", answer: "The allowlist check happens before the search call, so an unlisted index is rejected with a clear error rather than reaching Elasticsearch and returning an ambiguous 404." },
       { question: "Should fuzzy matching be enabled by default?", answer: "It depends on the data - fuzzy matching helps with typos in natural-language queries but can also return lower-relevance false positives. Start with exact match and add fuzziness only if search results seem too narrow." },
     ],
-    citations: [officialCitations.elasticsearch, officialCitations.mcp],
+    citations: [officialCitations.elasticsearch, officialCitations.mcp, officialCitations.mcpReferenceServers],
     related: ["/docs/development/clickhouse-integration", "/docs/monitoring/splunk-search", "/docs/development/testing-strategies"],
   }),
   page({
@@ -4006,6 +4031,12 @@ async function searchTool(index: string, query: string, size = 20) {
       "Prefer the anon key plus RLS policies scoped to a dedicated read-only database role, so access control is enforced by Postgres itself, not just by the tool's application code.",
     ],
     sections: [
+      {
+        heading: "Why not just copy a reference implementation?",
+        body: [
+          "The official MCP servers repository states plainly: \"The servers in this repository are intended as reference implementations to demonstrate MCP features and SDK usage... not as production-ready solutions.\" The easiest way to build a Supabase tool the same way is to reach for the service-role key because it \"just works\" past RLS - which is exactly the shortcut avoided below.",
+        ],
+      },
       {
         heading: "Querying through the client, not raw SQL",
         body: [
@@ -4040,7 +4071,7 @@ async function queryTable(table: string, filters: Record<string, string>, limit 
       { question: "Does this tool need its own Postgres role, separate from the app's normal RLS policies?", answer: "It's worth considering a dedicated read-only role with its own narrower RLS policies specifically for the MCP tool, rather than reusing whatever policies were written for the main application's authenticated users." },
       { question: "Can this same approach reach Supabase's realtime or storage features?", answer: "The client also supports realtime subscriptions and file storage, but those are separate concerns from a query tool - a realtime feed doesn't fit the request-response shape of an MCP tool call well and would need a different pattern." },
     ],
-    citations: [officialCitations.supabase, officialCitations.mcp],
+    citations: [officialCitations.supabase, officialCitations.mcp, officialCitations.mcpReferenceServers],
     related: ["/docs/servers/postgres-mcp-server", "/docs/security/authentication", "/docs/development/testing-strategies"],
   }),
   page({
@@ -4061,6 +4092,12 @@ async function queryTable(table: string, filters: Record<string, string>, limit 
       "The DynamoDBDocumentClient wrapper handles marshalling JS types to DynamoDB's attribute-value format automatically, which the lower-level DynamoDBClient does not.",
     ],
     sections: [
+      {
+        heading: "Why not just copy a reference implementation?",
+        body: [
+          "The official MCP servers repository is explicit about this: \"The servers in this repository are intended as reference implementations to demonstrate MCP features and SDK usage... not as production-ready solutions.\" The AWS SDK makes ScanCommand exactly as easy to call as QueryCommand, so a tool built by following the SDK docs alone has no reason to leave it out - it's an explicit choice made below, not a default.",
+        ],
+      },
       {
         heading: "Get and Query, deliberately without Scan",
         body: [
@@ -4094,7 +4131,7 @@ async function queryItems(tableName: string, partitionKey: string, partitionValu
       { question: "Is Query always cheap regardless of result size?", answer: "It's cheap relative to Scan, but a Query without a Limit can still return a large result set - keep an explicit Limit and pass LastEvaluatedKey-based pagination back to the caller rather than looping internally." },
       { question: "Why use the DocumentClient instead of the base DynamoDBClient?", answer: "The base client requires manually specifying DynamoDB's typed attribute format ({ S: ... }, { N: ... }) for every value, which is easy to get wrong; the DocumentClient marshals plain JS objects automatically." },
     ],
-    citations: [officialCitations.dynamodb, officialCitations.mcp],
+    citations: [officialCitations.dynamodb, officialCitations.mcp, officialCitations.mcpReferenceServers],
     related: ["/docs/development/supabase-integration", "/docs/deployment/aws-ec2-deployment", "/docs/development/testing-strategies"],
   }),
 ];
