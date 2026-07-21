@@ -1099,24 +1099,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.mcpserver.in/blog/mcp-server-on-freebsd/</loc>
-    <lastmod>2026-07-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.mcpserver.in/blog/mcp-server-on-netbsd/</loc>
-    <lastmod>2026-07-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.mcpserver.in/blog/mcp-server-on-openbsd/</loc>
-    <lastmod>2026-07-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://www.mcpserver.in/blog/mcp-server-for-kafka/</loc>
     <lastmod>2026-07-21</lastmod>
     <changefreq>weekly</changefreq>
@@ -1166,66 +1148,6 @@
   </url>
   <url>
     <loc>https://www.mcpserver.in/blog/mcp-server-career-guide/</loc>
-    <lastmod>2026-07-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.mcpserver.in/blog/mcp-server-on-solaris/</loc>
-    <lastmod>2026-07-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.mcpserver.in/blog/mcp-server-on-alpine-linux/</loc>
-    <lastmod>2026-07-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.mcpserver.in/blog/mcp-server-on-centos-stream/</loc>
-    <lastmod>2026-07-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.mcpserver.in/blog/mcp-server-on-rocky-linux/</loc>
-    <lastmod>2026-07-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.mcpserver.in/blog/mcp-server-on-alma-linux/</loc>
-    <lastmod>2026-07-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.mcpserver.in/blog/mcp-server-on-debian/</loc>
-    <lastmod>2026-07-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.mcpserver.in/blog/mcp-server-on-ubuntu-lts/</loc>
-    <lastmod>2026-07-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.mcpserver.in/blog/mcp-server-on-gentoo/</loc>
-    <lastmod>2026-07-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.mcpserver.in/blog/mcp-server-on-alpine-with-musl/</loc>
-    <lastmod>2026-07-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.mcpserver.in/blog/mcp-server-on-nixos/</loc>
     <lastmod>2026-07-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
