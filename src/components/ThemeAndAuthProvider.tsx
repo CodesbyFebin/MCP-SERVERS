@@ -14,9 +14,15 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 // --- AUTH TYPES & CONTEXT ---
 export interface User {
+  id: string;
   name: string;
   email: string;
-  companyName: string;
+  companyName: string | null;
+}
+
+export interface AuthResult {
+  success: boolean;
+  error?: string;
 }
 
 export interface ServerConfig {
@@ -40,11 +46,12 @@ export interface DeploymentRecord {
 
 interface AuthContextType {
   user: User | null;
+  authLoading: boolean;
   serverConfigs: ServerConfig[];
   deployments: DeploymentRecord[];
-  login: (email: string, name?: string, companyName?: string) => void;
-  register: (name: string, email: string, companyName: string) => void;
-  logout: () => void;
+  login: (email: string, password: string) => Promise<AuthResult>;
+  register: (name: string, email: string, password: string, companyName?: string) => Promise<AuthResult>;
+  logout: () => Promise<void>;
   saveServerConfig: (config: Omit<ServerConfig, "id" | "dateSaved">) => void;
   deleteServerConfig: (id: string) => void;
   addDeployment: (serverName: string, region: string) => void;
@@ -108,14 +115,16 @@ export default function ThemeAndAuthProvider({ children }: { children: ReactNode
   // Theme state
   const [theme, setTheme] = useState<Theme>("dark");
 
-  // Auth state
+  // Auth state — the real session lives in an httpOnly cookie verified server-side
+  // (see src/lib/auth.ts + middleware.ts). This just mirrors it for the UI.
   const [user, setUser] = useState<User | null>(null);
+  const [authLoading, setAuthLoading] = useState(true);
 
   const [serverConfigs, setServerConfigs] = useState<ServerConfig[]>([]);
 
   const [deployments, setDeployments] = useState<DeploymentRecord[]>([]);
 
-  // On mount, load from localStorage
+  // On mount, load theme/demo-config from localStorage and the real session from the server
   useEffect(() => {
     if (typeof window !== "undefined") {
       const savedTheme = localStorage.getItem("mcpserver-theme");
@@ -125,14 +134,18 @@ export default function ThemeAndAuthProvider({ children }: { children: ReactNode
         localStorage.removeItem("mcpserver-theme");
       }
 
-      setUser(readJsonStorage<User | null>("mcpserver-user", null));
-
       const parsedConfigs = readJsonStorage<ServerConfig[]>("mcpserver-configs", defaultServerConfigs);
       setServerConfigs(Array.isArray(parsedConfigs) ? parsedConfigs : defaultServerConfigs);
 
       const parsedDeployments = readJsonStorage<DeploymentRecord[]>("mcpserver-deployments", defaultDeployments);
       setDeployments(Array.isArray(parsedDeployments) ? parsedDeployments : defaultDeployments);
     }
+
+    fetch("/api/auth/me")
+      .then((res) => (res.ok ? res.json() : { user: null }))
+      .then((data) => setUser(data.user ?? null))
+      .catch(() => setUser(null))
+      .finally(() => setAuthLoading(false));
   }, []);
 
   // Apply theme to DOM
@@ -149,17 +162,6 @@ export default function ThemeAndAuthProvider({ children }: { children: ReactNode
       localStorage.setItem("mcpserver-theme", theme);
     }
   }, [theme]);
-
-  // Persist auth info
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      if (user) {
-        localStorage.setItem("mcpserver-user", JSON.stringify(user));
-      } else {
-        localStorage.removeItem("mcpserver-user");
-      }
-    }
-  }, [user]);
 
   useEffect(() => {
     if (typeof window !== "undefined" && serverConfigs.length > 0) {
@@ -178,25 +180,50 @@ export default function ThemeAndAuthProvider({ children }: { children: ReactNode
     setTheme((prev) => (prev === "dark" ? "light" : "dark"));
   };
 
-  // Auth functions
-  const login = (email: string, name?: string, companyName?: string) => {
-    // Elegant login: if user exists or mock info
-    const resolvedName = name || email.split("@")[0];
-    const resolvedCompany = companyName || "Independent Developer";
-    const newUser: User = {
-      name: resolvedName.charAt(0).toUpperCase() + resolvedName.slice(1),
-      email,
-      companyName: resolvedCompany
-    };
-    setUser(newUser);
+  // Auth functions — these call the real, server-verified endpoints in app/api/auth/*
+  const login = async (email: string, password: string): Promise<AuthResult> => {
+    try {
+      const res = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password })
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        return { success: false, error: data.error || "Login failed" };
+      }
+      setUser(data.user);
+      return { success: true };
+    } catch {
+      return { success: false, error: "Network error — please try again" };
+    }
   };
 
-  const register = (name: string, email: string, companyName: string) => {
-    const newUser: User = { name, email, companyName };
-    setUser(newUser);
+  const register = async (
+    name: string,
+    email: string,
+    password: string,
+    companyName?: string
+  ): Promise<AuthResult> => {
+    try {
+      const res = await fetch("/api/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, password, companyName })
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        return { success: false, error: data.error || "Registration failed" };
+      }
+      setUser(data.user);
+      return { success: true };
+    } catch {
+      return { success: false, error: "Network error — please try again" };
+    }
   };
 
-  const logout = () => {
+  const logout = async () => {
+    await fetch("/api/auth/logout", { method: "POST" }).catch(() => {});
     setUser(null);
   };
 
@@ -246,6 +273,7 @@ export default function ThemeAndAuthProvider({ children }: { children: ReactNode
       <AuthContext.Provider
         value={{
           user,
+          authLoading,
           serverConfigs,
           deployments,
           login,

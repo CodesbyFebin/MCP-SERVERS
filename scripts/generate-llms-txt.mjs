@@ -32,7 +32,7 @@ function generateLLMsTxt() {
   const indiaCompliance = [
     { slug: 'learn/dpdp-compliance-guide', title: 'DPDP Compliance for MCP', description: 'Data localization, consent management, and audit logging for Indian MCP servers.' },
     { slug: 'learn/india-services', title: 'India Services — MCP Routing', description: 'Regional infrastructure, Mumbai vs. Bengaluru placement, and latency benchmarks.' },
-    { slug: 'data/mcp-india-stats-2026.json', title: 'India Stats 2026 (JSON)', description: 'Machine-readable dataset of MCP server latency and compliance flags.' }
+    { slug: 'data/mcp-india-stats-2026.csv', title: 'India Stats 2026 (CSV, illustrative)', description: 'Illustrative sample dataset for architecture planning — not measured production telemetry.' }
   ];
 
   const topServers = [
@@ -58,8 +58,7 @@ ${indiaCompliance.map(p => `- [${p.title}](${BASE_URL}/${p.slug}): ${p.descripti
 ${topServers.map(s => `- [${s.title}](${BASE_URL}/servers/${s.slug}): ${s.description}`).join('\n')}
 
 ## Machine-Readable Data Endpoints (For RAG Ingestion)
-- Raw India Stats JSON: ${BASE_URL}/data/mcp-india-stats-2026.json
-- Raw India Stats CSV: ${BASE_URL}/data/mcp-india-stats-2026.csv
+- India Stats CSV (illustrative sample data, not measured production telemetry): ${BASE_URL}/data/mcp-india-stats-2026.csv
 - Sitemap: ${BASE_URL}/sitemap.xml
 - llms-full.txt: ${BASE_URL}/llms-full.txt
 

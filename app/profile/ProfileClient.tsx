@@ -33,7 +33,9 @@ export default function AuthPage() {
   const [newConfigEnv, setNewConfigEnv] = useState("");
   const [configSuccess, setConfigSuccess] = useState("");
 
-  const handleAuthSubmit = (e: React.FormEvent) => {
+  const [authSubmitting, setAuthSubmitting] = useState(false);
+
+  const handleAuthSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setAuthError("");
 
@@ -42,14 +44,21 @@ export default function AuthPage() {
       return;
     }
 
-    if (authTab === "login") {
-      login(email, name, company);
-    } else {
-      if (!name || !company) {
-        setAuthError("All fields are required for sign up.");
-        return;
-      }
-      register(name, email, company);
+    if (authTab === "register" && !name) {
+      setAuthError("Name is required for sign up.");
+      return;
+    }
+
+    setAuthSubmitting(true);
+    const result =
+      authTab === "login"
+        ? await login(email, password)
+        : await register(name, email, password, company || undefined);
+    setAuthSubmitting(false);
+
+    if (!result.success) {
+      setAuthError(result.error || "Something went wrong. Please try again.");
+      return;
     }
 
     // Reset forms
@@ -206,9 +215,14 @@ export default function AuthPage() {
 
                 <button
                   type="submit"
-                  className="w-full py-2.5 bg-cyan-500 hover:bg-cyan-400 text-black text-xs font-bold rounded-xl shadow-lg transition-all"
+                  disabled={authSubmitting}
+                  className="w-full py-2.5 bg-cyan-500 hover:bg-cyan-400 disabled:opacity-50 disabled:cursor-not-allowed text-black text-xs font-bold rounded-xl shadow-lg transition-all"
                 >
-                  {authTab === "login" ? "Secure Login" : "Initialize Developer Account"}
+                  {authSubmitting
+                    ? "Please wait..."
+                    : authTab === "login"
+                      ? "Secure Login"
+                      : "Initialize Developer Account"}
                 </button>
               </form>
 

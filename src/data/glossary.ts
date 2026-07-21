@@ -3814,3176 +3814,2420 @@ export const glossaryTerms: GlossaryTerm[] = [
       references: ["https://prometheus.io/docs/alerting/latest/overview/"]
     },
     {
-      slug: "mcp-auto-scaling-0",
-      term: "Auto Scaling MCP",
-      definition: "MCP integration for auto scaling.",
-      detailedExplanation: "Provides standardized access to auto scaling services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with auto scaling via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-container-registry-1",
-      term: "Container Registry MCP",
-      definition: "MCP integration for container registry.",
-      detailedExplanation: "Provides standardized access to container registry services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with container registry via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-secret-management-2",
-      term: "Secret Management MCP",
-      definition: "MCP integration for secret management.",
-      detailedExplanation: "Provides standardized access to secret management services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with secret management via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-dns-provider-3",
-      term: "Dns Provider MCP",
-      definition: "MCP integration for dns provider.",
-      detailedExplanation: "Provides standardized access to dns provider services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with dns provider via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-cdn-service-4",
-      term: "Cdn Service MCP",
-      definition: "MCP integration for cdn service.",
-      detailedExplanation: "Provides standardized access to cdn service services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with cdn service via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-message-broker-5",
-      term: "Message Broker MCP",
-      definition: "MCP integration for message broker.",
-      detailedExplanation: "Provides standardized access to message broker services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with message broker via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-event-bus-6",
-      term: "Event Bus MCP",
-      definition: "MCP integration for event bus.",
-      detailedExplanation: "Provides standardized access to event bus services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with event bus via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-task-queue-7",
-      term: "Task Queue MCP",
-      definition: "MCP integration for task queue.",
-      detailedExplanation: "Provides standardized access to task queue services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with task queue via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-workflow-engine-8",
-      term: "Workflow Engine MCP",
-      definition: "MCP integration for workflow engine.",
-      detailedExplanation: "Provides standardized access to workflow engine services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with workflow engine via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-cache-layer-9",
-      term: "Cache Layer MCP",
-      definition: "MCP integration for cache layer.",
-      detailedExplanation: "Provides standardized access to cache layer services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with cache layer via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-search-engine-10",
-      term: "Search Engine MCP",
-      definition: "MCP integration for search engine.",
-      detailedExplanation: "Provides standardized access to search engine services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with search engine via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-analytics-platform-11",
-      term: "Analytics Platform MCP",
-      definition: "MCP integration for analytics platform.",
-      detailedExplanation: "Provides standardized access to analytics platform services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with analytics platform via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-monitoring-tool-12",
-      term: "Monitoring Tool MCP",
-      definition: "MCP integration for monitoring tool.",
-      detailedExplanation: "Provides standardized access to monitoring tool services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with monitoring tool via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-logging-service-13",
-      term: "Logging Service MCP",
-      definition: "MCP integration for logging service.",
-      detailedExplanation: "Provides standardized access to logging service services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with logging service via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-api-gateway-14",
-      term: "Api Gateway MCP",
-      definition: "MCP integration for api gateway.",
-      detailedExplanation: "Provides standardized access to api gateway services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with api gateway via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-load-balancer-15",
-      term: "Load Balancer MCP",
-      definition: "MCP integration for load balancer.",
-      detailedExplanation: "Provides standardized access to load balancer services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with load balancer via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-traffic-manager-16",
-      term: "Traffic Manager MCP",
-      definition: "MCP integration for traffic manager.",
-      detailedExplanation: "Provides standardized access to traffic manager services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with traffic manager via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-rate-limiter-17",
-      term: "Rate Limiter MCP",
-      definition: "MCP integration for rate limiter.",
-      detailedExplanation: "Provides standardized access to rate limiter services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with rate limiter via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-auth-provider-18",
-      term: "Auth Provider MCP",
-      definition: "MCP integration for auth provider.",
-      detailedExplanation: "Provides standardized access to auth provider services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with auth provider via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-identity-service-19",
-      term: "Identity Service MCP",
-      definition: "MCP integration for identity service.",
-      detailedExplanation: "Provides standardized access to identity service services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with identity service via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-file-storage-20",
-      term: "File Storage MCP",
-      definition: "MCP integration for file storage.",
-      detailedExplanation: "Provides standardized access to file storage services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with file storage via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-object-store-21",
-      term: "Object Store MCP",
-      definition: "MCP integration for object store.",
-      detailedExplanation: "Provides standardized access to object store services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with object store via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-block-storage-22",
-      term: "Block Storage MCP",
-      definition: "MCP integration for block storage.",
-      detailedExplanation: "Provides standardized access to block storage services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with block storage via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-database-service-23",
-      term: "Database Service MCP",
-      definition: "MCP integration for database service.",
-      detailedExplanation: "Provides standardized access to database service services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with database service via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-nosql-db-24",
-      term: "Nosql Db MCP",
-      definition: "MCP integration for nosql db.",
-      detailedExplanation: "Provides standardized access to nosql db services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with nosql db via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-document-store-25",
-      term: "Document Store MCP",
-      definition: "MCP integration for document store.",
-      detailedExplanation: "Provides standardized access to document store services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with document store via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-key-value-store-26",
-      term: "Key Value Store MCP",
-      definition: "MCP integration for key value store.",
-      detailedExplanation: "Provides standardized access to key value store services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with key value store via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-graph-database-27",
-      term: "Graph Database MCP",
-      definition: "MCP integration for graph database.",
-      detailedExplanation: "Provides standardized access to graph database services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with graph database via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-time-series-db-28",
-      term: "Time Series Db MCP",
-      definition: "MCP integration for time series db.",
-      detailedExplanation: "Provides standardized access to time series db services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with time series db via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-vector-store-29",
-      term: "Vector Store MCP",
-      definition: "MCP integration for vector store.",
-      detailedExplanation: "Provides standardized access to vector store services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with vector store via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-ml-model-serving-30",
-      term: "Ml Model Serving MCP",
-      definition: "MCP integration for ml model serving.",
-      detailedExplanation: "Provides standardized access to ml model serving services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with ml model serving via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-data-pipeline-31",
-      term: "Data Pipeline MCP",
-      definition: "MCP integration for data pipeline.",
-      detailedExplanation: "Provides standardized access to data pipeline services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with data pipeline via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-etl-tool-32",
-      term: "Etl Tool MCP",
-      definition: "MCP integration for etl tool.",
-      detailedExplanation: "Provides standardized access to etl tool services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with etl tool via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-stream-processing-33",
-      term: "Stream Processing MCP",
-      definition: "MCP integration for stream processing.",
-      detailedExplanation: "Provides standardized access to stream processing services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with stream processing via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-batch-processing-34",
-      term: "Batch Processing MCP",
-      definition: "MCP integration for batch processing.",
-      detailedExplanation: "Provides standardized access to batch processing services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with batch processing via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-feature-store-35",
-      term: "Feature Store MCP",
-      definition: "MCP integration for feature store.",
-      detailedExplanation: "Provides standardized access to feature store services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with feature store via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-model-registry-36",
-      term: "Model Registry MCP",
-      definition: "MCP integration for model registry.",
-      detailedExplanation: "Provides standardized access to model registry services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with model registry via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-experiment-tracker-37",
-      term: "Experiment Tracker MCP",
-      definition: "MCP integration for experiment tracker.",
-      detailedExplanation: "Provides standardized access to experiment tracker services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with experiment tracker via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-hyperparameter-tune-38",
-      term: "Hyperparameter Tune MCP",
-      definition: "MCP integration for hyperparameter tune.",
-      detailedExplanation: "Provides standardized access to hyperparameter tune services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with hyperparameter tune via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-a-b-test-39",
-      term: "A B Test MCP",
-      definition: "MCP integration for a b test.",
-      detailedExplanation: "Provides standardized access to a b test services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with a b test via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-canary-deploy-40",
-      term: "Canary Deploy MCP",
-      definition: "MCP integration for canary deploy.",
-      detailedExplanation: "Provides standardized access to canary deploy services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with canary deploy via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-blue-green-deploy-41",
-      term: "Blue Green Deploy MCP",
-      definition: "MCP integration for blue green deploy.",
-      detailedExplanation: "Provides standardized access to blue green deploy services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with blue green deploy via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-rolling-update-42",
-      term: "Rolling Update MCP",
-      definition: "MCP integration for rolling update.",
-      detailedExplanation: "Provides standardized access to rolling update services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with rolling update via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-health-check-43",
-      term: "Health Check MCP",
-      definition: "MCP integration for health check.",
-      detailedExplanation: "Provides standardized access to health check services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with health check via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-readiness-probe-44",
-      term: "Readiness Probe MCP",
-      definition: "MCP integration for readiness probe.",
-      detailedExplanation: "Provides standardized access to readiness probe services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with readiness probe via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-liveness-probe-45",
-      term: "Liveness Probe MCP",
-      definition: "MCP integration for liveness probe.",
-      detailedExplanation: "Provides standardized access to liveness probe services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with liveness probe via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-config-map-46",
-      term: "Config Map MCP",
-      definition: "MCP integration for config map.",
-      detailedExplanation: "Provides standardized access to config map services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with config map via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-secret-store-47",
-      term: "Secret Store MCP",
-      definition: "MCP integration for secret store.",
-      detailedExplanation: "Provides standardized access to secret store services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with secret store via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-certificate-manager-48",
-      term: "Certificate Manager MCP",
-      definition: "MCP integration for certificate manager.",
-      detailedExplanation: "Provides standardized access to certificate manager services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with certificate manager via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-ssl-terminator-49",
-      term: "Ssl Terminator MCP",
-      definition: "MCP integration for ssl terminator.",
-      detailedExplanation: "Provides standardized access to ssl terminator services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with ssl terminator via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-http-cache-50",
-      term: "Http Cache MCP",
-      definition: "MCP integration for http cache.",
-      detailedExplanation: "Provides standardized access to http cache services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with http cache via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-edge-compute-51",
-      term: "Edge Compute MCP",
-      definition: "MCP integration for edge compute.",
-      detailedExplanation: "Provides standardized access to edge compute services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with edge compute via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-serverless-func-52",
-      term: "Serverless Func MCP",
-      definition: "MCP integration for serverless func.",
-      detailedExplanation: "Provides standardized access to serverless func services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with serverless func via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-function-orchestrator-53",
-      term: "Function Orchestrator MCP",
-      definition: "MCP integration for function orchestrator.",
-      detailedExplanation: "Provides standardized access to function orchestrator services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with function orchestrator via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-job-scheduler-54",
-      term: "Job Scheduler MCP",
-      definition: "MCP integration for job scheduler.",
-      detailedExplanation: "Provides standardized access to job scheduler services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with job scheduler via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-cron-service-55",
-      term: "Cron Service MCP",
-      definition: "MCP integration for cron service.",
-      detailedExplanation: "Provides standardized access to cron service services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with cron service via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-backup-service-56",
-      term: "Backup Service MCP",
-      definition: "MCP integration for backup service.",
-      detailedExplanation: "Provides standardized access to backup service services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with backup service via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-disaster-recovery-57",
-      term: "Disaster Recovery MCP",
-      definition: "MCP integration for disaster recovery.",
-      detailedExplanation: "Provides standardized access to disaster recovery services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with disaster recovery via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-replication-service-58",
-      term: "Replication Service MCP",
-      definition: "MCP integration for replication service.",
-      detailedExplanation: "Provides standardized access to replication service services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with replication service via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-sync-engine-59",
-      term: "Sync Engine MCP",
-      definition: "MCP integration for sync engine.",
-      detailedExplanation: "Provides standardized access to sync engine services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with sync engine via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-data-migrator-60",
-      term: "Data Migrator MCP",
-      definition: "MCP integration for data migrator.",
-      detailedExplanation: "Provides standardized access to data migrator services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with data migrator via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-schema-registry-61",
-      term: "Schema Registry MCP",
-      definition: "MCP integration for schema registry.",
-      detailedExplanation: "Provides standardized access to schema registry services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with schema registry via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-message-router-62",
-      term: "Message Router MCP",
-      definition: "MCP integration for message router.",
-      detailedExplanation: "Provides standardized access to message router services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with message router via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-event-processor-63",
-      term: "Event Processor MCP",
-      definition: "MCP integration for event processor.",
-      detailedExplanation: "Provides standardized access to event processor services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with event processor via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-stream-aggregator-64",
-      term: "Stream Aggregator MCP",
-      definition: "MCP integration for stream aggregator.",
-      detailedExplanation: "Provides standardized access to stream aggregator services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with stream aggregator via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-log-aggregator-65",
-      term: "Log Aggregator MCP",
-      definition: "MCP integration for log aggregator.",
-      detailedExplanation: "Provides standardized access to log aggregator services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with log aggregator via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-metric-collector-66",
-      term: "Metric Collector MCP",
-      definition: "MCP integration for metric collector.",
-      detailedExplanation: "Provides standardized access to metric collector services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with metric collector via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-trace-collector-67",
-      term: "Trace Collector MCP",
-      definition: "MCP integration for trace collector.",
-      detailedExplanation: "Provides standardized access to trace collector services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with trace collector via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-alert-manager-68",
-      term: "Alert Manager MCP",
-      definition: "MCP integration for alert manager.",
-      detailedExplanation: "Provides standardized access to alert manager services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with alert manager via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-notification-service-69",
-      term: "Notification Service MCP",
-      definition: "MCP integration for notification service.",
-      detailedExplanation: "Provides standardized access to notification service services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with notification service via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-email-service-70",
-      term: "Email Service MCP",
-      definition: "MCP integration for email service.",
-      detailedExplanation: "Provides standardized access to email service services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with email service via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-sms-gateway-71",
-      term: "Sms Gateway MCP",
-      definition: "MCP integration for sms gateway.",
-      detailedExplanation: "Provides standardized access to sms gateway services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with sms gateway via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-push-notification-72",
-      term: "Push Notification MCP",
-      definition: "MCP integration for push notification.",
-      detailedExplanation: "Provides standardized access to push notification services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with push notification via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-webhook-receiver-73",
-      term: "Webhook Receiver MCP",
-      definition: "MCP integration for webhook receiver.",
-      detailedExplanation: "Provides standardized access to webhook receiver services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with webhook receiver via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-callback-handler-74",
-      term: "Callback Handler MCP",
-      definition: "MCP integration for callback handler.",
-      detailedExplanation: "Provides standardized access to callback handler services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with callback handler via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-file-watcher-75",
-      term: "File Watcher MCP",
-      definition: "MCP integration for file watcher.",
-      detailedExplanation: "Provides standardized access to file watcher services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with file watcher via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-cron-trigger-76",
-      term: "Cron Trigger MCP",
-      definition: "MCP integration for cron trigger.",
-      detailedExplanation: "Provides standardized access to cron trigger services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with cron trigger via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-web-scraper-77",
-      term: "Web Scraper MCP",
-      definition: "MCP integration for web scraper.",
-      detailedExplanation: "Provides standardized access to web scraper services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with web scraper via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-api-client-78",
-      term: "Api Client MCP",
-      definition: "MCP integration for api client.",
-      detailedExplanation: "Provides standardized access to api client services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with api client via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-graphql-gateway-79",
-      term: "Graphql Gateway MCP",
-      definition: "MCP integration for graphql gateway.",
-      detailedExplanation: "Provides standardized access to graphql gateway services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with graphql gateway via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-grpc-proxy-80",
-      term: "Grpc Proxy MCP",
-      definition: "MCP integration for grpc proxy.",
-      detailedExplanation: "Provides standardized access to grpc proxy services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with grpc proxy via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-http-proxy-81",
-      term: "Http Proxy MCP",
-      definition: "MCP integration for http proxy.",
-      detailedExplanation: "Provides standardized access to http proxy services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with http proxy via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-tcp-proxy-82",
-      term: "Tcp Proxy MCP",
-      definition: "MCP integration for tcp proxy.",
-      detailedExplanation: "Provides standardized access to tcp proxy services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with tcp proxy via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-udp-proxy-83",
-      term: "Udp Proxy MCP",
-      definition: "MCP integration for udp proxy.",
-      detailedExplanation: "Provides standardized access to udp proxy services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with udp proxy via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-websocket-proxy-84",
-      term: "Websocket Proxy MCP",
-      definition: "MCP integration for websocket proxy.",
-      detailedExplanation: "Provides standardized access to websocket proxy services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with websocket proxy via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-sse-gateway-85",
-      term: "Sse Gateway MCP",
-      definition: "MCP integration for sse gateway.",
-      detailedExplanation: "Provides standardized access to sse gateway services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with sse gateway via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-websocket-server-86",
-      term: "Websocket Server MCP",
-      definition: "MCP integration for websocket server.",
-      detailedExplanation: "Provides standardized access to websocket server services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with websocket server via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-socket-adapter-87",
-      term: "Socket Adapter MCP",
-      definition: "MCP integration for socket adapter.",
-      detailedExplanation: "Provides standardized access to socket adapter services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with socket adapter via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-polling-service-88",
-      term: "Polling Service MCP",
-      definition: "MCP integration for polling service.",
-      detailedExplanation: "Provides standardized access to polling service services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with polling service via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-subscription-manager-89",
-      term: "Subscription Manager MCP",
-      definition: "MCP integration for subscription manager.",
-      detailedExplanation: "Provides standardized access to subscription manager services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with subscription manager via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-pubsub-system-90",
-      term: "Pubsub System MCP",
-      definition: "MCP integration for pubsub system.",
-      detailedExplanation: "Provides standardized access to pubsub system services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with pubsub system via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-message-queue-91",
-      term: "Message Queue MCP",
-      definition: "MCP integration for message queue.",
-      detailedExplanation: "Provides standardized access to message queue services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with message queue via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-job-queue-92",
-      term: "Job Queue MCP",
-      definition: "MCP integration for job queue.",
-      detailedExplanation: "Provides standardized access to job queue services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with job queue via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-task-runner-93",
-      term: "Task Runner MCP",
-      definition: "MCP integration for task runner.",
-      detailedExplanation: "Provides standardized access to task runner services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with task runner via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-worker-pool-94",
-      term: "Worker Pool MCP",
-      definition: "MCP integration for worker pool.",
-      detailedExplanation: "Provides standardized access to worker pool services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with worker pool via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-thread-pool-95",
-      term: "Thread Pool MCP",
-      definition: "MCP integration for thread pool.",
-      detailedExplanation: "Provides standardized access to thread pool services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with thread pool via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-process-manager-96",
-      term: "Process Manager MCP",
-      definition: "MCP integration for process manager.",
-      detailedExplanation: "Provides standardized access to process manager services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with process manager via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-process-monitor-97",
-      term: "Process Monitor MCP",
-      definition: "MCP integration for process monitor.",
-      detailedExplanation: "Provides standardized access to process monitor services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with process monitor via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-process-restart-98",
-      term: "Process Restart MCP",
-      definition: "MCP integration for process restart.",
-      detailedExplanation: "Provides standardized access to process restart services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with process restart via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-log-rotation-99",
-      term: "Log Rotation MCP",
-      definition: "MCP integration for log rotation.",
-      detailedExplanation: "Provides standardized access to log rotation services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with log rotation via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-log-export-100",
-      term: "Log Export MCP",
-      definition: "MCP integration for log export.",
-      detailedExplanation: "Provides standardized access to log export services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with log export via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-metric-export-101",
-      term: "Metric Export MCP",
-      definition: "MCP integration for metric export.",
-      detailedExplanation: "Provides standardized access to metric export services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with metric export via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-trace-export-102",
-      term: "Trace Export MCP",
-      definition: "MCP integration for trace export.",
-      detailedExplanation: "Provides standardized access to trace export services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with trace export via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-audit-logger-103",
-      term: "Audit Logger MCP",
-      definition: "MCP integration for audit logger.",
-      detailedExplanation: "Provides standardized access to audit logger services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with audit logger via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-compliance-checker-104",
-      term: "Compliance Checker MCP",
-      definition: "MCP integration for compliance checker.",
-      detailedExplanation: "Provides standardized access to compliance checker services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with compliance checker via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-security-scanner-105",
-      term: "Security Scanner MCP",
-      definition: "MCP integration for security scanner.",
-      detailedExplanation: "Provides standardized access to security scanner services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with security scanner via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-vulnerability-scan-106",
-      term: "Vulnerability Scan MCP",
-      definition: "MCP integration for vulnerability scan.",
-      detailedExplanation: "Provides standardized access to vulnerability scan services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with vulnerability scan via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-dependency-check-107",
-      term: "Dependency Check MCP",
-      definition: "MCP integration for dependency check.",
-      detailedExplanation: "Provides standardized access to dependency check services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with dependency check via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-license-checker-108",
-      term: "License Checker MCP",
-      definition: "MCP integration for license checker.",
-      detailedExplanation: "Provides standardized access to license checker services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with license checker via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-policy-engine-109",
-      term: "Policy Engine MCP",
-      definition: "MCP integration for policy engine.",
-      detailedExplanation: "Provides standardized access to policy engine services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with policy engine via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-rule-engine-110",
-      term: "Rule Engine MCP",
-      definition: "MCP integration for rule engine.",
-      detailedExplanation: "Provides standardized access to rule engine services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with rule engine via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-decision-engine-111",
-      term: "Decision Engine MCP",
-      definition: "MCP integration for decision engine.",
-      detailedExplanation: "Provides standardized access to decision engine services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with decision engine via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-workflow-engine-112",
-      term: "Workflow Engine MCP",
-      definition: "MCP integration for workflow engine.",
-      detailedExplanation: "Provides standardized access to workflow engine services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with workflow engine via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-state-machine-113",
-      term: "State Machine MCP",
-      definition: "MCP integration for state machine.",
-      detailedExplanation: "Provides standardized access to state machine services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with state machine via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-event-machine-114",
-      term: "Event Machine MCP",
-      definition: "MCP integration for event machine.",
-      detailedExplanation: "Provides standardized access to event machine services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with event machine via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-rule-processor-115",
-      term: "Rule Processor MCP",
-      definition: "MCP integration for rule processor.",
-      detailedExplanation: "Provides standardized access to rule processor services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with rule processor via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-fact-checker-116",
-      term: "Fact Checker MCP",
-      definition: "MCP integration for fact checker.",
-      detailedExplanation: "Provides standardized access to fact checker services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with fact checker via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-data-validator-117",
-      term: "Data Validator MCP",
-      definition: "MCP integration for data validator.",
-      detailedExplanation: "Provides standardized access to data validator services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with data validator via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-schema-validator-118",
-      term: "Schema Validator MCP",
-      definition: "MCP integration for schema validator.",
-      detailedExplanation: "Provides standardized access to schema validator services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with schema validator via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-type-checker-119",
-      term: "Type Checker MCP",
-      definition: "MCP integration for type checker.",
-      detailedExplanation: "Provides standardized access to type checker services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with type checker via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-format-validator-120",
-      term: "Format Validator MCP",
-      definition: "MCP integration for format validator.",
-      detailedExplanation: "Provides standardized access to format validator services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with format validator via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-range-validator-121",
-      term: "Range Validator MCP",
-      definition: "MCP integration for range validator.",
-      detailedExplanation: "Provides standardized access to range validator services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with range validator via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-enum-validator-122",
-      term: "Enum Validator MCP",
-      definition: "MCP integration for enum validator.",
-      detailedExplanation: "Provides standardized access to enum validator services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with enum validator via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-custom-validator-123",
-      term: "Custom Validator MCP",
-      definition: "MCP integration for custom validator.",
-      detailedExplanation: "Provides standardized access to custom validator services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with custom validator via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-async-validator-124",
-      term: "Async Validator MCP",
-      definition: "MCP integration for async validator.",
-      detailedExplanation: "Provides standardized access to async validator services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with async validator via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-sync-validator-125",
-      term: "Sync Validator MCP",
-      definition: "MCP integration for sync validator.",
-      detailedExplanation: "Provides standardized access to sync validator services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with sync validator via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-auto-scaling-126",
-      term: "Auto Scaling MCP",
-      definition: "MCP integration for auto scaling.",
-      detailedExplanation: "Provides standardized access to auto scaling services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with auto scaling via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-container-registry-127",
-      term: "Container Registry MCP",
-      definition: "MCP integration for container registry.",
-      detailedExplanation: "Provides standardized access to container registry services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with container registry via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-secret-management-128",
-      term: "Secret Management MCP",
-      definition: "MCP integration for secret management.",
-      detailedExplanation: "Provides standardized access to secret management services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with secret management via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-dns-provider-129",
-      term: "Dns Provider MCP",
-      definition: "MCP integration for dns provider.",
-      detailedExplanation: "Provides standardized access to dns provider services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with dns provider via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-cdn-service-130",
-      term: "Cdn Service MCP",
-      definition: "MCP integration for cdn service.",
-      detailedExplanation: "Provides standardized access to cdn service services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with cdn service via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-message-broker-131",
-      term: "Message Broker MCP",
-      definition: "MCP integration for message broker.",
-      detailedExplanation: "Provides standardized access to message broker services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with message broker via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-event-bus-132",
-      term: "Event Bus MCP",
-      definition: "MCP integration for event bus.",
-      detailedExplanation: "Provides standardized access to event bus services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with event bus via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-task-queue-133",
-      term: "Task Queue MCP",
-      definition: "MCP integration for task queue.",
-      detailedExplanation: "Provides standardized access to task queue services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with task queue via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-workflow-engine-134",
-      term: "Workflow Engine MCP",
-      definition: "MCP integration for workflow engine.",
-      detailedExplanation: "Provides standardized access to workflow engine services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with workflow engine via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-cache-layer-135",
-      term: "Cache Layer MCP",
-      definition: "MCP integration for cache layer.",
-      detailedExplanation: "Provides standardized access to cache layer services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with cache layer via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-search-engine-136",
-      term: "Search Engine MCP",
-      definition: "MCP integration for search engine.",
-      detailedExplanation: "Provides standardized access to search engine services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with search engine via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-analytics-platform-137",
-      term: "Analytics Platform MCP",
-      definition: "MCP integration for analytics platform.",
-      detailedExplanation: "Provides standardized access to analytics platform services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with analytics platform via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-monitoring-tool-138",
-      term: "Monitoring Tool MCP",
-      definition: "MCP integration for monitoring tool.",
-      detailedExplanation: "Provides standardized access to monitoring tool services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with monitoring tool via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-logging-service-139",
-      term: "Logging Service MCP",
-      definition: "MCP integration for logging service.",
-      detailedExplanation: "Provides standardized access to logging service services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with logging service via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-api-gateway-140",
-      term: "Api Gateway MCP",
-      definition: "MCP integration for api gateway.",
-      detailedExplanation: "Provides standardized access to api gateway services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with api gateway via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-load-balancer-141",
-      term: "Load Balancer MCP",
-      definition: "MCP integration for load balancer.",
-      detailedExplanation: "Provides standardized access to load balancer services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with load balancer via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-traffic-manager-142",
-      term: "Traffic Manager MCP",
-      definition: "MCP integration for traffic manager.",
-      detailedExplanation: "Provides standardized access to traffic manager services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with traffic manager via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-rate-limiter-143",
-      term: "Rate Limiter MCP",
-      definition: "MCP integration for rate limiter.",
-      detailedExplanation: "Provides standardized access to rate limiter services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with rate limiter via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-auth-provider-144",
-      term: "Auth Provider MCP",
-      definition: "MCP integration for auth provider.",
-      detailedExplanation: "Provides standardized access to auth provider services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with auth provider via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-identity-service-145",
-      term: "Identity Service MCP",
-      definition: "MCP integration for identity service.",
-      detailedExplanation: "Provides standardized access to identity service services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with identity service via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-file-storage-146",
-      term: "File Storage MCP",
-      definition: "MCP integration for file storage.",
-      detailedExplanation: "Provides standardized access to file storage services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with file storage via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-object-store-147",
-      term: "Object Store MCP",
-      definition: "MCP integration for object store.",
-      detailedExplanation: "Provides standardized access to object store services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with object store via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-block-storage-148",
-      term: "Block Storage MCP",
-      definition: "MCP integration for block storage.",
-      detailedExplanation: "Provides standardized access to block storage services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with block storage via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-database-service-149",
-      term: "Database Service MCP",
-      definition: "MCP integration for database service.",
-      detailedExplanation: "Provides standardized access to database service services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with database service via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-nosql-db-150",
-      term: "Nosql Db MCP",
-      definition: "MCP integration for nosql db.",
-      detailedExplanation: "Provides standardized access to nosql db services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with nosql db via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-document-store-151",
-      term: "Document Store MCP",
-      definition: "MCP integration for document store.",
-      detailedExplanation: "Provides standardized access to document store services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with document store via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-key-value-store-152",
-      term: "Key Value Store MCP",
-      definition: "MCP integration for key value store.",
-      detailedExplanation: "Provides standardized access to key value store services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with key value store via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-graph-database-153",
-      term: "Graph Database MCP",
-      definition: "MCP integration for graph database.",
-      detailedExplanation: "Provides standardized access to graph database services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with graph database via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-time-series-db-154",
-      term: "Time Series Db MCP",
-      definition: "MCP integration for time series db.",
-      detailedExplanation: "Provides standardized access to time series db services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with time series db via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-vector-store-155",
-      term: "Vector Store MCP",
-      definition: "MCP integration for vector store.",
-      detailedExplanation: "Provides standardized access to vector store services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with vector store via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-ml-model-serving-156",
-      term: "Ml Model Serving MCP",
-      definition: "MCP integration for ml model serving.",
-      detailedExplanation: "Provides standardized access to ml model serving services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with ml model serving via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-data-pipeline-157",
-      term: "Data Pipeline MCP",
-      definition: "MCP integration for data pipeline.",
-      detailedExplanation: "Provides standardized access to data pipeline services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with data pipeline via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-etl-tool-158",
-      term: "Etl Tool MCP",
-      definition: "MCP integration for etl tool.",
-      detailedExplanation: "Provides standardized access to etl tool services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with etl tool via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-stream-processing-159",
-      term: "Stream Processing MCP",
-      definition: "MCP integration for stream processing.",
-      detailedExplanation: "Provides standardized access to stream processing services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with stream processing via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-batch-processing-160",
-      term: "Batch Processing MCP",
-      definition: "MCP integration for batch processing.",
-      detailedExplanation: "Provides standardized access to batch processing services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with batch processing via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-feature-store-161",
-      term: "Feature Store MCP",
-      definition: "MCP integration for feature store.",
-      detailedExplanation: "Provides standardized access to feature store services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with feature store via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-model-registry-162",
-      term: "Model Registry MCP",
-      definition: "MCP integration for model registry.",
-      detailedExplanation: "Provides standardized access to model registry services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with model registry via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-experiment-tracker-163",
-      term: "Experiment Tracker MCP",
-      definition: "MCP integration for experiment tracker.",
-      detailedExplanation: "Provides standardized access to experiment tracker services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with experiment tracker via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-hyperparameter-tune-164",
-      term: "Hyperparameter Tune MCP",
-      definition: "MCP integration for hyperparameter tune.",
-      detailedExplanation: "Provides standardized access to hyperparameter tune services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with hyperparameter tune via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-a-b-test-165",
-      term: "A B Test MCP",
-      definition: "MCP integration for a b test.",
-      detailedExplanation: "Provides standardized access to a b test services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with a b test via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    },
-    {
-      slug: "mcp-canary-deploy-166",
-      term: "Canary Deploy MCP",
-      definition: "MCP integration for canary deploy.",
-      detailedExplanation: "Provides standardized access to canary deploy services.",
-      keyTakeaways: [
-        "Standard MCP interface",
-        "Easy setup",
-        "Secure access",
-        "Well documented"
-      ],
-      useCase: "AI agents interact with canary deploy via MCP.",
-      technicalDetails: {
-        protocolLayer: "Integration Layer",
-        format: "JSON-RPC 2.0",
-        latencyProfile: "Variable"
-      },
-      references: ["https://spec.modelcontextprotocol.io/"]
-    }
-];
+    slug: "mcp-auto-scaling-0",
+    term: "Auto Scaling (MCP Server Deployment)",
+    definition: "Auto scaling automatically adjusts the number of running instances of an MCP server based on load, so a server handling many concurrent tool calls doesn't fall over during traffic spikes and doesn't waste resources when idle.",
+    detailedExplanation: "MCP itself has nothing to say about deployment topology — the spec covers the JSON-RPC message exchange between client and server, not how a server is scaled. Auto scaling is an infrastructure concern that sits underneath a remote (SSE or Streamable HTTP) MCP server, typically handled by the same mechanism used for any other backend service: a Kubernetes Horizontal Pod Autoscaler reacting to CPU/memory or request-rate metrics, or a platform-managed autoscaler on services like Cloud Run or ECS. A stdio-launched local MCP server, by contrast, has no auto-scaling concept at all — the client spawns exactly one process per session.",
+    keyTakeaways: [
+      "Only applies to remote (HTTP/SSE) MCP servers — stdio servers are single-process, spawned per client session.",
+      "MCP itself defines no deployment or scaling behavior; this is ordinary backend infrastructure layered underneath it.",
+      "Autoscaling triggers are usually CPU/memory or in-flight-request count, same as any other API service.",
+      "Stateful tool calls (long-running operations, held connections) complicate horizontal scaling and often need sticky sessions or external state."
+    ],
+    useCase: "A company exposes an internal MCP server over Streamable HTTP so multiple teams' AI agents can call it concurrently; they run it behind a Kubernetes Deployment with an HPA that scales pod count between 2 and 20 based on CPU usage during business hours.",
+    technicalDetails: {
+      protocolLayer: "Infrastructure (below the MCP transport layer)",
+      format: "Deployment-specific (Kubernetes HPA, Cloud Run concurrency, etc.)",
+      latencyProfile: "Not applicable to MCP directly — governed by the underlying platform's scale-up latency"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/",
+      "https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/"
+    ]
+  },
+    {
+    slug: "mcp-container-registry-1",
+    term: "Container Registry (MCP Server Distribution)",
+    definition: "A container registry stores and serves the Docker/OCI images that package a remote MCP server, letting teams pull and deploy a specific, versioned build instead of running from source.",
+    detailedExplanation: "Packaging an MCP server as a container image is a common way to distribute a remote (SSE/Streamable HTTP) server for self-hosting, since it bundles the runtime, dependencies, and entrypoint into one artifact. This is orthogonal to MCP itself — the protocol doesn't define a packaging format — but it matters in practice because most production MCP server deployments (Kubernetes, ECS, Cloud Run) pull from a registry like Docker Hub, GHCR, or a private registry rather than building on the deployment host. Local stdio MCP servers are more commonly distributed as npm/pip packages run directly via 'npx'/'uvx', since there's no container involved.",
+    keyTakeaways: [
+      "Relevant mainly to remote MCP servers packaged as containers, not local stdio servers.",
+      "MCP defines no packaging standard; container images follow the standard OCI image spec.",
+      "GHCR (GitHub Container Registry) is a common default since it's tied to the source repo's permissions.",
+      "Image tags/digests let a deployment pin to an exact, reproducible server version."
+    ],
+    useCase: "A team publishes their internal MCP server as a versioned image to GHCR on every release, and their Kubernetes deployment references an immutable digest rather than a floating 'latest' tag to avoid unplanned upgrades.",
+    technicalDetails: {
+      protocolLayer: "Infrastructure (below the MCP transport layer)",
+      format: "OCI container image",
+      latencyProfile: "Not applicable to MCP directly — affects deployment/rollout time, not runtime tool-call latency"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/",
+      "https://github.com/opencontainers/distribution-spec"
+    ]
+  },
+    {
+    slug: "mcp-secret-management-2",
+    term: "Secret Management (MCP Servers)",
+    definition: "Secret management is how an MCP server stores and retrieves credentials it needs to call downstream APIs (database passwords, third-party API keys, OAuth client secrets) without hardcoding them or exposing them to the MCP client.",
+    detailedExplanation: "An MCP server frequently acts as a credentialed proxy: the AI client never sees the underlying API key for, say, a GitHub or Postgres connection — the server holds it and uses it to fulfill tool calls. How that credential is stored is an ordinary backend concern (environment variables, a secrets manager like AWS Secrets Manager or HashiCorp Vault, or a Kubernetes Secret), not something MCP specifies. This matters more than usual for MCP servers specifically because a poorly scoped or leaked credential effectively gives an AI agent — and anything that can influence its prompts — the same access as that credential.",
+    keyTakeaways: [
+      "The MCP client should never receive the server's downstream credentials directly.",
+      "Least-privilege scoping matters more here than in typical backend services, since an LLM-driven caller is involved.",
+      "Environment variables are common for local stdio servers; a managed secrets store is standard for remote deployments.",
+      "Credential rotation should be possible without restarting every connected client session."
+    ],
+    useCase: "An MCP server that wraps a company's internal ticketing API reads its service-account token from AWS Secrets Manager at startup rather than from a config file, so the token never appears in the deployment's source or image.",
+    technicalDetails: {
+      protocolLayer: "Infrastructure / Security (below the MCP transport layer)",
+      format: "Environment variables, secrets manager API, or orchestrator-native secrets",
+      latencyProfile: "Not applicable to MCP directly — a one-time or periodic fetch, not part of the tool-call path"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/",
+      "https://spec.modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices/"
+    ]
+  },
+    {
+    slug: "mcp-dns-provider-3",
+    term: "DNS Provider (MCP Server Hosting)",
+    definition: "A DNS provider resolves the hostname a remote MCP server is reached at (e.g. mcp.example.com) to the IP address of the server or load balancer in front of it — standard infrastructure plumbing, not something MCP itself touches.",
+    detailedExplanation: "Remote MCP servers (SSE or Streamable HTTP transport) are reached over ordinary HTTPS URLs, so they rely on conventional DNS the same way any web API does: an A/AAAA or CNAME record pointing at the hosting platform, managed through a registrar/DNS provider such as Cloudflare, Route 53, or the DNS service bundled with the hosting platform. MCP's specification has nothing to say about DNS — it assumes the client already has a working URL (or, for stdio, a local command) to connect to. DNS only becomes an operational concern when self-hosting a remote server: propagation delay after a change, TTL tuning, and TLS certificate issuance (commonly via Let's Encrypt) tied to the domain.",
+    keyTakeaways: [
+      "Only relevant to remote (HTTP/SSE) MCP servers — stdio servers have no DNS involved.",
+      "MCP does not define or reference DNS in its specification; this is ordinary web infrastructure.",
+      "TLS certificate issuance is usually tied to whichever domain/DNS setup is in front of the server.",
+      "DNS propagation delay is a real operational factor when migrating a server's hostname."
+    ],
+    useCase: "A team hosts their MCP server at mcp.internal-tools.company.com, with a CNAME managed in Cloudflare pointing at their load balancer, and relies on Cloudflare's proxy for TLS termination.",
+    technicalDetails: {
+      protocolLayer: "Infrastructure (below the MCP transport layer)",
+      format: "Standard DNS records (A/AAAA/CNAME)",
+      latencyProfile: "Not applicable to MCP directly — DNS resolution happens once per connection, not per tool call"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/"
+    ]
+  },
+    {
+    slug: "mcp-cdn-service-4",
+    term: "CDN (Content Delivery Network) for MCP",
+    definition: "A CDN caches and serves static assets or terminates TLS/edge routing in front of a remote MCP server's hostname, which can reduce connection latency for geographically distributed clients — but it does not cache MCP tool-call responses themselves, which are dynamic.",
+    detailedExplanation: "Because MCP's HTTP-based transports carry live, often stateful JSON-RPC traffic (tool calls that read a database, call another API, or mutate state), the actual protocol messages are not cacheable the way a CDN caches a static image or bundled JS file. Where a CDN does help is at the edge: terminating TLS closer to the client, providing DDoS protection, and routing to the nearest healthy backend, which lowers the network round-trip before the SSE/Streamable HTTP connection is established. Some MCP servers also serve static resources (icons, documentation) that a CDN can legitimately cache.",
+    keyTakeaways: [
+      "MCP tool-call responses are dynamic and generally not cacheable by a CDN.",
+      "A CDN's real value here is edge TLS termination, routing, and DDoS protection — not response caching.",
+      "Only applies to remote (HTTP/SSE) MCP servers, not local stdio servers.",
+      "Long-lived SSE connections need a CDN/proxy configured to not buffer or time out streaming responses."
+    ],
+    useCase: "A publicly reachable MCP server sits behind Cloudflare for TLS termination and DDoS protection, with caching explicitly disabled on the MCP endpoint path since every response is dynamic and session-specific.",
+    technicalDetails: {
+      protocolLayer: "Infrastructure / Network Edge (below the MCP transport layer)",
+      format: "HTTPS reverse proxy / edge network",
+      latencyProfile: "Can reduce connection setup latency; does not affect tool-execution latency"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/"
+    ]
+  },
+    {
+    slug: "mcp-message-broker-5",
+    term: "Message Broker (behind an MCP Server)",
+    definition: "A message broker (e.g. RabbitMQ, Kafka) is an intermediary an MCP server's tool implementations may call out to internally — for example a tool that publishes a job to a queue — but it's not a transport MCP itself uses between client and server.",
+    detailedExplanation: "MCP's own transports are stdio, SSE, and Streamable HTTP — direct client-server channels, not a pub/sub broker. Confusion sometimes arises because an MCP server's tools can legitimately wrap a message broker as a backend: a 'publish_order_event' tool might push a message onto a Kafka topic, or a 'check_queue_depth' tool might read RabbitMQ's management API. In that case the broker is just another downstream system the server talks to, exactly like a database or a third-party API — the AI client interacting through MCP never talks to the broker directly.",
+    keyTakeaways: [
+      "Not an MCP transport — MCP uses stdio, SSE, or Streamable HTTP between client and server.",
+      "A message broker is typically a downstream system an MCP tool implementation calls into, not part of the protocol.",
+      "Common pattern: an MCP tool publishes an event or reads queue state on the caller's behalf.",
+      "The AI client never talks to the broker directly — only through the tool the server exposes."
+    ],
+    useCase: "An MCP server exposes an 'enqueue_report_job' tool that publishes a message to a RabbitMQ queue consumed by a separate report-generation worker, decoupling the AI-triggered request from the actual processing.",
+    technicalDetails: {
+      protocolLayer: "Application / Downstream Integration (behind the MCP tool layer)",
+      format: "Broker-specific protocol (AMQP, Kafka wire protocol, etc.)",
+      latencyProfile: "Adds the broker's publish/ack latency on top of normal tool-call latency"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/"
+    ]
+  },
+    {
+    slug: "mcp-event-bus-6",
+    term: "Event Bus (behind an MCP Server)",
+    definition: "An event bus is a downstream pub/sub system an MCP server's tools may publish to or read from — distinct from MCP's own notification mechanism, which is a first-class part of the protocol for server-to-client updates within a session.",
+    detailedExplanation: "It's worth distinguishing two different things that both get called 'events' in an MCP context. First, MCP itself defines JSON-RPC notifications (no response expected) that a server can send a connected client during a session — for example, progress updates on a long-running tool call. Second, an external event bus (like AWS EventBridge or a Kafka-based system) is an entirely separate, application-level integration a server's tool implementations might use to publish domain events to other systems, unrelated to the live MCP session. The two are not interchangeable: MCP notifications only reach the currently connected client, while an event bus fans out to whatever systems are subscribed, independent of any MCP session.",
+    keyTakeaways: [
+      "MCP has its own built-in notification mechanism, separate from any external event bus.",
+      "MCP notifications only reach the currently connected client, within the live session.",
+      "An external event bus is a downstream integration a tool implementation might use, not part of MCP itself.",
+      "Don't conflate 'server sends a progress notification' with 'server publishes to an event bus' — they solve different problems."
+    ],
+    useCase: "An MCP server sends native MCP progress notifications to the client while a long-running tool executes, and separately publishes a completion event to an internal EventBridge bus so other backend systems can react, independent of whether the MCP client is still connected.",
+    technicalDetails: {
+      protocolLayer: "Application (MCP notifications) / Downstream Integration (external event bus)",
+      format: "JSON-RPC notification (MCP) vs. broker-specific event format (external)",
+      latencyProfile: "MCP notifications are near-real-time within the session; external event bus delivery depends on that system"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/specification/2025-06-18/basic/index/#notifications"
+    ]
+  },
+    {
+    slug: "mcp-task-queue-7",
+    term: "Task Queue (behind a Long-Running MCP Tool)",
+    definition: "A task queue lets an MCP server hand off slow work (e.g. video processing, a large report) to a background worker instead of blocking the tool call, typically combined with MCP's progress notifications so the client sees status updates.",
+    detailedExplanation: "MCP tool calls are synchronous JSON-RPC requests: the client waits for a result. For work that takes longer than a reasonable request timeout, a common pattern is for the tool handler to enqueue a job (on something like Celery, BullMQ, or a cloud task queue), return quickly with a job ID or acknowledgment, and use MCP's progress notifications to report status as the background worker processes it. This keeps the MCP connection responsive without requiring MCP itself to support async job semantics natively — the async behavior lives in the server's own architecture.",
+    keyTakeaways: [
+      "MCP tool calls are synchronous; a task queue is how a server avoids blocking on slow work.",
+      "MCP's progress notifications are the natural pairing for reporting status on a queued job.",
+      "The task queue technology (Celery, BullMQ, SQS, etc.) is an implementation detail, not part of the MCP spec.",
+      "A tool built this way typically needs a separate 'check status' or 'get result' tool for the client to poll."
+    ],
+    useCase: "A 'generate_report' MCP tool enqueues the actual report generation on a BullMQ queue, immediately returns a job ID, and a paired 'get_report_status' tool lets the client poll for completion while progress notifications stream interim updates.",
+    technicalDetails: {
+      protocolLayer: "Application (behind the MCP tool layer)",
+      format: "Queue-specific (Redis-backed, SQS, etc.), paired with MCP progress notifications",
+      latencyProfile: "Decouples tool-call response time from actual job duration"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/"
+    ]
+  },
+    {
+    slug: "mcp-workflow-engine-8",
+    term: "Workflow Engine (behind an MCP Server)",
+    definition: "A workflow engine (e.g. Temporal, Airflow) orchestrates a multi-step process that an MCP tool triggers or checks on — MCP itself has no concept of multi-step workflows, only individual tool calls within a session.",
+    detailedExplanation: "Sequencing multiple steps — 'first validate the order, then charge the card, then update inventory, then notify the warehouse' — is not something the MCP protocol coordinates; each MCP tool call is an independent request. When a server needs durable, multi-step orchestration behind a tool, that logic typically lives in a dedicated workflow engine, with the MCP tool acting as the trigger (start a workflow) or the status checker (query a running workflow's state). The AI agent driving the conversation can also perform its own multi-step orchestration by calling several MCP tools in sequence — that's a different, client-side pattern from a server-side workflow engine.",
+    keyTakeaways: [
+      "MCP tool calls are independent; there's no protocol-level concept of a multi-step workflow.",
+      "A workflow engine behind a tool provides durability and retries for a multi-step backend process.",
+      "This is distinct from an AI agent calling multiple MCP tools in sequence, which is client-driven orchestration.",
+      "The tool typically exposes 'start' and 'check status' operations rather than blocking for the whole workflow."
+    ],
+    useCase: "An 'onboard_customer' MCP tool starts a Temporal workflow that runs KYC checks, provisions accounts, and sends welcome emails over several minutes, while a separate tool lets the agent check the workflow's current step.",
+    technicalDetails: {
+      protocolLayer: "Application (behind the MCP tool layer)",
+      format: "Engine-specific (Temporal gRPC, Airflow REST API, etc.)",
+      latencyProfile: "Workflow execution is decoupled from the initiating tool-call's response time"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/"
+    ]
+  },
+    {
+    slug: "mcp-cache-layer-9",
+    term: "Cache Layer (MCP Server Performance)",
+    definition: "An MCP server can cache the results of expensive downstream calls (a slow API, a heavy query) to speed up repeated tool calls with the same arguments — an ordinary performance optimization, not something the MCP spec defines.",
+    detailedExplanation: "Because an AI agent may call the same tool with the same or similar arguments repeatedly within a conversation (e.g. re-checking the same record), caching the downstream result — in-process, or in Redis for a multi-instance deployment — can meaningfully cut latency and reduce load on whatever backend the tool wraps. Cache invalidation needs care: if the underlying data can change (e.g. inventory levels), returning a stale cached value to an AI agent that then acts on it can produce visibly wrong behavior, so TTLs are usually kept short or invalidated on writes.",
+    keyTakeaways: [
+      "Caching happens inside a tool's implementation, not as an MCP protocol feature.",
+      "Useful for expensive, frequently-repeated tool calls with identical or similar arguments.",
+      "Stale cache data is riskier here than in a typical UI, since an agent may act on it autonomously.",
+      "Redis or another shared cache is needed once the MCP server runs as multiple instances."
+    ],
+    useCase: "A 'get_exchange_rate' MCP tool caches results for 60 seconds in Redis, since exchange rates don't need per-call freshness but the underlying rate API is rate-limited and slow.",
+    technicalDetails: {
+      protocolLayer: "Application (behind the MCP tool layer)",
+      format: "In-process or shared cache (e.g. Redis)",
+      latencyProfile: "Cache hits are typically sub-millisecond to low-single-digit milliseconds vs. the uncached downstream call"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/"
+    ]
+  },
+    {
+    slug: "mcp-search-engine-10",
+    term: "Search Engine (as an MCP Tool Backend)",
+    definition: "A search engine (Elasticsearch, Algolia, a vector database, or a web search API) is a common backend for an MCP tool that lets an AI agent look something up — MCP standardizes how the tool is called, not how the search itself works.",
+    detailedExplanation: "Search-backed tools are one of the most common MCP patterns: a 'search_documents' or 'web_search' tool takes a query string and returns matching results as structured tool output. What actually performs the search — full-text search in Elasticsearch, semantic similarity in a vector database, or a hosted web search API like Brave Search or Tavily — is entirely up to the server implementation. MCP's contribution is just the standardized calling convention (a JSON-schema-typed tool input/output) so any MCP client can use the tool without knowing which search engine is behind it.",
+    keyTakeaways: [
+      "MCP standardizes the tool-calling interface, not the search technology itself.",
+      "Common backends: full-text search (Elasticsearch), vector similarity search, or hosted web search APIs.",
+      "The tool's JSON-schema input typically covers query text and optional filters/limits.",
+      "Result relevance and ranking quality depend entirely on the underlying search engine, not on MCP."
+    ],
+    useCase: "An MCP server exposes a 'search_knowledge_base' tool backed by a vector database, letting an AI agent retrieve semantically relevant internal documents by natural-language query.",
+    technicalDetails: {
+      protocolLayer: "Application (behind the MCP tool layer)",
+      format: "Search-engine-specific query API (REST, gRPC, etc.)",
+      latencyProfile: "Typically tens to low hundreds of milliseconds depending on index size and engine"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/"
+    ]
+  },
+    {
+    slug: "mcp-analytics-platform-11",
+    term: "Analytics Platform (MCP Server Usage)",
+    definition: "An analytics platform tracks how an MCP server's tools are actually being used — which tools get called, how often, by which clients — to inform product decisions, distinct from MCP's own request/response messages, which carry no built-in usage-analytics layer.",
+    detailedExplanation: "MCP itself doesn't specify telemetry or analytics; any usage tracking is something a server operator adds on top, usually by logging each 'tools/call' invocation (tool name, timestamp, caller identity if available, success/failure) to an analytics or observability platform. This is operationally useful for understanding which tools are actually valuable to agents, spotting tools that fail often, and capacity planning — but it needs the same care as any telemetry involving AI-driven traffic: tool arguments can contain sensitive data, so what gets logged to an analytics platform should be deliberately scoped.",
+    keyTakeaways: [
+      "MCP defines no analytics or telemetry layer; this is added by the server operator.",
+      "Typically implemented by logging each tools/call invocation to an analytics or observability system.",
+      "Useful for understanding tool usage patterns, failure rates, and capacity needs.",
+      "Tool arguments can contain sensitive data — analytics logging should be deliberately scoped, not a raw dump."
+    ],
+    useCase: "A team logs every MCP tool invocation's name, duration, and success/failure to their analytics platform to see which tools their internal AI agents actually use, without logging the full argument payloads.",
+    technicalDetails: {
+      protocolLayer: "Application (behind the MCP tool layer)",
+      format: "Server-side logging/event tracking, platform-specific",
+      latencyProfile: "Should be asynchronous/non-blocking relative to the tool call itself"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/"
+    ]
+  },
+    {
+    slug: "mcp-monitoring-tool-12",
+    term: "Monitoring Tool (MCP Server Observability)",
+    definition: "A monitoring tool (Prometheus, Datadog, Grafana, etc.) tracks the operational health of an MCP server itself — uptime, error rates, tool-call latency — as opposed to the AI agent's behavior or the content of tool calls.",
+    detailedExplanation: "Since MCP servers are ordinary long-running services (for remote transports) or short-lived processes (for stdio), they benefit from the same monitoring practices as any backend: exposing metrics (request count, error rate, latency percentiles per tool), health-check endpoints, and dashboards. MCP doesn't define a metrics format or endpoint, so this is standard infrastructure work layered on top — commonly a '/metrics' endpoint in Prometheus format, or structured logs shipped to a platform like Datadog. What's specific to MCP is worth tracking per-tool rather than just per-endpoint, since a single MCP server often exposes many distinct tools with very different performance characteristics.",
+    keyTakeaways: [
+      "MCP defines no metrics format; monitoring is standard infrastructure layered on top.",
+      "Worth tracking metrics per-tool, not just per-server, since tools can vary widely in latency/reliability.",
+      "A /health or /metrics endpoint alongside the MCP transport endpoint is a common pattern for remote servers.",
+      "stdio servers are harder to monitor centrally since each is a short-lived, client-spawned process."
+    ],
+    useCase: "A remote MCP server exposes Prometheus metrics for each tool's call count, error rate, and p99 latency, feeding a Grafana dashboard the team watches after deploys.",
+    technicalDetails: {
+      protocolLayer: "Infrastructure / Observability (alongside the MCP transport layer)",
+      format: "Prometheus exposition format, or platform-specific (Datadog, etc.)",
+      latencyProfile: "Not applicable to MCP directly — a separate monitoring path, not part of tool-call responses"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/"
+    ]
+  },
+    {
+    slug: "mcp-logging-service-13",
+    term: "Logging Service (MCP Server Observability)",
+    definition: "A logging service collects structured logs from an MCP server's operation — tool invocations, errors, connection lifecycle — for debugging and audit, separate from MCP's own JSON-RPC error responses which only reach the connected client.",
+    detailedExplanation: "When a tool call fails, MCP's JSON-RPC error object tells the client what went wrong, but that's ephemeral from the server's own operational perspective — it doesn't create a durable record. Production MCP servers typically write structured logs (tool name, arguments where safe to log, outcome, latency, correlation ID) to a logging service or aggregator, both for debugging issues after the fact and, in regulated contexts, for audit trails of what an AI agent actually did. Because tool arguments and results can contain sensitive data, redaction before logging is a real concern specific to MCP servers, more so than in typical request logging.",
+    keyTakeaways: [
+      "MCP's own error responses reach the client but don't create a durable server-side log.",
+      "Structured logging (tool name, outcome, latency, correlation ID) is standard practice for production servers.",
+      "Sensitive data in tool arguments/results needs redaction before logging, not a raw dump.",
+      "Audit logging of tool calls matters more here than in typical services, given an AI agent is the caller."
+    ],
+    useCase: "An MCP server logs every tool invocation with a redacted argument summary and a correlation ID to a centralized logging service, so a failed multi-step agent session can be reconstructed for debugging.",
+    technicalDetails: {
+      protocolLayer: "Application / Observability (behind the MCP tool layer)",
+      format: "Structured logs (JSON), shipped to a logging backend",
+      latencyProfile: "Should be asynchronous/non-blocking relative to the tool call itself"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices/"
+    ]
+  },
+    {
+    slug: "mcp-api-gateway-14",
+    term: "API Gateway (in front of an MCP Server)",
+    definition: "An API gateway can sit in front of a remote MCP server to handle cross-cutting concerns like TLS termination, authentication, and rate limiting before traffic reaches the server — MCP itself doesn't require one, but it's a common production pattern.",
+    detailedExplanation: "For a remote (SSE/Streamable HTTP) MCP server exposed beyond a single trusted network, teams often put a conventional API gateway or reverse proxy in front of it to handle OAuth token validation, per-client rate limiting, and request logging centrally rather than reimplementing them inside every MCP server. The gateway needs to be configured correctly for MCP's streaming transports specifically — buffering or overly aggressive timeouts on the gateway can break long-lived SSE connections or Streamable HTTP responses, which is a common misconfiguration when teams reuse a gateway built for typical request/response APIs.",
+    keyTakeaways: [
+      "Optional but common for remote MCP servers exposed outside a trusted network.",
+      "Typical responsibilities: TLS termination, OAuth validation, rate limiting, centralized logging.",
+      "Must be configured to support long-lived streaming connections (SSE/Streamable HTTP), not just short request/response.",
+      "Not needed for local stdio servers, which have no network path to gate."
+    ],
+    useCase: "A company puts an API gateway in front of their externally-reachable MCP server to validate OAuth bearer tokens and apply per-client rate limits before requests ever reach the server's own tool-handling code.",
+    technicalDetails: {
+      protocolLayer: "Infrastructure (in front of the MCP transport layer)",
+      format: "HTTPS reverse proxy with auth/rate-limit middleware",
+      latencyProfile: "Adds a small, fixed per-request overhead in exchange for centralized auth/rate-limiting"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/specification/2025-06-18/basic/authorization/"
+    ]
+  },
+    {
+    slug: "mcp-load-balancer-15",
+    term: "Load Balancer (in front of an MCP Server)",
+    definition: "A load balancer distributes incoming connections across multiple instances of a remote MCP server, which matters more than usual for MCP because SSE and Streamable HTTP connections are long-lived, not short request/response pairs.",
+    detailedExplanation: "Ordinary round-robin HTTP load balancing works fine for the initial connection, but MCP's streaming transports keep a connection open for the duration of a session, so the load balancer needs sticky-enough routing (or the server needs to be stateless across instances) to avoid breaking an in-progress session mid-stream. Teams running multiple MCP server replicas typically either keep session state in a shared store (Redis) so any instance can serve any request, or use session-affinity routing so a client stays pinned to the instance it started with.",
+    keyTakeaways: [
+      "Only relevant to remote (SSE/Streamable HTTP) MCP servers running multiple replicas.",
+      "Long-lived streaming connections make naive round-robin balancing riskier than for typical REST APIs.",
+      "Two common fixes: shared session state (e.g. Redis) or session-affinity routing.",
+      "A load balancer misconfigured with aggressive idle timeouts can silently kill active MCP sessions."
+    ],
+    useCase: "A team runs 4 replicas of their MCP server behind a load balancer configured with session affinity, so a client's long-lived Streamable HTTP connection stays routed to the same instance for its duration.",
+    technicalDetails: {
+      protocolLayer: "Infrastructure (in front of the MCP transport layer)",
+      format: "L4/L7 load balancer with long-lived-connection support",
+      latencyProfile: "Adds minimal overhead at connection setup; misconfiguration risk is dropped sessions, not latency"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/specification/2025-06-18/basic/transports/"
+    ]
+  },
+    {
+    slug: "mcp-traffic-manager-16",
+    term: "Traffic Manager (Multi-Region MCP Routing)",
+    definition: "A traffic manager routes clients to the nearest or healthiest regional deployment of a remote MCP server — standard multi-region infrastructure, unrelated to anything in the MCP spec itself.",
+    detailedExplanation: "Teams that self-host an MCP server in multiple regions (for latency or redundancy) use the same DNS-based or anycast traffic-management tools used for any multi-region API: health-checked failover, latency-based routing, or geo-routing. MCP doesn't define regions, replicas, or failover behavior — a client simply connects to whatever URL it's configured with, and it's up to the operator's traffic manager to make sure that URL resolves to a healthy, reasonably close instance.",
+    keyTakeaways: [
+      "Multi-region MCP hosting uses ordinary DNS/traffic-management tooling, nothing MCP-specific.",
+      "Health-checked failover matters since a broken region should stop receiving new connections.",
+      "Existing in-flight sessions on a failed region are still lost — traffic managers route new connections, not live ones.",
+      "Only relevant to remote, self-hosted deployments; irrelevant to local stdio servers."
+    ],
+    useCase: "A globally-distributed team runs their MCP server in two regions behind a latency-based traffic manager, so clients connect to whichever region is closer, with automatic failover if one region's health check fails.",
+    technicalDetails: {
+      protocolLayer: "Infrastructure (in front of the MCP transport layer)",
+      format: "DNS-based or anycast routing, platform-specific",
+      latencyProfile: "Reduces network round-trip for geographically distributed clients"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/"
+    ]
+  },
+    {
+    slug: "mcp-rate-limiter-17",
+    term: "Rate Limiting (MCP Tool Calls)",
+    definition: "Rate limiting caps how often a client can invoke an MCP server's tools, which matters more for MCP than for typical APIs because an AI agent can call tools in a fast, unattended loop with no human pacing the requests.",
+    detailedExplanation: "A human clicking through a UI naturally rate-limits themselves; an AI agent driving tool calls doesn't, especially if it gets stuck retrying or looping. Rate limiting an MCP server protects both the server and whatever downstream systems its tools call (a database, a paid third-party API) from being hammered by a misbehaving or adversarially-prompted agent. This is typically implemented per-client (per API key or OAuth subject) and sometimes per-tool, since a cheap read-only tool and an expensive tool that calls a paid API warrant very different limits.",
+    keyTakeaways: [
+      "More important for MCP than typical APIs, since an AI agent has no built-in self-pacing like a human user.",
+      "Usually scoped per-client and often per-tool, since tool cost/risk varies widely within one server.",
+      "Protects both the MCP server and any downstream systems (databases, paid APIs) its tools call.",
+      "MCP's own error response format (JSON-RPC error) is how a rate-limited call is communicated back to the client."
+    ],
+    useCase: "An MCP server limits a single client to 30 tool calls per minute overall, with a stricter 5-per-minute limit specifically on a tool that calls a metered, paid third-party API.",
+    technicalDetails: {
+      protocolLayer: "Application (behind the MCP tool layer)",
+      format: "Token bucket or sliding-window limiter, keyed by client identity",
+      latencyProfile: "Adds negligible overhead per call; rejected calls return immediately as a JSON-RPC error"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices/"
+    ]
+  },
+    {
+    slug: "mcp-auth-provider-18",
+    term: "Auth Provider / OAuth (MCP Authorization)",
+    definition: "For remote MCP servers, the official spec defines an OAuth 2.1-based authorization flow — the MCP server acts as an OAuth resource server, and clients obtain access tokens from an authorization server before connecting, rather than each server inventing its own auth scheme.",
+    detailedExplanation: "This is one of the few infrastructure-adjacent areas MCP actually specifies in detail rather than leaving entirely to the implementer: the 2025-06-18 spec's authorization section defines how a remote MCP server advertises its authorization server, how clients discover and use OAuth 2.1 (including PKCE, and resource indicators per RFC 8707 to prevent a token issued for one server being replayed against another). Local stdio servers are explicitly out of scope for this — they're trusted by virtue of being launched directly by the client, so no OAuth flow is involved.",
+    keyTakeaways: [
+      "MCP specifies OAuth 2.1 for remote server authorization — this is one of the more concretely-defined parts of the spec.",
+      "PKCE is required, and resource indicators (RFC 8707) bind a token to a specific MCP server to prevent token replay.",
+      "Local stdio servers don't use this flow at all — the client launching the process is the trust boundary.",
+      "The MCP server acts as an OAuth resource server, not necessarily the authorization server itself."
+    ],
+    useCase: "A remote MCP server advertises its authorization server via a metadata endpoint; a client completes an OAuth 2.1 + PKCE flow, receives an access token scoped to that specific server, and presents it on every subsequent tool call.",
+    technicalDetails: {
+      protocolLayer: "Authorization (defined in the MCP specification itself)",
+      format: "OAuth 2.1 with PKCE, resource indicators per RFC 8707",
+      latencyProfile: "One-time flow at connection setup; token validation adds minimal per-call overhead"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/specification/2025-06-18/basic/authorization/"
+    ]
+  },
+    {
+    slug: "mcp-identity-service-19",
+    term: "Identity Service (MCP Client/User Identity)",
+    definition: "An identity service is the system of record for who a user or agent actually is, which an MCP server's OAuth flow ultimately resolves to — distinct from the OAuth authorization server, which issues tokens but may delegate the underlying identity lookup elsewhere.",
+    detailedExplanation: "In a typical enterprise setup, the OAuth authorization server a remote MCP server trusts is often backed by a separate identity provider (Okta, Azure AD, a company's internal SSO) that's the actual source of truth for user accounts, group membership, and permissions. The MCP server itself usually just validates the access token and reads whatever claims it carries (subject, scopes) — it doesn't need to talk to the identity service directly, but the authorization decisions it makes are only as accurate as the claims that identity service originally asserted.",
+    keyTakeaways: [
+      "Often a separate system from the OAuth authorization server the MCP spec talks about directly.",
+      "The MCP server typically trusts token claims rather than querying the identity service live on every call.",
+      "Group/role claims in the token are what an MCP server uses to make per-tool authorization decisions.",
+      "Stale claims (e.g. a revoked user whose token hasn't expired yet) are a real operational risk to account for."
+    ],
+    useCase: "A company's MCP server trusts access tokens issued via their Okta-backed OAuth server, reading a 'role' claim from the token to decide whether a given client is allowed to call a destructive tool.",
+    technicalDetails: {
+      protocolLayer: "Authorization (adjacent to the MCP-specified OAuth flow)",
+      format: "OAuth/OIDC claims, identity-provider-specific",
+      latencyProfile: "Not applicable to MCP directly — identity resolution happens before token issuance, not per tool call"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/specification/2025-06-18/basic/authorization/"
+    ]
+  },
+    {
+    slug: "mcp-file-storage-20",
+    term: "File Storage (as an MCP Tool Backend)",
+    definition: "File storage — local disk, a network filesystem, or a cloud file share — is a common backend for MCP tools that read or write files, most directly through the official reference filesystem server that ships with the MCP project.",
+    detailedExplanation: "The Model Context Protocol project maintains a reference filesystem server (part of the official modelcontextprotocol/servers repo) that exposes tools like reading, writing, and listing files within a set of explicitly allowed root directories. Path-traversal protection is the main security concern: the server must resolve and validate every path against the allowed roots before touching disk, since an AI agent's file-path arguments come from a prompt, not a trusted UI.",
+    keyTakeaways: [
+      "The official MCP reference servers repo includes a real filesystem server for this exact purpose.",
+      "Access is scoped to an explicit allow-list of root directories, not the whole filesystem.",
+      "Path-traversal validation is the critical security control, since path arguments originate from agent/LLM input.",
+      "Read and write tools are typically exposed separately so a deployment can allow read-only access if needed."
+    ],
+    useCase: "A developer configures the official MCP filesystem server with access limited to their project's ./src directory, letting an AI coding agent read and edit files without any risk of it reaching outside the project.",
+    technicalDetails: {
+      protocolLayer: "Application (behind the MCP tool layer)",
+      format: "Local or network filesystem I/O",
+      latencyProfile: "Local disk I/O latency — typically sub-millisecond to low milliseconds"
+    },
+    references: [
+      "https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem"
+    ]
+  },
+    {
+    slug: "mcp-object-store-21",
+    term: "Object Store (S3-style, as an MCP Tool Backend)",
+    definition: "An S3-compatible object store is a common backend for MCP tools that need to read or write larger, unstructured files (images, exports, backups) — distinct from the reference filesystem server, which targets a local/mounted filesystem rather than an object-storage API.",
+    detailedExplanation: "Unlike local file storage, an object store is accessed over an HTTP-based API (S3's API, or an S3-compatible one like MinIO, R2, or GCS's interoperability mode) using bucket/key addressing rather than filesystem paths. An MCP tool wrapping this typically exposes operations like listing objects in a bucket/prefix, reading an object, and writing one, scoped by IAM credentials to specific buckets — the same least-privilege principle as any other credentialed MCP tool, since the AI agent should only be able to reach the buckets the tool was explicitly configured for.",
+    keyTakeaways: [
+      "Distinct from the official filesystem server, which targets local/mounted paths, not an object-storage API.",
+      "Access is via bucket/key addressing over HTTPS, not filesystem paths.",
+      "IAM credentials scoped to specific buckets are the standard way to limit blast radius.",
+      "Common use: letting an agent read generated reports or write processed output to a known bucket."
+    ],
+    useCase: "An MCP server exposes tools to list and read objects in a single, IAM-scoped S3 bucket containing generated PDF reports, so an agent can retrieve a report without any broader AWS access.",
+    technicalDetails: {
+      protocolLayer: "Application (behind the MCP tool layer)",
+      format: "S3-compatible HTTP API",
+      latencyProfile: "Typically tens of milliseconds per request, higher for large object transfers"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/"
+    ]
+  },
+    {
+    slug: "mcp-block-storage-22",
+    term: "Block Storage (MCP Server Infrastructure)",
+    definition: "Block storage (an EBS volume, a persistent disk) is infrastructure an MCP server's host or container may use for its own local state — logs, a local cache, a bundled SQLite file — not something MCP tools typically expose directly to an AI agent.",
+    detailedExplanation: "This sits a layer below anything an AI agent interacts with: it's the underlying disk a containerized or VM-hosted MCP server writes to. It matters operationally for persistence (does server state survive a restart or redeploy?) and backup strategy, but it's not something the MCP protocol or a typical tool exposes as an addressable resource the way object storage or a database might be — an agent generally shouldn't be reading or writing raw blocks.",
+    keyTakeaways: [
+      "Underlying infrastructure for the MCP server's own host, not something exposed to AI agents as a tool.",
+      "Matters for whether server-local state survives restarts/redeploys.",
+      "Stateless MCP server design (pushing persistence to a database or object store instead) avoids depending on this at all.",
+      "Backup/snapshot strategy for block storage is an ordinary ops concern, unrelated to MCP itself."
+    ],
+    useCase: "A self-hosted MCP server writes its local SQLite cache to a persistent volume so cached data survives a pod restart, while all durable application data still lives in a proper external database.",
+    technicalDetails: {
+      protocolLayer: "Infrastructure (below the MCP transport layer)",
+      format: "Block device / persistent volume",
+      latencyProfile: "Not applicable to MCP directly"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/"
+    ]
+  },
+    {
+    slug: "mcp-database-service-23",
+    term: "Database Service (as an MCP Tool Backend)",
+    definition: "A relational database is one of the most common MCP tool backends, most directly demonstrated by the official reference Postgres and SQLite servers, which expose schema-aware, typically read-only query execution to AI clients.",
+    detailedExplanation: "The pattern the official reference servers establish is deliberately conservative: expose the database schema so the client/agent understands what's queryable, execute queries through prepared statements to prevent injection, and default to read-only access so an agent's mistake or a prompt-injection attempt can't mutate data. Write access is possible but is a deliberate, higher-risk configuration choice a server operator has to opt into, not the default.",
+    keyTakeaways: [
+      "Official reference servers exist for this exact pattern (Postgres, SQLite) in the modelcontextprotocol/servers repo.",
+      "Read-only by default is the common, safer configuration; write access is an explicit opt-in.",
+      "Prepared statements/parameterized queries are essential since query text can be influenced by LLM output.",
+      "Schema introspection lets the AI client construct valid queries without a human providing the schema manually."
+    ],
+    useCase: "A team runs the official Postgres MCP server in read-only mode against a reporting replica, letting an internal AI agent answer ad-hoc business questions without any risk of mutating production data.",
+    technicalDetails: {
+      protocolLayer: "Application (behind the MCP tool layer)",
+      format: "SQL over a database driver connection",
+      latencyProfile: "Typically single-digit to low-double-digit milliseconds for indexed queries"
+    },
+    references: [
+      "https://github.com/modelcontextprotocol/servers"
+    ]
+  },
+    {
+    slug: "mcp-nosql-db-24",
+    term: "NoSQL Database (as an MCP Tool Backend)",
+    definition: "A NoSQL database (MongoDB-style document store, a wide-column store, etc.) can back MCP tools the same way a relational database does, but query construction and injection risks differ since there's no single standardized query language like SQL to reason about uniformly.",
+    detailedExplanation: "Unlike the relational case, where prepared statements are a well-understood, uniform defense, NoSQL query APIs vary a lot by product — a MongoDB-style filter document, a key-based lookup, a proprietary query DSL — so an MCP tool wrapping one has to apply injection-safe query construction specific to that database's client library rather than relying on one universal pattern. The same read-only-by-default principle from relational tools applies here for the same reason: agent-driven queries shouldn't be able to mutate data unless that's explicitly intended.",
+    keyTakeaways: [
+      "No single universal 'prepared statement' pattern across NoSQL products — injection-safety is database-specific.",
+      "Read-only-by-default is still the safer starting posture, same as relational database tools.",
+      "Query shape (filter documents, key lookups, DSLs) varies significantly by which NoSQL database is behind the tool.",
+      "Schema is often implicit/flexible in NoSQL, so a tool may need to expose sample documents rather than a fixed schema."
+    ],
+    useCase: "An MCP tool exposes a constrained 'find_documents' operation against a MongoDB collection, accepting only a whitelisted set of filter fields rather than an arbitrary raw query object, to limit what an agent-driven query can express.",
+    technicalDetails: {
+      protocolLayer: "Application (behind the MCP tool layer)",
+      format: "Database-specific driver/query API",
+      latencyProfile: "Typically single-digit to low-double-digit milliseconds for indexed lookups"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/"
+    ]
+  },
+    {
+    slug: "mcp-document-store-25",
+    term: "Document Store (as an MCP Tool Backend)",
+    definition: "A document store here refers to systems like Notion, Confluence, or a headless CMS that hold semi-structured content — a common MCP tool backend for letting an agent search, read, or create pages, distinct from a database's structured rows.",
+    detailedExplanation: "This category is well represented among real, existing MCP servers, since 'let an AI agent read and write our team's docs' is a very common integration. A tool wrapping something like Notion or Confluence typically exposes search, read-page, and create/update-page operations that map onto that product's own API and permission model — the MCP server doesn't invent new semantics, it translates MCP's standardized tool-calling convention onto whatever operations the underlying document platform already supports.",
+    keyTakeaways: [
+      "Distinct from a database: content here is semi-structured pages/blocks, not relational rows.",
+      "Common real-world MCP integration target — Notion, Confluence, and similar platforms.",
+      "The MCP server maps standardized tool calls onto that platform's existing API and permission model.",
+      "Write operations (creating/editing pages) need the same care as any tool that can mutate shared content."
+    ],
+    useCase: "An MCP server wraps a team's Confluence space, exposing search and read-page tools so an agent can answer questions from internal documentation without direct API access being handed to the LLM itself.",
+    technicalDetails: {
+      protocolLayer: "Application (behind the MCP tool layer)",
+      format: "Platform-specific REST/GraphQL API",
+      latencyProfile: "Typically tens to hundreds of milliseconds, dependent on the third-party platform's API"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/"
+    ]
+  },
+    {
+    slug: "mcp-key-value-store-26",
+    term: "Key-Value Store (as an MCP Tool Backend)",
+    definition: "A key-value store (Redis, DynamoDB, etc.) commonly backs two different things in an MCP server: an actual tool exposing get/set-style operations to an agent, or internal server state like caching and rate-limit counters that the agent never sees directly.",
+    detailedExplanation: "It's worth separating these two roles. As a tool backend, a key-value store might power something like a 'remember this for later in the conversation' tool, giving an agent simple persistent scratch storage scoped to a session or user. As internal server infrastructure, the same technology (often literally the same Redis instance) is what a multi-replica MCP server uses for shared session state, rate-limit counters, or cached downstream responses — invisible to the AI client, purely an implementation detail of the server.",
+    keyTakeaways: [
+      "Can be an actual MCP tool backend (agent-facing get/set operations) or purely internal server infrastructure.",
+      "Internal use (session state, rate limiting, caching) is invisible to the AI client — it's a server implementation detail.",
+      "Agent-facing key-value tools need scoping (per-session or per-user) to avoid one client reading another's data.",
+      "Redis is the common default for both roles due to its speed and simple operational model."
+    ],
+    useCase: "An MCP server offers a 'remember_fact'/'recall_fact' tool pair backed by Redis, scoped per conversation session, letting an agent persist small notes across an otherwise stateless series of tool calls.",
+    technicalDetails: {
+      protocolLayer: "Application (behind the MCP tool layer) or Infrastructure (if used internally)",
+      format: "Key-value protocol (e.g. RESP for Redis)",
+      latencyProfile: "Typically sub-millisecond to low-single-digit milliseconds"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/"
+    ]
+  },
+    {
+    slug: "mcp-graph-database-27",
+    term: "Graph Database (as an MCP Tool Backend)",
+    definition: "A graph database (Neo4j, Amazon Neptune, etc.) can back MCP tools designed for relationship-heavy queries — 'who reports to whom,' 'what depends on what' — that are awkward to express as flat rows or documents.",
+    detailedExplanation: "Graph-backed tools are less common than relational or document-store tools in practice, but the pattern is the same: expose a constrained, safe query surface (often a small set of purpose-built tools like 'find_shortest_path' or 'get_related_entities' rather than raw Cypher/Gremlin execution) so an agent gets useful relationship-traversal capability without being handed unrestricted query-language access to a potentially large graph.",
+    keyTakeaways: [
+      "Suited to relationship/traversal queries that are awkward in relational or document models.",
+      "Purpose-built tools (not raw query-language passthrough) are the safer, more common pattern.",
+      "Neo4j (Cypher) and Amazon Neptune (Gremlin/SPARQL) are the most common underlying technologies.",
+      "Query complexity limits matter here since graph traversals can be far more expensive than a simple lookup."
+    ],
+    useCase: "An MCP tool exposes a 'get_organizational_chain' operation backed by a Neo4j graph, letting an agent answer 'who is X's manager's manager' without direct Cypher access.",
+    technicalDetails: {
+      protocolLayer: "Application (behind the MCP tool layer)",
+      format: "Graph query language (Cypher, Gremlin, SPARQL), database-specific",
+      latencyProfile: "Varies significantly with traversal depth and graph size"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/"
+    ]
+  },
+    {
+    slug: "mcp-time-series-db-28",
+    term: "Time-Series Database (as an MCP Tool Backend)",
+    definition: "A time-series database (Prometheus, InfluxDB, TimescaleDB) can back MCP tools that answer questions about metrics over time — 'what was CPU usage yesterday' — distinct from a monitoring tool's own dashboards, which a human views directly rather than an agent querying via MCP.",
+    detailedExplanation: "This overlaps conceptually with monitoring/observability, but the distinction is who's asking: a monitoring dashboard is built for a human to look at, while an MCP tool over the same underlying time-series data lets an AI agent query it programmatically — for example, summarizing a service's error-rate trend as part of answering a broader question. The tool typically constrains the query surface (a fixed set of metrics, a bounded time range) rather than exposing the full query language of the underlying database.",
+    keyTakeaways: [
+      "Distinct from a monitoring dashboard — this is an agent querying time-series data programmatically via MCP.",
+      "Common underlying systems: Prometheus, InfluxDB, TimescaleDB.",
+      "Bounding the queryable time range and metric set limits how expensive an agent-triggered query can get.",
+      "Aggregation (avg/max/percentile over a window) is usually more useful to expose than raw data points."
+    ],
+    useCase: "An MCP tool lets an agent query 'p99 latency for service X over the last 24 hours' against a Prometheus-compatible backend, returning a summarized value rather than raw time-series points.",
+    technicalDetails: {
+      protocolLayer: "Application (behind the MCP tool layer)",
+      format: "Time-series query API (PromQL, InfluxQL, or SQL-based for TimescaleDB)",
+      latencyProfile: "Typically tens to hundreds of milliseconds depending on time range and aggregation complexity"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/"
+    ]
+  },
+    {
+    slug: "mcp-vector-store-29",
+    term: "Vector Store (as an MCP Tool Backend / RAG Retrieval)",
+    definition: "A vector store (Qdrant, Pinecone, pgvector, etc.) holds embeddings for semantic similarity search, commonly exposed as an MCP tool so an agent can retrieve relevant context (RAG) from a document collection by meaning rather than exact keyword match.",
+    detailedExplanation: "This is one of the most directly relevant backends for MCP given how often agents need retrieval-augmented generation: a tool takes a natural-language query, embeds it (using the same embedding model the stored vectors were created with), performs a similarity search against the vector store, and returns the matching chunks as tool output for the model to reason over. Getting the embedding model consistent between indexing time and query time matters — mismatched models produce meaningless similarity scores even though the call succeeds without error.",
+    keyTakeaways: [
+      "Directly supports retrieval-augmented generation (RAG) patterns via MCP tool calls.",
+      "The query embedding must use the same model family used to build the stored index, or results are meaningless.",
+      "Common products: Qdrant, Pinecone, Weaviate, or Postgres with the pgvector extension.",
+      "Returned chunks are typically truncated/summarized to fit reasonably within the model's context."
+    ],
+    useCase: "An MCP tool embeds an incoming query, searches a Qdrant collection of indexed internal documentation, and returns the top-k matching chunks so the agent can ground its answer in real content.",
+    technicalDetails: {
+      protocolLayer: "Application (behind the MCP tool layer)",
+      format: "Vector similarity search API (product-specific), fronted by an embedding model call",
+      latencyProfile: "Typically tens of milliseconds for the search itself, plus embedding-model latency for the query"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/"
+    ]
+  },
+    {
+    slug: "mcp-ml-model-serving-30",
+    term: "ML Model Serving (as an MCP Tool Backend)",
+    definition: "A model-serving system (a hosted inference endpoint, TorchServe, Triton, or a local runtime like Ollama) can back an MCP tool that lets an agent invoke a specific machine learning model as a step in a larger task, separate from the LLM actually driving the conversation.",
+    detailedExplanation: "This is distinct from 'which LLM is the agent using' — that's the MCP client's concern. A model-serving-backed tool is instead exposing a specific, purpose-built model (a classifier, an embedding model, a fraud-detection model) as a callable capability, the same way a tool might wrap a database or API. The MCP server's job is just to translate a tool call's arguments into that model's expected input format and return its output as structured tool content.",
+    keyTakeaways: [
+      "Distinct from the LLM powering the agent's own reasoning — this is a separate model invoked as a tool.",
+      "Common examples: a classification model, an embedding model, or a specialized inference endpoint.",
+      "The tool's job is translating between MCP's tool-call format and the model server's own input/output shape.",
+      "Latency depends entirely on the model and hardware behind it, not on MCP itself."
+    ],
+    useCase: "An MCP tool wraps a fraud-detection model served via Triton, letting an agent submit a transaction and get a risk score back as part of a larger customer-support workflow.",
+    technicalDetails: {
+      protocolLayer: "Application (behind the MCP tool layer)",
+      format: "Model-server-specific API (REST/gRPC)",
+      latencyProfile: "Highly variable — depends on model size and whether inference runs on CPU or GPU"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/"
+    ]
+  },
+    {
+    slug: "mcp-data-pipeline-31",
+    term: "Data Pipeline (Triggered via an MCP Tool)",
+    definition: "A data pipeline (Airflow DAG, dbt run, a custom ETL job) can be triggered or queried through an MCP tool, letting an agent kick off or check on a data-processing job rather than a human doing it manually.",
+    detailedExplanation: "Similar to the workflow-engine pattern, the MCP tool here is typically a thin trigger/status interface in front of pipeline infrastructure that already exists independently of MCP — a 'run_pipeline' tool that starts an Airflow DAG and returns a run ID, plus a 'get_pipeline_status' tool to check progress. The pipeline's own scheduling, retries, and dependency management are unaffected by MCP; the protocol just adds a conversational trigger on top.",
+    keyTakeaways: [
+      "MCP tools here are typically thin triggers over existing pipeline infrastructure (Airflow, dbt, etc.).",
+      "Pipeline execution is usually asynchronous — the tool returns a run ID rather than blocking until completion.",
+      "A paired status/result tool lets the agent poll for completion.",
+      "The pipeline's own retry/scheduling logic is unaffected by being triggered through MCP."
+    ],
+    useCase: "An analyst asks an agent to refresh a sales dashboard; the agent calls a 'run_pipeline' MCP tool that triggers the underlying dbt job, then polls a status tool until it completes.",
+    technicalDetails: {
+      protocolLayer: "Application (behind the MCP tool layer)",
+      format: "Pipeline-orchestrator-specific API (Airflow REST API, dbt Cloud API, etc.)",
+      latencyProfile: "Tool call returns quickly; actual pipeline run time is decoupled and can take minutes"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/"
+    ]
+  },
+    {
+    slug: "mcp-etl-tool-32",
+    term: "ETL Tool (Triggered via an MCP Tool)",
+    definition: "ETL (extract-transform-load) tooling is a specific kind of data pipeline; an MCP tool exposing it follows the same trigger/status pattern as the broader data-pipeline case, just scoped to a single extract-transform-load job rather than a general DAG.",
+    detailedExplanation: "The distinction from a generic data pipeline is mostly one of scope and terminology rather than a different technical pattern: an ETL job specifically moves data from a source system, transforms it, and loads it into a destination (a warehouse, typically), and an MCP tool triggering one still needs the same asynchronous trigger-plus-status-check shape, since ETL jobs commonly run for minutes to hours depending on data volume.",
+    keyTakeaways: [
+      "A specific case of the broader data-pipeline pattern, scoped to extract-transform-load jobs.",
+      "Same asynchronous trigger/status pattern applies — ETL runs are rarely fast enough to block on.",
+      "Common underlying tools: Fivetran, Airbyte, or custom scripts orchestrated by Airflow/dbt.",
+      "Failure handling (partial loads, retries) is the ETL tool's own concern, not something MCP adds."
+    ],
+    useCase: "An MCP tool triggers an Airbyte sync job to pull the latest CRM data into a warehouse, returning immediately with a job ID an agent can later check for success or failure.",
+    technicalDetails: {
+      protocolLayer: "Application (behind the MCP tool layer)",
+      format: "ETL-platform-specific API",
+      latencyProfile: "Tool call returns quickly; underlying ETL run time can range from seconds to hours"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/"
+    ]
+  },
+    {
+    slug: "mcp-stream-processing-33",
+    term: "Stream Processing (Queried via an MCP Tool)",
+    definition: "A stream-processing system (Kafka Streams, Flink) processes continuous data in real time; an MCP tool over one typically exposes a query against current aggregated state rather than the raw, unbounded stream itself, since a tool call has to return a finite result.",
+    detailedExplanation: "MCP's request/response tool-call model doesn't map naturally onto an unbounded stream — a tool can't 'return' an infinite sequence of events. In practice, a stream-processing-backed tool exposes a snapshot query against whatever aggregated state the stream job maintains (a running count, a windowed average) rather than the stream itself, or triggers a one-time export of recent events over a bounded window.",
+    keyTakeaways: [
+      "MCP's synchronous tool-call model doesn't map directly onto an unbounded, continuous stream.",
+      "Practical pattern: query a bounded snapshot or windowed aggregate, not the raw stream.",
+      "MCP notifications could in principle push periodic updates, but this is uncommon and adds real complexity.",
+      "Common underlying systems: Kafka Streams, Apache Flink, ksqlDB."
+    ],
+    useCase: "An MCP tool queries a Flink job's current windowed aggregate (e.g. requests-per-minute over the last 5 minutes) rather than trying to stream raw events back through the tool call.",
+    technicalDetails: {
+      protocolLayer: "Application (behind the MCP tool layer)",
+      format: "Stream-processor-specific query API",
+      latencyProfile: "Typically low milliseconds for a state-store query against already-computed aggregates"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/"
+    ]
+  },
+    {
+    slug: "mcp-batch-processing-34",
+    term: "Batch Processing (Triggered via an MCP Tool)",
+    definition: "Batch processing jobs (a nightly report, a large reprocessing job) are triggered and monitored through MCP the same way other long-running work is: a tool starts the job asynchronously and a separate tool reports on its status, since MCP tool calls aren't meant to block for the job's full duration.",
+    detailedExplanation: "This follows the same shape as the data-pipeline and ETL cases above, differing mainly in that batch jobs are typically scheduled or triggered on-demand against a large, bounded dataset rather than continuously. The main design consideration for an MCP tool here is making sure the initial tool call returns quickly (with a job reference) regardless of how long the underlying batch job actually takes, since a client waiting on a synchronous JSON-RPC response for an hour-long job would likely time out.",
+    keyTakeaways: [
+      "Same asynchronous trigger/status pattern as data pipelines and ETL jobs.",
+      "The initiating tool call must return quickly regardless of the batch job's actual runtime.",
+      "A batch scheduler (cron, a job orchestrator) usually manages the job itself; MCP is just the trigger surface.",
+      "Progress notifications can supplement a status-check tool for longer-running batch jobs."
+    ],
+    useCase: "An agent triggers a nightly reconciliation batch job on-demand via an MCP tool ahead of schedule, then checks a status tool periodically until it completes.",
+    technicalDetails: {
+      protocolLayer: "Application (behind the MCP tool layer)",
+      format: "Job-scheduler-specific API",
+      latencyProfile: "Tool call returns quickly; the batch job itself can run for minutes to hours"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/"
+    ]
+  },
+    {
+    slug: "mcp-feature-store-35",
+    term: "Feature Store (as an MCP Tool Backend)",
+    definition: "A feature store (Feast, Tecton) serves precomputed machine learning features; an MCP tool over one lets an agent fetch a specific entity's feature values, most useful when an agent's task involves invoking a downstream model that expects those features as input.",
+    detailedExplanation: "This is a fairly specialized case that mostly matters in ML-heavy organizations: a feature store's whole purpose is serving consistent, low-latency feature values (that were computed once, offline, and kept fresh) so different consumers — a training job, a real-time model, and now potentially an MCP tool — see the same values. An MCP tool wrapping this is typically a simple 'get_features(entity_id)' lookup rather than anything MCP-specific.",
+    keyTakeaways: [
+      "Specialized to ML-heavy organizations already running a feature store for model training/serving.",
+      "The value is consistency — the same precomputed features are shared across training and serving consumers.",
+      "An MCP tool over a feature store is usually a simple keyed lookup, not a complex query interface.",
+      "Freshness of features (how recently they were recomputed) is the feature store's own concern, not MCP's."
+    ],
+    useCase: "An MCP tool fetches a customer's precomputed risk-score features from Feast before an agent invokes a separate scoring model tool, ensuring the same feature values used in training are used at inference time.",
+    technicalDetails: {
+      protocolLayer: "Application (behind the MCP tool layer)",
+      format: "Feature-store-specific API (online store lookup)",
+      latencyProfile: "Typically single-digit milliseconds — feature stores are built for low-latency online lookups"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/"
+    ]
+  },
+    {
+    slug: "mcp-model-registry-36",
+    term: "Model Registry (as an MCP Tool Backend)",
+    definition: "A model registry (MLflow, a cloud provider's model registry) tracks versions and metadata of trained ML models; an MCP tool over one lets an agent look up which model version is currently in production or review a model's metadata, rather than invoking the model itself.",
+    detailedExplanation: "This is a metadata/governance layer, not an inference path — it answers questions like 'what version of the fraud model is currently deployed' or 'what were this model's validation metrics,' which is useful for an agent helping with ML-ops tasks (auditing what's live, assisting a rollback decision) as opposed to an agent that's actually calling a model to get a prediction, which would go through a model-serving tool instead.",
+    keyTakeaways: [
+      "A metadata/governance layer, distinct from actually invoking a model (that's model-serving, a separate concept).",
+      "Useful for ML-ops-oriented agent tasks: auditing deployed versions, reviewing metrics, assisting rollbacks.",
+      "Common underlying systems: MLflow, or a cloud provider's native model registry.",
+      "Read-only access is the natural default; promoting/demoting model versions is a higher-risk write operation."
+    ],
+    useCase: "An MCP tool lets an agent query MLflow for which version of a model is currently tagged 'production' and its recorded validation accuracy, to help a team decide whether a rollback is warranted.",
+    technicalDetails: {
+      protocolLayer: "Application (behind the MCP tool layer)",
+      format: "Model-registry-specific REST API",
+      latencyProfile: "Typically tens of milliseconds for metadata lookups"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/"
+    ]
+  },
+    {
+    slug: "mcp-experiment-tracker-37",
+    term: "Experiment Tracker (as an MCP Tool Backend)",
+    definition: "An experiment tracker (MLflow Tracking, Weights & Biases) logs the parameters, metrics, and artifacts of ML training runs; an MCP tool over one lets an agent query past experiment results rather than running new experiments itself.",
+    detailedExplanation: "Like the model registry case, this is primarily a read/query surface for an agent assisting with ML-ops or research tasks — 'what hyperparameters gave the best validation loss across our last 20 runs' is a query an MCP tool can answer by reading from the tracker's stored run history, without the tool needing to launch or manage training itself.",
+    keyTakeaways: [
+      "Primarily a query surface over historical training-run data, not a way to launch new experiments through MCP.",
+      "Useful for agent-assisted analysis: comparing runs, summarizing hyperparameter sweeps.",
+      "Common underlying systems: MLflow Tracking, Weights & Biases.",
+      "Actually starting a new training run would be a separate, higher-privilege tool if exposed at all."
+    ],
+    useCase: "An MCP tool queries Weights & Biases for the top-5 runs by validation accuracy from a recent hyperparameter sweep, letting an agent summarize the results for a researcher.",
+    technicalDetails: {
+      protocolLayer: "Application (behind the MCP tool layer)",
+      format: "Experiment-tracker-specific REST/GraphQL API",
+      latencyProfile: "Typically tens to low hundreds of milliseconds depending on query scope"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/"
+    ]
+  },
+    {
+    slug: "mcp-hyperparameter-tune-38",
+    term: "Hyperparameter Tuning (Triggered via an MCP Tool)",
+    definition: "Hyperparameter tuning (Optuna, Ray Tune, a cloud provider's tuning service) searches for good model configuration values; an MCP tool over one would trigger or check on a tuning job, following the same asynchronous trigger/status pattern as other long-running ML workflows.",
+    detailedExplanation: "Tuning jobs run many training trials and can take a long time, so an MCP tool exposing this is architecturally identical to the data-pipeline and batch-processing cases: trigger the job, return a run identifier immediately, and let the agent (or a human) check progress separately. This is a less commonly exposed MCP tool in practice — it's a higher-risk, higher-cost operation (many training runs, real compute cost) that teams are typically more cautious about letting an agent trigger autonomously.",
+    keyTakeaways: [
+      "Same asynchronous trigger/status pattern as other long-running ML workflows.",
+      "A higher-cost, higher-risk operation — teams are typically more cautious about full agent autonomy here.",
+      "Common underlying tools: Optuna, Ray Tune, or a cloud ML platform's built-in tuning service.",
+      "Cost/compute guardrails (max trials, budget limits) matter more here than for a typical read-oriented tool."
+    ],
+    useCase: "A researcher asks an agent to kick off a small, bounded hyperparameter sweep (explicitly capped at 10 trials) via an MCP tool, with the actual tuning run managed by Ray Tune independently of MCP.",
+    technicalDetails: {
+      protocolLayer: "Application (behind the MCP tool layer)",
+      format: "Tuning-framework-specific API",
+      latencyProfile: "Tool call returns quickly; the tuning job itself can run for hours"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/"
+    ]
+  },
+    {
+    slug: "mcp-a-b-test-39",
+    term: "A/B Testing (Queried via an MCP Tool)",
+    definition: "An A/B testing platform (Optimizely, a homegrown experimentation framework) manages running experiments and their results; an MCP tool over one lets an agent check experiment status or results rather than the tool itself running statistical analysis.",
+    detailedExplanation: "As with the ML-ops-adjacent tools above, this is a query/reporting surface: an agent asks something like 'is experiment X statistically significant yet' or 'what's the conversion lift for variant B,' and the tool reads that from the experimentation platform's own results API. The statistical computation (significance testing, confidence intervals) is the platform's responsibility — the MCP tool is just exposing it in a form the agent can call.",
+    keyTakeaways: [
+      "A query/reporting surface over an existing experimentation platform's results, not a stats engine itself.",
+      "Statistical significance computation stays the responsibility of the underlying A/B testing platform.",
+      "Useful for agent-assisted reporting: summarizing experiment status or results in natural language.",
+      "Starting or stopping an experiment through a tool is a higher-risk write operation, if exposed at all."
+    ],
+    useCase: "An MCP tool queries an internal experimentation platform for a running test's current conversion lift and statistical significance, letting an agent summarize progress for a product manager.",
+    technicalDetails: {
+      protocolLayer: "Application (behind the MCP tool layer)",
+      format: "Experimentation-platform-specific API",
+      latencyProfile: "Typically tens to low hundreds of milliseconds"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/"
+    ]
+  },
+    {
+    slug: "mcp-canary-deploy-40",
+    term: "Canary Deployment (of an MCP Server)",
+    definition: "A canary deployment rolls out a new version of a remote MCP server to a small slice of traffic before a full rollout, an ordinary deployment strategy applied to MCP server infrastructure with no protocol-level involvement from MCP itself.",
+    detailedExplanation: "Because a remote MCP server is deployed like any other backend service, standard progressive-delivery techniques apply directly: route a small percentage of client connections to the new version, watch error rates and latency, and expand the rollout if healthy. The one MCP-specific wrinkle is that in-flight sessions on the old version should be allowed to finish rather than being abruptly cut, since a client mid-tool-call would otherwise see a broken connection.",
+    keyTakeaways: [
+      "Ordinary progressive-delivery technique, applied to MCP server infrastructure — no MCP-specific mechanism involved.",
+      "Only meaningful for remote (HTTP/SSE) servers; stdio servers are simply whatever version the client installed.",
+      "In-flight sessions on the old version should drain gracefully rather than being cut abruptly.",
+      "Per-tool error-rate monitoring (see the monitoring-tool entry) is what typically informs a canary's health check."
+    ],
+    useCase: "A team rolls out a new MCP server version to 5% of traffic first, watching per-tool error rates before expanding to 100%, and lets existing sessions on the old version finish naturally rather than force-disconnecting them.",
+    technicalDetails: {
+      protocolLayer: "Infrastructure (below the MCP transport layer)",
+      format: "Deployment-platform-specific (Kubernetes, load-balancer traffic splitting, etc.)",
+      latencyProfile: "Not applicable to MCP directly"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/"
+    ]
+  },
+    {
+    slug: "mcp-blue-green-deploy-41",
+    term: "Blue-Green Deployment (of an MCP Server)",
+    definition: "Blue-green deployment runs two full environments (old and new) and switches traffic between them all at once — an alternative to canary rollouts for deploying a new MCP server version, with the same in-flight-session-draining consideration.",
+    detailedExplanation: "Compared to a canary rollout's gradual traffic shift, blue-green is an all-or-nothing cutover: the new ('green') environment is fully deployed and verified before traffic switches over from the old ('blue') one, giving a fast rollback path (switch back to blue) if something's wrong post-cutover. The same MCP-specific concern applies as with canaries — long-lived SSE/Streamable HTTP sessions on the old environment should be allowed to complete rather than being severed at cutover.",
+    keyTakeaways: [
+      "All-or-nothing cutover between two full environments, as opposed to a canary's gradual traffic shift.",
+      "Fast rollback (switch back to the old environment) is the main advantage over canary rollouts.",
+      "In-flight MCP sessions on the old environment need graceful draining, same consideration as canary deploys.",
+      "Only applies to remote MCP servers — irrelevant to stdio, which has no server-side deployment step at all."
+    ],
+    useCase: "A team fully deploys and smoke-tests a new MCP server version in a parallel 'green' environment, then switches the load balancer to it in one step, keeping the old 'blue' environment warm for a few minutes as an instant rollback option.",
+    technicalDetails: {
+      protocolLayer: "Infrastructure (below the MCP transport layer)",
+      format: "Deployment-platform-specific (load-balancer traffic switch)",
+      latencyProfile: "Not applicable to MCP directly"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/"
+    ]
+  },
+    {
+    slug: "mcp-rolling-update-42",
+    term: "Rolling Update (of an MCP Server)",
+    definition: "A rolling update replaces MCP server instances gradually, one or a few at a time, rather than all at once — the default deployment strategy in most orchestrators (e.g. Kubernetes Deployments) and the most common way remote MCP servers actually get updated in practice.",
+    detailedExplanation: "Compared to canary (traffic-percentage-based) or blue-green (full-environment-switch) strategies, a rolling update is simpler and is what most orchestrators do by default: old instances are terminated and replaced by new ones incrementally, with the orchestrator waiting for each new instance to pass its health check before proceeding. The same graceful-session-draining concern applies — a rolling update should give old instances a termination grace period so in-flight MCP sessions can finish rather than being killed mid-connection.",
+    keyTakeaways: [
+      "The default strategy in most orchestrators (e.g. Kubernetes) — simpler than canary or blue-green, without traffic-splitting or a parallel environment.",
+      "Health checks (see readiness/liveness probes) gate how quickly the rollout proceeds.",
+      "A termination grace period matters for MCP specifically, to let in-flight sessions finish rather than being killed.",
+      "Rollback under a rolling update means rolling forward with the previous image, not an instant environment switch."
+    ],
+    useCase: "A Kubernetes Deployment running an MCP server performs a rolling update by default, replacing pods one at a time and waiting for each to pass its readiness probe before terminating the next old pod.",
+    technicalDetails: {
+      protocolLayer: "Infrastructure (below the MCP transport layer)",
+      format: "Orchestrator-native (e.g. Kubernetes Deployment strategy)",
+      latencyProfile: "Not applicable to MCP directly"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/"
+    ]
+  },
+    {
+    slug: "mcp-health-check-43",
+    term: "Health Check (of a Remote MCP Server)",
+    definition: "A health check is an endpoint an orchestrator or load balancer polls to decide whether an MCP server instance is healthy enough to receive traffic — infrastructure plumbing that sits alongside, not inside, the MCP protocol itself.",
+    detailedExplanation: "MCP doesn't define a health-check endpoint or format; a production remote MCP server conventionally exposes a simple HTTP endpoint (e.g. /health) separate from its MCP transport endpoint, returning a fast, lightweight response indicating the process is up and able to serve requests. This is distinct from the more specific readiness and liveness probe concepts used in Kubernetes, which check different things (able to serve traffic vs. still running) even though they're often implemented as similar-looking HTTP endpoints.",
+    keyTakeaways: [
+      "Not part of the MCP spec — a conventional operational endpoint alongside the MCP transport.",
+      "Typically a lightweight /health HTTP endpoint, separate from the MCP protocol endpoint itself.",
+      "Distinct from Kubernetes' more specific readiness/liveness probe concepts, though often implemented similarly.",
+      "Should be fast and cheap to check — it's polled frequently by whatever's routing traffic."
+    ],
+    useCase: "A remote MCP server exposes a /health endpoint returning 200 OK as long as its process and downstream database connection are fine, which a load balancer polls every few seconds to decide whether to keep routing traffic to it.",
+    technicalDetails: {
+      protocolLayer: "Infrastructure (alongside the MCP transport layer)",
+      format: "Lightweight HTTP endpoint, conventionally /health",
+      latencyProfile: "Should respond in low milliseconds — it's polled frequently"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/"
+    ]
+  },
+    {
+    slug: "mcp-readiness-probe-44",
+    term: "Readiness Probe (of a Remote MCP Server, Kubernetes)",
+    definition: "In Kubernetes specifically, a readiness probe determines whether an MCP server pod should currently receive traffic — distinct from a liveness probe, which determines whether the pod should be restarted at all.",
+    detailedExplanation: "A pod can be alive (passing its liveness probe) but not yet ready — for example, still warming up a database connection pool or loading configuration — in which case the readiness probe should fail so Kubernetes routes traffic elsewhere until it's actually ready to handle MCP tool calls. Getting this distinction right matters specifically for MCP servers with any non-trivial startup work (establishing downstream connections, loading tool definitions), since routing traffic to a not-yet-ready instance produces confusing tool-call failures.",
+    keyTakeaways: [
+      "A Kubernetes-specific concept: controls traffic routing, not restart behavior (that's the liveness probe).",
+      "A pod can be alive but not ready — e.g. still establishing downstream connections at startup.",
+      "Matters more for MCP servers with real startup work than for a trivial stateless service.",
+      "Failing readiness (without failing liveness) removes the pod from load-balancer rotation without restarting it."
+    ],
+    useCase: "An MCP server's readiness probe checks that its downstream database connection pool is established before returning healthy, so Kubernetes doesn't route tool calls to a pod that would immediately fail them.",
+    technicalDetails: {
+      protocolLayer: "Infrastructure (below the MCP transport layer)",
+      format: "Kubernetes-native HTTP/exec/TCP probe",
+      latencyProfile: "Should respond quickly — polled repeatedly by the kubelet"
+    },
+    references: [
+      "https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/"
+    ]
+  },
+    {
+    slug: "mcp-liveness-probe-45",
+    term: "Liveness Probe (of a Remote MCP Server, Kubernetes)",
+    definition: "In Kubernetes specifically, a liveness probe determines whether an MCP server pod needs to be killed and restarted — distinct from a readiness probe, which only controls whether it currently receives traffic.",
+    detailedExplanation: "A liveness probe answers a narrower, more drastic question than a readiness probe: is the process so stuck (deadlocked, unresponsive) that restarting it is the right fix? A common mistake is making a liveness probe check the same things a readiness probe should (like a downstream dependency's health) — if a downstream database is temporarily down, that should fail readiness (stop routing traffic) without necessarily failing liveness (restarting a perfectly healthy MCP server process won't fix a database outage, and can make things worse via restart loops).",
+    keyTakeaways: [
+      "Determines whether Kubernetes restarts the pod, unlike a readiness probe which only affects traffic routing.",
+      "Should check 'is this process fundamentally stuck,' not 'is a downstream dependency currently healthy.'",
+      "Conflating liveness with downstream-dependency health is a common misconfiguration that causes restart loops.",
+      "A restart doesn't fix an external outage — that's what readiness probes and retries are for instead."
+    ],
+    useCase: "An MCP server's liveness probe checks only that its internal event loop is responsive, deliberately not checking downstream API health, so a third-party outage doesn't trigger unnecessary pod restarts.",
+    technicalDetails: {
+      protocolLayer: "Infrastructure (below the MCP transport layer)",
+      format: "Kubernetes-native HTTP/exec/TCP probe",
+      latencyProfile: "Should respond quickly — polled repeatedly by the kubelet"
+    },
+    references: [
+      "https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/"
+    ]
+  },
+    {
+    slug: "mcp-config-map-46",
+    term: "Config Map (Kubernetes, for MCP Server Deployment)",
+    definition: "In Kubernetes specifically, a ConfigMap holds non-secret configuration values (feature flags, tool allow-lists, endpoint URLs) that an MCP server pod reads at startup or runtime — separate from Secrets, which hold sensitive values.",
+    detailedExplanation: "MCP itself doesn't define a configuration format; how a server reads its settings is deployment-specific. On Kubernetes, the standard split is ConfigMaps for non-sensitive settings and Secrets for credentials, both commonly mounted as environment variables or files into the server's pod. For an MCP server, ConfigMap-held values often include which tools are enabled, per-tool rate limits, or which downstream endpoints to call — things that are safe to view in plaintext but still shouldn't require a rebuild to change.",
+    keyTakeaways: [
+      "Kubernetes-specific mechanism for non-secret configuration, separate from Secrets.",
+      "MCP itself defines no configuration format — this is ordinary deployment infrastructure.",
+      "Common contents for an MCP server: enabled-tool lists, rate-limit values, downstream endpoint URLs.",
+      "Updating a ConfigMap can let ops change server behavior without rebuilding the container image."
+    ],
+    useCase: "An MCP server reads its list of enabled tools and their rate limits from a mounted ConfigMap, so ops can disable a problematic tool by editing the ConfigMap rather than redeploying the image.",
+    technicalDetails: {
+      protocolLayer: "Infrastructure (below the MCP transport layer)",
+      format: "Kubernetes ConfigMap, mounted as env vars or files",
+      latencyProfile: "Not applicable to MCP directly — read once at startup or on a config-reload"
+    },
+    references: [
+      "https://kubernetes.io/docs/concepts/configuration/configmap/"
+    ]
+  },
+    {
+    slug: "mcp-secret-store-47",
+    term: "Secret Store (Infrastructure Component, for MCP Servers)",
+    definition: "A secret store is the specific system — HashiCorp Vault, AWS Secrets Manager, Kubernetes Secrets — that actually holds an MCP server's downstream credentials, as opposed to secret management, which is the broader practice of handling those credentials safely.",
+    detailedExplanation: "It's worth distinguishing the practice from the infrastructure: secret management (see that glossary entry) covers principles like least-privilege scoping and rotation, while a secret store is the concrete system implementing storage and access control for those secrets. An MCP server typically authenticates to its secret store once at startup (using a service identity, not a hardcoded credential) to fetch the downstream credentials it needs for its tools, rather than having those values baked into its container image or source.",
+    keyTakeaways: [
+      "The concrete storage system (Vault, AWS Secrets Manager, Kubernetes Secrets) behind the broader practice of secret management.",
+      "The MCP server authenticates to the secret store using its own service identity, not a hardcoded value.",
+      "Fetched once at startup (or periodically refreshed) rather than baked into the image or source code.",
+      "Access policies on the secret store itself are what actually enforce least-privilege scoping."
+    ],
+    useCase: "An MCP server running on Kubernetes uses a service account to authenticate to HashiCorp Vault at startup, fetching only the specific downstream API credentials that server's tools need.",
+    technicalDetails: {
+      protocolLayer: "Infrastructure / Security (below the MCP transport layer)",
+      format: "Secret-store-specific API (Vault API, AWS Secrets Manager API, Kubernetes Secrets)",
+      latencyProfile: "One-time or periodic fetch at startup, not part of the per-call tool path"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices/"
+    ]
+  },
+    {
+    slug: "mcp-certificate-manager-48",
+    term: "Certificate Manager (TLS, for a Remote MCP Server)",
+    definition: "A certificate manager (cert-manager on Kubernetes, or a hosting platform's built-in TLS handling) issues and renews the TLS certificate a remote MCP server's HTTPS endpoint uses — standard web infrastructure, unrelated to the MCP spec itself.",
+    detailedExplanation: "Since remote MCP servers are reached over HTTPS, they need a valid TLS certificate the same as any web API, typically issued automatically via Let's Encrypt through a tool like cert-manager, or handled transparently by the hosting platform (Vercel, Cloudflare, a managed load balancer). The only MCP-relevant consequence of a misconfigured or expired certificate is a hard connection failure — no MCP-level fallback exists, since the transport itself can't be established without valid TLS.",
+    keyTakeaways: [
+      "Standard web/TLS infrastructure — MCP's spec doesn't reference certificate management at all.",
+      "Only relevant to remote (HTTP/SSE) servers; stdio servers have no TLS layer.",
+      "Automated renewal (via cert-manager or the hosting platform) avoids the common failure mode of an expired cert.",
+      "An expired certificate causes a hard connection failure — there's no MCP-level fallback."
+    ],
+    useCase: "A self-hosted MCP server on Kubernetes uses cert-manager with a Let's Encrypt issuer to automatically obtain and renew its TLS certificate, avoiding manual renewal and the outage risk of forgetting to.",
+    technicalDetails: {
+      protocolLayer: "Infrastructure (below the MCP transport layer)",
+      format: "X.509 TLS certificates, typically via ACME/Let's Encrypt",
+      latencyProfile: "Not applicable to MCP directly"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/"
+    ]
+  },
+    {
+    slug: "mcp-ssl-terminator-49",
+    term: "SSL/TLS Termination (in front of a Remote MCP Server)",
+    definition: "TLS termination is where encrypted HTTPS traffic is decrypted before reaching the MCP server — commonly done at a load balancer or CDN edge rather than inside the MCP server process itself, again standard web infrastructure with no MCP-specific behavior.",
+    detailedExplanation: "Terminating TLS at the edge (a load balancer or CDN) rather than inside the application process is the common pattern for most web services, including remote MCP servers, since it centralizes certificate management and reduces CPU overhead on the application itself. Traffic between the edge and the MCP server is then often plain HTTP over a private network. The one thing worth double-checking for MCP specifically is that whatever terminates TLS doesn't buffer or otherwise interfere with long-lived SSE/Streamable HTTP responses — some default reverse-proxy configurations buffer responses in a way that breaks streaming.",
+    keyTakeaways: [
+      "Commonly done at a load balancer or CDN edge, not inside the MCP server process itself.",
+      "Traffic between the edge and the server is often plain HTTP over a private/internal network after that.",
+      "Worth explicitly checking that the terminator doesn't buffer responses in a way that breaks SSE/Streamable HTTP.",
+      "Reduces CPU load on the MCP server itself, since TLS handshake/encryption work happens at the edge."
+    ],
+    useCase: "A team terminates TLS at their cloud load balancer in front of their MCP server, explicitly disabling response buffering on that path after discovering it was delaying delivery of streamed tool-call output.",
+    technicalDetails: {
+      protocolLayer: "Infrastructure (in front of the MCP transport layer)",
+      format: "TLS 1.2/1.3, terminated at the network edge",
+      latencyProfile: "Adds standard TLS handshake latency at connection setup, not per tool call"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/"
+    ]
+  },
+    {
+    slug: "mcp-http-cache-50",
+    term: "HTTP Cache (and why it mostly doesn't apply to MCP)",
+    definition: "Conventional HTTP caching (based on Cache-Control headers and GET semantics) doesn't apply well to MCP's tool calls, since they're typically POST requests carrying dynamic JSON-RPC payloads rather than cacheable GETs — application-level caching (see cache layer) is the relevant pattern instead.",
+    detailedExplanation: "It's a common assumption to carry over from REST API design that HTTP-layer caching would help an MCP server, but MCP's Streamable HTTP transport sends JSON-RPC requests as POSTs, which HTTP caches don't cache by default, and the responses are generally specific to the request's arguments and calling context anyway. Where caching genuinely helps is inside the tool implementation itself — caching the result of an expensive downstream call keyed by arguments — which is a different, application-level concern from HTTP caching.",
+    keyTakeaways: [
+      "Standard HTTP caching (Cache-Control, GET-based) doesn't apply well to MCP's POST-based JSON-RPC traffic.",
+      "Application-level caching inside a tool implementation is the relevant pattern instead (see: cache layer).",
+      "MCP responses are typically request-specific and not safely cacheable by an intermediary.",
+      "Static assets an MCP server might also serve (docs, icons) are a separate case where HTTP caching does apply normally."
+    ],
+    useCase: "A team initially tries adding Cache-Control headers to their MCP server's responses, then realizes JSON-RPC POST traffic isn't cached by intermediaries anyway, and instead adds an in-process cache inside the specific tool handler that was slow.",
+    technicalDetails: {
+      protocolLayer: "Application (the relevant caching happens behind the MCP tool layer, not at HTTP)",
+      format: "N/A — conventional HTTP caching largely doesn't apply",
+      latencyProfile: "Not applicable via HTTP caching; see cache layer for the pattern that actually helps"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/specification/2025-06-18/basic/transports/"
+    ]
+  },
+    {
+    slug: "mcp-edge-compute-51",
+    term: "Edge Compute (for MCP Server Hosting)",
+    definition: "Edge compute platforms (Cloudflare Workers, Vercel Edge Functions) can host a remote MCP server closer to clients geographically, though the runtime constraints of edge environments (execution time limits, restricted Node.js APIs) can make them a poor fit for MCP servers with long-lived connections or heavy tool logic.",
+    detailedExplanation: "Edge platforms are attractive for reducing connection latency, but MCP's SSE transport specifically needs a long-lived open connection, which many edge runtimes historically limit or handle differently from a traditional server process — this is worth verifying against the specific platform's current constraints rather than assuming it works the same as a conventional Node.js server. Streamable HTTP, being more request-oriented, tends to fit edge runtimes more comfortably than SSE does.",
+    keyTakeaways: [
+      "Attractive for reducing geographic latency, but edge runtime constraints need to be checked against MCP's needs.",
+      "SSE's long-lived connection requirement is the main friction point with some edge platforms.",
+      "Streamable HTTP tends to be a better fit for edge environments than SSE.",
+      "Heavy tool logic (large dependencies, long CPU-bound work) may also exceed typical edge function limits."
+    ],
+    useCase: "A team evaluates hosting their lightweight MCP server on an edge platform for global latency, choosing the Streamable HTTP transport specifically because the platform's connection-duration limits made SSE impractical.",
+    technicalDetails: {
+      protocolLayer: "Infrastructure (below the MCP transport layer)",
+      format: "Platform-specific edge runtime (V8 isolates, etc.)",
+      latencyProfile: "Can reduce connection latency for distributed clients; runtime limits vary significantly by platform"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/specification/2025-06-18/basic/transports/"
+    ]
+  },
+    {
+    slug: "mcp-serverless-func-52",
+    term: "Serverless Function (for MCP Server Hosting)",
+    definition: "A serverless platform (AWS Lambda, Cloud Run, Vercel Functions) can host a remote MCP server, but similarly to edge compute, execution-duration limits and cold starts need to be weighed against MCP's connection model, particularly for SSE.",
+    detailedExplanation: "Serverless platforms are a natural fit for the request-oriented Streamable HTTP transport, where each tool call can map cleanly onto a function invocation, but SSE's need for a connection to stay open for the session's duration runs up against most serverless platforms' maximum execution time. Cold starts are the other practical consideration — the first request after idle time pays a startup penalty, which matters more for latency-sensitive tool calls than for typical web traffic.",
+    keyTakeaways: [
+      "Streamable HTTP maps naturally onto per-invocation serverless execution; SSE is more constrained by execution-duration limits.",
+      "Cold starts add latency to the first request after idle time — worth measuring for latency-sensitive tools.",
+      "Not relevant to local stdio servers, which have no server-side hosting decision at all.",
+      "Many platforms now support longer execution windows, so current limits should be checked rather than assumed."
+    ],
+    useCase: "A team hosts their MCP server's Streamable HTTP endpoint on Cloud Run, accepting occasional cold-start latency in exchange for not managing always-on infrastructure for relatively low, bursty traffic.",
+    technicalDetails: {
+      protocolLayer: "Infrastructure (below the MCP transport layer)",
+      format: "Platform-specific serverless runtime",
+      latencyProfile: "Cold starts add noticeable one-time latency; warm invocations are comparable to a normal server"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/specification/2025-06-18/basic/transports/"
+    ]
+  },
+    {
+    slug: "mcp-function-orchestrator-53",
+    term: "Function Orchestrator (behind an MCP Server)",
+    definition: "A function orchestrator (AWS Step Functions, Azure Durable Functions) coordinates multiple serverless function calls as a single logical workflow — the serverless-hosting analog of the workflow-engine pattern, usable behind an MCP tool that triggers a multi-step process.",
+    detailedExplanation: "This plays the same role as a general workflow engine (see that entry) but specifically in a serverless context, coordinating a sequence of otherwise-independent function invocations with retries and state tracking built in. An MCP tool triggering an orchestrated workflow follows the same start/check-status shape used elsewhere for long-running work — the orchestrator, not MCP, handles sequencing and failure recovery between steps.",
+    keyTakeaways: [
+      "The serverless-specific analog of a general workflow engine, coordinating multiple function invocations.",
+      "An MCP tool triggering this follows the same start/check-status pattern as other long-running work.",
+      "Common platforms: AWS Step Functions, Azure Durable Functions.",
+      "Retry and failure-recovery logic between steps is the orchestrator's job, not something MCP adds."
+    ],
+    useCase: "An MCP tool starts an AWS Step Functions workflow that validates, processes, and archives an uploaded file across several Lambda functions, returning an execution ARN the agent can later check for completion.",
+    technicalDetails: {
+      protocolLayer: "Application (behind the MCP tool layer)",
+      format: "Orchestrator-specific API (Step Functions state machine, etc.)",
+      latencyProfile: "Tool call returns quickly; workflow execution time is decoupled"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/"
+    ]
+  },
+    {
+    slug: "mcp-job-scheduler-54",
+    term: "Job Scheduler (behind an MCP Server)",
+    definition: "A job scheduler runs work on a defined schedule (or lets a tool schedule a future one-off job) — an MCP tool can trigger scheduling a job, but MCP itself has no concept of scheduled or delayed execution; every tool call executes when it's called.",
+    detailedExplanation: "If an agent needs something to happen later — 'remind me about this in an hour,' 'run this report every Monday' — that's implemented by the tool creating an entry in an external scheduler (a cron-like system, a cloud scheduler service, or a database-backed job table with a poller), not by MCP holding a pending call open. The tool call that sets this up completes immediately; the scheduled work happens independently, later, outside the scope of that MCP session.",
+    keyTakeaways: [
+      "MCP has no native concept of delayed or scheduled execution — every tool call runs immediately when invoked.",
+      "Scheduling 'for later' work means the tool creates an entry in an external scheduler, then returns immediately.",
+      "The scheduled work executes independently, outside the MCP session that created it.",
+      "A separate tool or notification is needed if the agent/client should learn when the scheduled work completes."
+    ],
+    useCase: "A 'schedule_reminder' MCP tool writes a row to a jobs table with a target run-time; a separate cron-triggered worker picks it up and sends the reminder later, entirely independent of whether the original MCP session is still open.",
+    technicalDetails: {
+      protocolLayer: "Application (behind the MCP tool layer)",
+      format: "Scheduler-specific (cron, cloud scheduler service, or a polled job table)",
+      latencyProfile: "The scheduling tool call itself is fast; actual execution happens later, decoupled from it"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/"
+    ]
+  },
+    {
+    slug: "mcp-cron-service-55",
+    term: "Cron Service (behind an MCP Server)",
+    definition: "A cron service is a specific, time-based flavor of job scheduler (run this every day at 2am); an MCP tool might create or list scheduled cron-style jobs, but MCP itself has no built-in recurring-execution concept.",
+    detailedExplanation: "This is the same underlying pattern as the broader job-scheduler entry, specifically for fixed, recurring schedules rather than one-off delayed jobs. An MCP tool exposing this typically wraps something like a cloud scheduler service or a cron-syntax job definition, letting an agent create, list, or remove scheduled jobs — but the actual periodic execution happens entirely outside of and independent from any MCP session.",
+    keyTakeaways: [
+      "A recurring-schedule specialization of the broader job-scheduler pattern.",
+      "MCP itself has no concept of recurring execution — this lives entirely in external scheduling infrastructure.",
+      "Common underlying systems: cron itself, or a managed cloud scheduler service.",
+      "Managing (create/list/delete) scheduled jobs via a tool is different from MCP executing anything on a schedule."
+    ],
+    useCase: "An MCP tool lets an agent create a new cron-style job ('run the data sync every night at 2am') by writing a cron expression to a cloud scheduler service, which then triggers the actual sync independently.",
+    technicalDetails: {
+      protocolLayer: "Application (behind the MCP tool layer)",
+      format: "Cron syntax, via a cron daemon or managed cloud scheduler",
+      latencyProfile: "The tool call that creates/modifies a schedule is fast; actual execution is fully decoupled"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/"
+    ]
+  },
+    {
+    slug: "mcp-backup-service-56",
+    term: "Backup Service (MCP Server Data, not MCP-specific)",
+    definition: "Backing up an MCP server's own data (its database, its configuration) is ordinary operational practice, unrelated to the protocol — MCP defines no state or persistence model of its own, so what needs backing up depends entirely on what a given server was built to store.",
+    detailedExplanation: "MCP servers are frequently designed to be stateless — most of the interesting state (a customer's records, a document store) lives in whatever downstream system the tools call, and that system's own backup strategy is what matters. A server does sometimes hold its own state (session data, a local cache, audit logs it's responsible for retaining), and in that case standard backup practices apply — the same as for any other backend service, with no MCP-specific wrinkle.",
+    keyTakeaways: [
+      "MCP defines no persistence or state model — backup needs depend entirely on what a specific server implementation stores.",
+      "Well-designed MCP servers are often stateless, pushing durable data to downstream systems with their own backup strategy.",
+      "Any server-local state (caches, audit logs) needs ordinary backup practices, same as any other service.",
+      "Audit logs a server is responsible for retaining are a case worth explicit backup planning, given compliance needs."
+    ],
+    useCase: "A stateless MCP server needs no backup strategy of its own since all durable data lives in a Postgres database it queries — that database's existing backup schedule already covers it.",
+    technicalDetails: {
+      protocolLayer: "Infrastructure (below the MCP transport layer)",
+      format: "N/A — depends entirely on what state, if any, the server maintains",
+      latencyProfile: "Not applicable to MCP directly"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/"
+    ]
+  },
+    {
+    slug: "mcp-disaster-recovery-57",
+    term: "Disaster Recovery (MCP Server Infrastructure)",
+    definition: "Disaster recovery planning for an MCP server follows the same principles as for any backend service (RTO/RPO targets, failover to a secondary region) — MCP adds one specific consideration: what happens to in-flight agent sessions during a failover.",
+    detailedExplanation: "Standard DR practice applies directly: define acceptable recovery time and data-loss objectives, and have a tested failover path (a secondary region, a warm standby). The MCP-specific nuance is that a client mid-conversation with an agent that's actively using tools will see its MCP session drop during a failover, and there's no protocol-level mechanism to resume a session transparently on a different server instance — the client (and by extension, the agent) needs to handle reconnecting and, in some cases, retrying an incomplete tool call.",
+    keyTakeaways: [
+      "Standard DR principles apply — RTO/RPO targets, tested failover paths, no MCP-specific infrastructure needed.",
+      "The MCP-specific wrinkle: an in-flight session doesn't transparently resume across a failover.",
+      "Clients need their own reconnect logic; MCP doesn't specify automatic session migration.",
+      "A tool call interrupted mid-execution by a failover may need to be safely retryable (idempotent) on reconnect."
+    ],
+    useCase: "A team's DR plan for their MCP server includes a documented reconnect-and-retry behavior in their client, since a regional failover would otherwise silently drop an agent's in-progress session with no automatic resumption.",
+    technicalDetails: {
+      protocolLayer: "Infrastructure (below the MCP transport layer)",
+      format: "Standard DR practices (multi-region failover, backups)",
+      latencyProfile: "Not applicable to MCP directly — governed by the DR plan's RTO"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/"
+    ]
+  },
+    {
+    slug: "mcp-replication-service-58",
+    term: "Replication Service (behind an MCP Server's Data)",
+    definition: "Database or storage replication (e.g. a Postgres read replica) is infrastructure behind whatever an MCP tool queries, not something MCP itself is aware of — relevant mainly because it's common to point read-only MCP database tools at a replica rather than the primary.",
+    detailedExplanation: "This connects directly to the earlier database-service pattern: since many database-backed MCP tools are deliberately read-only, pointing them at a read replica rather than the primary database is a sensible default, isolating potentially unpredictable agent-driven query load from production write traffic. The one operational nuance worth knowing is replication lag — a replica can be momentarily behind the primary, so an agent's query might not reflect a write that just happened seconds earlier.",
+    keyTakeaways: [
+      "Common pattern: point read-only MCP database tools at a replica, not the primary, to isolate query load.",
+      "Replication lag means a replica-backed tool might not reflect a very recent write.",
+      "MCP itself has no awareness of replication — this is purely a database-architecture decision behind a tool.",
+      "Worth documenting for agent-facing tools where 'read your own write' consistency might matter."
+    ],
+    useCase: "A team points their read-only reporting MCP tool at a Postgres read replica to keep ad-hoc agent queries from competing with production write traffic on the primary database.",
+    technicalDetails: {
+      protocolLayer: "Application (behind the MCP tool layer)",
+      format: "Database-native replication (e.g. Postgres streaming replication)",
+      latencyProfile: "Replication lag is typically sub-second but can spike under heavy write load"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/"
+    ]
+  },
+    {
+    slug: "mcp-sync-engine-59",
+    term: "Sync Engine (behind an MCP Server)",
+    definition: "A sync engine keeps two systems' data consistent (e.g. mirroring records between a CRM and a data warehouse); an MCP tool might trigger or check on a sync job, using the same asynchronous trigger/status pattern as other long-running background work.",
+    detailedExplanation: "Similar in shape to the ETL and data-pipeline patterns, a sync engine specifically focuses on keeping two systems aligned over time (often incrementally, syncing only what changed) rather than a one-time load. An MCP tool over one is typically a trigger ('force a sync now') plus a status check, with the actual reconciliation logic — detecting and resolving conflicts, tracking what's already synced — handled entirely by the sync engine itself.",
+    keyTakeaways: [
+      "Focused on keeping two systems consistent over time, often incrementally, rather than one-time data movement.",
+      "Same asynchronous trigger/status pattern as other long-running background work exposed via MCP.",
+      "Conflict detection/resolution is the sync engine's own responsibility, not something MCP adds.",
+      "Common use: mirroring records between a CRM, a warehouse, or two internal systems of record."
+    ],
+    useCase: "An MCP tool lets an agent force an out-of-schedule sync between a CRM and a data warehouse, returning a job ID that a status tool can later check for completion or conflicts.",
+    technicalDetails: {
+      protocolLayer: "Application (behind the MCP tool layer)",
+      format: "Sync-engine-specific API",
+      latencyProfile: "Tool call returns quickly; the sync itself can take seconds to minutes depending on data volume"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/"
+    ]
+  },
+    {
+    slug: "mcp-data-migrator-60",
+    term: "Data Migrator (Triggered via an MCP Tool)",
+    definition: "A data migration tool moves or transforms data as a one-time (or infrequent) operation — for example, moving records to a new schema — distinct from ongoing sync or ETL, and a category of tool most teams keep deliberately restricted given the risk of a bad migration.",
+    detailedExplanation: "Given the one-time, often destructive-if-wrong nature of data migrations, exposing this directly as an agent-callable MCP tool is uncommon and, when it exists, is usually heavily constrained: a narrow, purpose-built operation (not a general 'run arbitrary migration' tool) with dry-run support and explicit confirmation, following the same least-privilege and confirm-before-destructive-action principles that apply to any high-risk MCP tool.",
+    keyTakeaways: [
+      "One-time or infrequent data movement/transformation, distinct from ongoing sync or ETL.",
+      "Higher-risk category of tool — teams typically restrict this heavily rather than exposing it broadly.",
+      "Dry-run support and explicit confirmation are standard safeguards when this is exposed via MCP at all.",
+      "A narrow, purpose-built migration tool is safer than a general 'run arbitrary migration' capability."
+    ],
+    useCase: "A tightly scoped MCP tool lets an authorized agent run a specific, pre-reviewed data migration script in dry-run mode first, requiring explicit human confirmation before it's allowed to execute for real.",
+    technicalDetails: {
+      protocolLayer: "Application (behind the MCP tool layer)",
+      format: "Migration-script-specific, often custom",
+      latencyProfile: "Highly variable, dependent on data volume and transformation complexity"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices/"
+    ]
+  },
+    {
+    slug: "mcp-schema-registry-61",
+    term: "Schema Registry (vs. an MCP Tool's JSON Schema)",
+    definition: "A schema registry (Confluent Schema Registry, for Kafka messages) manages schemas for event/message data — a different concept from the JSON Schema every MCP tool already declares for its own inputs as a required part of the protocol.",
+    detailedExplanation: "It's worth not conflating these: MCP requires every tool to declare a JSON Schema describing its input parameters, which is how a client/agent knows what arguments a tool accepts — this is built into the protocol itself, no external registry needed. A schema registry in the traditional sense (used with Kafka or similar messaging systems) is a separate, unrelated concept for versioning the schema of messages flowing through a broker, relevant only if an MCP tool happens to publish to or consume from such a system as part of its own implementation.",
+    keyTakeaways: [
+      "MCP's own tool input schemas are built into the protocol (JSON Schema) — no external registry is needed for that.",
+      "A traditional schema registry (Confluent-style) is a separate concept for messaging-system schema versioning.",
+      "Only relevant to an MCP server if its tools happen to integrate with a message broker that uses one.",
+      "Don't confuse 'my tool's input schema' with 'a schema registry' — the former needs nothing external."
+    ],
+    useCase: "An MCP tool that publishes events to a Kafka topic uses Confluent Schema Registry to version the Kafka message schema — a decision entirely separate from the tool's own MCP-declared JSON Schema for its input arguments.",
+    technicalDetails: {
+      protocolLayer: "Application (MCP's own tool schemas) / Downstream Integration (a traditional schema registry)",
+      format: "JSON Schema (MCP tools) vs. Avro/Protobuf schema registry (messaging)",
+      latencyProfile: "MCP tool schema validation is local and fast; an external registry lookup adds network latency"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/specification/2025-06-18/server/tools/"
+    ]
+  },
+    {
+    slug: "mcp-message-router-62",
+    term: "Message Router (behind an MCP Server)",
+    definition: "A message router directs messages to different destinations based on content or rules — a downstream integration pattern an MCP tool might trigger or rely on, not something in the MCP protocol itself, which has a single client-server channel per session.",
+    detailedExplanation: "MCP's own message flow is direct and simple: a client sends a request, the server responds, over one transport connection per session — there's no routing decision to make at the protocol level. Where a message router shows up is inside a tool's own implementation, if it wraps a system like an enterprise service bus or a rules-based message router that dispatches events to different downstream handlers based on their content.",
+    keyTakeaways: [
+      "MCP's own request/response flow is direct — no protocol-level routing between multiple destinations.",
+      "A message router is a downstream integration pattern a tool implementation might rely on internally.",
+      "Common in enterprise integration contexts (an ESB or similar) that predate and sit behind the MCP tool.",
+      "The AI client only ever sees the single tool call and its result, not any internal routing that happened."
+    ],
+    useCase: "An MCP tool publishes an order event that an internal enterprise message router then dispatches to inventory, billing, and shipping systems based on the order's contents — all invisible to the calling agent.",
+    technicalDetails: {
+      protocolLayer: "Application / Downstream Integration (behind the MCP tool layer)",
+      format: "Router-specific (ESB, rules engine, or broker-native routing)",
+      latencyProfile: "Adds the router's own dispatch latency on top of the tool call itself"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/"
+    ]
+  },
+    {
+    slug: "mcp-event-processor-63",
+    term: "Event Processor (behind an MCP Server)",
+    definition: "An event processor reacts to incoming events (from a queue, stream, or webhook) with business logic — a downstream system an MCP tool might publish to, distinct from MCP's client-facing notification mechanism.",
+    detailedExplanation: "This overlaps with the earlier event-bus and stream-processing entries: an event processor is the piece of infrastructure that actually consumes and acts on events, whether that's a Lambda function triggered by a queue message or a dedicated service subscribed to a Kafka topic. An MCP tool's role, if any, is typically producing an event that this downstream processor later consumes — the MCP session itself has usually ended by the time the event processor actually runs.",
+    keyTakeaways: [
+      "The downstream consumer that actually acts on events, distinct from the event bus/queue that carries them.",
+      "An MCP tool's role is typically producing the event, not being the processor itself.",
+      "Processing usually happens after the MCP tool call and session have already completed.",
+      "Not to be confused with MCP's own client-facing notification mechanism, which is a different, session-scoped thing."
+    ],
+    useCase: "An MCP tool publishes an 'order_placed' event; a separate, independently-deployed event processor consumes it minutes later to trigger fulfillment, with no ongoing connection to the original MCP session.",
+    technicalDetails: {
+      protocolLayer: "Application / Downstream Integration (behind the MCP tool layer)",
+      format: "Broker-specific event consumption (Kafka consumer, SQS-triggered Lambda, etc.)",
+      latencyProfile: "Decoupled from the originating tool call — can run seconds to minutes later"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/"
+    ]
+  },
+    {
+    slug: "mcp-stream-aggregator-64",
+    term: "Stream Aggregator (Queried via an MCP Tool)",
+    definition: "A stream aggregator computes rolling summaries (counts, sums, averages over a time window) from continuous event data — an MCP tool can query the current aggregate value, following the same bounded-snapshot pattern described for stream processing generally.",
+    detailedExplanation: "This is a more specific case of the stream-processing entry: rather than arbitrary stream computation, an aggregator specifically maintains running summary statistics over a window of events. An MCP tool exposing this reads the aggregator's current computed value (e.g. 'requests in the last 5 minutes') rather than the underlying events, since that's what fits MCP's request/response tool-call model.",
+    keyTakeaways: [
+      "A specific case of stream processing focused on running summary statistics over a time window.",
+      "An MCP tool reads the current aggregate value, not the underlying raw event stream.",
+      "Fits MCP's synchronous tool-call model well, unlike trying to expose the raw stream itself.",
+      "Common underlying tech: Kafka Streams, Flink, or a purpose-built rolling-metrics store."
+    ],
+    useCase: "An MCP tool queries a stream aggregator for the current 5-minute rolling error rate of a service, giving an agent a fast, already-computed answer rather than needing to process raw log events itself.",
+    technicalDetails: {
+      protocolLayer: "Application (behind the MCP tool layer)",
+      format: "Aggregator-specific query API, often backed by an in-memory or fast key-value state store",
+      latencyProfile: "Typically low milliseconds — reading a precomputed value, not recomputing on demand"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/"
+    ]
+  },
+    {
+    slug: "mcp-log-aggregator-65",
+    term: "Log Aggregator (Queried via an MCP Tool)",
+    definition: "A log aggregator (Elasticsearch/ELK, Loki, Splunk) collects logs from many services into one searchable place; an MCP tool over one lets an agent search or summarize logs — genuinely useful for AI-assisted debugging and incident response.",
+    detailedExplanation: "This is one of the more practically valuable patterns on this list: giving an agent a 'search_logs' tool against a centralized aggregator lets it help diagnose an incident by finding relevant error messages across services, without a human manually constructing the query. The tool typically needs sensible constraints (a bounded time range, a result-count limit, restricted to certain indices/services) both for cost/performance reasons and to avoid an agent pulling far more log data than a task actually needs.",
+    keyTakeaways: [
+      "A genuinely valuable pattern for AI-assisted debugging and incident response.",
+      "Common underlying systems: Elasticsearch/ELK, Grafana Loki, Splunk.",
+      "Bounding time range, result count, and accessible indices matters for cost and to avoid excessive data pulls.",
+      "Log content itself may contain sensitive data — the same redaction concerns as any logging tool apply."
+    ],
+    useCase: "An MCP tool lets an on-call agent search Loki for error-level logs from a specific service over the last 30 minutes, helping surface the likely cause of an ongoing incident.",
+    technicalDetails: {
+      protocolLayer: "Application (behind the MCP tool layer)",
+      format: "Log-aggregator-specific query API (Elasticsearch DSL, LogQL, SPL)",
+      latencyProfile: "Typically tens to hundreds of milliseconds depending on query scope and index size"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/"
+    ]
+  },
+    {
+    slug: "mcp-metric-collector-66",
+    term: "Metric Collector (Queried via an MCP Tool)",
+    definition: "A metric collector (Prometheus, a StatsD-based pipeline) gathers numeric time-series metrics from services; an MCP tool over one lets an agent query current or historical metric values, overlapping with the earlier time-series-database and monitoring-tool entries.",
+    detailedExplanation: "This is closely related to querying a time-series database, since a metric collector is usually what feeds one — Prometheus, for instance, both collects (scrapes) and stores metrics. An MCP tool here typically exposes a constrained query surface (a specific metric name, a bounded time range, an aggregation function) rather than arbitrary access to the collector's full query language, for the same cost and safety reasons that apply to log or time-series queries generally.",
+    keyTakeaways: [
+      "Closely related to the time-series-database entry — a collector like Prometheus both gathers and stores metrics.",
+      "An MCP tool typically exposes a constrained query (metric name, time range, aggregation), not a raw query language.",
+      "Useful for agent-assisted operational questions: 'what was error rate over the last hour.'",
+      "Distinguish from a monitoring tool's dashboards, which are built for a human, not an agent calling MCP."
+    ],
+    useCase: "An MCP tool lets an agent query the current value of a specific Prometheus metric (e.g. request error rate for a named service) as part of answering an operational question.",
+    technicalDetails: {
+      protocolLayer: "Application (behind the MCP tool layer)",
+      format: "Metrics-system-specific query API (PromQL, etc.)",
+      latencyProfile: "Typically tens of milliseconds for a scoped metric query"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/"
+    ]
+  },
+    {
+    slug: "mcp-trace-collector-67",
+    term: "Trace Collector (Queried via an MCP Tool)",
+    definition: "A trace collector (Jaeger, Tempo, an OpenTelemetry backend) gathers distributed request traces across services; an MCP tool over one lets an agent look up a specific trace or search for slow/failed traces, useful for AI-assisted performance debugging.",
+    detailedExplanation: "Distributed tracing captures the full path a single request took across multiple services, including timing for each hop — genuinely useful for an agent helping diagnose 'why was this specific request slow,' given a trace ID. An MCP tool exposing this typically supports looking up a trace by ID (from a log entry or error report) or searching for traces matching criteria like duration above a threshold or a specific service, rather than exposing the collector's full query surface unconstrained.",
+    keyTakeaways: [
+      "Distributed tracing shows the full path and timing of a single request across services.",
+      "Useful for AI-assisted performance debugging given a specific trace ID or search criteria.",
+      "Common underlying systems: Jaeger, Grafana Tempo, or any OpenTelemetry-compatible backend.",
+      "Typically exposed as a lookup-by-ID or bounded-search tool, not unrestricted query access."
+    ],
+    useCase: "Given a trace ID from an error log, an agent uses an MCP tool to fetch the full distributed trace from Jaeger, helping identify which downstream service call was responsible for the latency spike.",
+    technicalDetails: {
+      protocolLayer: "Application (behind the MCP tool layer)",
+      format: "Tracing-backend-specific API",
+      latencyProfile: "Typically tens to low hundreds of milliseconds for a trace lookup"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/"
+    ]
+  },
+    {
+    slug: "mcp-alert-manager-68",
+    term: "Alert Manager (Queried via an MCP Tool)",
+    definition: "An alert manager (Prometheus Alertmanager, PagerDuty, Opsgenie) tracks firing and resolved alerts; an MCP tool over one lets an agent check current incident/alert status, and in more permissive setups, acknowledge or escalate alerts.",
+    detailedExplanation: "Read access here — 'what alerts are currently firing for this service' — is low-risk and genuinely useful for an agent helping triage an incident. Write access — acknowledging, silencing, or escalating an alert — is a meaningfully higher-risk operation, since an agent silencing a real alert incorrectly could hide an active incident from human responders, so teams typically gate write operations behind explicit confirmation or keep them out of an agent's tool set entirely.",
+    keyTakeaways: [
+      "Read access (checking current alert status) is low-risk and useful for incident-response agents.",
+      "Write access (acknowledge/silence/escalate) is meaningfully higher-risk — a wrongly silenced alert can hide a real incident.",
+      "Common underlying systems: Prometheus Alertmanager, PagerDuty, Opsgenie.",
+      "Confirmation requirements for destructive alert actions follow the same principle as any high-risk MCP tool."
+    ],
+    useCase: "An MCP tool lets an on-call agent list currently firing alerts and their severity, but any acknowledge/silence action requires an explicit human confirmation step before it's executed.",
+    technicalDetails: {
+      protocolLayer: "Application (behind the MCP tool layer)",
+      format: "Alert-manager-specific REST API",
+      latencyProfile: "Typically tens of milliseconds for read queries"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices/"
+    ]
+  },
+    {
+    slug: "mcp-notification-service-69",
+    term: "Notification Service (behind an MCP Server)",
+    definition: "A notification service delivers messages to humans across channels (email, SMS, push, Slack); an MCP tool over one lets an agent send a notification as part of completing a task, distinct from MCP's own client-facing protocol notifications.",
+    detailedExplanation: "This is a straightforward case of an MCP tool acting as a thin wrapper over an external service (a transactional email provider, a push-notification platform, a Slack webhook), with the interesting design question being scope: a 'send arbitrary message to arbitrary recipient' tool is far riskier (spam, phishing-style abuse if prompt-injected) than a narrowly scoped one like 'notify the assigned engineer that their deploy finished,' which is why well-designed notification tools tend to constrain both the recipient set and the message template rather than allowing fully free-form sends.",
+    keyTakeaways: [
+      "A thin wrapper over an external channel (email, SMS, push, Slack), not something MCP defines itself.",
+      "Narrowly scoped tools (fixed recipients/templates) are meaningfully safer than free-form 'send anything to anyone.'",
+      "Distinct from MCP's own protocol-level notifications, which only reach the connected client within a session.",
+      "A prompt-injection attack turning a broad notification tool into a spam/phishing vector is a real, documented risk class."
+    ],
+    useCase: "An MCP tool exposes a constrained 'notify_deploy_owner' action that sends a templated Slack message only to the engineer tagged as the deploy's owner, rather than a general-purpose 'send message to anyone' tool.",
+    technicalDetails: {
+      protocolLayer: "Application (behind the MCP tool layer)",
+      format: "Channel-specific API (email provider, push service, Slack webhook, etc.)",
+      latencyProfile: "Typically tens to hundreds of milliseconds depending on the channel"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices/"
+    ]
+  },
+    {
+    slug: "mcp-email-service-70",
+    term: "Email Service (behind an MCP Server)",
+    definition: "A transactional email provider (SendGrid, Postmark, AWS SES) is the most common specific case of the broader notification-service pattern, letting an MCP tool send an email as part of a task.",
+    detailedExplanation: "The same scoping principle from notification services applies with extra weight for email specifically, since email is a common phishing/spam vector: a well-designed tool restricts sender identity, recipient domain, and often uses a fixed template with agent-filled variables rather than letting the agent compose fully arbitrary email content and choose an arbitrary recipient, which would be risky if the agent's instructions were ever manipulated via prompt injection.",
+    keyTakeaways: [
+      "The most common concrete case of the broader notification-service pattern.",
+      "Restricting sender identity and recipient scope matters more for email than most channels, given phishing risk.",
+      "Template-based sends (agent fills variables) are safer than fully free-form agent-composed email content.",
+      "Deliverability/reputation of the sending domain is an ordinary email-infrastructure concern, unrelated to MCP."
+    ],
+    useCase: "An MCP tool sends a fixed-template 'your report is ready' email via SendGrid to the requesting user's own registered address, with no ability for the agent to specify an arbitrary recipient or free-form body.",
+    technicalDetails: {
+      protocolLayer: "Application (behind the MCP tool layer)",
+      format: "Email-provider-specific API (SendGrid, Postmark, SES)",
+      latencyProfile: "Typically low hundreds of milliseconds for the send call itself"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices/"
+    ]
+  },
+    {
+    slug: "mcp-sms-gateway-71",
+    term: "SMS Gateway (behind an MCP Server)",
+    definition: "An SMS gateway (Twilio, a carrier API) is another specific case of the notification-service pattern, letting an MCP tool send a text message — the same recipient/content scoping principles apply, plus per-message cost that makes uncontrolled sends a real financial risk.",
+    detailedExplanation: "Beyond the abuse-vector concerns shared with email and push notifications, SMS specifically carries a per-message cost through the gateway provider, so an unscoped or rate-limit-free tool is a direct financial exposure if it's ever called excessively — whether through a bug, a runaway agent loop, or a prompt-injection attempt. Rate limiting (see that entry) and tight recipient scoping matter especially here.",
+    keyTakeaways: [
+      "Another concrete case of the notification-service pattern, via providers like Twilio.",
+      "Per-message cost makes an unscoped or unlimited SMS tool a real financial risk, not just an abuse risk.",
+      "Rate limiting and tight recipient scoping are especially important for this specific channel.",
+      "Same phishing/spam considerations apply as with email, adjusted for SMS's shorter format."
+    ],
+    useCase: "An MCP tool sends a fixed-template SMS via Twilio only to the phone number already on file for the requesting user's account, with a strict per-hour send limit to cap financial exposure from any misuse.",
+    technicalDetails: {
+      protocolLayer: "Application (behind the MCP tool layer)",
+      format: "SMS-gateway-specific API (Twilio, etc.)",
+      latencyProfile: "Typically hundreds of milliseconds to a few seconds for carrier delivery"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices/"
+    ]
+  },
+    {
+    slug: "mcp-push-notification-72",
+    term: "Push Notification (behind an MCP Server)",
+    definition: "A push-notification service (Firebase Cloud Messaging, Apple Push Notification service) is another concrete case of the notification-service pattern, delivering a message to a specific device rather than an email address or phone number.",
+    detailedExplanation: "Functionally similar to email/SMS tools in its design considerations — scope the tool to the requesting user's own registered device(s) rather than allowing an arbitrary device token to be targeted, and prefer templated content over fully agent-composed free text. Push notifications typically require a device token obtained through the app's own registration flow, which is itself outside MCP's scope; the MCP tool just triggers a send once that token is already on file.",
+    keyTakeaways: [
+      "Another concrete case of the notification-service pattern, targeting a registered device rather than an address/number.",
+      "Device tokens come from the app's own registration flow, entirely outside MCP's scope.",
+      "Same scoping principle: restrict to the requesting user's own device(s), prefer templated content.",
+      "Common providers: Firebase Cloud Messaging, Apple Push Notification service."
+    ],
+    useCase: "An MCP tool sends a push notification via Firebase Cloud Messaging to the requesting user's own registered device when a long-running task completes, using a fixed template rather than agent-composed text.",
+    technicalDetails: {
+      protocolLayer: "Application (behind the MCP tool layer)",
+      format: "Push-provider-specific API (FCM, APNs)",
+      latencyProfile: "Typically hundreds of milliseconds to a few seconds for delivery"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices/"
+    ]
+  },
+    {
+    slug: "mcp-webhook-receiver-73",
+    term: "Webhook Receiver (vs. MCP's Client-Initiated Model)",
+    definition: "A webhook receiver accepts inbound HTTP calls from a third-party system when an external event happens — architecturally the opposite direction from MCP, where the client always initiates tool calls; a webhook receiver is a separate endpoint that might, in turn, trigger MCP-adjacent behavior.",
+    detailedExplanation: "This is a genuinely important architectural distinction: MCP is a client-initiated protocol — the client calls tools, the server responds (plus optional server-initiated notifications within an existing session). A third-party webhook (say, a payment provider calling back when a charge succeeds) arrives independently of any MCP session and can't itself be 'received' via MCP. In practice, a webhook receiver is a normal HTTP endpoint a server operates separately, which might then use MCP notifications to inform an already-connected client, or simply update backend state that a later MCP tool call would read.",
+    keyTakeaways: [
+      "Architecturally opposite direction from MCP's client-initiated tool-call model.",
+      "A webhook can't be 'received' via MCP itself — it's a separate HTTP endpoint the server operates.",
+      "A webhook handler might trigger an MCP notification to an already-connected client, or just update state a later tool call reads.",
+      "Don't design a system assuming MCP can receive push-style external callbacks directly — it can't."
+    ],
+    useCase: "A payment provider's webhook hits a server's ordinary HTTP endpoint when a charge completes; the handler updates a database, and if an MCP client happens to be connected in a related session, a notification informs it of the update.",
+    technicalDetails: {
+      protocolLayer: "Application (a separate HTTP endpoint, distinct from the MCP transport)",
+      format: "Provider-specific webhook payload (typically signed JSON over HTTPS)",
+      latencyProfile: "Not applicable to MCP directly — arrives independently of any MCP session"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/specification/2025-06-18/basic/index/#notifications"
+    ]
+  },
+    {
+    slug: "mcp-callback-handler-74",
+    term: "Callback Handler (OAuth Redirect, for MCP Authorization)",
+    definition: "A callback handler here most relevantly refers to the OAuth redirect URI an MCP client's authorization flow returns to after a user approves access — a specific, well-defined piece of MCP's own authorization spec, not a generic webhook concept.",
+    detailedExplanation: "As part of the OAuth 2.1 flow the MCP specification defines for remote server authorization, the client needs a redirect URI to receive the authorization code after the user approves access at the authorization server. Implementing this correctly (validating the redirect URI is registered, using PKCE, checking the state parameter) is part of doing MCP's authorization flow securely, distinct from a generic third-party webhook callback, which is a different, unrelated pattern.",
+    keyTakeaways: [
+      "In an MCP context, most relevantly the OAuth redirect URI used during the authorization flow.",
+      "Part of MCP's own specified authorization mechanism, not a generic webhook pattern.",
+      "Must validate the redirect URI is registered and check the state parameter to prevent CSRF-style attacks.",
+      "PKCE (required by the MCP authorization spec) protects the authorization code exchange at this step."
+    ],
+    useCase: "An MCP client implements its OAuth callback handler to validate the returned state parameter against what it sent, then exchanges the authorization code for an access token using PKCE, per the MCP authorization spec.",
+    technicalDetails: {
+      protocolLayer: "Authorization (defined in the MCP specification itself)",
+      format: "OAuth 2.1 authorization code redirect",
+      latencyProfile: "One-time step during the authorization flow, not part of ongoing tool calls"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/specification/2025-06-18/basic/authorization/"
+    ]
+  },
+    {
+    slug: "mcp-file-watcher-75",
+    term: "File Watcher (behind an MCP Server)",
+    definition: "A file watcher monitors a directory for changes (new, modified, or deleted files) and triggers an action; an MCP server might use one internally to notice new data to process, but it's implementation detail invisible to the AI client interacting through tool calls.",
+    detailedExplanation: "This is a backend implementation pattern rather than something MCP exposes directly: a server might watch a directory for incoming files (e.g. uploaded documents to index) and react by updating some internal state or index, entirely independent of any MCP session being open. An agent would typically interact with the results of that watching (via a search tool over the now-indexed content) rather than the watcher itself, which has no natural mapping onto a request/response tool call.",
+    keyTakeaways: [
+      "A backend implementation detail, not something exposed as an MCP tool itself.",
+      "Commonly used to detect new files needing processing (e.g. indexing for a search tool).",
+      "Runs independently of any MCP session — it's triggered by filesystem events, not client requests.",
+      "An agent interacts with the results of watching (e.g. via a search tool), not the watcher directly."
+    ],
+    useCase: "An MCP server runs a background file watcher on an uploads directory, automatically indexing new documents into a vector store that a separate 'search_documents' MCP tool then queries.",
+    technicalDetails: {
+      protocolLayer: "Infrastructure (behind the MCP tool layer, not part of the protocol)",
+      format: "OS-native filesystem events (inotify, FSEvents, etc.)",
+      latencyProfile: "Not applicable to MCP directly — runs asynchronously in the background"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/"
+    ]
+  },
+    {
+    slug: "mcp-cron-trigger-76",
+    term: "CronJob (Kubernetes, for MCP-Adjacent Scheduled Work)",
+    definition: "In Kubernetes specifically, a CronJob resource runs a container on a fixed schedule — one concrete mechanism for implementing the broader cron-service pattern described elsewhere in this glossary, when an MCP-adjacent task needs to run periodically without a human triggering it.",
+    detailedExplanation: "Where the cron-service entry covers the general pattern, a Kubernetes CronJob is a specific, common way to implement it for teams already running their MCP server on Kubernetes: define a schedule in cron syntax, and Kubernetes spins up a Job (a short-lived pod) at each scheduled time. This is useful for maintenance-style tasks around an MCP deployment — for example, periodically pruning stale session data or refreshing a cached index a search tool depends on — none of which the AI agent needs to be aware of or trigger itself.",
+    keyTakeaways: [
+      "A specific Kubernetes mechanism for the general cron-service/job-scheduler pattern.",
+      "Useful for MCP-adjacent maintenance tasks: pruning stale data, refreshing caches, rotating logs.",
+      "Runs entirely independent of any MCP session or client — it's infrastructure housekeeping.",
+      "Only relevant to teams already running their MCP server on Kubernetes."
+    ],
+    useCase: "A Kubernetes CronJob runs nightly to prune session records older than 30 days from an MCP server's session store, entirely independent of any client activity.",
+    technicalDetails: {
+      protocolLayer: "Infrastructure (below the MCP transport layer)",
+      format: "Kubernetes CronJob resource, standard cron syntax",
+      latencyProfile: "Not applicable to MCP directly"
+    },
+    references: [
+      "https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/"
+    ]
+  },
+    {
+    slug: "mcp-web-scraper-77",
+    term: "Web Scraper (as an MCP Tool Backend)",
+    definition: "A web scraper fetches and extracts content from web pages that don't offer a proper API; an MCP tool over one is a real, common pattern (the official MCP reference servers include a fetch tool for exactly this), though it carries more risk than an API-backed tool since scraped content is untrusted input.",
+    detailedExplanation: "The official modelcontextprotocol/servers repo includes a reference fetch server that retrieves a URL's content (converted to a clean, readable format) for an agent to reason over. The specific security concern with this category is prompt injection: text scraped from an arbitrary web page is effectively untrusted input reaching the model, and a malicious page could include text specifically crafted to manipulate the agent's subsequent behavior — a real, documented risk class for any tool that feeds external, uncontrolled content into an LLM's context.",
+    keyTakeaways: [
+      "A real official pattern — the MCP reference servers repo includes a fetch tool for this exact purpose.",
+      "Scraped content is untrusted input; prompt injection via malicious page content is a real, documented risk.",
+      "Respecting robots.txt and site terms of service is a legal/ethical consideration, not an MCP one.",
+      "Content is typically converted to clean text/markdown before being returned as tool output."
+    ],
+    useCase: "An agent uses the official MCP fetch server to retrieve and summarize a public documentation page, with the server operator aware that any text on that page is untrusted input to the model.",
+    technicalDetails: {
+      protocolLayer: "Application (behind the MCP tool layer)",
+      format: "HTTP GET, HTML-to-text/markdown conversion",
+      latencyProfile: "Typically hundreds of milliseconds to a few seconds, dependent on the target site"
+    },
+    references: [
+      "https://github.com/modelcontextprotocol/servers/tree/main/src/fetch"
+    ]
+  },
+    {
+    slug: "mcp-api-client-78",
+    term: "API Client (behind an MCP Tool)",
+    definition: "An API client is the code inside an MCP tool's implementation that actually calls a downstream REST/GraphQL API — the most common shape of MCP tool overall, translating a standardized tool call into a specific third-party API request.",
+    detailedExplanation: "This describes the majority of real-world MCP servers: a thin translation layer where each tool corresponds to one or a few calls against an existing API (GitHub, Stripe, an internal service) using a conventional HTTP client with the appropriate authentication attached. The value MCP adds isn't in the API call itself — it's in exposing that capability through a standardized, self-describing interface any MCP client can discover and use, instead of every AI application needing its own custom integration code for that same API.",
+    keyTakeaways: [
+      "Describes the majority shape of real MCP servers: a thin wrapper translating tool calls into existing API requests.",
+      "MCP's value here is the standardized, self-describing interface, not the underlying API call itself.",
+      "Authentication for the downstream API is handled server-side (see secret management), never exposed to the client.",
+      "Error handling should translate the downstream API's errors into a clear MCP tool-call error, not leak raw internals."
+    ],
+    useCase: "An MCP server wraps GitHub's REST API, with each tool (create_issue, list_pull_requests, etc.) implemented as a thin API client call using a server-held GitHub token.",
+    technicalDetails: {
+      protocolLayer: "Application (behind the MCP tool layer)",
+      format: "REST or GraphQL, target-API-specific",
+      latencyProfile: "Dependent entirely on the wrapped API's own latency"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/specification/2025-06-18/server/tools/"
+    ]
+  },
+    {
+    slug: "mcp-graphql-gateway-79",
+    term: "GraphQL Gateway (behind an MCP Tool)",
+    definition: "A GraphQL gateway is a downstream API an MCP tool might call — MCP tools themselves are called via JSON-RPC (not GraphQL), so this refers to a tool's implementation querying a GraphQL API on the caller's behalf, not MCP adopting GraphQL as a transport.",
+    detailedExplanation: "It's worth being precise about the layering here: an MCP client always calls a tool through the standard JSON-RPC tools/call method with JSON Schema-typed arguments, regardless of what that tool does internally. If the underlying system a tool wraps happens to expose a GraphQL API (a federated internal gateway, GitHub's GraphQL API, etc.), the tool's implementation constructs and sends a GraphQL query as part of fulfilling the call — that's an implementation detail invisible to the MCP client, which only ever sees the tool's declared input/output schema.",
+    keyTakeaways: [
+      "MCP itself uses JSON-RPC for tool calls, not GraphQL — this is about a tool's downstream integration, not MCP's transport.",
+      "The MCP client never constructs GraphQL queries directly; the tool implementation does that internally.",
+      "Useful when wrapping a system (like GitHub's API) that natively exposes GraphQL as its query interface.",
+      "The tool's own JSON Schema input is what the client interacts with, regardless of the backend query language."
+    ],
+    useCase: "An MCP tool queries GitHub's GraphQL API internally to efficiently fetch a repository's issues and their linked pull requests in one request, exposing a simple JSON-Schema-typed tool interface to the MCP client.",
+    technicalDetails: {
+      protocolLayer: "Application / Downstream Integration (behind the MCP tool layer)",
+      format: "GraphQL, target-API-specific",
+      latencyProfile: "Dependent entirely on the wrapped GraphQL API's own latency"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/specification/2025-06-18/server/tools/"
+    ]
+  },
+    {
+    slug: "mcp-grpc-proxy-80",
+    term: "gRPC Proxy (behind an MCP Tool)",
+    definition: "Like the GraphQL case, gRPC is not an MCP transport — MCP tool calls always use JSON-RPC — but a tool's implementation might call an internal gRPC service as part of fulfilling a request, with the gRPC-specific plumbing entirely hidden from the MCP client.",
+    detailedExplanation: "Many internal enterprise services use gRPC for service-to-service communication, so it's a common backend for an MCP tool at companies with that architecture already in place. The tool acts as a translator: it accepts a standard MCP tool call, makes the appropriate gRPC request(s) to the internal service using generated client stubs, and maps the gRPC response back into the tool's declared JSON output schema.",
+    keyTakeaways: [
+      "Not an MCP transport itself — MCP tool calls always use JSON-RPC regardless of what's behind the tool.",
+      "Common when wrapping internal enterprise services already built on gRPC for service-to-service calls.",
+      "The tool translates between MCP's JSON-RPC interface and the gRPC service's protobuf-defined interface.",
+      "gRPC's connection/auth setup (mTLS, service mesh credentials) is handled inside the tool, invisible to the MCP client."
+    ],
+    useCase: "An MCP tool calls an internal gRPC-based inventory service to check stock levels, exposing the result to the AI client as a simple JSON tool response with no gRPC details visible.",
+    technicalDetails: {
+      protocolLayer: "Application / Downstream Integration (behind the MCP tool layer)",
+      format: "gRPC (Protocol Buffers over HTTP/2), internal-service-specific",
+      latencyProfile: "Typically low milliseconds for internal service-to-service gRPC calls"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/specification/2025-06-18/server/tools/"
+    ]
+  },
+    {
+    slug: "mcp-http-proxy-81",
+    term: "HTTP Proxy (in front of a Remote MCP Server)",
+    definition: "An HTTP proxy sits in front of a remote MCP server for the same reasons an API gateway or load balancer might — TLS termination, routing, or logging — largely overlapping with those already-covered entries rather than being a distinct MCP concept.",
+    detailedExplanation: "This is closely related to the API-gateway and load-balancer entries above; a reverse proxy is often the specific software component (nginx, Envoy, Caddy) implementing those broader roles. The one recurring consideration specific to MCP, worth repeating here, is that the proxy must be configured to properly pass through long-lived streaming responses (SSE, Streamable HTTP) rather than buffering or timing them out the way a default reverse-proxy configuration built for typical request/response traffic might.",
+    keyTakeaways: [
+      "Overlaps significantly with the API-gateway and load-balancer entries — often the specific software implementing those roles.",
+      "Common implementations: nginx, Envoy, Caddy, or a cloud provider's managed reverse proxy.",
+      "Must be explicitly configured to support long-lived SSE/Streamable HTTP connections, not just short request/response.",
+      "Default buffering or timeout settings are a common source of subtle MCP connection failures."
+    ],
+    useCase: "A team configures nginx in front of their MCP server with proxy_buffering off and an extended read timeout, specifically to support long-lived SSE connections that a default configuration would otherwise break.",
+    technicalDetails: {
+      protocolLayer: "Infrastructure (in front of the MCP transport layer)",
+      format: "HTTP/HTTPS reverse proxy",
+      latencyProfile: "Adds minimal fixed overhead if configured correctly for streaming"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/specification/2025-06-18/basic/transports/"
+    ]
+  },
+    {
+    slug: "mcp-tcp-proxy-82",
+    term: "TCP Proxy (Generally Not Applicable to MCP)",
+    definition: "A raw TCP proxy operates below the HTTP layer MCP's remote transports actually use, so it has essentially no direct relevance to MCP server infrastructure — worth stating plainly rather than manufacturing a connection that doesn't exist.",
+    detailedExplanation: "MCP's transports are stdio (local process I/O), SSE, and Streamable HTTP — the latter two are both HTTP-based, meaning any proxying in front of a remote MCP server happens at the HTTP/L7 layer (see the HTTP proxy and API gateway entries), not raw TCP/L4. A generic L4 load balancer might exist further upstream in some network topologies, but it's not doing anything MCP-aware and isn't a meaningful part of understanding MCP server architecture specifically.",
+    keyTakeaways: [
+      "MCP's HTTP-based transports (SSE, Streamable HTTP) are handled at L7, not raw TCP.",
+      "An L4 load balancer might exist upstream in some setups, but it has no MCP-specific role.",
+      "The HTTP proxy and API gateway entries are the actually relevant patterns for remote MCP servers.",
+      "Included here mainly to clarify that this is not a meaningful MCP-specific concept."
+    ],
+    useCase: "A team's cloud load balancer technically operates at L4 before handing off to an L7 layer that does the actual HTTP-aware routing to their MCP server — the L4 hop itself involves no MCP-specific configuration.",
+    technicalDetails: {
+      protocolLayer: "Infrastructure (below the MCP transport layer, largely not MCP-relevant)",
+      format: "Raw TCP",
+      latencyProfile: "Not applicable to MCP directly"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/specification/2025-06-18/basic/transports/"
+    ]
+  },
+    {
+    slug: "mcp-udp-proxy-83",
+    term: "UDP Proxy (Not Applicable to MCP)",
+    definition: "MCP has no UDP-based transport — stdio, SSE, and Streamable HTTP are all either local process I/O or TCP-based HTTP — so a UDP proxy has no relevance to MCP server architecture at all.",
+    detailedExplanation: "This is included mainly for completeness and honesty: unlike some of the network-infrastructure entries in this glossary that have a real, if indirect, relationship to hosting a remote MCP server, UDP proxying doesn't apply to MCP in any capacity, since none of MCP's defined transports use UDP.",
+    keyTakeaways: [
+      "None of MCP's transports (stdio, SSE, Streamable HTTP) use UDP.",
+      "No meaningful relationship to MCP server architecture exists for this entry.",
+      "Included for completeness rather than because it's an actual MCP integration pattern."
+    ],
+    useCase: "Not applicable — no MCP transport or common MCP server deployment pattern involves UDP.",
+    technicalDetails: {
+      protocolLayer: "Not applicable to MCP",
+      format: "N/A",
+      latencyProfile: "Not applicable to MCP"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/specification/2025-06-18/basic/transports/"
+    ]
+  },
+    {
+    slug: "mcp-websocket-proxy-84",
+    term: "WebSocket Proxy (vs. MCP's Actual Transports)",
+    definition: "MCP does not define WebSocket as a transport — it's easy to assume otherwise since WebSocket is a common real-time-communication choice elsewhere, but MCP's remote options are specifically SSE and Streamable HTTP, not raw WebSockets.",
+    detailedExplanation: "This is a genuinely common point of confusion worth stating clearly: developers familiar with WebSocket-based real-time systems sometimes assume MCP uses it too, but the specification defines stdio (local), SSE, and Streamable HTTP (both HTTP-based) as the transports. A WebSocket proxy or gateway therefore has no direct role in standard MCP server infrastructure — any team seeing 'WebSocket' in MCP-adjacent tooling should verify whether it's a genuinely custom, non-standard transport rather than the protocol's defined ones.",
+    keyTakeaways: [
+      "MCP's actual remote transports are SSE and Streamable HTTP — not WebSocket.",
+      "A common point of confusion for developers coming from WebSocket-based real-time systems.",
+      "Non-standard WebSocket-based MCP implementations would not be interoperable with standard MCP clients.",
+      "Worth double-checking any tooling that claims WebSocket support against the actual spec-defined transports."
+    ],
+    useCase: "A developer initially assumes their MCP client library uses WebSockets, then confirms from the spec that it actually uses Streamable HTTP, and adjusts their reverse-proxy configuration accordingly.",
+    technicalDetails: {
+      protocolLayer: "Not applicable to standard MCP transports",
+      format: "N/A — not a defined MCP transport",
+      latencyProfile: "Not applicable to MCP"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/specification/2025-06-18/basic/transports/"
+    ]
+  },
+    {
+    slug: "mcp-sse-gateway-85",
+    term: "SSE (Server-Sent Events) — an Actual MCP Transport",
+    definition: "SSE is one of MCP's two HTTP-based remote transports, used for server-to-client streaming (notifications, incremental tool-call progress) alongside regular HTTP requests for client-to-server messages — a real, spec-defined part of MCP, not a downstream integration.",
+    detailedExplanation: "Unlike most entries in this batch, SSE is directly part of the MCP specification itself: the server keeps a long-lived HTTP connection open and streams events to the client using the standard Server-Sent Events format, while the client sends its own JSON-RPC requests via separate regular HTTP POSTs. Infrastructure in front of an SSE-based MCP server (proxies, load balancers) needs to be explicitly configured to not buffer or time out this long-lived stream, which is the single most common operational pitfall teams run into.",
+    keyTakeaways: [
+      "One of MCP's two actual HTTP-based transports, alongside Streamable HTTP — this is a real part of the spec.",
+      "Server-to-client messages stream over the open SSE connection; client-to-server messages are separate HTTP POSTs.",
+      "Reverse proxies/load balancers must be configured not to buffer or prematurely time out the SSE stream.",
+      "The MCP spec has moved toward Streamable HTTP as the more general remote transport, though SSE remains widely supported."
+    ],
+    useCase: "A remote MCP server uses SSE to stream tool-call progress notifications to a connected client, with the team's nginx config explicitly disabling response buffering on that endpoint to avoid delaying delivery.",
+    technicalDetails: {
+      protocolLayer: "Transport (defined in the MCP specification itself)",
+      format: "Server-Sent Events (text/event-stream) for server-to-client; HTTP POST for client-to-server",
+      latencyProfile: "Near-real-time delivery of server-initiated messages within an open connection"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/specification/2025-06-18/basic/transports/"
+    ]
+  },
+    {
+    slug: "mcp-websocket-server-86",
+    term: "WebSocket Server (vs. MCP's SSE/Streamable HTTP)",
+    definition: "As with the WebSocket proxy entry, a general WebSocket server implementation is not what powers a standard MCP remote server — MCP's spec-defined transports are SSE and Streamable HTTP, both built on regular HTTP semantics rather than the WebSocket upgrade handshake.",
+    detailedExplanation: "This is worth repeating distinctly from the proxy entry because it's a common early misconception when building an MCP server from scratch: reaching for a WebSocket server library because 'I need bidirectional real-time communication' is a reasonable-sounding instinct that doesn't match how MCP actually specifies its remote transports. Implementing MCP correctly means implementing SSE and/or Streamable HTTP per the spec, not a custom WebSocket-based protocol, to remain interoperable with standard MCP clients.",
+    keyTakeaways: [
+      "MCP's spec-defined remote transports are SSE and Streamable HTTP, not WebSocket.",
+      "A common early mistake when building a custom MCP server implementation from scratch.",
+      "Using WebSocket instead of the spec's transports breaks interoperability with standard MCP clients.",
+      "Bidirectional communication is achieved within SSE/Streamable HTTP via separate request/notification channels, not a WebSocket upgrade."
+    ],
+    useCase: "A team building a custom MCP server initially reaches for a WebSocket library, then corrects course after reading the spec and implements Streamable HTTP instead, to stay interoperable with standard MCP clients.",
+    technicalDetails: {
+      protocolLayer: "Not applicable to standard MCP transports",
+      format: "N/A — not a defined MCP transport",
+      latencyProfile: "Not applicable to MCP"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/specification/2025-06-18/basic/transports/"
+    ]
+  },
+    {
+    slug: "mcp-socket-adapter-87",
+    term: "Socket Adapter (stdio, an Actual MCP Transport)",
+    definition: "MCP's local transport is stdio — the client spawns the server as a subprocess and communicates over its standard input/output streams — the actual 'socket-like' mechanism MCP defines for local use, distinct from network sockets or WebSocket adapters.",
+    detailedExplanation: "For local MCP servers (the common case for tools like Claude Desktop connecting to a locally-installed server), there's no network socket involved at all: the client launches the server process directly and reads/writes newline-delimited JSON-RPC messages over its stdin/stdout, with stderr typically reserved for logging. This is simpler and has a smaller attack surface than any network transport, since there's no listening port, but it also means the server's lifecycle is tied entirely to the client process that spawned it.",
+    keyTakeaways: [
+      "MCP's actual local transport mechanism — process stdin/stdout, not a network or WebSocket-style socket.",
+      "The client spawns the server directly; there's no listening network port involved at all.",
+      "stderr is conventionally reserved for logging, separate from the JSON-RPC message stream on stdout.",
+      "Simpler and lower attack-surface than any network transport, at the cost of being local-only."
+    ],
+    useCase: "Claude Desktop spawns a locally-configured MCP server as a subprocess, exchanging JSON-RPC messages over its stdin/stdout with no network connection involved at all.",
+    technicalDetails: {
+      protocolLayer: "Transport (defined in the MCP specification itself)",
+      format: "Newline-delimited JSON-RPC over stdin/stdout",
+      latencyProfile: "Extremely low — local process I/O, no network round-trip"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/specification/2025-06-18/basic/transports/"
+    ]
+  },
+    {
+    slug: "mcp-polling-service-88",
+    term: "Polling (as an Alternative to MCP Notifications)",
+    definition: "Polling — repeatedly calling a tool to check for a status change — is what an MCP client falls back to when it isn't using (or the server doesn't support) progress notifications for a long-running operation; it works but is less efficient than the notification-based approach MCP provides natively.",
+    detailedExplanation: "For the various asynchronous, trigger-and-check patterns described elsewhere in this glossary (task queues, workflows, data pipelines), a client has two options: poll a status tool repeatedly, or rely on the server sending progress notifications over the open session so the client is informed as things change without asking repeatedly. Polling is simpler to implement on both sides but wastes calls when nothing's changed and introduces a delay up to the poll interval; notifications are more efficient but require the server to correctly track and push updates.",
+    keyTakeaways: [
+      "The simpler fallback for tracking long-running work when notifications aren't used or supported.",
+      "Wastes calls when status hasn't changed, and introduces latency up to the polling interval.",
+      "MCP's built-in progress notifications are the more efficient native alternative, when a server implements them.",
+      "Many real implementations use both: notifications for near-real-time updates, with polling as a fallback/reconciliation check."
+    ],
+    useCase: "A client polls a 'get_job_status' tool every few seconds while a background job runs, as a simpler alternative to consuming the server's progress notifications for that same job.",
+    technicalDetails: {
+      protocolLayer: "Application (a client-side pattern, not a distinct MCP mechanism)",
+      format: "Repeated standard tool calls",
+      latencyProfile: "Update latency is bounded by the polling interval, not near-real-time"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/specification/2025-06-18/basic/index/#notifications"
+    ]
+  },
+    {
+    slug: "mcp-subscription-manager-89",
+    term: "Subscription Manager (MCP Resource Subscriptions)",
+    definition: "MCP actually defines a real subscription mechanism for resources: a client can subscribe to a specific resource and receive notifications when it changes, rather than needing to re-fetch or poll — a spec-level feature, not just a generic pattern.",
+    detailedExplanation: "This is one of the more specific, protocol-defined features worth knowing precisely: a server that supports resource subscriptions lets a client call resources/subscribe for a given resource URI, after which the server sends a notification whenever that resource's content changes, until the client unsubscribes or the session ends. This is genuinely useful for resources that change over time (a log file being written to, a live document) where re-fetching repeatedly would be wasteful — support for it is optional and depends on the specific server implementation declaring the capability.",
+    keyTakeaways: [
+      "A real, spec-defined MCP feature — resources/subscribe — not just a generic external pattern.",
+      "The server notifies the client when a subscribed resource changes, avoiding repeated re-fetching.",
+      "Support is optional; a server must declare this capability during initialization for a client to rely on it.",
+      "Well suited to resources that change over time, like a live log or an actively-edited document."
+    ],
+    useCase: "A client subscribes to a resource representing a live build log; the server pushes notifications as new log lines are written, rather than the client needing to repeatedly re-fetch the whole resource.",
+    technicalDetails: {
+      protocolLayer: "Application (defined in the MCP specification itself)",
+      format: "resources/subscribe + resource change notifications, per the MCP spec",
+      latencyProfile: "Near-real-time — notifications arrive as changes happen, no polling delay"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/specification/2025-06-18/server/resources/"
+    ]
+  },
+    {
+    slug: "mcp-pubsub-system-90",
+    term: "Pub/Sub System (vs. MCP's Resource Subscriptions)",
+    definition: "A general pub/sub system (Redis Pub/Sub, Google Pub/Sub) is downstream infrastructure a tool implementation might use internally — distinct from MCP's own resources/subscribe mechanism, which is a spec-defined feature between client and server directly.",
+    detailedExplanation: "It's worth not conflating this with the previous entry: MCP's resource subscriptions are a first-class protocol feature between an MCP client and server. A generic pub/sub system, by contrast, is unrelated external infrastructure that might sit behind a server's implementation — for example, a server's resource-subscription support might internally be backed by Redis Pub/Sub to detect when underlying data changed, but that's an implementation choice invisible to the MCP client, which only ever sees the standard subscribe/notify protocol messages.",
+    keyTakeaways: [
+      "Distinct from MCP's own resources/subscribe mechanism, which is a direct client-server protocol feature.",
+      "A generic pub/sub system is downstream infrastructure that might power a server's internal change-detection.",
+      "The MCP client never talks to the underlying pub/sub system directly — only to the server via standard MCP messages.",
+      "Common products: Redis Pub/Sub, Google Cloud Pub/Sub, or a message broker's pub/sub mode."
+    ],
+    useCase: "An MCP server implements resources/subscribe by internally listening on a Redis Pub/Sub channel for change events, translating them into standard MCP resource-change notifications sent to subscribed clients.",
+    technicalDetails: {
+      protocolLayer: "Application / Downstream Integration (behind MCP's own subscription feature)",
+      format: "Pub/sub-system-specific (Redis Pub/Sub, Google Pub/Sub, etc.)",
+      latencyProfile: "Typically low milliseconds for the internal pub/sub hop, on top of MCP's own notification delivery"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/specification/2025-06-18/server/resources/"
+    ]
+  },
+    {
+    slug: "mcp-message-queue-91",
+    term: "Message Queue (behind an MCP Server)",
+    definition: "A message queue (SQS, RabbitMQ) holds messages for asynchronous processing — functionally the same downstream role as the earlier message-broker entry, with the distinction that a queue typically delivers each message to one consumer, versus a broker's broader pub/sub fan-out.",
+    detailedExplanation: "The practical MCP pattern is identical to the message-broker case: a tool implementation enqueues work for later processing rather than doing it inline, useful for anything slower than a reasonable tool-call response time should take. The queue-vs-broker distinction matters for the tool's design (does exactly one worker need to see this message, or should multiple systems react to it) but not for how it's exposed through MCP — either way, the AI client only sees a fast-returning tool call, with the actual processing happening asynchronously.",
+    keyTakeaways: [
+      "Same MCP-facing pattern as a message broker: a tool enqueues work instead of processing it inline.",
+      "Distinction from a broker: a queue message typically goes to one consumer, not fanned out to many.",
+      "Common products: AWS SQS, RabbitMQ (in queue mode).",
+      "Paired with a status-check tool when the client needs to know the outcome, same as the task-queue pattern."
+    ],
+    useCase: "An MCP tool enqueues an image-processing job to SQS and returns immediately, with a single worker later picking it up and processing it independent of the MCP session.",
+    technicalDetails: {
+      protocolLayer: "Application / Downstream Integration (behind the MCP tool layer)",
+      format: "Queue-specific protocol (SQS API, AMQP, etc.)",
+      latencyProfile: "Tool call returns quickly; actual processing is decoupled and asynchronous"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/"
+    ]
+  },
+    {
+    slug: "mcp-job-queue-92",
+    term: "Job Queue (behind an MCP Server)",
+    definition: "A job queue (BullMQ, Sidekiq, Celery) is a specialization of a message queue built specifically for background job processing with retries and scheduling — the same underlying MCP pattern as the task-queue entry, described in terms of the specific tooling rather than the general concept.",
+    detailedExplanation: "This overlaps directly with the earlier task-queue entry; job-queue libraries add features general message queues don't have out of the box, like automatic retries with backoff, job prioritization, and delayed execution, which makes them a natural fit for the trigger-a-slow-task pattern an MCP tool commonly needs. The MCP-facing shape is unchanged: enqueue, return fast, let the client check status separately or receive progress notifications.",
+    keyTakeaways: [
+      "A specialization of message queues, adding retries, prioritization, and delayed execution for background jobs.",
+      "Same MCP pattern as the task-queue entry — enqueue, return fast, check status separately.",
+      "Common libraries: BullMQ (Node, Redis-backed), Celery (Python), Sidekiq (Ruby).",
+      "Automatic retry-with-backoff is a meaningful advantage over a generic message queue for flaky downstream work."
+    ],
+    useCase: "An MCP tool enqueues a report-generation job on BullMQ, which automatically retries with backoff if the job fails transiently, while the agent polls a separate status tool for the result.",
+    technicalDetails: {
+      protocolLayer: "Application (behind the MCP tool layer)",
+      format: "Job-queue-library-specific (BullMQ/Redis, Celery/Redis or RabbitMQ, etc.)",
+      latencyProfile: "Tool call returns quickly; job execution is decoupled and asynchronous"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/"
+    ]
+  },
+    {
+    slug: "mcp-task-runner-93",
+    term: "Task Runner (the Worker Consuming an MCP-Triggered Job)",
+    definition: "A task runner is the worker process that actually executes jobs pulled from a task/job queue that an MCP tool enqueued — the other half of the trigger-and-process pattern described in the task-queue and job-queue entries.",
+    detailedExplanation: "This is the piece of infrastructure that does the real work after an MCP tool call has already returned: a separate long-running process (or a fleet of them) that pulls jobs off the queue, executes them, and records the result somewhere the client's later status-check tool call can read. It's entirely decoupled from the MCP server process itself — it can scale independently, and it has no direct awareness that the job it's processing originated from an AI agent's tool call rather than any other trigger.",
+    keyTakeaways: [
+      "The worker side of the enqueue/process split described in the task-queue and job-queue entries.",
+      "Runs independently of the MCP server process and can scale separately based on queue depth.",
+      "Has no inherent awareness that a job came from an MCP tool call versus any other trigger.",
+      "Writes its result somewhere a status-check tool can later read, since it has no direct connection back to the MCP session."
+    ],
+    useCase: "A fleet of task-runner workers processes jobs from a shared queue regardless of whether they were enqueued by an MCP tool, a scheduled cron job, or a user action elsewhere in the system.",
+    technicalDetails: {
+      protocolLayer: "Application (behind the MCP tool layer, decoupled from the MCP server itself)",
+      format: "Job-queue-library-specific worker process",
+      latencyProfile: "Job execution time is entirely decoupled from the originating tool call's response time"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/"
+    ]
+  },
+    {
+    slug: "mcp-worker-pool-94",
+    term: "Worker Pool (MCP Server Concurrency)",
+    definition: "A worker pool is how a single MCP server process handles multiple concurrent tool calls — a runtime-level concurrency mechanism (Node's event loop plus worker threads, or a process pool in other languages) rather than an external system.",
+    detailedExplanation: "Unlike most entries in this batch, this describes something internal to the MCP server's own process, not a downstream integration: since a server may receive multiple overlapping tool calls (from one client sending several requests, or multiple clients), it needs some concurrency model to handle them without one slow call blocking all others. In Node.js this is largely handled by the event loop for I/O-bound work, with worker threads reserved for genuinely CPU-bound tool logic; other runtimes use OS-level thread or process pools more directly.",
+    keyTakeaways: [
+      "Internal to the MCP server's own runtime, not an external system or integration.",
+      "Handles overlapping tool calls without one slow call blocking unrelated ones.",
+      "In Node.js, mostly the event loop for I/O-bound work, with worker threads for CPU-bound logic.",
+      "A CPU-bound tool implemented naively (blocking the event loop) can degrade the whole server's responsiveness."
+    ],
+    useCase: "An MCP server running in Node.js offloads a CPU-intensive image-processing tool to a worker thread specifically so it doesn't block the event loop from handling other clients' concurrent tool calls.",
+    technicalDetails: {
+      protocolLayer: "Infrastructure / Runtime (internal to the MCP server process)",
+      format: "Runtime-specific (event loop + worker threads, OS thread/process pool, etc.)",
+      latencyProfile: "Affects how well the server maintains responsiveness under concurrent load"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/"
+    ]
+  },
+    {
+    slug: "mcp-thread-pool-95",
+    term: "Thread Pool (MCP Server Runtime, Language-Specific)",
+    definition: "A thread pool is a specific mechanism a worker pool might be built on, in runtimes/languages that use OS threads for concurrency (Java, Python's ThreadPoolExecutor, Go's goroutine scheduler in spirit if not literally threads) — an implementation detail of the server's runtime, not an MCP concept.",
+    detailedExplanation: "Whether an MCP server uses a thread pool depends entirely on what language and runtime it's built in — a Python MCP server built with asyncio handles concurrency very differently from one using a thread pool for blocking I/O, and a Node.js server relies primarily on its single-threaded event loop instead. The correct choice is an ordinary runtime/framework decision unrelated to MCP itself, which only cares that the server correctly handles concurrent JSON-RPC requests, not how.",
+    keyTakeaways: [
+      "Entirely a runtime/language implementation detail, not something MCP specifies or cares about.",
+      "Different MCP server runtimes handle concurrency very differently (Node's event loop vs. Python's threads/asyncio vs. others).",
+      "MCP only requires that concurrent JSON-RPC requests are handled correctly — the mechanism is unconstrained.",
+      "Relevant mainly when debugging performance issues specific to the server's chosen runtime."
+    ],
+    useCase: "A Python MCP server built with a synchronous framework uses a thread pool to handle blocking database calls concurrently, while a Node.js equivalent would rely on its async event loop instead.",
+    technicalDetails: {
+      protocolLayer: "Infrastructure / Runtime (internal to the MCP server process)",
+      format: "Language/runtime-specific",
+      latencyProfile: "Affects concurrent request handling; not an MCP-level concern"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/"
+    ]
+  },
+    {
+    slug: "mcp-process-manager-96",
+    term: "Process Manager (for stdio MCP Servers)",
+    definition: "For local stdio MCP servers, the client itself acts as the process manager — spawning the server process, keeping track of it, and terminating it when the session ends — a responsibility built into how the stdio transport works, not a separate system.",
+    detailedExplanation: "This is worth calling out specifically because it differs from every network-hosted case discussed elsewhere: there's no external process manager (systemd, PM2, a container orchestrator) involved in the common case of a client like Claude Desktop launching a locally-configured MCP server — the client's own process-spawning code (fork/exec or the language-appropriate equivalent) handles start and stop directly, tied to the lifetime of the client-server session.",
+    keyTakeaways: [
+      "For stdio servers, the MCP client itself is the process manager — no separate system is typically involved.",
+      "The server process's lifetime is tied directly to the client session that spawned it.",
+      "Contrasts with remote servers, where a real process manager or orchestrator (systemd, Kubernetes) is standard.",
+      "If the client crashes without cleanly terminating the child process, an orphaned server process can be left running."
+    ],
+    useCase: "Claude Desktop spawns a locally-configured MCP server as a direct child process, and terminates it automatically when the corresponding chat session or the application itself closes.",
+    technicalDetails: {
+      protocolLayer: "Transport / Infrastructure (part of how stdio is implemented)",
+      format: "OS-native process spawning (fork/exec or equivalent)",
+      latencyProfile: "Process startup latency happens once per session, not per tool call"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/specification/2025-06-18/basic/transports/"
+    ]
+  },
+    {
+    slug: "mcp-process-monitor-97",
+    term: "Process Monitor (for Remote MCP Server Deployments)",
+    definition: "For remote MCP servers, a process monitor (systemd, PM2, or a container orchestrator's own process supervision) makes sure the server process is actually running and restarts it if it crashes — standard operational infrastructure, distinct from the stdio case where the client itself fills this role.",
+    detailedExplanation: "This is the remote-deployment counterpart to the stdio process-manager entry: on a VM, systemd or PM2 typically supervises the MCP server process directly; on Kubernetes, the kubelet does the equivalent job at the pod level (tied to the liveness-probe concept covered elsewhere). Either way, this is ordinary service-supervision practice with no MCP-specific behavior — the goal is simply making sure a crashed server process comes back up automatically rather than staying down until someone notices.",
+    keyTakeaways: [
+      "The remote-deployment counterpart to stdio's client-as-process-manager pattern.",
+      "Common tools: systemd or PM2 on a VM, the kubelet on Kubernetes (see: liveness probe).",
+      "Ordinary service-supervision practice — no MCP-specific behavior involved.",
+      "Automatic restart on crash is the main value; it doesn't fix underlying bugs causing repeated crashes."
+    ],
+    useCase: "A remote MCP server running on a VM is supervised by systemd, which automatically restarts it if the process crashes, without requiring manual intervention.",
+    technicalDetails: {
+      protocolLayer: "Infrastructure (below the MCP transport layer)",
+      format: "Process-supervisor-specific (systemd unit, PM2, kubelet)",
+      latencyProfile: "Not applicable to MCP directly — affects recovery time after a crash"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/"
+    ]
+  },
+    {
+    slug: "mcp-process-restart-98",
+    term: "Process Restart (MCP Server Recovery)",
+    definition: "Restarting a crashed or unhealthy MCP server process is handled by whichever process-supervision mechanism is in play (systemd, PM2, Kubernetes) — MCP itself has no restart or self-healing behavior, and a restart drops any in-flight sessions on that instance.",
+    detailedExplanation: "This is really a consequence of the process-manager and process-monitor entries rather than a distinct concept: whatever's supervising the MCP server decides when and how to restart it after a failure. The MCP-relevant nuance is the same one raised in the disaster-recovery entry — a restart, however well-automated, still severs any currently open MCP session on that instance, and MCP defines no mechanism for a client to transparently resume where it left off on a fresh process.",
+    keyTakeaways: [
+      "Handled entirely by whatever process supervisor is in play — not an MCP mechanism itself.",
+      "A restart drops any in-flight session on that instance; MCP has no session-resumption mechanism.",
+      "Clients connecting to remote servers should handle reconnect (and possibly retry) logic defensively.",
+      "Frequent restarts (a crash loop) usually indicate a real underlying bug worth investigating, not just tolerating via auto-restart."
+    ],
+    useCase: "After a memory leak causes an MCP server to crash, Kubernetes automatically restarts the pod, but the team also investigates the leak itself rather than relying on restarts to mask the underlying bug.",
+    technicalDetails: {
+      protocolLayer: "Infrastructure (below the MCP transport layer)",
+      format: "Process-supervisor-specific",
+      latencyProfile: "Not applicable to MCP directly — affects recovery time and drops in-flight sessions"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/"
+    ]
+  },
+    {
+    slug: "mcp-log-rotation-99",
+    term: "Log Rotation (MCP Server Operations)",
+    definition: "Log rotation prevents an MCP server's log files from growing unbounded on disk — an ordinary operational practice, unrelated to MCP itself, that matters more when a server logs verbosely for audit purposes (see the audit-logger entry).",
+    detailedExplanation: "Whether this is even relevant depends on how a server logs: one shipping structured logs directly to a logging service typically doesn't need local log rotation at all, while one writing to local files (common for simpler self-hosted deployments) does, using standard tools like logrotate or a logging library's built-in rotation support, to cap file size/age and avoid eventually filling the disk.",
+    keyTakeaways: [
+      "Ordinary operational practice, unrelated to MCP's protocol behavior.",
+      "Mostly relevant to servers writing logs to local files rather than shipping them directly to a logging service.",
+      "Matters more for servers doing verbose audit logging of tool calls (see: audit logger).",
+      "Standard tools (logrotate, a logging library's built-in rotation) handle this without custom code."
+    ],
+    useCase: "A self-hosted MCP server writing local audit logs uses logrotate to cap log files at 100MB and retain 30 days of history, avoiding an eventual disk-full failure.",
+    technicalDetails: {
+      protocolLayer: "Infrastructure (below the MCP transport layer)",
+      format: "OS-level (logrotate) or logging-library-native rotation",
+      latencyProfile: "Not applicable to MCP directly"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/"
+    ]
+  },
+    {
+    slug: "mcp-log-export-100",
+    term: "Log Export (MCP Server Observability)",
+    definition: "Log export is shipping an MCP server's logs off the local machine to a centralized logging service — the delivery mechanism behind the earlier logging-service entry, worth distinguishing as its own operational step (agent-based shipping, direct API push, or a sidecar collector).",
+    detailedExplanation: "There are a few common patterns for actually getting logs from an MCP server process to wherever they're analyzed: a lightweight logging agent running alongside the server that tails its log output and forwards it, the server pushing structured logs directly to a logging API, or (on Kubernetes) a sidecar or node-level collector handling this transparently. Which pattern fits depends on the deployment platform more than on anything MCP-specific.",
+    keyTakeaways: [
+      "The delivery mechanism behind having logs actually reach a centralized logging service.",
+      "Common patterns: a local shipping agent, direct API push from the server, or a Kubernetes sidecar/node collector.",
+      "Choice of pattern depends on the deployment platform, not on anything MCP-specific.",
+      "Worth ensuring redaction (see: logging service) happens before export, not after, if logs might transit less-trusted infrastructure."
+    ],
+    useCase: "An MCP server deployed on Kubernetes relies on a node-level log collector to automatically ship its stdout logs to a centralized logging platform, with no custom export code in the server itself.",
+    technicalDetails: {
+      protocolLayer: "Infrastructure (below the MCP transport layer)",
+      format: "Agent-based, direct API push, or platform-native (Kubernetes sidecar/collector)",
+      latencyProfile: "Not applicable to MCP directly — asynchronous relative to tool calls"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/"
+    ]
+  },
+    {
+    slug: "mcp-metric-export-101",
+    term: "Metric Export (MCP Server Observability)",
+    definition: "Metric export is how an MCP server's operational metrics (tool-call counts, latencies, error rates) actually reach a monitoring system — commonly a Prometheus-format /metrics endpoint that gets scraped, or a push-based export to a platform like Datadog.",
+    detailedExplanation: "This is the delivery-mechanism counterpart to the monitoring-tool entry, worth distinguishing since there are two fundamentally different models: pull-based (the server exposes a /metrics endpoint, and Prometheus or similar scrapes it periodically) versus push-based (the server actively sends metrics to a platform like Datadog or a StatsD collector). Which one an MCP server uses depends on the monitoring stack already in place at the organization, not on anything specific to MCP.",
+    keyTakeaways: [
+      "The delivery mechanism behind the monitoring-tool entry — how metrics actually reach a monitoring system.",
+      "Pull-based (Prometheus scraping a /metrics endpoint) vs. push-based (sending to Datadog/StatsD) are the two common models.",
+      "Choice depends on the organization's existing monitoring stack, not on anything MCP-specific.",
+      "Per-tool metric labels (see: monitoring tool) are worth including regardless of which export model is used."
+    ],
+    useCase: "An MCP server exposes a Prometheus-format /metrics endpoint that an existing Prometheus deployment scrapes every 15 seconds, requiring no push-based integration code in the server itself.",
+    technicalDetails: {
+      protocolLayer: "Infrastructure / Observability (alongside the MCP transport layer)",
+      format: "Prometheus exposition format (pull) or platform-specific push API",
+      latencyProfile: "Not applicable to MCP directly — a separate observability path"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/"
+    ]
+  },
+    {
+    slug: "mcp-trace-export-102",
+    term: "Trace Export (MCP Server Observability, OpenTelemetry)",
+    definition: "Trace export ships distributed-tracing spans from an MCP server to a tracing backend, most commonly using OpenTelemetry's standard exporter, which lets a single tool call's downstream work (a database query, an API call) show up as one connected trace.",
+    detailedExplanation: "Instrumenting an MCP server with OpenTelemetry means wrapping tool execution in spans, so that when a tool call triggers, say, a database query and an external API call, all three show up as parent-child spans in one trace — genuinely valuable for understanding where time is actually spent inside a slow tool call, beyond just the aggregate latency a metrics system would show. This is a standard OpenTelemetry integration with no MCP-specific format, though instrumenting the tool-call boundary specifically (not just HTTP request boundaries) takes deliberate setup.",
+    keyTakeaways: [
+      "Uses standard OpenTelemetry instrumentation and export — no MCP-specific tracing format exists.",
+      "Wrapping tool execution in spans shows exactly where time is spent inside a single tool call.",
+      "More granular than aggregate latency metrics — useful for diagnosing why a specific call was slow.",
+      "Requires deliberate setup to instrument at the tool-call boundary, not just generic HTTP request tracing."
+    ],
+    useCase: "An MCP server instrumented with OpenTelemetry produces a trace showing a slow tool call spent 200ms on a database query and 50ms on tool logic, exported to a tracing backend for analysis.",
+    technicalDetails: {
+      protocolLayer: "Infrastructure / Observability (alongside the MCP tool layer)",
+      format: "OpenTelemetry Protocol (OTLP)",
+      latencyProfile: "Not applicable to MCP directly — instrumentation adds negligible overhead per call"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/"
+    ]
+  },
+    {
+    slug: "mcp-audit-logger-103",
+    term: "Audit Logger (MCP Tool Calls)",
+    definition: "An audit logger records who called which MCP tool, with what arguments, and what happened — distinct from general operational logging in that it's specifically meant as a durable, tamper-resistant record for compliance and security review, not just debugging.",
+    detailedExplanation: "Because an MCP tool call can represent an AI agent taking a real action (modifying data, sending a message, spending money), audit logging matters more here than for typical read-heavy application logs — regulated industries in particular need a reliable answer to 'what did this AI agent actually do, and on whose authority.' A proper audit log captures the caller's identity (from the OAuth token), the tool name and a redacted view of its arguments, the outcome, and a timestamp, and is typically written to storage the application itself can't easily modify or delete.",
+    keyTakeaways: [
+      "Distinct from general debugging logs — meant as a durable, tamper-resistant compliance/security record.",
+      "Should capture caller identity, tool name, redacted arguments, outcome, and timestamp at minimum.",
+      "Matters especially for tools that take real actions (mutations, payments, messages sent).",
+      "Often written to storage the application itself can't easily modify or delete, for integrity."
+    ],
+    useCase: "A financial-services MCP server writes an audit log entry for every tool call that touches customer data, recording the authenticated caller's identity and a redacted argument summary to an append-only store for compliance review.",
+    technicalDetails: {
+      protocolLayer: "Application / Security (behind the MCP tool layer)",
+      format: "Structured, append-only or tamper-resistant log storage",
+      latencyProfile: "Should be reliable but can be asynchronous relative to the tool call response"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices/"
+    ]
+  },
+    {
+    slug: "mcp-compliance-checker-104",
+    term: "Compliance Checker (an MCP Tool Category)",
+    definition: "A compliance checker is a tool that verifies whether some artifact (a config file, a data-handling process) meets a specific regulatory or policy standard — a legitimate, real category of MCP tool for teams building compliance-assistance workflows, distinct from the server's own compliance with best practices.",
+    detailedExplanation: "This describes a tool an agent calls to check something else's compliance — for example, verifying a data-processing configuration doesn't violate a data-localization requirement — as opposed to whether the MCP server itself follows security best practices (a separate, meta-level concern covered by the security-best-practices reference used throughout this glossary). Both matter, but they're different things: one is what the tool does, the other is how the tool (and server) is built.",
+    keyTakeaways: [
+      "A tool category that checks whether some artifact meets a compliance standard — a real, useful MCP use case.",
+      "Distinct from whether the MCP server itself follows security/compliance best practices as an implementation.",
+      "Results should be treated as advisory input for a human decision, not a substitute for real compliance review.",
+      "Useful in regulated domains: data-localization checks, access-control audits, policy-conformance checks."
+    ],
+    useCase: "An MCP tool checks whether a proposed data-storage configuration satisfies a data-localization policy, flagging violations for a human to review before it's approved.",
+    technicalDetails: {
+      protocolLayer: "Application (behind the MCP tool layer)",
+      format: "Rule-based or policy-engine-backed checks, domain-specific",
+      latencyProfile: "Typically tens to hundreds of milliseconds depending on check complexity"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/"
+    ]
+  },
+    {
+    slug: "mcp-security-scanner-105",
+    term: "Security Scanner (an MCP Tool Category, and a Real Concern for MCP Servers Themselves)",
+    definition: "A security scanner can be an MCP tool that checks something else for vulnerabilities, and separately, MCP servers themselves are a real, actively-discussed target for security scanning given how many now exist with inconsistent security practices.",
+    detailedExplanation: "Two distinct things worth separating: first, a tool an agent calls to scan some target (code, a config, a running service) for security issues, following the same advisory-not-authoritative principle as the compliance-checker entry. Second — and increasingly relevant as the MCP ecosystem has grown — MCP servers themselves have become a scanning target, since a server with excessive tool permissions, weak input validation, or leaked credentials is a real, demonstrated risk; several public write-ups have documented exactly these kinds of issues in real-world MCP server implementations.",
+    keyTakeaways: [
+      "Can refer to a tool that scans something else, or to scanning MCP servers themselves as a security practice.",
+      "MCP servers are a real, growing target for security review given inconsistent implementation quality across the ecosystem.",
+      "Common real risks: over-broad tool permissions, weak input validation, leaked downstream credentials.",
+      "Scanner output (either direction) is advisory input, not a substitute for genuine security review."
+    ],
+    useCase: "A security team runs a scanner against their organization's self-hosted MCP servers specifically checking for overly broad tool permissions and unvalidated file-path or SQL arguments.",
+    technicalDetails: {
+      protocolLayer: "Application / Security (either as a tool, or as external review of the server itself)",
+      format: "Scanner-specific, often static analysis plus runtime permission review",
+      latencyProfile: "Not applicable to MCP directly when scanning the server itself; variable when exposed as a tool"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices/"
+    ]
+  },
+    {
+    slug: "mcp-vulnerability-scan-106",
+    term: "Vulnerability Scanning (an MCP Tool Category)",
+    definition: "Vulnerability scanning checks a target (code, a container image, a running service) against known CVE databases — a specific, well-defined kind of security scan, distinct from the broader security-scanner entry in that it's specifically about matching against known, published vulnerabilities.",
+    detailedExplanation: "An MCP tool wrapping a vulnerability scanner (Trivy, Grype, Snyk) typically takes a target — a container image reference, a dependency manifest — and returns a list of matched CVEs with severity ratings, letting an agent summarize a project's known-vulnerability exposure or flag a risky dependency before it's added. Because CVE databases update continuously, results are only as current as the scanner's last database sync, worth stating explicitly rather than implying a scan result is a permanent, complete guarantee.",
+    keyTakeaways: [
+      "Specifically about matching against known, published CVEs — narrower than general security scanning.",
+      "Common underlying tools: Trivy, Grype, Snyk, or a cloud provider's native scanner.",
+      "Results are only as current as the scanner's last CVE database sync, not a permanent guarantee.",
+      "Useful for an agent summarizing dependency risk or flagging a vulnerable package before it's introduced."
+    ],
+    useCase: "An MCP tool runs Trivy against a container image and returns a summarized list of high-severity CVEs, letting an agent flag them in a pull-request review.",
+    technicalDetails: {
+      protocolLayer: "Application (behind the MCP tool layer)",
+      format: "Scanner-specific (Trivy, Grype, Snyk APIs), results typically in CVE format",
+      latencyProfile: "Typically seconds, depending on image/dependency-tree size"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/"
+    ]
+  },
+    {
+    slug: "mcp-dependency-check-107",
+    term: "Dependency Check (an MCP Tool Category)",
+    definition: "A dependency check looks at a project's declared dependencies more broadly than vulnerability scanning alone — outdated versions, unused packages, license conflicts (see license checker) — giving an agent a fuller picture of dependency health, not just known-CVE exposure.",
+    detailedExplanation: "This is a broader category than vulnerability scanning specifically: an MCP tool here might report which dependencies are several major versions behind, which are declared but never actually imported, or which have been deprecated/unmaintained upstream — useful context for an agent helping with dependency hygiene or a security review that wants more than just 'any known CVEs.' Tools like npm audit, Dependabot's underlying checks, or language-specific equivalents commonly power this.",
+    keyTakeaways: [
+      "Broader than vulnerability scanning — covers outdated, unused, or unmaintained dependencies too.",
+      "Common underlying tools: npm audit, Dependabot-style checks, or language-specific equivalents.",
+      "Useful for agent-assisted dependency hygiene, not just security-specific review.",
+      "Complements, rather than replaces, a dedicated vulnerability scan for known-CVE exposure."
+    ],
+    useCase: "An MCP tool reports a project's dependencies that are more than two major versions out of date, letting an agent flag upgrade candidates as part of a codebase health review.",
+    technicalDetails: {
+      protocolLayer: "Application (behind the MCP tool layer)",
+      format: "Package-manager-specific (npm audit, pip-audit, etc.)",
+      latencyProfile: "Typically seconds, depending on dependency-tree size"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/"
+    ]
+  },
+    {
+    slug: "mcp-license-checker-108",
+    term: "License Checker (an MCP Tool Category)",
+    definition: "A license checker reports the open-source licenses of a project's dependencies and flags ones that conflict with a company's licensing policy (e.g. a copyleft license in a proprietary codebase) — a legal-compliance concern distinct from security scanning.",
+    detailedExplanation: "This is worth having as its own category since it answers a genuinely different question than a vulnerability or dependency check: not 'is this dependency risky or outdated' but 'are we legally allowed to use this dependency the way we're using it.' An MCP tool here typically reads each dependency's declared license (from its package manifest) and checks it against an allow/deny list, flagging anything ambiguous or restrictive for human legal review rather than making a final determination itself.",
+    keyTakeaways: [
+      "A legal-compliance concern, distinct from security or freshness — checks license terms, not vulnerabilities.",
+      "Typically checks declared licenses against a company allow/deny list.",
+      "Ambiguous or restrictive results should go to human legal review, not be auto-resolved by the tool.",
+      "Common underlying tools: license-checker (npm ecosystem), FOSSA, or similar language-specific tools."
+    ],
+    useCase: "An MCP tool flags a newly added dependency with a copyleft license as conflicting with the company's proprietary-software policy, surfacing it for legal review before the change is merged.",
+    technicalDetails: {
+      protocolLayer: "Application (behind the MCP tool layer)",
+      format: "Package-manifest license metadata, checked against a policy list",
+      latencyProfile: "Typically seconds, depending on dependency-tree size"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/"
+    ]
+  },
+    {
+    slug: "mcp-policy-engine-109",
+    term: "Policy Engine (Authorization Decisions for MCP Tool Calls)",
+    definition: "A policy engine (Open Policy Agent being the most widely used) evaluates whether a given tool call should be allowed based on declarative rules — a real, increasingly common way to implement fine-grained MCP tool authorization beyond simple scope checks.",
+    detailedExplanation: "Where MCP's OAuth authorization spec covers who a client is and what broad scopes they hold, a policy engine sits inside the server to make more granular decisions — 'this user's role can call read tools but not the delete_record tool,' or 'this tool can only be called during business hours' — expressed as declarative policy rather than scattered if-statements through the codebase. Open Policy Agent (using its Rego policy language) is the most common choice for this in production systems, evaluated as a fast, separate check before a tool handler actually runs.",
+    keyTakeaways: [
+      "A real, common pattern for fine-grained MCP tool authorization beyond OAuth scopes alone.",
+      "Open Policy Agent (Rego) is the most widely used implementation for this kind of decision.",
+      "Expresses authorization rules declaratively, separate from and evaluated before the tool's own logic.",
+      "Complements, rather than replaces, MCP's own OAuth-based authorization at the connection level."
+    ],
+    useCase: "An MCP server evaluates each tool call against an Open Policy Agent policy that restricts which user roles can invoke destructive tools, independent of and in addition to the OAuth scopes already granted.",
+    technicalDetails: {
+      protocolLayer: "Authorization (adjacent to and layered on top of MCP's own OAuth authorization)",
+      format: "Declarative policy language (e.g. Rego for Open Policy Agent)",
+      latencyProfile: "Typically low milliseconds per policy evaluation"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/specification/2025-06-18/basic/authorization/"
+    ]
+  },
+    {
+    slug: "mcp-rule-engine-110",
+    term: "Rule Engine (Business Logic behind an MCP Tool)",
+    definition: "A general-purpose rule engine (Drools, a lighter-weight JSON-rules library) evaluates business rules as part of a tool's logic — related to but broader than a policy engine, which is specifically about authorization decisions.",
+    detailedExplanation: "Where a policy engine specifically answers 'is this call allowed,' a general rule engine can implement any conditional business logic a tool needs — pricing rules, eligibility checks, routing decisions — expressed declaratively rather than hardcoded, which makes the rules easier for non-engineers to review or update. An MCP tool might call into an existing rule engine a company already uses for this kind of logic elsewhere, rather than reimplementing the same rules specifically for the AI-facing tool.",
+    keyTakeaways: [
+      "Broader than a policy engine — implements general business logic, not just authorization decisions.",
+      "Declarative rules are typically easier for non-engineers to review/update than hardcoded conditionals.",
+      "An MCP tool often calls into a rule engine a company already maintains for the same logic elsewhere.",
+      "Common examples: Drools (Java), or lighter JSON/DSL-based rule libraries in other languages."
+    ],
+    useCase: "An MCP 'check_discount_eligibility' tool calls into an existing rule engine that already encodes the company's discount-eligibility business rules, rather than duplicating that logic specifically for the AI-facing tool.",
+    technicalDetails: {
+      protocolLayer: "Application (behind the MCP tool layer)",
+      format: "Rule-engine-specific (Drools rule language, a JSON-based DSL, etc.)",
+      latencyProfile: "Typically low milliseconds per rule evaluation"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/"
+    ]
+  },
+            {
+    slug: "mcp-state-machine-113",
+    term: "State Machine (behind an MCP Tool or Workflow)",
+    definition: "A state machine models an entity moving through a defined set of states and transitions (e.g. an order going pending → paid → shipped → delivered) — a common way to implement the multi-step workflows an MCP tool might trigger or check status on.",
+    detailedExplanation: "This connects directly to the earlier workflow-engine entry: many workflow engines (Temporal notably) are literally implemented as durable state machines under the hood. An MCP tool interacting with a state-machine-backed process typically either triggers a transition (advance this order to 'shipped') or reads the current state, with the state machine's own definition enforcing which transitions are valid — preventing, for example, an agent from accidentally trying to 'ship' an order that was never paid.",
+    keyTakeaways: [
+      "A common implementation pattern behind multi-step workflows an MCP tool might trigger or query.",
+      "Enforces valid transitions, preventing invalid state changes (e.g. shipping an unpaid order) even if a tool call requests one.",
+      "Many workflow engines (Temporal, for instance) are built on this exact concept internally.",
+      "An MCP tool typically either triggers a transition or reads current state, not the full transition graph."
+    ],
+    useCase: "An MCP 'advance_order_status' tool attempts to transition an order to 'shipped'; the underlying state machine rejects the call if the order isn't currently in a 'paid' state, returning a clear error instead of allowing an invalid transition.",
+    technicalDetails: {
+      protocolLayer: "Application (behind the MCP tool layer)",
+      format: "State-machine-library-specific, or a durable-workflow-engine's internal implementation",
+      latencyProfile: "Typically low milliseconds for an in-process check; higher if backed by a durable external engine"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/"
+    ]
+  },
+            {
+    slug: "mcp-fact-checker-116",
+    term: "Fact Checker (an MCP Tool for Grounding Agent Output)",
+    definition: "A fact-checking tool lets an agent verify a specific claim against a trusted source (a search API, an internal knowledge base) before including it in a response — a genuinely useful pattern for reducing hallucination risk, though it verifies individual claims, not an agent's entire output.",
+    detailedExplanation: "This is a real, practically valuable MCP pattern rather than an abstract category: rather than trusting an LLM's internal knowledge for a specific factual claim, a tool can look it up against a live, authoritative source and return a verified (or contradicted) result the agent can then use to correct itself. It's worth being precise about the limits here — this verifies individual claims the agent explicitly checks, not a general guarantee that everything else in its response is accurate, since an agent might simply not check every claim it makes.",
+    keyTakeaways: [
+      "A genuinely useful pattern for reducing hallucination risk on specific, checkable claims.",
+      "Works by looking up a claim against a live, trusted source, not by evaluating the LLM's internal confidence.",
+      "Only as good as the source it checks against, and only covers claims the agent actually chooses to verify.",
+      "Not a general accuracy guarantee for an agent's entire response — it verifies what it's explicitly asked to check."
+    ],
+    useCase: "Before stating a company's current stock price in a response, an agent calls a fact-checking tool that looks it up against a live market-data API, rather than relying on potentially stale training data.",
+    technicalDetails: {
+      protocolLayer: "Application (behind the MCP tool layer)",
+      format: "Search or authoritative-source API, claim-specific",
+      latencyProfile: "Typically hundreds of milliseconds, dependent on the source being queried"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/"
+    ]
+  },
+    {
+    slug: "mcp-data-validator-117",
+    term: "Custom Validation Logic (Beyond JSON Schema, in an MCP Tool)",
+    definition: "Some validation can't be expressed in a tool's JSON Schema alone — cross-field checks ('end date must be after start date'), or checks requiring a lookup ('does this username already exist') — and needs custom logic in the tool handler itself, run either synchronously or asynchronously depending on what it needs to check.",
+    detailedExplanation: "JSON Schema (see the schema-validation entry) covers a lot, but it's fundamentally a per-field, static declaration — it can't express a rule that depends on the relationship between two fields, or one that requires querying a database or external API to evaluate. That kind of validation runs as ordinary code inside the tool handler, after schema validation has already passed. Whether it's synchronous (checking two numeric fields against each other, no I/O needed) or asynchronous (checking a database for an existing record) just depends on what the specific check requires — it's an implementation detail, not a distinct category of validation from MCP's perspective.",
+    keyTakeaways: [
+      "Handles validation JSON Schema can't express: cross-field rules, or checks requiring an external lookup.",
+      "Runs as ordinary handler code after schema validation has already passed, not as a separate protocol step.",
+      "Whether it's synchronous or asynchronous is just an implementation detail based on whether I/O is needed.",
+      "Should still return a clear, tool-specific error message so the calling agent understands what to correct."
+    ],
+    useCase: "An MCP 'create_booking' tool's schema validates that start_date and end_date are properly formatted dates, then custom handler logic checks that end_date is actually after start_date and that the venue isn't already booked for that window — checks JSON Schema alone couldn't express.",
+    technicalDetails: {
+      protocolLayer: "Application (behind the MCP tool layer, after schema validation)",
+      format: "Ordinary application code, synchronous or asynchronous depending on the check",
+      latencyProfile: "Sub-millisecond for in-memory checks; higher if a database or external lookup is involved"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/specification/2025-06-18/server/tools/"
+    ]
+  },
+    {
+    slug: "mcp-schema-validator-118",
+    term: "Schema Validation (MCP Tool Input, JSON Schema)",
+    definition: "Every MCP tool declares a JSON Schema for its input parameters, and a compliant server validates incoming tool-call arguments against that schema — type checking, format constraints (email, URI), numeric ranges, and enum restrictions are all expressed as part of the same schema, not as separate validation layers.",
+    detailedExplanation: "This is one of the more concretely spec-relevant entries in this glossary: MCP tool definitions include an inputSchema field using standard JSON Schema, and a well-implemented server validates every incoming tools/call request against it before the tool's own logic runs, rejecting malformed calls with a clear error rather than letting bad input reach application code. JSON Schema itself already covers what might otherwise look like separate concerns — type ('string', 'integer'), format ('email', 'date-time', 'uri'), numeric bounds (minimum/maximum), and enum (a fixed set of allowed values) — so a server rarely needs bespoke type-checking or range-checking code on top of standard schema validation.",
+    keyTakeaways: [
+      "Directly tied to MCP's spec: every tool declares a JSON Schema for its inputs, which a server should validate against.",
+      "JSON Schema natively covers type, format (email/URI/date), numeric ranges, and enum constraints in one declaration.",
+      "Validating before the tool's own logic runs prevents malformed LLM-generated arguments from reaching application code.",
+      "A validation failure should return a clear JSON-RPC error the client (and the model) can understand and correct from."
+    ],
+    useCase: "An MCP tool's schema declares an 'email' string with format 'email' and a 'priority' field restricted to an enum of three values; the server rejects a call with an invalid email format or an out-of-enum priority before the tool handler ever executes.",
+    technicalDetails: {
+      protocolLayer: "Application (defined in the MCP specification itself, via tool inputSchema)",
+      format: "JSON Schema",
+      latencyProfile: "Sub-millisecond — schema validation is a local, in-process check"
+    },
+    references: [
+      "https://spec.modelcontextprotocol.io/specification/2025-06-18/server/tools/"
+    ]
+  },
+                                                                                                                                                                                                ];

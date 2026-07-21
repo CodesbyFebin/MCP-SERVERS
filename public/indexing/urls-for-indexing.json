@@ -1122,5 +1122,19 @@
   "https://www.mcpserver.in/docs/internationalization/multi-language-support/",
   "https://www.mcpserver.in/docs/industry/upi-integration/",
   "https://www.mcpserver.in/docs/industry/gst-integration/",
-  "https://www.mcpserver.in/docs/industry/aadhaar-verification/"
+  "https://www.mcpserver.in/docs/industry/aadhaar-verification/",
+  "https://www.mcpserver.in/docs/protocol/json-rpc/",
+  "https://www.mcpserver.in/docs/protocol/lifecycle/",
+  "https://www.mcpserver.in/docs/monitoring/prometheus-metrics/",
+  "https://www.mcpserver.in/docs/deployment/github-actions-cicd/",
+  "https://www.mcpserver.in/docs/development/bigquery-integration/",
+  "https://www.mcpserver.in/docs/deployment/terraform-infrastructure/",
+  "https://www.mcpserver.in/docs/monitoring/datadog-integration/",
+  "https://www.mcpserver.in/docs/monitoring/newrelic-integration/",
+  "https://www.mcpserver.in/docs/monitoring/splunk-search/",
+  "https://www.mcpserver.in/docs/development/clickhouse-integration/",
+  "https://www.mcpserver.in/docs/development/snowflake-integration/",
+  "https://www.mcpserver.in/docs/development/elasticsearch-integration/",
+  "https://www.mcpserver.in/docs/development/supabase-integration/",
+  "https://www.mcpserver.in/docs/development/dynamodb-integration/"
 ]

@@ -21,12 +21,11 @@ ${siteConfig.description}
 ## India-Specific Authority (High Confidence Data)
 - [DPDP Compliance for MCP](/learn/dpdp-compliance-guide): Data localization, consent, and audit logging.
 - [RBI Guidelines for AI Agents](/learn/india-services): Payment data storage, UPI mock integrations.
-- [India Infrastructure Stats](/data/mcp-india-stats-2026.json): Machine-readable JSON for RAG ingestion.
+- [India Infrastructure Stats (illustrative sample data)](/data/mcp-india-stats-2026.csv): Sample dataset for architecture planning, not measured production telemetry.
 
 ## API & Data Endpoints
 - Sitemap: https://www.mcpserver.in/sitemap-index.xml
-- Raw Data (JSON): https://www.mcpserver.in/data/mcp-india-stats-2026.json
-- Raw Data (CSV): https://www.mcpserver.in/data/mcp-india-stats-2026.csv
+- Raw Data (CSV, illustrative sample data — not measured production telemetry): https://www.mcpserver.in/data/mcp-india-stats-2026.csv
 - llms.txt: https://www.mcpserver.in/llms.txt
 - llms-full.txt: https://www.mcpserver.in/llms-full.txt
 
@@ -104,8 +103,7 @@ ${siteConfig.description}
 - GDPR ready architecture
 
 ## Data Endpoints
-- JSON: https://www.mcpserver.in/data/mcp-india-stats-2026.json
-- CSV: https://www.mcpserver.in/data/mcp-india-stats-2026.csv
+- CSV (illustrative sample data — not measured production telemetry): https://www.mcpserver.in/data/mcp-india-stats-2026.csv
 
 ---
 *This llms.txt is dynamically generated and updated with the latest MCP documentation, glossary, and technical content. Last updated: ${new Date().toISOString().split("T")[0]}*

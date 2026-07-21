@@ -1,7 +1,7 @@
 import { MicroBillingDashboard } from '../../../../src/components/dashboard/MicroBillingDashboard';
 
-export default function ServerDetailPage({ params }: { params: { id: string } }) {
-  const serverId = params.id;
+export default async function ServerDetailPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id: serverId } = await params;
 
   return (
     <div className="max-w-7xl mx-auto p-6 space-y-6">
