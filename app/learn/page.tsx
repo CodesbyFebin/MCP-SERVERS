@@ -1,9 +1,19 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, BookOpen } from "lucide-react";
+import { ArrowRight, BookOpen, GitBranch, Globe, Landmark, Server, ShieldCheck, TrendingUp } from "lucide-react";
 import Breadcrumbs from "../../src/components/Breadcrumbs";
 import SchemaJsonLd from "../../src/components/SchemaJsonLd";
 import { getFAQSchema, getUnifiedGraphSchema } from "../../src/lib/schema";
+
+const guides = [
+  { title: "DPDP Compliance Guide", href: "/learn/dpdp-compliance-guide", description: "India's data protection law, applied to MCP server design.", icon: ShieldCheck },
+  { title: "India Services", href: "/learn/india-services", description: "Razorpay, Zoho, and UPI integration patterns for Indian teams.", icon: Globe },
+  { title: "Indic NLP Guide", href: "/learn/indic-nlp-guide", description: "Ollama and Hugging Face models for Indian-language workloads.", icon: BookOpen },
+  { title: "Production Deployment", href: "/learn/mcp-production-deployment", description: "Step-by-step guide from hosting choice to compliance sign-off.", icon: Server },
+  { title: "India MCP Benchmarks", href: "/learn/india-mcp-benchmarks", description: "Illustrative latency estimates across Indian hosting regions.", icon: TrendingUp },
+  { title: "RBI AI Guidelines", href: "/learn/rbi-ai-guidelines", description: "Data localization, minimization, and audit trails for fintech MCP servers.", icon: Landmark },
+  { title: "MCP vs LangChain", href: "/learn/mcp-vs-langchain", description: "An honest technical comparison — protocol vs. orchestration framework.", icon: GitBranch },
+];
 
 export const metadata: Metadata = {
   title: "MCPserver.in Learn - MCP Knowledge Hub & AI Infrastructure Guides",
@@ -133,6 +143,29 @@ export default function LearnPage() {
           <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-white/58">
             Expert answers on hosting, latency, compliance, pricing, and enterprise deployment. Optimized for voice search and AI retrieval.
           </p>
+        </section>
+
+        <section className="mt-4">
+          <h2 className="text-2xl font-black text-white">In-Depth Guides</h2>
+          <p className="mt-2 text-sm text-white/58">Longer, step-by-step guides beyond the quick answers below.</p>
+          <div className="mt-6 grid gap-4 sm:grid-cols-2">
+            {guides.map((guide) => {
+              const Icon = guide.icon;
+              return (
+                <Link
+                  key={guide.href}
+                  href={guide.href}
+                  className="group rounded-xl border border-white/10 bg-white/[0.035] p-5 transition hover:border-cyan-300/40"
+                >
+                  <div className="flex items-center gap-2 mb-2">
+                    <Icon className="h-4 w-4 text-cyan-300" />
+                    <h3 className="text-sm font-black text-white group-hover:text-cyan-200">{guide.title}</h3>
+                  </div>
+                  <p className="text-xs text-white/55">{guide.description}</p>
+                </Link>
+              );
+            })}
+          </div>
         </section>
 
         {learnSections.map((section) => (
