@@ -15,6 +15,7 @@
     "verify:p99": "node scripts/verify-production.mjs",
     "generate:llms": "node scripts/generate-llms-full.mjs",
     "generate:content": "node scripts/generate-content.mjs",
+    "content:gaps": "node scripts/extract-content-gaps.mjs",
     "verify:production": "node scripts/verify-production.mjs",
     "submit-indexnow": "node scripts/submit-indexnow.mjs",
     "clean": "rm -rf dist .next"
@@ -27,6 +28,7 @@
     "bcryptjs": "^3.0.3",
     "dotenv": "^17.2.3",
     "express": "^4.21.2",
+    "fuse.js": "^7.5.0",
     "jose": "^6.2.3",
     "lucide-react": "^0.546.0",
     "motion": "^12.23.24",

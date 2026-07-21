@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Breadcrumbs from "../../src/components/Breadcrumbs";
 import SchemaJsonLd from "../../src/components/SchemaJsonLd";
+import DocsSearch from "../../src/components/DocsSearch";
 import { docsClusters, docsPages, getDocsPath } from "../../src/data/docs";
 import { ArrowRight, BookOpen, FileText, Search, ShieldCheck, Zap } from "lucide-react";
 
@@ -23,6 +24,12 @@ export default function Docs() {
   ];
 
   const guideLookup = new Map(docsPages.map((page) => [getDocsPath(page), page]));
+  const searchItems = docsPages.map((page) => ({
+    title: page.title,
+    description: page.description,
+    category: page.category,
+    href: getDocsPath(page),
+  }));
   const hubSchema = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
@@ -58,6 +65,9 @@ export default function Docs() {
               <p className="max-w-3xl text-sm sm:text-base leading-7 text-slate-300">
                 Practical guides for Model Context Protocol setup, pricing, low-latency hosting, DPDP-aware compliance, deployments, monitoring, and industry workflows.
               </p>
+            </div>
+            <div className="max-w-xl">
+              <DocsSearch items={searchItems} />
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
               {[

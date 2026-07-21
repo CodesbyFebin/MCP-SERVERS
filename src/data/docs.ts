@@ -114,6 +114,7 @@ export const docsClusters: DocsCluster[] = [
     answer: "Start with the MCP concept, run a local server, connect Claude or Cursor, then move production workloads to an authenticated hosted endpoint.",
     links: [
       "/docs/getting-started/what-is-mcp",
+      "/docs/getting-started/quickstart",
       "/docs/getting-started/local-installation",
       "/docs/getting-started/claude-cursor-config",
       "/docs/getting-started/managed-edge-hosting",
@@ -129,6 +130,7 @@ export const docsClusters: DocsCluster[] = [
       "/docs/protocol/resources",
       "/docs/protocol/prompts",
       "/docs/protocol/events",
+      "/docs/protocol/transports",
     ],
   },
   {
@@ -218,6 +220,13 @@ export const docsClusters: DocsCluster[] = [
       "/docs/monitoring/observability-best-practices",
     ],
   },
+  {
+    slug: "troubleshooting",
+    title: "Troubleshooting",
+    description: "Fixes for the most common MCP connection, authentication, tool-execution, and performance errors.",
+    answer: "Most MCP issues trace back to three causes: an incorrect command path in the client config, a missing environment variable, or a network or firewall restriction. Check those first before deeper debugging.",
+    links: ["/docs/troubleshooting/common-issues"],
+  },
 ];
 
 const hubSections = (cluster: DocsCluster): DocsSection[] => [
@@ -286,6 +295,51 @@ const generatedHubPages: DocsPage[] = docsClusters
     related: cluster.links.slice(0, 5),
     })
   );
+
+const serverSectionOverrides: Record<string, DocsSection[]> = {
+  "postgres-mcp-server": [
+    {
+      heading: "Secure query tool with parameterized statements",
+      body: [
+        "Give the agent a single, tightly-scoped read tool rather than raw query execution. Validate the query with Zod, reject write keywords with a heuristic check (a production build should use a real SQL parser instead of string matching), and always execute through parameterized statements, never string concatenation.",
+      ],
+      code: `const QuerySchema = z.object({
+  sql_query: z.string().describe("A read-only SELECT query."),
+  parameters: z.array(z.any()).optional(),
+});
+
+server.setRequestHandler(CallToolRequestSchema, async (request) => {
+  const parsed = QuerySchema.parse(request.params.arguments);
+  const forbidden = ["UPDATE", "DELETE", "DROP", "INSERT", "TRUNCATE"];
+  if (forbidden.some((k) => parsed.sql_query.toUpperCase().includes(k))) {
+    throw new Error("Only read-only SELECT queries are permitted.");
+  }
+
+  const client = new Client({ /* PG_HOST, PG_USER, PG_PASSWORD, PG_DATABASE, ssl */ });
+  await client.connect();
+  const res = await client.query(parsed.sql_query, parsed.parameters ?? []);
+  await client.end();
+  return { content: [{ type: "text", text: JSON.stringify(res.rows, null, 2) }] };
+});`,
+    },
+    {
+      heading: "Schema introspection so the agent can write valid queries",
+      body: [
+        "An agent cannot write good queries without knowing the table structure. Expose a dedicated get_database_schema tool backed by information_schema rather than letting the agent guess column names.",
+      ],
+      code: `SELECT table_name, column_name, data_type
+FROM information_schema.columns
+WHERE table_schema = 'public';`,
+    },
+    {
+      heading: "Production guardrails: pooling, timeouts, and row limits",
+      body: [
+        "Use a connection pool instead of opening a new client per request, or concurrent AI requests will exhaust database connections.",
+        "Set a statement_timeout on the MCP database role so a malformed AI-generated query cannot lock up the database, and append a LIMIT automatically when the agent's query does not specify one, so a large result set cannot overwhelm the model's context window.",
+      ],
+    },
+  ],
+};
 
 const generatedServerDocsPages: DocsPage[] = servers.map((server) =>
   page({
@@ -384,6 +438,7 @@ const generatedServerDocsPages: DocsPage[] = servers.map((server) =>
   }
 }`,
       },
+      ...(serverSectionOverrides[server.slug] ?? []),
     ],
     faqs: [
       {
@@ -464,6 +519,108 @@ export const docsPages: DocsPage[] = [
     ],
     citations: [officialCitations.mcp, officialCitations.jsonRpc],
     related: ["/docs/getting-started/local-installation", "/docs/protocol/tools", "/docs/deployment/railway-deployment", "/glossary/model-context-protocol"],
+  }),
+  page({
+    slug: ["getting-started", "quickstart"],
+    title: "MCP Server Quickstart Guide",
+    description: "Build, run, and connect your first Model Context Protocol server in Node.js and TypeScript in under five minutes.",
+    category: "getting-started",
+    cluster: "quickstart",
+    tags: ["mcp", "quickstart", "typescript", "sdk"],
+    targetKeywords: ["mcp quickstart", "build mcp server", "model context protocol tutorial", "mcp sdk nodejs"],
+    schemaType: "HowTo",
+    priority: 0.9,
+    changefreq: "weekly",
+    directAnswer: "The fastest way to connect a local AI agent such as Claude Desktop or Cursor to a custom tool is the stdio transport in the official Model Context Protocol SDK: define a tool schema, register list and call handlers, then point the client config at the compiled server.",
+    keyTakeaways: [
+      "A minimal MCP server needs only a tool schema and two request handlers: list tools and call tool.",
+      "Validate every tool argument with a schema library such as Zod before executing it.",
+      "Test locally with the MCP Inspector before wiring the server into Claude Desktop or Cursor.",
+    ],
+    sections: [
+      {
+        heading: "Prerequisites",
+        body: [
+          "Install Node.js 18 or higher, and have Claude Desktop or Cursor IDE available to test the finished server.",
+          "Basic familiarity with TypeScript and npm is enough to follow this guide end to end.",
+        ],
+      },
+      {
+        heading: "Initialize the project",
+        body: [
+          "Create a new directory, initialize a Node.js project, and install the official SDK along with Zod for input validation.",
+        ],
+        code: `mkdir my-first-mcp-server
+cd my-first-mcp-server
+npm init -y
+npm install @modelcontextprotocol/sdk zod
+npm install -D typescript @types/node
+npx tsc --init`,
+      },
+      {
+        heading: "Define the tool server",
+        body: [
+          "A minimal server declares its name and capabilities, registers a list-tools handler that describes each tool's JSON Schema, and registers a call-tool handler that validates arguments with Zod before executing.",
+          "Always validate tool inputs with a schema library. The MCP SDK requires strict JSON Schema definitions for every tool to prevent malformed or malicious requests from reaching your execution logic.",
+        ],
+        code: `import { Server } from "@modelcontextprotocol/sdk/server/index.js";
+import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import { CallToolRequestSchema, ListToolsRequestSchema } from "@modelcontextprotocol/sdk/types.js";
+import { z } from "zod";
+
+const server = new Server(
+  { name: "my-first-mcp-server", version: "1.0.0" },
+  { capabilities: { tools: {} } }
+);
+
+const WeatherSchema = z.object({
+  location: z.string().describe("The city and state, e.g., 'Mumbai, IN'"),
+});
+
+server.setRequestHandler(ListToolsRequestSchema, async () => ({
+  tools: [
+    {
+      name: "get_current_weather",
+      description: "Get the current weather for a specific location.",
+      inputSchema: {
+        type: "object",
+        properties: { location: { type: "string", description: "The city and state" } },
+        required: ["location"],
+      },
+    },
+  ],
+}));
+
+server.setRequestHandler(CallToolRequestSchema, async (request) => {
+  const { name, arguments: args } = request.params;
+  if (name === "get_current_weather") {
+    const parsed = WeatherSchema.parse(args);
+    const mockWeather = { location: parsed.location, temperature: "28C", condition: "Partly Cloudy" };
+    return { content: [{ type: "text", text: JSON.stringify(mockWeather, null, 2) }] };
+  }
+  throw new Error(\`Tool \${name} not found\`);
+});
+
+const transport = new StdioServerTransport();
+await server.connect(transport);`,
+      },
+      {
+        heading: "Compile, test, and connect to Claude Desktop",
+        body: [
+          "Compile the TypeScript output, then verify the server responds correctly with the MCP Inspector before wiring it into any client.",
+          "To use the server in Claude Desktop, add it to claude_desktop_config.json (in Library/Application Support/Claude on Mac, or %APPDATA%/Claude on Windows) using an absolute path to the compiled entry point, then restart Claude Desktop.",
+        ],
+        code: `npx tsc
+npx @modelcontextprotocol/inspector node dist/index.js`,
+      },
+    ],
+    faqs: [
+      { question: "Can I use Python instead of Node.js for MCP servers?", answer: "Yes. The official SDK has a Python equivalent. The protocol is language-agnostic as long as it adheres to the JSON-RPC 2.0 specification." },
+      { question: "Why does Claude Desktop say the command was not found?", answer: "This almost always means the command path in claude_desktop_config.json is relative or incorrect. Always use absolute paths for local stdio servers." },
+      { question: "Do I need to deploy anything to test a new tool?", answer: "No. Local stdio testing with the MCP Inspector is free and does not require any hosting; deploy only once the tool is ready for a team or production use." },
+    ],
+    citations: [officialCitations.mcp, officialCitations.jsonRpc],
+    related: ["/docs/getting-started/local-installation", "/docs/getting-started/claude-cursor-config", "/docs/protocol/tools", "/servers"],
   }),
   page({
     slug: ["getting-started", "local-installation"],
@@ -729,6 +886,78 @@ node server.js`,
     ],
     citations: [officialCitations.mcp, officialCitations.jsonRpc],
     related: ["/docs/protocol/resources", "/docs/monitoring/observability-best-practices", "/glossary/json-rpc"],
+  }),
+  page({
+    slug: ["protocol", "transports"],
+    title: "MCP Transports: Stdio vs HTTP/SSE",
+    description: "Choose between stdio and HTTP/SSE transports for Model Context Protocol servers, with tradeoffs for local development versus production cloud deployments.",
+    category: "protocol",
+    cluster: "transports",
+    tags: ["transports", "stdio", "sse", "protocol"],
+    targetKeywords: ["mcp transports", "mcp stdio", "mcp http sse", "mcp remote server"],
+    schemaType: "TechArticle",
+    priority: 0.85,
+    changefreq: "weekly",
+    directAnswer: "MCP is transport-agnostic: the same JSON-RPC 2.0 messages flow over either channel. Use stdio for local development and single-user desktop clients such as Claude Desktop or Cursor; use HTTP with Server-Sent Events for production, multi-tenant, cloud-hosted servers that serve multiple clients at once.",
+    keyTakeaways: [
+      "Stdio ties the server to the client process and needs no network configuration or authentication.",
+      "HTTP/SSE supports multiple concurrent clients and remote access, but requires TLS, auth, and rate limiting.",
+      "Switching transports later does not require rewriting tool logic, only the transport initialization.",
+    ],
+    sections: [
+      {
+        heading: "Stdio transport (local)",
+        body: [
+          "The AI client spawns the MCP server as a child process and exchanges JSON-RPC frames over stdin and stdout, so the server's lifecycle is tied to the client. This gives zero network configuration, no authentication burden since the trust boundary is the local machine, and minimal latency.",
+          "The tradeoff: only one client can connect at a time, the server cannot be reached remotely, and any stray text written to stdout (instead of stderr) corrupts the JSON-RPC stream.",
+        ],
+        code: `import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+
+const transport = new StdioServerTransport();
+await server.connect(transport);`,
+      },
+      {
+        heading: "HTTP/SSE transport (remote)",
+        body: [
+          "HTTP POST carries client-to-server requests such as tools/call and resources/read, while Server-Sent Events stream server-to-client notifications and long-running operation updates. This is standard REST-like infrastructure carrying JSON-RPC payloads, so it works behind load balancers and supports OAuth or API-key authentication.",
+          "The tradeoff: it needs TLS, CORS, and auth configured correctly, and carries more latency than a local pipe.",
+        ],
+        code: `import express from "express";
+import { SSEServerTransport } from "@modelcontextprotocol/sdk/server/sse.js";
+
+const app = express();
+app.use(express.json());
+
+app.post("/mcp", async (req, res) => {
+  const transport = new SSEServerTransport("/messages", res);
+  await server.connect(transport);
+});
+
+app.listen(3000);`,
+      },
+      {
+        heading: "Decision matrix",
+        body: ["Match the transport to the deployment shape rather than defaulting to one for every project."],
+        table: table(
+          ["Scenario", "Recommended transport"],
+          [
+            ["Local development", "Stdio"],
+            ["Claude Desktop or Cursor integration", "Stdio"],
+            ["Single-user desktop app", "Stdio"],
+            ["Team collaboration tool", "HTTP/SSE"],
+            ["Multi-tenant SaaS product", "HTTP/SSE"],
+            ["Enterprise or mobile-app backend", "HTTP/SSE"],
+          ]
+        ),
+      },
+    ],
+    faqs: [
+      { question: "Can I switch from stdio to HTTP/SSE later?", answer: "Yes. The protocol layer is identical either way; only the transport initialization code changes, so tool definitions and business logic stay the same." },
+      { question: "Does HTTP/SSE support streaming responses?", answer: "Yes. Server-Sent Events are designed for one-way server-to-client streaming, which suits long-running tool executions and real-time notifications." },
+      { question: "Is stdio transport secure?", answer: "It is secure for local, single-user scenarios because the trust boundary is the local machine, but it should never be exposed directly over a network." },
+    ],
+    citations: [officialCitations.mcp, officialCitations.jsonRpc, officialCitations.sse],
+    related: ["/docs/protocol/events", "/docs/compliance/security-best-practices", "/docs/getting-started/quickstart", "/docs/deployment/railway-deployment"],
   }),
   page({
     slug: ["pricing", "india-pricing-comparison"],
@@ -1039,15 +1268,72 @@ node server.js`,
     keyTakeaways: ["Start with data inventory.", "Use deny-by-default tools.", "Review logs for sensitive leakage."],
     sections: [
       {
-        heading: "Checklist",
+        heading: "Checklist overview",
         body: ["Run this checklist before connecting an MCP server to customer, employee, healthcare, education, or financial data."],
         table: table(["Item", "Ready signal"], [["Data inventory", "Every tool lists fields accessed"], ["Purpose", "Each tool has a business purpose"], ["Redaction", "Sensitive identifiers masked"], ["Retention", "Logs have expiry policy"], ["Incident response", "Breach workflow documented"]]),
+      },
+      {
+        heading: "Data localization (Section 18)",
+        body: [
+          "Host the MCP server and the databases it queries within Indian geographic boundaries, for example AWS Mumbai (ap-south-1), Azure Pune, or GCP Delhi.",
+          "Make sure no fallback routing, third-party logging service, or CDN edge cache stores personal data outside India, and get written confirmation of Indian data residency from any managed MCP hosting provider you use.",
+        ],
+      },
+      {
+        heading: "Consent and purpose limitation (Sections 6 and 7)",
+        body: [
+          "The application invoking the MCP server should capture explicit, granular consent before an AI agent accesses personal data, and every tool should be scoped strictly to that consented purpose.",
+          "For example, an agent consented to read transaction history should not also have access to a tool that updates a user's profile. Design tools to return only the minimum data needed and avoid unscoped select-all patterns.",
+        ],
+      },
+      {
+        heading: "Immutable audit logging (Sections 8 and 9)",
+        body: [
+          "Every tool invocation should generate an audit log entry that cannot be altered or deleted by the agent or a standard user. At minimum, capture a timestamp, agent identifier, hashed user identifier, tool name, action type, compliance status, and the data elements accessed.",
+        ],
+        code: `interface MCPAuditLog {
+  timestamp: string;          // ISO 8601
+  agent_id: string;
+  user_id_hashed: string;     // hashed, never raw PII
+  tool_name: string;
+  action: "read" | "write";
+  compliance_status: "approved" | "blocked";
+  data_elements_accessed: string[];
+}`,
+      },
+      {
+        heading: "Security, access control, and data principal rights (Sections 11 to 13)",
+        body: [
+          "Require authentication such as mTLS, JWT, or API keys for any non-stdio connection, default database roles to read-only unless a specific audited write is required, and validate all tool arguments against strict schemas to block prompt injection or SQL injection.",
+          "You must also be able to answer a data principal's right-to-access request by querying MCP audit logs, and be able to purge any cached data or temporary files the server generated upon a valid erasure request.",
+        ],
+        code: `server.setRequestHandler(CallToolRequestSchema, async (request) => {
+  const { name, arguments: args } = request.params;
+  const userId = request.params.metadata?.userId;
+
+  if (name === "get_user_financial_data") {
+    const hasConsent = await checkConsentRegistry(userId, "financial_access");
+    if (!hasConsent) {
+      return { content: [{ type: "text", text: "Error: consent not found." }], isError: true };
+    }
+
+    const data = await db.query(
+      "SELECT account_type, last_login FROM users WHERE id = $1",
+      [userId]
+    );
+
+    await auditLogger.log({ userIdHashed: hash(userId), tool_name: name, compliance_status: "approved" });
+    return { content: [{ type: "text", text: JSON.stringify(data) }] };
+  }
+});`,
       },
     ],
     faqs: [
       { question: "Who should own the checklist?", answer: "Engineering, security, legal, and product should jointly own it." },
       { question: "Do logs contain personal data?", answer: "They can. Redact tool inputs and outputs before log storage where possible." },
       { question: "How often should review happen?", answer: "Review before launch and whenever tools, data fields, or vendors change." },
+      { question: "Does the MCP protocol itself handle DPDP compliance?", answer: "No. MCP is a transport and capability negotiation protocol. Compliance is the server implementer's responsibility, enforced through authentication, logging, and data-handling logic." },
+      { question: "Can I use a US-based LLM API if my MCP server is hosted in India?", answer: "Yes, but no personal data should be sent in the prompt. Aggregate, anonymize, or summarize the data locally before sending context to a non-Indian LLM." },
     ],
     citations: [officialCitations.dpdp],
     related: ["/docs/compliance/dpdp-compliance-guide", "/docs/monitoring/observability-best-practices", "/glossary/dpdp"],
@@ -1097,8 +1383,8 @@ node server.js`,
     schemaType: "HowTo",
     priority: 0.9,
     changefreq: "weekly",
-    directAnswer: "Secure MCP by denying risky tools by default, validating schemas, isolating secrets, rate-limiting calls, logging safely, and requiring human approval for destructive actions.",
-    keyTakeaways: ["Least privilege first.", "Never trust tool arguments.", "Mask secrets in logs."],
+    directAnswer: "Secure MCP by denying risky tools by default, validating schemas, isolating secrets, rate-limiting calls, logging safely, and requiring human approval for destructive actions. The protocol itself does not enforce authentication or authorization; that responsibility sits with whoever implements the server.",
+    keyTakeaways: ["Least privilege first.", "Never trust tool arguments.", "Mask secrets in logs.", "Pick an auth method that matches deployment risk: API keys for internal tools, OAuth for multi-tenant apps, mTLS for zero-trust networks."],
     sections: [
       {
         heading: "Baseline policy",
@@ -1111,14 +1397,48 @@ node server.js`,
   "requireApproval": ["write", "delete", "send_money"]
 }`,
       },
+      {
+        heading: "Choosing an authentication method",
+        body: [
+          "API keys are the simplest option and fit internal tools or single-tenant deployments: store the key in an environment variable, rotate it periodically, and reject any request whose header does not match.",
+          "OAuth 2.0 suits multi-tenant SaaS and user-facing integrations, since it verifies a bearer token against an identity provider on every request. mTLS gives the strongest guarantee for zero-trust or regulated environments (finance, healthcare, government) because both client and server present certificates, removing passwords and tokens from the equation entirely.",
+        ],
+        table: table(
+          ["Method", "Best fit", "Key requirement"],
+          [
+            ["API key", "Internal tools, dev/staging", "Rotate on a schedule, never hardcode"],
+            ["OAuth 2.0", "Multi-tenant SaaS, user-facing apps", "Verify bearer token per request"],
+            ["mTLS", "Zero-trust, regulated industries", "Client and server certificates"],
+          ]
+        ),
+      },
+      {
+        heading: "Authorization with RBAC",
+        body: [
+          "Authentication answers who is connecting; authorization answers what they may do. Attach a role to each verified caller and check it before executing a tool, rather than trusting that authentication alone is sufficient.",
+        ],
+        code: `const ROLE_PERMISSIONS: Record<string, string[]> = {
+  admin: ["tools/call", "resources/read", "resources/write"],
+  developer: ["tools/call", "resources/read"],
+  readonly: ["resources/read"],
+};
+
+function authorize(role: string, method: string) {
+  if (!ROLE_PERMISSIONS[role]?.includes(method)) {
+    throw new Error(\`Unauthorized: \${role} cannot execute \${method}\`);
+  }
+}`,
+      },
     ],
     faqs: [
       { question: "Is API key auth enough?", answer: "It is a start, but production should also use scopes, rotation, logging, and approval policies." },
       { question: "Can MCP leak secrets?", answer: "Yes if tools return secrets or logs store raw headers. Redact aggressively." },
       { question: "Should tools run in sandboxes?", answer: "Use sandboxing for file, shell, browser, or network-capable tools." },
+      { question: "Does the MCP protocol enforce authentication?", answer: "No. MCP does not mandate a specific auth mechanism. Any server exposed over HTTP/SSE must add authentication and transport encryption itself." },
+      { question: "How do I rotate API keys without downtime?", answer: "Accept both the old and new key for a transition window, move clients to the new key, then revoke the old one once nothing is using it." },
     ],
     citations: [officialCitations.mcp],
-    related: ["/docs/compliance/dpdp-compliance-guide", "/docs/getting-started/claude-cursor-config", "/glossary/oauth"],
+    related: ["/docs/compliance/dpdp-compliance-guide", "/docs/getting-started/claude-cursor-config", "/docs/protocol/transports", "/glossary/oauth"],
   }),
   page({
     slug: ["comparisons", "mcp-vs-rest-2026"],
@@ -1693,7 +2013,7 @@ mcp_tool_errors_total{server="payments",tool="refund.create",reason="approval_re
     priority: 0.85,
     changefreq: "weekly",
     directAnswer: "MCP observability should trace every tool call across auth, validation, protocol dispatch, downstream systems, redaction, and response delivery.",
-    keyTakeaways: ["Trace full tool lifecycle.", "Redact logs.", "Use incident-friendly request IDs."],
+    keyTakeaways: ["Trace full tool lifecycle.", "Redact logs.", "Use incident-friendly request IDs.", "Alert on error-rate and latency thresholds, not raw request counts."],
     sections: [
       {
         heading: "Lifecycle tracing",
@@ -1706,14 +2026,130 @@ mcp_tool_errors_total{server="payments",tool="refund.create",reason="approval_re
   "redactedFields": 2
 }`,
       },
+      {
+        heading: "Instrumenting requests with Prometheus",
+        body: [
+          "Wrap the tool-call handler with a counter and a duration histogram, labeled by tool name and status, then expose them on a metrics endpoint for Prometheus to scrape.",
+        ],
+        code: `import { Counter, Histogram, Registry } from "prom-client";
+
+const register = new Registry();
+const requestDuration = new Histogram({
+  name: "mcp_request_duration_seconds",
+  help: "Duration of MCP tool calls in seconds",
+  labelNames: ["tool"],
+  buckets: [0.01, 0.05, 0.1, 0.5, 1, 2, 5],
+  registers: [register],
+});
+const requestCounter = new Counter({
+  name: "mcp_requests_total",
+  help: "Total MCP tool calls",
+  labelNames: ["tool", "status"],
+  registers: [register],
+});
+
+server.setRequestHandler(CallToolRequestSchema, async (request) => {
+  const end = requestDuration.startTimer({ tool: request.params.name });
+  try {
+    const result = await executeTool(request);
+    requestCounter.inc({ tool: request.params.name, status: "success" });
+    return result;
+  } catch (error) {
+    requestCounter.inc({ tool: request.params.name, status: "error" });
+    throw error;
+  } finally {
+    end();
+  }
+});`,
+      },
+      {
+        heading: "Alerting thresholds",
+        body: [
+          "Page immediately on sustained error-rate or latency spikes; only notify the team for softer warning-level thresholds so paging stays meaningful.",
+        ],
+        table: table(
+          ["Severity", "Condition", "Window"],
+          [
+            ["Critical (page)", "Error rate above 5%", "5 minutes"],
+            ["Critical (page)", "P99 latency above 10s", "5 minutes"],
+            ["Warning (notify)", "Error rate above 1%", "15 minutes"],
+            ["Warning (notify)", "P95 latency above 2s", "10 minutes"],
+          ]
+        ),
+      },
     ],
     faqs: [
       { question: "Do I need request IDs?", answer: "Yes. Request IDs connect logs, traces, and support cases." },
       { question: "Can observability conflict with privacy?", answer: "It can. Redact sensitive content and keep retention policies clear." },
       { question: "What is the most useful metric?", answer: "Tool latency and error rate by tool name usually provide the fastest signal." },
+      { question: "How do I monitor a stdio-only MCP server?", answer: "Stdio servers are harder to observe remotely. Expose a small metrics endpoint on a separate local HTTP port, or rely on the MCP Inspector for interactive debugging." },
     ],
     citations: [officialCitations.mcp],
     related: ["/docs/monitoring/grafana-dashboard", "/docs/compliance/dpdp-checklist", "/docs/performance/optimization-guide"],
+  }),
+  page({
+    slug: ["troubleshooting", "common-issues"],
+    title: "MCP Troubleshooting: Common Issues and Fixes",
+    description: "Fixes for the MCP errors developers hit most: command-not-found, connection refused, auth failures, tool-not-found, and out-of-memory crashes.",
+    category: "troubleshooting",
+    cluster: "common-issues",
+    tags: ["troubleshooting", "debugging", "errors"],
+    targetKeywords: ["mcp troubleshooting", "mcp not working", "mcp connection refused", "mcp debug"],
+    schemaType: "HowTo",
+    priority: 0.85,
+    changefreq: "weekly",
+    directAnswer: "Most MCP issues trace back to three causes: an incorrect or relative command path in the client configuration, a missing environment variable, or a network or firewall restriction blocking the connection. Check those first before deeper debugging.",
+    keyTakeaways: [
+      "Always use absolute paths in claude_desktop_config.json and similar client configs.",
+      "Stdout must carry only JSON-RPC frames; send debug output to stderr instead.",
+      "The MCP Inspector is the fastest way to test a server interactively before wiring it into a client.",
+    ],
+    sections: [
+      {
+        heading: "Connection issues",
+        body: [
+          "A 'command not found' error almost always means the command path in the client configuration is relative or wrong. Use an absolute path to the executable, confirm the file exists and is executable, and start the server manually from a terminal to surface the real error before blaming the client.",
+          "'Connection refused' means nothing is listening on the expected port. Confirm the process is actually running, check what is bound to the port, and verify firewall rules if the server is remote. A timeout usually means the server is slow to respond rather than unreachable; increase the client timeout and check server logs for a slow downstream call before assuming the network is at fault.",
+        ],
+        code: `# Verify the executable and permissions
+which node
+ls -la /absolute/path/to/server/dist/index.js
+chmod +x /absolute/path/to/server/dist/index.js
+
+# Check what is listening on a port
+lsof -i :3000`,
+      },
+      {
+        heading: "Authentication and tool errors",
+        body: [
+          "A 401 usually means a missing or malformed credential; print the environment variable (without logging it anywhere persistent) to confirm it is set and has no stray whitespace. A 403 means the caller authenticated fine but the role attached to them does not permit the requested method; check the RBAC mapping rather than the credential itself.",
+          "'Tool not found' is almost always a name mismatch: tool names are case-sensitive and must match exactly between the list-tools handler and the call-tool handler. 'Invalid input' means the arguments the client sent do not match the tool's declared schema; use the MCP Inspector to call the tool directly and see the exact validation failure.",
+        ],
+        code: `npx @modelcontextprotocol/inspector node server.js`,
+      },
+      {
+        heading: "Performance and memory issues",
+        body: [
+          "A server that feels slow is usually blocked on a downstream call, most often an unindexed database query. Profile the specific tool, add the missing index, and add connection pooling and a response cache before assuming the protocol itself is the bottleneck.",
+          "An out-of-memory crash usually means a tool is loading an entire result set into memory instead of streaming it. Raise the Node heap limit as a stopgap, but fix the root cause by streaming large datasets row by row instead of materializing them all at once.",
+        ],
+        code: `# Stopgap: raise the heap limit
+node --max-old-space-size=4096 server.js
+
+# Real fix: stream instead of loading everything
+const stream = db.query("SELECT * FROM large_table").stream();
+for await (const row of stream) {
+  // process row by row
+}`,
+      },
+    ],
+    faqs: [
+      { question: "How do I reset my MCP client configuration?", answer: "Delete the client's config file (for example claude_desktop_config.json) and restart the client; it will regenerate with defaults, and you can re-add servers one at a time." },
+      { question: "Why does my server work locally but not in production?", answer: "The usual causes are a missing environment variable, a different Node.js version, a firewall rule, or a relative path that only resolved correctly on your machine. Check each one systematically rather than guessing." },
+      { question: "How do I see the raw request and response for a failing tool call?", answer: "Run the server through the MCP Inspector and call the tool directly; it shows the exact JSON-RPC payload and the schema validation error, which is faster than reading server logs." },
+    ],
+    citations: [officialCitations.mcp, officialCitations.jsonRpc],
+    related: ["/docs/getting-started/quickstart", "/docs/protocol/transports", "/docs/compliance/security-best-practices", "/docs/monitoring/observability-best-practices"],
   }),
 ];
 

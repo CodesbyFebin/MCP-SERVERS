@@ -13,7 +13,7 @@ MCPserver.in is India's first MCP-focused knowledge hub, providing educational r
 ## India-Specific Authority
 - [DPDP Compliance for MCP](https://mcpserver.in/learn/dpdp-compliance-guide): Data localization, consent management, and audit logging for Indian MCP servers.
 - [India Services — MCP Routing](https://mcpserver.in/learn/india-services): Regional infrastructure, Mumbai vs. Bengaluru placement, and latency benchmarks.
-- [India Stats 2026 (JSON)](https://mcpserver.in/data/mcp-india-stats-2026.json): Machine-readable dataset of MCP server latency and compliance flags.
+- [India Stats 2026 (CSV, illustrative)](https://mcpserver.in/data/mcp-india-stats-2026.csv): Illustrative sample dataset for architecture planning — not measured production telemetry.
 
 ## Top MCP Server Integrations
 - [GitHub MCP Server](https://mcpserver.in/servers/github-mcp-server): Repository management, PR reviews, and issue tracking.
@@ -23,13 +23,12 @@ MCPserver.in is India's first MCP-focused knowledge hub, providing educational r
 - [AWS MCP Server](https://mcpserver.in/servers/aws-mcp-server): Cloud infrastructure management and deployment.
 
 ## Machine-Readable Data Endpoints (For RAG Ingestion)
-- Raw India Stats JSON: https://mcpserver.in/data/mcp-india-stats-2026.json
-- Raw India Stats CSV: https://mcpserver.in/data/mcp-india-stats-2026.csv
+- India Stats CSV (illustrative sample data, not measured production telemetry): https://mcpserver.in/data/mcp-india-stats-2026.csv
 - Sitemap: https://mcpserver.in/sitemap.xml
 - llms-full.txt: https://mcpserver.in/llms-full.txt
 
 ## Knowledge Graph Scale
-- Glossary Terms: 350+ technical definitions
+- Glossary Terms: 298+ technical definitions
 - Pillar Pages: 59+ comprehensive guides
 - Server Integrations: 116+ verified MCP servers
 
