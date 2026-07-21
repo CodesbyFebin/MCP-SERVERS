@@ -14,6 +14,7 @@
     "audit:schema": "tsx scripts/audit-schema.mjs",
     "seo:rankings": "node scripts/seo-rank-tracker.mjs",
     "verify:p99": "node scripts/verify-production.mjs",
+    "verify:sitemap": "node scripts/verify-sitemap.mjs",
     "generate:llms": "node scripts/generate-llms-full.mjs",
     "generate:content": "node scripts/generate-content.mjs",
     "content:gaps": "node scripts/extract-content-gaps.mjs",

@@ -1,0 +1,21 @@
+name: Sitemap Health Check
+
+on:
+  schedule:
+    - cron: "0 3 * * *"   # Daily at 03:00 UTC
+  workflow_dispatch:
+
+jobs:
+  verify-sitemap:
+    runs-on: ubuntu-latest
+    env:
+      PRODUCTION_BASE_URL: https://www.mcpserver.in
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Crawl sitemap and verify every URL returns 200
+        run: node scripts/verify-sitemap.mjs
