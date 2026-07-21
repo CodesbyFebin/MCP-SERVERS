@@ -57,6 +57,9 @@ const officialCitations = {
   awsMumbai: "https://aws.amazon.com/about-aws/global-infrastructure/regions_az/",
   cloudRun: "https://cloud.google.com/run/docs",
   sse: "https://html.spec.whatwg.org/multipage/server-sent-events.html",
+  prometheus: "https://prometheus.io/docs/introduction/overview/",
+  bigquery: "https://cloud.google.com/bigquery/docs",
+  githubActions: "https://docs.github.com/en/actions",
 };
 
 const commonConfigCode = `{
@@ -201,6 +204,7 @@ export const docsClusters: DocsCluster[] = [
       "/docs/deployment/google-cloud-run",
       "/docs/deployment/vercel-deployment",
       "/docs/deployment/kubernetes-deployment",
+      "/docs/deployment/github-actions-cicd",
     ],
   },
   {
@@ -230,6 +234,7 @@ export const docsClusters: DocsCluster[] = [
       "/docs/monitoring/grafana-dashboard",
       "/docs/monitoring/mcp-pulse-guide",
       "/docs/monitoring/observability-best-practices",
+      "/docs/monitoring/prometheus-metrics",
     ],
   },
   {
@@ -244,7 +249,7 @@ export const docsClusters: DocsCluster[] = [
     title: "Development Practices",
     description: "Testing strategies and error-handling patterns for building production-grade MCP servers.",
     answer: "Test MCP servers at three levels (unit, integration, and load), and handle every tool call with categorized error handling so validation, runtime, timeout, and network failures each return a clear, user-facing message instead of crashing the server.",
-    links: ["/docs/development/testing-strategies", "/docs/development/error-handling", "/docs/development/publishing"],
+    links: ["/docs/development/testing-strategies", "/docs/development/error-handling", "/docs/development/publishing", "/docs/development/bigquery-integration"],
   },
   {
     slug: "advanced",
@@ -3331,6 +3336,234 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
     ],
     citations: [officialCitations.mcp, officialCitations.jsonRpc],
     related: ["/docs/protocol/json-rpc", "/docs/getting-started/quickstart", "/docs/protocol/events"],
+  }),
+  page({
+    slug: ["monitoring", "prometheus-metrics"],
+    title: "Monitor MCP Servers with Prometheus",
+    description: "Export MCP server metrics in Prometheus format and write PromQL queries for tool latency, error rate, and throughput.",
+    category: "monitoring",
+    cluster: "prometheus-metrics",
+    tags: ["prometheus", "metrics", "observability"],
+    targetKeywords: ["prometheus mcp", "mcp server metrics", "promql mcp"],
+    schemaType: "HowTo",
+    priority: 0.75,
+    changefreq: "monthly",
+    directAnswer: "Prometheus monitors MCP servers by scraping a /metrics endpoint that exposes counters and histograms for tool calls, then lets you query and alert on them with PromQL.",
+    keyTakeaways: [
+      "Expose a /metrics endpoint with the prom-client library rather than pushing metrics manually.",
+      "Use a histogram for tool-call duration so you can derive p50/p95/p99, not just an average.",
+      "Label by server and tool name, never by user ID, email, or request payload content.",
+    ],
+    sections: [
+      {
+        heading: "Instrumenting an MCP server",
+        body: [
+          "The prom-client package is the standard way to expose Prometheus-format metrics from a Node.js process. Wrap each tool handler so every call increments a counter and records its duration in a histogram, then serve the aggregated result on a /metrics HTTP endpoint for Prometheus to scrape on an interval.",
+        ],
+        code: `import { Counter, Histogram, register } from "prom-client";
+import express from "express";
+
+const toolCalls = new Counter({
+  name: "mcp_tool_calls_total",
+  help: "Total tool calls handled",
+  labelNames: ["server", "tool", "status"],
+});
+
+const toolDuration = new Histogram({
+  name: "mcp_tool_duration_seconds",
+  help: "Tool call duration in seconds",
+  labelNames: ["server", "tool"],
+  buckets: [0.05, 0.1, 0.25, 0.5, 1, 2, 5],
+});
+
+async function callTool(server: string, tool: string, handler: () => Promise<unknown>) {
+  const end = toolDuration.startTimer({ server, tool });
+  try {
+    const result = await handler();
+    toolCalls.inc({ server, tool, status: "success" });
+    return result;
+  } catch (err) {
+    toolCalls.inc({ server, tool, status: "error" });
+    throw err;
+  } finally {
+    end();
+  }
+}
+
+const app = express();
+app.get("/metrics", async (_req, res) => {
+  res.set("Content-Type", register.contentType);
+  res.end(await register.metrics());
+});
+app.listen(9464);`,
+      },
+      {
+        heading: "Useful PromQL queries",
+        body: [
+          "Once Prometheus is scraping the endpoint, these queries cover the metrics that matter most for an MCP server: error rate, p95 latency, and per-tool call volume.",
+        ],
+        table: table(
+          ["Question", "PromQL"],
+          [
+            ["Error rate over 5 minutes", 'sum(rate(mcp_tool_calls_total{status="error"}[5m])) / sum(rate(mcp_tool_calls_total[5m]))'],
+            ["p95 tool latency", "histogram_quantile(0.95, sum(rate(mcp_tool_duration_seconds_bucket[5m])) by (le, tool))"],
+            ["Calls per tool per minute", "sum(rate(mcp_tool_calls_total[1m])) by (tool)"],
+          ],
+        ),
+      },
+    ],
+    faqs: [
+      { question: "Does Prometheus replace Grafana?", answer: "No. Prometheus collects and stores the time-series data; Grafana (or Prometheus's own expression browser) is typically used to visualize it." },
+      { question: "Should the /metrics endpoint require authentication?", answer: "Yes if it's reachable outside your own network - it can reveal server names, tool names, and call volume. Put it behind the same auth boundary as the rest of your infrastructure, not the public MCP endpoint." },
+      { question: "How often should Prometheus scrape?", answer: "15-30 seconds is a common default. Faster scraping increases storage and CPU cost without meaningfully improving alerting latency for most MCP workloads." },
+    ],
+    citations: [officialCitations.prometheus, officialCitations.mcp],
+    related: ["/docs/monitoring/grafana-dashboard", "/docs/monitoring/observability-best-practices", "/docs/monitoring"],
+  }),
+  page({
+    slug: ["deployment", "github-actions-cicd"],
+    title: "Deploy MCP Servers with GitHub Actions",
+    description: "Build a GitHub Actions workflow that tests, builds, and deploys an MCP server on every push to main.",
+    category: "deployment",
+    cluster: "github-actions-cicd",
+    tags: ["github-actions", "ci-cd", "deployment"],
+    targetKeywords: ["github actions mcp", "mcp ci cd", "deploy mcp server github actions"],
+    schemaType: "HowTo",
+    priority: 0.75,
+    changefreq: "monthly",
+    directAnswer: "A GitHub Actions workflow can install dependencies, run tests, build the server, and deploy it automatically whenever changes are pushed to the main branch.",
+    keyTakeaways: [
+      "Keep the workflow's job order strict: install, typecheck, test, build, then deploy - fail fast before spending time deploying broken code.",
+      "Store deployment credentials as encrypted GitHub secrets, never as plain workflow environment values.",
+      "Run the MCP Inspector or an equivalent smoke test against the built server before promoting a deploy.",
+    ],
+    sections: [
+      {
+        heading: "A test-and-deploy workflow",
+        body: [
+          "This workflow runs on every push to main: install dependencies with a locked lockfile, typecheck, run the test suite, build, then deploy only if every prior step passed. Secrets referenced with ${{ secrets.NAME }} are pulled from the repository's encrypted GitHub secrets, never written into the YAML itself.",
+        ],
+        code: `name: Deploy MCP Server
+on:
+  push:
+    branches: [main]
+
+jobs:
+  test-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run build
+
+      - name: Deploy
+        env:
+          DEPLOY_TOKEN: \${{ secrets.DEPLOY_TOKEN }}
+          MCP_API_KEY: \${{ secrets.MCP_API_KEY }}
+        run: npm run deploy`,
+      },
+      {
+        heading: "Gating on a smoke test",
+        body: [
+          "Before a workflow promotes a build to production, it's worth confirming the server actually starts and lists its tools correctly. The MCP Inspector can run headlessly in CI for exactly this check, catching a broken tool registration before it reaches real traffic.",
+        ],
+        code: `- name: Smoke test tool listing
+  run: |
+    npx @modelcontextprotocol/inspector --cli node dist/index.js \\
+      --method tools/list`,
+      },
+    ],
+    faqs: [
+      { question: "Should every push to main deploy automatically?", answer: "For a single-maintainer or low-risk server, yes. For anything customer-facing, most teams add a required manual approval step (GitHub Environments support this) before the deploy job runs." },
+      { question: "How are secrets kept out of logs?", answer: "GitHub Actions automatically masks any string that matches a configured secret's value in the workflow logs, but only if it's referenced through secrets. - never echo a secret into a shell variable and print that instead." },
+      { question: "Can this workflow deploy to multiple regions?", answer: "Yes - add a matrix strategy over your target regions, or split the deploy step into parallel jobs, each with its own region-specific credentials." },
+    ],
+    citations: [officialCitations.githubActions, officialCitations.mcp],
+    related: ["/docs/deployment", "/docs/development/testing-strategies", "/docs/deployment/aws-ec2-deployment"],
+  }),
+  page({
+    slug: ["development", "bigquery-integration"],
+    title: "Building a BigQuery MCP Server",
+    description: "Let AI agents run parameterized BigQuery queries safely, with cost controls and partition-aware guidance.",
+    category: "development",
+    cluster: "bigquery-integration",
+    tags: ["bigquery", "analytics", "google-cloud"],
+    targetKeywords: ["bigquery mcp server", "mcp bigquery integration", "ai agent bigquery"],
+    schemaType: "TechArticle",
+    priority: 0.7,
+    changefreq: "monthly",
+    directAnswer: "A BigQuery MCP server exposes a tool that runs parameterized SQL through the official @google-cloud/bigquery client, with query cost and row limits enforced before execution rather than trusted to the model.",
+    keyTakeaways: [
+      "Use parameterized queries (query_params), never string-interpolated SQL, to avoid injection through model-generated input.",
+      "Set maximumBytesBilled to cap the cost of any single query the model can trigger.",
+      "Favor partitioned and clustered tables - BigQuery bills by bytes scanned, not rows returned, so an unfiltered query on a large table is expensive even if the result set is small.",
+    ],
+    sections: [
+      {
+        heading: "A cost-bounded query tool",
+        body: [
+          "The official @google-cloud/bigquery client supports parameterized queries and a maximumBytesBilled cap, which turns an open-ended 'let the model query the warehouse' tool into one with a hard cost ceiling per call.",
+        ],
+        code: `import { BigQuery } from "@google-cloud/bigquery";
+import { z } from "zod";
+
+const bigquery = new BigQuery({
+  projectId: process.env.GCP_PROJECT_ID,
+});
+
+const QuerySchema = z.object({
+  sql: z.string(),
+  params: z.record(z.any()).optional(),
+});
+
+async function runBigQueryTool(args: unknown) {
+  const { sql, params } = QuerySchema.parse(args);
+
+  if (/\\b(INSERT|UPDATE|DELETE|DROP|MERGE)\\b/i.test(sql)) {
+    throw new Error("Only SELECT queries are permitted through this tool.");
+  }
+
+  const [job] = await bigquery.createQueryJob({
+    query: sql,
+    params,
+    maximumBytesBilled: "1000000000", // 1 GB cap per query
+    location: "asia-south1",
+  });
+
+  const [rows] = await job.getQueryResults({ maxResults: 200 });
+  return rows;
+}`,
+      },
+      {
+        heading: "Partitioning and cost awareness",
+        body: [
+          "BigQuery's on-demand pricing bills per byte scanned. A time-partitioned table lets a WHERE clause on the partition column skip scanning irrelevant partitions entirely, which is usually the single biggest cost lever available - larger than query tuning elsewhere in the SQL.",
+        ],
+        table: table(
+          ["Practice", "Effect"],
+          [
+            ["Filter on a partitioned date column", "Scans only matching partitions instead of the full table"],
+            ["Cluster by frequently-filtered columns", "Prunes blocks within a partition, reducing bytes read further"],
+            ["Cap maximumBytesBilled per call", "Query fails before running if it would exceed the cap, instead of billing silently"],
+          ],
+        ),
+      },
+    ],
+    faqs: [
+      { question: "Can the model write arbitrary SQL?", answer: "It can write SELECT statements, but the tool should reject any DDL/DML keywords before sending the query to BigQuery, since a model producing occasionally-wrong SQL is a normal failure mode, not an edge case." },
+      { question: "Does query caching help with repeated model queries?", answer: "Yes - BigQuery caches identical query results for a period by default, so a model re-running the same exploratory query typically isn't billed twice." },
+      { question: "What region should queries run in?", answer: "Run the query in the same region as the dataset. Cross-region queries either fail or require an explicit cross-region configuration, and add latency either way." },
+    ],
+    citations: [officialCitations.bigquery, officialCitations.mcp],
+    related: ["/docs/servers/postgres-mcp-server", "/docs/development/testing-strategies", "/docs/monitoring/prometheus-metrics"],
   }),
 ];
 
