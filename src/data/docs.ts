@@ -170,6 +170,9 @@ export const docsClusters: DocsCluster[] = [
       "/docs/compliance/rbi-compliance",
       "/docs/compliance/security-best-practices",
       "/docs/compliance/rate-limiting",
+      "/docs/compliance/output-sanitization",
+      "/docs/compliance/secret-management",
+      "/docs/compliance/audit-logging",
     ],
   },
   {
@@ -209,6 +212,9 @@ export const docsClusters: DocsCluster[] = [
       "/docs/industry/government",
       "/docs/industry/healthcare",
       "/docs/industry/education",
+      "/docs/industry/upi-integration",
+      "/docs/industry/gst-integration",
+      "/docs/industry/aadhaar-verification",
     ],
   },
   {
@@ -235,7 +241,7 @@ export const docsClusters: DocsCluster[] = [
     title: "Development Practices",
     description: "Testing strategies and error-handling patterns for building production-grade MCP servers.",
     answer: "Test MCP servers at three levels (unit, integration, and load), and handle every tool call with categorized error handling so validation, runtime, timeout, and network failures each return a clear, user-facing message instead of crashing the server.",
-    links: ["/docs/development/testing-strategies", "/docs/development/error-handling"],
+    links: ["/docs/development/testing-strategies", "/docs/development/error-handling", "/docs/development/publishing"],
   },
   {
     slug: "advanced",
@@ -243,6 +249,13 @@ export const docsClusters: DocsCluster[] = [
     description: "Multi-agent orchestration and real-time streaming patterns for production MCP architectures.",
     answer: "Advanced MCP deployments coordinate multiple specialized servers behind a supervisor agent and stream long-running tool progress over SSE instead of blocking on a single request-response cycle.",
     links: ["/docs/advanced/multi-agent-orchestration", "/docs/advanced/streaming"],
+  },
+  {
+    slug: "internationalization",
+    title: "Internationalization",
+    description: "Serving MCP tools, errors, and content in Hindi, Tamil, Telugu, and other Indian languages.",
+    answer: "Detect the user's language, translate at the edges of a tool call rather than inside business logic, and keep tool names in English while localizing descriptions and error messages.",
+    links: ["/docs/internationalization/multi-language-support"],
   },
 ];
 
@@ -2669,6 +2682,440 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
     ],
     citations: [officialCitations.awsMumbai],
     related: ["/docs/pricing/hidden-costs", "/docs/performance/optimization-guide", "/docs/deployment/kubernetes-deployment"],
+  }),
+  page({
+    slug: ["compliance", "output-sanitization"],
+    title: "MCP Output Sanitization Guide",
+    description: "Mask PII, escape unsafe HTML, and cap oversized payloads before an MCP tool response reaches an AI client.",
+    category: "compliance",
+    cluster: "output-sanitization",
+    tags: ["sanitization", "pii", "xss"],
+    targetKeywords: ["mcp output sanitization", "mcp pii masking", "mcp xss prevention"],
+    schemaType: "HowTo",
+    priority: 0.7,
+    changefreq: "weekly",
+    directAnswer: "Never return a tool's raw output to the client. Mask likely PII patterns (emails, phone numbers, card numbers), escape any HTML before it can be rendered, and truncate oversized arrays so a single tool response cannot leak sensitive data or blow out the model's context window.",
+    keyTakeaways: [
+      "Sanitize on the server, always; never rely on the client to do it.",
+      "Mask PII with pattern matching as a baseline, not a complete solution — pair it with schema-level data minimization.",
+      "Truncate large arrays with an explicit _truncated flag so the model knows the data was cut, rather than silently dropping items.",
+    ],
+    sections: [
+      {
+        heading: "Masking likely PII patterns",
+        body: [
+          "Regex-based masking is a baseline safety net, not a substitute for only selecting the fields a tool actually needs. Apply it recursively across strings, arrays, and nested objects before the response leaves the server.",
+        ],
+        code: `function sanitizeOutput(data: unknown): unknown {
+  if (typeof data === "string") {
+    return data
+      .replace(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}/g, "[EMAIL_REDACTED]")
+      .replace(/\\b\\d{4}[-\\s]?\\d{4}[-\\s]?\\d{4}[-\\s]?\\d{4}\\b/g, "[CARD_REDACTED]");
+  }
+  if (Array.isArray(data)) return data.map(sanitizeOutput);
+  if (typeof data === "object" && data !== null) {
+    return Object.fromEntries(Object.entries(data).map(([k, v]) => [k, sanitizeOutput(v)]));
+  }
+  return data;
+}`,
+      },
+      {
+        heading: "Capping payload size",
+        body: [
+          "A tool that can return an unbounded array should truncate it and say so explicitly, rather than either failing or silently flooding the model's context window.",
+        ],
+        code: `if (Array.isArray(data) && data.length > 100) {
+  return { _truncated: true, _original_length: data.length, _sample: data.slice(0, 100) };
+}`,
+      },
+    ],
+    faqs: [
+      { question: "Should I sanitize on the client too?", answer: "No. Sanitize on the server before sending data; never trust a client to sanitize on your behalf." },
+      { question: "Is regex-based PII masking enough by itself?", answer: "Treat it as a safety net, not the primary control. Data minimization at the query or schema level (only selecting fields a tool actually needs) is the stronger guarantee." },
+      { question: "What's the performance cost of sanitizing every response?", answer: "Negligible for typical tool payload sizes. For very large datasets, sanitize while streaming rather than materializing the full response first." },
+    ],
+    citations: [officialCitations.mcp],
+    related: ["/docs/compliance/dpdp-checklist", "/docs/compliance/security-best-practices", "/docs/compliance/audit-logging"],
+  }),
+  page({
+    slug: ["compliance", "secret-management"],
+    title: "MCP Secret Management Best Practices",
+    description: "Manage API keys, database credentials, and tokens for MCP servers with validated environment variables, a secret manager, and a rotation policy.",
+    category: "compliance",
+    cluster: "secret-management",
+    tags: ["secrets", "credentials", "rotation"],
+    targetKeywords: ["mcp secret management", "mcp api keys", "mcp credential rotation"],
+    schemaType: "HowTo",
+    priority: 0.7,
+    changefreq: "weekly",
+    directAnswer: "Never hardcode secrets in source code. Load them from environment variables validated at startup, move production secrets into a manager such as AWS Secrets Manager or Vault instead of plain env vars, and rotate on a schedule (shorter for high-value credentials) rather than only when a leak is suspected.",
+    keyTakeaways: [
+      "Validate required environment variables at startup so a missing secret fails loudly, not deep inside a request handler.",
+      "In production, prefer a secret manager over plain environment variables so rotation and access logging come for free.",
+      "Different secrets per environment; a dev credential should never work against production.",
+    ],
+    sections: [
+      {
+        heading: "Validated environment variables",
+        body: [
+          "Parse and validate process.env at startup with a schema so a missing or malformed secret fails immediately with a clear error, instead of surfacing as a confusing runtime failure the first time a tool needs it.",
+        ],
+        code: `const EnvSchema = z.object({
+  DATABASE_URL: z.string().url(),
+  API_KEY: z.string().min(10),
+  JWT_SECRET: z.string().min(32),
+});
+
+const env = EnvSchema.parse(process.env);`,
+      },
+      {
+        heading: "Secret managers for production",
+        body: [
+          "A secret manager adds access logging, fine-grained IAM policies, and rotation without redeploying, which plain environment variables cannot give you.",
+        ],
+        code: `const client = new SecretsManagerClient({ region: "ap-south-1" });
+
+async function getSecret(secretName: string): Promise<string> {
+  const { SecretString } = await client.send(new GetSecretValueCommand({ SecretId: secretName }));
+  return SecretString ?? "";
+}`,
+      },
+    ],
+    faqs: [
+      { question: "How often should secrets be rotated?", answer: "As a starting point: API keys around every 90 days, database passwords around every 180 days, and immediately for any credential known or suspected to be compromised." },
+      { question: "Should dev and production share secrets?", answer: "No. Use entirely separate credentials per environment so a leaked development key cannot touch production data." },
+      { question: "How do I respond to a leaked secret?", answer: "Rotate the compromised credential immediately, audit access logs for the window it was exposed, and notify affected users if the exposure could have touched their data." },
+    ],
+    citations: [officialCitations.mcp],
+    related: ["/docs/compliance/security-best-practices", "/docs/compliance/audit-logging", "/docs/deployment/kubernetes-deployment"],
+  }),
+  page({
+    slug: ["compliance", "audit-logging"],
+    title: "MCP Audit Logging Implementation",
+    description: "Buffer, batch, and durably store immutable audit log entries for every MCP tool invocation, plus how to query and report on them.",
+    category: "compliance",
+    cluster: "audit-logging",
+    tags: ["audit-logging", "compliance", "observability"],
+    targetKeywords: ["mcp audit logging", "mcp compliance logging", "mcp security logs"],
+    schemaType: "HowTo",
+    priority: 0.75,
+    changefreq: "weekly",
+    directAnswer: "Log every tool invocation locally for immediate visibility, buffer entries in memory, and flush them in batches to durable, encrypted, append-only storage such as versioned S3. This guide covers the implementation architecture; see the DPDP checklist for what a compliant log entry needs to contain.",
+    keyTakeaways: [
+      "Buffer and batch-flush audit entries rather than writing one object per request, to control storage cost and I/O.",
+      "Store audit logs in append-only, encrypted storage separate from application logs.",
+      "Build a query and reporting path from day one — an audit log nobody can query does not satisfy an access or compliance request.",
+    ],
+    sections: [
+      {
+        heading: "Buffered, durable writes",
+        body: [
+          "Log locally for immediate operational visibility, but batch entries and flush them periodically to durable storage rather than writing one small object per tool call, which gets expensive and slow at volume.",
+        ],
+        code: `class AuditLogger {
+  private buffer: AuditLogEntry[] = [];
+  constructor(private flushEveryMs = 10000, private flushAt = 100) {
+    setInterval(() => this.flush(), this.flushEveryMs);
+  }
+
+  log(entry: AuditLogEntry) {
+    this.buffer.push(entry);
+    if (this.buffer.length >= this.flushAt) this.flush();
+  }
+
+  private async flush() {
+    if (!this.buffer.length) return;
+    const batch = this.buffer.splice(0, this.buffer.length);
+    const key = \`audit-logs/\${new Date().toISOString().slice(0, 10)}/\${Date.now()}.json\`;
+    await s3.send(new PutObjectCommand({
+      Bucket: "mcp-audit-logs", Key: key,
+      Body: JSON.stringify(batch), ServerSideEncryption: "AES256",
+    }));
+  }
+}`,
+      },
+      {
+        heading: "Querying and reporting",
+        body: [
+          "An audit log that cannot be queried does not satisfy a data-access or compliance request. Build a report that at minimum answers: how many calls, by whom, with what success rate, and how many were flagged as errors or blocked.",
+        ],
+      },
+    ],
+    faqs: [
+      { question: "How long should audit logs be retained?", answer: "It depends on the applicable framework and your own policy; check current DPDP, RBI, and any sector-specific retention requirements rather than assuming a fixed number, since retention rules change." },
+      { question: "Should audit logs be encrypted?", answer: "Yes, both at rest and in transit, and ideally with separate keys from your general application data." },
+      { question: "Can audit logs be edited?", answer: "No. Use append-only, versioned storage so an entry can be added but never silently altered or deleted." },
+    ],
+    citations: [officialCitations.mcp, officialCitations.dpdp],
+    related: ["/docs/compliance/dpdp-checklist", "/docs/compliance/output-sanitization", "/docs/monitoring/observability-best-practices"],
+  }),
+  page({
+    slug: ["development", "publishing"],
+    title: "Publishing MCP Servers to npm and GitHub",
+    description: "Package an MCP server with a proper package.json, README, and semantic versioning, then publish it to npm and cut a GitHub release.",
+    category: "development",
+    cluster: "publishing",
+    tags: ["publishing", "npm", "versioning"],
+    targetKeywords: ["mcp registry", "publish mcp server", "mcp npm package"],
+    schemaType: "HowTo",
+    priority: 0.65,
+    changefreq: "weekly",
+    directAnswer: "Publish an MCP server like any npm package: a bin entry pointing at the compiled output, a README documenting each tool's parameters, semantic versioning where a MAJOR bump means a removed tool or changed schema, and a GitHub release tagged to match the published npm version.",
+    keyTakeaways: [
+      "A MAJOR version bump means a removed tool or a breaking schema change; new tools are MINOR; fixes are PATCH.",
+      "Document every tool's parameters and a request/response example in the README so integrators do not have to read the source.",
+      "Automate publish-on-release in CI so a human never has to run npm publish by hand.",
+    ],
+    sections: [
+      {
+        heading: "Package metadata and versioning",
+        body: [
+          "Point the bin field at the compiled entry point, keep the MCP SDK as a dependency (not a devDependency), and follow semantic versioning: MAJOR for breaking tool or schema changes, MINOR for new tools, PATCH for fixes.",
+        ],
+        code: `{
+  "name": "@yourorg/analytics-mcp-server",
+  "version": "1.1.0",
+  "main": "dist/index.js",
+  "bin": { "analytics-mcp": "dist/index.js" },
+  "scripts": { "build": "tsc", "prepublishOnly": "npm run build" },
+  "engines": { "node": ">=18.0.0" }
+}`,
+      },
+      {
+        heading: "Automated publish on release",
+        body: [
+          "Trigger the publish step from a GitHub release rather than a manual local npm publish, so the published package always matches a tagged, reviewed commit.",
+        ],
+        code: `# .github/workflows/publish.yml
+on:
+  release:
+    types: [created]
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "20", registry-url: "https://registry.npmjs.org" }
+      - run: npm ci && npm run build && npm test
+      - run: npm publish --access public
+        env: { NODE_AUTH_TOKEN: "\${{ secrets.NPM_TOKEN }}" }`,
+      },
+    ],
+    faqs: [
+      { question: "Should I use a scoped package name?", answer: "Yes if publishing under an organization; use the @yourorg/package-name format so ownership is unambiguous." },
+      { question: "How do I handle a breaking change?", answer: "Bump the MAJOR version and document the migration path in a changelog entry, since removing or renaming a tool breaks every existing integration silently otherwise." },
+      { question: "Can I unpublish a package?", answer: "npm allows unpublishing only within a short window after publishing; after that, deprecate the version instead and publish a corrected one." },
+    ],
+    citations: [officialCitations.mcp],
+    related: ["/docs/getting-started/quickstart", "/docs/development/testing-strategies", "/docs/mcp-server-directory"],
+  }),
+  page({
+    slug: ["internationalization", "multi-language-support"],
+    title: "MCP Multi-Language Support for Indian Languages",
+    description: "Detect the user's language, translate at the edges of a tool call, and localize error messages for Hindi, Tamil, Telugu, and other Indian languages.",
+    category: "internationalization",
+    cluster: "multi-language-support",
+    tags: ["localization", "indian-languages", "i18n"],
+    targetKeywords: ["mcp indian languages", "mcp hindi support", "mcp localization"],
+    schemaType: "TechArticle",
+    priority: 0.65,
+    changefreq: "weekly",
+    directAnswer: "Detect the caller's language, translate the query to English at the boundary of a tool call so business logic stays language-agnostic, run the tool, then translate the result back — and keep tool names themselves in English for consistency across clients.",
+    keyTakeaways: [
+      "Translate at the edges of a tool call; keep the business logic itself language-agnostic.",
+      "Keep tool names in English always; localize descriptions and error messages only.",
+      "Normalize Unicode input to NFC form before processing to avoid subtle matching bugs.",
+    ],
+    sections: [
+      {
+        heading: "Detect, translate at the edge, translate back",
+        body: [
+          "Detect the language of the incoming query, translate it to English before it reaches tool logic, run the tool as normal, then translate the result back to the caller's language. This keeps every tool implementation language-agnostic instead of branching internally per language.",
+        ],
+        code: `server.setRequestHandler(CallToolRequestSchema, async (request) => {
+  const { query, language } = request.params.arguments as { query: string; language?: string };
+  const detected = language ?? detectLanguage(query);
+
+  const englishQuery = detected !== "english" ? await translateText(query, "en") : query;
+  const result = await executeTool({ ...request, query: englishQuery });
+
+  if (detected !== "english") {
+    return { content: [{ type: "text", text: await translateText(JSON.stringify(result), detected) }] };
+  }
+  return result;
+});`,
+      },
+      {
+        heading: "Localized error messages",
+        body: [
+          "Error messages are worth hand-translating rather than machine-translating on the fly, since they are a small, fixed set and users read them under frustration where clarity matters most.",
+        ],
+        code: `const ERROR_MESSAGES: Record<string, Record<string, string>> = {
+  validation_error: {
+    english: "Invalid input provided",
+    hindi: "अमान्य इनपुट प्रदान किया गया",
+    tamil: "தவறான உள்ளீடு வழங்கப்பட்டது",
+  },
+};`,
+      },
+    ],
+    faqs: [
+      { question: "Which Indian language should I support first?", answer: "Hindi has the widest reach nationally; after that, prioritize by your actual user base — Tamil, Telugu, Marathi, and Bengali are common next choices." },
+      { question: "Should tool names be translated?", answer: "No. Keep tool names in English for consistency across clients and integrations; translate descriptions and error messages instead." },
+      { question: "How do I handle mixed-language input?", answer: "Use a language detector that tolerates code-switching, and fall back to English processing when detection confidence is low rather than guessing." },
+    ],
+    citations: [officialCitations.mcp],
+    related: ["/docs/compliance/dpdp-compliance-guide", "/docs/industry/startups", "/glossary/model-context-protocol"],
+  }),
+  page({
+    slug: ["industry", "upi-integration"],
+    title: "MCP UPI Payment Integration",
+    description: "Initiate and verify UPI payments from an MCP server with masked logging and India-only data storage per RBI expectations.",
+    category: "industry",
+    cluster: "upi-integration",
+    tags: ["upi", "payments", "fintech"],
+    targetKeywords: ["mcp upi", "mcp payment integration", "mcp indian payments"],
+    schemaType: "TechArticle",
+    priority: 0.75,
+    changefreq: "weekly",
+    directAnswer: "Wrap a licensed Indian UPI gateway (such as Razorpay or a bank's own API) behind two narrow MCP tools — initiate and verify — rather than exposing the gateway's full API surface, mask the UPI ID in every log line, and keep all payment data in Indian infrastructure.",
+    keyTakeaways: [
+      "Expose narrow, purpose-built tools (initiate_payment, verify_payment) instead of a generic pass-through to the gateway API.",
+      "Mask the UPI handle in logs and audit entries; never store it in full outside the gateway itself.",
+      "Route through an Indian-licensed gateway — this is a hard requirement, not an optimization.",
+    ],
+    sections: [
+      {
+        heading: "Initiating a payment",
+        body: [
+          "Validate the amount and UPI handle format before calling the gateway, generate a traceable transaction ID, and log the attempt with the UPI handle masked rather than in full.",
+        ],
+        code: `const PaymentSchema = z.object({
+  amount: z.number().positive(),
+  upi_id: z.string().regex(/^[a-zA-Z0-9.\\-_]+@[a-zA-Z]+$/),
+  purpose: z.string().max(100),
+});
+
+function maskUpiId(upiId: string): string {
+  const [user, domain] = upiId.split("@");
+  return \`\${user.slice(0, 2)}***@\${domain}\`;
+}`,
+      },
+      {
+        heading: "Verifying a payment",
+        body: [
+          "Poll or receive a callback for the transaction status, and log the verification event the same way as the initiation, recording only the fields actually needed (status, amount, timestamp).",
+        ],
+      },
+    ],
+    faqs: [
+      { question: "Can I use a non-Indian payment gateway for UPI?", answer: "No. UPI is an Indian payment rail; route through a licensed Indian gateway such as Razorpay, and keep the resulting payment data in Indian infrastructure." },
+      { question: "Should the AI agent see the full UPI handle?", answer: "Prefer masking it in anything that becomes part of the model's context or a stored log, and only surface the full handle where a human explicitly needs it." },
+      { question: "Do I need my own payment license?", answer: "If you integrate through a licensed gateway, the gateway holds the relevant license; if you're processing payments more directly than that, get qualified legal and compliance advice specific to your setup." },
+    ],
+    citations: [officialCitations.rbi, officialCitations.dpdp],
+    related: ["/docs/industry/fintech", "/docs/compliance/dpdp-checklist", "/docs/industry/gst-integration"],
+  }),
+  page({
+    slug: ["industry", "gst-integration"],
+    title: "MCP GST Verification Integration",
+    description: "Verify GSTIN numbers and structure invoice data from an MCP server, wired to a licensed GSP rather than a raw scraped source.",
+    category: "industry",
+    cluster: "gst-integration",
+    tags: ["gst", "tax", "invoicing"],
+    targetKeywords: ["mcp gst", "mcp gstin verification", "mcp indian tax"],
+    schemaType: "TechArticle",
+    priority: 0.7,
+    changefreq: "weekly",
+    directAnswer: "Expose GSTIN verification and invoice-data-structuring as narrow MCP tools backed by a licensed GST Suvidha Provider (GSP) API, validate the GSTIN format before calling out, and treat exact tax rates, due dates, and penalty amounts as values to fetch from the GSP or a current official source rather than hardcode, since tax rules change.",
+    keyTakeaways: [
+      "Validate the GSTIN format locally before making an API call, to fail fast on obviously malformed input.",
+      "Source live rates and deadlines from your GSP integration rather than hardcoding them into the tool.",
+      "Treat this as a read/verify and structure-generation tool, not a substitute for a qualified tax filing workflow.",
+    ],
+    sections: [
+      {
+        heading: "GSTIN verification",
+        body: [
+          "Validate the GSTIN's format locally first — it is a fixed 15-character pattern — before spending an API call on obviously invalid input.",
+        ],
+        code: `const GSTINSchema = z.object({
+  gstin: z.string().regex(/^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/),
+});
+
+server.setRequestHandler(CallToolRequestSchema, async (request) => {
+  if (request.params.name === "verify_gstin") {
+    const { gstin } = GSTINSchema.parse(request.params.arguments);
+    const result = await gspClient.verifyGSTIN(gstin);
+    return { content: [{ type: "text", text: JSON.stringify(result) }] };
+  }
+});`,
+      },
+      {
+        heading: "Structuring invoice data",
+        body: [
+          "A tool that assembles invoice line items into the e-invoice schema is useful, but pull the applicable GST rate per item from your GSP or product master rather than hardcoding rate slabs, since they can change.",
+        ],
+      },
+    ],
+    faqs: [
+      { question: "Do I need to register with GSTN directly?", answer: "Most integrations go through a licensed GST Suvidha Provider (GSP) rather than GSTN directly; the GSP holds the relevant API access." },
+      { question: "Can this tool file GST returns automatically?", answer: "It can prepare and structure the data, but treat automated filing as something to route through your GSP's filing API with a human review step, not something to fully automate blind." },
+      { question: "Are the tax rates and penalty amounts in this guide current?", answer: "Don't rely on any fixed figures from a guide for actual filing decisions — GST rates, due dates, and penalties change; pull current values from your GSP or an official source at filing time." },
+    ],
+    citations: [officialCitations.dpdp],
+    related: ["/docs/industry/fintech", "/docs/industry/upi-integration", "/docs/industry/startups"],
+  }),
+  page({
+    slug: ["industry", "aadhaar-verification"],
+    title: "MCP Aadhaar Verification (Sandbox Patterns)",
+    description: "Handle Aadhaar-based identity verification from an MCP server: explicit consent, masked logging, and no storage of raw Aadhaar numbers.",
+    category: "industry",
+    cluster: "aadhaar-verification",
+    tags: ["aadhaar", "kyc", "identity"],
+    targetKeywords: ["mcp aadhaar", "mcp kyc india", "mcp identity verification"],
+    schemaType: "TechArticle",
+    priority: 0.65,
+    changefreq: "weekly",
+    directAnswer: "Aadhaar data is highly sensitive and tightly regulated: only integrate through an officially licensed KUA (KYC User Agency) or ASA, require explicit recorded consent before every verification call, mask the Aadhaar number in all logs down to the last four digits, and never persist the raw number.",
+    keyTakeaways: [
+      "Only a licensed KUA or ASA integration is appropriate for real Aadhaar verification — build and test against a sandbox first.",
+      "Require and log explicit consent before every verification call; refuse the call without it.",
+      "Never store a raw Aadhaar number anywhere, including logs; mask to the last four digits at most.",
+    ],
+    sections: [
+      {
+        heading: "Consent-gated verification",
+        body: [
+          "Reject the call outright if consent was not explicitly given, and mask the Aadhaar number in every log line — the audit trail should prove consent was checked without itself becoming a store of sensitive numbers.",
+        ],
+        code: `const AadhaarSchema = z.object({
+  aadhaar_number: z.string().regex(/^\\d{12}$/),
+  consent: z.literal(true),
+});
+
+function maskAadhaar(aadhaar: string): string {
+  return \`XXXX-XXXX-\${aadhaar.slice(8)}\`;
+}
+
+server.setRequestHandler(CallToolRequestSchema, async (request) => {
+  if (request.params.name === "verify_aadhaar") {
+    const { aadhaar_number } = AadhaarSchema.parse(request.params.arguments);
+    const verification = await kuaClient.verify(aadhaar_number);
+    auditLogger.log({ event: "aadhaar_verification", aadhaar_masked: maskAadhaar(aadhaar_number) });
+    return { content: [{ type: "text", text: JSON.stringify({ status: verification.status, name: verification.name }) }] };
+  }
+});`,
+      },
+    ],
+    faqs: [
+      { question: "Can I store Aadhaar numbers?", answer: "No — do not persist raw Aadhaar numbers anywhere, including logs. Store only a masked version or an internal reference ID." },
+      { question: "Do I need a license to call Aadhaar verification APIs?", answer: "Yes, real verification requires working through a licensed KUA (KYC User Agency) or ASA; you cannot call UIDAI systems directly without that status." },
+      { question: "What happens if I skip the consent check?", answer: "Treat this as a hard blocker, not a soft warning: the tool should refuse to run without recorded consent. Aadhaar misuse carries serious legal exposure under the Aadhaar Act 2016 — get qualified legal advice on your specific obligations rather than relying on any general guide for exact penalty figures." },
+    ],
+    citations: [officialCitations.dpdp],
+    related: ["/docs/compliance/dpdp-checklist", "/docs/industry/upi-integration", "/docs/industry/fintech"],
   }),
 ];
 

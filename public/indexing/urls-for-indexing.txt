@@ -948,6 +948,7 @@ https://www.mcpserver.in/docs/industry/
 https://www.mcpserver.in/docs/troubleshooting/
 https://www.mcpserver.in/docs/development/
 https://www.mcpserver.in/docs/advanced/
+https://www.mcpserver.in/docs/internationalization/
 https://www.mcpserver.in/docs/servers/github-mcp-server/
 https://www.mcpserver.in/docs/servers/gitlab-mcp-server/
 https://www.mcpserver.in/docs/servers/bitbucket-mcp-server/
@@ -1113,3 +1114,11 @@ https://www.mcpserver.in/docs/development/error-handling/
 https://www.mcpserver.in/docs/compliance/rate-limiting/
 https://www.mcpserver.in/docs/protocol/webhooks/
 https://www.mcpserver.in/docs/pricing/cost-optimization/
+https://www.mcpserver.in/docs/compliance/output-sanitization/
+https://www.mcpserver.in/docs/compliance/secret-management/
+https://www.mcpserver.in/docs/compliance/audit-logging/
+https://www.mcpserver.in/docs/development/publishing/
+https://www.mcpserver.in/docs/internationalization/multi-language-support/
+https://www.mcpserver.in/docs/industry/upi-integration/
+https://www.mcpserver.in/docs/industry/gst-integration/
+https://www.mcpserver.in/docs/industry/aadhaar-verification/
