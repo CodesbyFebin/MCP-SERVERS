@@ -77,19 +77,19 @@ ${siteConfig.description}
     { slug: "monitoring", title: "Monitoring", description: "Grafana dashboards, MCP Pulse-style checks, logs, traces, redaction metrics, and incident workflows." },
   ];
 
-  const clusterLinks = docsClusters.map(c => `- [/docs/${c.slug}](https://www.mcpserver.in/docs/${c.slug}): ${c.description}`).join("\n");
+  const clusterLinks = docsClusters.map(c => `- https://www.mcpserver.in/docs/${c.slug} — ${c.description}`).join("\n");
 
   const pillarSection = `
 ## Core Pillars (MCP Topics)
 `;
 
-  const pillarLinks = pillars.slice(0, 20).map(p => `- [${p.title}](https://www.mcpserver.in/${p.slug}): ${p.shortAnswer}`).join("\n");
+  const pillarLinks = pillars.slice(0, 20).map(p => `- https://www.mcpserver.in/${p.slug} — ${p.shortAnswer}`).join("\n");
 
   const glossarySection = `
 ## Glossary Terms (${glossaryTerms.length} key MCP concepts)
 `;
 
-  const glossaryLinks = glossaryTerms.slice(0, 50).map(g => `- [${g.term}](https://www.mcpserver.in/glossary/${g.slug}): ${g.definition.substring(0, 100)}...`).join("\n");
+  const glossaryLinks = glossaryTerms.slice(0, 50).map(g => `- https://www.mcpserver.in/glossary/${g.slug} — ${g.definition.substring(0, 100)}...`).join("\n");
 
   const footer = `
 ## Contact & Institutional Trust

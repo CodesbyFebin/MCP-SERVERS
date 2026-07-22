@@ -1,57 +1,50 @@
-# MCPserver.in — Full Machine-Readable Index
-# Last updated: 2026-07-22
+# https://www.mcpserver.in — Model Context Protocol Knowledge Base for AI Agents
 
-Homepage
-https://www.mcpserver.in/
+## About
+MCPserver.in is India's first MCP-focused knowledge hub, providing educational resources, tools, and a curated directory of MCP servers.
 
-What is MCP
-https://www.mcpserver.in/what-is-mcp/
+## Key Pages
+- Home: https://www.mcpserver.in/
+- Docs: https://www.mcpserver.in/docs
+- Pricing: https://www.mcpserver.in/pricing
+- Blog: https://www.mcpserver.in/blog
+- MCP Server Directory: https://www.mcpserver.in/mcp-server-directory
+- Security: https://www.mcpserver.in/security
+- State of MCP in India 2026: https://www.mcpserver.in/state-of-mcp
+- MCP Knowledge Hub: https://www.mcpserver.in/learn
 
-Documentation
-https://www.mcpserver.in/docs/
+## Why MCPserver.in?
+- Growing MCP Server Directory: Curated servers from GitHub, npm, and Docker Hub with schema validation
+- DPDP & RBI Aligned: India-focused hosting with compliance controls
+- India Edge Network: Low-latency hosting from Mumbai and Bengaluru
+- Enterprise Security: Audit logs, rate-limiting, and secure credential management
 
-Glossary
-https://www.mcpserver.in/glossary/
+## Supported Integrations
+- Claude Desktop
+- VS Code
+- Cursor IDE
+- GitHub Copilot
+- Azure AI Agents
+- Any MCP-compliant client
 
-MCP Server Directory
-https://www.mcpserver.in/mcp-server-directory/
+## Key Concepts
+- Model Context Protocol (MCP)
+- MCP Tools & Resources
+- STDIO & SSE Transports
+- JSON-RPC 2.0 Communication
+- OAuth & DPDP Compliance
 
-Hosting
-https://www.mcpserver.in/mcp-server-hosting/
+## Documentation Clusters
+- https://www.mcpserver.in/docs/getting-started — MCP concepts, local installation, Claude and Cursor configuration, managed edge hosting.
+- https://www.mcpserver.in/docs/protocol — Tools, resources, prompts, events, JSON-RPC, stdio, and SSE concepts for MCP builders.
+- https://www.mcpserver.in/docs/pricing — India-aware hosting costs, free vs paid, hidden operational costs, enterprise security and VAPT planning.
+- https://www.mcpserver.in/docs/performance — Bengaluru vs Mumbai placement, global vs India hosting, payload optimization, latency benchmarking.
+- https://www.mcpserver.in/docs/compliance — DPDP-aware implementation, PII redaction, audit logs, RBI-aware fintech controls, secure tool design.
+- https://www.mcpserver.in/docs/comparisons — MCP vs REST, GraphQL, API gateways, and when-to-use-MCP decision guides.
+- https://www.mcpserver.in/docs/deployment — Railway, AWS EC2, Google Cloud Run, Vercel, Kubernetes, environment variables, health checks, rollout patterns.
+- https://www.mcpserver.in/docs/industry — Indian startup, fintech, ecommerce, government, healthcare, and education workflows with sector-specific safety controls.
+- https://www.mcpserver.in/docs/monitoring — Grafana dashboards, MCP Pulse-style checks, logs, traces, redaction metrics, and incident workflows.
 
-Security
-https://www.mcpserver.in/security/
+---
 
-State of MCP in India
-https://www.mcpserver.in/state-of-mcp/
-
-Compliance Matrix
-https://www.mcpserver.in/compliance/matrix/
-
-Pricing
-https://www.mcpserver.in/pricing/
-
-Blog
-https://www.mcpserver.in/blog/
-
-FAQ
-https://www.mcpserver.in/faq/
-
-Developers
-https://www.mcpserver.in/learn/
-
-Tools
-https://www.mcpserver.in/tools/mcp-playground
-https://www.mcpserver.in/tools/mcp-server-checker
-https://www.mcpserver.in/tools/mcp-schema-viewer
-https://www.mcpserver.in/tools/mcp-config-validator
-https://www.mcpserver.in/tools/mcp-endpoint-tester
-https://www.mcpserver.in/tools/mcp-sdk-workbench
-https://www.mcpserver.in/tools/mcp-benchmark
-https://www.mcpserver.in/tools/server-selector
-
-Research & Reporting
-https://www.mcpserver.in/state-of-mcp
-
-Hindi Landing
-https://www.mcpserver.in/hi
+*This document is dynamically generated and contains educational content about MCP. Last updated: 2026-07-22*

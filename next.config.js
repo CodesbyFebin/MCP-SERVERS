@@ -35,6 +35,12 @@ const nextConfig = {
           { key: "Cache-Control", value: "no-store, must-revalidate" },
         ],
       },
+      {
+        source: "/((?!_next/static|_next/image|images|favicon|logo).*)",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=60, stale-while-revalidate=300" },
+        ],
+      },
     ];
   },
 

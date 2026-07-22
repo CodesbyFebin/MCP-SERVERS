@@ -48,15 +48,15 @@ MCPserver.in is India's first MCP-focused knowledge hub, providing educational r
 - OAuth & DPDP Compliance
 
 ## Documentation Clusters
-- [/docs/getting-started](${baseUrl}/docs/getting-started): MCP concepts, local installation, Claude and Cursor configuration, managed edge hosting.
-- [/docs/protocol](${baseUrl}/docs/protocol): Tools, resources, prompts, events, JSON-RPC, stdio, and SSE concepts for MCP builders.
-- [/docs/pricing](${baseUrl}/docs/pricing): India-aware hosting costs, free vs paid, hidden operational costs, enterprise security and VAPT planning.
-- [/docs/performance](${baseUrl}/docs/performance): Bengaluru vs Mumbai placement, global vs India hosting, payload optimization, latency benchmarking.
-- [/docs/compliance](${baseUrl}/docs/compliance): DPDP-aware implementation, PII redaction, audit logs, RBI-aware fintech controls, secure tool design.
-- [/docs/comparisons](${baseUrl}/docs/comparisons): MCP vs REST, GraphQL, API gateways, and when-to-use-MCP decision guides.
-- [/docs/deployment](${baseUrl}/docs/deployment): Railway, AWS EC2, Google Cloud Run, Vercel, Kubernetes, environment variables, health checks, rollout patterns.
-- [/docs/industry](${baseUrl}/docs/industry): Indian startup, fintech, ecommerce, government, healthcare, and education workflows with sector-specific safety controls.
-- [/docs/monitoring](${baseUrl}/docs/monitoring): Grafana dashboards, MCP Pulse-style checks, logs, traces, redaction metrics, and incident workflows.
+- https://www.mcpserver.in/docs/getting-started — MCP concepts, local installation, Claude and Cursor configuration, managed edge hosting.
+- https://www.mcpserver.in/docs/protocol — Tools, resources, prompts, events, JSON-RPC, stdio, and SSE concepts for MCP builders.
+- https://www.mcpserver.in/docs/pricing — India-aware hosting costs, free vs paid, hidden operational costs, enterprise security and VAPT planning.
+- https://www.mcpserver.in/docs/performance — Bengaluru vs Mumbai placement, global vs India hosting, payload optimization, latency benchmarking.
+- https://www.mcpserver.in/docs/compliance — DPDP-aware implementation, PII redaction, audit logs, RBI-aware fintech controls, secure tool design.
+- https://www.mcpserver.in/docs/comparisons — MCP vs REST, GraphQL, API gateways, and when-to-use-MCP decision guides.
+- https://www.mcpserver.in/docs/deployment — Railway, AWS EC2, Google Cloud Run, Vercel, Kubernetes, environment variables, health checks, rollout patterns.
+- https://www.mcpserver.in/docs/industry — Indian startup, fintech, ecommerce, government, healthcare, and education workflows with sector-specific safety controls.
+- https://www.mcpserver.in/docs/monitoring — Grafana dashboards, MCP Pulse-style checks, logs, traces, redaction metrics, and incident workflows.
 
 ---
 
