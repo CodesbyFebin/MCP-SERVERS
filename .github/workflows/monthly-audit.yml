@@ -1,0 +1,45 @@
+name: Monthly Lighthouse and Schema Audit
+
+on:
+  schedule:
+    - cron: "0 4 1 * *"  # Monthly on the 1st at 04:00 UTC
+  workflow_dispatch:
+
+jobs:
+  lighthouse-and-schema:
+    runs-on: ubuntu-latest
+    env:
+      PRODUCTION_BASE_URL: https://www.mcpserver.in
+      LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Next.js application
+        run: npm run build
+
+      - name: Validate JSON-LD schemas
+        run: node scripts/validate-schema.mjs
+
+      - name: Run Lighthouse CI on key pages
+        uses: treosh/lighthouse-ci-action@v10
+        with:
+          urls: |
+            https://www.mcpserver.in/
+            https://www.mcpserver.in/docs/
+            https://www.mcpserver.in/mcp-server-directory
+            https://www.mcpserver.in/pricing
+            https://www.mcpserver.in/blog
+          assertions: |
+            uses-heroics: error
+            first-contentful-paint: error
+            interactive: error
+          budgetPath: ./lighthouse-budget.json
+          uploadArtifacts: true
+          temporaryPublicStorage: true
