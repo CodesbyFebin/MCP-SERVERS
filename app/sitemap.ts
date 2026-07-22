@@ -56,6 +56,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: "/terms", changeFrequency: "monthly" as const, priority: 0.3 },
     { url: "/compare", changeFrequency: "weekly" as const, priority: 0.8 },
     { url: "/sitemap", changeFrequency: "monthly" as const, priority: 0.4 },
+    { url: "/hi", changeFrequency: "monthly" as const, priority: 0.3 },
+    { url: "/compliance/matrix", changeFrequency: "monthly" as const, priority: 0.8 },
+    { url: "/authors", changeFrequency: "weekly" as const, priority: 0.6 },
+    { url: "/community", changeFrequency: "weekly" as const, priority: 0.7 },
+    { url: "/editorial-policy", changeFrequency: "monthly" as const, priority: 0.5 },
+    { url: "/what-is-mcp", changeFrequency: "weekly" as const, priority: 0.9 },
   ];
 
   const staticEntries = staticPaths.map((p) => ({
@@ -133,6 +139,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "mcp-schema-viewer",
     "mcp-config-validator",
     "mcp-endpoint-tester",
+    "mcp-sdk-workbench",
+    "mcp-benchmark",
+    "server-selector",
   ];
   const toolEntries = toolSlugs.map((slug) => ({
     url: `${baseUrl}/tools/${slug}/`,

@@ -51,6 +51,11 @@ const validPaths = new Set<string>([
   "/terms/",
   "/compare/",
   "/complete-guide-mcp-servers/",
+  "/hi/",
+  "/compliance/matrix/",
+  "/authors/",
+  "/editorial-policy/",
+  "/what-is-mcp/",
 ]);
 
 // Register dynamic route entities with trailing slash
@@ -76,6 +81,9 @@ const toolSlugs = [
   "mcp-schema-viewer",
   "mcp-config-validator",
   "mcp-endpoint-tester",
+  "mcp-sdk-workbench",
+  "mcp-benchmark",
+  "server-selector",
   "dpdp-compliance-scanner",
   "dpdp-compliance-checklist",
 ];
@@ -352,6 +360,11 @@ ${buildUrlNode("/privacy/", today, "monthly", "0.3")}
 ${buildUrlNode("/terms/", today, "monthly", "0.3")}
 ${buildUrlNode("/compare/", today, "weekly", "0.8")}
 ${buildUrlNode("/sitemap/", today, "monthly", "0.4")}
+${buildUrlNode("/hi/", today, "monthly", "0.3")}
+${buildUrlNode("/compliance/matrix/", today, "monthly", "0.8")}
+${buildUrlNode("/authors/", today, "weekly", "0.6")}
+${buildUrlNode("/editorial-policy/", today, "monthly", "0.5")}
+${buildUrlNode("/what-is-mcp/", today, "weekly", "0.9")}
 ${toolSlugs.map((ts) => buildUrlNode(`/tools/${ts}/`, today, "weekly", "0.8")).join("\n")}
 ${blogPostSlugs.map((slug) => buildUrlNode(`/blog/${slug}/`, today, "weekly", "0.7")).join("\n")}
 </urlset>`;
