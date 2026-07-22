@@ -1,4 +1,4 @@
-name: Sitemap Health Check
+name: Sitemap Health & IndexNow Submission
 
 on:
   schedule:
@@ -6,10 +6,12 @@ on:
   workflow_dispatch:
 
 jobs:
-  verify-sitemap:
+  sitemap-health-and-indexnow:
     runs-on: ubuntu-latest
     env:
       PRODUCTION_BASE_URL: https://www.mcpserver.in
+      INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
+      INDEXNOW_HOST: www.mcpserver.in
     steps:
       - uses: actions/checkout@v4
 
@@ -17,5 +19,11 @@ jobs:
         with:
           node-version: "22"
 
+      - name: Install dependencies
+        run: npm ci
+
       - name: Crawl sitemap and verify every URL returns 200
         run: node scripts/verify-sitemap.mjs
+
+      - name: Submit sitemap/IndexNow
+        run: node scripts/submit-indexnow.mjs
