@@ -1,9 +1,25 @@
-/* humans.txt */
-Author: MCPserver.in Team
-Website: https://www.mcpserver.in/
-Location: Bengaluru, Karnataka, India
-GitHub: https://github.com/mcpserver-in
-Twitter: https://twitter.com/mcpserver_in
-Discord: https://discord.gg/mcpserver
-Email: support@mcpserver.in
-Last Updated: 2026-07-19
+# MCPserver.in
+
+## Purpose
+Developer platform for discovering, deploying, hosting, and managing Model Context Protocol (MCP) servers.
+
+## Technology
+- Next.js
+- TypeScript
+- React
+- Tailwind CSS
+
+## Country
+India
+
+## Contact
+- Email: support@mcpserver.in
+- Location: Bengaluru, Karnataka, India
+- GitHub: https://github.com/CodesbyFebin/MCP-SERVERS
+- Twitter: https://twitter.com/mcpserver_in
+
+## Compliance
+- DPDP Act 2023 aligned
+- RBI Cyber Framework considerations
+- SOC 2 ready framework
+- GDPR ready architecture

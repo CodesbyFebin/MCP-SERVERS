@@ -28,6 +28,8 @@ ${siteConfig.description}
 - Raw Data (CSV, illustrative sample data — not measured production telemetry): https://www.mcpserver.in/data/mcp-india-stats-2026.csv
 - llms.txt: https://www.mcpserver.in/llms.txt
 - llms-full.txt: https://www.mcpserver.in/llms-full.txt
+- AI Policy: https://www.mcpserver.in/.well-known/ai-policy.json
+- Security: https://www.mcpserver.in/.well-known/security.txt
 
 ## Key Pages
 - Home: https://www.mcpserver.in/

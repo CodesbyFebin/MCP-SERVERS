@@ -1,0 +1,5 @@
+Contact: mailto:security@mcpserver.in
+Expires: 2027-12-31T23:59:59Z
+Preferred-Languages: en
+Canonical: https://www.mcpserver.in/.well-known/security.txt
+Policy: https://www.mcpserver.in/security
