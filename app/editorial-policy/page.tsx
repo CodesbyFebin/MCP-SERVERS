@@ -63,6 +63,16 @@ export default function EditorialPolicyPage() {
           </section>
 
           <section>
+            <h2 className="text-lg font-bold text-white mb-2">How we review servers</h2>
+            <p>
+              We check that each listed server has a working repository, clear documentation, and is actively
+              maintained. We also test basic functionality to ensure it meets our quality standards. This is a
+              practical check, not a formal security audit — always review a server&apos;s source and required
+              permissions yourself before connecting it to sensitive data or production systems.
+            </p>
+          </section>
+
+          <section>
             <h2 className="text-lg font-bold text-white mb-2">What we don&apos;t do</h2>
             <ul className="list-disc list-inside space-y-1">
               <li>We don&apos;t invent adoption numbers, star counts, or uptime figures.</li>

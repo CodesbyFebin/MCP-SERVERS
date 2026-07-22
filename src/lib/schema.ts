@@ -17,6 +17,17 @@ export function getOrganizationSchema() {
       "addressRegion": "Karnataka",
       "addressCountry": "IN"
     },
+    "founder": {
+      "@type": "Person",
+      "name": siteConfig.founder.name,
+      "alternateName": siteConfig.founder.handle,
+      "url": `${siteConfig.url}/about`,
+      "sameAs": [
+        siteConfig.founder.socials.github,
+        siteConfig.founder.socials.twitter,
+        siteConfig.founder.socials.linkedin
+      ]
+    },
     "sameAs": [
       siteConfig.socials.github,
       siteConfig.socials.twitter

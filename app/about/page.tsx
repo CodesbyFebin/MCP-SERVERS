@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import Breadcrumbs from "../../src/components/Breadcrumbs";
 import SchemaJsonLd from "../../src/components/SchemaJsonLd";
-import { Mail, Building, Landmark } from "lucide-react";
+import { Mail, Building, Github, Twitter, Linkedin } from "lucide-react";
 import { getOrganizationSchema } from "../../src/lib/schema";
+import { siteConfig } from "../../src/data/site";
 
 export const metadata: Metadata = {
   title: "About MCPserver.in - India-first MCP Platform",
   description:
-    "Learn about MCPserver.in — India's first Model Context Protocol integration platform. Our mission, infrastructure, and team in Bengaluru.",
+    "Learn about MCPserver.in — an India-first Model Context Protocol integration platform built and maintained by Febin Francis (CodesbyFebin).",
   alternates: {
     canonical: "/about",
     languages: {
@@ -39,6 +40,49 @@ export default function AboutPage() {
               <p className="mt-2 text-xs sm:text-sm text-gray-400 leading-relaxed">
                 Our mission is to help developer teams, AI startups, and enterprise engineers build secure connection layers that safely expose data assets and tools to LLM models.
               </p>
+            </div>
+
+            <div className="p-5 rounded-xl bg-gray-900/20 border border-gray-900">
+              <h3 className="font-bold text-white text-sm mb-3">Founder</h3>
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-full bg-cyan-500/10 border border-cyan-400/20 flex items-center justify-center text-cyan-300 font-bold text-lg shrink-0">
+                  FF
+                </div>
+                <div>
+                  <div className="text-sm font-bold text-white">{siteConfig.founder.name}</div>
+                  <div className="text-xs text-cyan-300">{siteConfig.founder.role} · @{siteConfig.founder.handle}</div>
+                  <p className="mt-2 text-xs text-gray-400 leading-relaxed">{siteConfig.founder.bio}</p>
+                  <div className="mt-3 flex items-center gap-3">
+                    <a
+                      href={siteConfig.founder.socials.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="GitHub"
+                      className="text-gray-400 hover:text-cyan-300 transition"
+                    >
+                      <Github className="w-4 h-4" />
+                    </a>
+                    <a
+                      href={siteConfig.founder.socials.twitter}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Twitter/X"
+                      className="text-gray-400 hover:text-cyan-300 transition"
+                    >
+                      <Twitter className="w-4 h-4" />
+                    </a>
+                    <a
+                      href={siteConfig.founder.socials.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="LinkedIn"
+                      className="text-gray-400 hover:text-cyan-300 transition"
+                    >
+                      <Linkedin className="w-4 h-4" />
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div className="p-4 rounded-xl bg-gray-900/20 border border-gray-900 space-y-3.5 text-xs text-gray-400">

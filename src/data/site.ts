@@ -347,6 +347,17 @@ export const siteConfig = {
     twitter: "https://twitter.com/mcpserver_in",
     discord: "https://discord.gg/mcpserver"
   },
+  founder: {
+    name: "Febin Francis",
+    handle: "CodesbyFebin",
+    role: "Founder & Developer",
+    bio: "Febin Francis (CodesbyFebin) is the founder and developer of MCPserver.in, a curated, India-focused directory and hosting platform for Model Context Protocol servers, built to make it easier for developers to discover, deploy, and integrate AI tools.",
+    socials: {
+      github: "https://github.com/codesbyfebin",
+      twitter: "https://x.com/codesbyfebin",
+      linkedin: "https://linkedin.com/in/codesbyfebin"
+    }
+  },
   stats: {
     servers: "Growing",
     deployments: "Growing",
