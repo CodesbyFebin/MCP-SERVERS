@@ -5390,16 +5390,22 @@ app.listen(3000);</code></pre>
   },
   {
     slug: "paytm-mcp-server-india-payments",
-    title: "Paytm MCP Server – India Payments Automation",
-    date: "2026-07-20",
+    title: "Paytm: No MCP Server Found, Despite Peers Shipping Official Ones",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
     readTime: "4 min read",
-    excerpt: "Paytm MCP Server – India Payments Automation integration for automated workflows in India.",
-    keywords: ["paytm-mcp-server-india-payments", "India MCP", "MCP integration"],
+    excerpt: "No official or notable community MCP server has been confirmed for Paytm — a real, somewhat notable gap given that Razorpay, Cashfree, and PayU have all shipped official MCP servers.",
+    keywords: ["paytm-mcp-server-india-payments", "Paytm MCP", "India payments MCP"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["google-pay-mcp-india", "razorpay-mcp-server-india", "upstox-mcp-trading"],
-    content: "<p>Paytm MCP Server – India Payments Automation - detailed guide coming soon.</p>"
+    internalLinks: ["google-pay-mcp-india", "razorpay-mcp-server-india", "phonepe-mcp-server-india"],
+    content: `<p class="text-white/65 leading-relaxed">No official or notable community MCP server has been confirmed for Paytm as of this writing. This is worth flagging specifically because it's a real gap relative to Paytm's peers: Razorpay (first to market), Cashfree, and PayU have all shipped official, first-party MCP servers, while Paytm — one of India's most recognizable payment brands — hasn't been found to have done the same.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Where Paytm Does Show Up</h2>
+<p class="text-white/65 leading-relaxed">Paytm is occasionally referenced in generic, multi-service MCP projects (like broader "India Stack" style servers covering UPI generally), but nothing Paytm-specific and officially published was found — different from PhonePe, which does have its own official (if documentation-only) MCP server.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">A Gap Worth Revisiting</h2>
+<p class="text-white/65 leading-relaxed">Given how quickly Razorpay, Cashfree, and PayU moved on this in 2025, Paytm not having shipped a comparable integration is a genuine, checkable gap — worth revisiting periodically rather than assuming it will remain permanent, especially given Paytm's real scale in the Indian payments market.</p>`
   },
   {
     slug: "phonepe-mcp-server-india",
@@ -5444,16 +5450,22 @@ pip install phonepe-pg-docs-mcp</code></pre>
   },
   {
     slug: "google-pay-mcp-india",
-    title: "Google Pay MCP Server – India Payments",
-    date: "2026-07-20",
+    title: "Google Pay's Official MCP Server Is for Developers, Not Consumer Payments",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
     readTime: "4 min read",
-    excerpt: "Google Pay MCP Server – India Payments integration for automated workflows in India.",
-    keywords: ["google-pay-mcp-india", "India MCP", "MCP integration"],
+    excerpt: "Google runs a real, official Google Pay & Wallet Developer MCP server — but it's a documentation/integration-assistance tool for developers building against the Google Pay API, not a consumer payment integration specific to India.",
+    keywords: ["google-pay-mcp-india", "Google Pay MCP", "India payments MCP"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["paytm-mcp-server-india-payments", "razorpay-mcp-server-india", "zoho-crm-mcp-india"],
-    content: "<p>Google Pay MCP Server – India Payments - detailed guide coming soon.</p>"
+    internalLinks: ["paytm-mcp-server-india-payments", "razorpay-mcp-server-india", "phonepe-mcp-server-india"],
+    content: `<p class="text-white/65 leading-relaxed">Google runs a real, official Google Pay & Wallet Developer MCP server, documented at developers.google.com/pay/api/web/guides/use-pay-wallet-mcp. Worth being precise about what it actually is: a developer-documentation and integration-assistance tool, giving AI coding assistants access to Google Pay/Wallet developer docs, code samples, and integration guidance — not a consumer-facing India payments integration.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Similar in Spirit to PhonePe's Docs Server</h2>
+<p class="text-white/65 leading-relaxed">This is the same category as <a href="/blog/phonepe-mcp-server-india" class="text-cyan-300 hover:text-cyan-200">PhonePe's official MCP server</a> — a documentation accelerator for engineers integrating the payment API, not a tool that initiates real payments. Google Pay's server helps a developer's AI coding assistant answer "how do I implement recurring payments with Google Pay" directly in their IDE, rather than letting an end user's AI agent actually move money.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">No India-Specific Consumer Integration Found</h2>
+<p class="text-white/65 leading-relaxed">Nothing India-market-specific or consumer-payment-focused has been confirmed for Google Pay. If you need an AI agent that can actually initiate UPI payments on a consumer's behalf, see this site's broader <a href="/blog/upi-mcp-server-india" class="text-cyan-300 hover:text-cyan-200">UPI MCP coverage</a> — Setu's UPI Deeplinks server and platform-specific checkout flows (Zomato, Swiggy) are the more directly relevant real options.</p>`
   },
   {
     slug: "upstox-mcp-trading",
@@ -5498,107 +5510,156 @@ pip install phonepe-pg-docs-mcp</code></pre>
   },
   {
     slug: "angel-broking-mcp-india",
-    title: "Angel Broking MCP Server – Trading Integration",
-    date: "2026-07-20",
+    title: "Angel One MCP Server: Community-Built SmartAPI Integration",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
     readTime: "4 min read",
-    excerpt: "Angel Broking MCP Server – Trading Integration integration for automated workflows in India.",
-    keywords: ["angel-broking-mcp-india", "India MCP", "MCP integration"],
+    excerpt: "A community-built MCP server wraps Angel One's SmartAPI, giving AI agents access to historical data and portfolio information for India's largest stockbroker by client count — not an Angel One-published product.",
+    keywords: ["angel-broking-mcp-india", "Angel One MCP", "India trading MCP"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["zoho-books-mcp-accounting-india", "icici-bank-mcp-india", "upstox-mcp-trading"],
-    content: "<p>Angel Broking MCP Server – Trading Integration - detailed guide coming soon.</p>"
+    internalLinks: ["fivepaisa-mcp-india", "dhan-mcp-fo-trading", "zerodha-mcp-server-trading-ai"],
+    content: `<p class="text-white/65 leading-relaxed">A community-built MCP server (bhavesh0009/angel-one-mcp-server) wraps Angel One's own SmartAPI, giving AI agents access to historical data and portfolio information. Angel One (formerly Angel Broking) is India's leading stockbroker by client count — over 24.7 million — across NSE and BSE, which makes real AI-agent access to its platform genuinely significant even though the integration itself is community-built rather than official.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Where It Sits Relative to Zerodha's Official Server</h2>
+<p class="text-white/65 leading-relaxed">Unlike <a href="/blog/zerodha-mcp-server-trading-ai" class="text-cyan-300 hover:text-cyan-200">Zerodha's first-party Kite MCP</a>, Angel One hasn't (as of this writing) shipped its own official server — the SmartAPI wrapper is a third-party project. That distinction matters for the same reason it does across every broker covered on this site: a first-party server carries the broker's own security review and long-term support commitment; a community wrapper doesn't, however well-built it is.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">What to Check Before Connecting a Real Account</h2>
+<p class="text-white/65 leading-relaxed">Before connecting any community-built broker MCP server to a live trading account, review the project's actual GitHub activity, how it handles SmartAPI credentials, and whether it defaults to read-only access — the same due diligence covered across this site's coverage of Upstox's and Groww's community integrations.</p>`
   },
   {
     slug: "fivepaisa-mcp-india",
-    title: "5paisa MCP Server – Discount Broking",
-    date: "2026-07-20",
+    title: "5paisa's Official MCP: Free AI Trading for All Account Holders",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "4 min read",
-    excerpt: "5paisa MCP Server – Discount Broking integration for automated workflows in India.",
-    keywords: ["fivepaisa-mcp-india", "India MCP", "MCP integration"],
+    readTime: "5 min read",
+    excerpt: "5paisa Capital officially launched MCP integration with Claude — real news, covered by multiple Indian business outlets — letting account holders place orders, analyze markets, and backtest strategies via natural language, free of charge.",
+    keywords: ["fivepaisa-mcp-india", "5paisa MCP", "India trading MCP official"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["angel-broking-mcp-india", "razorpay-mcp-server-india", "zoho-books-mcp-accounting-india"],
-    content: "<p>5paisa MCP Server – Discount Broking - detailed guide coming soon.</p>"
+    internalLinks: ["zerodha-mcp-server-trading-ai", "angel-broking-mcp-india", "dhan-mcp-fo-trading"],
+    content: `<p class="text-white/65 leading-relaxed">5paisa Capital officially launched Model Context Protocol integration, connecting Claude directly to 5paisa's internal APIs — real, confirmed news covered by multiple Indian business outlets including Business Standard, The Tribune, and CXOToday, not a community project.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">What Account Holders Can Actually Do</h2>
+<p class="text-white/65 leading-relaxed">Through the integration, 5paisa users can place orders, analyze market data, and backtest strategies simply by interacting with Claude via natural language — a genuinely broad tool set that goes beyond the read-only defaults seen in several other broker integrations covered on this site.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Free for Existing Account Holders</h2>
+<p class="text-white/65 leading-relaxed">Notably, 5paisa made this available at no additional cost to all current account holders — a real, concrete signal that the company sees MCP access as a standard platform feature rather than a premium add-on, similar in spirit to Zerodha's zero-setup hosted Kite MCP.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Why This Is a Bigger Deal Than It Might Look</h2>
+<p class="text-white/65 leading-relaxed">5paisa joins Zerodha as one of the few Indian brokers to ship an official, first-party MCP integration rather than leaving it to community wrappers (the situation for Angel One, Upstox, and Groww). If order placement is genuinely exposed — not just read-only market data — that also makes it one of the more capability-rich official trading MCP servers covered on this site, alongside the same safety caveat that applies everywhere else: an AI agent that can place real orders should have a human confirmation step in front of it.</p>`
   },
   {
     slug: "dhan-mcp-fo-trading",
-    title: "Dhan MCP Server – F&O Trading",
-    date: "2026-07-20",
+    title: "Dhan MCP Server: Community-Built, Built for Algo Trading",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
     readTime: "4 min read",
-    excerpt: "Dhan MCP Server – F&O Trading integration for automated workflows in India.",
-    keywords: ["dhan-mcp-fo-trading", "India MCP", "MCP integration"],
+    excerpt: "A community-built, Python-based MCP server (vikkysarswat/dhan-mcp-server) wraps the Dhan trading platform, aimed specifically at algorithmic and quantitative trading strategies rather than casual portfolio queries.",
+    keywords: ["dhan-mcp-fo-trading", "Dhan MCP", "India algo trading MCP"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["upstox-mcp-trading", "angel-broking-mcp-india", "razorpay-mcp-server-india"],
-    content: "<p>Dhan MCP Server – F&O Trading - detailed guide coming soon.</p>"
+    internalLinks: ["fivepaisa-mcp-india", "angel-broking-mcp-india", "zerodha-mcp-server-trading-ai"],
+    content: `<p class="text-white/65 leading-relaxed">A community-built, Python-based MCP server (github.com/vikkysarswat/dhan-mcp-server) integrates with the Dhan trading platform, aimed specifically at algorithmic trading, automated trading systems, trading bots, and quantitative strategies in Indian markets — a different target audience than the general "check my portfolio" use case most broker MCP servers focus on.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Why F&O Traders Specifically</h2>
+<p class="text-white/65 leading-relaxed">Dhan has built a reputation among active futures and options traders, and this MCP server's framing (algo trading, backtesting, quant strategies) reflects that audience — it's a fundamentally different risk profile than a read-only portfolio-checking tool, since F&O strategies executed programmatically can move significant capital quickly if something goes wrong.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Extra Caution for Algorithmic Use Cases</h2>
+<p class="text-white/65 leading-relaxed">If you're evaluating this for genuine algorithmic trading (not just portfolio queries), apply more scrutiny than a read-only integration would need: audit the actual order-placement code path, test extensively against a paper-trading or sandbox account before connecting real capital, and never let an LLM's own reasoning be the sole check before an order fires — a deterministic risk-limit layer outside the AI's control is standard practice for any real algo-trading system, MCP-connected or not.</p>`
   },
   {
     slug: "sebi-mcp-server-india",
-    title: "SEBI MCP Server – Regulatory Compliance",
-    date: "2026-07-20",
+    title: "SEBI Has No MCP Server — And Regulators Generally Don't",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
     readTime: "4 min read",
-    excerpt: "SEBI MCP Server – Regulatory Compliance integration for automated workflows in India.",
-    keywords: ["sebi-mcp-server-india", "India MCP", "MCP integration"],
+    excerpt: "No evidence exists of an MCP server tied to SEBI, India's securities regulator. Regulators generally don't publish consumer-facing APIs the way exchanges or brokers do, which explains the gap structurally.",
+    keywords: ["sebi-mcp-server-india", "SEBI API", "India securities regulator MCP"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["razorpay-mcp-server-india", "zoho-books-mcp-accounting-india", "icici-bank-mcp-india"],
-    content: "<p>SEBI MCP Server – Regulatory Compliance - detailed guide coming soon.</p>"
+    internalLinks: ["nse-mcp-server-india", "bse-mcp-server-india", "gst-mcp-server-tax-compliance"],
+    content: `<p class="text-white/65 leading-relaxed">No evidence exists of an MCP server — official or community — connected to SEBI (Securities and Exchange Board of India). That's the expected state: SEBI is a regulator, not a data or trading platform, and doesn't publish the kind of consumer-facing API that NSE, BSE, or individual brokers do.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">What SEBI Actually Publishes</h2>
+<p class="text-white/65 leading-relaxed">SEBI's public output is largely regulatory — circulars, disclosure filings, compliance frameworks — rather than a live trading or market-data API a third party would wrap in MCP tools. Compliance-focused AI tooling referencing SEBI rules would more likely ingest published regulatory text (the same way this site's own DPDP/RBI compliance content cites primary regulatory sources directly) rather than querying a "SEBI API" that doesn't exist.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Where Real Market Data Access Actually Comes From</h2>
+<p class="text-white/65 leading-relaxed">If your goal is AI-agent access to Indian market data or trading rather than regulatory compliance specifically, the real, existing options are the exchange-level and broker-level servers covered elsewhere on this site — <a href="/blog/nse-mcp-server-india" class="text-cyan-300 hover:text-cyan-200">NSE</a>, <a href="/blog/bse-mcp-server-india" class="text-cyan-300 hover:text-cyan-200">BSE</a>, Zerodha, 5paisa, Upstox, and Groww — not SEBI itself.</p>`
   },
   {
     slug: "nse-mcp-server-india",
-    title: "NSE MCP Server – Stock Exchange Data",
-    date: "2026-07-20",
+    title: "NSE MCP Servers: Real, Community-Built Market Data Access",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
     readTime: "4 min read",
-    excerpt: "NSE MCP Server – Stock Exchange Data integration for automated workflows in India.",
-    keywords: ["nse-mcp-server-india", "India MCP", "MCP integration"],
+    excerpt: "Multiple real, community-built MCP servers expose NSE market data — stock quotes, historical prices — using libraries like yfinance, though none is an NSE-published official server.",
+    keywords: ["nse-mcp-server-india", "NSE MCP", "India stock market MCP"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["bse-mcp-server-india", "screener-mcp-india", "razorpay-mcp-server-india"],
-    content: "<p>NSE MCP Server – Stock Exchange Data - detailed guide coming soon.</p>"
+    internalLinks: ["bse-mcp-server-india", "moneycontrol-mcp-india", "zerodha-mcp-server-trading-ai"],
+    content: `<p class="text-white/65 leading-relaxed">Real, community-built MCP servers exist for NSE (National Stock Exchange) market data — <code class="bg-gray-800 px-1 py-0.5 rounded">neerajadhav/kai-stock-market-mcp</code> and <code class="bg-gray-800 px-1 py-0.5 rounded">bshada/nse-bse-mcp</code> among them, the latter using Streamable HTTP transport. None is an NSE-published official server; all are third-party projects wrapping publicly available or aggregator-sourced market data.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">What These Servers Actually Provide</h2>
+<p class="text-white/65 leading-relaxed">Typical capabilities include real-time and historical price quotes, powered by data libraries like yfinance, optimized for NSE markets with broader global stock support layered on top. This is market data access, not trading execution — for actually placing orders, you'd need a broker-level integration like Zerodha's Kite MCP or 5paisa's official server, not an exchange-data server.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Why No Official NSE Server (Yet)</h2>
+<p class="text-white/65 leading-relaxed">Exchanges generally license real-time market data commercially rather than publishing it as a free, open API — which is exactly why the community servers in this space typically rely on delayed or aggregator-sourced data rather than NSE's own direct real-time feed. An official NSE MCP server, if one appeared, would likely follow the same commercial data-licensing model as NSE's existing market-data products rather than being free and open.</p>`
   },
   {
     slug: "bse-mcp-server-india",
-    title: "BSE MCP Server – Bombay Stock Exchange",
-    date: "2026-07-20",
+    title: "BSE MCP Servers: Same Community Pattern as NSE",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "4 min read",
-    excerpt: "BSE MCP Server – Bombay Stock Exchange integration for automated workflows in India.",
-    keywords: ["bse-mcp-server-india", "India MCP", "MCP integration"],
+    readTime: "3 min read",
+    excerpt: "Community-built MCP servers cover BSE market data alongside NSE, typically in the same combined project rather than a BSE-specific one — no official BSE server exists.",
+    keywords: ["bse-mcp-server-india", "BSE MCP", "Bombay Stock Exchange MCP"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["nse-mcp-server-india", "screener-mcp-india", "razorpay-mcp-server-india"],
-    content: "<p>BSE MCP Server – Bombay Stock Exchange - detailed guide coming soon.</p>"
+    internalLinks: ["nse-mcp-server-india", "moneycontrol-mcp-india", "screener-mcp-india"],
+    content: `<p class="text-white/65 leading-relaxed">BSE (Bombay Stock Exchange) market data is typically covered by the same community MCP servers that handle NSE — <code class="bg-gray-800 px-1 py-0.5 rounded">bshada/nse-bse-mcp</code> explicitly covers both exchanges in one project, rather than BSE getting a dedicated server of its own. No official, BSE-published MCP server exists.</p>
+<p class="text-white/65 leading-relaxed">See this site's <a href="/blog/nse-mcp-server-india" class="text-cyan-300 hover:text-cyan-200">NSE MCP coverage</a> for the fuller detail on what these combined exchange-data servers actually provide (price quotes and historical data, not trading execution) and why no official real-time feed is likely to be free.</p>`
   },
   {
     slug: "moneycontrol-mcp-india",
-    title: "Moneycontrol MCP Server – Financial News",
-    date: "2026-07-20",
+    title: "MoneyControl MCP: Community-Built Scraper, Not Official",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
     readTime: "4 min read",
-    excerpt: "Moneycontrol MCP Server – Financial News integration for automated workflows in India.",
-    keywords: ["moneycontrol-mcp-india", "India MCP", "MCP integration"],
+    excerpt: "A community-built Apify server scrapes MoneyControl's live Nifty 50, NSE, and BSE data for AI consumption — a real, working project, but not an official MoneyControl integration.",
+    keywords: ["moneycontrol-mcp-india", "MoneyControl MCP", "India stock data MCP"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["aajtak-mcp-india", "ndtv-mcp-india", "razorpay-mcp-server-india"],
-    content: "<p>Moneycontrol MCP Server – Financial News - detailed guide coming soon.</p>"
+    internalLinks: ["nse-mcp-server-india", "screener-mcp-india", "bse-mcp-server-india"],
+    content: `<p class="text-white/65 leading-relaxed">A community-built MCP server on Apify (fingolfin/india-stock-market-api) scrapes MoneyControl data — live Nifty 50, NSE, and BSE information — and exposes it through the Model Context Protocol for AI consumption. It's a real, functioning project, not an official MoneyControl-published integration.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">What It's Actually Good For</h2>
+<p class="text-white/65 leading-relaxed">This kind of scraper-based server is genuinely useful for AI-driven market commentary or research assistants that need current index and stock-level data without paying for a commercial data feed — the tradeoff being that scraped data carries less reliability guarantee than a licensed API, and terms-of-service considerations that a licensed feed wouldn't have.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Combine With Screener for Fundamentals</h2>
+<p class="text-white/65 leading-relaxed">MoneyControl-sourced data tends to cover prices and news; for company fundamentals (P&L, balance sheet, ratios), <a href="/blog/screener-mcp-india" class="text-cyan-300 hover:text-cyan-200">Screener.in's MCP coverage</a> is the more relevant real project — the two are complementary rather than redundant.</p>`
   },
   {
     slug: "screener-mcp-india",
-    title: "Screener MCP Server – Stock Analysis",
-    date: "2026-07-20",
+    title: "Screener.in MCP: Real Fundamental Data for Indian Stocks",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
     readTime: "4 min read",
-    excerpt: "Screener MCP Server – Stock Analysis integration for automated workflows in India.",
-    keywords: ["screener-mcp-india", "India MCP", "MCP integration"],
+    excerpt: "A real, dedicated Screener MCP server delivers genuine fundamental data for Indian listed companies — P&L, balance sheet, cash flow, ratios, peer comparisons — sourced from Screener.in.",
+    keywords: ["screener-mcp-india", "Screener.in MCP", "India stock fundamentals MCP"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["nse-mcp-server-india", "bse-mcp-server-india", "razorpay-mcp-server-india"],
-    content: "<p>Screener MCP Server – Stock Analysis - detailed guide coming soon.</p>"
+    internalLinks: ["nse-mcp-server-india", "bse-mcp-server-india", "moneycontrol-mcp-india"],
+    content: `<p class="text-white/65 leading-relaxed">A real, dedicated Screener MCP server exists, delivering comprehensive fundamental data for Indian listed companies sourced from Screener.in — one of the most-used fundamental analysis tools among Indian retail investors. It's a community project, not an official Screener.in release, but genuinely comprehensive in scope.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">What Data It Covers</h2>
+<p class="text-white/65 leading-relaxed">Real capabilities include profit & loss statements, balance sheets, cash flow, financial ratios, peer comparisons, and shareholding patterns — supporting both consolidated and standalone financials, which is exactly the kind of structured fundamental data an AI research assistant needs to reason about a company beyond just its current stock price.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">How It Works Under the Hood</h2>
+<p class="text-white/65 leading-relaxed">Some implementations use BeautifulSoup-based scraping directly against Screener.in's public pages rather than a formal API (Screener.in doesn't publish one), which means the same terms-of-service and reliability caveats apply as with any scraper-based data source — reasonable for research and analysis use, worth extra care before building a production business process around it.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">A Reasonable Combination for Indian Equity Research</h2>
+<p class="text-white/65 leading-relaxed">Pairing this with <a href="/blog/nse-mcp-server-india" class="text-cyan-300 hover:text-cyan-200">NSE/BSE price data</a> gives an AI agent both the "what's happening to the price" and "what does the underlying business actually look like" sides of Indian equity research — a genuinely useful combination for anyone building AI-assisted investment research tooling.</p>`
   },
   {
     slug: "zoho-crm-mcp-india",
@@ -5814,81 +5875,99 @@ pip install phonepe-pg-docs-mcp</code></pre>
   },
   {
     slug: "bigbasket-mcp-india",
-    title: "BigBasket MCP Server – Grocery Delivery",
-    date: "2026-07-20",
+    title: "BigBasket: No Official MCP, Real Scraper-Based Data Collection Exists",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
     readTime: "4 min read",
-    excerpt: "BigBasket MCP Server – Grocery Delivery integration for automated workflows in India.",
-    keywords: ["bigbasket-mcp-india", "India MCP", "MCP integration"],
+    excerpt: "No official BigBasket MCP server exists. Community scraper-based tools can collect public grocery catalog data (prices, availability), but that's not account access or ordering capability.",
+    keywords: ["bigbasket-mcp-india", "BigBasket MCP", "India grocery delivery MCP"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["zepto-mcp-india", "shadowfax-mcp-india", "razorpay-mcp-server-india"],
-    content: "<p>BigBasket MCP Server – Grocery Delivery - detailed guide coming soon.</p>"
+    internalLinks: ["blinkit-mcp-india", "zepto-mcp-india", "swiggy-mcp-india"],
+    content: `<p class="text-white/65 leading-relaxed">No official BigBasket MCP server exists. What's real is scraper-based tooling that collects public BigBasket grocery catalog data — brands, pack sizes, prices, discounts, ratings, and availability — for AI consumption. That's public catalog data collection, not an integration with BigBasket's own systems or account-level ordering capability.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Why Quick Commerce Has Lagged Food Delivery</h2>
+<p class="text-white/65 leading-relaxed">It's a real, notable contrast: Zomato and Swiggy — food delivery — both shipped official MCP servers with actual checkout capability, while grocery/quick-commerce platforms (BigBasket, Blinkit, Zepto) haven't followed with anything comparably official yet, despite serving an adjacent use case. Worth watching whether this gap closes as MCP adoption continues.</p>`
   },
   {
     slug: "blinkit-mcp-india",
-    title: "Blinkit MCP Server – Quick Commerce",
-    date: "2026-07-20",
+    title: "Blinkit: Unofficial MCP Exists, Explicitly Not Affiliated",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
     readTime: "4 min read",
-    excerpt: "Blinkit MCP Server – Quick Commerce integration for automated workflows in India.",
-    keywords: ["blinkit-mcp-india", "India MCP", "MCP integration"],
+    excerpt: "An unofficial MCP server lets Claude Desktop browse, search, and order from Blinkit — a real, functioning project, but explicitly not an official Blinkit product and not affiliated with the company.",
+    keywords: ["blinkit-mcp-india", "Blinkit MCP", "India quick commerce MCP"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["flipkart-mcp-india", "myntra-mcp-india", "razorpay-mcp-server-india"],
-    content: "<p>Blinkit MCP Server – Quick Commerce - detailed guide coming soon.</p>"
+    internalLinks: ["bigbasket-mcp-india", "zepto-mcp-india", "swiggy-mcp-india"],
+    content: `<p class="text-white/65 leading-relaxed">An unofficial MCP server (github.com/hereisSwapnil/blinkit-mcp) lets Claude Desktop search products, manage carts, and complete Blinkit orders automatically through natural language — a real, functioning project that goes further than most unofficial integrations by actually completing orders, not just browsing.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Real Order Completion, Real Risk</h2>
+<p class="text-white/65 leading-relaxed">Because this actually places orders (not just reads data), the stakes are higher than a read-only scraper: it likely requires your real Blinkit account credentials or session, and an AI agent with order-placement capability can genuinely spend money if something goes wrong. Given it's unofficial and unaffiliated with Blinkit, apply real scrutiny before connecting a live account — check the project's actual code, how it handles credentials, and whether you're comfortable with an unofficial project having that level of access.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Separate Scraper Options for Read-Only Data</h2>
+<p class="text-white/65 leading-relaxed">If you only need product/price data rather than order placement, separate Apify-hosted scrapers exist for Blinkit product data specifically — a lower-risk option than an order-completing integration if that's all your use case needs.</p>`
   },
   {
     slug: "zepto-mcp-india",
-    title: "Zepto MCP Server – Express Delivery",
-    date: "2026-07-20",
+    title: "Zepto: No MCP Server Found",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "4 min read",
-    excerpt: "Zepto MCP Server – Express Delivery integration for automated workflows in India.",
-    keywords: ["zepto-mcp-india", "India MCP", "MCP integration"],
+    readTime: "3 min read",
+    excerpt: "No official or notable community MCP server has been confirmed for Zepto, unlike Blinkit which has at least an unofficial order-capable integration.",
+    keywords: ["zepto-mcp-india", "Zepto MCP", "India quick commerce MCP"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["bigbasket-mcp-india", "ecom-express-mcp-india", "shadowfax-mcp-india"],
-    content: "<p>Zepto MCP Server – Express Delivery - detailed guide coming soon.</p>"
+    internalLinks: ["blinkit-mcp-india", "bigbasket-mcp-india", "ecom-express-mcp-india"],
+    content: `<p class="text-white/65 leading-relaxed">No official or notable community MCP server has been confirmed for Zepto specifically, in contrast to Blinkit, which at least has an unofficial, order-capable community project. Zepto is occasionally covered by generic multi-platform scrapers (alongside Blinkit) for basic product data, but nothing dedicated and Zepto-specific was found.</p>`
   },
   {
     slug: "amazon-india-mcp",
-    title: "Amazon India MCP Server – Marketplace",
-    date: "2026-07-20",
+    title: "Amazon India: No Consumer MCP, But Real Seller-Facing Ones Exist",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
     readTime: "4 min read",
-    excerpt: "Amazon India MCP Server – Marketplace integration for automated workflows in India.",
-    keywords: ["amazon-india-mcp", "India MCP", "MCP integration"],
+    excerpt: "No consumer-facing \"Amazon India shopping\" MCP server exists — but real MCP servers do exist for Amazon Seller Central (via the SP-API) and various AWS services, a different audience entirely.",
+    keywords: ["amazon-india-mcp", "Amazon India MCP", "Amazon marketplace MCP"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["paytm-mcp-server-india-payments", "google-pay-mcp-india", "zoho-crm-mcp-india"],
-    content: "<p>Amazon India MCP Server – Marketplace - detailed guide coming soon.</p>"
+    internalLinks: ["flipkart-mcp-india", "myntra-mcp-india", "razorpay-mcp-server-india"],
+    content: `<p class="text-white/65 leading-relaxed">Worth disambiguating up front: "Amazon MCP server" mostly surfaces two things, and neither is a consumer-facing "shop on Amazon India through AI chat" integration. First, real AWS-related MCP servers exist for cloud infrastructure (Amazon MSK, Bedrock AgentCore, serverless/container services) — these are Amazon Web Services developer tools, unrelated to the shopping marketplace. Second, a real MCP server exists for Amazon Seller Central, providing sales data, inventory, returns, and reports through the Amazon SP-API.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Seller-Facing, Not Shopper-Facing</h2>
+<p class="text-white/65 leading-relaxed">The Seller Central integration (github.com/jay-trivedi/amazon_sp_mcp) is aimed at sellers managing their own store operations through AI — checking inventory, reviewing returns, pulling sales reports — not at shoppers browsing and buying products. No evidence exists of a consumer shopping integration comparable to Zomato's or Swiggy's checkout-capable servers.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">If You're Selling on Amazon India</h2>
+<p class="text-white/65 leading-relaxed">The Seller Central MCP server, built on the real SP-API, is a genuinely relevant option if you're a seller looking to build AI-assisted inventory or sales-reporting tooling — just be clear that's a fundamentally different use case than consumer shopping automation.</p>`
   },
   {
     slug: "flipkart-mcp-india",
-    title: "Flipkart MCP Server – E-commerce",
-    date: "2026-07-20",
+    title: "Flipkart: No Official MCP, Only Unofficial Scrapers",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
     readTime: "4 min read",
-    excerpt: "Flipkart MCP Server – E-commerce integration for automated workflows in India.",
-    keywords: ["flipkart-mcp-india", "India MCP", "MCP integration"],
+    excerpt: "No official Flipkart MCP server exists. Available options are third-party Apify scrapers for price tracking and product data — not a Flipkart-published integration, and not order-capable.",
+    keywords: ["flipkart-mcp-india", "Flipkart MCP", "India e-commerce MCP"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["blinkit-mcp-india", "myntra-mcp-india", "razorpay-mcp-server-india"],
-    content: "<p>Flipkart MCP Server – E-commerce - detailed guide coming soon.</p>"
+    internalLinks: ["myntra-mcp-india", "amazon-india-mcp", "razorpay-mcp-server-india"],
+    content: `<p class="text-white/65 leading-relaxed">No officially Flipkart-published MCP server exists, despite Flipkart being one of India's largest e-commerce platforms. Available options are third-party Apify-hosted scrapers — a price tracker, a product scraper, and a bank-offers aggregator covering both Flipkart and Amazon — none of which are Flipkart-affiliated or order-capable.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Data Collection, Not Shopping Automation</h2>
+<p class="text-white/65 leading-relaxed">These scrapers pull public product and pricing data for AI consumption (useful for price-comparison or market-research agents), but none of them let an AI agent actually place a Flipkart order the way the unofficial Blinkit integration does for quick commerce. If order-placement automation specifically matters for your use case, nothing comparable exists for Flipkart as of this writing.</p>`
   },
   {
     slug: "myntra-mcp-india",
-    title: "Myntra MCP Server – Fashion E-commerce",
-    date: "2026-07-20",
+    title: "Myntra: No MCP Server Found",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "4 min read",
-    excerpt: "Myntra MCP Server – Fashion E-commerce integration for automated workflows in India.",
-    keywords: ["myntra-mcp-india", "India MCP", "MCP integration"],
+    readTime: "3 min read",
+    excerpt: "No official or community MCP server has been confirmed for Myntra, consistent with the broader e-commerce pattern where only scraper-based (not order-capable) tools tend to exist.",
+    keywords: ["myntra-mcp-india", "Myntra MCP", "India fashion e-commerce MCP"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["blinkit-mcp-india", "flipkart-mcp-india", "razorpay-mcp-server-india"],
-    content: "<p>Myntra MCP Server – Fashion E-commerce - detailed guide coming soon.</p>"
+    internalLinks: ["flipkart-mcp-india", "amazon-india-mcp", "razorpay-mcp-server-india"],
+    content: `<p class="text-white/65 leading-relaxed">No official or notable community MCP server has been confirmed for Myntra, Flipkart's fashion-focused subsidiary. This matches the broader pattern across large Indian e-commerce marketplaces — real activity concentrates around scraper-based product/price data collection rather than official, order-capable integrations, and even that hasn't been confirmed specifically for Myntra.</p>`
   },
   {
     slug: "zomato-mcp-india",
@@ -6123,276 +6202,330 @@ pip install phonepe-pg-docs-mcp</code></pre>
   },
   {
     slug: "cricbuzz-mcp-india",
-    title: "Cricbuzz MCP Server – Live Scores",
-    date: "2026-07-20",
+    title: "Cricbuzz MCP: Real Community Server for Live Cricket Data",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
     readTime: "4 min read",
-    excerpt: "Cricbuzz MCP Server – Live Scores integration for automated workflows in India.",
-    keywords: ["cricbuzz-mcp-india", "India MCP", "MCP integration"],
+    excerpt: "A real, working community MCP server pulls player statistics, live match scores, schedules, and news from Cricbuzz — genuinely useful for a cricket-aware AI assistant, though not an official Cricbuzz release.",
+    keywords: ["cricbuzz-mcp-india", "Cricbuzz MCP", "cricket data MCP"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["razorpay-mcp-server-india", "zoho-books-mcp-accounting-india", "icici-bank-mcp-india"],
-    content: "<p>Cricbuzz MCP Server – Live Scores - detailed guide coming soon.</p>"
+    internalLinks: ["moneycontrol-mcp-india", "screener-mcp-india", "gst-mcp-server-tax-compliance"],
+    content: `<p class="text-white/65 leading-relaxed">A real, working MCP server (github.com/iflow-mcp/cricket-mcp-server-1) fetches cricket data from Cricbuzz — player statistics, live match scores, upcoming schedules, and the latest news — through the Model Context Protocol. It's a community project, not an official Cricbuzz release, but a genuine, functioning integration.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Why This Is a Reasonable, Low-Stakes MCP Use Case</h2>
+<p class="text-white/65 leading-relaxed">Sports data is a naturally good fit for MCP: it's public, frequently changing, and exactly the kind of "current, real-world information an LLM's training data can't have" that MCP was built to solve. Unlike a payment or banking integration, there's no real financial or privacy stake in getting this one wrong, which is part of why sports-data servers like this one are common early community projects across the MCP ecosystem generally.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">What It Enables</h2>
+<p class="text-white/65 leading-relaxed">Connected to an AI client, this lets an agent answer genuinely current questions — "what's the live score," "who's playing today," "what are this player's recent stats" — grounded in real, current Cricbuzz data rather than a model's stale training-time knowledge of cricket.</p>`
   },
   {
     slug: "hotstar-mcp-india",
-    title: "Hotstar MCP Server – Streaming",
-    date: "2026-07-20",
+    title: "Hotstar (JioStar) MCP: No Evidence of a Streaming Integration",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "4 min read",
-    excerpt: "Hotstar MCP Server – Streaming integration for automated workflows in India.",
-    keywords: ["hotstar-mcp-india", "India MCP", "MCP integration"],
+    readTime: "3 min read",
+    excerpt: "No evidence exists of an MCP server for Disney+ Hotstar (now part of JioStar). Video streaming platforms haven't been a focus area for MCP integration the way payments, food delivery, and trading have.",
+    keywords: ["hotstar-mcp-india", "Hotstar MCP", "streaming MCP India"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["jiohotstar-mcp-india", "razorpay-mcp-server-india", "zoho-books-mcp-accounting-india"],
-    content: "<p>Hotstar MCP Server – Streaming - detailed guide coming soon.</p>"
+    internalLinks: ["jiohotstar-mcp-india", "cricbuzz-mcp-india", "gst-mcp-server-tax-compliance"],
+    content: `<p class="text-white/65 leading-relaxed">No evidence exists of an MCP server for Disney+ Hotstar, now part of JioStar following its 2025 restructuring. Video streaming platforms generally haven't been an early focus area for MCP adoption — the consumer-facing MCP integrations that do exist so far (Zomato, Swiggy, Shopify) center on transactional commerce, not media playback or content discovery.</p>
+<p class="text-white/65 leading-relaxed">If an AI-agent integration for a streaming platform emerges, a more likely first target would be content search/recommendation (a lower-risk, read-only capability) rather than anything touching account or billing data — but nothing concrete exists for Hotstar specifically as of this writing.</p>`
   },
   {
     slug: "jiohotstar-mcp-india",
-    title: "JioHotstar MCP Server – Streaming",
-    date: "2026-07-20",
+    title: "JioHotstar MCP: No Evidence Found",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "4 min read",
-    excerpt: "JioHotstar MCP Server – Streaming integration for automated workflows in India.",
-    keywords: ["jiohotstar-mcp-india", "India MCP", "MCP integration"],
+    readTime: "3 min read",
+    excerpt: "No evidence exists of an MCP server for JioHotstar (the merged Disney+ Hotstar and Jio streaming service), consistent with the broader absence of MCP activity in Indian streaming media.",
+    keywords: ["jiohotstar-mcp-india", "JioHotstar MCP", "streaming MCP India"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["hotstar-mcp-india", "razorpay-mcp-server-india", "zoho-books-mcp-accounting-india"],
-    content: "<p>JioHotstar MCP Server – Streaming - detailed guide coming soon.</p>"
+    internalLinks: ["hotstar-mcp-india", "cricbuzz-mcp-india", "gst-mcp-server-tax-compliance"],
+    content: `<p class="text-white/65 leading-relaxed">No evidence exists of an MCP server for JioHotstar, the merged streaming service combining Disney+ Hotstar and Jio's video assets under JioStar. This is consistent with the wider pattern: video streaming hasn't been an early MCP-adoption category the way payments, food delivery, and trading have across this site's other India-focused coverage.</p>
+<p class="text-white/65 leading-relaxed">Given JioHotstar's scale (it carries major cricket streaming rights, among other content), a future content-search or recommendation-focused MCP integration wouldn't be surprising, but nothing concrete exists yet.</p>`
   },
   {
     slug: "aajtak-mcp-india",
-    title: "Aaj Tak MCP Server – News",
-    date: "2026-07-20",
+    title: "Aaj Tak MCP: No Evidence of a News-Specific Integration",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "4 min read",
-    excerpt: "Aaj Tak MCP Server – News integration for automated workflows in India.",
-    keywords: ["aajtak-mcp-india", "India MCP", "MCP integration"],
+    readTime: "3 min read",
+    excerpt: "No evidence exists of an MCP server tied specifically to Aaj Tak. News organizations generally aren't publishing dedicated MCP servers yet, unlike financial data or cricket, which already have real community projects.",
+    keywords: ["aajtak-mcp-india", "Aaj Tak MCP", "news MCP India"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["moneycontrol-mcp-india", "ndtv-mcp-india", "razorpay-mcp-server-india"],
-    content: "<p>Aaj Tak MCP Server – News - detailed guide coming soon.</p>"
+    internalLinks: ["ndtv-mcp-india", "moneycontrol-mcp-india", "cricbuzz-mcp-india"],
+    content: `<p class="text-white/65 leading-relaxed">No evidence exists of an MCP server specifically for Aaj Tak. Unlike financial data (MoneyControl, Screener.in) or cricket (Cricbuzz), which already have real community MCP servers, individual Indian news organizations haven't yet produced dedicated MCP integrations.</p>
+<p class="text-white/65 leading-relaxed">If AI-agent access to Indian news content matters for your workflow, a general web-search or news-aggregation MCP server is the more realistic near-term option than a publisher-specific one — nothing Aaj Tak-branded currently exists.</p>`
   },
   {
     slug: "ndtv-mcp-india",
-    title: "NDTV MCP Server – News Media",
-    date: "2026-07-20",
+    title: "NDTV MCP: No Evidence Found",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "4 min read",
-    excerpt: "NDTV MCP Server – News Media integration for automated workflows in India.",
-    keywords: ["ndtv-mcp-india", "India MCP", "MCP integration"],
+    readTime: "3 min read",
+    excerpt: "No evidence exists of an MCP server for NDTV, consistent with the broader absence of publisher-specific MCP integrations across Indian news media.",
+    keywords: ["ndtv-mcp-india", "NDTV MCP", "news MCP India"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["moneycontrol-mcp-india", "aajtak-mcp-india", "razorpay-mcp-server-india"],
-    content: "<p>NDTV MCP Server – News Media - detailed guide coming soon.</p>"
+    internalLinks: ["moneycontrol-mcp-india", "aajtak-mcp-india", "cricbuzz-mcp-india"],
+    content: `<p class="text-white/65 leading-relaxed">No evidence exists of an MCP server for NDTV, consistent with the pattern across Indian news publishers generally — none have yet shipped a dedicated MCP integration, unlike the financial-data and cricket-data spaces, which already have real community-built servers.</p>
+<p class="text-white/65 leading-relaxed">See this site's <a href="/blog/moneycontrol-mcp-india" class="text-cyan-300 hover:text-cyan-200">MoneyControl</a> and <a href="/blog/cricbuzz-mcp-india" class="text-cyan-300 hover:text-cyan-200">Cricbuzz</a> coverage for examples of where real, working MCP servers do exist for Indian information sources today.</p>`
   },
   {
     slug: "delhivery-mcp-india",
-    title: "Delhivery MCP Server – Courier Services",
-    date: "2026-07-20",
+    title: "Delhivery MCP: Maps API Connected to AI Workflows",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
     readTime: "4 min read",
-    excerpt: "Delhivery MCP Server – Courier Services integration for automated workflows in India.",
-    keywords: ["delhivery-mcp-india", "India MCP", "MCP integration"],
+    excerpt: "Delhivery has connected its Maps API suite to AI workflows using MCP, letting Claude, Cursor, and other clients auto-discover and execute location tools — a real, logistics-specific integration, not just generic package tracking.",
+    keywords: ["delhivery-mcp-india", "Delhivery MCP", "India logistics MCP"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["dunzo-mcp-india", "urbancompany-mcp-india", "goibibo-mcp-india"],
-    content: "<p>Delhivery MCP Server – Courier Services - detailed guide coming soon.</p>"
+    internalLinks: ["ecom-express-mcp-india", "shadowfax-mcp-india", "dhl-india-mcp"],
+    content: `<p class="text-white/65 leading-relaxed">Delhivery, one of India's largest logistics technology companies, has connected its Maps API suite to AI workflows using the Model Context Protocol — letting Claude, Cursor, and other MCP clients auto-discover and execute location-based tools natively, per Delhivery's own developer portal (delhivery.com/maps/developer).</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Maps, Not Full Shipment Management</h2>
+<p class="text-white/65 leading-relaxed">Worth being precise about scope: this is Delhivery's Maps API — geocoding, address validation, location intelligence — connected via MCP, not a full shipment-creation-and-tracking API exposed as MCP tools. If your use case is address validation or location-aware logistics planning, this is directly relevant; if you need general package tracking, the broader multi-carrier option below is more relevant.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Multi-Carrier Tracking Covers Delhivery Too</h2>
+<p class="text-white/65 leading-relaxed">Separately, a real, hosted Multi-Carrier Tracking MCP server provides universal package tracking across 8 major carriers worldwide — including Delhivery, alongside USPS, UPS, FedEx, DHL, India Post, BlueDart, and Aramex — with automatic carrier detection from a tracking number and batch tracking for up to 25 packages per call. For general "where's my package" queries spanning multiple carriers, this is the more directly useful tool.</p>`
   },
   {
     slug: "ecom-express-mcp-india",
-    title: "Ecom Express MCP Server – Logistics",
-    date: "2026-07-20",
+    title: "Ecom Express: No Dedicated MCP Server, Multi-Carrier Coverage Exists",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "4 min read",
-    excerpt: "Ecom Express MCP Server – Logistics integration for automated workflows in India.",
-    keywords: ["ecom-express-mcp-india", "India MCP", "MCP integration"],
+    readTime: "3 min read",
+    excerpt: "No Ecom Express-specific MCP server has been confirmed, but real multi-carrier tracking servers exist that may cover Ecom Express shipments alongside other Indian and global logistics providers.",
+    keywords: ["ecom-express-mcp-india", "Ecom Express MCP", "India logistics MCP"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["zepto-mcp-india", "dhl-india-mcp", "razorpay-mcp-server-india"],
-    content: "<p>Ecom Express MCP Server – Logistics - detailed guide coming soon.</p>"
+    internalLinks: ["delhivery-mcp-india", "dhl-india-mcp", "shadowfax-mcp-india"],
+    content: `<p class="text-white/65 leading-relaxed">No Ecom Express-specific MCP server, official or community, has been confirmed. Unlike Delhivery — which has connected its own Maps API to AI workflows via MCP directly — Ecom Express doesn't appear to have a dedicated integration of its own.</p>
+<p class="text-white/65 leading-relaxed">If you need programmatic tracking access covering Ecom Express shipments, check whether a general multi-carrier tracking MCP server (like the one covering Delhivery, DHL, BlueDart, India Post, and others) includes it, rather than assuming a courier-specific integration exists.</p>`
   },
   {
     slug: "shadowfax-mcp-india",
-    title: "Shadowfax MCP Server – Hyperlocal Delivery",
-    date: "2026-07-20",
+    title: "Shadowfax: No Dedicated MCP Server Found",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "4 min read",
-    excerpt: "Shadowfax MCP Server – Hyperlocal Delivery integration for automated workflows in India.",
-    keywords: ["shadowfax-mcp-india", "India MCP", "MCP integration"],
+    readTime: "3 min read",
+    excerpt: "No Shadowfax-specific MCP server has been confirmed, despite Delhivery — a direct competitor — having connected its own Maps API to AI workflows via MCP.",
+    keywords: ["shadowfax-mcp-india", "Shadowfax MCP", "India hyperlocal delivery MCP"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["bigbasket-mcp-india", "zepto-mcp-india", "dunzo-mcp-india"],
-    content: "<p>Shadowfax MCP Server – Hyperlocal Delivery - detailed guide coming soon.</p>"
+    internalLinks: ["delhivery-mcp-india", "ecom-express-mcp-india", "zepto-mcp-india"],
+    content: `<p class="text-white/65 leading-relaxed">No Shadowfax-specific MCP server, official or community, has been confirmed. This is a real, notable gap given that Delhivery — a direct competitor in Indian logistics — has connected its own Maps API to AI workflows via MCP, while Shadowfax hasn't shipped a comparable integration as of this writing.</p>
+<p class="text-white/65 leading-relaxed">If Shadowfax follows Delhivery's lead, a Maps/location-API-focused MCP integration would be the more likely first step, given that's where Delhivery's own integration started rather than full shipment management.</p>`
   },
   {
     slug: "fedex-india-mcp",
-    title: "FedEx India MCP Server – International Shipping",
-    date: "2026-07-20",
+    title: "FedEx: Covered Through Multi-Carrier Tracking, Not India-Specific",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "4 min read",
-    excerpt: "FedEx India MCP Server – International Shipping integration for automated workflows in India.",
-    keywords: ["fedex-india-mcp", "India MCP", "MCP integration"],
+    readTime: "3 min read",
+    excerpt: "FedEx is covered by a real multi-carrier tracking MCP server alongside DHL, UPS, USPS, and Indian carriers — a global integration, not a FedEx India-specific one.",
+    keywords: ["fedex-india-mcp", "FedEx MCP", "logistics MCP India"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["paytm-mcp-server-india-payments", "google-pay-mcp-india", "zoho-crm-mcp-india"],
-    content: "<p>FedEx India MCP Server – International Shipping - detailed guide coming soon.</p>"
+    internalLinks: ["dhl-india-mcp", "delhivery-mcp-india", "shadowfax-mcp-india"],
+    content: `<p class="text-white/65 leading-relaxed">No FedEx India-specific MCP server exists, but FedEx is covered by a real, hosted Multi-Carrier Tracking MCP server that provides universal package tracking across 8 major global and Indian carriers — FedEx, UPS, USPS, DHL, India Post, Delhivery, BlueDart, and Aramex — with automatic carrier detection and batch tracking support.</p>
+<p class="text-white/65 leading-relaxed">This is a global integration rather than anything India-market-specific, but it genuinely does cover FedEx shipments moving through or within India as part of its broader carrier coverage.</p>`
   },
   {
     slug: "dhl-india-mcp",
-    title: "DHL India MCP Server – Logistics",
-    date: "2026-07-20",
+    title: "DHL: Covered Through Multi-Carrier Tracking, Not India-Specific",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "4 min read",
-    excerpt: "DHL India MCP Server – Logistics integration for automated workflows in India.",
-    keywords: ["dhl-india-mcp", "India MCP", "MCP integration"],
+    readTime: "3 min read",
+    excerpt: "DHL is covered by a real multi-carrier tracking MCP server alongside FedEx, UPS, and Indian logistics providers — a global integration, not a DHL India-specific one.",
+    keywords: ["dhl-india-mcp", "DHL MCP", "logistics MCP India"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["paytm-mcp-server-india-payments", "google-pay-mcp-india", "zoho-crm-mcp-india"],
-    content: "<p>DHL India MCP Server – Logistics - detailed guide coming soon.</p>"
+    internalLinks: ["fedex-india-mcp", "delhivery-mcp-india", "shadowfax-mcp-india"],
+    content: `<p class="text-white/65 leading-relaxed">No DHL India-specific MCP server exists, but DHL is one of 8 carriers covered by a real, hosted Multi-Carrier Tracking MCP server — alongside FedEx, UPS, USPS, India Post, Delhivery, BlueDart, and Aramex, with automatic carrier detection from a tracking number and support for batch tracking up to 25 packages per call.</p>
+<p class="text-white/65 leading-relaxed">For anyone building a logistics-aware AI agent that needs to track shipments across multiple carriers operating in India, this multi-carrier server is the more practical real option than expecting a DHL-specific integration.</p>`
   },
   {
     slug: "apollo-mcp-india",
-    title: "Apollo MCP Server – Healthcare",
-    date: "2026-07-20",
+    title: "Apollo Hospitals and MCP: A Real Naming Collision Worth Knowing",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
     readTime: "4 min read",
-    excerpt: "Apollo MCP Server – Healthcare integration for automated workflows in India.",
-    keywords: ["apollo-mcp-india", "India MCP", "MCP integration"],
+    excerpt: "Searching \"Apollo MCP server\" mostly surfaces Apollo GraphQL's own unrelated product and Apollo.io's sales-intelligence server — not Apollo Hospitals, India's healthcare chain, which has no confirmed MCP server of its own.",
+    keywords: ["apollo-mcp-india", "Apollo Hospitals MCP", "healthcare MCP India"],
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: ["manipal-mcp-india", "aiims-mcp-india", "fortis-mcp-india"],
-    content: "<p>Apollo MCP Server – Healthcare - detailed guide coming soon.</p>"
+    content: `<p class="text-white/65 leading-relaxed">Search "Apollo MCP server" and you'll immediately hit a real naming collision: the top results are almost entirely about <strong class="text-white">Apollo GraphQL's</strong> own MCP server (a completely unrelated company that exposes GraphQL operations as MCP tools) and <strong class="text-white">Apollo.io's</strong> MCP server (a sales-intelligence platform). Neither has anything to do with Apollo Hospitals, India's major healthcare chain.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">No Confirmed Server for Apollo Hospitals</h2>
+<p class="text-white/65 leading-relaxed">No evidence exists of an MCP server connected to Apollo Hospitals specifically. This is consistent with the broader pattern across Indian hospital chains covered on this site: patient-record systems generally aren't exposed through public APIs suitable for third-party integration, unlike banking or e-commerce platforms.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Why the Confusion Is Worth Flagging</h2>
+<p class="text-white/65 leading-relaxed">If you're specifically researching healthcare-AI integration for Apollo Hospitals and land on "Apollo MCP server" documentation, double-check which Apollo it's actually describing — Apollo GraphQL's server, in particular, is a well-documented, actively-used developer tool that could easily be mistaken for something healthcare-specific by name alone.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">What Real Progress Would Look Like</h2>
+<p class="text-white/65 leading-relaxed">As covered in this site's broader healthcare-MCP coverage, the realistic path for any Indian hospital chain — Apollo included — would run through FHIR-standard EHR integration rather than a hospital-specific custom API, given the general lack of public-facing patient-data APIs across the sector.</p>`
   },
   {
     slug: "icici-lombard-mcp",
-    title: "ICICI Lombard MCP Server – Insurance",
-    date: "2026-07-20",
+    title: "ICICI Lombard: No MCP Server Found",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "4 min read",
-    excerpt: "ICICI Lombard MCP Server – Insurance integration for automated workflows in India.",
-    keywords: ["icici-lombard-mcp", "India MCP", "MCP integration"],
+    readTime: "3 min read",
+    excerpt: "No official or community MCP server has been confirmed for ICICI Lombard, one of India's largest general insurers. Insurance MCP tooling exists conceptually but no India-specific insurer integration was found.",
+    keywords: ["icici-lombard-mcp", "ICICI Lombard MCP", "insurance MCP India"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["icici-bank-mcp-india", "hdfc-ergo-mcp", "razorpay-mcp-server-india"],
-    content: "<p>ICICI Lombard MCP Server – Insurance - detailed guide coming soon.</p>"
+    internalLinks: ["hdfc-ergo-mcp", "icici-bank-mcp-india", "gst-mcp-server-tax-compliance"],
+    content: `<p class="text-white/65 leading-relaxed">No official or notable community MCP server has been confirmed for ICICI Lombard General Insurance, despite it being one of India's largest general insurers. General discussion of "Model Context Protocol in insurance" exists — enabling AI agents to securely access policy data through structured tools — but no evidence ties that concept to ICICI Lombard specifically.</p>
+<p class="text-white/65 leading-relaxed">If AI-agent access to insurance data matters for your workflow, the realistic path today is a custom MCP wrapper against whatever policy-management or claims API ICICI Lombard offers its own partners, rather than an existing off-the-shelf integration.</p>`
   },
   {
     slug: "hdfc-ergo-mcp",
-    title: "HDFC Ergo MCP Server – Insurance",
-    date: "2026-07-20",
+    title: "HDFC Ergo: No MCP Server Found",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "4 min read",
-    excerpt: "HDFC Ergo MCP Server – Insurance integration for automated workflows in India.",
-    keywords: ["hdfc-ergo-mcp", "India MCP", "MCP integration"],
+    readTime: "3 min read",
+    excerpt: "No official or community MCP server has been confirmed for HDFC Ergo, consistent with the broader absence of MCP activity across Indian general insurance.",
+    keywords: ["hdfc-ergo-mcp", "HDFC Ergo MCP", "insurance MCP India"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["hdfc-bank-mcp-india", "icici-lombard-mcp", "razorpay-mcp-server-india"],
-    content: "<p>HDFC Ergo MCP Server – Insurance - detailed guide coming soon.</p>"
+    internalLinks: ["icici-lombard-mcp", "hdfc-bank-mcp-india", "gst-mcp-server-tax-compliance"],
+    content: `<p class="text-white/65 leading-relaxed">No official or notable community MCP server has been confirmed for HDFC Ergo General Insurance — the same finding as ICICI Lombard, its closest competitor by scale. Indian general insurance as a category currently has no confirmed MCP presence, official or community-built.</p>
+<p class="text-white/65 leading-relaxed">This tracks with the broader pattern across regulated, data-sensitive Indian sectors covered on this site (banking, healthcare): real digital infrastructure often exists internally, but public, third-party-integrable APIs suited to MCP wrapping generally don't yet.</p>`
   },
   {
     slug: "reliance-mcp-india",
-    title: "Reliance MCP Server – Conglomerate",
-    date: "2026-07-20",
+    title: "Reliance: No MCP Server (It's a Conglomerate, Not a Platform)",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "4 min read",
-    excerpt: "Reliance MCP Server – Conglomerate integration for automated workflows in India.",
-    keywords: ["reliance-mcp-india", "India MCP", "MCP integration"],
+    readTime: "3 min read",
+    excerpt: "No MCP server exists for \"Reliance\" as a whole, because Reliance isn't a single product or platform — its digital consumer businesses (Jio, JioMart) are the more meaningful units to evaluate individually.",
+    keywords: ["reliance-mcp-india", "Reliance MCP", "India conglomerate MCP"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["razorpay-mcp-server-india", "zoho-books-mcp-accounting-india", "icici-bank-mcp-india"],
-    content: "<p>Reliance MCP Server – Conglomerate - detailed guide coming soon.</p>"
+    internalLinks: ["jio-mcp-india", "gst-mcp-server-tax-compliance", "tcs-mcp-india"],
+    content: `<p class="text-white/65 leading-relaxed">There is no MCP server for "Reliance" as a whole, and there structurally couldn't be one — Reliance Industries is a conglomerate spanning oil and gas, retail, telecom (Jio), and media (JioStar), not a single product or API surface a third party could wrap.</p>
+<p class="text-white/65 leading-relaxed">The individual consumer-facing businesses are the meaningful units to evaluate: see this site's <a href="/blog/jio-mcp-india" class="text-cyan-300 hover:text-cyan-200">Jio coverage</a> for telecom specifically, where the only real finding is a generic multi-carrier plan scraper, not a Reliance-published integration.</p>`
   },
   {
     slug: "tcs-mcp-india",
-    title: "TCS MCP Server – IT Services",
-    date: "2026-07-20",
+    title: "TCS: No MCP Product, But Client Delivery Work Almost Certainly Uses It",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
     readTime: "4 min read",
-    excerpt: "TCS MCP Server – IT Services integration for automated workflows in India.",
-    keywords: ["tcs-mcp-india", "India MCP", "MCP integration"],
+    excerpt: "TCS hasn't published its own MCP product, unlike Wipro which has a public blog series on the topic — but as a systems integrator, TCS almost certainly builds MCP servers for individual client engagements that never become public.",
+    keywords: ["tcs-mcp-india", "TCS MCP", "IT services MCP India"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["dunzo-mcp-india", "urbancompany-mcp-india", "goibibo-mcp-india"],
-    content: "<p>TCS MCP Server – IT Services - detailed guide coming soon.</p>"
+    internalLinks: ["wipro-mcp-india", "infosys-mcp-india", "hcl-mcp-india"],
+    content: `<p class="text-white/65 leading-relaxed">No official MCP server or product has been confirmed from TCS (Tata Consultancy Services). That's a meaningfully different situation from Wipro, which has published a public blog series specifically about building and scaling MCP servers — TCS has no comparable public content found.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Why This Doesn't Mean TCS Isn't Using MCP</h2>
+<p class="text-white/65 leading-relaxed">As one of India's largest systems integrators, TCS almost certainly builds custom MCP servers as part of individual client engagements — wrapping a specific client's internal systems for an AI-agent project — the same pattern any consultancy would follow. Client-specific implementation work like that typically isn't published or branded as a "TCS MCP server," so its absence from public search results doesn't mean TCS isn't doing real MCP work; it just isn't productized publicly.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">The Real Distinction Worth Understanding</h2>
+<p class="text-white/65 leading-relaxed">"Does Company X have an MCP server" and "does Company X do MCP-related work" are different questions for B2B services firms like TCS, Infosys, Wipro, and HCL — none of them are platforms with a consumer-facing API to wrap, so their MCP activity (where it exists) shows up in client delivery work and internal tooling, not a public GitHub repo.</p>`
   },
   {
     slug: "infosys-mcp-india",
-    title: "Infosys MCP Server – IT Services",
-    date: "2026-07-20",
+    title: "Infosys: No Public MCP Product, Same B2B Pattern as TCS",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "4 min read",
-    excerpt: "Infosys MCP Server – IT Services integration for automated workflows in India.",
-    keywords: ["infosys-mcp-india", "India MCP", "MCP integration"],
+    readTime: "3 min read",
+    excerpt: "No official MCP server or product has been confirmed from Infosys — the same finding as TCS and HCL, consistent with how systems integrators typically handle client-specific technical work.",
+    keywords: ["infosys-mcp-india", "Infosys MCP", "IT services MCP India"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["dunzo-mcp-india", "urbancompany-mcp-india", "goibibo-mcp-india"],
-    content: "<p>Infosys MCP Server – IT Services - detailed guide coming soon.</p>"
+    internalLinks: ["tcs-mcp-india", "wipro-mcp-india", "hcl-mcp-india"],
+    content: `<p class="text-white/65 leading-relaxed">No official MCP server or product has been confirmed from Infosys, the same finding as TCS and HCL. As with those peers, this doesn't mean Infosys isn't doing real MCP-related work — it means that work, if it exists, is happening inside client engagements rather than as a public, Infosys-branded product.</p>
+<p class="text-white/65 leading-relaxed">See this site's <a href="/blog/tcs-mcp-india" class="text-cyan-300 hover:text-cyan-200">TCS coverage</a> for the fuller explanation of why B2B systems integrators generally don't show up in public MCP server searches even when they're actively building with the protocol for clients.</p>`
   },
   {
     slug: "wipro-mcp-india",
-    title: "Wipro MCP Server – IT Services",
-    date: "2026-07-20",
+    title: "Wipro: The One Indian IT Services Firm With Public MCP Content",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
     readTime: "4 min read",
-    excerpt: "Wipro MCP Server – IT Services integration for automated workflows in India.",
-    keywords: ["wipro-mcp-india", "India MCP", "MCP integration"],
+    excerpt: "Unlike TCS, Infosys, and HCL, Wipro has published a public blog series specifically about MCP — core concepts, FastMCP, authentication, Dockerizing servers — though this is educational content, not a Wipro-branded product.",
+    keywords: ["wipro-mcp-india", "Wipro MCP", "IT services MCP India"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["dunzo-mcp-india", "urbancompany-mcp-india", "goibibo-mcp-india"],
-    content: "<p>Wipro MCP Server – IT Services - detailed guide coming soon.</p>"
+    internalLinks: ["tcs-mcp-india", "infosys-mcp-india", "hcl-mcp-india"],
+    content: `<p class="text-white/65 leading-relaxed">Wipro stands out among the major Indian IT services firms as the one with real, public MCP content — a blog series on Wipro Tech Blogs (Medium) covering MCP's core principles, the performance-optimized FastMCP variant, MCP authentication mechanisms, building servers with FastMCP, and Dockerizing MCP servers for scalable deployment.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Educational Content, Not a Product</h2>
+<p class="text-white/65 leading-relaxed">Worth being precise about what this is: solutions-architect-level educational writing about MCP as a technology, not a Wipro-branded MCP server or product you could connect to. It signals genuine internal expertise and likely real client delivery capability, but there's no "Wipro MCP Server" to install or connect.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Why This Still Matters</h2>
+<p class="text-white/65 leading-relaxed">For anyone evaluating Indian systems integrators for an MCP-related project, Wipro's public thought leadership is at least an observable signal of internal capability — something TCS, Infosys, and HCL haven't published a comparable equivalent of, even though all four almost certainly do similar client work behind the scenes.</p>`
   },
   {
     slug: "hcl-mcp-india",
-    title: "HCL MCP Server – IT Services",
-    date: "2026-07-20",
+    title: "HCL: No Public MCP Product, Same B2B Pattern as TCS and Infosys",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "4 min read",
-    excerpt: "HCL MCP Server – IT Services integration for automated workflows in India.",
-    keywords: ["hcl-mcp-india", "India MCP", "MCP integration"],
+    readTime: "3 min read",
+    excerpt: "No official MCP server or product has been confirmed from HCL — the same finding as TCS and Infosys, consistent with how systems integrators typically handle client-specific technical work.",
+    keywords: ["hcl-mcp-india", "HCL MCP", "IT services MCP India"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["dunzo-mcp-india", "urbancompany-mcp-india", "goibibo-mcp-india"],
-    content: "<p>HCL MCP Server – IT Services - detailed guide coming soon.</p>"
+    internalLinks: ["tcs-mcp-india", "infosys-mcp-india", "wipro-mcp-india"],
+    content: `<p class="text-white/65 leading-relaxed">No official MCP server or product has been confirmed from HCLTech, the same finding as TCS and Infosys. Among the major Indian IT services firms, only Wipro has published notable public MCP-specific content — the rest, HCL included, likely do comparable client-delivery work without a public-facing product or blog series to show for it.</p>
+<p class="text-white/65 leading-relaxed">See this site's <a href="/blog/wipro-mcp-india" class="text-cyan-300 hover:text-cyan-200">Wipro coverage</a> for the one real exception found among this group, and <a href="/blog/tcs-mcp-india" class="text-cyan-300 hover:text-cyan-200">TCS coverage</a> for the broader explanation of why B2B systems integrators generally don't appear in public MCP server searches.</p>`
   },
   {
     slug: "airtel-mcp-india",
-    title: "Airtel MCP Server – Telecom",
-    date: "2026-07-20",
+    title: "Airtel MCP: No Official Server, One Real Multi-Telecom Scraper",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
     readTime: "4 min read",
-    excerpt: "Airtel MCP Server – Telecom integration for automated workflows in India.",
-    keywords: ["airtel-mcp-india", "India MCP", "MCP integration"],
+    excerpt: "No official Airtel MCP server exists. The one real, checkable option is a third-party scraper covering Jio, Airtel, Vi, and BSNL plans together — not an Airtel-specific integration.",
+    keywords: ["airtel-mcp-india", "Airtel MCP", "India telecom MCP"],
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: ["jio-mcp-india", "vi-mcp-india", "razorpay-mcp-server-india"],
-    content: "<p>Airtel MCP Server – Telecom - detailed guide coming soon.</p>"
+    content: `<p class="text-white/65 leading-relaxed">No official or notable brand-specific community MCP server exists for Airtel. The one real, checkable project in this space is a third-party "India Telecom Plans Scraper" MCP server covering Jio, Airtel, Vi, and BSNL together — it collects public prepaid plan data (price, validity, data, calls, SMS, network type, OTT benefits, recharge URLs) across all four carriers, not an Airtel-specific integration.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Why It's a Scraper, Not an API Integration</h2>
+<p class="text-white/65 leading-relaxed">Worth being precise about what this actually is: a scraper that collects publicly-visible plan information, not an integration against an official Airtel API or account data. It can tell an AI agent what plans exist and their pricing — it can't check a specific customer's account balance, usage, or manage their subscription, since that would require real API access Airtel hasn't published.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">The Broader Telecom-MCP Context</h2>
+<p class="text-white/65 leading-relaxed">MCP is being discussed as a genuine future direction for telecom API strategy generally (multiple industry pieces from telecom-focused publications cover "Model Context Protocol for telco networks" as an emerging pattern), but that's still largely conceptual — no major Indian telecom operator, Airtel included, has shipped a real account-level MCP integration yet.</p>`
   },
   {
     slug: "jio-mcp-india",
-    title: "Jio MCP Server – Telecom",
-    date: "2026-07-20",
+    title: "Jio MCP: No Official Server Found",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "4 min read",
-    excerpt: "Jio MCP Server – Telecom integration for automated workflows in India.",
-    keywords: ["jio-mcp-india", "India MCP", "MCP integration"],
+    readTime: "3 min read",
+    excerpt: "No official or brand-specific community MCP server exists for Jio — the same real multi-telecom plan scraper covering Jio/Airtel/Vi/BSNL is the only concrete option found, and it's public-data-only, not account access.",
+    keywords: ["jio-mcp-india", "Jio MCP", "India telecom MCP"],
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: ["airtel-mcp-india", "vi-mcp-india", "razorpay-mcp-server-india"],
-    content: "<p>Jio MCP Server – Telecom - detailed guide coming soon.</p>"
+    content: `<p class="text-white/65 leading-relaxed">No official or notable brand-specific community MCP server exists for Jio, despite Reliance Jio being India's largest telecom operator by subscriber count. The only real, checkable project touching Jio through MCP is the same multi-carrier "India Telecom Plans Scraper" covered in this site's <a href="/blog/airtel-mcp-india" class="text-cyan-300 hover:text-cyan-200">Airtel MCP coverage</a> — public plan data across Jio, Airtel, Vi, and BSNL, not account-level access.</p>
+<p class="text-white/65 leading-relaxed">Given Jio's scale and Reliance's broader digital ambitions, an official Jio MCP server would be a notable development if it appeared — nothing in current public information suggests one is imminent.</p>`
   },
   {
     slug: "vi-mcp-india",
-    title: "Vi MCP Server – Telecom",
-    date: "2026-07-20",
+    title: "Vi (Vodafone Idea) MCP: No Official Server Found",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "4 min read",
-    excerpt: "Vi MCP Server – Telecom integration for automated workflows in India.",
-    keywords: ["vi-mcp-india", "India MCP", "MCP integration"],
+    readTime: "3 min read",
+    excerpt: "No official or brand-specific community MCP server exists for Vi — same finding as Jio and Airtel, with the multi-carrier plan scraper as the only real, checkable option.",
+    keywords: ["vi-mcp-india", "Vi MCP", "Vodafone Idea MCP", "India telecom MCP"],
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: ["airtel-mcp-india", "jio-mcp-india", "razorpay-mcp-server-india"],
-    content: "<p>Vi MCP Server – Telecom - detailed guide coming soon.</p>"
+    content: `<p class="text-white/65 leading-relaxed">No official or notable brand-specific community MCP server exists for Vi (Vodafone Idea) — the same finding as Jio and Airtel. The multi-carrier "India Telecom Plans Scraper" covered in this site's <a href="/blog/airtel-mcp-india" class="text-cyan-300 hover:text-cyan-200">Airtel MCP coverage</a> includes Vi's publicly-listed plans alongside Jio, Airtel, and BSNL, but that's public plan data, not account access.</p>
+<p class="text-white/65 leading-relaxed">Across all three major Indian private telecom operators, the pattern is consistent: no official MCP integration, and the only real community project treats them collectively as a plan-comparison data source rather than individually as account-management platforms.</p>`
   },
   {
     slug: "kmb-mcp-server-karnataka",
@@ -6664,81 +6797,90 @@ pip install phonepe-pg-docs-mcp</code></pre>
   },
   {
     slug: "khatabook-mcp-india",
-    title: "KhataBook MCP Server – Small Business",
-    date: "2026-07-20",
+    title: "KhataBook: No MCP Server Found",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "4 min read",
-    excerpt: "KhataBook MCP Server – Small Business integration for automated workflows in India.",
-    keywords: ["khatabook-mcp-india", "India MCP", "MCP integration"],
+    readTime: "3 min read",
+    excerpt: "No official or community MCP server has been confirmed for KhataBook, the digital ledger app widely used by Indian small businesses.",
+    keywords: ["khatabook-mcp-india", "KhataBook MCP", "small business MCP India"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["aubank-mcp-india", "razorpayx-mcp-india", "razorpay-mcp-server-india"],
-    content: "<p>KhataBook MCP Server – Small Business - detailed guide coming soon.</p>"
+    internalLinks: ["okcredit-mcp-india", "vyapar-mcp-india", "zoho-books-mcp-accounting-india"],
+    content: `<p class="text-white/65 leading-relaxed">No official or notable community MCP server has been confirmed for KhataBook, despite it being a widely-used digital ledger app for Indian small and medium businesses tracking transactions and receivables.</p>
+<p class="text-white/65 leading-relaxed">This is consistent with the broader finding across India's small-business bookkeeping apps (OkCredit, Vyapar, MyBillBook, ProfitBooks) — none currently have a confirmed MCP integration, official or community-built. For AI-agent access to accounting workflows today, <a href="/blog/zoho-books-mcp-accounting-india" class="text-cyan-300 hover:text-cyan-200">Zoho Books</a> is the more mature, officially-supported option among Indian accounting platforms.</p>`
   },
   {
     slug: "okcredit-mcp-india",
-    title: "OkCredit MCP Server – Credit Management",
-    date: "2026-07-20",
+    title: "OkCredit: No MCP Server Found",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "4 min read",
-    excerpt: "OkCredit MCP Server – Credit Management integration for automated workflows in India.",
-    keywords: ["okcredit-mcp-india", "India MCP", "MCP integration"],
+    readTime: "3 min read",
+    excerpt: "No official or community MCP server has been confirmed for OkCredit, consistent with the broader absence of MCP activity across India's small-business bookkeeping apps.",
+    keywords: ["okcredit-mcp-india", "OkCredit MCP", "small business MCP India"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["razorpay-mcp-server-india", "zoho-books-mcp-accounting-india", "icici-bank-mcp-india"],
-    content: "<p>OkCredit MCP Server – Credit Management - detailed guide coming soon.</p>"
+    internalLinks: ["khatabook-mcp-india", "vyapar-mcp-india", "zoho-books-mcp-accounting-india"],
+    content: `<p class="text-white/65 leading-relaxed">No official or notable community MCP server has been confirmed for OkCredit, the digital ledger app for small business owners tracking credit and payment transactions. This matches the finding across every Indian small-business bookkeeping app checked for this coverage — none currently have one.</p>
+<p class="text-white/65 leading-relaxed">See this site's <a href="/blog/khatabook-mcp-india" class="text-cyan-300 hover:text-cyan-200">KhataBook coverage</a> for the fuller context on where AI-agent accounting integration in India currently stands.</p>`
   },
   {
     slug: "vyapar-mcp-india",
-    title: "Vyapar MCP Server – GST Billing",
-    date: "2026-07-20",
+    title: "Vyapar: No MCP Server Found",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "4 min read",
-    excerpt: "Vyapar MCP Server – GST Billing integration for automated workflows in India.",
-    keywords: ["vyapar-mcp-india", "India MCP", "MCP integration"],
+    readTime: "3 min read",
+    excerpt: "No official or community MCP server has been confirmed for Vyapar, despite it being a more complete GST-capable accounting app than pure ledger apps like KhataBook or OkCredit.",
+    keywords: ["vyapar-mcp-india", "Vyapar MCP", "GST billing MCP India"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["razorpay-mcp-server-india", "zoho-books-mcp-accounting-india", "icici-bank-mcp-india"],
-    content: "<p>Vyapar MCP Server – GST Billing - detailed guide coming soon.</p>"
+    internalLinks: ["khatabook-mcp-india", "okcredit-mcp-india", "gst-mcp-server-tax-compliance"],
+    content: `<p class="text-white/65 leading-relaxed">No official or notable community MCP server has been confirmed for Vyapar, even though it's a more complete invoicing and accounting app (with real GST features) than pure digital-ledger tools like KhataBook or OkCredit. That extra feature depth hasn't translated into MCP support yet.</p>
+<p class="text-white/65 leading-relaxed">For GST-aware AI tooling today, see this site's broader <a href="/blog/gst-mcp-server-tax-compliance" class="text-cyan-300 hover:text-cyan-200">GST MCP coverage</a> for the community and commercial options that do exist, none of which are Vyapar-specific.</p>`
   },
   {
     slug: "mybillbook-mcp-india",
-    title: "MyBillBook MCP Server – Invoicing",
-    date: "2026-07-20",
+    title: "MyBillBook: No MCP Server Found",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "4 min read",
-    excerpt: "MyBillBook MCP Server – Invoicing integration for automated workflows in India.",
-    keywords: ["mybillbook-mcp-india", "India MCP", "MCP integration"],
+    readTime: "3 min read",
+    excerpt: "No official or community MCP server has been confirmed for MyBillBook, consistent with the broader absence of MCP activity across India's small-business invoicing apps.",
+    keywords: ["mybillbook-mcp-india", "MyBillBook MCP", "invoicing MCP India"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["razorpay-mcp-server-india", "zoho-books-mcp-accounting-india", "icici-bank-mcp-india"],
-    content: "<p>MyBillBook MCP Server – Invoicing - detailed guide coming soon.</p>"
+    internalLinks: ["vyapar-mcp-india", "khatabook-mcp-india", "zoho-books-mcp-accounting-india"],
+    content: `<p class="text-white/65 leading-relaxed">No official or notable community MCP server has been confirmed for MyBillBook, the invoicing and billing app for Indian small businesses. This matches the pattern across every small-business bookkeeping app covered in this bucket — Khatabook, OkCredit, Vyapar, and MyBillBook alike currently have no MCP integration, official or otherwise.</p>`
   },
   {
     slug: "profit-books-mcp-india",
-    title: "ProfitBooks MCP Server – Accounting",
-    date: "2026-07-20",
+    title: "ProfitBooks: No MCP Server Found",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "4 min read",
-    excerpt: "ProfitBooks MCP Server – Accounting integration for automated workflows in India.",
-    keywords: ["profit-books-mcp-india", "India MCP", "MCP integration"],
+    readTime: "3 min read",
+    excerpt: "No official or community MCP server has been confirmed for ProfitBooks. Zoho Books remains the more mature choice among Indian accounting platforms if official MCP support matters to your decision.",
+    keywords: ["profit-books-mcp-india", "ProfitBooks MCP", "accounting MCP India"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["zoho-books-mcp-accounting-india", "tally-mcp-server-india", "razorpay-mcp-server-india"],
-    content: "<p>ProfitBooks MCP Server – Accounting - detailed guide coming soon.</p>"
+    internalLinks: ["zoho-books-mcp-accounting-india", "tally-mcp-server-india", "gst-mcp-server-tax-compliance"],
+    content: `<p class="text-white/65 leading-relaxed">No official or notable community MCP server has been confirmed for ProfitBooks, the small-business accounting platform. Among Indian accounting software, <a href="/blog/zoho-books-mcp-accounting-india" class="text-cyan-300 hover:text-cyan-200">Zoho Books</a> remains the clear, officially-supported choice if MCP integration specifically matters to your platform decision — ProfitBooks, like Tally's most-referenced implementation, has no comparable official support.</p>`
   },
   {
     slug: "razorpayx-mcp-india",
-    title: "RazorpayX MCP Server – Business Banking",
-    date: "2026-07-20",
+    title: "RazorpayX: Business Banking Under Razorpay's Official MCP Umbrella",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
     readTime: "4 min read",
-    excerpt: "RazorpayX MCP Server – Business Banking integration for automated workflows in India.",
-    keywords: ["razorpayx-mcp-india", "India MCP", "MCP integration"],
+    excerpt: "RazorpayX, Razorpay's business banking product (payouts, current accounts, corporate cards), isn't confirmed to have a separate MCP server — it most likely falls under Razorpay's real, official MCP server rather than needing its own.",
+    keywords: ["razorpayx-mcp-india", "RazorpayX MCP", "India business banking MCP"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["icici-bank-mcp-india", "kotak-maharaja-mcp-india", "hdfc-bank-mcp-india"],
-    content: "<p>RazorpayX MCP Server – Business Banking - detailed guide coming soon.</p>"
+    internalLinks: ["razorpay-mcp-server-india", "kotak-maharaja-mcp-india", "hdfc-bank-mcp-india"],
+    content: `<p class="text-white/65 leading-relaxed">RazorpayX is Razorpay's business banking product — current accounts, vendor payouts, payroll, and corporate cards — distinct from Razorpay's core payment gateway. No RazorpayX-specific MCP server has been separately confirmed; the more likely reality is that RazorpayX capabilities are reachable through <a href="/blog/razorpay-mcp-server-india" class="text-cyan-300 hover:text-cyan-200">Razorpay's real, official MCP server</a> rather than a standalone product.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Why This Matters for Automated Payouts</h2>
+<p class="text-white/65 leading-relaxed">If your use case is AI-agent-driven vendor payouts or payroll disbursal rather than customer-facing payment collection, check Razorpay's own MCP documentation directly for which specific tools cover RazorpayX's business-banking capabilities versus the core payment-gateway functions — the distinction matters operationally even if both sit under the same underlying MCP server.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Higher Stakes Than Customer Checkout</h2>
+<p class="text-white/65 leading-relaxed">Business banking actions (payouts, payroll) generally carry higher individual transaction values than customer checkout flows — which makes the confirmation-step discipline covered across this site's payment-MCP content even more important here: never let an AI agent execute a payout or payroll run without an explicit human approval step, regardless of what the underlying API technically permits.</p>`
   },
   {
     slug: "cashfree-mcp-india",
@@ -6769,29 +6911,31 @@ pip install phonepe-pg-docs-mcp</code></pre>
   },
   {
     slug: "instamojo-mcp-india",
-    title: "Instamojo MCP Server – Payment Links",
-    date: "2026-07-20",
+    title: "Instamojo: No MCP Server Found",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "4 min read",
-    excerpt: "Instamojo MCP Server – Payment Links integration for automated workflows in India.",
-    keywords: ["instamojo-mcp-india", "India MCP", "MCP integration"],
+    readTime: "3 min read",
+    excerpt: "No official or community MCP server has been confirmed for Instamojo, despite Razorpay, Cashfree, and PayU — its larger competitors — all shipping official ones.",
+    keywords: ["instamojo-mcp-india", "Instamojo MCP", "India payment links MCP"],
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: ["ccavenue-mcp-india", "payu-mcp-india", "razorpay-mcp-server-india"],
-    content: "<p>Instamojo MCP Server – Payment Links - detailed guide coming soon.</p>"
+    content: `<p class="text-white/65 leading-relaxed">No official or notable community MCP server has been confirmed for Instamojo. This is consistent with a real, observable pattern: MCP adoption among Indian payment gateways so far correlates with scale — Razorpay, Cashfree, and PayU (the three largest by volume) have all shipped official servers, while smaller players like Instamojo haven't yet.</p>
+<p class="text-white/65 leading-relaxed">If Instamojo-specific MCP support matters for your workflow, a custom wrapper against Instamojo's existing payment-links API is the realistic path today, following the same pattern this site documents for any production API without an official MCP layer yet.</p>`
   },
   {
     slug: "ccavenue-mcp-india",
-    title: "CCAvenue MCP Server – Payment Gateway",
-    date: "2026-07-20",
+    title: "CCAvenue: No MCP Server Found",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "4 min read",
-    excerpt: "CCAvenue MCP Server – Payment Gateway integration for automated workflows in India.",
-    keywords: ["ccavenue-mcp-india", "India MCP", "MCP integration"],
+    readTime: "3 min read",
+    excerpt: "No official or community MCP server has been confirmed for CCAvenue, one of India's older payment gateways, consistent with the pattern that MCP adoption correlates with more recent, larger-scale providers.",
+    keywords: ["ccavenue-mcp-india", "CCAvenue MCP", "India payment gateway MCP"],
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: ["cashfree-mcp-india", "instamojo-mcp-india", "payu-mcp-india"],
-    content: "<p>CCAvenue MCP Server – Payment Gateway - detailed guide coming soon.</p>"
+    content: `<p class="text-white/65 leading-relaxed">No official or notable community MCP server has been confirmed for CCAvenue, one of India's longer-established payment gateways. As with Instamojo, this fits a real, observable pattern: MCP adoption among Indian payment gateways so far has concentrated among the larger, more recently aggressive players (Razorpay, Cashfree, PayU) rather than older or smaller incumbents.</p>
+<p class="text-white/65 leading-relaxed">See this site's <a href="/blog/razorpay-mcp-server-india" class="text-cyan-300 hover:text-cyan-200">Razorpay coverage</a> for the real, official MCP servers that do exist in this space today.</p>`
   },
   {
     slug: "payu-mcp-india",
@@ -6822,16 +6966,17 @@ pip install phonepe-pg-docs-mcp</code></pre>
   },
   {
     slug: "billdesk-mcp-india",
-    title: "BillDesk MCP Server – Bill Payments",
-    date: "2026-07-20",
+    title: "BillDesk MCP: Runs Through PayU, Not a Separate Product",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "4 min read",
-    excerpt: "BillDesk MCP Server – Bill Payments integration for automated workflows in India.",
-    keywords: ["billdesk-mcp-india", "India MCP", "MCP integration"],
+    readTime: "3 min read",
+    excerpt: "BillDesk, long a dominant player in Indian bill payments, is now part of PayU — so BillDesk-related MCP workflows run through PayU's official server rather than a separate BillDesk-branded one.",
+    keywords: ["billdesk-mcp-india", "BillDesk MCP", "India bill payments MCP"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["razorpay-mcp-server-india", "paytm-mcp-server-india-payments", "google-pay-mcp-india"],
-    content: "<p>BillDesk MCP Server – Bill Payments - detailed guide coming soon.</p>"
+    internalLinks: ["payu-mcp-india", "razorpay-mcp-server-india", "paytm-mcp-server-india-payments"],
+    content: `<p class="text-white/65 leading-relaxed">No separate BillDesk-branded MCP server exists, and there's a real, specific reason: BillDesk — long a dominant player in Indian bill payments and banking infrastructure — is now part of PayU. Any BillDesk-related payment workflows going through MCP today run through <a href="/blog/payu-mcp-india" class="text-cyan-300 hover:text-cyan-200">PayU's official MCP server</a> rather than a standalone BillDesk product.</p>
+<p class="text-white/65 leading-relaxed">If you're specifically looking for AI-agent access to BillDesk's real strength — recurring bill payments and banking-infrastructure-level integrations — check PayU's own MCP documentation for what's actually exposed, since PayU is the correct current entry point rather than BillDesk directly.</p>`
   },
   {
     slug: "matlab-mcp-server-integration-guide",
