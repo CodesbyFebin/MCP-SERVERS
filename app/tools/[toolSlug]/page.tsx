@@ -16,6 +16,7 @@ const VALID_TOOLS = new Set([
   "mcp-schema-viewer",
   "mcp-config-validator",
   "mcp-endpoint-tester",
+  "mcp-sdk-workbench",
   "dpdp-compliance-scanner",
   "dpdp-compliance-checklist",
 ]);
