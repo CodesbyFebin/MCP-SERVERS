@@ -799,6 +799,14 @@ npx @modelcontextprotocol/inspector node dist/index.js`,
         code: `npm init -y
 npm install @modelcontextprotocol/sdk zod
 node server.js`,
+        diagram: `graph TD
+    A[Developer] --> B[npm init + install SDK]
+    B --> C[Write server.js with one tool]
+    C --> D[Run: node server.js]
+    D --> E[Client reads JSON-RPC on stdin/stdout]
+    E --> F[Tool result flows back]
+    style A fill:#0b1220,stroke:#22d3ee,color:#fff
+    style F fill:#0b1220,stroke:#a855f7,color:#fff`,
       },
       {
         heading: "Desktop client configuration",
@@ -1092,6 +1100,18 @@ app.listen(3000);`,
       {
         heading: "Decision matrix",
         body: ["Match the transport to the deployment shape rather than defaulting to one for every project."],
+        diagram: `graph LR
+    subgraph Local[Local / Single-user]
+        A[Claude Desktop] -->|stdio| B[MCP Server]
+        C[Cursor] -->|stdio| B
+    end
+    subgraph Remote[Remote / Multi-tenant]
+        D[Web Client] -->|HTTPS / SSE| E[Load Balancer]
+        E --> F[MCP Server Cluster]
+        F -->|SSE stream| D
+    end
+    style Local fill:#0b1220,stroke:#22d3ee,color:#fff
+    style Remote fill:#0b1220,stroke:#a855f7,color:#fff`,
         table: table(
           ["Scenario", "Recommended transport"],
           [
@@ -1543,6 +1563,17 @@ app.listen(3000);`,
       {
         heading: "Baseline policy",
         body: ["Security starts with a clear boundary. Every server should know which resources it may read, which actions it may perform, and which users or clients may invoke it."],
+        diagram: `flowchart LR
+    A[Client] --> B[Auth / mTLS]
+    B --> C{RBAC Check}
+    C -->|allowed| D[Tool Executor]
+    C -->|denied| E[401/403 Response]
+    D --> F[Sandbox / Rate Limit]
+    F --> G[Audit Log]
+    G --> H[Response]
+    style A fill:#0b1220,stroke:#22d3ee,color:#fff
+    style H fill:#0b1220,stroke:#a855f7,color:#fff
+    style E fill:#0b1220,stroke:#ef4444,color:#fff`,
         code: `{
   "auth": "required",
   "rateLimit": "60/minute",

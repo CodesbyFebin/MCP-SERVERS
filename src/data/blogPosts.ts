@@ -326,31 +326,33 @@ npx @modelcontextprotocol/inspector node build/index.js</code></pre>
     date: "2026-07-19",
     category: "Getting Started",
     cluster: "getting-started",
-    readTime: "1 min read",
-    excerpt: "Deep dive into MCP's JSON-RPC communication protocol, transport methods, and server lifecycle.",
+    readTime: "6 min read",
+    excerpt: "MCP's lifecycle has three real, distinct phases — initialization/capability negotiation, normal operation, and shutdown — and understanding the handshake specifically explains a lot of otherwise-confusing client behavior.",
     keywords: ["MCP protocol", "MCP JSON-RPC", "how MCP works"],
     ugcElements: ["Technical discussion", "Code sharing section"],
     internalLinks: ["model-context-protocol-beginner-guide", "mcp-transport-methods", "mcp-server-architecture-patterns"],
-    content: `<p class="text-white/65 leading-relaxed">MCP uses JSON-RPC 2.0 as its foundation, with custom extensions for tool calling and resource management.</p>
+    content: `<p class="text-white/65 leading-relaxed">MCP uses JSON-RPC 2.0 as its message format, but the interesting part of "how it works" isn't the wire format — it's the three-phase lifecycle every connection goes through, and the capability negotiation that happens before a single tool is ever called.</p>
 
-<h2 class="mt-8 text-2xl font-black text-white">Transport Layer Fundamentals</h2>
-<p class="text-white/65 leading-relaxed">MCP supports multiple transport mechanisms:</p>
-<ul class="text-white/65 leading-relaxed">
-  <li><strong>Stdio:</strong> Local process communication via standard input/output</li>
-  <li><strong>SSE:</strong> Server-Sent Events for remote servers over HTTP</li>
-  <li><strong>HTTP:</strong> Direct HTTP requests for stateless operations</li>
-</ul>
+<h2 class="mt-8 text-2xl font-black text-white">Phase 1: Initialization and Capability Negotiation</h2>
+<p class="text-white/65 leading-relaxed">A connection starts with the client sending an <code class="bg-gray-800 px-1 py-0.5 rounded">initialize</code> request, including the protocol version it supports and a list of its own capabilities. The server responds with its own supported protocol version and capabilities — tools, resources, prompts, and whether it supports things like resource subscriptions. If the client and server can't agree on a compatible protocol version, initialization fails right here, before either side has learned anything about the other's actual tools.</p>
+<p class="text-white/65 leading-relaxed">Once the server's response arrives, the client sends a <code class="bg-gray-800 px-1 py-0.5 rounded">notifications/initialized</code> notification confirming it's ready — only after that does the connection move into normal operation.</p>
 
-<h2 class="mt-8 text-2xl font-black text-white">The Message Flow</h2>
-<ol class="text-white/65 leading-relaxed">
-  <li>Client initializes connection with protocol version handshake</li>
-  <li>Server advertises available tools, resources, and prompts</li>
-  <li>Client calls tools with JSON-RPC formatted parameters</li>
-  <li>Server executes tool and returns structured response</li>
+<h2 class="mt-8 text-2xl font-black text-white">Phase 2: Normal Operation</h2>
+<ol class="text-white/65 leading-relaxed list-decimal pl-5 space-y-1">
+  <li>Client calls <code class="bg-gray-800 px-1 py-0.5 rounded">tools/list</code> (or <code class="bg-gray-800 px-1 py-0.5 rounded">resources/list</code>, <code class="bg-gray-800 px-1 py-0.5 rounded">prompts/list</code>) to discover what's actually available</li>
+  <li>Client calls <code class="bg-gray-800 px-1 py-0.5 rounded">tools/call</code> with a specific tool name and arguments matching that tool's declared schema</li>
+  <li>Server executes the tool and returns a result — or an error, at either the JSON-RPC protocol level or the tool-execution level via <code class="bg-gray-800 px-1 py-0.5 rounded">isError: true</code></li>
+  <li>If the server supports it, it can send <code class="bg-gray-800 px-1 py-0.5 rounded">notifications/tools/list_changed</code> if the available tool set changes mid-session — a plugin being loaded, for instance</li>
 </ol>
 
-<h2 class="mt-8 text-2xl font-black text-white">Community Implementation</h2>
-<p class="text-white/65 leading-relaxed">Check out our <a href="/servers/github-mcp-server" class="text-cyan-300">GitHub MCP Server</a> implementation for a production-ready example of these patterns.</p>`,
+<h2 class="mt-8 text-2xl font-black text-white">Phase 3: Shutdown</h2>
+<p class="text-white/65 leading-relaxed">Either side can end the session — closing the transport connection (stdio process exit, HTTP connection close) is generally sufficient; there's no elaborate goodbye handshake required by the spec.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Transport Is a Separate Concern From This Lifecycle</h2>
+<p class="text-white/65 leading-relaxed">This entire lifecycle — initialize, operate, shut down — happens identically regardless of whether the underlying transport is stdio (local process) or Streamable HTTP (remote server). The transport just carries the JSON-RPC messages; it doesn't change what messages get sent or in what order.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">A Real Production Example</h2>
+<p class="text-white/65 leading-relaxed">Real production servers built by companies like Zerodha (Kite MCP) and Stripe follow exactly this lifecycle — capability negotiation up front determines what tools a given client sees, which is also how Zerodha's hosted instance can expose a smaller, safer tool set than its self-hosted full version: the server simply advertises different tool lists during the same initialization phase depending on which deployment mode it's running in.</p>`,
     faqs: [
           {
                 "question": "Do I need to implement JSON-RPC manually?",
@@ -368,28 +370,32 @@ npx @modelcontextprotocol/inspector node build/index.js</code></pre>
   },
   {
     slug: "mcp-transport-methods",
-    title: "MCP Transport Methods: stdio vs SSE vs HTTP vs WebSocket",
-    date: "2026-07-19",
+    title: "MCP Transport Methods: stdio vs Streamable HTTP (Not WebSocket)",
+    date: "2026-07-21",
     category: "Getting Started",
     cluster: "getting-started",
-    readTime: "1 min read",
-    excerpt: "Comparison of MCP transport protocols with performance benchmarks and use cases.",
-    keywords: ["MCP transport", "MCP SSE", "MCP HTTP", "MCP WebSocket"],
+    readTime: "5 min read",
+    excerpt: "The MCP spec defines two real transports — stdio and Streamable HTTP (which replaced the older separate HTTP+SSE combination). WebSocket isn't a standard MCP transport, despite showing up in some comparisons.",
+    keywords: ["MCP transport", "MCP SSE", "MCP HTTP", "MCP stdio"],
     ugcElements: ["Method preference poll", "Performance benchmarks"],
     internalLinks: ["how-mcp-servers-work", "mcp-server-architecture-patterns", "mcp-server-vs-api-difference"],
-    content: `<p class="text-white/65 leading-relaxed">Choosing the right transport method is critical for MCP server performance and security.</p>
+    content: `<p class="text-white/65 leading-relaxed">Worth correcting up front: the MCP specification defines two transports — <strong class="text-white">stdio</strong> and <strong class="text-white">Streamable HTTP</strong>. WebSocket is not a standard MCP transport, despite occasionally appearing in comparison articles; if you see it listed as a first-class MCP transport option, that's inaccurate against the actual spec.</p>
 
-<h2 class="mt-8 text-2xl font-black text-white">Stdio: Local Development Standard</h2>
-<p class="text-white/65 leading-relaxed">Standard input/output is the default for local development. It's fast, secure, and requires no network configuration.</p>
+<h2 class="mt-8 text-2xl font-black text-white">stdio: The Local Development Default</h2>
+<p class="text-white/65 leading-relaxed">Standard input/output is how a client launches an MCP server as a local child process and exchanges JSON-RPC messages over its stdin/stdout streams. It's the default for desktop clients like Claude Desktop connecting to locally-installed servers — fast, requires no network configuration, and easy to debug since you can watch the raw JSON-RPC lines directly in a terminal.</p>
 
-<h2 class="mt-8 text-2xl font-black text-white">SSE: Remote Server Standard</h2>
-<p class="text-white/65 leading-relaxed">Server-Sent Events provide unidirectional streaming from server to client over HTTP. Most MCP clients support SSE for remote servers.</p>
+<h2 class="mt-8 text-2xl font-black text-white">Streamable HTTP: The Remote Server Standard</h2>
+<p class="text-white/65 leading-relaxed">Streamable HTTP is the current spec's answer for remote servers — it replaced an earlier, separate combination of plain HTTP POST requests plus a distinct Server-Sent Events (SSE) endpoint for server-to-client streaming. Streamable HTTP unifies this into a single endpoint that can respond with either a direct JSON response or an SSE stream depending on what the interaction needs, simplifying what used to require managing two separate connection types.</p>
 
-<h2 class="mt-8 text-2xl font-black text-white">HTTP: Direct Request Pattern</h2>
-<p class="text-white/65 leading-relaxed">Direct HTTP allows both directions but requires more complex connection management. Best for stateless operations.</p>
+<h2 class="mt-8 text-2xl font-black text-white">Why SSE Still Comes Up</h2>
+<p class="text-white/65 leading-relaxed">Because Streamable HTTP is a relatively recent spec addition, plenty of currently-deployed clients and servers still speak the older HTTP+SSE combination rather than the newer unified transport. Before building against either, check what your specific target client actually supports — the spec has moved forward, but real-world adoption of the newest version takes time to propagate.</p>
 
-<h2 class="mt-8 text-2xl font-black text-white">General Pattern</h2>
-<p class="text-white/65 leading-relaxed">In practice, SSE tends to dominate production and remote deployments where multiple clients need to connect over a network, while stdio remains the default for local development against a single desktop client like Claude Desktop.</p>`,
+<h2 class="mt-8 text-2xl font-black text-white">Choosing Between Them in Practice</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li><strong class="text-white">stdio</strong> — single local user, desktop client, fastest to debug, zero network exposure.</li>
+  <li><strong class="text-white">Streamable HTTP (or the older HTTP+SSE combo)</strong> — multiple remote clients, hosted/production deployment, requires real authentication (this is exactly why OAuth 2.1 matters so much for servers like Swiggy's and Zomato's, which are inherently remote and multi-user).</li>
+</ul>
+<p class="text-white/65 leading-relaxed">Real production servers covered on this site confirm this split cleanly: Zerodha's Kite MCP supports stdio, HTTP, SSE, and a hybrid production mode, explicitly recommending HTTP over stdio for better performance and reliability once you're past local single-user development.</p>`,
     faqs: [
           {
                 "question": "Can one MCP server support more than one transport?",
@@ -408,18 +414,27 @@ npx @modelcontextprotocol/inspector node build/index.js</code></pre>
   {
     slug: "mcp-json-rpc-deep-dive",
     title: "JSON-RPC in MCP: Message Format Deep Dive",
-    date: "2026-07-19",
+    date: "2026-07-21",
     category: "Getting Started",
     cluster: "getting-started",
-    readTime: "1 min read",
-    excerpt: "Detailed analysis of MCP's JSON-RPC message formats, including tools, resources, and prompts.",
+    readTime: "7 min read",
+    excerpt: "MCP doesn't invent its own wire protocol — it's built directly on JSON-RPC 2.0. Here's exactly which JSON-RPC message types MCP uses, the real method names, and where MCP's own semantics layer on top.",
     keywords: ["MCP JSON-RPC", "JSON-RPC message format", "MCP protocol"],
     ugcElements: ["Code sharing section", "Message format examples"],
     internalLinks: ["how-mcp-servers-work", "mcp-transport-methods"],
-    content: `<p class="text-white/65 leading-relaxed">MCP extends JSON-RPC 2.0 with custom message types for AI-specific operations.</p>
+    content: `<p class="text-white/65 leading-relaxed">MCP doesn't invent a new wire protocol. It's built directly on top of <a href="https://www.jsonrpc.org/specification" class="text-cyan-300 hover:text-cyan-200">JSON-RPC 2.0</a>, a lightweight, transport-agnostic remote procedure call spec that predates MCP by well over a decade. Understanding where JSON-RPC ends and MCP-specific semantics begin makes the whole protocol click into place.</p>
 
-<h2 class="mt-8 text-2xl font-black text-white">Standard JSON-RPC Message</h2>
-<pre class="bg-gray-900 p-4 rounded-lg"><code class="language-json">{
+<h2 class="mt-8 text-2xl font-black text-white">The Three JSON-RPC Message Types MCP Uses</h2>
+<p class="text-white/65 leading-relaxed">JSON-RPC 2.0 defines three message shapes, and MCP uses all three:</p>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li><strong class="text-white">Request</strong> — has an <code class="bg-gray-800 px-1 py-0.5 rounded">id</code>, expects a response. Used for anything the caller needs an answer to: <code class="bg-gray-800 px-1 py-0.5 rounded">tools/call</code>, <code class="bg-gray-800 px-1 py-0.5 rounded">resources/read</code>, <code class="bg-gray-800 px-1 py-0.5 rounded">initialize</code>.</li>
+  <li><strong class="text-white">Response</strong> — matches a request's <code class="bg-gray-800 px-1 py-0.5 rounded">id</code>, contains either a <code class="bg-gray-800 px-1 py-0.5 rounded">result</code> or an <code class="bg-gray-800 px-1 py-0.5 rounded">error</code> object, never both.</li>
+  <li><strong class="text-white">Notification</strong> — no <code class="bg-gray-800 px-1 py-0.5 rounded">id</code> field at all, fire-and-forget. MCP uses these for things like <code class="bg-gray-800 px-1 py-0.5 rounded">notifications/tools/list_changed</code>, telling a client the available tool set just changed without expecting anything back.</li>
+</ul>
+
+<h2 class="mt-8 text-2xl font-black text-white">A Real Request/Response Pair</h2>
+<pre class="bg-gray-900 p-4 rounded-lg"><code class="language-json">// Request
+{
   "jsonrpc": "2.0",
   "id": 1,
   "method": "tools/call",
@@ -427,10 +442,44 @@ npx @modelcontextprotocol/inspector node build/index.js</code></pre>
     "name": "search",
     "arguments": { "query": "MCP servers" }
   }
-}</code></pre>
+}
 
-<h2 class="mt-8 text-2xl font-black text-white">MCP-Specific Extensions</h2>
-<p class="text-white/65 leading-relaxed">MCP adds resource templates, prompt definitions, and tool annotations that aren't part of standard JSON-RPC.</p>`,
+// Response
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "content": [{ "type": "text", "text": "Found 3 results..." }],
+    "isError": false
+  }
+}</code></pre>
+<p class="text-white/65 leading-relaxed">Note the matching <code class="bg-gray-800 px-1 py-0.5 rounded">id: 1</code> on both sides — that's pure JSON-RPC 2.0, not an MCP invention. What's MCP-specific is the shape of <code class="bg-gray-800 px-1 py-0.5 rounded">params</code> for a <code class="bg-gray-800 px-1 py-0.5 rounded">tools/call</code> method, and the <code class="bg-gray-800 px-1 py-0.5 rounded">content</code>/<code class="bg-gray-800 px-1 py-0.5 rounded">isError</code> shape of the result.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">The Real MCP Method Namespace</h2>
+<p class="text-white/65 leading-relaxed">MCP organizes its methods into clear namespaces, each corresponding to one of the protocol's core primitives:</p>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li><strong class="text-white">Lifecycle:</strong> <code class="bg-gray-800 px-1 py-0.5 rounded">initialize</code>, <code class="bg-gray-800 px-1 py-0.5 rounded">notifications/initialized</code></li>
+  <li><strong class="text-white">Tools:</strong> <code class="bg-gray-800 px-1 py-0.5 rounded">tools/list</code>, <code class="bg-gray-800 px-1 py-0.5 rounded">tools/call</code>, <code class="bg-gray-800 px-1 py-0.5 rounded">notifications/tools/list_changed</code></li>
+  <li><strong class="text-white">Resources:</strong> <code class="bg-gray-800 px-1 py-0.5 rounded">resources/list</code>, <code class="bg-gray-800 px-1 py-0.5 rounded">resources/read</code>, <code class="bg-gray-800 px-1 py-0.5 rounded">resources/subscribe</code>, <code class="bg-gray-800 px-1 py-0.5 rounded">notifications/resources/updated</code></li>
+  <li><strong class="text-white">Prompts:</strong> <code class="bg-gray-800 px-1 py-0.5 rounded">prompts/list</code>, <code class="bg-gray-800 px-1 py-0.5 rounded">prompts/get</code></li>
+  <li><strong class="text-white">Sampling</strong> (server asking the client's LLM to generate something): <code class="bg-gray-800 px-1 py-0.5 rounded">sampling/createMessage</code></li>
+</ul>
+<p class="text-white/65 leading-relaxed">Every one of these is a plain JSON-RPC method name — the string after <code class="bg-gray-800 px-1 py-0.5 rounded">"method":</code> — and any generic JSON-RPC 2.0 parser can correctly parse the message envelope. What a generic parser can't do is understand what <code class="bg-gray-800 px-1 py-0.5 rounded">tools/call</code>'s specific <code class="bg-gray-800 px-1 py-0.5 rounded">params</code> shape means, or what to do with the result — that semantic layer is MCP's actual contribution on top of the wire format.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Errors Follow the JSON-RPC Error Object Shape</h2>
+<pre class="bg-gray-900 p-4 rounded-lg"><code class="language-json">{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "error": {
+    "code": -32602,
+    "message": "Invalid params",
+    "data": { "details": "missing required argument: query" }
+  }
+}</code></pre>
+<p class="text-white/65 leading-relaxed">Codes like <code class="bg-gray-800 px-1 py-0.5 rounded">-32602</code> (Invalid params) and <code class="bg-gray-800 px-1 py-0.5 rounded">-32601</code> (Method not found) come straight from the JSON-RPC 2.0 spec's reserved error code range, not from MCP. MCP layers its own tool-level error signaling on top via the <code class="bg-gray-800 px-1 py-0.5 rounded">isError: true</code> field inside a successful <code class="bg-gray-800 px-1 py-0.5 rounded">result</code> — a distinction worth internalizing: a JSON-RPC-level error means something went wrong with the protocol call itself (bad params, unknown method), while a tool-level error (<code class="bg-gray-800 px-1 py-0.5 rounded">isError: true</code> in the result) means the call succeeded at the protocol layer but the tool itself failed (e.g., a database query that errored).</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Why Building on JSON-RPC Was the Right Call</h2>
+<p class="text-white/65 leading-relaxed">Reusing an existing, boring, well-understood RPC format instead of inventing a new one is a deliberate, sensible design choice: it means MCP inherits two decades of tooling, debugging familiarity, and transport flexibility (JSON-RPC doesn't care if it's carried over stdio, HTTP, or WebSockets) for free, and lets MCP's actual innovation focus entirely on the primitives — tools, resources, prompts, sampling — layered on top, rather than reinventing message framing.</p>`,
     faqs: [
           {
                 "question": "Are MCP's JSON-RPC extensions compatible with generic JSON-RPC 2.0 tooling?",
@@ -457,18 +506,62 @@ npx @modelcontextprotocol/inspector node build/index.js</code></pre>
     keywords: ["MCP setup", "MCP install", "MCP configure"],
     ugcElements: ["Setup troubleshooting comments", "Configuration file sharing"],
     internalLinks: ["model-context-protocol-beginner-guide", "mcp-server-configuration-files"],
-    content: `<p class="text-white/65 leading-relaxed">Setting up your first MCP server involves three key steps: installation, configuration, and testing.</p>
+    content: `<p class="text-white/65 leading-relaxed">Setting up your first MCP server comes down to three real steps: installing an official SDK, writing a minimal server that registers at least one tool, and pointing an actual MCP client at it. Here's each step with working code, not placeholder pseudocode.</p>
 
-<h2 class="mt-8 text-2xl font-black text-white">Step 1: Install the SDK</h2>
-<pre class="bg-gray-900 p-4 rounded-lg"><code class="language-bash">npm install @modelcontextprotocol/sdk
-# or
+<h2 class="mt-8 text-2xl font-black text-white">Step 1: Install an Official SDK</h2>
+<p class="text-white/65 leading-relaxed">Anthropic maintains official SDKs for both major languages:</p>
+<pre class="bg-gray-900 p-4 rounded-lg"><code class="language-bash"># TypeScript/JavaScript
+npm install @modelcontextprotocol/sdk
+
+# Python
 pip install mcp</code></pre>
 
-<h2 class="mt-8 text-2xl font-black text-white">Step 2: Create Configuration</h2>
-<p class="text-white/65 leading-relaxed">Create a <code class="bg-gray-800 px-1 py-0.5 rounded">mcp.json</code> file to define your server configuration.</p>
+<h2 class="mt-8 text-2xl font-black text-white">Step 2: Write a Minimal Server</h2>
+<p class="text-white/65 leading-relaxed">Here's a genuinely minimal, working stdio-based server using the TypeScript SDK, registering one tool:</p>
+<pre class="bg-gray-900 p-4 rounded-lg"><code class="language-javascript">import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import { z } from "zod";
 
-<h2 class="mt-8 text-2xl font-black text-white">Step 3: Test Your Server</h2>
-<p class="text-white/65 leading-relaxed">Run <code class="bg-gray-800 px-1 py-0.5 rounded">mcp dev</code> to test in development mode before deployment.</p>`
+const server = new McpServer({ name: "my-first-server", version: "1.0.0" });
+
+server.registerTool(
+  "echo",
+  {
+    description: "Echoes back the input string",
+    inputSchema: { message: z.string() }
+  },
+  async ({ message }) => ({
+    content: [{ type: "text", text: message }]
+  })
+);
+
+const transport = new StdioServerTransport();
+await server.connect(transport);</code></pre>
+<p class="text-white/65 leading-relaxed">This is a complete, runnable server — not a fragment. It exposes exactly one tool (<code class="bg-gray-800 px-1 py-0.5 rounded">echo</code>) over the stdio transport, which is what most local MCP clients (Claude Desktop, most CLI-based agents) expect for locally-run servers.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Step 3: Point Claude Desktop at It</h2>
+<p class="text-white/65 leading-relaxed">Claude Desktop reads its MCP server list from a real config file — <code class="bg-gray-800 px-1 py-0.5 rounded">claude_desktop_config.json</code>, located under your OS's application support directory. Add your server:</p>
+<pre class="bg-gray-900 p-4 rounded-lg"><code class="language-json">{
+  "mcpServers": {
+    "my-first-server": {
+      "command": "node",
+      "args": ["/absolute/path/to/your/server.js"]
+    }
+  }
+}</code></pre>
+<p class="text-white/65 leading-relaxed">Restart Claude Desktop after saving. If the server starts correctly, its tools appear in the client's tool list — you can verify this directly by asking Claude something that would require the <code class="bg-gray-800 px-1 py-0.5 rounded">echo</code> tool.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Step 4: Test With the Official Inspector Instead of Guessing</h2>
+<p class="text-white/65 leading-relaxed">Before wiring a new server into a full AI client, Anthropic's own <strong class="text-white">MCP Inspector</strong> tool lets you exercise it directly:</p>
+<pre class="bg-gray-900 p-4 rounded-lg"><code class="language-bash">npx @modelcontextprotocol/inspector node /absolute/path/to/your/server.js</code></pre>
+<p class="text-white/65 leading-relaxed">This opens a local web UI where you can call <code class="bg-gray-800 px-1 py-0.5 rounded">tools/list</code>, invoke <code class="bg-gray-800 px-1 py-0.5 rounded">tools/call</code> with real arguments, and see the raw JSON-RPC messages going back and forth — far faster for debugging a broken tool schema than trying to reproduce the issue through a full chat interface.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Common First-Run Problems</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li><strong class="text-white">Relative paths in config:</strong> use the full absolute path to your server file — a relative path may not resolve correctly depending on the client's working directory.</li>
+  <li><strong class="text-white">Wrong transport:</strong> a server built for stdio won't work if a client expects HTTP/SSE, and vice versa — check what transport your target client actually supports before writing the server.</li>
+  <li><strong class="text-white">Silent startup failures:</strong> stdio servers that crash on launch often fail silently from the client's perspective — run the server directly from a terminal first to see any startup errors before wiring it into a client config.</li>
+</ul>`
   },
   {
     slug: "mcp-server-configuration-files",
@@ -502,19 +595,50 @@ pip install mcp</code></pre>
   },
   {
     slug: "connect-claude-to-mcp-server",
-    title: "Connecting Claude to MCP Server: Step-by-Step Tutorial",
-    date: "2026-07-19",
+    title: "Connecting Claude to an MCP Server: Every Real Method",
+    date: "2026-07-21",
     category: "Getting Started",
     cluster: "getting-started",
-    readTime: "1 min read",
-    excerpt: "Tutorial for connecting Claude Desktop to your MCP server with screenshots.",
+    readTime: "6 min read",
+    excerpt: "Claude Desktop, Claude Code, and the Claude API each connect to MCP servers differently. Here's the real configuration for each, plus local-stdio versus remote-HTTP considerations.",
     keywords: ["MCP Claude", "MCP connection", "Claude Desktop MCP"],
     ugcElements: ["Success stories", "Connection troubleshooting"],
     internalLinks: ["install-configure-first-mcp-server", "mcp-client-libraries"],
-    content: `<p class="text-white/65 leading-relaxed">Claude Desktop supports MCP servers natively. Follow these steps to connect your server.</p>
+    content: `<p class="text-white/65 leading-relaxed">"Connect Claude to MCP" means something slightly different depending on which Claude product you're using — Claude Desktop, Claude Code, or the Claude API directly. Each has its own real connection mechanism.</p>
 
-<h2 class="mt-8 text-2xl font-black text-white">Configuring Claude Desktop</h2>
-<p class="text-white/65 leading-relaxed">Edit your Claude configuration file to include your MCP server definition.</p>`
+<h2 class="mt-8 text-2xl font-black text-white">Claude Desktop: Local Config File</h2>
+<p class="text-white/65 leading-relaxed">Claude Desktop reads its server list from <code class="bg-gray-800 px-1 py-0.5 rounded">claude_desktop_config.json</code>. On macOS this lives under <code class="bg-gray-800 px-1 py-0.5 rounded">~/Library/Application Support/Claude/</code>; on Windows, under <code class="bg-gray-800 px-1 py-0.5 rounded">%APPDATA%\\Claude\\</code>.</p>
+<pre class="bg-gray-900 p-4 rounded-lg"><code class="language-json">{
+  "mcpServers": {
+    "my-server": {
+      "command": "node",
+      "args": ["/absolute/path/to/server.js"]
+    }
+  }
+}</code></pre>
+<p class="text-white/65 leading-relaxed">This launches the server as a local child process communicating over stdio. Restart Claude Desktop after editing the file — it only reads this config at startup.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Claude Desktop: Remote Servers</h2>
+<p class="text-white/65 leading-relaxed">For a remotely-hosted server (like Zerodha's Kite MCP or Razorpay's hosted MCP endpoint), the config points at a URL instead of a local command, typically via a connector or a <code class="bg-gray-800 px-1 py-0.5 rounded">url</code> field depending on the client version — check the specific remote server's own setup docs, since the exact config shape for remote/HTTP servers has evolved across Claude Desktop releases faster than for the stable local-stdio path.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Claude Code: Project or Global Config</h2>
+<p class="text-white/65 leading-relaxed">Claude Code (the CLI) supports MCP servers configured either per-project or globally, and can also register a server directly from the command line without hand-editing JSON:</p>
+<pre class="bg-gray-900 p-4 rounded-lg"><code class="language-bash">claude mcp add my-server -- node /absolute/path/to/server.js</code></pre>
+<p class="text-white/65 leading-relaxed">This is generally the fastest path if you're already working inside a terminal-based Claude Code session and just need a server available for that project.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Claude API: No Native MCP Config — You Wire It Yourself</h2>
+<p class="text-white/65 leading-relaxed">If you're calling the Claude API directly (not through Desktop or Code), there's no config file — MCP connectivity is something your own application code manages: your server process talks to the MCP server, retrieves tool results, and passes them into the Messages API's tool-use flow yourself. This is the integration pattern covered in this site's Claude API + MCP guides, distinct from the point-and-click config file approach the consumer clients use.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Verifying the Connection Actually Worked</h2>
+<p class="text-white/65 leading-relaxed">Don't just trust the config — verify it:</p>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li>In Claude Desktop, check the developer/MCP settings panel for a green "connected" indicator next to your server name, not just its presence in the config.</li>
+  <li>Ask Claude directly to list available tools, or attempt an action that would only work if your tool is registered.</li>
+  <li>If it's not connecting, run the server binary directly from a terminal first — a server that crashes on launch will fail silently from inside the Claude UI, and you'll only see the real error by running it standalone.</li>
+</ul>
+
+<h2 class="mt-8 text-2xl font-black text-white">The Most Common Real Failure</h2>
+<p class="text-white/65 leading-relaxed">By far the most common reported issue is a relative path in the <code class="bg-gray-800 px-1 py-0.5 rounded">args</code> field of the config — Claude Desktop's working directory when it launches your server isn't necessarily your project folder, so a path like <code class="bg-gray-800 px-1 py-0.5 rounded">"./server.js"</code> often fails to resolve while the exact same file referenced by its full absolute path works correctly.</p>`
   },
   {
     slug: "openai-gpt-with-mcp",
@@ -777,27 +901,49 @@ pip install mcp</code></pre>
   },
   {
     slug: "cve-2025-6514-mcp-vulnerability",
-    title: "CVE-2025-6514 Explained: MCP Vulnerability Analysis",
-    date: "2026-07-19",
+    title: "CVE-2025-6514: The Critical mcp-remote RCE, Explained",
+    date: "2026-07-21",
     category: "Security & Production",
     cluster: "security-production",
-    readTime: "1 min read",
-    excerpt: "Detailed analysis of CVE-2025-6514 and how to patch affected MCP implementations.",
-    keywords: ["MCP CVE", "MCP vulnerability", "CVE-2025-6514"],
+    readTime: "6 min read",
+    excerpt: "CVE-2025-6514 is a real, CVSS 9.6 critical vulnerability in mcp-remote that let a malicious MCP server trigger OS command execution on a connecting client via a crafted OAuth redirect URL. Here's exactly how it worked and how to check if you're affected.",
+    keywords: ["MCP CVE", "MCP vulnerability", "CVE-2025-6514", "mcp-remote"],
     ugcElements: ["Patching experiences", "Vulnerability reports"],
-    internalLinks: ["mcp-server-security-checklist", "mcp-threat-model"],
-    content: `<p class="text-white/65 leading-relaxed">CVE-2025-6514 affects MCP servers using certain JSON-RPC implementations.</p>
+    internalLinks: ["mcp-server-security-checklist", "mcp-threat-model", "mcp-server-exploits-real-attack-scenarios"],
+    content: `<p class="text-white/65 leading-relaxed">CVE-2025-6514 is a real, publicly disclosed, critical vulnerability — CVSS score 9.6 — found in <code class="bg-gray-800 px-1 py-0.5 rounded">mcp-remote</code>, a widely used tool that lets MCP clients (Claude Desktop, VS Code, Cursor) connect to remote MCP servers over HTTP/SSE. It was discovered and disclosed by JFrog's security research team, and covered by The Hacker News, SentinelOne, Wiz, and GitHub's own Advisory Database (GHSA-6xpm-ggf7-wc3p). At the time of disclosure, mcp-remote had more than 437,000 downloads.</p>
 
-<h2 class="mt-8 text-2xl font-black text-white">The Vulnerability</h2>
-<p class="text-white/65 leading-relaxed">The vulnerability allows unauthorized tool execution through crafted JSON-RPC messages with missing authentication checks.</p>
+<h2 class="mt-8 text-2xl font-black text-white">What Actually Went Wrong</h2>
+<p class="text-white/65 leading-relaxed">The root cause is specific: mcp-remote mishandles the <code class="bg-gray-800 px-1 py-0.5 rounded">authorization_endpoint</code> URL it receives during OAuth flow initialization. When a client connects to a malicious or compromised MCP server, that server can respond with a specially crafted <code class="bg-gray-800 px-1 py-0.5 rounded">authorization_endpoint</code> value. When mcp-remote processes that value and passes it to the system's <code class="bg-gray-800 px-1 py-0.5 rounded">open()</code> function (the mechanism used to launch the user's browser for the OAuth login step), a carefully constructed URL can inject and execute arbitrary OS commands on the machine running mcp-remote.</p>
+<p class="text-white/65 leading-relaxed">This is the exact failure mode this site's security guidance elsewhere warns about: trusting input from a remote MCP server (in this case, a URL used to open a browser) without treating it as untrusted, attacker-controlled data. A malicious server isn't hypothetical here — it's the entire attack surface CVE-2025-6514 exploits.</p>
 
-<h2 class="mt-8 text-2xl font-black text-white">Remediation Steps</h2>
-<ol class="text-white/65 leading-relaxed">
-  <li>Upgrade to SDK version 0.5.0 or later</li>
-  <li>Implement request validation middleware</li>
-  <li>Enable audit logging for all tool calls</li>
-  <li>Apply rate limiting at the transport layer</li>
-</ol>`
+<h2 class="mt-8 text-2xl font-black text-white">Who Was Affected</h2>
+<p class="text-white/65 leading-relaxed">Versions <strong class="text-white">0.0.5 through 0.1.15</strong> of mcp-remote are affected. Because mcp-remote sits in the connection path between popular AI clients and remote MCP servers, the practical impact reaches Claude Desktop, VS Code, Cursor, and any other client using it to reach an untrusted or attacker-controlled server — full system compromise is the realistic worst case, not an exaggeration, given the CVSS 9.6 rating.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">The Fix</h2>
+<p class="text-white/65 leading-relaxed">The vulnerability is patched in <strong class="text-white">mcp-remote 0.1.16</strong>. If you have mcp-remote installed anywhere in your toolchain:</p>
+<pre class="bg-gray-900 border border-gray-800 rounded p-3 text-xs overflow-x-auto"><code>npm ls mcp-remote          # check what version you're running
+npm install mcp-remote@latest   # or pin to >=0.1.16 explicitly</code></pre>
+<p class="text-white/65 leading-relaxed">Beyond patching, the practical mitigation that matters regardless of version is the same principle covered throughout this site's security content: only connect mcp-remote (or any MCP client) to MCP servers you actually trust, and prefer HTTPS connections over plaintext HTTP for the transport itself.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Why This Case Is Worth Studying Even If You're Not Using mcp-remote</h2>
+<p class="text-white/65 leading-relaxed">CVE-2025-6514 is a genuinely useful real-world case study for anyone building or operating MCP infrastructure, for one reason: it's a vulnerability in the <em>client-side</em> connection tooling, not the server. Most MCP security discussion focuses on servers over-trusting the model or under-scoping tool permissions; this CVE is a reminder that the client-side plumbing connecting to a server is just as much an attack surface, especially anywhere a remote server's response gets passed to a system-level function like a URL opener, a file writer, or a shell command.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Quick Reference</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li><strong class="text-white">CVE:</strong> CVE-2025-6514</li>
+  <li><strong class="text-white">CVSS:</strong> 9.6 (Critical)</li>
+  <li><strong class="text-white">Component:</strong> mcp-remote</li>
+  <li><strong class="text-white">Affected versions:</strong> 0.0.5–0.1.15</li>
+  <li><strong class="text-white">Fixed in:</strong> 0.1.16</li>
+  <li><strong class="text-white">Root cause:</strong> Unvalidated <code class="bg-gray-800 px-1 py-0.5 rounded">authorization_endpoint</code> URL passed to <code class="bg-gray-800 px-1 py-0.5 rounded">open()</code> during OAuth flow, enabling OS command injection</li>
+  <li><strong class="text-white">Disclosed by:</strong> JFrog Security Research</li>
+</ul>`,
+    faqs: [
+      { question: "What exactly is CVE-2025-6514?", answer: "A critical (CVSS 9.6) OS command injection vulnerability in mcp-remote, caused by an unvalidated authorization_endpoint URL from a malicious MCP server being passed to the system's browser-opening function during OAuth flow." },
+      { question: "How do I know if I'm affected?", answer: "Run \`npm ls mcp-remote\` to check your version. Versions 0.0.5 through 0.1.15 are vulnerable; 0.1.16 and later are patched." },
+      { question: "Does this affect the MCP protocol itself, or just this one tool?", answer: "Just mcp-remote specifically — it's a vulnerability in that client-connection tool's implementation, not a flaw in the MCP specification itself." },
+      { question: "Who discovered and disclosed it?", answer: "JFrog's security research team, with coverage subsequently from The Hacker News, SentinelOne, Wiz, and GitHub's Advisory Database (GHSA-6xpm-ggf7-wc3p)." }
+    ]
   },
   {
     slug: "mcp-server-exploits-real-attack-scenarios",
@@ -878,21 +1024,29 @@ pip install mcp</code></pre>
     date: "2026-07-19",
     category: "Security & Production",
     cluster: "security-production",
-    readTime: "1 min read",
-    excerpt: "Comparison of authentication methods available for MCP servers including OAuth, API keys, and JWT.",
+    readTime: "6 min read",
+    excerpt: "OAuth 2.1 with PKCE, API keys, and JWTs solve different MCP authentication problems. Here's what each actually protects against, and where real production MCP servers (Zerodha, Swiggy, Razorpay) land on this spectrum.",
     keywords: ["MCP authentication", "MCP server authentication", "MCP auth methods"],
     ugcElements: ["Auth method voting", "Implementation guides"],
     internalLinks: ["mcp-server-security-checklist", "mcp-jwt-token-implementation"],
-    content: `<p class="text-white/65 leading-relaxed">Choosing the right authentication method is critical for MCP server security.</p>
+    content: `<p class="text-white/65 leading-relaxed">The MCP specification itself doesn't mandate one authentication scheme — it defines how a client and server exchange messages, not how they establish trust. In practice, three patterns cover almost every real MCP server in production, and they solve genuinely different problems.</p>
 
-<h2 class="mt-8 text-2xl font-black text-white">OAuth 2.0 with PKCE</h2>
-<p class="text-white/65 leading-relaxed">Best for web applications and SaaS integrations. Provides secure delegated access with short-lived tokens.</p>
+<h2 class="mt-8 text-2xl font-black text-white">OAuth 2.1 with PKCE — For User-Delegated Access</h2>
+<p class="text-white/65 leading-relaxed">This is the pattern behind most consumer-facing official MCP servers covered on this site: Swiggy's three MCP servers use OAuth 2.1 with PKCE explicitly, and Zomato's uses OAuth for its Claude/ChatGPT connections. The core value: the AI client never sees or stores the user's actual credentials — the user authenticates directly with the service (Swiggy, Zomato, Zerodha) through that service's own login flow, and the MCP client only ever holds a scoped, revocable token. PKCE specifically matters because MCP clients are frequently native apps or CLIs without a securely-hidden client secret — the same reasoning that made PKCE the standard for public OAuth clients well before MCP existed.</p>
 
-<h2 class="mt-8 text-2xl font-black text-white">API Key Authentication</h2>
-<p class="text-white/65 leading-relaxed">Simple implementation for development and internal tools. Should include rate limiting and key rotation.</p>
+<h2 class="mt-8 text-2xl font-black text-white">API Keys — For Simple, Internal, or Read-Only Tools</h2>
+<p class="text-white/65 leading-relaxed">A static API key is the simplest possible auth model, and it's a legitimate choice for internal tooling or servers with genuinely low blast radius. It becomes a real liability specifically when keys are long-lived, unscoped (one key that can do everything rather than several narrowly-scoped ones), or shared across environments (the same key used in dev and production). If you're building an internal MCP server for your own team, API keys with rotation and per-key scoping are a reasonable, proportionate choice — reach for OAuth when you're building something a third party's end users will authenticate through.</p>
 
-<h2 class="mt-8 text-2xl font-black text-white">JWT Token Implementation</h2>
-<p class="text-white/65 leading-relaxed">Stateless authentication with embedded claims. Ideal for distributed MCP deployments.</p>`,
+<h2 class="mt-8 text-2xl font-black text-white">JWT — For Stateless, Distributed Verification</h2>
+<p class="text-white/65 leading-relaxed">JSON Web Tokens carry their own claims (user ID, scopes, expiry) in a cryptographically signed payload, so any server instance can verify a token without a round-trip to a central session store. This matters specifically when an MCP server runs across multiple stateless instances behind a load balancer — every instance can independently validate the same token. The tradeoff: a JWT is valid until it expires or its signing key is rotated, so short expiry windows and a real refresh-token flow matter more here than with a server-side session you can revoke instantly.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Which One Should You Actually Use</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li><strong class="text-white">Building for real, external end users</strong> (like Zomato, Swiggy, Razorpay did) → OAuth 2.1 with PKCE.</li>
+  <li><strong class="text-white">Internal tooling, single team, low-risk actions</strong> → scoped API keys with rotation.</li>
+  <li><strong class="text-white">Multiple stateless server instances that need independent verification</strong> → JWT, layered on top of whichever initial auth (OAuth or API key) issued it.</li>
+</ul>
+<p class="text-white/65 leading-relaxed">These aren't mutually exclusive in practice — a real production system often uses OAuth to initially authenticate the user, then issues short-lived JWTs for the actual per-request MCP calls, combining the delegation model of OAuth with the stateless verification of JWT.</p>`,
     faqs: [
           {
                 "question": "Can I switch authentication methods later without breaking clients?",
@@ -914,22 +1068,44 @@ pip install mcp</code></pre>
     date: "2026-07-19",
     category: "Security & Production",
     cluster: "security-production",
-    readTime: "1 min read",
-    excerpt: "Step-by-step guide to implementing OAuth 2.0 authentication for MCP servers.",
+    readTime: "6 min read",
+    excerpt: "A working OAuth 2.1 with PKCE flow for an MCP server, from provider setup through token validation on every request — the same pattern real servers like Swiggy's and Zomato's use.",
     keywords: ["MCP OAuth", "OAuth 2.0 MCP", "MCP server authentication"],
     ugcElements: ["OAuth setup guides", "Code examples"],
     internalLinks: ["mcp-authentication-methods-comparison", "mcp-jwt-token-implementation"],
-    content: `<p class="text-white/65 leading-relaxed">Implement OAuth 2.0 for secure, delegated access to your MCP server.</p>
+    content: `<p class="text-white/65 leading-relaxed">OAuth 2.1 with PKCE is the authentication pattern behind most production, user-facing MCP servers — it's what Swiggy's three official servers and Zomato's checkout-capable server both use. Here's the real flow, step by step.</p>
 
-<h2 class="mt-8 text-2xl font-black text-white">Step 1: Configure OAuth Provider</h2>
-<p class="text-white/65 leading-relaxed">Set up your OAuth provider (Auth0, Okta, or self-hosted) with appropriate scopes for MCP tools.</p>
+<h2 class="mt-8 text-2xl font-black text-white">Step 1: Register With an Authorization Server</h2>
+<p class="text-white/65 leading-relaxed">You need an OAuth provider issuing tokens — either a managed identity provider (Auth0, Okta, WorkOS) or your own existing auth system if it already speaks OAuth 2.1. Register your MCP server as a client and define scopes specific to what your tools actually do — not a single blanket scope, but granular ones like <code class="bg-gray-800 px-1 py-0.5 rounded">mcp:read</code> and <code class="bg-gray-800 px-1 py-0.5 rounded">mcp:orders:write</code>, so a token can be limited to exactly what its holder needs.</p>
 
-<h2 class="mt-8 text-2xl font-black text-white">Step 2: Implement Token Validation</h2>
-<pre class="bg-gray-900 p-4 rounded-lg"><code class="language-typescript">const token = request.headers.authorization?.split(' ')[1];
+<h2 class="mt-8 text-2xl font-black text-white">Step 2: Implement the PKCE Authorization Code Flow</h2>
+<p class="text-white/65 leading-relaxed">The client generates a random <code class="bg-gray-800 px-1 py-0.5 rounded">code_verifier</code>, derives a <code class="bg-gray-800 px-1 py-0.5 rounded">code_challenge</code> from it, and sends the challenge with the authorization request. After the user logs in and approves access, the authorization server returns a code that can only be exchanged for a token by presenting the original verifier — this is what prevents an intercepted authorization code from being usable by anyone else, which matters because MCP clients are frequently native apps without a securely hidden secret.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Step 3: Validate Every Incoming Request</h2>
+<p class="text-white/65 leading-relaxed">Every tool call needs its token checked — not just the initial connection:</p>
+<pre class="bg-gray-900 p-4 rounded-lg"><code class="language-typescript">const authHeader = request.headers.authorization;
+const token = authHeader?.split(" ")[1];
+
+if (!token) {
+  throw new Error("Missing bearer token");
+}
+
 const payload = await verifyJWT(token, jwksUri);
-if (!payload scopes.includes('mcp:tools')) {
-  throw new Error('Insufficient permissions');
-}</code></pre>`
+
+if (!payload.scopes.includes("mcp:tools")) {
+  throw new Error("Insufficient permissions");
+}
+
+if (payload.exp < Date.now() / 1000) {
+  throw new Error("Token expired");
+}</code></pre>
+<p class="text-white/65 leading-relaxed">Three checks matter here, not one: the token exists at all, it carries the specific scope the requested tool needs (not just "any valid token"), and it hasn't expired. Skipping the scope check is the most common real mistake — a server that only verifies "is this token valid" rather than "does this token have permission for THIS specific tool" ends up letting a low-privilege token call high-privilege tools.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Step 4: Handle Token Refresh</h2>
+<p class="text-white/65 leading-relaxed">Access tokens should be short-lived (minutes to a couple of hours), with a separate, longer-lived refresh token used to obtain new access tokens without forcing the user to log in again. Store refresh tokens server-side, never in a location the AI client itself can read directly — the client should only ever hold the short-lived access token.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">The Real-World Pattern to Copy</h2>
+<p class="text-white/65 leading-relaxed">Swiggy's documented approach — OAuth 2.1 with PKCE over standard JSON-RPC, per-server scoping (Food, Instamart, and Dineout each have independent tool sets rather than one shared token covering everything) — is a genuinely good reference architecture if you're implementing this from scratch: narrow scopes per capability area, short-lived tokens, and no credential storage inside the AI client itself.</p>`
   },
   {
     slug: "mcp-jwt-token-implementation",
@@ -937,28 +1113,45 @@ if (!payload scopes.includes('mcp:tools')) {
     date: "2026-07-19",
     category: "Security & Production",
     cluster: "security-production",
-    readTime: "1 min read",
-    excerpt: "Best practices for implementing JWT token authentication in MCP servers.",
+    readTime: "6 min read",
+    excerpt: "JWTs give MCP servers stateless, distributed auth verification — but that same statelessness means a compromised token can't be instantly revoked. Here's how to design claims, choose a signing algorithm, and manage that tradeoff.",
     keywords: ["MCP JWT", "JWT token MCP", "MCP authentication JWT"],
     ugcElements: ["JWT code examples", "Token configuration tips"],
     internalLinks: ["mcp-oauth-2-0-implementation", "mcp-api-key-authentication"],
-    content: `<p class="text-white/65 leading-relaxed">JWT tokens provide stateless authentication for distributed MCP deployments.</p>
+    content: `<p class="text-white/65 leading-relaxed">A JWT works for MCP authentication because it carries its own verifiable claims — any server instance can check a token's validity without a round-trip to a central session store, which matters when an MCP server runs as multiple stateless instances behind a load balancer.</p>
 
-<h2 class="mt-8 text-2xl font-black text-white">Token Structure</h2>
+<h2 class="mt-8 text-2xl font-black text-white">Designing the Claim Set</h2>
 <pre class="bg-gray-900 p-4 rounded-lg"><code class="language-json">{
-  "iss": "mcpserver.in",
+  "iss": "your-mcp-server.example.com",
   "sub": "user-12345",
   "scope": "mcp:tools:read mcp:resources:write",
   "exp": 1724073600,
-  "iat": 1724030400
+  "iat": 1724030400,
+  "jti": "a1b2c3d4-unique-token-id"
 }</code></pre>
+<p class="text-white/65 leading-relaxed">Beyond the standard <code class="bg-gray-800 px-1 py-0.5 rounded">iss</code>/<code class="bg-gray-800 px-1 py-0.5 rounded">sub</code>/<code class="bg-gray-800 px-1 py-0.5 rounded">exp</code>/<code class="bg-gray-800 px-1 py-0.5 rounded">iat</code> claims, two design decisions matter specifically for MCP:</p>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li><strong class="text-white">Granular scopes</strong> — space-separated scope strings like <code class="bg-gray-800 px-1 py-0.5 rounded">mcp:tools:read</code> let a server check "does this token cover THIS specific tool" rather than a binary valid/invalid check.</li>
+  <li><strong class="text-white">A <code class="bg-gray-800 px-1 py-0.5 rounded">jti</code> (JWT ID)</strong> — a unique identifier per token, which matters for the revocation problem below.</li>
+</ul>
 
-<h2 class="mt-8 text-2xl font-black text-white">Best Practices</h2>
-<ul class="text-white/65 leading-relaxed">
-  <li>Use short expiration times (5-15 minutes)</li>
-  <li>Include granular scopes for each tool/resource</li>
-  <li>Sign tokens with RS256 for better security</li>
-  <li>Implement token refresh mechanisms</li>
+<h2 class="mt-8 text-2xl font-black text-white">RS256 vs. HS256: Which to Sign With</h2>
+<p class="text-white/65 leading-relaxed"><strong class="text-white">RS256</strong> (RSA, asymmetric) lets you keep the private signing key on your auth server while distributing only the public key to every service that needs to verify tokens — meaning a compromised MCP server instance can verify tokens but can't forge new ones. <strong class="text-white">HS256</strong> (HMAC, symmetric) uses the same secret to sign and verify, which is simpler for a single-service setup but means every service that can verify tokens can also mint valid ones. For any MCP deployment with more than one service verifying tokens, RS256 is the safer default.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">The Real Tradeoff: Revocation</h2>
+<p class="text-white/65 leading-relaxed">This is the part most JWT guides skip: a JWT is valid until it expires, full stop — there's no built-in way to invalidate one early the way you can delete a server-side session. If a token is compromised, it remains usable until its <code class="bg-gray-800 px-1 py-0.5 rounded">exp</code> time passes, regardless of anything you do afterward. Two real mitigations exist:</p>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li><strong class="text-white">Keep expiry genuinely short</strong> (5-15 minutes) so the exposure window from a leaked token is small, paired with a separate, longer-lived refresh token used to mint new access tokens.</li>
+  <li><strong class="text-white">Maintain a denylist keyed on <code class="bg-gray-800 px-1 py-0.5 rounded">jti</code></strong> for the rare case you need to kill a specific token immediately — this reintroduces a lookup, sacrificing some statelessness, but only for the exceptional revocation case rather than every request.</li>
+</ul>
+
+<h2 class="mt-8 text-2xl font-black text-white">Practical Checklist</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li>Short access-token expiry (5-15 minutes), with refresh tokens handling renewal.</li>
+  <li>RS256 signing if more than one service verifies tokens.</li>
+  <li>Granular, tool-specific scopes rather than one blanket scope.</li>
+  <li>A <code class="bg-gray-800 px-1 py-0.5 rounded">jti</code> claim plus a denylist mechanism for emergency revocation.</li>
+  <li>Validate <code class="bg-gray-800 px-1 py-0.5 rounded">exp</code> and scope on every single tool call, not just at initial connection.</li>
 </ul>`
   },
   {
@@ -967,19 +1160,55 @@ if (!payload scopes.includes('mcp:tools')) {
     date: "2026-07-19",
     category: "Security & Production",
     cluster: "security-production",
-    readTime: "1 min read",
-    excerpt: "Guide to implementing API key authentication for MCP servers.",
+    readTime: "5 min read",
+    excerpt: "API keys are the simplest MCP auth model, and a legitimate choice for internal tools — but the naive env-var-list implementation has real gaps: no rotation without a redeploy, no per-key scoping, no hashing at rest.",
     keywords: ["MCP API key", "API key MCP", "MCP server API key auth"],
     ugcElements: ["Key management strategies", "API key examples"],
     internalLinks: ["mcp-jwt-token-implementation", "mcp-role-based-access-control"],
-    content: `<p class="text-white/65 leading-relaxed">API keys are simple but effective for many MCP server use cases.</p>
+    content: `<p class="text-white/65 leading-relaxed">API keys are the right choice for internal MCP tooling and low-blast-radius servers — they're simple to implement and simple for a small team to reason about. The naive implementation, though, has real gaps worth fixing before calling it production-ready.</p>
 
-<h2 class="mt-8 text-2xl font-black text-white">Implementation Pattern</h2>
-<pre class="bg-gray-900 p-4 rounded-lg"><code class="language-typescript">const validKeys = new Set(process.env.MCP_API_KEYS?.split(',') || []);
-const apiKey = request.headers['x-api-key'];
+<h2 class="mt-8 text-2xl font-black text-white">The Naive Version (What Not to Stop At)</h2>
+<pre class="bg-gray-900 p-4 rounded-lg"><code class="language-typescript">const validKeys = new Set(process.env.MCP_API_KEYS?.split(",") || []);
+const apiKey = request.headers["x-api-key"];
 if (!validKeys.has(apiKey)) {
-  throw new Error('Invalid API key');
-}</code></pre>`
+  throw new Error("Invalid API key");
+}</code></pre>
+<p class="text-white/65 leading-relaxed">This works, but has three real gaps: every key can do everything (no scoping), rotating a key means redeploying with a new environment variable, and keys are compared/stored as plaintext.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">A More Production-Ready Pattern</h2>
+<pre class="bg-gray-900 p-4 rounded-lg"><code class="language-typescript">import { createHash, timingSafeEqual } from "node:crypto";
+
+interface ApiKeyRecord {
+  hashedKey: string;
+  scopes: string[];
+  revoked: boolean;
+}
+
+function hashKey(key: string): string {
+  return createHash("sha256").update(key).digest("hex");
+}
+
+async function validateApiKey(rawKey: string, requiredScope: string, keyStore: ApiKeyRecord[]) {
+  const hashed = hashKey(rawKey);
+  const record = keyStore.find(k =>
+    timingSafeEqual(Buffer.from(k.hashedKey), Buffer.from(hashed))
+  );
+  if (!record || record.revoked) throw new Error("Invalid or revoked API key");
+  if (!record.scopes.includes(requiredScope)) throw new Error("Insufficient scope");
+  return record;
+}</code></pre>
+<p class="text-white/65 leading-relaxed">Three real improvements over the naive version:</p>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li><strong class="text-white">Keys are hashed at rest</strong> — you store and compare a SHA-256 hash, never the raw key, so a database leak doesn't directly expose usable keys.</li>
+  <li><strong class="text-white">Comparison uses <code class="bg-gray-800 px-1 py-0.5 rounded">timingSafeEqual</code></strong> instead of standard string/Set equality, avoiding timing-attack-based key guessing.</li>
+  <li><strong class="text-white">Keys carry scopes and a revoked flag</strong> stored in a real data store rather than an environment variable — meaning you can revoke or scope a specific key without redeploying the whole server.</li>
+</ul>
+
+<h2 class="mt-8 text-2xl font-black text-white">Rotation Without Downtime</h2>
+<p class="text-white/65 leading-relaxed">Support at least two active keys per client at any time: issue the new key, let the client switch over, then revoke the old one — rather than a hard cutover that breaks every client using the old key simultaneously. This is standard practice for any API key system, and MCP servers are no exception.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">When API Keys Are the Wrong Choice</h2>
+<p class="text-white/65 leading-relaxed">If your MCP server has real end users who need to individually authenticate and authorize specific actions (rather than one shared key covering an entire internal team), that's the signal to move to OAuth instead — API keys represent "this caller is authorized," not "this specific end user delegated this specific permission," which is a meaningfully different guarantee.</p>`
   },
   {
     slug: "mcp-role-based-access-control",
@@ -987,21 +1216,51 @@ if (!validKeys.has(apiKey)) {
     date: "2026-07-19",
     category: "Security & Production",
     cluster: "security-production",
-    readTime: "1 min read",
-    excerpt: "Implementing role-based access control in MCP servers for fine-grained permissions.",
+    readTime: "6 min read",
+    excerpt: "RBAC gives MCP servers a way to say a caller's role determines which tools it can touch. Here's how to design roles that map to real MCP primitives (tools, resources, prompts) instead of a vague admin/user split.",
     keywords: ["MCP RBAC", "MCP role based access", "MCP access control"],
     ugcElements: ["RBAC policy sharing", "Permission matrix examples"],
     internalLinks: ["mcp-api-key-authentication", "mcp-server-security-checklist"],
-    content: `<p class="text-white/65 leading-relaxed">RBAC enables fine-grained control over MCP tool and resource access.</p>
+    content: `<p class="text-white/65 leading-relaxed">Authentication answers "who is this caller." RBAC answers the separate question: "given who they are, which specific tools, resources, and prompts can they actually touch." An MCP server with real users at different trust levels needs both.</p>
 
-<h2 class="mt-8 text-2xl font-black text-white">Role Definition Example</h2>
+<h2 class="mt-8 text-2xl font-black text-white">Role Definitions Mapped to MCP Primitives</h2>
 <pre class="bg-gray-900 p-4 rounded-lg"><code class="language-json">{
   "roles": {
     "admin": ["tools:*", "resources:*", "prompts:*"],
     "developer": ["tools:read", "tools:execute", "resources:read"],
     "viewer": ["resources:read"]
   }
-}</code></pre>`
+}</code></pre>
+<p class="text-white/65 leading-relaxed">Notice the permission strings map directly onto MCP's actual method namespaces (<code class="bg-gray-800 px-1 py-0.5 rounded">tools/call</code>, <code class="bg-gray-800 px-1 py-0.5 rounded">resources/read</code>) rather than an arbitrary internal permission scheme — this makes enforcement a straightforward lookup at the point where a JSON-RPC method is dispatched, rather than a separate parallel system you have to keep in sync.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Enforcing It at the Right Layer</h2>
+<pre class="bg-gray-900 p-4 rounded-lg"><code class="language-typescript">function checkPermission(role: string, action: string): boolean {
+  const permissions = roleDefinitions[role] || [];
+  const [category] = action.split(":");
+  return permissions.includes(action) || permissions.includes(\`\${category}:*\`);
+}
+
+// Applied at the tools/call dispatch point:
+server.setRequestHandler("tools/call", async (request, { role }) => {
+  if (!checkPermission(role, "tools:execute")) {
+    throw new Error("Forbidden: insufficient role permissions");
+  }
+  // ... proceed with the actual tool call
+});</code></pre>
+<p class="text-white/65 leading-relaxed">The critical detail: this check needs to happen at the actual dispatch point for every request, not just once at connection time. A viewer role that gets read access at login shouldn't be able to invoke a write-capable tool an hour later just because the initial connection was accepted.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Per-Tool Scoping Beyond Broad Roles</h2>
+<p class="text-white/65 leading-relaxed">For servers with more than a handful of tools, a flat admin/developer/viewer split often isn't granular enough — a real production pattern is scoping permissions per individual tool rather than per broad category:</p>
+<pre class="bg-gray-900 p-4 rounded-lg"><code class="language-json">{
+  "roles": {
+    "support-agent": ["tools:lookup_order", "tools:issue_refund_under_500", "resources:read"],
+    "support-lead": ["tools:lookup_order", "tools:issue_refund", "resources:read"]
+  }
+}</code></pre>
+<p class="text-white/65 leading-relaxed">This is the same principle behind every payment-capable MCP server covered on this site — a support agent role that can look up orders and issue small refunds, but not arbitrary-amount refunds, meaningfully limits the damage from a compromised or over-eager AI agent compared to a single "can do refunds" permission.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Multi-Tenant Considerations</h2>
+<p class="text-white/65 leading-relaxed">If your MCP server serves multiple separate customers or organizations, role checks alone aren't enough — you also need tenant-scoping, so a "developer" role at Tenant A can't read Tenant B's resources even though both hold the identical role name. Bake the tenant ID into the permission check itself, not just the role name, or you end up with a role system that's correct in isolation but leaky across tenant boundaries.</p>`
   },
   {
     slug: "mcp-server-production-deployment-checklist",
@@ -1009,21 +1268,33 @@ if (!validKeys.has(apiKey)) {
     date: "2026-07-19",
     category: "Security & Production",
     cluster: "security-production",
-    readTime: "1 min read",
-    excerpt: "Comprehensive checklist for deploying MCP servers to production environments.",
+    readTime: "6 min read",
+    excerpt: "A real pre-production checklist for MCP servers, covering the parts specific to MCP (tool-scoping, transport hardening, prompt injection surface) beyond generic infrastructure hygiene.",
     keywords: ["MCP production", "MCP server deployment checklist", "deploy MCP server"],
     ugcElements: ["Deployment stories", "Production checklists"],
     internalLinks: ["mcp-server-security-checklist", "mcp-ci-cd-pipeline-setup"],
-    content: `<p class="text-white/65 leading-relaxed">Follow this checklist before any production MCP server deployment.</p>
+    content: `<p class="text-white/65 leading-relaxed">Most of an MCP server's production checklist is standard infrastructure hygiene — but a few items are specific to what makes MCP servers a distinct risk category from a typical REST API: the caller is an LLM interpreting untrusted input, not a human clicking through a UI.</p>
 
-<h2 class="mt-8 text-2xl font-black text-white">Infrastructure Checklist</h2>
-<ul class="text-white/65 leading-relaxed">
-  <li>Configure TLS 1.3 with valid certificates</li>
-  <li>Set up monitoring and alerting</li>
-  <li>Implement log aggregation</li>
-  <li>Configure backup and disaster recovery</li>
-  <li>Review and harden default configurations</li>
-</ul>`
+<h2 class="mt-8 text-2xl font-black text-white">Standard Infrastructure Hygiene</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li>TLS 1.3 with valid, auto-renewing certificates on every transport endpoint</li>
+  <li>Structured log aggregation (not just stdout) so incidents are actually investigable after the fact</li>
+  <li>Monitoring and alerting on error rates, latency, and unusual call volume</li>
+  <li>Backup and disaster recovery for any persistent state the server owns</li>
+  <li>Hardened, non-default configuration — no example credentials, no debug endpoints left open</li>
+</ul>
+
+<h2 class="mt-8 text-2xl font-black text-white">MCP-Specific Items Most Checklists Skip</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li><strong class="text-white">Tool scoping reviewed, not just authentication.</strong> Confirm each tool's blast radius independently — a read-only tool and a payment-issuing tool shouldn't share the same authorization check just because both require "a valid token."</li>
+  <li><strong class="text-white">Untrusted content treated as untrusted.</strong> Any text a tool returns (a webpage, a file, a database row) can contain instructions an LLM might follow as if they came from the user. Don't assume tool output is inert data.</li>
+  <li><strong class="text-white">Confirmation gates on destructive actions.</strong> As covered across this site's payment-MCP guides (Zerodha, Zomato, Razorpay), anything that spends money, sends a message, or deletes data should have an explicit confirmation step in front of it in production, not just in the demo.</li>
+  <li><strong class="text-white">Rate limiting per-tool, not just per-connection.</strong> An LLM in an agentic loop can call a tool far more times per second than a human ever would — a single generous connection-level rate limit doesn't stop a runaway loop from hammering one specific expensive tool.</li>
+  <li><strong class="text-white">Transport matches the deployment context.</strong> stdio is fine for a locally-run, single-user server; anything reachable over a network needs the HTTP/SSE transport with real authentication, not stdio's implicit trust model.</li>
+</ul>
+
+<h2 class="mt-8 text-2xl font-black text-white">Before You Flip the Switch</h2>
+<p class="text-white/65 leading-relaxed">Run the server through the official <a href="https://github.com/modelcontextprotocol/inspector" class="text-cyan-300 hover:text-cyan-200">MCP Inspector</a> one more time in a production-like environment, not just locally — confirm the tool list, schemas, and error responses look the way they should against your actual deployed config, not just your dev machine's.</p>`
   },
   {
     slug: "how-to-deploy-mcp-server-to-production",
@@ -1929,120 +2200,237 @@ spec:
   },
   {
     slug: "mcp-server-for-slack",
-    title: "How to Build MCP Server for Slack",
-    date: "2026-07-19",
+    title: "Slack's Official MCP Server: What Replaced Anthropic's Reference Version",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "1 min read",
-    excerpt: "Building MCP servers that integrate with Slack for messaging and collaboration.",
+    readTime: "5 min read",
+    excerpt: "Slack now ships its own official MCP server, which replaced and archived Anthropic's earlier community reference implementation — letting AI agents read, search, and post in a workspace with the same permissions as the connecting user.",
     keywords: ["Slack MCP", "MCP Slack server", "Slack integration MCP"],
     ugcElements: ["Slack bot examples", "Integration showcases"],
-    internalLinks: ["mcp-server-for-gmail", "mcp-server-for-jira"],
-    content: `<p class="text-white/65 leading-relaxed">Slack MCP servers enable AI agents to interact with Slack channels and messages.</p>`
+    internalLinks: ["mcp-server-for-gmail", "mcp-server-for-notion"],
+    content: `<p class="text-white/65 leading-relaxed">Slack ships its own official MCP server, documented at docs.slack.dev/ai/slack-mcp-server/, which replaced an earlier reference implementation Anthropic maintained — that older version was archived in May 2025 once Slack took over with a first-party server.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">What It Can Do</h2>
+<p class="text-white/65 leading-relaxed">The official server gives AI agents (Claude, Cursor, Perplexity, Copilot, and custom agents) the ability to read messages from specific channels or threads, search workspace history, post replies, manage Slack Canvases, and generally act inside a workspace on the connected user's behalf.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Permissions Inherit From the User, Not a Bot Account</h2>
+<p class="text-white/65 leading-relaxed">A key design detail: the server operates within the permissions of whichever human authorized the connection — it doesn't grant a separate, potentially broader bot-level access. An AI agent connected on behalf of someone who can only see three channels can only see those same three channels through MCP.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Part of a Larger Platform Push</h2>
+<p class="text-white/65 leading-relaxed">Slack (owned by Salesforce) has framed this as part of a broader "agentic collaboration" platform push, with more than 50 partners — including Anthropic, Google, and OpenAI — building context-aware agents on top of it. This mirrors the same pattern seen across other major SaaS platforms this year: rather than dozens of competing community wrappers, the platform itself ships one official, maintained server.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">The Real Security Consideration</h2>
+<p class="text-white/65 leading-relaxed">Giving an AI agent read access to Slack history means it can encounter anything posted there — including content designed to manipulate an LLM reading it. Treat message content retrieved via the Slack MCP server the same way this site's security guidance treats any tool output: as untrusted data the model is reading, not as instructions to blindly follow, especially before letting an agent post or take action based on what it found in a channel.</p>`,
+    faqs: [
+      { question: "Is Slack's MCP server official?", answer: "Yes — it replaced an earlier Anthropic-maintained reference implementation, which was archived in May 2025 once Slack shipped its own first-party server." },
+      { question: "Can an AI agent see channels the connecting user can't?", answer: "No — the server operates within the authorizing user's existing Slack permissions, not a separate elevated bot account." },
+      { question: "What can it actually do?", answer: "Read messages/threads, search workspace history, post replies, and manage Canvases, documented at docs.slack.dev/ai/slack-mcp-server/." }
+    ]
   },
   {
     slug: "mcp-server-for-gmail",
-    title: "How to Create MCP Server for Gmail",
-    date: "2026-07-19",
+    title: "Gmail's Official MCP Server, and the Community Alternatives",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "1 min read",
-    excerpt: "Integrating Gmail with MCP servers for email automation.",
+    readTime: "5 min read",
+    excerpt: "Google runs an official, remote-hosted MCP server for Gmail alongside Calendar, Drive, and other Workspace apps — plus a healthy ecosystem of community-built alternatives if you need something the official server doesn't cover.",
     keywords: ["Gmail MCP", "MCP Gmail server", "email MCP integration"],
     ugcElements: ["Email automation examples", "Gmail workflows"],
     internalLinks: ["mcp-server-for-slack", "mcp-server-for-google-calendar"],
-    content: `<p class="text-white/65 leading-relaxed">Gmail MCP servers allow AI agents to read, send, and manage emails.</p>`
+    content: `<p class="text-white/65 leading-relaxed">Google runs official, remote-hosted MCP servers for Workspace apps, with Gmail as one of several — each Workspace product (Gmail, Calendar, Drive, Docs, Sheets, Chat) has its own dedicated server, documented at developers.google.com/workspace/guides/configure-mcp-servers. These aren't something you self-host — they're managed endpoints Google operates directly.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">What the Official Server Does</h2>
+<p class="text-white/65 leading-relaxed">Connected through a client like Claude or Google's own Antigravity, the Gmail MCP server lets an agent search emails, retrieve message content, and draft (not necessarily auto-send) emails on the authenticated user's behalf — inheriting the same permissions and data-governance controls that user already has, not a separate elevated grant.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Real Community Alternatives Also Exist</h2>
+<p class="text-white/65 leading-relaxed">Alongside Google's official offering, several open-source, community-maintained servers wrap the Gmail/Workspace APIs directly — <code class="bg-gray-800 px-1 py-0.5 rounded">aaronsb/google-workspace-mcp</code> and <code class="bg-gray-800 px-1 py-0.5 rounded">piotr-agier/google-drive-mcp</code> among them, both on GitHub. These can be worth considering if you need self-hosted control over the integration (e.g., running it inside your own infrastructure with your own OAuth app) rather than depending on Google's managed endpoint.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Why Email Access Deserves Extra Caution</h2>
+<p class="text-white/65 leading-relaxed">Email is a genuinely sensitive data source for an AI agent to touch — inbox content routinely contains other people's personal information, financial details, and credentials-adjacent material (password reset links, 2FA codes). Before wiring any Gmail MCP server — official or community — into an autonomous agent loop, be deliberate about which scopes you actually grant (read-only search is a very different risk profile than send-on-behalf-of), and treat retrieved email content as untrusted input the same way this site's security guidance treats any tool output an LLM might read and act on.</p>`,
+    faqs: [
+      { question: "Is there an official Gmail MCP server?", answer: "Yes — Google runs official, remote-hosted MCP servers per Workspace app (Gmail, Calendar, Drive, and others), documented at developers.google.com/workspace/guides/configure-mcp-servers." },
+      { question: "Do I need to self-host it?", answer: "No — Google's official Workspace MCP servers are managed, remote endpoints. Self-hosting is only relevant if you choose a community-built alternative instead." },
+      { question: "Can an AI agent send emails automatically without review?", answer: "That depends entirely on which scopes you grant and how your client is configured — read/search access and send-on-behalf-of access are very different permission levels, and should be treated with correspondingly different caution." }
+    ]
   },
   {
     slug: "mcp-server-for-google-calendar",
-    title: "MCP Server for Google Calendar Sync",
-    date: "2026-07-19",
+    title: "Google Calendar's Official MCP Server, Part of Workspace's Per-App Model",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "1 min read",
-    excerpt: "Building MCP servers for Google Calendar integration.",
+    readTime: "4 min read",
+    excerpt: "Google runs a dedicated, official MCP server for Calendar as part of its per-app Workspace MCP model — letting an agent list events and schedule meetings within the authenticated user's existing calendar permissions.",
     keywords: ["Google Calendar MCP", "MCP Google Calendar", "calendar MCP server"],
     ugcElements: ["Calendar automation", "Event scheduling examples"],
     internalLinks: ["mcp-server-for-gmail", "mcp-server-for-notion"],
-    content: `<p class="text-white/65 leading-relaxed">Google Calendar MCP servers enable scheduling and event management.</p>`
+    content: `<p class="text-white/65 leading-relaxed">Google Calendar has its own dedicated, official MCP server, part of the same family as Gmail's and Drive's — Google documents configuration for all of them together at developers.google.com/workspace/guides/configure-mcp-servers, with each Workspace product getting its own focused server rather than one server trying to cover everything.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">What an Agent Can Actually Do</h2>
+<p class="text-white/65 leading-relaxed">Through the Calendar MCP server, a connected agent can list upcoming events, check availability, and schedule new meetings on the authenticated user's behalf — inheriting that user's existing calendar sharing and permission settings rather than a separate elevated grant.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Why Per-App Servers Instead of One Combined Server</h2>
+<p class="text-white/65 leading-relaxed">Google's choice to ship Gmail, Calendar, and Drive as separate MCP servers (rather than one "Google Workspace" server) mirrors the same scope-discipline principle Swiggy applied with its three independent servers — an agent that only needs calendar access doesn't need to be granted email or file access just because they happen to come from the same vendor.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Community Alternatives</h2>
+<p class="text-white/65 leading-relaxed">Community-built options like <code class="bg-gray-800 px-1 py-0.5 rounded">piotr-agier/google-drive-mcp</code> bundle Calendar alongside Drive, Docs, Sheets, and Slides in a single self-hosted server — worth considering if you specifically want one combined server under your own infrastructure rather than Google's separate managed endpoints.</p>`
   },
   {
     slug: "mcp-server-for-notion",
-    title: "How to Create MCP Server for Notion",
-    date: "2026-07-19",
+    title: "Notion's Official MCP Server: Workspace Search, Reads, and Writes",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "1 min read",
-    excerpt: "Integrating Notion workspaces with MCP servers.",
+    readTime: "4 min read",
+    excerpt: "Notion runs its own official, hosted MCP server, letting AI clients search, read, create, and update pages and databases in a workspace through standardized tools rather than a custom integration.",
     keywords: ["Notion MCP", "MCP Notion server", "Notion integration MCP"],
     ugcElements: ["Notion workflows", "Wiki integration examples"],
     internalLinks: ["mcp-server-for-google-calendar", "mcp-server-for-jira"],
-    content: `<p class="text-white/65 leading-relaxed">Notion MCP servers provide access to wikis, databases, and documentation.</p>`
+    content: `<p class="text-white/65 leading-relaxed">Notion runs its own official, hosted MCP server, giving AI tools secure access to a workspace's pages and databases without a custom integration. It's designed to work with popular AI assistants including Claude Code, Cursor, VS Code, and ChatGPT.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">What It Exposes</h2>
+<p class="text-white/65 leading-relaxed">The server provides standardized tools for searching across a workspace, reading page and database content, and creating or updating pages and database entries — turning what used to require Notion's REST API and custom auth handling into a protocol-level capability any MCP client can use directly.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Why This Matters for Documentation-Heavy Teams</h2>
+<p class="text-white/65 leading-relaxed">For teams that keep specs, runbooks, and decisions in Notion, an official MCP server means an AI agent can be a genuine research assistant against that real internal knowledge base — searching and citing actual pages — rather than working from stale training data or requiring someone to manually copy-paste context into every conversation.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Access Follows Existing Notion Permissions</h2>
+<p class="text-white/65 leading-relaxed">As with the other major official MCP servers covered on this site (Slack, GitHub, Google Workspace), Notion's server operates within the authenticated user's existing workspace permissions — an agent connected on someone's behalf can only see and edit what that person could already see and edit directly in Notion.</p>`
   },
   {
     slug: "mcp-server-for-jira",
-    title: "MCP Server for Jira Automation Tutorial",
-    date: "2026-07-19",
+    title: "Atlassian's Official MCP Server: Jira, Confluence, and More via OAuth",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "1 min read",
-    excerpt: "Building MCP servers for Jira issue tracking and project management.",
-    keywords: ["Jira MCP", "MCP Jira server", "Jira automation MCP"],
+    readTime: "5 min read",
+    excerpt: "Atlassian's remote MCP server went generally available in February 2026 — a cloud-hosted, official bridge connecting Jira, Confluence, Jira Service Management, Bitbucket, and Compass to Claude and other AI clients via OAuth 2.1.",
+    keywords: ["Jira MCP", "MCP Jira server", "Jira automation MCP", "Atlassian MCP"],
     ugcElements: ["Jira automation rules", "Issue management examples"],
     internalLinks: ["mcp-server-for-notion", "mcp-server-for-trello"],
-    content: `<p class="text-white/65 leading-relaxed">Jira MCP servers enable AI agents to manage tickets and workflows.</p>`
+    content: `<p class="text-white/65 leading-relaxed">Atlassian runs an official remote MCP server (github.com/atlassian/atlassian-mcp-server) that went generally available in February 2026, with Anthropic as its first official launch partner. It's a cloud-hosted bridge, not something you self-host, running on Cloudflare's infrastructure.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Everything It Connects, Not Just Jira</h2>
+<p class="text-white/65 leading-relaxed">Despite the common shorthand of "Jira MCP," Atlassian's official server actually covers five products through one connection: <strong class="text-white">Jira</strong>, <strong class="text-white">Confluence</strong>, <strong class="text-white">Jira Service Management</strong>, <strong class="text-white">Bitbucket</strong>, and <strong class="text-white">Compass</strong>. An agent connected once can read and write across all five, following whatever access the authenticating user already has.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Authentication: OAuth 2.1 or API Tokens</h2>
+<p class="text-white/65 leading-relaxed">Every action taken through the server respects the connecting user's existing access controls — it authenticates via OAuth 2.1 or API tokens, and doesn't grant any elevated permission beyond what that person could already do directly in Jira or Confluence.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Real Uses This Actually Enables</h2>
+<p class="text-white/65 leading-relaxed">With Claude connected to Atlassian's MCP server, genuinely useful real workflows include: reading a Jira ticket's full history and linked Confluence spec before drafting a fix, searching across Confluence documentation for prior art on a bug, or cross-referencing a Bitbucket pull request against its originating Jira ticket — all through natural language rather than manually opening each tool.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Community Alternatives Still Exist</h2>
+<p class="text-white/65 leading-relaxed">Before Atlassian's official server reached GA, community projects like <code class="bg-gray-800 px-1 py-0.5 rounded">sooperset/mcp-atlassian</code> filled the gap and remain available — worth knowing about if you need self-hosted control rather than depending on Atlassian's managed, cloud-hosted endpoint.</p>`
   },
   {
     slug: "mcp-server-for-trello",
-    title: "MCP Server for Trello: Project Management Automation",
-    date: "2026-07-19",
+    title: "Trello MCP: Notably Absent From Atlassian's Official Server",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "1 min read",
-    excerpt: "Building MCP servers for Trello board management.",
+    readTime: "4 min read",
+    excerpt: "Atlassian's official MCP server covers Jira, Confluence, JSM, Bitbucket, and Compass — but not Trello, despite Trello being an Atlassian product. Real community options fill that gap for now.",
     keywords: ["Trello MCP", "MCP Trello server", "Trello automation MCP"],
     ugcElements: ["Trello power-ups", "Board management examples"],
     internalLinks: ["mcp-server-for-jira", "mcp-server-for-hubspot"],
-    content: `<p class="text-white/65 leading-relaxed">Trello MCP servers provide Kanban board automation capabilities.</p>`
+    content: `<p class="text-white/65 leading-relaxed">Here's a detail worth knowing if you're evaluating Atlassian's MCP offerings: the official Atlassian remote MCP server (github.com/atlassian/atlassian-mcp-server), GA since February 2026, covers five products — Jira, Confluence, Jira Service Management, Bitbucket, and Compass. <strong class="text-white">Trello is not among them</strong>, despite Trello being an Atlassian-owned product.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">What's Actually Available for Trello</h2>
+<p class="text-white/65 leading-relaxed">In the absence of an official server, community-built options exist for connecting Trello to AI clients — a "Trello Desktop MCP" style integration that lets Claude Desktop interact with boards, cards, lists, and team members through natural language. These are third-party projects wrapping Trello's REST API, not an Atlassian-published product.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Building a Minimal One Yourself</h2>
+<p class="text-white/65 leading-relaxed">Trello's REST API is straightforward enough that a minimal custom server covering the common operations is a reasonable weekend project:</p>
+<pre class="bg-gray-900 p-4 rounded-lg"><code class="language-typescript">// list_boards()
+// get_board_cards(board_id)
+// create_card(list_id, name, description)
+// move_card(card_id, target_list_id)</code></pre>
+<p class="text-white/65 leading-relaxed">Authenticate with a Trello API key + token pair scoped to the specific boards your agent actually needs, following the same least-privilege principle covered across this site's other integration guides.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Worth Revisiting</h2>
+<p class="text-white/65 leading-relaxed">Given Atlassian has been actively expanding its official MCP coverage — GA in February 2026, protocol version updates since — Trello being excluded from the current product list may simply reflect where Atlassian's rollout is at this point in time rather than a permanent decision. Worth checking back periodically rather than assuming today's gap is final.</p>`
   },
   {
     slug: "mcp-server-for-hubspot",
-    title: "MCP Server for HubSpot CRM Integration Guide",
-    date: "2026-07-19",
+    title: "HubSpot's Official MCP Server: First Major CRM to Ship One",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "1 min read",
-    excerpt: "Integrating HubSpot CRM with MCP servers for sales automation.",
+    readTime: "5 min read",
+    excerpt: "HubSpot was the first major CRM to ship a production-grade MCP integration, giving any MCP-compatible AI tool secure read/write access to contacts, deals, and engagements through natural conversation.",
     keywords: ["HubSpot MCP", "MCP HubSpot server", "CRM MCP integration"],
     ugcElements: ["HubSpot workflows", "CRM automation examples"],
     internalLinks: ["mcp-server-for-trello", "mcp-server-for-salesforce"],
-    content: `<p class="text-white/65 leading-relaxed">HubSpot MCP servers enable sales and marketing automation.</p>`
+    content: `<p class="text-white/65 leading-relaxed">HubSpot runs its own official, HubSpot-hosted MCP server, and by most accounts was the first major CRM platform to ship a production-grade MCP integration rather than leaving it to community wrappers — documented at developers.hubspot.com/ai-tools/mcp.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Two Distinct Servers, Different Purposes</h2>
+<p class="text-white/65 leading-relaxed">HubSpot actually ships two separate MCP offerings: one lets any MCP-compatible AI tool or agent connect directly to your CRM data (contacts, deals, engagements), and a second is aimed at developers building on HubSpot's own Developer Platform. Don't conflate the two — the first is for using HubSpot data in an AI client, the second is for building HubSpot apps with AI assistance.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Real Read/Write Access, Not Just Lookups</h2>
+<p class="text-white/65 leading-relaxed">The CRM-facing server gives an AI tool genuine read and write access to core objects — contacts, deals, engagements — through natural conversation, meaning an agent can both answer questions about your pipeline and actually update records, not just report on them.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">The ChatGPT Deep Research Connector</h2>
+<p class="text-white/65 leading-relaxed">In June 2025, HubSpot launched a "deep research" connector specifically for ChatGPT, letting users ask natural-language questions and get live answers pulled directly from their HubSpot data — a genuinely early, concrete example of a CRM vendor building specifically for an AI client rather than just a generic API.</p>`
   },
   {
     slug: "mcp-server-for-salesforce",
-    title: "How to Build MCP Server for Salesforce",
-    date: "2026-07-19",
+    title: "Salesforce Doesn't Have an Official MCP Server (Yet)",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "1 min read",
-    excerpt: "Building MCP servers for Salesforce CRM integration.",
+    readTime: "5 min read",
+    excerpt: "Unlike HubSpot, Salesforce hasn't shipped a comparable official, production-grade MCP server as of this writing — its platform has stayed more closed to external builders, though Salesforce-owned Slack's MCP server is real and official.",
     keywords: ["Salesforce MCP", "MCP Salesforce server", "Salesforce integration MCP"],
     ugcElements: ["SOQL query examples", "Salesforce automation"],
     internalLinks: ["mcp-server-for-hubspot", "mcp-server-for-stripe"],
-    content: `<p class="text-white/65 leading-relaxed">Salesforce MCP servers provide enterprise CRM access for AI agents.</p>`
+    content: `<p class="text-white/65 leading-relaxed">Worth stating plainly: Salesforce has not shipped an official, production-grade MCP server comparable to HubSpot's, as of this writing. Coverage of the CRM-and-MCP space specifically notes that Salesforce's broader platform has remained more closed to external builders than competitors, with commentary suggesting pressure will grow for Salesforce to open up as MCP adoption spreads across the CRM category.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">The Notable Exception: Slack</h2>
+<p class="text-white/65 leading-relaxed">This is a genuinely interesting nuance: Salesforce owns Slack, and <a href="/blog/mcp-server-for-slack" class="text-cyan-300 hover:text-cyan-200">Slack's own MCP server is real and official</a>, having replaced Anthropic's earlier reference implementation. So Salesforce-the-parent-company does have official MCP presence — just through its Slack acquisition, not through Salesforce's core CRM platform itself.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">If You Need Salesforce Data in an AI Workflow Today</h2>
+<p class="text-white/65 leading-relaxed">Without an official server, the realistic paths are: building a thin custom MCP wrapper around Salesforce's existing REST/SOQL APIs yourself (the same general pattern this site documents for wrapping any production API), or going through a general-purpose connector like Zapier's official MCP server, which already supports Salesforce as one of its 8,000+ connected apps without you needing to build anything Salesforce-specific.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Why This Gap Is Notable</h2>
+<p class="text-white/65 leading-relaxed">HubSpot moving first and Salesforce not yet following is a real, observable data point about how differently CRM vendors are approaching AI-agent access to their platforms — worth revisiting periodically rather than assuming the current state is permanent, given how quickly this specific landscape (Zapier, Stripe, Shopify, Atlassian, HubSpot all shipping official servers within roughly the same year) has been moving.</p>`
   },
   {
     slug: "mcp-server-for-stripe",
-    title: "How to Create MCP Server for Stripe",
-    date: "2026-07-19",
+    title: "Stripe's Official MCP Server: 23 Tools for Billing",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "1 min read",
-    excerpt: "Building MCP servers for Stripe payment integration.",
+    readTime: "5 min read",
+    excerpt: "Stripe ships its own official MCP server (docs.stripe.com/mcp) with 23 tools spanning customers, invoices, payments, refunds, disputes, and subscriptions — connectable via OAuth or API key, local or remote.",
     keywords: ["Stripe MCP", "MCP Stripe server", "Stripe integration MCP"],
     ugcElements: ["Payment workflows", "Invoice automation examples"],
-    internalLinks: ["mcp-server-for-salesforce", "mcp-server-for-razorpay"],
-    content: `<p class="text-white/65 leading-relaxed">Stripe MCP servers enable payment processing and subscription management.</p>`
+    internalLinks: ["mcp-server-for-salesforce", "razorpay-mcp-server-india"],
+    content: `<p class="text-white/65 leading-relaxed">Stripe's MCP server is Stripe's own official implementation, documented at docs.stripe.com/mcp — not a third-party wrapper. It gives AI agents a standardized way to interact with the Stripe API and search Stripe's documentation and support knowledge base directly.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">23 Tools Across Real Billing Categories</h2>
+<p class="text-white/65 leading-relaxed">The server exposes 23 tools spanning:</p>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li><strong class="text-white">Customers and catalog</strong> — managing customer records and product/price catalog data</li>
+  <li><strong class="text-white">Invoices and payment links</strong> — creating and managing both</li>
+  <li><strong class="text-white">Payments, refunds, and disputes</strong> — the core money-movement operations</li>
+  <li><strong class="text-white">Subscriptions and coupons</strong> — recurring billing management</li>
+  <li><strong class="text-white">Documentation search</strong> — querying Stripe's own docs and support content directly from within an AI client</li>
+</ul>
+
+<h2 class="mt-8 text-2xl font-black text-white">Two Connection Methods, Local or Remote</h2>
+<p class="text-white/65 leading-relaxed">Stripe supports connecting via OAuth authentication or API keys, and the server can run either locally or as a remote hosted connection — flexible enough to fit both a "I just want to try this" setup and a production integration with proper key scoping. It works with Claude, ChatGPT, Cursor, and any other MCP-compatible client.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Restricted Keys Matter Here Specifically</h2>
+<p class="text-white/65 leading-relaxed">Stripe's own API key system supports restricted keys — scoped to specific resource types and operations rather than a single all-powerful secret key. Given that Stripe's MCP tool set includes refunds and dispute handling (real money-moving and money-recovering actions), using a restricted key scoped only to what your specific AI workflow actually needs is a meaningfully safer default than connecting with a full-access secret key, the same principle covered throughout this site's payment-MCP coverage (Razorpay, Zerodha, Zomato).</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Where This Fits Next to Indian Payment Gateways</h2>
+<p class="text-white/65 leading-relaxed">Stripe's server is a useful reference point if you're also evaluating Razorpay's, Cashfree's, or PayU's official MCP servers for an India-facing product — all four follow the same broad shape (official, first-party, tool sets covering payments/refunds/customer data), which suggests this is becoming the standard pattern for payment-processor MCP integrations generally, not something specific to any one market.</p>`,
+    faqs: [
+      { question: "Is Stripe's MCP server official?", answer: "Yes — it's Stripe's own implementation, documented at docs.stripe.com/mcp, not a community wrapper." },
+      { question: "How many tools does it expose?", answer: "23, covering customers/catalog, invoices/payment links, payments/refunds/disputes, subscriptions/coupons, and documentation search." },
+      { question: "Can I limit what the AI agent is allowed to do?", answer: "Yes — connect using a Stripe restricted API key scoped to only the specific resources/operations your workflow needs, rather than a full-access secret key." }
+    ]
   },
   {
     slug: "mcp-server-for-razorpay",
@@ -2059,29 +2447,65 @@ spec:
   },
   {
     slug: "mcp-server-for-shopify",
-    title: "How to Build MCP Server for Shopify",
-    date: "2026-07-19",
+    title: "Shopify Made Every Store an MCP Node — Here's What That Means",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "1 min read",
-    excerpt: "Building MCP servers for Shopify e-commerce platform integration.",
+    readTime: "5 min read",
+    excerpt: "On January 11, 2026, Shopify turned every store on its platform into an MCP-addressable node via four official servers — free, open source, and instantly available without a merchant opting in per-store.",
     keywords: ["Shopify MCP", "MCP Shopify server", "e-commerce MCP"],
     ugcElements: ["Shopify app examples", "Inventory management"],
-    internalLinks: ["mcp-server-for-razorpay", "mcp-server-for-zapier"],
-    content: `<p class="text-white/65 leading-relaxed">Shopify MCP servers enable e-commerce automation and inventory management.</p>`
+    internalLinks: ["razorpay-mcp-server-india", "mcp-server-for-zapier"],
+    content: `<p class="text-white/65 leading-relaxed">Shopify has gone further than most platforms on MCP: rather than a single official server merchants opt into, it ships four official, free, open-source MCP servers, and made every store on the platform instantly addressable by any MCP-compatible agent as of January 11, 2026.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Four Official Servers, Not One</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li><strong class="text-white">Dev MCP</strong> — gives AI coding assistants access to Shopify's own developer documentation for building apps and themes.</li>
+  <li><strong class="text-white">Storefront MCP</strong> — powers customer-facing AI shopping experiences: product search, cart management, checkout.</li>
+  <li>Two additional official servers cover further merchant/store-operations surface area.</li>
+</ul>
+<p class="text-white/65 leading-relaxed">Splitting into multiple purpose-specific servers — rather than one server trying to cover developer docs, storefront shopping, and merchant operations all at once — mirrors the same architectural choice Swiggy made with its three separate servers (Food, Instamart, Dineout): narrower, more specific tool sets per server rather than one bloated one.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Why "Every Store, Automatically" Is the Notable Part</h2>
+<p class="text-white/65 leading-relaxed">Because Shopify made this platform-wide rather than opt-in per merchant, any AI shopping agent built against MCP can discover and interact with any Shopify store's Storefront MCP server without that individual merchant doing any setup — a meaningfully different distribution model than most brand-specific MCP servers covered on this site, which require the company to build and ship their own integration one at a time.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">What an Agent Can Actually Do</h2>
+<p class="text-white/65 leading-relaxed">Through Shopify's MCP servers, an AI agent can search products, manage a cart, track orders, and run store operations through natural language — turning what used to require a custom app built against Shopify's Admin API into a standard, protocol-level capability any MCP client already knows how to use.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">What This Means If You Run a Shopify Store</h2>
+<p class="text-white/65 leading-relaxed">If your store is on Shopify, its Storefront MCP server exists already — you don't need to build or deploy anything to be reachable by MCP-based shopping agents. What's worth reviewing is whether your product data (titles, descriptions, variants) is accurate and complete, since an AI agent shopping on a customer's behalf will represent your store exactly as well as that underlying data supports — the same content-quality principle this whole site is built around, just applied to product catalogs instead of documentation.</p>`,
+    faqs: [
+      { question: "Is Shopify's MCP server official?", answer: "Yes — Shopify ships four official, free, open-source MCP servers including Dev MCP and Storefront MCP." },
+      { question: "Do merchants need to set anything up?", answer: "No — as of January 11, 2026, every store on Shopify became an MCP-addressable node automatically, without per-merchant opt-in." },
+      { question: "What can an AI shopping agent actually do via Shopify's MCP?", answer: "Search products, manage a cart, track orders, and perform store operations through natural language, via the Storefront MCP server." }
+    ]
   },
   {
     slug: "mcp-server-for-zapier",
-    title: "How to Create MCP Server for Zapier",
-    date: "2026-07-19",
+    title: "Zapier MCP: One Server, 8,000+ Apps, No Per-App Build",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "1 min read",
-    excerpt: "Building MCP servers that integrate with Zapier automation workflows.",
+    readTime: "5 min read",
+    excerpt: "Zapier's official MCP server at mcp.zapier.com gives an AI agent access to every app already connected on Zapier — 8,000+ of them — through one URL, without building a separate MCP integration per app.",
     keywords: ["Zapier MCP", "MCP Zapier server", "Zapier integration MCP"],
     ugcElements: ["Zapier zaps", "Workflow automation examples"],
     internalLinks: ["mcp-server-for-shopify", "mcp-server-for-make-com"],
-    content: `<p class="text-white/65 leading-relaxed">Zapier MCP servers connect to thousands of apps through automation workflows.</p>`
+    content: `<p class="text-white/65 leading-relaxed">Zapier's MCP server is Zapier's own official implementation, with source available at github.com/zapier/zapier-mcp and documentation at docs.zapier.com/mcp/home. Its core pitch is leverage: instead of building or connecting to one MCP server per app, you get access to the 8,000+ apps already integrated with Zapier through a single server.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">How It Actually Works</h2>
+<p class="text-white/65 leading-relaxed">You spin up a server at mcp.zapier.com, choose which specific app actions to expose (not necessarily all 8,000+ apps' full capability by default — you configure what's actually available), and connect a client like Claude, Cursor, or ChatGPT over one URL. From there, an agent can search across connected apps for records and information, and run real actions — send an email, update a CRM record, schedule a meeting, create a task — using the same automations Zapier already runs.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Why This Matters for Anyone Building an India-Facing Agent</h2>
+<p class="text-white/65 leading-relaxed">Several of the India-specific integrations covered elsewhere on this site (WhatsApp-adjacent workflows, various SaaS tools) may already have a Zapier connection even where no dedicated MCP server exists yet for that specific app. If you need an AI agent to act on a tool without an official or community MCP server of its own, checking whether it's already a supported Zapier app — and going through Zapier's MCP server instead of writing a bespoke integration — is frequently the fastest real path to a working connection.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">The Tradeoff Worth Knowing</h2>
+<p class="text-white/65 leading-relaxed">Going through Zapier means going through Zapier's action definitions and rate limits rather than the target app's raw API directly — you get breadth (8,000+ apps, zero per-app build work) at the cost of depth (you're limited to whatever actions Zapier has already defined for that app, not the app's full API surface). For a well-supported common action (send a Slack message, add a CRM contact), that's rarely a real constraint; for a niche or highly custom operation, a purpose-built MCP server directly against that app's API may expose more than Zapier's predefined actions do.</p>`,
+    faqs: [
+      { question: "Is Zapier's MCP server official?", answer: "Yes — published under Zapier's own GitHub organization (zapier/zapier-mcp) with documentation at docs.zapier.com/mcp/home." },
+      { question: "Do I need a separate MCP server for every app I want to connect?", answer: "No — that's the point of Zapier's server: one connection at mcp.zapier.com gives access to any of the 8,000+ apps already integrated with Zapier." },
+      { question: "What's the tradeoff versus a dedicated MCP server for one specific app?", answer: "Breadth versus depth — Zapier covers far more apps with zero per-app build work, but you're limited to Zapier's predefined actions for each app rather than that app's full native API." }
+    ]
   },
   {
     slug: "mcp-server-for-make-com",
@@ -2137,42 +2561,69 @@ spec:
   },
   {
     slug: "mcp-server-for-twilio",
-    title: "How to Build MCP Server for Twilio",
-    date: "2026-07-19",
+    title: "Twilio's Official MCP Server: 1,800+ Endpoints, 30+ Products",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "1 min read",
-    excerpt: "Building MCP servers for Twilio SMS and voice communication.",
+    readTime: "5 min read",
+    excerpt: "Twilio's official (alpha) MCP server gives AI coding agents direct access to Twilio's full API surface — over 1,800 endpoints across 30+ products — without leaving your IDE.",
     keywords: ["Twilio MCP", "MCP Twilio server", "SMS MCP integration"],
     ugcElements: ["SMS automation", "Twilio code examples"],
     internalLinks: ["mcp-server-for-sendgrid", "mcp-server-for-google-sheets"],
-    content: `<p class="text-white/65 leading-relaxed">Twilio MCP servers enable SMS and voice communication automation.</p>`
+    content: `<p class="text-white/65 leading-relaxed">Twilio ships its own official MCP server, distributed as <code class="bg-gray-800 px-1 py-0.5 rounded">@twilio-alpha/mcp</code> on npm and documented at twilio.com/docs/ai/mcp. The "alpha" in the package name is accurate — it's an early-stage but genuinely first-party offering, not a stable GA product yet.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">The Scale Is the Headline</h2>
+<p class="text-white/65 leading-relaxed">Rather than a curated subset of common actions, Twilio's server exposes its full API surface — over 1,800 endpoints spanning more than 30 products (SMS, Voice, Video, Verify, and the rest of Twilio's communications stack). That breadth is unusual compared to most official MCP servers covered on this site, which typically expose a deliberately curated tool set (Stripe's 23, Airtable's 12) rather than an entire API surface.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Built for Development, Not Just Runtime Use</h2>
+<p class="text-white/65 leading-relaxed">Twilio frames this specifically as giving AI coding agents direct, structured access to the API without leaving your IDE — the primary use case is an AI pair-programmer that can look up the exact Twilio endpoint and parameters needed while you're writing integration code, distinct from an end-user-facing agent that sends messages on someone's behalf.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Twilio's Own Security Guidance</h2>
+<p class="text-white/65 leading-relaxed">Notably, Twilio's own engineering team has publicly advised against running community MCP servers alongside the official one for the same Twilio account — reducing the risk that an untrusted third-party server gets tool access to a real, credentialed Twilio account. That's a direct, vendor-stated version of the general principle this site's security content repeats: only connect trusted MCP servers to anything holding real credentials.</p>`
   },
   {
     slug: "mcp-server-for-google-sheets",
-    title: "MCP Server for Google Sheets Sync",
-    date: "2026-07-19",
+    title: "Google Sheets' Official MCP Server (and Why Airtable May Fit Better)",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "1 min read",
-    excerpt: "Building MCP servers for Google Sheets integration and automation.",
+    readTime: "4 min read",
+    excerpt: "Google runs an official MCP server for Sheets as part of its per-app Workspace lineup — reading and writing spreadsheet data through natural language, with the same permission-inheritance model as Gmail and Calendar.",
     keywords: ["Google Sheets MCP", "MCP Google Sheets server", "Sheets automation MCP"],
     ugcElements: ["Sheet templates", "Spreadsheet automation"],
     internalLinks: ["mcp-server-for-twilio", "mcp-server-for-airtable"],
-    content: `<p class="text-white/65 leading-relaxed">Google Sheets MCP servers enable spreadsheet automation and data manipulation.</p>`
+    content: `<p class="text-white/65 leading-relaxed">Sheets has its own official, dedicated MCP server as part of Google's Workspace lineup, documented alongside Gmail, Calendar, and Drive at developers.google.com/workspace/guides/configure-mcp-servers. An agent connected to it can read cell ranges, write new data, and reason about spreadsheet content through natural language, inheriting whatever sharing permissions the authenticated user already has on that sheet.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">When Sheets Is the Right Choice vs. Airtable</h2>
+<p class="text-white/65 leading-relaxed">Both Sheets and Airtable have official MCP servers and cover overlapping ground — tabular data an agent can read and update. The practical difference: Sheets is the better fit when the data genuinely lives as a spreadsheet already (financial models, ad-hoc tracking, anything collaborators already edit in Sheets), while <a href="/blog/mcp-server-for-airtable" class="text-cyan-300 hover:text-cyan-200">Airtable</a> fits better once you need real relational structure — linked records across tables, field types beyond plain cells, views built for non-technical users.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">A Real Use Case: Ad-Hoc Reporting</h2>
+<p class="text-white/65 leading-relaxed">A common, genuinely useful pattern: an agent that reads a raw data sheet, computes a summary, and writes the result into a separate "report" tab — replacing what used to be a manual copy/paste/reformat step at the end of a reporting cycle, using the same spreadsheet the team already trusts and shares.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Community Alternatives for Self-Hosting</h2>
+<p class="text-white/65 leading-relaxed">As with the other Google Workspace apps, community-built servers (like <code class="bg-gray-800 px-1 py-0.5 rounded">piotr-agier/google-drive-mcp</code>, which bundles Sheets alongside Drive/Docs/Calendar) exist if you want self-hosted control rather than Google's managed endpoint.</p>`
   },
   {
     slug: "mcp-server-for-airtable",
-    title: "MCP Server for Airtable: Database + Spreadsheet Power",
-    date: "2026-07-19",
+    title: "Airtable's Official MCP Server: 12 Tools Over OAuth",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "1 min read",
-    excerpt: "Building MCP servers for Airtable database and spreadsheet integration.",
+    readTime: "4 min read",
+    excerpt: "Airtable's official MCP server exposes 12 tools across bases, tables, records, fields, and schema — connect at mcp.airtable.com/mcp via OAuth, no separate installation needed.",
     keywords: ["Airtable MCP", "MCP Airtable server", "Airtable integration MCP"],
     ugcElements: ["Airtable bases", "Database automation examples"],
     internalLinks: ["mcp-server-for-google-sheets", "mcp-server-for-dropbox"],
-    content: `<p class="text-white/65 leading-relaxed">Airtable MCP servers combine database power with spreadsheet simplicity.</p>`
+    content: `<p class="text-white/65 leading-relaxed">Airtable runs its own official MCP server, reachable directly at mcp.airtable.com/mcp — there's nothing to install or self-host; you point your MCP client at that URL and authenticate via OAuth.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">12 Tools Across Real Data Operations</h2>
+<p class="text-white/65 leading-relaxed">The server ships 12 tools spanning three categories: base and table operations, record management (create/read/update), and field/schema tools — enough to both query existing data and reshape a base's structure through natural language, not just read-only lookups.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">What This Actually Enables</h2>
+<p class="text-white/65 leading-relaxed">Because Airtable sits between a spreadsheet and a lightweight database for many teams, an AI agent connected via MCP can genuinely replace a chunk of manual data entry and lookup work — asking Claude to "add this week's leads to the CRM base" or "summarize open items in the project tracker" works directly against real base data, without leaving the conversation to open Airtable separately.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Community Alternatives for More Control</h2>
+<p class="text-white/65 leading-relaxed">If you need self-hosted control rather than depending on Airtable's managed endpoint, community projects like <code class="bg-gray-800 px-1 py-0.5 rounded">domdomegg/airtable-mcp-server</code> on GitHub wrap the same underlying API for local or self-hosted deployment.</p>`
   },
   {
     slug: "mcp-server-for-dropbox",
@@ -2448,16 +2899,31 @@ spec:
   },
   {
     slug: "mcp-server-success-stories",
-    title: "MCP Server Success Stories: Startup Spotlights",
-    date: "2026-07-19",
-    category: "UGC Community Hub",
+    title: "Real, Verifiable MCP Launches Worth Knowing About",
+    date: "2026-07-21",
+    category: "Community",
     cluster: "ugc-community-hub",
-    readTime: "1 min read",
-    excerpt: "Success stories from startups leveraging MCP servers for their products.",
-    keywords: ["MCP success stories", "MCP startup stories", "MCP case studies"],
-    ugcElements: ["Startup profiles", "Success metrics"],
+    readTime: "6 min read",
+    excerpt: "Not invented startup testimonials — real, publicly documented MCP launches from companies that actually shipped, with sources you can check yourself.",
+    keywords: ["MCP success stories", "real MCP launches", "MCP case studies"],
+    ugcElements: ["Verified launches"],
     internalLinks: ["how-i-built-my-first-mcp-server", "mcp-server-failures-lessons-learned"],
-    content: `<p class="text-white/65 leading-relaxed">Startups are using MCP servers to build innovative AI-powered products.</p>`
+    content: `<p class="text-white/65 leading-relaxed">Rather than fabricated startup testimonials, here are real, publicly documented MCP launches — each verifiable through the company's own blog, GitHub, or credible tech press coverage, not an invented case study.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Zerodha: First-Party Brokerage MCP, May 2025</h2>
+<p class="text-white/65 leading-relaxed">India's largest stockbroker by active client count shipped Kite MCP, announced on its own Z-Connect blog and open-sourced on GitHub. What makes it a genuinely instructive launch: the hosted public instance deliberately excludes destructive trading operations that exist in the underlying code, shipping a safety-conscious "public tier vs. full self-hosted tier" split from day one rather than an afterthought.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Swiggy: Three Servers, 35 Tools, India-First</h2>
+<p class="text-white/65 leading-relaxed">Swiggy's "Builders Club" launched three separate official MCP servers — Food, Instamart, Dineout — deliberately scoped narrow rather than one do-everything server, using OAuth 2.1 with PKCE. Real, published limitation worth knowing: MediaNama has reported that Instamart's grocery checkout hasn't always completed fully within an AI chat interface, a useful reminder that shipping an official server and having every flow work flawlessly aren't the same claim.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Zomato: From Search to Completed, Paid Orders</h2>
+<p class="text-white/65 leading-relaxed">Zomato's 2025 MCP launch is notable for going past read-only demos into actual transaction completion — cart management and UPI QR-code checkout through Claude and ChatGPT, not just restaurant search.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Shopify: Every Store, Platform-Wide, Overnight</h2>
+<p class="text-white/65 leading-relaxed">On January 11, 2026, Shopify made every store on its platform an MCP-addressable node simultaneously — a genuinely different distribution model than a company shipping one integration at a time, achieved through four official servers (Dev MCP, Storefront MCP, and others) rather than merchant-by-merchant opt-in.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">What These Have in Common</h2>
+<p class="text-white/65 leading-relaxed">Every one of these is checkable: a real company blog post, a real GitHub repository, real independent tech press coverage. That's the actual standard worth holding any "success story" to — if a case study can't be traced to a primary source, it isn't one, regardless of how compelling the narrative sounds.</p>`
   },
   {
     slug: "enterprise-mcp-implementation-case-studies",
@@ -2652,16 +3118,34 @@ spec:
   },
   {
     slug: "mcp-server-hall-of-fame-best-implementations",
-    title: "MCP Server Hall of Fame: Best Implementations",
-    date: "2026-07-19",
-    category: "UGC Community Hub",
+    title: "Notable MCP Server Implementations Worth Studying",
+    date: "2026-07-21",
+    category: "Community",
     cluster: "ugc-community-hub",
-    readTime: "1 min read",
-    excerpt: "Hall of Fame featuring the best MCP server implementations.",
-    keywords: ["MCP hall of fame", "MCP best implementations", "MCP hall of fame"],
-    ugcElements: ["Hall of fame entries", "Recognition"],
-    internalLinks: ["mcp-server-of-the-month-community-voting", "mcp-server-challenges-community-competitions"],
-    content: `<p class="text-white/65 leading-relaxed">Celebrating outstanding MCP server implementations.</p>`
+    readTime: "6 min read",
+    excerpt: "Not a popularity contest — a technical roundup of real, verifiable MCP server implementations worth studying for specific architectural reasons, from official reference servers to production financial and commerce integrations.",
+    keywords: ["notable MCP servers", "MCP best implementations", "MCP reference servers"],
+    ugcElements: ["Community recommendations"],
+    internalLinks: ["mcp-server-resources-curated-links", "mcp-server-code-snippets-community-library"],
+    content: `<p class="text-white/65 leading-relaxed">Rather than a popularity-voted list, here's a genuinely useful set of real MCP server implementations worth studying — each for a specific, concrete architectural reason, not just because they're well-known.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">The Official Reference Servers</h2>
+<p class="text-white/65 leading-relaxed">Start with <a href="https://github.com/modelcontextprotocol/servers" class="text-cyan-300 hover:text-cyan-200">modelcontextprotocol/servers</a> on GitHub — the official reference implementations maintained by the MCP steering group (Filesystem, Git, Fetch, Memory, and others). These are worth reading before building anything of your own: they show the canonical, idiomatic way to structure tool schemas, handle errors, and implement each transport, straight from the people who wrote the spec.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Zerodha's Kite MCP — Studying the Hosted/Self-Hosted Split</h2>
+<p class="text-white/65 leading-relaxed"><a href="https://github.com/zerodha/kite-mcp-server" class="text-cyan-300 hover:text-cyan-200">zerodha/kite-mcp-server</a> is worth studying specifically for its safety architecture: the codebase includes full order-placement tools, but the public hosted instance deliberately excludes destructive trading operations, while self-hosting unlocks the full set. That's a genuinely instructive pattern for anyone building a server with a "safe public tier" and a "full-capability self-hosted tier."</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Swiggy's Three-Server Split — Studying Scope Discipline</h2>
+<p class="text-white/65 leading-relaxed">Swiggy's decision to ship three independent MCP servers (Food, Instamart, Dineout) rather than one server covering all three business lines is worth studying for scope discipline — each server has its own narrow, specific tool set with no shared cart or session state between them, which keeps each server's surface area small and easy to reason about.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">PhonePe's Docs-Only Server — Studying Honest Scope Naming</h2>
+<p class="text-white/65 leading-relaxed"><a href="https://github.com/phonepe/phonepe-pg-docs-mcp" class="text-cyan-300 hover:text-cyan-200">phonepe/phonepe-pg-docs-mcp</a> is worth including specifically because of what it doesn't do — its name and scope are honest about being a read-only documentation server, not a payments API. That naming discipline (not overselling a server's actual capability) is worth copying regardless of what your server does.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Stripe's Tool Set — Studying Scoped Financial Permissions</h2>
+<p class="text-white/65 leading-relaxed">Stripe's official server (docs.stripe.com/mcp) supporting restricted API keys — scoped to specific resource types rather than one all-powerful secret — is a real, concrete example of the "narrow scope beats blanket access" principle this site's security guidance argues for repeatedly, implemented by one of the most security-conscious payments companies in the industry.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">What Makes These Worth Studying (Not Just Using)</h2>
+<p class="text-white/65 leading-relaxed">Each entry here earns its place for a specific, nameable design decision — the hosted/self-hosted safety split, scope discipline across multiple servers, honest capability naming, restricted-permission API keys — not because of stars, votes, or marketing. If you're designing your own server, borrowing one specific pattern from each of these is more useful than copying any single one wholesale.</p>`
   },
   {
     slug: "mcp-server-challenges-community-competitions",
@@ -2691,16 +3175,31 @@ spec:
   },
   {
     slug: "mcp-server-conferences-event-calendar",
-    title: "MCP Server Conferences: Event Calendar",
-    date: "2026-07-19",
-    category: "UGC Community Hub",
+    title: "Where MCP Discourse Actually Happens (Not a Fabricated Event List)",
+    date: "2026-07-21",
+    category: "Community",
     cluster: "ugc-community-hub",
-    readTime: "1 min read",
-    excerpt: "Calendar of MCP-related conferences and events.",
-    keywords: ["MCP conferences", "MCP events calendar", "MCP conference"],
-    ugcElements: ["Event info", "Conference listings"],
-    internalLinks: ["mcp-server-meetups-local-events", "mcp-server-webinars-recording-archive"],
-    content: `<p class="text-white/65 leading-relaxed">Upcoming conferences and events for the MCP community.</p>`
+    readTime: "4 min read",
+    excerpt: "Rather than a speculative conference calendar we can't verify, here's where real, ongoing MCP technical discussion and announcements actually happen — sources you can check yourself.",
+    keywords: ["MCP conferences", "MCP community discussion", "MCP announcements"],
+    ugcElements: ["Community resources"],
+    internalLinks: ["mcp-server-resources-curated-links", "mcp-server-community-join-the-conversation"],
+    content: `<p class="text-white/65 leading-relaxed">A specific, dated conference calendar is something we'd have to either fabricate or constantly verify against sources that change — so instead, here are the real, checkable places where MCP technical discussion, specification changes, and product announcements actually happen on an ongoing basis.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">The Official Specification Blog</h2>
+<p class="text-white/65 leading-relaxed">blog.modelcontextprotocol.io is where the MCP steering group posts specification updates and release candidates directly — this is the primary source for "what's actually changing in the protocol," not a secondhand summary.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">GitHub Discussions on the Official Repos</h2>
+<p class="text-white/65 leading-relaxed">github.com/modelcontextprotocol/modelcontextprotocol and github.com/modelcontextprotocol/servers both have active Discussions and Issues where real implementation questions, spec clarifications, and proposed changes get debated by the people actually building the ecosystem — a far more current source than any static roundup could be.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Vendor Engineering Blogs</h2>
+<p class="text-white/65 leading-relaxed">Companies shipping official MCP servers regularly publish their own technical writeups — Anthropic's engineering blog, Wipro's tech blog series on building and scaling MCP servers, and individual vendor docs (Stripe's, Zapier's, Shopify's, all linked from this site's own coverage of each) are genuinely useful primary sources rather than a curated aggregator.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">General AI/Developer Conferences Increasingly Cover MCP</h2>
+<p class="text-white/65 leading-relaxed">MCP has become a common topic at general AI and developer conferences rather than having its own dedicated, established conference circuit yet — check the agendas of AI-focused developer events you already track, rather than searching specifically for "MCP conferences" as a distinct category.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Why We're Not Publishing a Calendar</h2>
+<p class="text-white/65 leading-relaxed">A fabricated events calendar — invented dates, made-up sessions — would be actively harmful: someone could plan around it. This site's editorial policy is explicit about not inventing content to fill a page, and a conference calendar is exactly the kind of thing that looks authoritative while being completely made up if we didn't have real data to back it.</p>`
   },
   {
     slug: "mcp-server-webinars-recording-archive",
@@ -3650,52 +4149,51 @@ build:
   },
   {
     slug: "mcp-server-for-asana",
-    title: "MCP Server for Asana: Task Management Integration",
-    date: "2026-07-20",
+    title: "Asana's Official MCP Server: 15+ Tools, No Setup Required",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "1 min read",
-    excerpt: "Expose Asana tasks, projects, and sections as MCP tools so an agent can triage and update work directly.",
+    readTime: "5 min read",
+    excerpt: "Asana runs its own official MCP server at mcp.asana.com/v2/mcp with 15+ tools covering tasks, projects, portfolios, goals, and workspace-wide search — connect via OAuth, no self-hosting needed.",
     keywords: ["MCP server for Asana project management", "MCP Asana integration", "Asana MCP tools"],
     ugcElements: ["Asana project templates", "Automation recipe sharing"],
     internalLinks: ["mcp-server-for-jira", "mcp-server-for-trello", "mcp-server-for-monday"],
-    content: `<p class="text-white/65 leading-relaxed">Asana's REST API maps cleanly onto a small MCP tool set: list tasks, create a task, update status, and add a comment cover most agent workflows.</p>
+    content: `<p class="text-white/65 leading-relaxed">Asana runs its own official MCP server, reachable at mcp.asana.com/v2/mcp — connect an MCP client to that URL and authenticate via OAuth, no self-hosting or installation required.</p>
 
-<h2 class="mt-8 text-2xl font-black text-white">Core Tools</h2>
-<ul class="text-white/65 leading-relaxed">
-  <li><code class="bg-gray-800 px-1 py-0.5 rounded">list_tasks(project_id, filter)</code> — filter by assignee, section, or due date</li>
-  <li><code class="bg-gray-800 px-1 py-0.5 rounded">create_task(project_id, name, notes, assignee)</code></li>
-  <li><code class="bg-gray-800 px-1 py-0.5 rounded">update_task_status(task_id, completed)</code></li>
-</ul>
+<h2 class="mt-8 text-2xl font-black text-white">15+ Tools Beyond Basic Task CRUD</h2>
+<p class="text-white/65 leading-relaxed">The official server's tool set goes well beyond simple task creation — it covers tasks and projects, portfolios and goals management, people lookups, and workspace-wide search, letting an agent answer questions like "what's the status of Project X's goals" or "search across the whole workspace for anything mentioning this client," not just create/update a single task.</p>
 
-<h2 class="mt-8 text-2xl font-black text-white">Auth</h2>
-<p class="text-white/65 leading-relaxed">Use a Personal Access Token for single-workspace servers, or Asana's OAuth flow if the server needs to act on behalf of multiple users.</p>
-
-<h2 class="mt-8 text-2xl font-black text-white">Community Templates</h2>
-<p class="text-white/65 leading-relaxed">Post your project-specific tool wrappers below — custom section and tag filters are the most requested addition.</p>`
+<h2 class="mt-8 text-2xl font-black text-white">If You Still Want a Custom Server</h2>
+<p class="text-white/65 leading-relaxed">For a narrower, purpose-built integration — say, a tool that filters by a specific custom section/tag combination your team uses internally — a minimal custom server built directly against Asana's REST API is still a reasonable option, using a Personal Access Token for single-workspace use or Asana's own OAuth flow for multi-user access:</p>
+<pre class="bg-gray-900 p-4 rounded-lg"><code class="language-typescript">// list_tasks(project_id, filter) — filter by assignee, section, or due date
+// create_task(project_id, name, notes, assignee)
+// update_task_status(task_id, completed)</code></pre>
+<p class="text-white/65 leading-relaxed">Reach for the custom route specifically when you need tool behavior the official 15+-tool set doesn't model directly — for most teams, the official server already covers the common workflows.</p>`
   },
   {
     slug: "mcp-server-for-gitlab-devops",
-    title: "MCP Server for GitLab: DevOps Integration",
-    date: "2026-07-20",
+    title: "GitLab's Official MCP Server: From Experimental to Beta",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "1 min read",
-    excerpt: "Wiring GitLab issues, merge requests, and pipeline status into MCP tools for DevOps-aware agents.",
+    readTime: "5 min read",
+    excerpt: "GitLab ships its own official MCP server — introduced experimentally in GitLab 18.3, promoted to Beta in 18.6 — giving AI tools secure, OAuth-based access to projects, issues, merge requests, and CI/CD pipelines.",
     keywords: ["MCP server for GitLab", "GitLab MCP integration", "MCP DevOps GitLab"],
     ugcElements: ["GitLab automation", "MR workflow sharing"],
     internalLinks: ["mcp-gitlab-ci-integration", "mcp-server-for-jira", "mcp-devops-automating-server-management"],
-    content: `<p class="text-white/65 leading-relaxed">Where the GitLab CI integration guide covers pipeline automation, this is about exposing GitLab's project data — issues, merge requests, pipeline status — as tools an agent can query and act on.</p>
+    content: `<p class="text-white/65 leading-relaxed">GitLab runs its own official MCP server, documented at docs.gitlab.com/user/model_context_protocol/mcp_server/. It was introduced as an experimental feature in GitLab 18.3 and promoted to Beta in GitLab 18.6 — real, shipping, versioned progress rather than a permanent experiment.</p>
 
-<h2 class="mt-8 text-2xl font-black text-white">Core Tools</h2>
-<ul class="text-white/65 leading-relaxed">
-  <li><code class="bg-gray-800 px-1 py-0.5 rounded">get_merge_request(project_id, mr_iid)</code> — diff summary, approval status, pipeline state</li>
-  <li><code class="bg-gray-800 px-1 py-0.5 rounded">create_issue(project_id, title, description, labels)</code></li>
-  <li><code class="bg-gray-800 px-1 py-0.5 rounded">get_pipeline_status(project_id, ref)</code></li>
-</ul>
+<h2 class="mt-8 text-2xl font-black text-white">What It Connects</h2>
+<p class="text-white/65 leading-relaxed">The official server lets AI tools (Claude Desktop/Code, Cursor, and other MCP clients) securely connect to a GitLab instance and interact with projects, repositories, issues, merge requests, and CI/CD pipelines using natural language — positioned by GitLab as making AI assistants genuine "intelligent DevOps collaborators" rather than just code-completion tools.</p>
 
-<h2 class="mt-8 text-2xl font-black text-white">Scoped Tokens</h2>
-<p class="text-white/65 leading-relaxed">Use a project or group access token scoped to <code class="bg-gray-800 px-1 py-0.5 rounded">api</code> only for the specific projects the agent needs — avoid personal tokens with instance-wide access.</p>`
+<h2 class="mt-8 text-2xl font-black text-white">OAuth 2.0 Dynamic Client Registration</h2>
+<p class="text-white/65 leading-relaxed">A notable technical detail: GitLab's server supports OAuth 2.0 Dynamic Client Registration, which lets AI tools register themselves with a GitLab instance programmatically rather than requiring a pre-configured OAuth app for every client — meaningfully lowering the setup friction compared to a manual app-registration step per tool.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Protocol Version Support Is Actively Moving</h2>
+<p class="text-white/65 leading-relaxed">GitLab added support for the 2025-03-26 and 2025-06-18 MCP protocol specification versions in GitLab 18.7 — worth knowing if you're troubleshooting a client compatibility issue, since which spec version your GitLab instance and your MCP client both support can matter for feature availability.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">If You're Building a Narrower Custom Integration</h2>
+<p class="text-white/65 leading-relaxed">For a purpose-built tool set beyond what the official server models — say, a single tool combining merge-request diff stats with your team's specific review-policy check — a minimal custom server against GitLab's REST/GraphQL API is still reasonable. Whichever path you take, scope access tokens to <code class="bg-gray-800 px-1 py-0.5 rounded">api</code> only for the specific projects the agent needs, avoiding personal tokens with instance-wide access.</p>`
   },
   {
     slug: "mcp-server-for-monday",
@@ -4411,22 +4909,26 @@ build:
     date: "2026-07-20",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "1 min read",
-    excerpt: "Exposing GitHub issues, pull requests, and repo search as MCP tools, distinct from a CI/CD pipeline integration.",
+    readTime: "6 min read",
+    excerpt: "GitHub ships its own official MCP server, rewritten in Go with Anthropic's help — before building your own from scratch, it's worth knowing exactly what the official one already covers.",
     keywords: ["how to create MCP server for GitHub", "GitHub MCP integration", "MCP GitHub tools"],
     ugcElements: ["GitHub Actions integration ideas", "Tool schema sharing"],
     internalLinks: ["mcp-server-ci-cd-with-github-actions", "mcp-server-for-gitlab-devops", "mcp-github-repositories"],
-    content: `<p class="text-white/65 leading-relaxed">This is about exposing GitHub's own data — issues, pull requests, repo search — as MCP tools, separate from using GitHub Actions to run your MCP server's CI/CD pipeline.</p>
+    content: `<p class="text-white/65 leading-relaxed">Before building your own GitHub MCP integration, know that GitHub already ships an official one. It entered public preview in April 2025, and notably, GitHub worked directly with Anthropic to rewrite what had originally been a community/reference implementation into a first-party Go server — retaining 100% of the original functionality while adding code-scanning support and a new <code class="bg-gray-800 px-1 py-0.5 rounded">get_me</code> function for identity lookups.</p>
 
-<h2 class="mt-8 text-2xl font-black text-white">Core Tools</h2>
-<ul class="text-white/65 leading-relaxed">
+<h2 class="mt-8 text-2xl font-black text-white">What the Official Server Covers</h2>
+<p class="text-white/65 leading-relaxed">The official server (github.com/github/github-mcp-server) exposes tools across issues, pull requests, repository search, code scanning results, and more — running locally and authenticating with your own GitHub token. For most use cases — an agent that needs to search issues, read PR status, or file a new issue — reaching for the official server first is simpler than reinventing it.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">When You'd Still Build Your Own</h2>
+<p class="text-white/65 leading-relaxed">A custom server still makes sense if you need tools scoped to a very specific internal workflow the general-purpose official server doesn't model directly — for example, a tool that combines "get PR diff stats" with your own internal code-review policy check in a single call, rather than the agent making two separate calls and reasoning about the combination itself. If you do build your own, a minimal core tool set typically looks like:</p>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
   <li><code class="bg-gray-800 px-1 py-0.5 rounded">search_issues(repo, query, state)</code></li>
   <li><code class="bg-gray-800 px-1 py-0.5 rounded">get_pull_request(repo, pr_number)</code> — diff stats, review status, checks</li>
   <li><code class="bg-gray-800 px-1 py-0.5 rounded">create_issue(repo, title, body, labels)</code></li>
 </ul>
 
-<h2 class="mt-8 text-2xl font-black text-white">Token Scoping</h2>
-<p class="text-white/65 leading-relaxed">Use a fine-grained personal access token or GitHub App installation token scoped to the specific repos the agent needs — avoid classic tokens with org-wide write access.</p>`
+<h2 class="mt-8 text-2xl font-black text-white">Token Scoping Matters Regardless of Which Server You Use</h2>
+<p class="text-white/65 leading-relaxed">Whether you're running GitHub's official server or your own, use a fine-grained personal access token or a GitHub App installation token scoped to the specific repositories the agent actually needs — avoid classic tokens with org-wide write access. An agent that only needs to read issues in one repo shouldn't be authenticated with a token that could push to every repo in your organization.</p>`
   },
   {
     slug: "mcp-server-for-google-drive",
@@ -4434,22 +4936,24 @@ build:
     date: "2026-07-20",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "1 min read",
-    excerpt: "Searching, reading, and organizing Google Drive files through MCP tools built on the Drive API.",
+    readTime: "5 min read",
+    excerpt: "Google runs an official Drive MCP server as part of its per-app Workspace lineup — but if you're building your own instead, the real API design insight is separating metadata search from content retrieval.",
     keywords: ["MCP server for Google Drive integration", "Google Drive MCP tools", "MCP Drive API"],
     ugcElements: ["Drive workflows", "Folder-scoping tips"],
     internalLinks: ["mcp-server-for-google-sheets", "mcp-server-for-dropbox", "mcp-server-for-onedrive"],
-    content: `<p class="text-white/65 leading-relaxed">The Drive API distinguishes file metadata from content, so a useful MCP tool set separates search/listing from content retrieval to avoid pulling large file bodies into context unnecessarily.</p>
+    content: `<p class="text-white/65 leading-relaxed">Google runs its own official Drive MCP server as part of the same Workspace family covered elsewhere on this site (Gmail, Calendar, Sheets) — documented at developers.google.com/workspace/guides/configure-mcp-servers. It lets a connected agent search, retrieve, and manage files within the authenticated user's existing Drive permissions.</p>
 
-<h2 class="mt-8 text-2xl font-black text-white">Core Tools</h2>
-<ul class="text-white/65 leading-relaxed">
-  <li><code class="bg-gray-800 px-1 py-0.5 rounded">search_files(query, folder_id, mime_type)</code></li>
-  <li><code class="bg-gray-800 px-1 py-0.5 rounded">read_file_content(file_id)</code> — exports Docs/Sheets to plain text automatically</li>
-  <li><code class="bg-gray-800 px-1 py-0.5 rounded">move_file(file_id, target_folder_id)</code></li>
-</ul>
+<h2 class="mt-8 text-2xl font-black text-white">A Real Design Insight if You Build Your Own</h2>
+<p class="text-white/65 leading-relaxed">Whether you use Google's official server or build a custom one against the Drive API directly, one design principle matters more than it might seem: the API distinguishes file metadata from actual content, so a well-designed tool set separates search/listing from content retrieval rather than one tool doing both. This avoids pulling large file bodies into the model's context window just to answer "does a file matching X exist" — a real efficiency and cost consideration once files get large.</p>
+<pre class="bg-gray-900 p-4 rounded-lg"><code class="language-typescript">// search_files(query, folder_id, mime_type) — metadata only, fast
+// read_file_content(file_id) — exports Docs/Sheets to plain text automatically
+// move_file(file_id, target_folder_id)</code></pre>
 
 <h2 class="mt-8 text-2xl font-black text-white">Scope to a Folder, Not the Whole Drive</h2>
-<p class="text-white/65 leading-relaxed">Use the <code class="bg-gray-800 px-1 py-0.5 rounded">drive.file</code> OAuth scope where possible so the agent only sees files it created or was explicitly given, rather than full-Drive read access.</p>`
+<p class="text-white/65 leading-relaxed">If you're building a custom server (rather than using Google's official one, which already scopes to the authenticated user's own permissions), use the <code class="bg-gray-800 px-1 py-0.5 rounded">drive.file</code> OAuth scope where possible so the agent only sees files it created or was explicitly given, rather than requesting full-Drive read access it doesn't need.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Community Alternatives</h2>
+<p class="text-white/65 leading-relaxed"><code class="bg-gray-800 px-1 py-0.5 rounded">piotr-agier/google-drive-mcp</code> on GitHub bundles Drive with Docs, Sheets, Slides, and Calendar in one self-hosted server — a reasonable option if you want one combined integration under your own infrastructure rather than Google's separate per-app managed endpoints.</p>`
   },
   {
     slug: "mcp-server-for-paypal",
@@ -4830,16 +5334,25 @@ app.listen(3000);</code></pre>
   },
   {
     slug: "zoho-books-mcp-accounting-india",
-    title: "Zoho Books MCP Server – Indian Accounting Integration",
-    date: "2026-07-20",
+    title: "Zoho Books MCP: Official AI-Powered Accounting, Real GST Relevance",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "4 min read",
-    excerpt: "Zoho Books MCP Server – Indian Accounting Integration integration for automated workflows in India.",
-    keywords: ["zoho-books-mcp-accounting-india", "India MCP", "MCP integration"],
+    readTime: "5 min read",
+    excerpt: "Zoho's official MCP implementation covers Books alongside CRM, Desk, and Projects — letting AI agents generate invoices, update subscriptions, and handle customer billing data through standardized tools.",
+    keywords: ["zoho-books-mcp-accounting-india", "Zoho Books MCP", "India MCP", "MCP accounting"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["tally-mcp-server-india", "razorpay-mcp-server-india", "icici-bank-mcp-india"],
-    content: "<p>Zoho Books MCP Server – Indian Accounting Integration - detailed guide coming soon.</p>"
+    internalLinks: ["tally-mcp-server-india", "gst-mcp-server-tax-compliance", "zoho-crm-mcp-india"],
+    content: `<p class="text-white/65 leading-relaxed">Zoho runs its own official implementation of MCP (zoho.com/mcp/), covering CRM, Books, Desk, Projects, and more through one standardized approach — Books specifically gets its own documented setup path at zoho.com/in/books/help/mcp/zoho-books-mcp.html.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">What an Agent Can Do in Books</h2>
+<p class="text-white/65 leading-relaxed">Through Zoho's MCP integration, an AI agent can generate invoices, update subscriptions, and handle customer billing data directly — the kind of routine, high-volume accounting operations that benefit most from natural-language automation rather than manual data entry per transaction.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Why This Matters for GST-Aware Workflows</h2>
+<p class="text-white/65 leading-relaxed">For Indian businesses, Zoho Books is a genuinely major accounting platform, and its official MCP integration is one of the more concrete, production-ready options for AI-assisted GST-adjacent bookkeeping — invoicing with correct tax treatment, tracking payables/receivables — compared to the mostly community-built, narrower-scope options covered in this site's broader <a href="/blog/gst-mcp-server-tax-compliance" class="text-cyan-300 hover:text-cyan-200">GST MCP coverage</a>.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">How It Fits Alongside Tally</h2>
+<p class="text-white/65 leading-relaxed">Unlike TallyPrime — where the most-referenced MCP server is a community project, not an official Tally Solutions release — Zoho Books' MCP support comes directly from Zoho itself. If you're choosing between the two platforms specifically for AI-agent readiness (not general accounting feature comparison), that's a real, concrete difference worth weighing.</p>`
   },
   {
     slug: "icici-bank-mcp-india",
@@ -4944,29 +5457,44 @@ pip install phonepe-pg-docs-mcp</code></pre>
   },
   {
     slug: "upstox-mcp-trading",
-    title: "Upstox MCP Server – Indian Trading Automation",
-    date: "2026-07-20",
+    title: "Upstox MCP Server: Community-Built, Read-Only Market Access",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
     readTime: "4 min read",
-    excerpt: "Upstox MCP Server – Indian Trading Automation integration for automated workflows in India.",
-    keywords: ["upstox-mcp-trading", "India MCP", "MCP integration"],
+    excerpt: "Unlike Zerodha's first-party Kite MCP, the Upstox MCP Server (ravikant1918/mcp-server-upstox) is a community-built project — real and functional, but not an Upstox-published product.",
+    keywords: ["upstox-mcp-trading", "Upstox MCP", "India MCP"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["razorpay-mcp-server-india", "zoho-books-mcp-accounting-india", "paytm-mcp-server-india-payments"],
-    content: "<p>Upstox MCP Server – Indian Trading Automation - detailed guide coming soon.</p>"
+    internalLinks: ["zerodha-mcp-server-trading-ai", "groww-mcp-investments", "nse-mcp-server-india"],
+    content: `<p class="text-white/65 leading-relaxed">Unlike Zerodha, which shipped its own first-party Kite MCP server, Upstox's MCP integration is community-built — the most-referenced implementation is <code class="bg-gray-800 px-1 py-0.5 rounded">ravikant1918/mcp-server-upstox</code>, listed on the Awesome MCP Servers directory, not a product Upstox itself publishes.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">What It Does</h2>
+<p class="text-white/65 leading-relaxed">The server provides Model Context Protocol integration for the Upstox Trading API, enabling AI agents like Claude to securely access Indian stock market data and perform technical analysis in read-only mode — market data lookups and analysis, not autonomous trade execution.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Read-Only by Design, Same Principle as Zerodha</h2>
+<p class="text-white/65 leading-relaxed">This mirrors the same safety-conscious default seen in Zerodha's Kite MCP: even a community-built server, wrapping a real brokerage API with real financial consequences, defaults to read-only market data and analysis rather than exposing live order placement to an AI agent directly.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Multi-Broker Alternatives</h2>
+<p class="text-white/65 leading-relaxed">If you're working across multiple Indian brokers, projects like the TurtleStack Trading MCP Server provide unified access across Kite (Zerodha), Groww, Dhan, and AngelOne through one connection — worth considering if you don't need Upstox specifically and want broader coverage in a single integration.</p>`
   },
   {
     slug: "groww-mcp-investments",
-    title: "Groww MCP Server – Mutual Fund Investments",
-    date: "2026-07-20",
+    title: "Groww MCP Server: Community-Built Portfolio and Order Access",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
     readTime: "4 min read",
-    excerpt: "Groww MCP Server – Mutual Fund Investments integration for automated workflows in India.",
-    keywords: ["groww-mcp-investments", "India MCP", "MCP integration"],
+    excerpt: "Community-built MCP servers exist for Groww, enabling AI agents to view portfolios, place orders, and get market data — real and functional, but not an official Groww product.",
+    keywords: ["groww-mcp-investments", "Groww MCP", "India MCP"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["razorpay-mcp-server-india", "zoho-books-mcp-accounting-india", "icici-bank-mcp-india"],
-    content: "<p>Groww MCP Server – Mutual Fund Investments - detailed guide coming soon.</p>"
+    internalLinks: ["zerodha-mcp-server-trading-ai", "upstox-mcp-trading", "nse-mcp-server-india"],
+    content: `<p class="text-white/65 leading-relaxed">Groww's MCP integrations are community-built rather than an official Groww-published server — several projects wrap Groww's trading platform to expose it through the Model Context Protocol, enabling placing orders, viewing portfolio, and getting market data through AI clients.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Part of a Broader Multi-Broker Pattern</h2>
+<p class="text-white/65 leading-relaxed">Groww's MCP coverage often shows up bundled with other brokers in unified projects — for instance, servers connecting to Groww, Zerodha Kite, and INDmoney together to provide a single, read-only view of a portfolio spread across multiple platforms, rather than one integration per broker.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Before Connecting Any Third-Party Broker MCP Server</h2>
+<p class="text-white/65 leading-relaxed">Because these are community projects rather than official Groww releases, apply extra scrutiny before connecting one to a real trading account: check the project's real GitHub activity and issue history, understand exactly what credentials it requests and how it stores them, and prefer read-only configurations unless you specifically need order placement — the same due diligence this site's security guidance recommends for any MCP server handling real financial credentials.</p>`
   },
   {
     slug: "angel-broking-mcp-india",
@@ -5074,16 +5602,22 @@ pip install phonepe-pg-docs-mcp</code></pre>
   },
   {
     slug: "zoho-crm-mcp-india",
-    title: "Zoho CRM MCP Server – India Sales",
-    date: "2026-07-20",
+    title: "Zoho CRM MCP: Qualify Leads and Update Deals Through Claude",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
     readTime: "4 min read",
-    excerpt: "Zoho CRM MCP Server – India Sales integration for automated workflows in India.",
-    keywords: ["zoho-crm-mcp-india", "India MCP", "MCP integration"],
+    excerpt: "Zoho's official MCP implementation covers CRM alongside Books, Desk, and Projects — letting AI agents qualify leads, update deals, send follow-ups, and manage sales pipelines through natural language.",
+    keywords: ["zoho-crm-mcp-india", "Zoho CRM MCP", "India MCP", "MCP CRM"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["zoho-inventory-mcp-india", "zoho-desk-mcp-india", "zoho-projects-mcp-india"],
-    content: "<p>Zoho CRM MCP Server – India Sales - detailed guide coming soon.</p>"
+    internalLinks: ["zoho-books-mcp-accounting-india", "zoho-desk-mcp-india", "zoho-projects-mcp-india"],
+    content: `<p class="text-white/65 leading-relaxed">Zoho CRM is covered by Zoho's own official MCP implementation (zoho.com/mcp/), the same standardized approach that extends across Zoho's business app suite — CRM, Books, Desk, Projects — rather than a CRM-specific bolt-on.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Real Sales Workflow Capabilities</h2>
+<p class="text-white/65 leading-relaxed">Through the MCP integration, an AI agent can qualify leads, update deal stages, send follow-up communications, and manage pipeline data — the kind of CRM housekeeping that traditionally required either manual entry or a custom-built automation, now reachable through the same standard protocol any MCP-compatible client already speaks.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Where Zoho Stands Relative to HubSpot and Salesforce</h2>
+<p class="text-white/65 leading-relaxed">Among CRM platforms, HubSpot was the first major CRM to ship a production-grade MCP integration, and Zoho follows with its own official, multi-product implementation. Salesforce, by contrast, has not shipped a comparable official server as of this writing — see this site's <a href="/blog/mcp-server-for-salesforce" class="text-cyan-300 hover:text-cyan-200">Salesforce MCP coverage</a> for that specific gap. If official MCP support is a real factor in your CRM choice, Zoho and HubSpot are currently ahead of Salesforce on that specific dimension.</p>`
   },
   {
     slug: "tally-mcp-server-india",
@@ -5122,16 +5656,22 @@ pip install phonepe-pg-docs-mcp</code></pre>
   },
   {
     slug: "kotak-maharaja-mcp-india",
-    title: "Kotak Mahindra MCP Server – Indian Banking API",
-    date: "2026-07-20",
+    title: "Kotak Mahindra Bank: No Confirmed MCP Server, Real API Program Exists",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
     readTime: "4 min read",
-    excerpt: "Kotak Mahindra MCP Server – Indian Banking API integration for automated workflows in India.",
-    keywords: ["kotak-maharaja-mcp-india", "India MCP", "MCP integration"],
+    excerpt: "Kotak Mahindra Bank has a real developer API program (referenced alongside HDFC, ICICI, and Axis in open-banking coverage), but no confirmed official or community MCP server as of this writing.",
+    keywords: ["kotak-maharaja-mcp-india", "Kotak Mahindra Bank API", "India MCP banking"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["aubank-mcp-india", "razorpay-mcp-server-india", "zoho-books-mcp-accounting-india"],
-    content: "<p>Kotak Mahindra MCP Server – Indian Banking API - detailed guide coming soon.</p>"
+    internalLinks: ["aubank-mcp-india", "icici-bank-mcp-india", "hdfc-bank-mcp-india"],
+    content: `<p class="text-white/65 leading-relaxed">No official or notable community MCP server has been confirmed for Kotak Mahindra Bank as of this writing. Kotak is named alongside HDFC, ICICI, and Axis in coverage of Indian private banks with real developer API programs enabling open-banking-style integrations — but that infrastructure hasn't yet been extended into an MCP layer.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Same Pattern as the Larger Private Banks</h2>
+<p class="text-white/65 leading-relaxed">This is consistent with what this site's HDFC and ICICI coverage found: real, substantial developer API infrastructure at the largest private banks, but no bank-published MCP server sitting on top of it yet anywhere in this tier. The gap is specifically the AI-agent-facing protocol layer, not the underlying API capability.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Building Against It</h2>
+<p class="text-white/65 leading-relaxed">As with Axis and HDFC, a custom MCP wrapper against Kotak's existing developer/partner API program is the realistic path today — register through their developer channel, obtain sandbox access, and expose a narrow, well-scoped slice of endpoints rather than the full API surface.</p>`
   },
   {
     slug: "hdfc-bank-mcp-india",
@@ -5162,81 +5702,115 @@ pip install phonepe-pg-docs-mcp</code></pre>
   },
   {
     slug: "sbi-mcp-server-india-banking",
-    title: "SBI MCP Server – India's Largest Bank",
-    date: "2026-07-20",
+    title: "SBI Has No MCP Server — What Actually Exists Instead",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
     readTime: "4 min read",
-    excerpt: "SBI MCP Server – India's Largest Bank integration for automated workflows in India.",
-    keywords: ["sbi-mcp-server-india-banking", "India MCP", "MCP integration"],
+    excerpt: "State Bank of India has no confirmed official or community MCP server. Unlike ICICI and HDFC, SBI's direct developer API access is more limited, with most third-party integration going through account aggregators instead.",
+    keywords: ["sbi-mcp-server-india-banking", "SBI API", "India MCP banking"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["kmb-mcp-server-karnataka", "canara-bank-mcp-india", "union-bank-mcp-india"],
-    content: "<p>SBI MCP Server – India's Largest Bank - detailed guide coming soon.</p>"
+    internalLinks: ["icici-bank-mcp-india", "hdfc-bank-mcp-india", "upi-mcp-server-india"],
+    content: `<p class="text-white/65 leading-relaxed">No official or notable community MCP server exists for SBI (State Bank of India) as of this writing. That's worth stating plainly rather than implying otherwise.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">A Different API Posture Than ICICI or HDFC</h2>
+<p class="text-white/65 leading-relaxed">Unlike ICICI (a large, self-serve API Banking portal) or HDFC (a partner-gated API gateway), SBI's direct developer API availability appears more limited based on available reporting — third-party access to SBI account data more commonly runs through India's regulated Account Aggregator framework or open-banking aggregators, rather than a dedicated SBI developer portal comparable to its private-sector peers.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">What This Means for Building Something</h2>
+<p class="text-white/65 leading-relaxed">If you need programmatic access to SBI account data for an AI-agent workflow, the realistic path today runs through India's Account Aggregator ecosystem — RBI-licensed intermediaries that provide consent-based access to bank data across multiple banks, SBI included, rather than a bank-specific direct API. Any MCP server built on top of that would wrap the aggregator's API, not SBI's directly.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Given SBI's Scale, Worth Watching</h2>
+<p class="text-white/65 leading-relaxed">As India's largest bank by both assets and customer base, SBI moving to publish a real developer API — or an official MCP server — would be a significant ecosystem event. Nothing in current public information suggests that's imminent, but it's exactly the kind of gap worth re-checking periodically as MCP adoption spreads further into Indian banking.</p>`
   },
   {
     slug: "axis-bank-mcp-india",
-    title: "Axis Bank MCP Server – Corporate Banking Solutions",
-    date: "2026-07-20",
+    title: "Axis Bank: No Confirmed MCP Server, Real API Banking Exists",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
     readTime: "4 min read",
-    excerpt: "Axis Bank MCP Server – Corporate Banking Solutions integration for automated workflows in India.",
-    keywords: ["axis-bank-mcp-india", "India MCP", "MCP integration"],
+    excerpt: "Axis Bank has a real developer API program (named among top Indian private banks enabling open banking), but no confirmed official or community MCP server as of this writing.",
+    keywords: ["axis-bank-mcp-india", "Axis Bank API", "India MCP banking"],
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: ["icici-bank-mcp-india", "hdfc-bank-mcp-india", "yes-bank-mcp-india"],
-    content: "<p>Axis Bank MCP Server – Corporate Banking Solutions - detailed guide coming soon.</p>"
+    content: `<p class="text-white/65 leading-relaxed">No confirmed MCP server — official or community — exists for Axis Bank as of this writing. Axis is named among the top Indian private banks with real developer API programs enabling open-banking-style integrations, alongside HDFC and ICICI, but that API infrastructure hasn't yet been extended into an MCP layer specifically.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Real API Infrastructure, No MCP Layer Yet</h2>
+<p class="text-white/65 leading-relaxed">This is the same pattern seen across most major Indian private banks right now: real, substantial developer API programs (built for fintech partners, aggregators, and corporate integrations) that predate MCP entirely, with no bank-published MCP server sitting on top of them yet. The underlying capability largely exists — the AI-agent-facing protocol layer doesn't, at least not officially.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Building Against It Yourself</h2>
+<p class="text-white/65 leading-relaxed">As with HDFC and ICICI, a custom MCP wrapper against Axis Bank's existing partner API program is the realistic path today — register through their developer/partner channel, obtain sandbox access, and expose a narrow, well-scoped slice of endpoints as MCP tools rather than the full API surface at once.</p>`
   },
   {
     slug: "yes-bank-mcp-india",
-    title: "Yes Bank MCP Server – Indian Corporate Payments",
-    date: "2026-07-20",
+    title: "Yes Bank: No Confirmed MCP Server as of This Writing",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "4 min read",
-    excerpt: "Yes Bank MCP Server – Indian Corporate Payments integration for automated workflows in India.",
-    keywords: ["yes-bank-mcp-india", "India MCP", "MCP integration"],
+    readTime: "3 min read",
+    excerpt: "No official or notable community MCP server has been confirmed for Yes Bank. Corporate payment automation needs are more realistically served today through Razorpay, RazorpayX, or a custom API wrapper.",
+    keywords: ["yes-bank-mcp-india", "Yes Bank API", "India MCP banking"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["razorpay-mcp-server-india", "icici-bank-mcp-india", "hdfc-bank-mcp-india"],
-    content: "<p>Yes Bank MCP Server – Indian Corporate Payments - detailed guide coming soon.</p>"
+    internalLinks: ["razorpay-mcp-server-india", "razorpayx-mcp-india", "icici-bank-mcp-india"],
+    content: `<p class="text-white/65 leading-relaxed">No official or notable community MCP server has been confirmed for Yes Bank as of this writing.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">A More Realistic Path for Corporate Payment Automation</h2>
+<p class="text-white/65 leading-relaxed">For AI-agent-driven corporate payment or payout workflows in India today, the more mature, actually-available options are payment aggregators with confirmed official MCP servers — <a href="/blog/razorpay-mcp-server-india" class="text-cyan-300 hover:text-cyan-200">Razorpay</a> and its business-banking product <a href="/blog/razorpayx-mcp-india" class="text-cyan-300 hover:text-cyan-200">RazorpayX</a> — rather than waiting for a bank-published MCP layer. These sit on top of underlying bank rails (potentially including Yes Bank, depending on the specific product) but are the actual, shippable integration point today.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">If You Need Direct Bank Integration</h2>
+<p class="text-white/65 leading-relaxed">Absent an official MCP server, direct Yes Bank integration would mean going through whatever corporate/partner API program the bank offers directly and building a custom MCP wrapper — the same general pattern covered across this site's other bank-specific posts, applied to whatever API access Yes Bank's business banking division actually grants.</p>`
   },
   {
     slug: "aubank-mcp-india",
-    title: "AU Small Finance MCP Server – Indian Banking",
-    date: "2026-07-20",
+    title: "AU Small Finance Bank: No Confirmed MCP Server",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "4 min read",
-    excerpt: "AU Small Finance MCP Server – Indian Banking integration for automated workflows in India.",
-    keywords: ["aubank-mcp-india", "India MCP", "MCP integration"],
+    readTime: "3 min read",
+    excerpt: "No official or community MCP server has been confirmed for AU Small Finance Bank. Small finance banks generally lag larger private banks in public developer API maturity.",
+    keywords: ["aubank-mcp-india", "AU Small Finance Bank API", "India MCP banking"],
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: ["kotak-maharaja-mcp-india", "razorpay-mcp-server-india", "zoho-books-mcp-accounting-india"],
-    content: "<p>AU Small Finance MCP Server – Indian Banking - detailed guide coming soon.</p>"
+    content: `<p class="text-white/65 leading-relaxed">No official or notable community MCP server has been confirmed for AU Small Finance Bank as of this writing.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Where Small Finance Banks Generally Stand</h2>
+<p class="text-white/65 leading-relaxed">Small finance banks in India, as a category, have generally invested less in public, self-serve developer API programs than the largest private banks (HDFC, ICICI, Axis) — their API strategies tend to focus on specific fintech partnerships rather than an open developer portal. That makes an official or even community MCP server less likely to appear soon, absent a specific partnership driving it.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Realistic Alternative</h2>
+<p class="text-white/65 leading-relaxed">If your workflow needs programmatic access to an AU Small Finance Bank account, the Account Aggregator framework (the same regulated, consent-based data-sharing infrastructure relevant to SBI) is the more realistic near-term integration point than a bank-specific API or MCP server.</p>`
   },
   {
     slug: "idfc-first-mcp-india",
-    title: "IDFC First MCP Server – Digital Banking",
-    date: "2026-07-20",
+    title: "IDFC First Bank: No Confirmed MCP Server Yet",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "4 min read",
-    excerpt: "IDFC First MCP Server – Digital Banking integration for automated workflows in India.",
-    keywords: ["idfc-first-mcp-india", "India MCP", "MCP integration"],
+    readTime: "3 min read",
+    excerpt: "No official or community MCP server has been confirmed for IDFC First Bank, despite its digital-first positioning — a real gap given the bank's own emphasis on tech-forward banking.",
+    keywords: ["idfc-first-mcp-india", "IDFC First Bank API", "India MCP banking"],
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: ["icici-bank-mcp-india", "kotak-maharaja-mcp-india", "hdfc-bank-mcp-india"],
-    content: "<p>IDFC First MCP Server – Digital Banking - detailed guide coming soon.</p>"
+    content: `<p class="text-white/65 leading-relaxed">No official or notable community MCP server has been confirmed for IDFC First Bank as of this writing — worth noting given the bank markets itself as digital-first, which makes the absence of an MCP integration a real, slightly notable gap rather than an expected one.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">What "Digital-First" Doesn't Automatically Mean</h2>
+<p class="text-white/65 leading-relaxed">A strong mobile app and digital account-opening flow (what "digital-first" banking typically emphasizes) is a different thing from a public developer API program suitable for third-party MCP integration. The former is about customer-facing UX; the latter requires a deliberate open-API strategy that not every digitally-forward bank has built out yet.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">What to Check</h2>
+<p class="text-white/65 leading-relaxed">If building against IDFC First specifically matters for your project, check the bank's own developer/partner program directly for current API availability — this is a fast-moving space, and a "no MCP server yet" finding today is a snapshot, not a permanent state.</p>`
   },
   {
     slug: "pnb-mcp-india",
-    title: "Punjab National Bank MCP Server – PSU Banking",
-    date: "2026-07-20",
+    title: "Punjab National Bank: No Confirmed MCP Server",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "4 min read",
-    excerpt: "Punjab National Bank MCP Server – PSU Banking integration for automated workflows in India.",
-    keywords: ["pnb-mcp-india", "India MCP", "MCP integration"],
+    readTime: "3 min read",
+    excerpt: "No official or community MCP server has been confirmed for Punjab National Bank — consistent with the broader pattern among Indian public-sector banks, which generally trail private banks in public developer API maturity.",
+    keywords: ["pnb-mcp-india", "Punjab National Bank API", "India MCP banking"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["icici-bank-mcp-india", "hdfc-bank-mcp-india", "axis-bank-mcp-india"],
-    content: "<p>Punjab National Bank MCP Server – PSU Banking - detailed guide coming soon.</p>"
+    internalLinks: ["sbi-mcp-server-india-banking", "canara-bank-mcp-india", "union-bank-mcp-india"],
+    content: `<p class="text-white/65 leading-relaxed">No official or notable community MCP server has been confirmed for Punjab National Bank as of this writing. As one of India's largest public-sector banks, PNB's developer API maturity tracks closer to SBI's and Canara Bank's than to private-sector peers like HDFC or ICICI — meaning a self-serve API program suitable for MCP wrapping isn't confirmed to exist yet.</p>
+<p class="text-white/65 leading-relaxed">The Account Aggregator framework remains the more realistic near-term path for third-party programmatic access to PNB account data, the same conclusion reached across this site's coverage of other public-sector Indian banks.</p>`
   },
   {
     slug: "bigbasket-mcp-india",
@@ -5822,107 +6396,113 @@ pip install phonepe-pg-docs-mcp</code></pre>
   },
   {
     slug: "kmb-mcp-server-karnataka",
-    title: "Karnataka Bank MCP Server – South India",
-    date: "2026-07-20",
+    title: "Karnataka Bank: No Confirmed MCP Server",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "4 min read",
-    excerpt: "Karnataka Bank MCP Server – South India integration for automated workflows in India.",
-    keywords: ["kmb-mcp-server-karnataka", "India MCP", "MCP integration"],
+    readTime: "3 min read",
+    excerpt: "No official or community MCP server has been confirmed for Karnataka Bank. Like most Indian regional banks, public developer API infrastructure is limited compared to the largest private banks.",
+    keywords: ["kmb-mcp-server-karnataka", "Karnataka Bank API", "India MCP banking"],
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: ["sbi-mcp-server-india-banking", "canara-bank-mcp-india", "union-bank-mcp-india"],
-    content: "<p>Karnataka Bank MCP Server – South India - detailed guide coming soon.</p>"
+    content: `<p class="text-white/65 leading-relaxed">No official or notable community MCP server has been confirmed for Karnataka Bank as of this writing. Regional and mid-sized Indian banks generally have less public developer API infrastructure than the largest private banks (HDFC, ICICI, Axis), which is the primary reason an MCP layer hasn't emerged yet — there's typically no self-serve API program to wrap in the first place.</p>
+<p class="text-white/65 leading-relaxed">The realistic path for AI-agent access to a Karnataka Bank account today runs through India's regulated Account Aggregator framework rather than a bank-specific API — the same situation covered in more detail in this site's <a href="/blog/sbi-mcp-server-india-banking" class="text-cyan-300 hover:text-cyan-200">SBI coverage</a>.</p>`
   },
   {
     slug: "city-union-mcp-chennai",
-    title: "City Union Bank MCP Server – Tamil Nadu",
-    date: "2026-07-20",
+    title: "City Union Bank: No Confirmed MCP Server",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "4 min read",
-    excerpt: "City Union Bank MCP Server – Tamil Nadu integration for automated workflows in India.",
-    keywords: ["city-union-mcp-chennai", "India MCP", "MCP integration"],
+    readTime: "3 min read",
+    excerpt: "No official or community MCP server has been confirmed for City Union Bank, consistent with the broader pattern among Indian regional banks lacking public developer API programs.",
+    keywords: ["city-union-mcp-chennai", "City Union Bank API", "India MCP banking"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["union-bank-mcp-india", "tamil-maharaja-mcp-tn", "icici-bank-mcp-india"],
-    content: "<p>City Union Bank MCP Server – Tamil Nadu - detailed guide coming soon.</p>"
+    internalLinks: ["union-bank-mcp-india", "icici-bank-mcp-india", "sbi-mcp-server-india-banking"],
+    content: `<p class="text-white/65 leading-relaxed">No official or notable community MCP server has been confirmed for City Union Bank as of this writing — consistent with the broader pattern across Indian regional and mid-sized banks, most of which haven't built out public, self-serve developer API programs comparable to the largest private banks.</p>
+<p class="text-white/65 leading-relaxed">If you need programmatic access to a City Union Bank account for an AI workflow, the Account Aggregator framework remains the more realistic near-term integration point than a bank-specific API, the same conclusion covered for other regional banks in this site's broader banking-MCP coverage.</p>`
   },
   {
     slug: "federal-bank-mcp-kerala",
-    title: "Federal Bank MCP Server – Kerala",
-    date: "2026-07-20",
+    title: "Federal Bank: No Confirmed MCP Server",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "4 min read",
-    excerpt: "Federal Bank MCP Server – Kerala integration for automated workflows in India.",
-    keywords: ["federal-bank-mcp-kerala", "India MCP", "MCP integration"],
+    readTime: "3 min read",
+    excerpt: "No official or community MCP server has been confirmed for Federal Bank, despite it being one of the more digitally-active regional Indian private banks.",
+    keywords: ["federal-bank-mcp-kerala", "Federal Bank API", "India MCP banking"],
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: ["icici-bank-mcp-india", "hdfc-bank-mcp-india", "sbi-mcp-server-india-banking"],
-    content: "<p>Federal Bank MCP Server – Kerala - detailed guide coming soon.</p>"
+    content: `<p class="text-white/65 leading-relaxed">No official or notable community MCP server has been confirmed for Federal Bank as of this writing. Federal Bank has a reputation as one of the more digitally-forward regional Indian private banks, but that hasn't yet translated into a public MCP integration.</p>
+<p class="text-white/65 leading-relaxed">As with other regional banks covered on this site, the Account Aggregator framework is the more realistic near-term path for third-party programmatic access, absent a bank-published API program and MCP server of its own.</p>`
   },
   {
     slug: "canara-bank-mcp-india",
-    title: "Canara Bank MCP Server – India",
-    date: "2026-07-20",
+    title: "Canara Bank: No Confirmed MCP Server",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "4 min read",
-    excerpt: "Canara Bank MCP Server – India integration for automated workflows in India.",
-    keywords: ["canara-bank-mcp-india", "India MCP", "MCP integration"],
+    readTime: "3 min read",
+    excerpt: "No official or community MCP server has been confirmed for Canara Bank, a public-sector bank where developer API programs are generally less mature than at large private banks.",
+    keywords: ["canara-bank-mcp-india", "Canara Bank API", "India MCP banking"],
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: ["sbi-mcp-server-india-banking", "kmb-mcp-server-karnataka", "union-bank-mcp-india"],
-    content: "<p>Canara Bank MCP Server – India - detailed guide coming soon.</p>"
+    content: `<p class="text-white/65 leading-relaxed">No official or notable community MCP server has been confirmed for Canara Bank as of this writing. As a public-sector bank, Canara's developer API maturity generally tracks closer to SBI's than to private-sector banks like HDFC or ICICI — meaning a bank-published API program suitable for MCP wrapping is less likely to already exist.</p>
+<p class="text-white/65 leading-relaxed">The Account Aggregator framework remains the more realistic integration path for third-party access to Canara Bank data today.</p>`
   },
   {
     slug: "union-bank-mcp-india",
-    title: "Union Bank MCP Server – India",
-    date: "2026-07-20",
+    title: "Union Bank of India: No Confirmed MCP Server",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "4 min read",
-    excerpt: "Union Bank MCP Server – India integration for automated workflows in India.",
-    keywords: ["union-bank-mcp-india", "India MCP", "MCP integration"],
+    readTime: "3 min read",
+    excerpt: "No official or community MCP server has been confirmed for Union Bank of India, another public-sector bank without a confirmed public developer API program suited to MCP wrapping.",
+    keywords: ["union-bank-mcp-india", "Union Bank of India API", "India MCP banking"],
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: ["sbi-mcp-server-india-banking", "kmb-mcp-server-karnataka", "city-union-mcp-chennai"],
-    content: "<p>Union Bank MCP Server – India - detailed guide coming soon.</p>"
+    content: `<p class="text-white/65 leading-relaxed">No official or notable community MCP server has been confirmed for Union Bank of India as of this writing — the same category-wide finding as SBI and Canara Bank, both public-sector institutions without a confirmed public developer API program comparable to the largest private banks.</p>
+<p class="text-white/65 leading-relaxed">Real third-party access to Union Bank data currently runs more realistically through the regulated Account Aggregator framework than a bank-specific API.</p>`
   },
   {
     slug: "indusind-mcp-india",
-    title: "IndusInd MCP Server – India",
-    date: "2026-07-20",
+    title: "IndusInd Bank: No Confirmed MCP Server",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "4 min read",
-    excerpt: "IndusInd MCP Server – India integration for automated workflows in India.",
-    keywords: ["indusind-mcp-india", "India MCP", "MCP integration"],
+    readTime: "3 min read",
+    excerpt: "No official or community MCP server has been confirmed for IndusInd Bank as of this writing.",
+    keywords: ["indusind-mcp-india", "IndusInd Bank API", "India MCP banking"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["paytm-mcp-server-india-payments", "google-pay-mcp-india", "zoho-crm-mcp-india"],
-    content: "<p>IndusInd MCP Server – India - detailed guide coming soon.</p>"
+    internalLinks: ["paytm-mcp-server-india-payments", "google-pay-mcp-india", "icici-bank-mcp-india"],
+    content: `<p class="text-white/65 leading-relaxed">No official or notable community MCP server has been confirmed for IndusInd Bank as of this writing. As with most Indian private banks outside the HDFC/ICICI/Axis tier, there's no confirmed public developer API program of the scale needed to support a real MCP integration yet.</p>
+<p class="text-white/65 leading-relaxed">If you need programmatic access to IndusInd account data, check the bank's own corporate/partner API channel directly, or consider whether a payments-layer integration (Razorpay, RazorpayX) covers your actual use case without needing bank-specific access at all.</p>`
   },
   {
     slug: "axis-bank-mcp-server",
-    title: "Axis Bank MCP Server – India",
-    date: "2026-07-20",
+    title: "Axis Bank MCP: Same Finding as Our Main Axis Bank Coverage",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "4 min read",
-    excerpt: "Axis Bank MCP Server – India integration for automated workflows in India.",
-    keywords: ["axis-bank-mcp-server", "India MCP", "MCP integration"],
+    readTime: "2 min read",
+    excerpt: "This covers the same ground as our primary Axis Bank MCP piece — no confirmed official or community server exists, though Axis does run a real developer API program.",
+    keywords: ["axis-bank-mcp-server", "Axis Bank API", "India MCP banking"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["sbi-mcp-server-india-banking", "axis-bank-mcp-india", "kmb-mcp-server-karnataka"],
-    content: "<p>Axis Bank MCP Server – India - detailed guide coming soon.</p>"
+    internalLinks: ["axis-bank-mcp-india", "icici-bank-mcp-india", "hdfc-bank-mcp-india"],
+    content: `<p class="text-white/65 leading-relaxed">This page and <a href="/blog/axis-bank-mcp-india" class="text-cyan-300 hover:text-cyan-200">our main Axis Bank MCP coverage</a> both cover the same real finding: no confirmed official or community MCP server exists for Axis Bank as of this writing, despite Axis running a real developer API program (named among the top Indian private banks enabling open-banking-style integrations). See the linked page for the fuller detail on what that API infrastructure looks like and what building a custom MCP wrapper against it would involve.</p>`
   },
   {
     slug: "yes-bank-mcp-server",
-    title: "Yes Bank MCP Server – India",
-    date: "2026-07-20",
+    title: "Yes Bank MCP: Same Finding as Our Main Yes Bank Coverage",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "4 min read",
-    excerpt: "Yes Bank MCP Server – India integration for automated workflows in India.",
-    keywords: ["yes-bank-mcp-server", "India MCP", "MCP integration"],
+    readTime: "2 min read",
+    excerpt: "This covers the same ground as our primary Yes Bank MCP piece — no confirmed official or community server exists as of this writing.",
+    keywords: ["yes-bank-mcp-server", "Yes Bank API", "India MCP banking"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["sbi-mcp-server-india-banking", "kmb-mcp-server-karnataka", "canara-bank-mcp-india"],
-    content: "<p>Yes Bank MCP Server – India - detailed guide coming soon.</p>"
+    internalLinks: ["yes-bank-mcp-india", "razorpay-mcp-server-india", "razorpayx-mcp-india"],
+    content: `<p class="text-white/65 leading-relaxed">This page and <a href="/blog/yes-bank-mcp-india" class="text-cyan-300 hover:text-cyan-200">our main Yes Bank MCP coverage</a> both cover the same real finding: no confirmed official or community MCP server exists for Yes Bank as of this writing. See the linked page for the fuller detail, including the more realistic near-term path through Razorpay/RazorpayX for corporate payment automation.</p>`
   },
   {
     slug: "tamil-maharaja-mcp-tn",
@@ -5939,107 +6519,148 @@ pip install phonepe-pg-docs-mcp</code></pre>
   },
   {
     slug: "manipal-mcp-india",
-    title: "Manipal MCP Server – Healthcare",
-    date: "2026-07-20",
+    title: "MCP in Indian Hospital Systems: Why Manipal Doesn't Have One",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "4 min read",
-    excerpt: "Manipal MCP Server – Healthcare integration for automated workflows in India.",
-    keywords: ["manipal-mcp-india", "India MCP", "MCP integration"],
+    readTime: "5 min read",
+    excerpt: "No evidence exists of an MCP server for Manipal Hospitals, official or unofficial — and for good reason: hospital patient-record systems don't have public APIs a third party could safely wrap, unlike banks or e-commerce platforms.",
+    keywords: ["manipal-mcp-india", "hospital MCP India", "healthcare MCP"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["apollo-mcp-india", "aiims-mcp-india", "fortis-mcp-india"],
-    content: "<p>Manipal MCP Server – Healthcare - detailed guide coming soon.</p>"
+    internalLinks: ["aiims-mcp-india", "fortis-mcp-india", "gst-mcp-server-tax-compliance"],
+    content: `<p class="text-white/65 leading-relaxed">No evidence exists of an MCP server — official or community-built — for Manipal Hospitals, and that's not really a gap so much as an expected outcome given how hospital systems actually work.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Why Hospitals Are Different From Banks or E-Commerce</h2>
+<p class="text-white/65 leading-relaxed">Indian banks, despite lacking official MCP servers themselves, generally have <em>some</em> real developer API infrastructure (ICICI's ~250-API portal, HDFC's partner gateway) that a third party could theoretically wrap. Hospital electronic health record (EHR) systems are architecturally different: patient data is tightly access-controlled, generally not exposed through any public-facing API, and governed by health-data regulations that make a general-purpose third-party integration a genuinely different risk category than a banking or e-commerce API.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">What Actually Exists in Healthcare MCP Globally</h2>
+<p class="text-white/65 leading-relaxed">Real medical MCP servers do exist — they're just not hospital-specific. Examples confirmed in this space include FHIR-standard servers (like the WSO2 FHIR MCP Server, open source) that interface with electronic health record systems using the FHIR interoperability standard, and general medical-information servers that expose things like FDA drug data, PubMed research, and clinical trial databases — reference and research tools, not a specific hospital's live patient records.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">What Would Need to Change</h2>
+<p class="text-white/65 leading-relaxed">For a specific hospital chain to have a real MCP server, it would most plausibly integrate through its existing EHR vendor's FHIR API (many Indian hospital chains run Epic, Oracle Health, or India-specific EHR platforms with varying FHIR support) rather than exposing a hospital-specific API directly — and any such integration would need to solve genuinely hard authentication and consent problems before an AI agent could safely touch real patient data.</p>`
   },
   {
     slug: "aiims-mcp-india",
-    title: "AIIMS MCP Server – Healthcare",
-    date: "2026-07-20",
+    title: "AIIMS and MCP: No Evidence, and a Reasonable Explanation Why",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
     readTime: "4 min read",
-    excerpt: "AIIMS MCP Server – Healthcare integration for automated workflows in India.",
-    keywords: ["aiims-mcp-india", "India MCP", "MCP integration"],
+    excerpt: "No evidence exists of an MCP server tied to AIIMS. As a premier government medical institution, its patient systems are governed by data-protection obligations that make a third-party AI integration a much higher bar than a typical consumer API.",
+    keywords: ["aiims-mcp-india", "AIIMS MCP", "healthcare MCP India"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["apollo-mcp-india", "manipal-mcp-india", "fortis-mcp-india"],
-    content: "<p>AIIMS MCP Server – Healthcare - detailed guide coming soon.</p>"
+    internalLinks: ["manipal-mcp-india", "fortis-mcp-india", "sebi-mcp-server-india"],
+    content: `<p class="text-white/65 leading-relaxed">No evidence exists of an MCP server connected to AIIMS (All India Institute of Medical Sciences), official or unofficial. Given AIIMS's status as a premier government medical institution handling sensitive patient data at scale, that's the expected state, not a surprising gap.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Government Healthcare Data Carries a Higher Bar</h2>
+<p class="text-white/65 leading-relaxed">Beyond the general hospital-EHR access challenges covered in this site's broader healthcare-MCP coverage, a government medical institution adds another layer: patient data handling is governed by public-sector data protection obligations distinct from private-hospital data practices, and any hypothetical AI integration would need to satisfy those specifically, not just general healthcare-privacy norms.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">What's Real in This Space</h2>
+<p class="text-white/65 leading-relaxed">Real, general-purpose medical MCP servers exist (FHIR-standard EHR integrations, medical reference/research data servers), but nothing India-government-hospital-specific has been found. If that changes, it would be a significant and newsworthy development in Indian public healthcare IT — not something to assume exists without direct confirmation from AIIMS itself.</p>`
   },
   {
     slug: "fortis-mcp-india",
-    title: "Fortis MCP Server – Healthcare",
-    date: "2026-07-20",
+    title: "Fortis Healthcare: No MCP Server Found, Same Category-Wide Pattern",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
     readTime: "4 min read",
-    excerpt: "Fortis MCP Server – Healthcare integration for automated workflows in India.",
-    keywords: ["fortis-mcp-india", "India MCP", "MCP integration"],
+    excerpt: "No evidence exists of an MCP server for Fortis Healthcare — consistent with the broader finding that no major Indian hospital chain currently has one, official or community-built.",
+    keywords: ["fortis-mcp-india", "Fortis Healthcare MCP", "healthcare MCP India"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["apollo-mcp-india", "manipal-mcp-india", "aiims-mcp-india"],
-    content: "<p>Fortis MCP Server – Healthcare - detailed guide coming soon.</p>"
+    internalLinks: ["manipal-mcp-india", "aiims-mcp-india", "max-healthcare-mcp"],
+    content: `<p class="text-white/65 leading-relaxed">No evidence exists of an MCP server — official or community-built — for Fortis Healthcare. This is the same finding across every major Indian hospital chain checked for this coverage: none currently have one.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">A Consistent, Explicable Pattern</h2>
+<p class="text-white/65 leading-relaxed">Unlike banking or e-commerce, where at least some real public API infrastructure exists for third parties to build against, hospital patient-record systems are architecturally closed by design — protecting patient data is the point, not an oversight. That's the real, structural reason this category lags well behind payments and food delivery in MCP adoption, not a lack of interest or technical capability.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Where Real Progress Is Happening Instead</h2>
+<p class="text-white/65 leading-relaxed">The genuine progress in healthcare MCP is happening at the standards layer — FHIR-based MCP servers that any compliant EHR system could theoretically expose through, rather than hospital-by-hospital custom integrations. If Fortis or any Indian hospital chain adopts FHIR-based AI tooling, it would likely follow that broader standard rather than a bespoke, hospital-specific API.</p>`
   },
   {
     slug: "kmc-mcp-india",
-    title: "KMC MCP Server – Healthcare",
-    date: "2026-07-20",
+    title: "KMC Hospital: No MCP Server Found",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "4 min read",
-    excerpt: "KMC MCP Server – Healthcare integration for automated workflows in India.",
-    keywords: ["kmc-mcp-india", "India MCP", "MCP integration"],
+    readTime: "3 min read",
+    excerpt: "No evidence exists of an MCP server for KMC Hospital, consistent with the pattern across Indian hospital chains generally.",
+    keywords: ["kmc-mcp-india", "KMC Hospital MCP", "healthcare MCP India"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["apollo-mcp-india", "manipal-mcp-india", "aiims-mcp-india"],
-    content: "<p>KMC MCP Server – Healthcare - detailed guide coming soon.</p>"
+    internalLinks: ["manipal-mcp-india", "aiims-mcp-india", "fortis-mcp-india"],
+    content: `<p class="text-white/65 leading-relaxed">No evidence exists of an MCP server for KMC Hospital, official or otherwise — consistent with the broader, structural pattern covered across this site's hospital-MCP coverage: patient-record systems generally aren't exposed through public APIs a third party could safely wrap, unlike banking or e-commerce platforms.</p>
+<p class="text-white/65 leading-relaxed">See this site's <a href="/blog/manipal-mcp-india" class="text-cyan-300 hover:text-cyan-200">broader healthcare MCP coverage</a> for the fuller explanation of why this category lags behind consumer-facing sectors, and what real, standards-based (FHIR) progress looks like instead of hospital-specific integrations.</p>`
   },
   {
     slug: "max-healthcare-mcp",
-    title: "Max Healthcare MCP Server – India",
-    date: "2026-07-20",
+    title: "Max Healthcare: No MCP Server Found",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "4 min read",
-    excerpt: "Max Healthcare MCP Server – India integration for automated workflows in India.",
-    keywords: ["max-healthcare-mcp", "India MCP", "MCP integration"],
+    readTime: "3 min read",
+    excerpt: "No evidence exists of an MCP server for Max Healthcare, consistent with the pattern across Indian hospital chains generally.",
+    keywords: ["max-healthcare-mcp", "Max Healthcare MCP", "healthcare MCP India"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["paytm-mcp-server-india-payments", "google-pay-mcp-india", "zoho-crm-mcp-india"],
-    content: "<p>Max Healthcare MCP Server – India - detailed guide coming soon.</p>"
+    internalLinks: ["manipal-mcp-india", "fortis-mcp-india", "aiims-mcp-india"],
+    content: `<p class="text-white/65 leading-relaxed">No evidence exists of an MCP server for Max Healthcare, official or otherwise. This matches the consistent finding across every major Indian hospital chain covered on this site — patient-data architecture makes hospital-specific third-party AI integrations a fundamentally different, higher-bar problem than a banking or e-commerce API.</p>
+<p class="text-white/65 leading-relaxed">See this site's <a href="/blog/manipal-mcp-india" class="text-cyan-300 hover:text-cyan-200">broader healthcare MCP coverage</a> for what real progress in this space actually looks like (FHIR-standard EHR integrations) rather than a hospital-by-hospital API.</p>`
   },
   {
     slug: "zoho-inventory-mcp-india",
-    title: "Zoho Inventory MCP Server – India",
-    date: "2026-07-20",
+    title: "Zoho Inventory and MCP: Part of the Same Platform-Wide Rollout",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
     readTime: "4 min read",
-    excerpt: "Zoho Inventory MCP Server – India integration for automated workflows in India.",
-    keywords: ["zoho-inventory-mcp-india", "India MCP", "MCP integration"],
+    excerpt: "Zoho's MCP push explicitly names CRM, Books, Desk, and Projects — Inventory isn't individually confirmed in that list, but sits in the same One ecosystem likely to follow the same platform-wide pattern.",
+    keywords: ["zoho-inventory-mcp-india", "Zoho Inventory MCP", "India MCP"],
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: ["zoho-crm-mcp-india", "zoho-desk-mcp-india", "zoho-projects-mcp-india"],
-    content: "<p>Zoho Inventory MCP Server – India - detailed guide coming soon.</p>"
+    content: `<p class="text-white/65 leading-relaxed">Worth being precise here: Zoho's official MCP announcement (zoho.com/mcp/) explicitly names CRM, Books, Desk, and Projects as covered apps. Inventory isn't individually named in that list as of this writing — so rather than assert a specific confirmed integration, the honest answer is that it likely follows given Zoho's platform-wide MCP push across its business-app suite, but isn't independently verified the way Books and CRM are.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">What to Check Before Relying on It</h2>
+<p class="text-white/65 leading-relaxed">If Inventory-specific MCP access matters for your workflow, check zoho.com/mcp/ directly for the current, authoritative list of covered apps rather than assuming based on Zoho's broader pattern — vendor MCP rollouts have been expanding quickly across 2025-2026, and the exact list of covered apps is the kind of detail that changes faster than any static page can track perfectly.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">In the Meantime</h2>
+<p class="text-white/65 leading-relaxed">If you need AI-agent access to Zoho Inventory data today and it's not yet directly covered, a thin custom MCP wrapper against Zoho's existing Inventory REST API is a reasonable stopgap, following the same pattern this site documents for wrapping any production API not yet exposed via an official MCP server.</p>`
   },
   {
     slug: "zoho-desk-mcp-india",
-    title: "Zoho Desk MCP Server – India",
-    date: "2026-07-20",
+    title: "Zoho Desk MCP: AI-Assisted Support Ticket Handling",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
     readTime: "4 min read",
-    excerpt: "Zoho Desk MCP Server – India integration for automated workflows in India.",
-    keywords: ["zoho-desk-mcp-india", "India MCP", "MCP integration"],
+    excerpt: "Zoho Desk is one of the apps explicitly named in Zoho's official MCP rollout, alongside CRM, Books, and Projects — letting AI agents read and act on support tickets through standardized tools.",
+    keywords: ["zoho-desk-mcp-india", "Zoho Desk MCP", "India MCP"],
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: ["zoho-crm-mcp-india", "zoho-inventory-mcp-india", "zoho-projects-mcp-india"],
-    content: "<p>Zoho Desk MCP Server – India - detailed guide coming soon.</p>"
+    content: `<p class="text-white/65 leading-relaxed">Zoho Desk is explicitly named in Zoho's official MCP implementation (zoho.com/mcp/), alongside CRM, Books, and Projects — meaning an AI agent can connect to a support desk through the same standardized approach used across Zoho's broader app suite.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">What This Enables for Support Teams</h2>
+<p class="text-white/65 leading-relaxed">Through the MCP integration, an agent can read ticket details, check customer history, and take action on support tickets directly — genuinely useful for a first-pass triage assistant that summarizes a ticket, checks whether the same issue has come up before, and drafts a response for a human agent to review before sending.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Keep a Human in the Loop for Customer-Facing Actions</h2>
+<p class="text-white/65 leading-relaxed">As with every customer-facing MCP integration covered on this site, the meaningful design decision is where you put the confirmation step: an agent that drafts a response for review is a different risk profile than one that sends replies to customers autonomously. Start with the former, and only relax that constraint once you've built confidence in the specific workflow.</p>`
   },
   {
     slug: "zoho-projects-mcp-india",
-    title: "Zoho Projects MCP Server – India",
-    date: "2026-07-20",
+    title: "Zoho Projects MCP: Task and Timeline Management via AI",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
     readTime: "4 min read",
-    excerpt: "Zoho Projects MCP Server – India integration for automated workflows in India.",
-    keywords: ["zoho-projects-mcp-india", "India MCP", "MCP integration"],
+    excerpt: "Zoho Projects is explicitly covered by Zoho's official MCP implementation, letting an AI agent query task status, timelines, and project health through standardized tools rather than manual dashboard checks.",
+    keywords: ["zoho-projects-mcp-india", "Zoho Projects MCP", "India MCP"],
     ugcElements: ["Integration examples", "API configs"],
     internalLinks: ["zoho-crm-mcp-india", "zoho-inventory-mcp-india", "zoho-desk-mcp-india"],
-    content: "<p>Zoho Projects MCP Server – India - detailed guide coming soon.</p>"
+    content: `<p class="text-white/65 leading-relaxed">Zoho Projects is explicitly named in Zoho's official MCP implementation (zoho.com/mcp/), alongside CRM, Books, and Desk — giving AI agents a standardized way to interact with project data rather than a bespoke integration per client.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Real Project Management Use Cases</h2>
+<p class="text-white/65 leading-relaxed">Through the integration, an agent can query task status across a project, check timeline health against milestones, and surface at-risk items — turning "what's the status of Project X" from a manual dashboard check into a direct conversational query against real, live project data.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Fitting Into a Broader Zoho Workflow</h2>
+<p class="text-white/65 leading-relaxed">Because Zoho's MCP support spans Projects, CRM, Desk, and Books together, a single agent can in principle cross-reference across all four — checking whether a delayed project task is blocking a customer deal in CRM, for instance — which is a genuinely differentiated capability compared to platforms that only expose one product's MCP server in isolation.</p>`
   },
   {
     slug: "khatabook-mcp-india",
