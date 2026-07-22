@@ -1123,6 +1123,14 @@ npm install -D typescript @types/node tsx</code></pre>`
     internalLinks: ["mcp-authentication-methods-comparison", "mcp-server-production-deployment-checklist"],
     content: `<p class="text-white/65 leading-relaxed">Security is non-negotiable for production MCP servers. Follow this complete checklist.</p>
 
+<h2 class="mt-8 text-2xl font-black text-white">Hardening priorities</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li>Use least-privilege tool scoping and explicit approval gating for write/destructive actions.</li>
+  <li>Require TLS 1.3 for remote transports and validate certificates.</li>
+  <li>Shorten token lifetimes, rotate secrets, and avoid long-lived static keys.</li>
+  <li>Log auth events, tool calls, errors, and rate-limit hits with structured output.</li>
+</ul>
+
 <h2 class="mt-8 text-2xl font-black text-white">Authentication & Access Control</h2>
 <ul class="text-white/65 leading-relaxed">
   <li>Implement OAuth 2.1 with PKCE for user-facing servers and scoped API keys for internal tools.</li>
@@ -1860,6 +1868,25 @@ allow {
     internalLinks: ["mcp-server-security-checklist", "mcp-server-architecture-patterns"],
     content: `<p class="text-white/65 leading-relaxed">Building MCP servers from scratch gives you complete control and understanding of the protocol.</p>
 
+<h2 class="mt-8 text-2xl font-black text-white">Start with the protocol shape</h2>
+<p class="text-white/65 leading-relaxed">A minimal server needs transport, tool/resource definitions, and a startup/tool-call lifecycle. Prefer the official SDK unless you need a custom transport or legacy runtime.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Build the smallest useful version first</h2>
+<pre class="bg-gray-900 p-4 rounded-lg overflow-x-auto"><code class="language-typescript">import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+
+const server = new McpServer({ name: "my-first-server", version: "1.0.0" });
+
+server.tool(
+  "status",
+  "Return simple server status",
+  { format: z.enum(["short","detailed"]).optional() },
+  async ({ format }) => ({ content: [{ type: "text", text: format === "detailed" ? "ok" : "up" }] })
+);
+
+await server.connect(new StdioServerTransport());</code></pre>
+<p class="text-white/65 leading-relaxed">Validate with the MCP Inspector, then connect Claude Desktop. Add auth, persistence, or extra transports only after the basic tool-call path works end to end.</p>
+
 <h2 class="mt-8 text-2xl font-black text-white">Architecture Overview</h2>
 <p class="text-white/65 leading-relaxed">A minimal server has three moving parts: transport, tool/resource definitions, and startup/tool-call lifecycle handling. Start from the official SDK rather than raw JSON-RPC unless you need a custom transport or legacy runtime.</p>
 
@@ -1893,6 +1920,14 @@ await server.connect(new StdioServerTransport());</code></pre>
     internalLinks: ["how-to-build-mcp-server-from-scratch", "mcp-programming-patterns"],
     content: `<p class="text-white/65 leading-relaxed">Follow these best practices to build maintainable MCP servers.</p>
 
+<h2 class="mt-8 text-2xl font-black text-white">Maintainability tactics</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li>Keep transport, tool registration, and business logic in separate modules.</li>
+  <li>Use environment-bound config for external connections and secrets.</li>
+  <li>Write focused schemas and preserve backward compatibility when changing tools.</li>
+  <li>Automate linting, typechecking, schema validation, and tests in CI.</li>
+</ul>
+
 <h2 class="mt-8 text-2xl font-black text-white">Code Organization</h2>
 <ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
   <li>Separate transport, tool registration, and business logic into distinct modules.</li>
@@ -1913,6 +1948,20 @@ await server.connect(new StdioServerTransport());</code></pre>
     ugcElements: ["Pattern discussions", "Code pattern voting"],
     internalLinks: ["mcp-development-best-practices", "mcp-server-architecture-patterns"],
     content: `<p class="text-white/65 leading-relaxed">Understanding patterns helps write better MCP servers faster.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Practical patterns</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li>Registry pattern for declaring tool metadata and handler binding in one place.</li>
+  <li>Middleware pattern for auth, logging, rate limiting, and redaction.</li>
+  <li>Adapter pattern for mapping external APIs to stable local tool semantics.</li>
+</ul>
+
+<h2 class="mt-8 text-2xl font-black text-white">Anti-patterns</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li>Returning raw provider responses or secrets directly to the model.</li>
+  <li>Mixing business logic into tool callbacks without validation.</li>
+  <li>Building one mega-tool instead of smaller, composable tools.</li>
+</ul>
 
 <h2 class="mt-8 text-2xl font-black text-white">Recommended Patterns</h2>
 <ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
@@ -1941,6 +1990,12 @@ await server.connect(new StdioServerTransport());</code></pre>
     internalLinks: ["how-to-build-mcp-server-from-scratch", "mcp-workflow-automation"],
     content: `<p class="text-white/65 leading-relaxed">Choose the right architecture pattern for your MCP server requirements.</p>
 
+<h2 class="mt-8 text-2xl font-black text-white">Monolithic</h2>
+<p class="text-white/65 leading-relaxed">Single process handling all tools and resources. Best for small teams and early prototypes because deployment and debugging stay simple.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Modular</h2>
+<p class="text-white/65 leading-relaxed">Separate tool domains into processes or services. Better when different tools have different scale, auth, or data residency requirements.</p>
+
 <h2 class="mt-8 text-2xl font-black text-white">Monolithic Architecture</h2>
 <p class="text-white/65 leading-relaxed">Single process handling all tools and resources. Best for small teams and early prototypes because deployment and debugging stay simple. Avoid when tool domains, security boundaries, or scaling needs diverge.</p>
 
@@ -1959,6 +2014,15 @@ await server.connect(new StdioServerTransport());</code></pre>
     ugcElements: ["Workflow sharing", "Automation scripts"],
     internalLinks: ["mcp-server-architecture-patterns", "mcp-automation-strategies"],
     content: `<p class="text-white/65 leading-relaxed">Workflow automation reduces manual intervention in complex MCP operations.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Workflow shape</h2>
+<ol class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li>Trigger: event, schedule, or explicit call.</li>
+  <li>Fetch or validate input through a focused tool.</li>
+  <li>Transform or enrich the result in a second tool.</li>
+  <li>Store, notify, or hand off the outcome.</li>
+</ol>
+<p class="text-white/65 leading-relaxed">Keep each step narrow, idempotent when possible, and easy to replay from logs.</p>
 
 <h2 class="mt-8 text-2xl font-black text-white">Workflow Pipeline</h2>
 <ol class="text-white/65 leading-relaxed">
@@ -1981,6 +2045,14 @@ await server.connect(new StdioServerTransport());</code></pre>
     internalLinks: ["mcp-workflow-automation", "mcp-pipeline-architecture"],
     content: `<p class="text-white/65 leading-relaxed">Effective automation strategies improve productivity and reduce errors.</p>
 
+<h2 class="mt-8 text-2xl font-black text-white">Useful strategies</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li>Idempotency: repeated executions should produce the same result.</li>
+  <li>Retry logic: exponential backoff for transient failures.</li>
+  <li>Monitoring: execution metrics, success rates, and failure reasons.</li>
+  <li>Rollback: ability to undo partial workflow executions.</li>
+</ul>
+
 <h2 class="mt-8 text-2xl font-black text-white">Key Strategies</h2>
 <ul class="text-white/65 leading-relaxed">
   <li><strong>Idempotency:</strong> Ensure repeated executions produce the same result</li>
@@ -2001,6 +2073,14 @@ await server.connect(new StdioServerTransport());</code></pre>
     ugcElements: ["Pipeline diagrams", "Data flow examples"],
     internalLinks: ["mcp-automation-strategies", "mcp-server-performance-optimization"],
     content: `<p class="text-white/65 leading-relaxed">Pipeline architecture determines how data flows through your MCP server ecosystem.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Practical stages</h2>
+<ol class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li>Ingestion: collect from sources with bounded size and timeout.</li>
+  <li>Processing: validate, transform, and enrich deterministically.</li>
+  <li>Storage: cache or persist with clear retention and access rules.</li>
+  <li>Distribution: return only the fields the requested tool requires.</li>
+</ol>
 
 <h2 class="mt-8 text-2xl font-black text-white">Data Flow Stages</h2>
 <ol class="text-white/65 leading-relaxed">
@@ -2023,6 +2103,14 @@ await server.connect(new StdioServerTransport());</code></pre>
     internalLinks: ["mcp-pipeline-architecture", "how-to-scale-mcp-servers-horizontally"],
     content: `<p class="text-white/65 leading-relaxed">Performance optimization is crucial for production MCP servers handling high request volumes.</p>
 
+<h2 class="mt-8 text-2xl font-black text-white">High-impact tactics</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li>Reuse database connections with connection pooling.</li>
+  <li>Cache stable metadata and frequent read-only results.</li>
+  <li>Use async I/O for downstream calls and avoid blocking the event loop.</li>
+  <li>Batch small operations when the client and endpoint can support it.</li>
+</ul>
+
 <h2 class="mt-8 text-2xl font-black text-white">Optimization Techniques</h2>
 <ul class="text-white/65 leading-relaxed">
   <li><strong>Connection Pooling:</strong> Reuse database connections across requests</li>
@@ -2043,6 +2131,17 @@ await server.connect(new StdioServerTransport());</code></pre>
     ugcElements: ["Scaling war stories", "Scaling guides"],
     internalLinks: ["mcp-server-performance-optimization", "mcp-server-load-balancing-strategies"],
     content: `<p class="text-white/65 leading-relaxed">Horizontal scaling adds more server instances to handle increased load.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Scaling model</h2>
+<p class="text-white/65 leading-relaxed">Run multiple stateless instances behind a load balancer. Keep tool behavior consistent across instances by externalizing state and using shared config rather than per-instance mutation.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Key considerations</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li>Shared state management and distributed locking if needed.</li>
+  <li>Database connection limits and query efficiency.</li>
+  <li>Consistent auth and cache invalidation across instances.</li>
+  <li>Health checks and graceful shutdown for traffic removal.</li>
+</ul>
 
 <h2 class="mt-8 text-2xl font-black text-white">Scaling Architecture</h2>
 <p class="text-white/65 leading-relaxed">Deploy multiple MCP server instances behind a load balancer. Use sticky sessions for stateful operations.</p>
@@ -2068,6 +2167,14 @@ await server.connect(new StdioServerTransport());</code></pre>
     internalLinks: ["how-to-scale-mcp-servers-horizontally", "mcp-caching-strategies"],
     content: `<p class="text-white/65 leading-relaxed">Choose the right load balancing strategy for your MCP server architecture.</p>
 
+<h2 class="mt-8 text-2xl font-black text-white">Practical options</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li>Round robin for simple stateless deployments.</li>
+  <li>Least connections when tool latency varies widely.</li>
+  <li>IP hash only when you need session affinity for stateful workflows.</li>
+</ul>
+<p class="text-white/65 leading-relaxed">Prefer simple routing first. Add sticky sessions or weighted routing only after measuring real failure modes.</p>
+
 <h2 class="mt-8 text-2xl font-black text-white">Load Balancing Algorithms</h2>
 <ul class="text-white/65 leading-relaxed">
   <li><strong>Round Robin:</strong> Simple distribution, good for stateless servers</li>
@@ -2087,6 +2194,14 @@ await server.connect(new StdioServerTransport());</code></pre>
     ugcElements: ["Caching solutions", "Cache configuration examples"],
     internalLinks: ["mcp-server-load-balancing-strategies", "mcp-context-window-management"],
     content: `<p class="text-white/65 leading-relaxed">Caching reduces database queries and API calls for frequently accessed data.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Usable layers</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li>Client cache for repeated identical reads within a session.</li>
+  <li>Server cache for frequent tool results that tolerate slight staleness.</li>
+  <li>Database cache for repeated query results under predictable load.</li>
+</ul>
+<p class="text-white/65 leading-relaxed">Cache stable outputs, not user-specific or sensitive data. Always set an explicit TTL and invalidation rule.</p>
 
 <h2 class="mt-8 text-2xl font-black text-white">Cache Layers</h2>
 <ul class="text-white/65 leading-relaxed">
@@ -2109,6 +2224,14 @@ await server.connect(new StdioServerTransport());</code></pre>
     internalLinks: ["mcp-caching-strategies", "mcp-database-connection-pooling"],
     content: `<p class="text-white/65 leading-relaxed">Context window management is critical for LLM efficiency with MCP servers.</p>
 
+<h2 class="mt-8 text-2xl font-black text-white">Better defaults</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li>Return only the fields the tool actually needs.</li>
+  <li>Paginate large datasets instead of returning full tables.</li>
+  <li>Stream long outputs when the client and format support it.</li>
+  <li>Document realistic token expectations in tool descriptions.</li>
+</ul>
+
 <h2 class="mt-8 text-2xl font-black text-white">Best Practices</h2>
 <ul class="text-white/65 leading-relaxed">
   <li>Request only necessary data in tool responses</li>
@@ -2129,6 +2252,14 @@ await server.connect(new StdioServerTransport());</code></pre>
     ugcElements: ["Connection configs", "Pooling configuration sharing"],
     internalLinks: ["mcp-context-window-management", "how-to-build-mcp-server-for-postgresql"],
     content: `<p class="text-white/65 leading-relaxed">Connection pooling improves database performance for MCP servers handling multiple concurrent requests.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Pooling guidance</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li>Set pool size based on real concurrency and DB limits, not maximums.</li>
+  <li>Use shorter idle timeouts for serverless or bursty workloads.</li>
+  <li>Connection acquisition timeout must be lower than the MCP tool timeout.</li>
+  <li>Log pool exhaustion events so they show up in production audits.</li>
+</ul>
 
 <h2 class="mt-8 text-2xl font-black text-white">Pool Configuration</h2>
 <pre class="bg-gray-900 p-4 rounded-lg"><code class="language-typescript">const pool = new Pool({
@@ -2154,6 +2285,14 @@ await server.connect(new StdioServerTransport());</code></pre>
     internalLinks: ["mcp-database-connection-pooling", "mcp-server-for-mysql"],
     content: `<p class="text-white/65 leading-relaxed">Build secure PostgreSQL MCP servers with proper schema reflection and read-only guards.</p>
 
+<h2 class="mt-8 text-2xl font-black text-white">Implementation shape</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li>Reflect schema metadata so tools can expose tables, columns, and types.</li>
+  <li>Default to read-only query tools; keep writes behind explicit allowlists.</li>
+  <li>Parameterize queries and avoid dynamic SQL built from raw model input.</li>
+  <li>Return results as compact JSON suitable for model consumption.</li>
+</ul>
+
 <h2 class="mt-8 text-2xl font-black text-white">Schema Reflection</h2>
 <p class="text-white/65 leading-relaxed">Expose database schema information so LLMs can understand available tables and columns.</p>`
   },
@@ -2168,7 +2307,15 @@ await server.connect(new StdioServerTransport());</code></pre>
     keywords: ["MySQL MCP", "MCP MySQL server", "MySQL MCP integration"],
     ugcElements: ["MySQL code examples", "Database integration guides"],
     internalLinks: ["how-to-build-mcp-server-for-postgresql", "mcp-server-for-mongodb"],
-    content: `<p class="text-white/65 leading-relaxed">MySQL MCP servers enable AI agents to query and analyze MySQL databases.</p>`
+    content: `<p class="text-white/65 leading-relaxed">MySQL MCP servers enable AI agents to query and analyze MySQL databases.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Integration guidance</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li>Expose schema metadata so the model understands available tables.</li>
+  <li>Prefer parameterized queries and limit result sets returned to the model.</li>
+  <li>Keep write operations optional, explicit, and audited.</li>
+  <li>Document expected SQL dialects and reserved words for the target MySQL version.</li>
+</ul>`
   },
   {
     slug: "mcp-server-for-mongodb",
@@ -2181,7 +2328,15 @@ await server.connect(new StdioServerTransport());</code></pre>
     keywords: ["MongoDB MCP", "MCP MongoDB server", "MongoDB MCP integration"],
     ugcElements: ["MongoDB patterns", "Document query examples"],
     internalLinks: ["mcp-server-for-mysql", "mcp-server-for-redis"],
-    content: `<p class="text-white/65 leading-relaxed">MongoDB MCP servers provide document database access to AI agents.</p>`
+    content: `<p class="text-white/65 leading-relaxed">MongoDB MCP servers provide document database access to AI agents.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Practical guidance</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li>Expose collection metadata, not raw aggregation pipelines, by default.</li>
+  <li>Limit document sizes returned to the model to avoid context blowups.</li>
+  <li>Keep destructive operations explicit and approval-gated.</li>
+  <li>Redact sensitive fields before returning documents to tool output.</li>
+</ul>`
   },
   {
     slug: "mcp-server-for-redis",
@@ -2194,7 +2349,14 @@ await server.connect(new StdioServerTransport());</code></pre>
     keywords: ["Redis MCP", "MCP Redis server", "Redis MCP integration"],
     ugcElements: ["Redis configurations", "Cache layer examples"],
     internalLinks: ["mcp-server-for-mongodb", "mcp-caching-strategies"],
-    content: `<p class="text-white/65 leading-relaxed">Redis MCP servers provide fast key-value access for AI agents.</p>`
+    content: `<p class="text-white/65 leading-relaxed">Redis MCP servers provide fast key-value access for AI agents.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Integration guidance</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li>Expose key metadata, TTL, and presence checks rather than raw full-scan access.</li>
+  <li>Keep cache writes bounded and predictable; document eviction behavior.</li>
+  <li>Never expose admin commands or cluster management through model-facing tools.</li>
+</ul>`
   },
   {
     slug: "how-to-build-mcp-server-for-elasticsearch",
@@ -2208,6 +2370,14 @@ await server.connect(new StdioServerTransport());</code></pre>
     ugcElements: ["ES query examples", "Search integration guides"],
     internalLinks: ["mcp-server-for-mongodb", "mcp-server-for-vector-database"],
     content: `<p class="text-white/65 leading-relaxed">Elasticsearch MCP servers enable powerful search capabilities for AI agents.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Integration shape</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li>Expose index metadata and query DSL wrappers as resources or tools.</li>
+  <li>Limit result size and highlight fields to keep outputs model-friendly.</li>
+  <li>Document index mappings so tool behavior is predictable.</li>
+  <li>Keep index creation and deletion behind explicit approval workflows.</li>
+</ul>
 
 <h2 class="mt-8 text-2xl font-black text-white">Search Integration</h2>
 <p class="text-white/65 leading-relaxed">Expose search indices as MCP resources, allowing LLMs to query and retrieve relevant documents.</p>`
@@ -2225,6 +2395,14 @@ await server.connect(new StdioServerTransport());</code></pre>
     internalLinks: ["how-to-build-mcp-server-for-elasticsearch", "pinecone-mcp-server"],
     content: `<p class="text-white/65 leading-relaxed">Vector database MCP servers enable semantic search capabilities for AI agents.</p>
 
+<h2 class="mt-8 text-2xl font-black text-white">Integration shape</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li>Expose namespace or collection metadata so the model knows what is searchable.</li>
+  <li>Return top-k results with score and source metadata.</li>
+  <li>Keep embedding and ingestion pipelines separate from read/search tools.</li>
+  <li>Document distance metric and expected semantics for each collection.</li>
+</ul>
+
 <h2 class="mt-8 text-2xl font-black text-white">Vector Search Integration</h2>
 <p class="text-white/65 leading-relaxed">Connect AI agents to vector databases for similarity search and semantic retrieval.</p>`
   },
@@ -2239,7 +2417,15 @@ await server.connect(new StdioServerTransport());</code></pre>
     keywords: ["Pinecone MCP", "MCP Pinecone server", "Pinecone vector MCP"],
     ugcElements: ["Pinecone setups", "Vector search examples"],
     internalLinks: ["mcp-server-for-vector-database", "how-to-build-mcp-server-from-scratch"],
-    content: `<p class="text-white/65 leading-relaxed">Pinecone MCP servers provide managed vector search capabilities.</p>`
+    content: `<p class="text-white/65 leading-relaxed">Pinecone MCP servers provide managed vector search capabilities.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Integration guidance</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li>Use Pinecone for hosted vector search when you want managed scaling and backups.</li>
+  <li>Keep embedding and querying as separate tool concerns.</li>
+  <li>Return top-k matches with metadata and similarity scores.</li>
+  <li>Document namespace and dimension expectations in tool descriptions.</li>
+</ul>`
   },
   {
     slug: "mcp-server-on-aws",
@@ -2253,6 +2439,13 @@ await server.connect(new StdioServerTransport());</code></pre>
     ugcElements: ["AWS architecture sharing", "Deployment templates"],
     internalLinks: ["how-to-build-mcp-server-from-scratch", "mcp-server-on-azure"],
     content: `<p class="text-white/65 leading-relaxed">Deploy MCP servers on AWS using EC2, ECS, or Lambda for scalable infrastructure.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Option overview</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li>EC2 for full OS control and long-running stdio bridging.</li>
+  <li>ECS or Fargate for containerized HTTP/SSE workloads.</li>
+  <li>Lambda only for small, request-scoped tool endpoints; avoid stateful assumptions.</li>
+</ul>
 
 <h2 class="mt-8 text-2xl font-black text-white">Deployment Options</h2>
 <ul class="text-white/65 leading-relaxed">
@@ -3469,7 +3662,14 @@ spec:
     keywords: ["MCP challenges", "MCP competitions", "MCP coding challenges"],
     ugcElements: ["Competition entries", "Challenge submissions"],
     internalLinks: ["mcp-server-hall-of-fame-best-implementations", "mcp-server-meetups-local-events"],
-    content: `<p class="text-white/65 leading-relaxed">Participate in MCP coding challenges and competitions.</p>`
+    content: `<p class="text-white/65 leading-relaxed">Participate in MCP coding challenges and competitions.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Why run or join one</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li>Fixed problem statements reveal real design tradeoffs better than open-ended hacks.</li>
+  <li>Public judging by schema correctness, security posture, and docs quality.</li>
+  <li>Reusable patterns become community assets after the event.</li>
+</ul>`
   },
   {
     slug: "mcp-server-meetups-local-events",
@@ -3482,7 +3682,14 @@ spec:
     keywords: ["MCP meetups", "MCP events", "MCP local events"],
     ugcElements: ["Event listings", "Community events"],
     internalLinks: ["mcp-server-challenges-community-competitions", "mcp-server-conferences-event-calendar"],
-    content: `<p class="text-white/65 leading-relaxed">Join local MCP meetups to connect with other developers.</p>`
+    content: `<p class="text-white/65 leading-relaxed">Local meetups work best when they show working code rather than slides.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Workable format</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li>Two live tool demos instead of one long presentation.</li>
+  <li>Short issue triage or troubleshooting sessions with shared screens.</li>
+  <li>Documented takeaways shared afterward as notes or recording links.</li>
+</ul>`
   },
   {
     slug: "mcp-server-conferences-event-calendar",
@@ -3523,7 +3730,14 @@ spec:
     keywords: ["MCP webinars", "MCP webinar recordings", "MCP video archive"],
     ugcElements: ["Webinar recordings", "Video archive"],
     internalLinks: ["mcp-server-conferences-event-calendar", "mcp-server-community-join-the-conversation"],
-    content: `<p class="text-white/65 leading-relaxed">Watch recordings of past MCP webinars and presentations.</p>`
+    content: `<p class="text-white/65 leading-relaxed">A webinar archive is only useful if it is organized by topic and current.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Useful structure</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li>Title, speaker, date, and topic tags so viewers can scan quickly.</li>
+  <li>Chapter markers or timestamps for long recordings.</li>
+  <li>Accompanying notes or updated references for outdated sections.</li>
+</ul>`
   },
   {
     slug: "mcp-server-community-join-the-conversation",
@@ -3536,7 +3750,14 @@ spec:
     keywords: ["MCP community", "MCP community join", "MCP community participation"],
     ugcElements: ["Community links", "Participation guides"],
     internalLinks: ["mcp-server-webinars-recording-archive", "mcp-server-contributors-hall-of-fame"],
-    content: `<p class="text-white/65 leading-relaxed">Connect with the MCP community through various channels.</p>`
+    content: `<p class="text-white/65 leading-relaxed">Community participation is more useful when it is topic-specific.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Practical channels</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li>Official repo discussions for spec questions and proposed changes.</li>
+  <li>Vendor engineering blogs for product-specific MCP updates.</li>
+  <li>Focused forums or chats for debugging and review help.</li>
+</ul>`
   },
   {
     slug: "mcp-server-contributors-hall-of-fame",
@@ -3549,7 +3770,14 @@ spec:
     keywords: ["MCP contributors", "MCP hall of fame", "MCP community contributors"],
     ugcElements: ["Contributor profiles", "Recognition"],
     internalLinks: ["mcp-server-community-join-the-conversation", "mcp-server-help-center-getting-assistance"],
-    content: `<p class="text-white/65 leading-relaxed">Celebrating the contributors who make the MCP ecosystem great.</p>`
+    content: `<p class="text-white/65 leading-relaxed">Recognition is more useful when it names specific contributions and impact.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Useful recognition</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li>Named contributions: servers, docs, review work, incident response.</li>
+  <li>Yearly or quarterly summaries rather than constant leaderboards.</li>
+  <li>Public acknowledgment of non-code contributions too.</li>
+</ul>`
   },
   {
     slug: "mcp-server-help-center-getting-assistance",
@@ -3562,7 +3790,14 @@ spec:
     keywords: ["MCP help center", "MCP assistance", "MCP support center"],
     ugcElements: ["Help resources", "Support channels"],
     internalLinks: ["mcp-server-contributors-hall-of-fame", "mcp-server-support-where-to-find-help"],
-    content: `<p class="text-white/65 leading-relaxed">Find help and support for MCP server development.</p>`
+    content: `<p class="text-white/65 leading-relaxed">A help center works best when it routes questions by type instead of funneling everything into one inbox.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Better routing</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li>Protocol or spec questions -> official discussions.</li>
+  <li>Integration or auth issues -> server-specific docs and issue trackers.</li>
+  <li>Security concerns -> disclosure paths rather than public chat.</li>
+</ul>`
   },
   {
     slug: "mcp-server-support-where-to-find-help",
@@ -3575,7 +3810,15 @@ spec:
     keywords: ["MCP support", "MCP help", "MCP support channels"],
     ugcElements: ["Support channel list", "Help directory"],
     internalLinks: ["mcp-server-help-center-getting-assistance", "mcp-server-documentation-community-wiki"],
-    content: `<p class="text-white/65 leading-relaxed">Access help through official and community support channels.</p>`
+    content: `<p class="text-white/65 leading-relaxed">Official channels usually give faster, more accurate results than generic search.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Support hierarchy</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li>Official SDK and server docs for version-specific behavior.</li>
+  <li>Official GitHub Discussions for implementation and spec questions.</li>
+  <li>Vendor docs for hosted MCP servers and authentication flows.</li>
+  <li>Community channels for patterns, debugging ideas, and review help.</li>
+</ul>`
   },
   {
     slug: "mcp-server-documentation-community-wiki",
@@ -3588,7 +3831,15 @@ spec:
     keywords: ["MCP documentation", "MCP wiki", "MCP community docs"],
     ugcElements: ["Wiki contributions", "Documentation editing"],
     internalLinks: ["mcp-server-support-where-to-find-help", "mcp-server-faq-community-answered"],
-    content: `<p class="text-white/65 leading-relaxed">Contribute to and access the community-maintained MCP documentation wiki.</p>`
+    content: `<p class="text-white/65 leading-relaxed">Community docs improve when they validate against real runnable examples.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Good wiki practices</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li>Link to official sources rather than restating spec details from memory.</li>
+  <li>Curate real code samples and test them against current SDK versions.</li>
+  <li>Mark deprecated pages and suggest replacements.</li>
+  <li>Separate opinion pieces from canonical how-tos.</li>
+</ul>`
   },
   
   // Additional Development & Coding posts (5 more to reach 25)
@@ -3603,7 +3854,14 @@ spec:
     keywords: ["TypeScript MCP", "MCP TypeScript patterns", "advanced TypeScript"],
     ugcElements: ["Code examples", "Pattern discussions"],
     internalLinks: ["mcp-development-best-practices", "mcp-server-architecture-patterns"],
-    content: `<p class="text-white/65 leading-relaxed">Leverage TypeScript's advanced features for safer MCP server development.</p>`
+    content: `<p class="text-white/65 leading-relaxed">TypeScript helps MCP servers most at the schema and boundary layer.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Useful patterns</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li>Zod or io-ts for runtime validation that mirrors tool schemas.</li>
+  <li>Typed transport wrappers to keep stdio and HTTP path behavior consistent.</li>
+  <li>Explicit error types instead of generic <code>any</code> fallbacks in tool handlers.</li>
+</ul>`
   },
   {
     slug: "mcp-server-testing-strategies",
@@ -3616,7 +3874,15 @@ spec:
     keywords: ["MCP testing", "test MCP server", "MCP test strategies"],
     ugcElements: ["Test examples", "Testing frameworks"],
     internalLinks: ["mcp-development-best-practices", "mcp-testing-before-deployment"],
-    content: `<p class="text-white/65 leading-relaxed">Build a comprehensive testing strategy for your MCP server.</p>`
+    content: `<p class="text-white/65 leading-relaxed">Build a layered testing strategy so MCP server changes land safely.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Practical layers</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li>Unit tests for tool argument validation and business logic.</li>
+  <li>Integration tests for JSON-RPC call flow, transport, and error mapping.</li>
+  <li>Security tests for auth bypass, injection, and rate-limit behavior.</li>
+  <li>Load or smoke tests for latency percentiles and memory growth under repeated calls.</li>
+</ul>`
   },
   {
     slug: "mcp-server-debugging-techniques",
@@ -3629,7 +3895,15 @@ spec:
     keywords: ["MCP debugging", "debug MCP server", "MCP troubleshooting"],
     ugcElements: ["Debugging tips", "Debug tools"],
     internalLinks: ["mcp-debugging-troubleshooting-common-issues", "mcp-error-handling-patterns"],
-    content: `<p class="text-white/65 leading-relaxed">Master debugging techniques for faster MCP server development.</p>`
+    content: `<p class="text-white/65 leading-relaxed">Use a layered debugging checklist when MCP tool calls misbehave.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Fast checks</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li>Confirm the transport expected by the client matches the server.</li>
+  <li>Re-run with the MCP Inspector to remove client variables.</li>
+  <li>Check stderr/stdout separation; non-JSON output on stdout breaks JSON-RPC.</li>
+  <li>Inspect authorization, tool-name typos, and serialization mismatches.</li>
+</ul>`
   },
   {
     slug: "mcp-server-performance-benchmarking",
