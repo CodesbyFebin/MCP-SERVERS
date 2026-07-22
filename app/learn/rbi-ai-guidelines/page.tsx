@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     languages: {
       "en-IN": "/learn/rbi-ai-guidelines",
       "en": "/learn/rbi-ai-guidelines",
-    }
+        }
   },
 
 };

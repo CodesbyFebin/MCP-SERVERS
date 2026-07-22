@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     languages: {
       "en-IN": "/status",
       "en": "/status",
-    }
+        }
   },
 
 };

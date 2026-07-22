@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     languages: {
     "en-IN": "/https://www.mcpserver.in/docs/",
     "en": "/https://www.mcpserver.in/docs/",
-  },
+        },
   },
 };
 

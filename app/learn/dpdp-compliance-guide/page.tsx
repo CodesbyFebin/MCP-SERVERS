@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     languages: {
     "en-IN": "/learn/dpdp-compliance-guide",
     "en": "/learn/dpdp-compliance-guide",
-  },
+        },
   },
 };
 

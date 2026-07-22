@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     languages: {
       "en-IN": "/learn/mcp-vs-langchain",
       "en": "/learn/mcp-vs-langchain",
-    }
+        }
   },
 
 };

@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     languages: {
     "en-IN": "/api",
     "en": "/api",
-  },
+        },
   },
 };
 

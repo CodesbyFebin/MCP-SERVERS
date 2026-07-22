@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     languages: {
       "en-IN": "/privacy",
       "en": "/privacy",
-    }
+        }
   },
 
 };

@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     languages: {
       "en-IN": "/learn",
       "en": "/learn",
-    }
+        }
   },
 
 };

@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     languages: {
       "en-IN": "/integrations",
       "en": "/integrations",
-    }
+        }
   },
 
 };

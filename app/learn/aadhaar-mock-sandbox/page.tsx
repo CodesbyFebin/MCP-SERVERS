@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     languages: {
       "en-IN": "/learn/aadhaar-mock-sandbox",
       "en": "/learn/aadhaar-mock-sandbox",
-    },
+        },
   },
 };
 

@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     languages: {
     "en-IN": "/blog",
     "en": "/blog",
-  },
+        },
   },
 };
 

@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     languages: {
     "en-IN": "/learn/indic-nlp-guide",
     "en": "/learn/indic-nlp-guide",
-  },
+        },
   },
 };
 

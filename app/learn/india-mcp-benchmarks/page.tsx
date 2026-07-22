@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     languages: {
     "en-IN": "/learn/india-mcp-benchmarks",
     "en": "/learn/india-mcp-benchmarks",
-  },
+        },
   },
 };
 

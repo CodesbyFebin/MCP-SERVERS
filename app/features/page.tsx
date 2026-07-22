@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     languages: {
     "en-IN": "/features",
     "en": "/features",
-  },
+        },
   },
 };
 

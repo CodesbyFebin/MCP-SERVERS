@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     languages: {
     "en-IN": "/learn/india-services",
     "en": "/learn/india-services",
-  },
+        },
   },
 };
 

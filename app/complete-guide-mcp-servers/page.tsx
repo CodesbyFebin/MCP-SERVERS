@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     languages: {
     "en-IN": "/complete-guide-mcp-servers",
     "en": "/complete-guide-mcp-servers",
-  },
+        },
   },
 };
 

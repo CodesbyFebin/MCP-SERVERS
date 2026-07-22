@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     languages: {
       "en-IN": "/learn/mcp-production-deployment",
       "en": "/learn/mcp-production-deployment",
-    }
+        }
   },
 
 };

@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     languages: {
       "en-IN": "/learn/gst-integration",
       "en": "/learn/gst-integration",
-    },
+        },
   },
 };
 

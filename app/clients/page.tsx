@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     languages: {
       "en-IN": "/clients",
       "en": "/clients",
-    }
+        }
   },
 
 };

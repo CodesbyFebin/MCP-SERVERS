@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     languages: {
       "en-IN": "/mcp-server-directory",
       "en": "/mcp-server-directory",
-    }
+        }
   },
 
 };

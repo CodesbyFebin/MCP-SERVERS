@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     languages: {
     "en-IN": "/servers",
     "en": "/servers",
-  },
+        },
   },
 };
 
