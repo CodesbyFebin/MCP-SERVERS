@@ -13,6 +13,7 @@ import {
   LogoCloud,
   PageShell,
   PrimaryButton,
+  SearchPanel,
   SecondaryButton,
   SectionTitle,
   SecurityBand,
@@ -20,12 +21,18 @@ import {
   Testimonials,
   UseCaseGrid
 } from "../src/components/ReferenceLanding";
-import { BarChart3, BookOpen, ArrowRight } from "lucide-react";
+import { BarChart3, BookOpen, ArrowRight, Briefcase, Code2, CreditCard, Database, FileText, Library } from "lucide-react";
 import Link from "next/link";
 import { getUnifiedGraphSchema } from "../src/lib/schema";
 import { getContentDates } from "../src/lib/contentDates";
+import { categories } from "../src/data/categories";
+import { pricingPlans } from "../src/data/pricing";
 import SchemaJsonLd from "../src/components/SchemaJsonLd";
+import AnswerBox from "../src/components/AnswerBox";
 import FAQ from "../src/components/FAQ";
+import MermaidDiagram from "../src/components/MermaidDiagram";
+
+const categoryIcons = { Code: Code2, Database, Briefcase, CreditCard } as const;
 
 export const metadata = {
   metadataBase: new URL("https://www.mcpserver.in"),
@@ -179,6 +186,24 @@ export default function Home() {
         </Container>
       </section>
 
+      <Container>
+        <AnswerBox
+          question="What is MCPserver.in?"
+          answer="MCPserver.in is a curated directory and hosting platform for Model Context Protocol (MCP) servers, built for AI agents that need to connect to tools, databases, and APIs. Browse verified servers, deploy your own with one click, and host from India-region edge infrastructure with DPDP-aligned data controls."
+          keyTakeaways={[
+            "Curated directory of MCP servers across developer tools, databases, productivity, and finance",
+            "One-click hosting from Mumbai and Bengaluru regions",
+            "Free tier for local stdio servers; paid tiers for hosted SSE servers"
+          ]}
+        />
+      </Container>
+
+      <DividerSection className="pt-0">
+        <Container>
+          <SearchPanel />
+        </Container>
+      </DividerSection>
+
       <section className="bg-gradient-to-b from-[#030711] to-[#0a0a1a] py-16">
         <Container>
           <div className="mx-auto max-w-4xl">
@@ -212,7 +237,23 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            
+
+            <div className="mt-12 rounded-xl border border-white/10 bg-white/[0.02] p-6">
+              <h3 className="text-xl font-semibold text-white">MCP Architecture at a Glance</h3>
+              <p className="mt-2 text-sm text-white/60">
+                An AI client (Claude Desktop, Cursor, or a custom agent) connects to an MCP server over stdio or HTTP/SSE, discovers its tools and resources, then invokes them through standardized JSON-RPC 2.0 messages.
+              </p>
+              <MermaidDiagram
+                chart={`graph LR
+  A[AI Client] -->|initialize + discover| B[MCP Server]
+  B -->|tools/list, resources/list| A
+  A -->|tools/call| B
+  B -->|invoke| C[Tool / Database / API]
+  C -->|result| B
+  B -->|JSON-RPC response| A`}
+              />
+            </div>
+
             <div className="mt-12 rounded-xl bg-white/5 p-6">
               <h3 className="text-2xl font-semibold text-white">MCP vs Traditional APIs</h3>
               <div className="mt-6 grid gap-4 md:grid-cols-3">
@@ -233,6 +274,34 @@ export default function Home() {
           </div>
         </Container>
       </section>
+
+      <DividerSection>
+        <Container>
+          <SectionTitle
+            title={<>Browse by <span className="text-cyan-300">Category</span></>}
+            subtitle="Every server in the directory is organized by what it connects your AI agent to."
+          />
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {categories.map((category) => {
+              const Icon = categoryIcons[category.iconName as keyof typeof categoryIcons] ?? Database;
+              return (
+                <Link
+                  key={category.slug}
+                  href={`/directory/${category.slug}`}
+                  className="group rounded-2xl border border-white/10 bg-white/[0.02] p-6 transition hover:border-cyan-300/30"
+                >
+                  <div className="grid h-10 w-10 place-items-center rounded-xl border border-cyan-400/20 bg-cyan-500/10">
+                    <Icon className="h-5 w-5 text-cyan-200" />
+                  </div>
+                  <h3 className="mt-4 text-base font-black text-white group-hover:text-cyan-200">{category.name}</h3>
+                  <p className="mt-2 text-xs leading-relaxed text-white/55">{category.description}</p>
+                  <div className="mt-3 text-xs font-bold text-white/40">{category.count} servers</div>
+                </Link>
+              );
+            })}
+          </div>
+        </Container>
+      </DividerSection>
 
       <DividerSection className="pt-0">
         <Container>
@@ -311,6 +380,48 @@ export default function Home() {
 
       <DividerSection>
         <Container>
+          <SectionTitle
+            title={<>Simple, <span className="text-emerald-300">Transparent Pricing</span></>}
+            subtitle="Start free with local stdio servers. Upgrade when you need hosted, always-on SSE servers."
+          />
+          <div className="grid gap-4 md:grid-cols-3">
+            {pricingPlans.slice(0, 3).map((plan) => (
+              <div
+                key={plan.name}
+                className={`relative rounded-2xl border p-6 ${
+                  plan.badge ? "border-cyan-300/40 bg-cyan-500/5" : "border-white/10 bg-white/[0.02]"
+                }`}
+              >
+                {plan.badge && (
+                  <span className="absolute -top-3 right-6 rounded-full bg-cyan-400 px-3 py-1 text-[10px] font-black text-black">
+                    {plan.badge}
+                  </span>
+                )}
+                <h3 className="text-lg font-black text-white">{plan.name}</h3>
+                <div className="mt-2 flex items-baseline gap-1">
+                  <span className="text-3xl font-black text-white">{plan.price}</span>
+                  <span className="text-xs text-white/45">/{plan.period}</span>
+                </div>
+                <p className="mt-3 text-xs leading-relaxed text-white/55">{plan.description}</p>
+                <ul className="mt-4 space-y-1.5 text-xs text-white/60">
+                  {plan.features.slice(0, 3).map((feature) => (
+                    <li key={feature}>• {feature}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+          <div className="mt-6 text-center">
+            <Link href="/pricing" className="text-sm font-bold text-cyan-300 hover:text-cyan-200">
+              Compare all plans, including Team, Business, and Enterprise →
+            </Link>
+          </div>
+        </Container>
+      </DividerSection>
+
+      <DividerSection>
+        <Container>
+          <SectionTitle title="Explore Resources" />
           <div className="grid gap-6 md:grid-cols-2">
             <Link href="/state-of-mcp" className="group rounded-2xl border border-white/10 bg-white/[0.02] p-8 transition hover:border-cyan-300/30">
               <div className="flex items-center gap-3">
@@ -344,6 +455,40 @@ export default function Home() {
               </p>
               <div className="mt-4 inline-flex items-center gap-1 text-xs font-bold text-violet-300">
                 Start learning <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5" />
+              </div>
+            </Link>
+            <Link href="/docs" className="group rounded-2xl border border-white/10 bg-white/[0.02] p-8 transition hover:border-amber-300/30">
+              <div className="flex items-center gap-3">
+                <div className="grid h-10 w-10 place-items-center rounded-xl border border-amber-400/20 bg-amber-500/10">
+                  <FileText className="h-5 w-5 text-amber-200" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-black text-white group-hover:text-amber-200">Documentation</h3>
+                  <p className="text-xs text-white/45">Protocol, security, and deployment guides</p>
+                </div>
+              </div>
+              <p className="mt-4 text-sm leading-relaxed text-white/58">
+                Technical reference for building, hosting, and securing MCP servers — from your first stdio server to production HTTP/SSE deployments.
+              </p>
+              <div className="mt-4 inline-flex items-center gap-1 text-xs font-bold text-amber-300">
+                Read the docs <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5" />
+              </div>
+            </Link>
+            <Link href="/glossary" className="group rounded-2xl border border-white/10 bg-white/[0.02] p-8 transition hover:border-pink-300/30">
+              <div className="flex items-center gap-3">
+                <div className="grid h-10 w-10 place-items-center rounded-xl border border-pink-400/20 bg-pink-500/10">
+                  <Library className="h-5 w-5 text-pink-200" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-black text-white group-hover:text-pink-200">Glossary</h3>
+                  <p className="text-xs text-white/45">MCP and AI agent terminology explained</p>
+                </div>
+              </div>
+              <p className="mt-4 text-sm leading-relaxed text-white/58">
+                From "JSON-RPC" to "vector database" — clear definitions for every term you'll run into building with MCP.
+              </p>
+              <div className="mt-4 inline-flex items-center gap-1 text-xs font-bold text-pink-300">
+                Browse the glossary <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5" />
               </div>
             </Link>
           </div>
