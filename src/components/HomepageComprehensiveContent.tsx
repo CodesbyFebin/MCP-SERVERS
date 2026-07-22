@@ -458,27 +458,27 @@ export default function HomepageComprehensiveContent() {
 
               <div className="mt-8 space-y-4">
                 <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4">
-                  <h4 className="font-bold text-white flex items-center gap-2">
+                  <h3 className="font-bold text-white flex items-center gap-2">
                     <CheckCircle2 className="h-5 w-5 text-emerald-400" /> Data Residency & Sovereign Cloud
-                  </h4>
+                  </h3>
                   <p className="mt-1 text-xs text-white/70">
                     All personal data, MCP log entries, and vector embeddings processed through our hosted servers remain strictly stored inside Tier-IV data centers in Mumbai (<code className="text-cyan-300">ap-south-1</code>) and Bengaluru (<code className="text-cyan-300">ap-south-2</code>).
                   </p>
                 </div>
 
                 <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4">
-                  <h4 className="font-bold text-white flex items-center gap-2">
+                  <h3 className="font-bold text-white flex items-center gap-2">
                     <CheckCircle2 className="h-5 w-5 text-emerald-400" /> Explicit Consent Management Framework
-                  </h4>
+                  </h3>
                   <p className="mt-1 text-xs text-white/70">
                     Our platform includes automated consent prompts built directly into the MCP protocol layer. Users receive explicit notification and must grant permission before an AI agent invokes tools that access personal data.
                   </p>
                 </div>
 
                 <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4">
-                  <h4 className="font-bold text-white flex items-center gap-2">
+                  <h3 className="font-bold text-white flex items-center gap-2">
                     <CheckCircle2 className="h-5 w-5 text-emerald-400" /> Data Principal Rights & Immutable Audit Logs
-                  </h4>
+                  </h3>
                   <p className="mt-1 text-xs text-white/70">
                     Support automated Data Principal workflows for data access requests, data correction, and data erasure (Right to be Forgotten). Comprehensive cryptographic audit logs record every MCP invocation for compliance reporting.
                   </p>
@@ -507,7 +507,7 @@ export default function HomepageComprehensiveContent() {
                   <div key={idx} className="flex items-start justify-between gap-4 border-b border-white/10 pb-3">
                     <div>
                       <h5 className="font-bold text-sm text-white">{item.title}</h5>
-                      <p className="text-[11px] text-white/50">{item.desc}</p>
+                      <p className="text-[11px] text-white/60">{item.desc}</p>
                     </div>
                     <span className="rounded-full bg-emerald-500/20 px-3 py-1 text-[10px] font-black text-emerald-300 border border-emerald-400/30">
                       {item.status}
@@ -545,25 +545,25 @@ export default function HomepageComprehensiveContent() {
             <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-6 text-center">
               <div className="text-4xl font-black text-cyan-300">&lt;18ms</div>
               <div className="mt-2 text-xs font-bold uppercase tracking-wider text-white/60">Mumbai RTT</div>
-              <p className="mt-2 text-[11px] text-white/50">Direct BGP routing across Jio, Airtel, and Tata Communications networks.</p>
+              <p className="mt-2 text-[11px] text-white/60">Direct BGP routing across Jio, Airtel, and Tata Communications networks.</p>
             </div>
 
             <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-6 text-center">
               <div className="text-4xl font-black text-emerald-300">&lt;35ms</div>
               <div className="mt-2 text-xs font-bold uppercase tracking-wider text-white/60">Bengaluru RTT</div>
-              <p className="mt-2 text-[11px] text-white/50">Low-latency peering with South India technology corridors.</p>
+              <p className="mt-2 text-[11px] text-white/60">Low-latency peering with South India technology corridors.</p>
             </div>
 
             <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-6 text-center">
               <div className="text-4xl font-black text-fuchsia-300">99.99%</div>
               <div className="mt-2 text-xs font-bold uppercase tracking-wider text-white/60">Uptime SLA</div>
-              <p className="mt-2 text-[11px] text-white/50">Multi-AZ automatic failover across ap-south-1a and ap-south-1b.</p>
+              <p className="mt-2 text-[11px] text-white/60">Multi-AZ automatic failover across ap-south-1a and ap-south-1b.</p>
             </div>
 
             <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-6 text-center">
               <div className="text-4xl font-black text-amber-300">12.4k</div>
               <div className="mt-2 text-xs font-bold uppercase tracking-wider text-white/60">Req / Sec</div>
-              <p className="mt-2 text-[11px] text-white/50">High-throughput SSE event streaming per dedicated edge node container.</p>
+              <p className="mt-2 text-[11px] text-white/60">High-throughput SSE event streaming per dedicated edge node container.</p>
             </div>
           </div>
 
@@ -1021,7 +1021,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
           <div className="mt-12 grid gap-8 md:grid-cols-3">
             <div className="rounded-3xl border border-white/10 bg-white/[0.02] p-8">
               <h3 className="text-xl font-bold text-white">Developer Tier</h3>
-              <div className="mt-4 text-3xl font-black text-white">₹0 <span className="text-xs font-normal text-white/50">/ forever</span></div>
+              <div className="mt-4 text-3xl font-black text-white">₹0 <span className="text-xs font-normal text-white/60">/ forever</span></div>
               <p className="mt-2 text-xs text-white/60">Ideal for testing local stdio MCP servers and developer experimentation.</p>
               <ul className="mt-6 space-y-2 text-xs text-white/70">
                 <li className="flex items-center gap-2"><Check className="h-4 w-4 text-emerald-400" /> Access to 100+ MCP Server Directory</li>
@@ -1039,7 +1039,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                 MOST POPULAR
               </span>
               <h3 className="text-xl font-bold text-white">Starter SSE Tier</h3>
-              <div className="mt-4 text-3xl font-black text-cyan-300">₹999 <span className="text-xs font-normal text-white/50">/ month</span></div>
+              <div className="mt-4 text-3xl font-black text-cyan-300">₹999 <span className="text-xs font-normal text-white/60">/ month</span></div>
               <p className="mt-2 text-xs text-white/60">For production AI agents requiring hosted, always-on SSE server endpoints.</p>
               <ul className="mt-6 space-y-2 text-xs text-white/70">
                 <li className="flex items-center gap-2"><Check className="h-4 w-4 text-cyan-300" /> 3 Hosted Always-On SSE Servers</li>
@@ -1054,7 +1054,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
             <div className="rounded-3xl border border-white/10 bg-white/[0.02] p-8">
               <h3 className="text-xl font-bold text-white">Enterprise DPDP</h3>
-              <div className="mt-4 text-3xl font-black text-white">Custom <span className="text-xs font-normal text-white/50">/ annual</span></div>
+              <div className="mt-4 text-3xl font-black text-white">Custom <span className="text-xs font-normal text-white/60">/ annual</span></div>
               <p className="mt-2 text-xs text-white/60">Dedicated VPC infrastructure, custom SLAs, and full DPDP legal compliance support.</p>
               <ul className="mt-6 space-y-2 text-xs text-white/70">
                 <li className="flex items-center gap-2"><Check className="h-4 w-4 text-emerald-400" /> Unlimited Hosted SSE/HTTP Servers</li>
@@ -1126,7 +1126,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                   className="flex w-full items-center justify-between p-5 text-left font-bold text-white text-sm hover:bg-white/5 transition"
                 >
                   <span>{faq.q}</span>
-                  {openFaq === idx ? <ChevronUp className="h-4 w-4 text-cyan-300" /> : <ChevronDown className="h-4 w-4 text-white/50" />}
+                  {openFaq === idx ? <ChevronUp className="h-4 w-4 text-cyan-300" /> : <ChevronDown className="h-4 w-4 text-white/60" />}
                 </button>
                 {openFaq === idx && (
                   <div className="border-t border-white/10 bg-black/40 p-5 text-xs leading-relaxed text-white/70">

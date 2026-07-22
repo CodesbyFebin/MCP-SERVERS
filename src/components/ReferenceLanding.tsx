@@ -161,7 +161,7 @@ export function BrandMark({ compact = false }: { compact?: boolean }) {
       {!compact && (
         <div className="leading-none">
           <div className="text-base font-black tracking-tight text-white">MCP SERVER</div>
-          <div className="text-[10px] font-medium text-white/50">Connect Everything to AI</div>
+          <div className="text-[10px] font-medium text-white/60">Connect Everything to AI</div>
         </div>
       )}
     </Link>
@@ -235,7 +235,7 @@ export function SectionTitle({
         </div>
       )}
       <h2 className="text-2xl font-black tracking-tight text-white md:text-3xl">{title}</h2>
-      {subtitle && <p className="mt-2 text-sm leading-relaxed text-white/55">{subtitle}</p>}
+      {subtitle && <p className="mt-2 text-sm leading-relaxed text-white/65">{subtitle}</p>}
     </div>
   );
 }
@@ -424,7 +424,7 @@ export function CodeDemo() {
     <div className="grid gap-6 lg:grid-cols-[0.34fr_0.66fr]">
       <div>
         <h2 className="text-2xl font-black tracking-tight text-white">How It Works</h2>
-        <p className="mt-1 text-sm text-white/50">Get started in 3 simple steps</p>
+        <p className="mt-1 text-sm text-white/60">Get started in 3 simple steps</p>
         <div className="mt-5 space-y-3">
           {[
              ["Discover", "Browse or search a curated set of MCP servers across categories and integrations."],
@@ -435,7 +435,7 @@ export function CodeDemo() {
               <div className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-violet-600 text-sm font-black text-white">{index + 1}</div>
               <div>
                 <h3 className="text-sm font-black text-white">{title}</h3>
-                <p className="mt-1 text-xs leading-relaxed text-white/55">{body}</p>
+                <p className="mt-1 text-xs leading-relaxed text-white/65">{body}</p>
               </div>
             </div>
           ))}
@@ -510,7 +510,7 @@ export function UseCaseGrid() {
         <div key={title as string} className="rounded-xl border border-white/10 bg-white/[0.035] p-5">
           <IconTile icon={Icon as React.ComponentType<{ className?: string }>} accent={accent as Accent} />
           <h3 className="mt-4 text-sm font-black text-white">{title as string}</h3>
-          <p className="mt-2 text-xs leading-relaxed text-white/55">{body as string}</p>
+          <p className="mt-2 text-xs leading-relaxed text-white/65">{body as string}</p>
         </div>
       ))}
     </div>
@@ -535,7 +535,7 @@ export function SecurityBand() {
           <div key={title as string}>
             <IconTile icon={Icon as React.ComponentType<{ className?: string }>} accent="violet" />
             <h4 className="mt-3 text-xs font-black text-white">{title as string}</h4>
-            <p className="mt-1 text-[11px] leading-relaxed text-white/55">{body as string}</p>
+            <p className="mt-1 text-[11px] leading-relaxed text-white/65">{body as string}</p>
           </div>
         ))}
       </div>
@@ -598,7 +598,7 @@ export function CtaBanner({
             <div className="relative rounded-2xl border border-cyan-300/30 bg-[#081426] p-5 text-center shadow-[0_0_40px_rgba(34,211,238,0.25)]">
               <Sparkles className="mx-auto h-9 w-9 text-cyan-300" />
               <div className="mt-2 text-sm font-black text-white">AI READY</div>
-              <div className="text-[11px] text-white/50">MCP Network</div>
+              <div className="text-[11px] text-white/60">MCP Network</div>
             </div>
           </div>
         </div>
@@ -691,7 +691,7 @@ export function IntegrationCards() {
               <span className="rounded bg-violet-600 px-2 py-1 text-[10px] font-black text-white">{index === 3 ? "Trending" : "Popular"}</span>
             </div>
             <h3 className="mt-5 text-lg font-black text-white">{item.name}</h3>
-            <p className="mt-2 min-h-16 text-xs leading-relaxed text-white/55">Connect, automate and manage {item.name} workflows with AI.</p>
+            <p className="mt-2 min-h-16 text-xs leading-relaxed text-white/65">Connect, automate and manage {item.name} workflows with AI.</p>
             <button className="mt-4 w-full rounded-md bg-violet-600 py-2 text-xs font-black text-white">Connect</button>
           </div>
         );
@@ -713,7 +713,7 @@ export function ClientCaseStudies() {
       <div className="mb-5 flex items-center justify-between">
         <div>
           <h2 className="text-xl font-black text-white">Example Use Cases</h2>
-          <p className="text-sm text-white/50">Illustrative patterns for how teams in different industries typically use MCP servers.</p>
+          <p className="text-sm text-white/60">Illustrative patterns for how teams in different industries typically use MCP servers.</p>
         </div>
         <Link href="/clients" className="hidden text-xs font-bold text-violet-300 md:inline-flex">See more examples {"->"}</Link>
       </div>
@@ -814,7 +814,7 @@ export function KnowledgeGraph() {
       <div className="mb-8 text-center">
         <div className="text-[11px] font-bold uppercase tracking-[0.2em] text-violet-300/80">Topical Authority Knowledge Graph</div>
         <h2 className="mt-2 text-2xl font-black tracking-tight text-white md:text-3xl">12-Core Domain MCP Ecosystem Map</h2>
-        <p className="mt-2 text-sm text-white/55">A comprehensive knowledge graph mapping the entire MCP server ecosystem across 12 domains with semantic interlinking.</p>
+        <p className="mt-2 text-sm text-white/65">A comprehensive knowledge graph mapping the entire MCP server ecosystem across 12 domains with semantic interlinking.</p>
       </div>
       <div className="relative mx-auto max-w-6xl">
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
@@ -830,7 +830,7 @@ export function KnowledgeGraph() {
                   <div className={`text-[10px] font-black ${accent.text}`}>#{domain.id}</div>
                 </div>
                 <h3 className="mt-2 text-xs font-black text-white">{domain.title}</h3>
-                <p className="mt-1 text-[11px] leading-relaxed text-white/55">{domain.description}</p>
+                <p className="mt-1 text-[11px] leading-relaxed text-white/65">{domain.description}</p>
                 <div className="mt-3 flex flex-wrap gap-1">
                   {domain.id <= 4 && (
                     <span className="rounded bg-white/10 px-1.5 py-0.5 text-[9px] font-bold text-white/70">Foundation</span>
@@ -865,19 +865,19 @@ export function KnowledgeGraph() {
         <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
           <div className="rounded-lg border border-white/8 bg-white/[0.03] p-3 text-center">
             <div className="text-lg font-black text-cyan-300">7,260+</div>
-            <div className="text-[10px] text-white/55">MCP Servers</div>
+            <div className="text-[10px] text-white/65">MCP Servers</div>
           </div>
           <div className="rounded-lg border border-white/8 bg-white/[0.03] p-3 text-center">
             <div className="text-lg font-black text-violet-300">300K+</div>
-            <div className="text-[10px] text-white/55">Ecosystem Stars</div>
+            <div className="text-[10px] text-white/65">Ecosystem Stars</div>
           </div>
           <div className="rounded-lg border border-white/8 bg-white/[0.03] p-3 text-center">
             <div className="text-lg font-black text-fuchsia-300">2,211+</div>
-            <div className="text-[10px] text-white/55">Smithery Servers</div>
+            <div className="text-[10px] text-white/65">Smithery Servers</div>
           </div>
           <div className="rounded-lg border border-white/8 bg-white/[0.03] p-3 text-center">
             <div className="text-lg font-black text-emerald-300">12</div>
-            <div className="text-[10px] text-white/55">Core Domains</div>
+            <div className="text-[10px] text-white/65">Core Domains</div>
           </div>
         </div>
       </div>
