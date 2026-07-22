@@ -11,10 +11,10 @@ export const metadata: Metadata = {
     "Community trends and illustrative examples for MCP adoption in India: regional considerations, tooling patterns, and sample cost comparisons for planning purposes.",
   alternates: {
     canonical: "/state-of-mcp",
-    languages: {
-      "en-IN": "/state-of-mcp",
-      "en": "/state-of-mcp",
-        }
+      languages: {
+        "en-IN": "/state-of-mcp",
+        "en": "/state-of-mcp",
+      }
   },
 
 };
