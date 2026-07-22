@@ -7,9 +7,10 @@ import AuthorBox from "../../../src/components/AuthorBox";
 import FAQ from "../../../src/components/FAQ";
 import SchemaJsonLd from "../../../src/components/SchemaJsonLd";
 import MermaidDiagram from "../../../src/components/MermaidDiagram";
+import CodeBlock from "../../../src/components/CodeBlock";
 import { docsPages, findDocsPage, getDocsPath } from "../../../src/data/docs";
 import { getHowToSchema } from "../../../src/lib/schema";
-import { ArrowLeft, ArrowRight, BookOpen, CheckCircle2, ExternalLink } from "lucide-react";
+import { ArrowRight, BookOpen, CheckCircle2, ExternalLink } from "lucide-react";
 
 interface PageProps {
   params: Promise<{ slug: string[] }>;
@@ -162,43 +163,14 @@ export default async function DocsDetailPage({ params }: PageProps) {
     .filter((item) => item.page || item.href.startsWith("/glossary/") || item.href === "/status");
 
   return (
-    <div id="docs-detail-page" className="min-h-screen bg-[#050508] text-white pt-6 pb-16 font-sans">
+    <div id="docs-detail-page" className="font-sans">
       <SchemaJsonLd schema={buildSchema(page)} />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div>
         <Breadcrumbs items={breadcrumbs} />
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mt-8">
-          <aside className="lg:col-span-3">
-            <div className="sticky top-24 space-y-4">
-              <Link href="/docs" className="inline-flex items-center gap-2 text-xs font-semibold text-cyan-300 hover:text-cyan-200">
-                <ArrowLeft className="h-3.5 w-3.5" />
-                Back to docs
-              </Link>
-              <div className="rounded-xl border border-white/10 bg-white/[0.035] p-4">
-                <h2 className="mb-3 flex items-center gap-2 text-sm font-bold text-white">
-                  <BookOpen className="h-4 w-4 text-cyan-300" />
-                  In This Guide
-                </h2>
-                <nav className="space-y-2">
-                  {page.sections.map((section) => (
-                    <a
-                      key={section.heading}
-                      href={`#${section.heading.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "")}`}
-                      className="block rounded-md px-2 py-1.5 text-xs text-slate-400 hover:bg-white/[0.04] hover:text-cyan-200"
-                    >
-                      {section.heading}
-                    </a>
-                  ))}
-                  <a href="#faq-section" className="block rounded-md px-2 py-1.5 text-xs text-slate-400 hover:bg-white/[0.04] hover:text-cyan-200">
-                    FAQs
-                  </a>
-                </nav>
-              </div>
-            </div>
-          </aside>
-
-          <main className="lg:col-span-6 space-y-8">
+          <main className="lg:col-span-9 space-y-8">
             <header className="space-y-5">
               <div className="flex flex-wrap gap-2">
                 <span className="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-1 text-xs font-semibold text-cyan-200">
@@ -250,11 +222,7 @@ export default async function DocsDetailPage({ params }: PageProps) {
                     </div>
                   )}
 
-                  {section.code && (
-                    <pre className="mt-5 overflow-x-auto rounded-lg border border-cyan-400/15 bg-black/60 p-4 text-xs leading-6 text-cyan-100">
-                      <code>{section.code}</code>
-                    </pre>
-                  )}
+                  {section.code && <CodeBlock code={section.code} />}
 
                   {section.diagram && <MermaidDiagram chart={section.diagram} />}
                 </section>
@@ -278,6 +246,27 @@ export default async function DocsDetailPage({ params }: PageProps) {
 
           <aside className="lg:col-span-3">
             <div className="sticky top-24 space-y-4">
+              <div className="rounded-xl border border-white/10 bg-white/[0.035] p-4">
+                <h2 className="mb-3 flex items-center gap-2 text-sm font-bold text-white">
+                  <BookOpen className="h-4 w-4 text-cyan-300" />
+                  In This Guide
+                </h2>
+                <nav className="space-y-2">
+                  {page.sections.map((section) => (
+                    <a
+                      key={section.heading}
+                      href={`#${section.heading.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "")}`}
+                      className="block rounded-md px-2 py-1.5 text-xs text-slate-400 hover:bg-white/[0.04] hover:text-cyan-200"
+                    >
+                      {section.heading}
+                    </a>
+                  ))}
+                  <a href="#faq-section" className="block rounded-md px-2 py-1.5 text-xs text-slate-400 hover:bg-white/[0.04] hover:text-cyan-200">
+                    FAQs
+                  </a>
+                </nav>
+              </div>
+
               <div className="rounded-xl border border-white/10 bg-white/[0.035] p-4">
                 <h2 className="mb-3 text-sm font-bold text-white">Target Keywords</h2>
                 <div className="flex flex-wrap gap-2">

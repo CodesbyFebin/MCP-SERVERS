@@ -50,10 +50,10 @@ export default function Docs() {
   };
 
   return (
-    <div id="docs-page" className="min-h-screen bg-[#050508] text-white pt-6 pb-16 font-sans">
+    <div id="docs-page" className="font-sans">
       <SchemaJsonLd schema={hubSchema} />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div>
         <Breadcrumbs items={[{ name: "Documentation", href: "/docs" }]} />
 
         <section className="grid grid-cols-1 lg:grid-cols-12 gap-8 py-10 sm:py-14 border-b border-white/10">
