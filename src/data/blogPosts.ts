@@ -565,33 +565,49 @@ await server.connect(transport);</code></pre>
   },
   {
     slug: "mcp-server-configuration-files",
-    title: "MCP Server Configuration Files: Complete Reference",
-    date: "2026-07-19",
+    title: "MCP Configuration Files: Client-Side vs. Server-Side, Clarified",
+    date: "2026-07-21",
     category: "Getting Started",
     cluster: "getting-started",
-    readTime: "1 min read",
-    excerpt: "Reference guide for MCP server configuration files including JSON schema and common options.",
+    readTime: "6 min read",
+    excerpt: "There isn't one universal 'mcp.json' schema — client config (which servers to connect to) and server tool definitions (what a server can do) are two genuinely different things, defined in different places.",
     keywords: ["MCP configure", "MCP CLI", "mcp.json"],
     ugcElements: ["Config file sharing", "Configuration tips"],
-    internalLinks: ["install-configure-first-mcp-server", "mcp-cli-tools-guide"],
-    content: `<p class="text-white/65 leading-relaxed">MCP server configuration is defined in JSON files that specify tools, resources, and server metadata.</p>
+    internalLinks: ["install-configure-first-mcp-server", "mcp-cli-tools-guide", "connect-claude-to-mcp-server"],
+    content: `<p class="text-white/65 leading-relaxed">A common point of confusion: there isn't one universal "mcp.json" configuration format. Two genuinely different things get called "MCP configuration," defined in different places by different mechanisms.</p>
 
-<h2 class="mt-8 text-2xl font-black text-white">Configuration Schema</h2>
+<h2 class="mt-8 text-2xl font-black text-white">1. Client Configuration — Which Servers to Connect To</h2>
+<p class="text-white/65 leading-relaxed">This lives on the client side and tells an MCP host (Claude Desktop, Cursor, VS Code) which servers exist and how to launch or reach them:</p>
 <pre class="bg-gray-900 p-4 rounded-lg"><code class="language-json">{
-  "name": "my-mcp-server",
-  "version": "1.0.0",
-  "description": "A sample MCP server",
-  "tools": [
-    {
-      "name": "example-tool",
-      "description": "An example tool",
-      "parameters": {
-        "type": "object",
-        "properties": {}
-      }
+  "mcpServers": {
+    "my-server": {
+      "command": "node",
+      "args": ["/absolute/path/to/server.js"]
+    },
+    "remote-example": {
+      "url": "https://example.com/mcp"
     }
-  ]
-}</code></pre>`
+  }
+}</code></pre>
+<p class="text-white/65 leading-relaxed">This is what you edit in <code class="bg-gray-800 px-1 py-0.5 rounded">claude_desktop_config.json</code> or a client's equivalent settings file — it's about discovery and connection, not what the server actually does.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">2. Server Tool Definitions — Defined in Code, Not a Static File</h2>
+<p class="text-white/65 leading-relaxed">What a server actually exposes (its tools, resources, prompts) isn't typically a separate config file at all — it's defined directly in the server's own code, using the SDK:</p>
+<pre class="bg-gray-900 p-4 rounded-lg"><code class="language-javascript">server.registerTool(
+  "example-tool",
+  {
+    description: "An example tool",
+    inputSchema: { query: z.string() }
+  },
+  async ({ query }) => ({ content: [{ type: "text", text: \`Result for \${query}\` }] })
+);</code></pre>
+<p class="text-white/65 leading-relaxed">There's no separate "tools.json" you maintain alongside your server code in the standard SDK pattern — the tool's name, description, and schema live right next to its implementation, which keeps them from drifting out of sync the way a parallel config file could.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Where a Real Third Kind of Config Shows Up: Project-Level Manifests</h2>
+<p class="text-white/65 leading-relaxed">Some tooling (like Claude Code's <code class="bg-gray-800 px-1 py-0.5 rounded">claude mcp add</code> command) manages project- or workspace-level server registration in its own config location, distinct from the global desktop client config — worth checking your specific client's documentation for exactly where it stores this, since it varies by tool.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">The One-Sentence Summary</h2>
+<p class="text-white/65 leading-relaxed">If you're editing a JSON file to tell an AI client where a server lives, that's client config. If you're writing code to define what a server can do, that's the server itself — not a configuration file in the traditional sense.</p>`
   },
   {
     slug: "connect-claude-to-mcp-server",
@@ -642,159 +658,328 @@ await server.connect(transport);</code></pre>
   },
   {
     slug: "openai-gpt-with-mcp",
-    title: "OpenAI GPT with MCP: Integration Guide",
-    date: "2026-07-19",
+    title: "OpenAI Adopted MCP Natively — Here's the Real Timeline",
+    date: "2026-07-21",
     category: "Getting Started",
     cluster: "getting-started",
-    readTime: "1 min read",
-    excerpt: "How to integrate OpenAI GPT models with MCP servers for enhanced tool calling capabilities.",
-    keywords: ["MCP OpenAI", "GPT MCP integration", "OpenAI function calling"],
+    readTime: "6 min read",
+    excerpt: "OpenAI adopted MCP across its Agents SDK, Responses API, and ChatGPT in March 2025, and joined the MCP steering committee the same month. This isn't a workaround via function calling anymore — it's native, first-party support.",
+    keywords: ["MCP OpenAI", "GPT MCP integration", "ChatGPT MCP"],
     ugcElements: ["Integration showcase", "Prompt examples"],
-    internalLinks: ["connect-claude-to-mcp-server", "mcp-client-libraries"],
-    content: `<p class="text-white/65 leading-relaxed">While OpenAI doesn't natively support MCP, you can integrate it using the Assistants API with function calling.</p>`
+    internalLinks: ["connect-claude-to-mcp-server", "mcp-client-libraries", "google-gemini-mcp-support"],
+    content: `<p class="text-white/65 leading-relaxed">OpenAI adopted MCP natively across its Agents SDK, Responses API, and the ChatGPT desktop app in March 2025 — and joined the MCP steering committee at the same time. This is genuinely native support, not a function-calling workaround layered on top.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">The Real Adoption Timeline</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li><strong class="text-white">March 2025</strong> — MCP support across Agents SDK, Responses API, ChatGPT desktop; OpenAI joins the MCP steering committee.</li>
+  <li><strong class="text-white">September 9, 2025</strong> — Developer mode beta launches for ChatGPT MCP server connections.</li>
+  <li><strong class="text-white">December 2025</strong> — "Connectors" renamed to "Apps," reflecting a broader integration strategy beyond simple tool connections.</li>
+  <li><strong class="text-white">Early 2026</strong> — The Responses API gains native connections to remote MCP servers; a new Apps SDK extends MCP with interactive UI components.</li>
+  <li><strong class="text-white">July 9, 2026</strong> — The app directory becomes a plugin directory shared between ChatGPT and Codex.</li>
+</ul>
+
+<h2 class="mt-8 text-2xl font-black text-white">Official, Curated Integrations</h2>
+<p class="text-white/65 leading-relaxed">OpenAI curates a set of MCP-backed integrations — Notion, Linear, Salesforce Agentforce among the named examples — that users can install in one click. These are vetted by OpenAI, scoped to specific permissions, and available across plans, rather than requiring users to hand-configure a raw MCP server connection.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Building Your Own Server for ChatGPT</h2>
+<p class="text-white/65 leading-relaxed">If you're building an MCP server intended for ChatGPT specifically, OpenAI's own developer documentation (developers.openai.com/api/docs/mcp) is the authoritative source for the current Apps SDK and connector requirements — worth checking directly given how quickly this surface has evolved across 2025-2026 (three major changes — connectors-to-apps, native Responses API support, and the plugin-directory merge with Codex — in about a year).</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">The Real Takeaway</h2>
+<p class="text-white/65 leading-relaxed">If you built an OpenAI+MCP integration using an older function-calling workaround, it's worth revisiting — native support has genuinely superseded that pattern, and OpenAI's own steering-committee involvement means the integration isn't a bolted-on afterthought the way early third-party MCP bridges were.</p>`,
+    faqs: [
+      { question: "Does OpenAI support MCP natively now?", answer: "Yes — since March 2025, across the Agents SDK, Responses API, and ChatGPT desktop app. OpenAI also joined the MCP steering committee at the same time." },
+      { question: "Do I still need a function-calling workaround to use MCP with GPT models?", answer: "No — that was necessary before March 2025. Native support has since superseded that pattern." },
+      { question: "What are OpenAI's 'Apps' in the MCP context?", answer: "Curated, one-click-installable MCP-backed integrations (Notion, Linear, Salesforce Agentforce, and others), vetted and permission-scoped by OpenAI — formerly called \"Connectors\" before a December 2025 rename." }
+    ]
   },
   {
     slug: "google-gemini-mcp-support",
-    title: "Google Gemini MCP Support: What You Need to Know",
-    date: "2026-07-19",
+    title: "Gemini's Native MCP Support: Announced at Google I/O 2026",
+    date: "2026-07-21",
     category: "Getting Started",
     cluster: "getting-started",
-    readTime: "1 min read",
-    excerpt: "Overview of Gemini's MCP compatibility and integration options.",
+    readTime: "5 min read",
+    excerpt: "Google announced native MCP support built into the Gemini API and SDK at Google I/O in March 2026 — no more third-party libraries needed to call MCP servers from a Gemini-based application.",
     keywords: ["MCP Gemini", "Gemini MCP integration", "Google AI MCP"],
     ugcElements: ["Gemini-specific tips", "Comparison with other models"],
-    internalLinks: ["openai-gpt-with-mcp", "mcp-client-libraries"],
-    content: `<p class="text-white/65 leading-relaxed">Google's Gemini models support function calling, which can be mapped to MCP server tools.</p>`
+    internalLinks: ["openai-gpt-with-mcp", "mcp-client-libraries", "connect-claude-to-mcp-server"],
+    content: `<p class="text-white/65 leading-relaxed">Google announced native MCP support built directly into the Gemini API and SDK at Google I/O in March 2026. Before this, developers had to use third-party libraries to call MCP servers from a Gemini-based application — it's now a built-in capability.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Beyond Just Gemini: Google Cloud Support Too</h2>
+<p class="text-white/65 leading-relaxed">The announcement went further than the Gemini model itself — Google Cloud's broader API infrastructure now supports MCP as a unified layer across Google and Google Cloud services, and Google Cloud released fully-managed, remote MCP servers directly.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">How This Compares to OpenAI's Adoption</h2>
+<p class="text-white/65 leading-relaxed">Google's native MCP support (March 2026) came roughly a year after OpenAI's (March 2025) — worth knowing if you're deciding which model provider's ecosystem to build against for MCP-based tooling today. By the time Google added native support, MCP was already well-established enough that, per contemporaneous reporting, "even Microsoft Windows is getting local MCP servers so that desktop-based AI apps can access them" — a sign of how broadly the protocol had spread across the industry by that point.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">A2A: A Complementary, Not Competing, Protocol</h2>
+<p class="text-white/65 leading-relaxed">Google has also developed its own Agent2Agent (A2A) protocol, and has been explicit that MCP and A2A are complementary rather than competing — Google's own leadership has framed them as two protocols solving different problems that "work together to make agents even more useful" (MCP for connecting an agent to tools/data; A2A for agents communicating with other agents).</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">What to Do If You Built Against the Old Workaround</h2>
+<p class="text-white/65 leading-relaxed">If your Gemini-based application currently uses a third-party bridging library to reach MCP servers, it's worth migrating to the native SDK support post-I/O 2026 — native integration typically means better performance, official support, and one less third-party dependency to maintain.</p>`,
+    faqs: [
+      { question: "When did Gemini get native MCP support?", answer: "Google announced it at Google I/O in March 2026, built directly into the Gemini API and SDK." },
+      { question: "Do I still need a third-party library to call MCP servers from Gemini?", answer: "No — that was necessary before the March 2026 announcement. It's now native." },
+      { question: "Is A2A a replacement for MCP within Google's ecosystem?", answer: "No — Google has positioned Agent2Agent (A2A) and MCP as complementary protocols solving different problems, not competitors." }
+    ]
   },
   {
     slug: "best-mcp-server-tutorials",
-    title: "Best MCP Server Tutorials for Beginners (Community Curated)",
-    date: "2026-07-19",
+    title: "Where to Actually Learn MCP From Scratch (No Fabricated Rankings)",
+    date: "2026-07-21",
     category: "Getting Started",
     cluster: "getting-started",
-    readTime: "1 min read",
-    excerpt: "Community-voted list of the best MCP server tutorials for beginners.",
+    readTime: "5 min read",
+    excerpt: "Rather than an unverifiable 'top-voted' tutorial list, here's a real, ordered learning path — official docs first, then this site's own build-from-scratch guides, then DEV Community's real volume of independent tutorials.",
     keywords: ["MCP tutorial", "MCP learning", "MCP beginner tutorials"],
     ugcElements: ["User-submitted tutorials", "Rating system"],
-    internalLinks: ["model-context-protocol-beginner-guide", "mcp-server-vs-api-difference"],
-    content: `<p class="text-white/65 leading-relaxed">Our community has curated the best MCP tutorials from across the web. Here are the top-rated options:</p>`
+    internalLinks: ["model-context-protocol-beginner-guide", "mcp-server-vs-api-difference", "install-configure-first-mcp-server"],
+    content: `<p class="text-white/65 leading-relaxed">Rather than an unverifiable "community voted" ranking, here's a real, sensible learning order for going from zero to a working MCP server.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Step 1: Read the Official "What Is MCP" Page</h2>
+<p class="text-white/65 leading-relaxed">Start at modelcontextprotocol.io's own getting-started documentation — it's the primary source, written by the people who built the protocol, and it's genuinely beginner-accessible despite being the "official" doc.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Step 2: Understand the Core Concepts</h2>
+<p class="text-white/65 leading-relaxed">This site's own <a href="/blog/mcp-server-vs-api-difference" class="text-cyan-300 hover:text-cyan-200">MCP vs. API</a> and <a href="/blog/how-mcp-servers-work" class="text-cyan-300 hover:text-cyan-200">how MCP servers work</a> guides cover the conceptual foundation — the three-phase lifecycle, JSON-RPC basis, and tool/resource/prompt primitives — before you touch any code.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Step 3: Build a Real, Minimal Server</h2>
+<p class="text-white/65 leading-relaxed">This site's own <a href="/blog/install-configure-first-mcp-server" class="text-cyan-300 hover:text-cyan-200">first-server setup guide</a> walks through a complete, working stdio server with one tool, verified via the official MCP Inspector — a genuinely hands-on next step after the conceptual read.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Step 4: Study Real Production Examples</h2>
+<p class="text-white/65 leading-relaxed">Once the basics click, reading real vendor implementations (Zerodha's Kite MCP, Stripe's official server) teaches production patterns no beginner tutorial covers — scoping, safety splits, and authentication done for real, not just in a demo.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Step 5: DEV Community for Independent Perspectives</h2>
+<p class="text-white/65 leading-relaxed">DEV Community (dev.to) has a genuinely large, real volume of individually-written MCP tutorials and explainers — worth browsing once you have the fundamentals, since quality and depth vary by author and are worth judging directly rather than trusting an unverifiable ranking.</p>`
   },
   {
     slug: "mcp-certification-review",
-    title: "MCP Certification: Is It Worth It? Complete Review",
-    date: "2026-07-19",
+    title: "MCPA: The First Official MCP Certification, Explained",
+    date: "2026-07-21",
     category: "Getting Started",
     cluster: "getting-started",
-    readTime: "1 min read",
-    excerpt: "Comprehensive review of MCP certification programs and their value for developers.",
-    keywords: ["MCP certification", "MCP certification value", "Model Context Protocol certification"],
+    readTime: "5 min read",
+    excerpt: "The Agentic AI Foundation (part of the Linux Foundation) launched the MCP Associate (MCPA) — the first official, vendor-neutral certification dedicated to the protocol. Here's what it actually tests.",
+    keywords: ["MCP certification", "MCPA", "Model Context Protocol certification"],
     ugcElements: ["Certification experience sharing", "Value assessment"],
-    internalLinks: ["best-mcp-server-tutorials", "mcp-server-vs-api-difference"],
-    content: `<p class="text-white/65 leading-relaxed">The MCP certification landscape is evolving. Here's what you need to know before investing time.</p>`
+    internalLinks: ["mcp-books-essentials", "mcp-server-vs-api-difference", "mcp-documentation-resources"],
+    content: `<p class="text-white/65 leading-relaxed">The Agentic AI Foundation (AAIF), part of the Linux Foundation, launched the <strong class="text-white">Model Context Protocol Associate (MCPA)</strong> — the first official certification dedicated specifically to MCP, positioned as a vendor-neutral, foundational credential.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">What It Actually Tests</h2>
+<p class="text-white/65 leading-relaxed">Per AAIF's own description, a certified MCPA can reason about how MCP clients, servers, tools, resources, and prompts fit together, how messages flow through the protocol's interaction lifecycle, and — notably — how to think about trust boundaries, permissions, and safety when wiring agents up to real-world systems. That last part matters: it's not purely a "can you write a tool schema" test, it includes the security-reasoning side this site's own content emphasizes throughout.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Why "Vendor-Neutral" Is the Right Framing</h2>
+<p class="text-white/65 leading-relaxed">Because MCPA sits under the Linux Foundation's Agentic AI Foundation rather than any single AI vendor, it's positioned as testing understanding of the open protocol itself — not a specific company's implementation of it. Given MCP's steering committee includes multiple companies (Anthropic, and per this site's coverage of OpenAI's and Google's adoption, others too), a vendor-neutral certification is a sensible fit for the protocol's actual governance structure.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Is It Worth Pursuing?</h2>
+<p class="text-white/65 leading-relaxed">Being the first official certification in a genuinely new and fast-moving space, its market recognition is still being established — worth weighing against your actual goal. If you're building real MCP servers professionally, the deeper practical knowledge comes from doing the work (reading the official spec, building against the real SDKs, the pattern this entire site's technical content follows) rather than from certification study alone. If you want a structured, recognized credential to demonstrate foundational knowledge to an employer or client, MCPA is currently the only official option in this specific category.</p>`,
+    faqs: [
+      { question: "Is MCPA a real, official certification?", answer: "Yes — launched by the Agentic AI Foundation (AAIF), part of the Linux Foundation, described as the first official certification dedicated to MCP." },
+      { question: "What does MCPA actually test?", answer: "Understanding of MCP's core architecture (clients, servers, tools, resources, prompts), the interaction lifecycle, and trust/permission/safety reasoning for connecting agents to real systems." },
+      { question: "Is it vendor-specific to Anthropic or another company?", answer: "No — it's explicitly positioned as vendor-neutral, testing the open protocol rather than any single company's implementation." }
+    ]
   },
   {
     slug: "mcp-video-courses-ranked",
-    title: "MCP Video Courses: Free and Paid Options Ranked",
-    date: "2026-07-19",
+    title: "MCP Video Courses: Why We're Not Publishing a Ranked List",
+    date: "2026-07-21",
     category: "Getting Started",
     cluster: "getting-started",
-    readTime: "1 min read",
-    excerpt: "Ranked list of MCP video courses with pricing and skill level requirements.",
+    readTime: "3 min read",
+    excerpt: "We don't have verified enrollment, completion, or rating data for specific MCP video courses, so we're not fabricating a ranking — here's how to actually evaluate one before paying for it.",
     keywords: ["MCP video", "MCP course", "MCP online courses"],
     ugcElements: ["Course ratings by users", "Recommendation voting"],
-    internalLinks: ["best-mcp-server-tutorials", "mcp-certification-review"],
-    content: `<p class="text-white/65 leading-relaxed">Video courses offer hands-on learning for MCP development. Here's our ranked list:</p>`
+    internalLinks: ["best-mcp-server-tutorials", "mcp-certification-review", "mcp-books-essentials"],
+    content: `<p class="text-white/65 leading-relaxed">We don't have verified enrollment numbers, completion rates, or independently-audited ratings for specific MCP video courses — publishing a "ranked" list without that data would mean presenting an opinion as if it were measured fact, which isn't something we're going to do.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">How to Actually Evaluate a Course Before Paying</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li><strong class="text-white">Check the publish/update date against the protocol's real pace of change</strong> — a course recorded before Streamable HTTP replaced the older SSE combo transport, or before OpenAI's and Google's native adoption, may already be teaching outdated patterns.</li>
+  <li><strong class="text-white">Look for hands-on building, not just conceptual slides</strong> — the real skill gap in MCP is building and debugging a working server, which a lecture-only course won't cover.</li>
+  <li><strong class="text-white">Prefer instructors who show real vendor examples</strong> — a course that walks through an actual production server (rather than only a toy demo) teaches patterns that transfer to real work.</li>
+</ul>
+
+<h2 class="mt-8 text-2xl font-black text-white">The Free Alternative Worth Trying First</h2>
+<p class="text-white/65 leading-relaxed">Before paying for a course, this site's own <a href="/blog/install-configure-first-mcp-server" class="text-cyan-300 hover:text-cyan-200">free, hands-on first-server guide</a> plus the official MCP Inspector gets you to a genuinely working server without any cost — a reasonable bar to clear before deciding a paid course is worth it.</p>`
   },
   {
     slug: "mcp-documentation-resources",
-    title: "MCP Documentation: Official vs Community Resources",
-    date: "2026-07-19",
+    title: "MCP Documentation: The Real Official Sources, Ranked by Authority",
+    date: "2026-07-21",
     category: "Getting Started",
     cluster: "getting-started",
-    readTime: "1 min read",
-    excerpt: "Comparison of official MCP documentation with community-contributed resources.",
+    readTime: "5 min read",
+    excerpt: "For anything protocol-version-specific, the official spec beats every blog post — here's exactly where the real primary sources live, and when a community writeup is actually more useful.",
     keywords: ["MCP documentation", "MCP official docs", "MCP community docs"],
     ugcElements: ["Resource recommendations", "Documentation feedback"],
-    internalLinks: ["mcp-video-courses-ranked", "mcp-books-essentials"],
-    content: `<p class="text-white/65 leading-relaxed">Both official and community documentation have their place in MCP learning.</p>`
+    internalLinks: ["mcp-books-essentials", "mcp-github-repositories", "mcp-json-rpc-deep-dive"],
+    content: `<p class="text-white/65 leading-relaxed">Not all MCP documentation carries equal authority. For anything protocol-version-specific, primary sources beat secondary ones every time — here's the real hierarchy.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Primary, Authoritative Sources</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li><strong class="text-white">modelcontextprotocol.io</strong> — the official specification and getting-started documentation, built by the MCP steering group.</li>
+  <li><strong class="text-white">blog.modelcontextprotocol.io</strong> — where the steering group posts specification updates and release candidates directly.</li>
+  <li><strong class="text-white">github.com/modelcontextprotocol</strong> — the official GitHub organization, including the specification repo, reference servers, and official Python/TypeScript SDKs.</li>
+</ul>
+
+<h2 class="mt-8 text-2xl font-black text-white">Vendor Documentation — Authoritative for That Vendor's Integration</h2>
+<p class="text-white/65 leading-relaxed">For a specific vendor's own MCP server, that vendor's own docs are the primary source — Stripe's (docs.stripe.com/mcp), Zapier's (docs.zapier.com/mcp), PayU's (docs.payu.in/docs/payu-mcp-server), and so on, all covered individually elsewhere on this site. These are authoritative for that specific integration, though not for the protocol generally.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">When Community Resources Are Actually More Useful</h2>
+<p class="text-white/65 leading-relaxed">Community writeups (DEV Community tutorials, this site's own guides, third-party blog posts) tend to win on two things official docs often don't prioritize: worked, opinionated examples for a specific use case, and honest coverage of gaps or gotchas a vendor's own docs might gloss over. Official docs tell you what's supported; community writeups more often tell you what actually happened when someone built it.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">The Practical Rule</h2>
+<p class="text-white/65 leading-relaxed">Start with official docs for "what is this and does it exist," use community resources for "how do I actually build this," and always double-check anything version-specific (transport support, spec compliance) against the official source before shipping — protocol details have changed meaningfully even within the timeframe covered by this site's own research this year.</p>`
   },
   {
     slug: "mcp-books-essentials",
-    title: "MCP Books and eBooks: Essential Reading List",
-    date: "2026-07-19",
+    title: "Real MCP Books Published So Far (All on O'Reilly)",
+    date: "2026-07-21",
     category: "Getting Started",
     cluster: "getting-started",
-    readTime: "1 min read",
-    excerpt: "Essential books and eBooks for mastering Model Context Protocol development.",
+    readTime: "4 min read",
+    excerpt: "MCP is new enough that dedicated books are still few — but real ones exist, all published through O'Reilly, covering the protocol generally and language-specific (Python, TypeScript) implementations.",
     keywords: ["MCP book", "MCP eBook", "MCP reading list"],
     ugcElements: ["Book reviews", "Reading recommendations"],
-    internalLinks: ["mcp-documentation-resources", "mcp-certification-review"],
-    content: `<p class="text-white/65 leading-relaxed">For deeper understanding, these books provide comprehensive coverage of MCP concepts.</p>`
+    internalLinks: ["mcp-documentation-resources", "mcp-certification-review", "mcp-python-sdk-tutorial"],
+    content: `<p class="text-white/65 leading-relaxed">Because MCP is genuinely new (introduced November 2024), dedicated books are still a short list — but real, published titles exist, all currently through O'Reilly:</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">General Coverage</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li><strong class="text-white">"Model Context Protocol"</strong> — a general deep dive into MCP, AI agents, and the broader protocol landscape.</li>
+  <li><strong class="text-white">"AI Agents with MCP"</strong> — focused on how MCP redefined building and connecting AI agents to tools and data.</li>
+</ul>
+
+<h2 class="mt-8 text-2xl font-black text-white">Language-Specific Guides</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li><strong class="text-white">"Learn Model Context Protocol with Python"</strong> (published October 2025) — building scalable, secure MCP-integrated applications in Python with practical examples.</li>
+  <li><strong class="text-white">"Learn Model Context Protocol with TypeScript"</strong> (published November 2025) — the equivalent for developers, architects, and AI practitioners working in TypeScript.</li>
+</ul>
+
+<h2 class="mt-8 text-2xl font-black text-white">Why the Official Spec Still Matters More</h2>
+<p class="text-white/65 leading-relaxed">Given how quickly MCP's spec and major vendor integrations have moved even within this session's own research (Streamable HTTP replacing the older SSE combo transport, OpenAI's and Google's native adoption timelines, the MCPA certification only recently launching), any book risks being a step behind the live specification at modelcontextprotocol.io by the time you're reading it. Treat these books as solid conceptual foundations, and cross-check anything protocol-version-specific against the official spec directly.</p>`,
+    faqs: [
+      { question: "Are there real, published MCP books?", answer: "Yes — currently all through O'Reilly: a general \"Model Context Protocol\" title, \"AI Agents with MCP,\" and language-specific guides for Python (October 2025) and TypeScript (November 2025)." },
+      { question: "Should I trust a book over the official spec for exact protocol details?", answer: "No — MCP has evolved quickly (transport changes, new vendor adoptions), so cross-check anything version-specific against modelcontextprotocol.io directly." }
+    ]
   },
   {
     slug: "mcp-github-repositories",
-    title: "MCP GitHub Repositories: Best Projects to Fork",
-    date: "2026-07-19",
+    title: "Real MCP Repositories Worth Studying (Official and Vendor)",
+    date: "2026-07-21",
     category: "Getting Started",
     cluster: "getting-started",
-    readTime: "1 min read",
-    excerpt: "Curated list of the best open-source MCP server projects on GitHub.",
+    readTime: "5 min read",
+    excerpt: "Rather than an unverifiable 'best of' ranking, here are real, checkable MCP repositories worth studying — the official spec and reference servers, plus first-party vendor implementations covered elsewhere on this site.",
     keywords: ["MCP GitHub", "MCP open source", "MCP server GitHub"],
     ugcElements: ["Repo submissions", "Fork statistics"],
-    internalLinks: ["mcp-books-essentials", "contributing-to-mcp"],
-    content: `<p class="text-white/65 leading-relaxed">Explore these community-maintained MCP projects for learning and contribution opportunities.</p>`
+    internalLinks: ["mcp-books-essentials", "contributing-to-mcp", "mcp-server-hall-of-fame-best-implementations"],
+    content: `<p class="text-white/65 leading-relaxed">Rather than an unverifiable "top 10, ranked by stars" list, here are real, checkable repositories worth studying, organized by what makes each one instructive.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Official, Foundational</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li><strong class="text-white">modelcontextprotocol/modelcontextprotocol</strong> — the specification itself.</li>
+  <li><strong class="text-white">modelcontextprotocol/servers</strong> — official reference server implementations (Filesystem, Git, Fetch, Memory, and more), maintained by the steering group.</li>
+  <li><strong class="text-white">modelcontextprotocol/python-sdk</strong> and the equivalent TypeScript SDK — the official language SDKs.</li>
+</ul>
+
+<h2 class="mt-8 text-2xl font-black text-white">Real, First-Party Vendor Implementations</h2>
+<p class="text-white/65 leading-relaxed">For seeing how real companies structure production MCP servers, the vendor-published repos covered across this site are genuinely instructive — <code class="bg-gray-800 px-1 py-0.5 rounded">zerodha/kite-mcp-server</code> (hosted/self-hosted safety split), <code class="bg-gray-800 px-1 py-0.5 rounded">razorpay/razorpay-mcp-server</code>, <code class="bg-gray-800 px-1 py-0.5 rounded">atlassian/atlassian-mcp-server</code>, <code class="bg-gray-800 px-1 py-0.5 rounded">zapier/zapier-mcp</code>, and <code class="bg-gray-800 px-1 py-0.5 rounded">github/github-mcp-server</code> among them.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Why Studying Real Code Beats a Ranked List</h2>
+<p class="text-white/65 leading-relaxed">A "best repos" ranking is inherently a popularity or opinion judgment we're not going to fabricate confidence in. What's genuinely useful instead: reading a handful of these real implementations directly to see actual, working patterns for tool scoping, error handling, and transport choice — see this site's <a href="/blog/mcp-server-hall-of-fame-best-implementations" class="text-cyan-300 hover:text-cyan-200">notable implementations coverage</a> for specific, nameable design decisions worth studying in each.</p>`
   },
   {
     slug: "mcp-community-forums",
-    title: "MCP Community Forums: Where to Get Help",
-    date: "2026-07-19",
+    title: "Where Real MCP Community Discussion Happens",
+    date: "2026-07-21",
     category: "Getting Started",
     cluster: "getting-started",
-    readTime: "1 min read",
-    excerpt: "Comprehensive guide to MCP community forums and discussion platforms.",
+    readTime: "3 min read",
+    excerpt: "GitHub Discussions on the official repos, DEV Community, and vendor-specific developer forums — the real, checkable places MCP discussion actually happens, not an invented forum list.",
     keywords: ["MCP community", "MCP forums", "MCP support forums"],
     ugcElements: ["Forum introductions", "Community guidelines"],
-    internalLinks: ["mcp-github-repositories", "mcp-support-channels"],
-    content: `<p class="text-white/65 leading-relaxed">Join these active communities to get help and share your MCP journey.</p>`
+    internalLinks: ["mcp-github-repositories", "mcp-support-channels", "mcp-on-reddit"],
+    content: `<p class="text-white/65 leading-relaxed">Real MCP community discussion concentrates in a few genuinely checkable places, covered in more depth across this site's related community-discourse coverage:</p>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li><strong class="text-white">GitHub Discussions</strong> on the official modelcontextprotocol repos — the most reliable place to reach people who actually maintain the spec.</li>
+  <li><strong class="text-white">DEV Community (dev.to)</strong> — a genuinely large volume of individually-authored tutorials and explainers.</li>
+  <li><strong class="text-white">Vendor-specific developer forums</strong> — for a vendor's own MCP server (Stripe, Zapier, Atlassian, and others covered on this site), that vendor's own developer community/support channel is the right place for implementation-specific questions.</li>
+</ul>
+<p class="text-white/65 leading-relaxed">See this site's <a href="/blog/mcp-on-reddit" class="text-cyan-300 hover:text-cyan-200">Reddit-specific coverage</a> for why we're not recommending a specific subreddit, and the broader <a href="/blog/mcp-support-channels" class="text-cyan-300 hover:text-cyan-200">support channels breakdown</a> for official vs. community help paths.</p>`
   },
   {
     slug: "mcp-support-channels",
-    title: "MCP Support Channels: Official and Unofficial",
-    date: "2026-07-19",
+    title: "MCP Support: Official Channels vs. Community Help",
+    date: "2026-07-21",
     category: "Getting Started",
     cluster: "getting-started",
-    readTime: "1 min read",
-    excerpt: "List of official and unofficial support channels for MCP developers.",
+    readTime: "4 min read",
+    excerpt: "For protocol-level questions, GitHub Issues/Discussions on the official repos are the real official channel. For a specific vendor's server, that vendor's own support is the right first stop.",
     keywords: ["MCP support", "MCP help", "MCP developer support"],
     ugcElements: ["Support experience sharing", "Channel recommendations"],
-    internalLinks: ["mcp-community-forums", "mcp-on-reddit"],
-    content: `<p class="text-white/65 leading-relaxed">Find help through these official and community-run support channels.</p>`
+    internalLinks: ["mcp-community-forums", "mcp-on-reddit", "mcp-github-repositories"],
+    content: `<p class="text-white/65 leading-relaxed">Where you go for MCP help depends on what layer your question is actually about — the protocol itself, or a specific server built on top of it.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Protocol-Level Questions</h2>
+<p class="text-white/65 leading-relaxed">For questions about the specification itself — transport behavior, message format, spec version differences — GitHub Issues and Discussions on the official <code class="bg-gray-800 px-1 py-0.5 rounded">modelcontextprotocol/modelcontextprotocol</code> repository is the real, official channel where the steering group is actually present.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">SDK-Specific Questions</h2>
+<p class="text-white/65 leading-relaxed">For questions about the official Python or TypeScript SDK specifically, the respective SDK repository's own Issues section is more targeted than the general spec repo.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Vendor Server Questions</h2>
+<p class="text-white/65 leading-relaxed">If your question is about a specific company's MCP server — Stripe's, Zapier's, Zerodha's, any of the dozens covered across this site — that vendor's own developer support channel is the correct first stop, not a general MCP forum. They own that specific implementation; the MCP steering group doesn't.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Community, Informal Help</h2>
+<p class="text-white/65 leading-relaxed">For general "how do I approach this" questions rather than a specific bug, DEV Community's large body of MCP tutorials and explainers is a genuinely useful informal resource, alongside this site's own technical guides.</p>`
   },
   {
     slug: "mcp-on-reddit",
-    title: "MCP on Reddit: Best Subreddits and Discussions",
-    date: "2026-07-19",
+    title: "Is There a Dedicated MCP Subreddit? Being Honest About What We Found",
+    date: "2026-07-21",
     category: "Getting Started",
     cluster: "getting-started",
-    readTime: "1 min read",
-    excerpt: "Guide to the best Reddit communities discussing Model Context Protocol.",
-    keywords: ["MCP Reddit", "r/MCP", "MCP subreddit"],
+    readTime: "3 min read",
+    excerpt: "No single, clearly-dominant dedicated MCP subreddit was confirmed — real day-to-day MCP discussion concentrates on GitHub Discussions, DEV Community, and X/Twitter instead.",
+    keywords: ["MCP Reddit", "MCP community", "MCP subreddit"],
     ugcElements: ["Reddit thread highlights", "Community discussions"],
-    internalLinks: ["mcp-support-channels", "contributing-to-mcp"],
-    content: `<p class="text-white/65 leading-relaxed">These Reddit communities are active hubs for MCP discussion and support.</p>`
+    internalLinks: ["mcp-community-forums", "mcp-server-community-join-the-conversation", "contributing-to-mcp"],
+    content: `<p class="text-white/65 leading-relaxed">Rather than naming specific subreddits we can't verify are actually active MCP hubs, here's the honest finding: no single, clearly-dominant dedicated MCP subreddit was confirmed in real research for this coverage. If one exists and is genuinely active, it wasn't among the sources that surfaced.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Where Real Discussion Actually Concentrates</h2>
+<p class="text-white/65 leading-relaxed">MCP's day-to-day developer discussion is more concentrated on: <strong class="text-white">GitHub Discussions</strong> on the official modelcontextprotocol/modelcontextprotocol and modelcontextprotocol/servers repos, <strong class="text-white">DEV Community</strong> (dev.to), which has a genuinely large volume of real, individually-authored MCP tutorials and explainers, and <strong class="text-white">X/Twitter</strong>, where protocol announcements and vendor adoption news tend to break first.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Why This Matters</h2>
+<p class="text-white/65 leading-relaxed">If you're specifically looking for community Q&A and troubleshooting help, GitHub Discussions on the official repos is the most reliable real starting point — it's where the people who actually maintain the specification and reference implementations are present, rather than a general-purpose forum where answer quality varies.</p>`,
+    faqs: [
+      { question: "Is there an official r/ModelContextProtocol subreddit?", answer: "No dedicated, clearly-active MCP subreddit was confirmed in research for this coverage — real discussion concentrates on GitHub Discussions and DEV Community instead." },
+      { question: "Where's the best place to ask an MCP implementation question?", answer: "GitHub Discussions on the official modelcontextprotocol/modelcontextprotocol or modelcontextprotocol/servers repositories, where maintainers are actually present." }
+    ]
   },
   {
     slug: "contributing-to-mcp",
-    title: "Contributing to MCP: How to Join the Open Source Movement",
-    date: "2026-07-19",
+    title: "How to Actually Contribute to MCP's Open Source Projects",
+    date: "2026-07-21",
     category: "Getting Started",
     cluster: "getting-started",
-    readTime: "1 min read",
-    excerpt: "Guide to contributing to MCP open source projects and the broader ecosystem.",
+    readTime: "5 min read",
+    excerpt: "MCP's specification, reference servers, and SDKs are all real, open-source, and genuinely accepting contributions — here's the real path from first PR to meaningful involvement.",
     keywords: ["MCP open source", "MCP contribution", "Contribute to MCP"],
     ugcElements: ["Contributor stories", "Contribution guides"],
-    internalLinks: ["mcp-github-repositories", "mcp-community-forums"],
-    content: `<p class="text-white/65 leading-relaxed">Join the MCP open source movement by contributing to repositories and documentation.</p>`
+    internalLinks: ["mcp-github-repositories", "mcp-community-forums", "mcp-server-hall-of-fame-best-implementations"],
+    content: `<p class="text-white/65 leading-relaxed">MCP's core repositories — the specification, reference servers, and official SDKs — are all genuinely open source under the modelcontextprotocol GitHub organization, and like any real open-source project, they accept contributions through standard GitHub workflows.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Where to Start: Reference Servers, Not the Spec</h2>
+<p class="text-white/65 leading-relaxed">The specification itself (modelcontextprotocol/modelcontextprotocol) is high-stakes — changes there affect every implementation across the ecosystem, so it moves carefully and deliberately. A more approachable starting point is the reference servers repo (modelcontextprotocol/servers) or the SDK repos, where bug fixes, documentation improvements, and small feature additions are the normal, welcomed size of first contribution.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">The Real Path</h2>
+<ol class="text-white/65 leading-relaxed list-decimal pl-5 space-y-1">
+  <li>Read the repository's own CONTRIBUTING guidelines — this varies per repo and is the actual authoritative source on process, not a general guide like this one.</li>
+  <li>Start with a genuinely small, well-scoped fix — a documentation typo, a clear bug with a reproducible test case, or a small missing feature flagged in an existing issue.</li>
+  <li>Engage with existing issues before opening a new one — check whether your bug or idea is already tracked, and comment before duplicating effort.</li>
+  <li>Follow the project's PR template and testing requirements exactly — official, widely-used repos generally have real CI gates, and a PR that doesn't pass them won't get reviewed quickly regardless of how good the underlying change is.</li>
+</ol>
+
+<h2 class="mt-8 text-2xl font-black text-white">Beyond Code: Real, Valuable Non-Code Contributions</h2>
+<p class="text-white/65 leading-relaxed">Building and publishing your own well-documented MCP server (even a small one) is itself a real contribution to the ecosystem — the same way the vendor and community servers covered across this site's own coverage collectively demonstrate the protocol's range. Writing genuinely accurate technical content (not padded, not fabricated) about real implementations is another underrated way to contribute, given how much low-quality, unverified MCP content already exists.</p>`
   },
   {
     slug: "mcp-python-sdk-tutorial",
@@ -807,7 +992,23 @@ await server.connect(transport);</code></pre>
     keywords: ["MCP Python", "MCP Python SDK", "Python MCP server"],
     ugcElements: ["Python code sharing", "Implementation examples"],
     internalLinks: ["model-context-protocol-beginner-guide", "mcp-nodejs-implementation"],
-    content: `<p class="text-white/65 leading-relaxed">Build MCP servers in Python with our comprehensive SDK guide.</p>`
+    content: `<p class="text-white/65 leading-relaxed">Build production-ready MCP servers in Python using the official SDK and FastMCP.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">What the official Python SDK gives you</h2>
+<p class="text-white/65 leading-relaxed">The maintained Python SDK provides a high-level server implementation, tool registration, and stdio transport out of the box. You should not hand-roll JSON-RPC framing for normal use cases; the SDK’s goal is to remove that work entirely while keeping JSON Schema generation predictable.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Create and run a server</h2>
+<pre class="bg-gray-900 p-4 rounded-lg overflow-x-auto"><code class="language-python">from mcp.server.fastmcp import FastMCP
+
+mcp = FastMCP("demo-server")
+
+@mcp.tool()
+def hello(name: str) -> str:
+    return f"Hello, {name}"
+
+if __name__ == "__main__":
+    mcp.run()</code></pre>
+<p class="text-white/65 leading-relaxed">Run it locally, then connect from Claude Desktop or the MCP Inspector. Keep implementation code focused on business logic; let the SDK own transport, discovery, and schema generation.</p>`
   },
   {
     slug: "mcp-javascript-sdk-tutorial",
@@ -820,7 +1021,26 @@ await server.connect(transport);</code></pre>
     keywords: ["MCP JavaScript", "MCP TypeScript", "TypeScript MCP server"],
     ugcElements: ["JS project showcases", "Code examples"],
     internalLinks: ["mcp-python-sdk-tutorial", "mcp-nodejs-implementation"],
-    content: `<p class="text-white/65 leading-relaxed">Build MCP servers in JavaScript/TypeScript with our step-by-step tutorial.</p>`
+    content: `<p class="text-white/65 leading-relaxed">Build MCP servers in JavaScript/TypeScript using the official SDK with Zod-validated tools.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Recommended setup</h2>
+<p class="text-white/65 leading-relaxed">Use TypeScript for stronger schemas and better model-readable tool descriptions. The SDK exposes a server class, tool decorators/registration, and a stdio transport. Start with one small tool, validate arguments with Zod, and avoid custom JSON-RPC handling unless you have a specific transport need.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Minimal working example</h2>
+<pre class="bg-gray-900 p-4 rounded-lg overflow-x-auto"><code class="language-typescript">import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import { z } from "zod";
+
+const server = new McpServer({ name: "js-demo", version: "1.0.0" });
+
+server.tool(
+  "hello",
+  "Greet someone",
+  { name: z.string() },
+  async ({ name }) => ({ content: [{ type: "text", text: "Hello, " + name }] })
+);
+
+await server.connect(new StdioServerTransport());</code></pre>`
   },
   {
     slug: "mcp-nodejs-implementation",
@@ -833,7 +1053,20 @@ await server.connect(transport);</code></pre>
     keywords: ["MCP Node.js", "Node.js MCP server", "MCP server Node.js"],
     ugcElements: ["NPM package recommendations", "Setup guides"],
     internalLinks: ["mcp-javascript-sdk-tutorial", "mcp-server-vs-api-difference"],
-    content: `<p class="text-white/65 leading-relaxed">Implement MCP servers in Node.js with this comprehensive setup guide.</p>`
+    content: `<p class="text-white/65 leading-relaxed">Implement MCP servers in Node.js with a minimal, production-leaning setup.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Project structure</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li>Keep transport, tools, and server startup clearly separated.</li>
+  <li>Load configuration from environment variables; never hardcode secrets.</li>
+  <li>Add a small health tool so clients can verify the server started correctly.</li>
+</ul>
+
+<h2 class="mt-8 text-2xl font-black text-white">Bootstrap steps</h2>
+<pre class="bg-gray-900 p-4 rounded-lg overflow-x-auto"><code class="language-bash">mkdir my-mcp-server && cd my-mcp-server
+npm init -y
+npm install @modelcontextprotocol/sdk zod
+npm install -D typescript @types/node tsx</code></pre>`
   },
   {
     slug: "mcp-cli-tools-guide",
@@ -846,7 +1079,15 @@ await server.connect(transport);</code></pre>
     keywords: ["MCP CLI", "MCP command line", "MCP tools"],
     ugcElements: ["CLI tips and tricks", "Command examples"],
     internalLinks: ["mcp-nodejs-implementation", "mcp-client-libraries"],
-    content: `<p class="text-white/65 leading-relaxed">Master the MCP CLI for efficient development and deployment workflows.</p>`
+    content: `<p class="text-white/65 leading-relaxed">Use CLI workflows to create, inspect, and debug MCP servers faster.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Common CLI paths</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li>Create a new project from a template instead of copying files manually.</li>
+  <li>Use the inspector to exercise tools without wiring a full client.</li>
+  <li>Run servers with stdio and pipe output carefully; debug to stderr.</li>
+  <li>Prefer deterministic scripts for repeated troubleshooting steps.</li>
+</ul>`
   },
   {
     slug: "mcp-client-libraries",
@@ -859,7 +1100,15 @@ await server.connect(transport);</code></pre>
     keywords: ["MCP client", "MCP client library", "MCP libraries"],
     ugcElements: ["Library comparison voting", "Language recommendations"],
     internalLinks: ["mcp-cli-tools-guide", "mcp-server-vs-api-difference"],
-    content: `<p class="text-white/65 leading-relaxed">Choose the right MCP client library for your development stack.</p>`
+    content: `<p class="text-white/65 leading-relaxed">Compare MCP client library options by hosted runtime, language, and transport support.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">What to compare</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li>Official SDK client compatibility with local stdio and remote SSE.</li>
+  <li>Supported transport modes and reconnection behavior.</li>
+  <li>How discovery, prompts, resources, and tools are surfaced.</li>
+  <li>Auth extensibility if the client connects to remote servers.</li>
+</ul>`
   },
   {
     slug: "mcp-server-security-checklist",
@@ -876,14 +1125,14 @@ await server.connect(transport);</code></pre>
 
 <h2 class="mt-8 text-2xl font-black text-white">Authentication & Access Control</h2>
 <ul class="text-white/65 leading-relaxed">
-  <li>Implement OAuth 2.0 or API key authentication for remote servers</li>
-  <li>Use short-lived tokens with automatic refresh</li>
-  <li>Implement role-based access control (RBAC)</li>
-  <li>Enable audit logging for all tool invocations</li>
+  <li>Implement OAuth 2.1 with PKCE for user-facing servers and scoped API keys for internal tools.</li>
+  <li>Use short-lived access tokens with refresh flows instead of long-lived static keys.</li>
+  <li>Apply least-privilege tool scoping and approval gating for write or destructive tools.</li>
+  <li>Enable audit logging for init, tool calls, errors, and auth events.</li>
 </ul>
 
 <h2 class="mt-8 text-2xl font-black text-white">Network Security</h2>
-<p class="text-white/65 leading-relaxed">Configure TLS 1.3 for all remote transports, implement rate limiting, and use IP allowlists for sensitive operations.</p>`,
+<p class="text-white/65 leading-relaxed">Require TLS 1.3 for remote transports, enforce HTTPS, implement rate limiting, and use IP allowlists for sensitive operations.</p>`,
     faqs: [
           {
                 "question": "Is OAuth 2.0 required for every MCP server?",
@@ -1328,8 +1577,8 @@ server.setRequestHandler("tools/call", async (request, { role }) => {
     internalLinks: ["how-to-deploy-mcp-server-to-production", "mcp-devops-automating-server-management"],
     content: `<p class="text-white/65 leading-relaxed">Automate your MCP server deployment with CI/CD pipelines.</p>
 
-<h2 class="mt-8 text-2xl font-black text-white">GitHub Actions Pipeline</h2>
-<pre class="bg-gray-900 p-4 rounded-lg"><code class="language-yaml">name: Deploy MCP Server
+<h2 class="mt-8 text-2xl font-black text-white">Recommended pipeline</h2>
+<pre class="bg-gray-900 p-4 rounded-lg overflow-x-auto"><code class="language-yaml">name: deploy-mcp
 on:
   push:
     branches: [main]
@@ -1344,7 +1593,8 @@ jobs:
       - run: npm ci
       - run: npm test
       - run: npm run build
-      - run: npm run deploy</code></pre>`
+      - run: npm run deploy</code></pre>
+<p class="text-white/65 leading-relaxed">Keep pipeline steps narrow: install, test, build, deploy. Add environment gating and secrets only through the host platform; avoid baking credentials into steps or repo configs.</p>`
   },
   {
     slug: "mcp-devops-automating-server-management",
@@ -1357,10 +1607,15 @@ jobs:
     keywords: ["MCP DevOps", "MCP server management", "MCP automation"],
     ugcElements: ["DevOps tool recommendations", "Automation scripts"],
     internalLinks: ["mcp-ci-cd-pipeline-setup", "mcp-testing-before-deployment"],
-    content: `<p class="text-white/65 leading-relaxed">DevOps automation reduces operational overhead for MCP server deployments.</p>
+    content: `<p class="text-white/65 leading-relaxed">DevOps automation reduces operational overhead and makes MCP deployments repeatable.</p>
 
-<h2 class="mt-8 text-2xl font-black text-white">Infrastructure as Code</h2>
-<p class="text-white/65 leading-relaxed">Use Terraform or Pulumi to manage MCP server infrastructure, ensuring reproducible deployments and version-controlled configurations.</p>`
+<h2 class="mt-8 text-2xl font-black text-white">Useful automation targets</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li>Canary or staged rollouts instead of direct-to-production deploys.</li>
+  <li>Automated rollback tied to failed health checks or error-rate spikes.</li>
+  <li>Scheduled token rotation and dependency patching.</li>
+  <li>Immutable infrastructure or container image promotion over in-place edits.</li>
+</ul>`
   },
   {
     slug: "mcp-testing-before-deployment",
@@ -1373,14 +1628,14 @@ jobs:
     keywords: ["test MCP server", "MCP server testing", "MCP testing strategy"],
     ugcElements: ["Testing framework sharing", "Test suite examples"],
     internalLinks: ["mcp-devops-automating-server-management", "mcp-server-security-checklist"],
-    content: `<p class="text-white/65 leading-relaxed">Thorough testing prevents production issues and security vulnerabilities.</p>
+    content: `<p class="text-white/65 leading-relaxed">Use a layered testing strategy so MCP server changes land safely.</p>
 
-<h2 class="mt-8 text-2xl font-black text-white">Test Categories</h2>
-<ul class="text-white/65 leading-relaxed">
-  <li><strong>Unit Tests:</strong> Individual tool and resource function tests</li>
-  <li><strong>Integration Tests:</strong> End-to-end tool execution flows</li>
-  <li><strong>Security Tests:</strong> Authentication, authorization, and injection tests</li>
-  <li><strong>Load Tests:</strong> Concurrent request handling and rate limiting</li>
+<h2 class="mt-8 text-2xl font-black text-white">Practical test layers</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li>Unit tests for tool argument validation and business logic.</li>
+  <li>Integration tests for JSON-RPC call flow, transport, and error mapping.</li>
+  <li>Security tests for auth bypass, injection, and rate-limit behavior.</li>
+  <li>Load or smoke tests for p50/p95 latency and memory growth under repeated calls.</li>
 </ul>`
   },
   {
@@ -1397,11 +1652,11 @@ jobs:
     content: `<p class="text-white/65 leading-relaxed">Observability is critical for understanding MCP server behavior in production.</p>
 
 <h2 class="mt-8 text-2xl font-black text-white">Key Metrics to Monitor</h2>
-<ul class="text-white/65 leading-relaxed">
-  <li>Tool execution latency (p50, p90, p99)</li>
-  <li>Error rates and failure patterns</li>
-  <li>Resource consumption (CPU, memory, network)</li>
-  <li>Authentication success/failure rates</li>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li>Tool execution latency by tool name, plus p50/p90/p99.</li>
+  <li>Error rates separated into transport, auth, validation, and downstream failures.</li>
+  <li>Resource consumption plus request concurrency.</li>
+  <li>Auth success/failure and token refresh failures.</li>
 </ul>`
   },
   {
@@ -1417,8 +1672,8 @@ jobs:
     internalLinks: ["mcp-server-monitoring-setup", "mcp-debugging-troubleshooting-common-issues"],
     content: `<p class="text-white/65 leading-relaxed">Structured logging enables effective debugging and compliance reporting.</p>
 
-<h2 class="mt-8 text-2xl font-black text-white">Log Structure</h2>
-<pre class="bg-gray-900 p-4 rounded-lg"><code class="language-json">{
+<h2 class="mt-8 text-2xl font-black text-white">Log structure</h2>
+<pre class="bg-gray-900 p-4 rounded-lg overflow-x-auto"><code class="language-json">{
   "timestamp": "2026-07-19T10:30:00Z",
   "level": "INFO",
   "event": "tool_execution",
@@ -1426,7 +1681,8 @@ jobs:
   "user": "user-123",
   "duration_ms": 45,
   "success": true
-}</code></pre>`
+}</code></pre>
+<p class="text-white/65 leading-relaxed">Log enough to reconstruct what happened, but never log raw secrets or full sensitive payloads. Redact credentials, tokens, and sensitive PII before writing logs.</p>`
   },
   {
     slug: "mcp-debugging-troubleshooting-common-issues",
@@ -1439,14 +1695,14 @@ jobs:
     keywords: ["MCP debugging", "MCP troubleshooting", "debug MCP server"],
     ugcElements: ["Debug story sharing", "Troubleshooting guides"],
     internalLinks: ["mcp-logging-best-practices", "mcp-server-health-checks"],
-    content: `<p class="text-white/65 leading-relaxed">Systematic debugging approaches help resolve MCP server issues quickly.</p>
+    content: `<p class="text-white/65 leading-relaxed">Use a layered debugging checklist when MCP tool calls misbehave.</p>
 
-<h2 class="mt-8 text-2xl font-black text-white">Common Issues</h2>
-<ul class="text-white/65 leading-relaxed">
-  <li><strong>Connection refused:</strong> Check transport configuration and server status</li>
-  <li><strong>Tool timeout:</strong> Investigate slow database queries or API calls</li>
-  <li><strong>Authentication failures:</strong> Verify token validity and scope permissions</li>
-  <li><strong>Resource not found:</strong> Check resource URI patterns and permissions</li>
+<h2 class="mt-8 text-2xl font-black text-white">Fast checks</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li>Confirm the transport expected by the client matches the server.</li>
+  <li>Re-run with the MCP Inspector to remove client variables.</li>
+  <li>Check stderr/stdout separation; non-JSON output on stdout breaks JSON-RPC.</li>
+  <li>Inspect authorization, tool-name typos, and serialization mismatches.</li>
 </ul>`
   },
   {
@@ -1460,19 +1716,15 @@ jobs:
     keywords: ["MCP health check", "MCP server health", "MCP health endpoint"],
     ugcElements: ["Health check scripts", "Monitoring integrations"],
     internalLinks: ["mcp-debugging-troubleshooting-common-issues", "mcp-error-handling-patterns"],
-    content: `<p class="text-white/65 leading-relaxed">Health checks enable automated monitoring and alerting for MCP servers.</p>
+    content: `<p class="text-white/65 leading-relaxed">Health checks should return concise status information that load balancers and uptime monitors can verify quickly.</p>
 
-<h2 class="mt-8 text-2xl font-black text-white">Health Check Response</h2>
-<pre class="bg-gray-900 p-4 rounded-lg"><code class="language-json">{
-  "status": "healthy",
-  "version": "1.0.0",
-  "uptime": 86400,
-  "checks": {
-    "database": "ok",
-    "api": "ok",
-    "memory": "ok"
-  }
-}</code></pre>`
+<h2 class="mt-8 text-2xl font-black text-white">Recommended checks</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li>Process and transport startup status</li>
+  <li>Dependency health: database, cache, and external APIs</li>
+  <li>Tool registration count and last-reload timestamp</li>
+  <li>Recent error rate or failed-auth count since last health probe</li>
+</ul>`
   },
   {
     slug: "mcp-error-handling-patterns",
@@ -1485,21 +1737,15 @@ jobs:
     keywords: ["MCP error handling", "MCP production errors", "MCP error patterns"],
     ugcElements: ["Error solution database", "Error handling examples"],
     internalLinks: ["mcp-server-health-checks", "mcp-server-security-checklist"],
-    content: `<p class="text-white/65 leading-relaxed">Proper error handling prevents information leakage and improves debugging.</p>
+    content: `<p class="text-white/65 leading-relaxed">Map failures to stable error codes and safe, client-actionable messages.</p>
 
-<h2 class="mt-8 text-2xl font-black text-white">Error Response Pattern</h2>
-<pre class="bg-gray-900 p-4 rounded-lg"><code class="language-json">{
-  "jsonrpc": "2.0",
-  "id": 1,
-  "error": {
-    "code": -32603,
-    "message": "Internal error",
-    "data": {
-      "type": "database_error",
-      "retryable": true
-    }
-  }
-}</code></pre>`
+<h2 class="mt-8 text-2xl font-black text-white">Good practice</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li>Use standard JSON-RPC error codes when they describe the failure.</li>
+  <li>Return structured retry hints in <code>error.data</code> when safe to retry.</li>
+  <li>Never echo raw exception strings, stack traces, or provider secrets to clients.</li>
+  <li>Log detail server-side; send only what the model needs in tool output.</li>
+</ul>`
   },
   {
     slug: "mcp-server-security-audit",
@@ -1512,15 +1758,15 @@ jobs:
     keywords: ["MCP security audit", "MCP audit", "MCP server audit"],
     ugcElements: ["Audit checklist downloads", "Audit reports"],
     internalLinks: ["mcp-server-health-checks", "mcp-compliance-gdpr-soc2"],
-    content: `<p class="text-white/65 leading-relaxed">Regular security audits ensure MCP servers remain secure over time.</p>
+    content: `<p class="text-white/65 leading-relaxed">Run audits at least quarterly and after any significant auth or data-path change.</p>
 
-<h2 class="mt-8 text-2xl font-black text-white">Audit Steps</h2>
-<ol class="text-white/65 leading-relaxed">
-  <li>Review authentication and authorization configurations</li>
-  <li>Audit log retention and access controls</li>
-  <li>Verify TLS certificate validity and cipher suites</li>
-  <li>Test for common vulnerabilities (OWASP Top 10)</li>
-  <li>Review third-party dependencies for known CVEs</li>
+<h2 class="mt-8 text-2xl font-black text-white">Practical audit checklist</h2>
+<ol class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li>Review auth method, token lifetimes, scopes, and fallback behavior.</li>
+  <li>Audit log retention, redaction, access, and export readiness.</li>
+  <li>Verify TLS settings, certificate rotation process, and HSTS if applicable.</li>
+  <li>Check dependencies and transitive packages against known vulnerabilities.</li>
+  <li>Review least-privilege tool design, approval gating, and destructive-action handling.</li>
 </ol>`
   },
   {
@@ -1534,14 +1780,13 @@ jobs:
     keywords: ["MCP compliance", "GDPR MCP", "SOC2 MCP", "MCP enterprise compliance"],
     ugcElements: ["Compliance templates", "Regulation guides"],
     internalLinks: ["mcp-server-security-audit", "mcp-governance-framework"],
-    content: `<p class="text-white/65 leading-relaxed">Enterprise MCP servers must comply with multiple regulatory frameworks.</p>
+    content: `<p class="text-white/65 leading-relaxed">Compliance is easier to demonstrate when the server was designed for audit from day one.</p>
 
-<h2 class="mt-8 text-2xl font-black text-white">GDPR Requirements</h2>
-<ul class="text-white/65 leading-relaxed">
-  <li>Data minimization: Only collect necessary data in tool responses</li>
-  <li>Right to erasure: Implement data deletion workflows</li>
-  <li>Data portability: Provide exportable tool data formats</li>
-  <li>Privacy by design: Default privacy settings in server config</li>
+<h2 class="mt-8 text-2xl font-black text-white">Framework coverage</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li>GDPR: purpose limitation, minimisation, retention, deletion workflows, and data portability.</li>
+  <li>SOC 2: access control, change management, logging, and vendor oversight.</li>
+  <li>India practice alignment: data-residency preferences, consent handling, and incident response.</li>
 </ul>`
   },
   {
@@ -1555,14 +1800,14 @@ jobs:
     keywords: ["MCP governance", "MCP enterprise governance", "MCP governance framework"],
     ugcElements: ["Governance policies", "Policy templates"],
     internalLinks: ["mcp-compliance-gdpr-soc2", "mcp-policy-as-code"],
-    content: `<p class="text-white/65 leading-relaxed">Enterprise governance ensures consistent MCP server management.</p>
+    content: `<p class="text-white/65 leading-relaxed">A governance framework should be lightweight enough to execute, not just document.</p>
 
-<h2 class="mt-8 text-2xl font-black text-white">Governance Components</h2>
-<ul class="text-white/65 leading-relaxed">
-  <li><strong>Policy Management:</strong> Centralized tool and resource approval process</li>
-  <li><strong>Access Control:</strong> Role-based permissions and audit trails</li>
-  <li><strong>Change Management:</strong> Version-controlled server configurations</li>
-  <li><strong>Compliance Monitoring:</strong> Automated compliance checks and reporting</li>
+<h2 class="mt-8 text-2xl font-black text-white">Workable model</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li>Tool approval board with documented scope and expiry.</li>
+  <li>Role-based access plus per-tool allowlists for high-risk operations.</li>
+  <li>Immutable config releases with rollback and post-deploy health gates.</li>
+  <li>Quarterly review cadence driven by audit logs, not calendar alone.</li>
 </ul>`
   },
   {
@@ -1616,20 +1861,24 @@ allow {
     content: `<p class="text-white/65 leading-relaxed">Building MCP servers from scratch gives you complete control and understanding of the protocol.</p>
 
 <h2 class="mt-8 text-2xl font-black text-white">Architecture Overview</h2>
-<p class="text-white/65 leading-relaxed">An MCP server consists of three main components: the transport layer, the tool registry, and the resource manager.</p>
+<p class="text-white/65 leading-relaxed">A minimal server has three moving parts: transport, tool/resource definitions, and startup/tool-call lifecycle handling. Start from the official SDK rather than raw JSON-RPC unless you need a custom transport or legacy runtime.</p>
 
-<h2 class="mt-8 text-2xl font-black text-white">TypeScript Implementation</h2>
-<pre class="bg-gray-900 p-4 rounded-lg"><code class="language-typescript">import { Server } from "@modelcontextprotocol/sdk/server/index.js";
+<h2 class="mt-8 text-2xl font-black text-white">Recommended first implementation</h2>
+<pre class="bg-gray-900 p-4 rounded-lg overflow-x-auto"><code class="language-typescript">import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import { z } from "zod";
 
-const server = new Server({
-  name: "my-mcp-server",
-  version: "1.0.0",
-}, {
-  capabilities: {
-    tools: {},
-    resources: {}
-  }
-});</code></pre>`
+const server = new McpServer({ name: "my-first-server", version: "1.0.0" });
+
+server.tool(
+  "status",
+  "Return simple server status",
+  { format: z.enum(["short","detailed"]).optional() },
+  async ({ format }) => ({ content: [{ type: "text", text: format === "detailed" ? "ok" : "up" }] })
+);
+
+await server.connect(new StdioServerTransport());</code></pre>
+<p class="text-white/65 leading-relaxed">From here, add one tool, validate it with the MCP Inspector, then wire to Claude Desktop. Avoid adding auth, persistence, or extra transports before the basic tool-call flow works end to end.</p>`
   },
   {
     slug: "mcp-development-best-practices",
@@ -1645,11 +1894,11 @@ const server = new Server({
     content: `<p class="text-white/65 leading-relaxed">Follow these best practices to build maintainable MCP servers.</p>
 
 <h2 class="mt-8 text-2xl font-black text-white">Code Organization</h2>
-<ul class="text-white/65 leading-relaxed">
-  <li>Separate tool definitions from business logic</li>
-  <li>Use dependency injection for database connections</li>
-  <li>Implement proper error handling and logging</li>
-  <li>Write unit tests for each tool function</li>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li>Separate transport, tool registration, and business logic into distinct modules.</li>
+  <li>Use dependency injection or environment-bound config for external connections.</li>
+  <li>Log structured JSON with tool name, caller context if available, latency, and success status.</li>
+  <li>Keep tool schemas stable; add fields rather than changing existing semantics.</li>
 </ul>`
   },
   {
@@ -1666,17 +1915,17 @@ const server = new Server({
     content: `<p class="text-white/65 leading-relaxed">Understanding patterns helps write better MCP servers faster.</p>
 
 <h2 class="mt-8 text-2xl font-black text-white">Recommended Patterns</h2>
-<ul class="text-white/65 leading-relaxed">
-  <li><strong>Factory Pattern:</strong> For creating tool instances with configuration</li>
-  <li><strong>Middleware Pattern:</strong> For authentication and logging</li>
-  <li><strong>Strategy Pattern:</strong> For supporting multiple transport protocols</li>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li><strong>Registry pattern:</strong> one place declares tool metadata and handler binding.</li>
+  <li><strong>Middleware pattern:</strong> apply auth, logging, rate limiting, and redaction around tool execution.</li>
+  <li><strong>Adapter pattern:</strong> translate external APIs into stable local tool semantics.</li>
 </ul>
 
 <h2 class="mt-8 text-2xl font-black text-white">Anti-Patterns to Avoid</h2>
-<ul class="text-white/65 leading-relaxed">
-  <li>Hardcoding credentials in tool implementations</li>
-  <li>Bloated tool functions that do too much</li>
-  <li>Ignoring timeout and retry configurations</li>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li>Mixing business logic into tool callbacks without validation.</li>
+  <li>Returning secrets or raw provider responses directly to the model.</li>
+  <li>Creating one mega-tool instead of smaller, focused tools.</li>
 </ul>`
   },
   {
@@ -1693,10 +1942,10 @@ const server = new Server({
     content: `<p class="text-white/65 leading-relaxed">Choose the right architecture pattern for your MCP server requirements.</p>
 
 <h2 class="mt-8 text-2xl font-black text-white">Monolithic Architecture</h2>
-<p class="text-white/65 leading-relaxed">Single process handling all tools and resources. Best for simple use cases and development.</p>
+<p class="text-white/65 leading-relaxed">Single process handling all tools and resources. Best for small teams and early prototypes because deployment and debugging stay simple. Avoid when tool domains, security boundaries, or scaling needs diverge.</p>
 
-<h2 class="mt-8 text-2xl font-black text-white">Microservices Architecture</h2>
-<p class="text-white/65 leading-relaxed">Each tool or resource group runs as a separate service. Better for scaling and team collaboration.</p>`
+<h2 class="mt-8 text-2xl font-black text-white">Modular/Microservice Architecture</h2>
+<p class="text-white/65 leading-relaxed">Separate tool domains into processes or services. Better when different tools have different scale, auth, or data residency requirements.</p>`
   },
   {
     slug: "mcp-workflow-automation",
@@ -2023,7 +2272,14 @@ const server = new Server({
     keywords: ["Azure MCP", "MCP Azure server", "Azure Functions MCP"],
     ugcElements: ["Azure templates", "App Service examples"],
     internalLinks: ["mcp-server-on-aws", "mcp-server-on-gcp"],
-    content: `<p class="text-white/65 leading-relaxed">Azure provides multiple options for MCP server deployment.</p>`
+    content: `<p class="text-white/65 leading-relaxed">Azure hosting options for MCP servers include Functions, App Service, and container-based deployments.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Common choices</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li>Functions for lightweight tool endpoints with event-driven scaling.</li>
+  <li>App Service for long-running stdio bridging or managed container workloads.</li>
+  <li>Container Apps or AKS when you need predictable networking and separate tool services.</li>
+</ul>`
   },
   {
     slug: "mcp-server-on-gcp",
@@ -2434,16 +2690,16 @@ spec:
   },
   {
     slug: "mcp-server-for-razorpay",
-    title: "MCP Server for Razorpay: Indian Payment Integration",
-    date: "2026-07-19",
+    title: "Razorpay MCP: See Our Full Coverage",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "1 min read",
-    excerpt: "Building MCP servers for Razorpay payment processing in India.",
+    readTime: "2 min read",
+    excerpt: "This covers the same ground as our primary Razorpay MCP piece — India's first official payment-gateway MCP server, with both hosted and self-hosted deployment options.",
     keywords: ["Razorpay MCP", "MCP Razorpay server", "Indian payment MCP"],
     ugcElements: ["UPI payment examples", "Razorpay automation"],
-    internalLinks: ["mcp-server-for-stripe", "mcp-server-for-shopify"],
-    content: `<p class="text-white/65 leading-relaxed">Razorpay MCP servers are optimized for Indian payment infrastructure.</p>`
+    internalLinks: ["razorpay-mcp-server-india", "mcp-server-for-stripe", "mcp-server-for-shopify"],
+    content: `<p class="text-white/65 leading-relaxed">This page and <a href="/blog/razorpay-mcp-server-india" class="text-cyan-300 hover:text-cyan-200">our fuller Razorpay MCP coverage</a> cover the same real finding: Razorpay was the first Indian payment provider to ship an official MCP server, with both a Razorpay-hosted remote option and a self-hosted (Docker or build-from-source) path, exposing tools for payment details, payment links, orders, and refunds. See the linked page for the full detail.</p>`
   },
   {
     slug: "mcp-server-for-shopify",
@@ -2509,55 +2765,77 @@ spec:
   },
   {
     slug: "mcp-server-for-make-com",
-    title: "MCP Server Make.com Integration Guide",
-    date: "2026-07-19",
+    title: "Make.com and MCP: Real Support, Less Documented Than n8n's",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "1 min read",
-    excerpt: "Building MCP servers that integrate with Make.com automation platform.",
+    readTime: "4 min read",
+    excerpt: "Make (formerly Integromat) can communicate through MCP, enabling scenario management via natural language — real, but less clearly documented as a first-party feature than n8n's official MCP nodes.",
     keywords: ["Make.com MCP", "MCP Make server", "Make integration MCP"],
     ugcElements: ["Make scenarios", "Automation flow examples"],
-    internalLinks: ["mcp-server-for-zapier", "mcp-server-for-ifttt"],
-    content: `<p class="text-white/65 leading-relaxed">Make.com MCP servers enable visual automation workflows.</p>`
+    internalLinks: ["mcp-server-for-zapier", "mcp-server-for-n8n", "mcp-server-for-ifttt"],
+    content: `<p class="text-white/65 leading-relaxed">Make (formerly Integromat) can communicate through the Model Context Protocol, enabling scenario management and execution via natural language. This is real, but worth noting it's less clearly documented as an official, dedicated MCP feature than n8n's specific MCP Client Tool and MCP Server Trigger nodes.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Where This Fits Next to Zapier</h2>
+<p class="text-white/65 leading-relaxed">Make and Zapier both connect AI agents to large libraries of pre-built app integrations, and both now have some form of MCP connectivity — <a href="/blog/mcp-server-for-zapier" class="text-cyan-300 hover:text-cyan-200">Zapier's official server</a> is the more clearly documented, first-party option of the two, covering 8,000+ apps through mcp.zapier.com.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">What to Check Before Building on It</h2>
+<p class="text-white/65 leading-relaxed">Given the documentation is less explicit than n8n's or Zapier's, verify Make's current MCP support directly against their own developer docs before building a production integration — automation-platform MCP support has been evolving quickly across the whole category in 2025-2026.</p>`
   },
   {
     slug: "mcp-server-for-ifttt",
-    title: "MCP Server for IFTTT: Conditional Automation",
-    date: "2026-07-19",
+    title: "IFTTT: No MCP Server Found",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "1 min read",
-    excerpt: "Building MCP servers for IFTTT applet integration.",
+    readTime: "3 min read",
+    excerpt: "No official or notable community MCP server has been confirmed for IFTTT, in contrast to n8n (official MCP nodes) and Zapier (official MCP server).",
     keywords: ["IFTTT MCP", "MCP IFTTT server", "IFTTT integration MCP"],
     ugcElements: ["IFTTT applets", "Conditional automation examples"],
-    internalLinks: ["mcp-server-for-make-com", "mcp-server-for-n8n"],
-    content: `<p class="text-white/65 leading-relaxed">IFTTT MCP servers enable simple conditional automation rules.</p>`
+    internalLinks: ["mcp-server-for-n8n", "mcp-server-for-zapier", "mcp-server-for-make-com"],
+    content: `<p class="text-white/65 leading-relaxed">No official or notable community MCP server has been confirmed for IFTTT. This is a real, notable gap relative to its automation-platform peers — n8n has official MCP nodes and Zapier has an official MCP server, while IFTTT hasn't been found to have followed either path.</p>
+<p class="text-white/65 leading-relaxed">If your workflow needs IFTTT-style simple conditional automation connected to an AI agent, n8n or Zapier are the more realistic, better-documented starting points today.</p>`
   },
   {
     slug: "mcp-server-for-n8n",
-    title: "MCP Server for n8n: Open Source Automation",
-    date: "2026-07-19",
+    title: "n8n's Official MCP Nodes: Both a Client and a Server",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "1 min read",
-    excerpt: "Building MCP servers for n8n open source workflow automation.",
+    readTime: "5 min read",
+    excerpt: "n8n officially introduced two MCP-specific nodes in 2025 — one lets workflows call external MCP servers, the other turns any n8n workflow into an MCP server itself, callable by external AI agents.",
     keywords: ["n8n MCP", "MCP n8n server", "n8n integration MCP"],
     ugcElements: ["n8n workflows", "Open source automation"],
-    internalLinks: ["mcp-server-for-ifttt", "mcp-server-for-slack"],
-    content: `<p class="text-white/65 leading-relaxed">n8n MCP servers enable self-hosted automation workflows.</p>`
+    internalLinks: ["mcp-server-for-make-com", "mcp-server-for-zapier", "mcp-server-for-slack"],
+    content: `<p class="text-white/65 leading-relaxed">n8n officially introduced two dedicated MCP nodes between February and April 2025: the <strong class="text-white">MCP Client Tool</strong> node, which lets an n8n workflow call out to external MCP servers, and the <strong class="text-white">MCP Server Trigger</strong> node, which turns an entire n8n workflow into an MCP server that external AI agents can invoke directly.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Why the Two-Directional Design Matters</h2>
+<p class="text-white/65 leading-relaxed">This makes n8n unusual among the automation platforms covered on this site: it's both a consumer and a producer of MCP tools. A workflow can call other MCP servers as part of its own logic (Client Tool), and separately, an external AI agent can invoke an n8n workflow as if it were any other MCP tool (Server Trigger) — positioning n8n as genuine two-way infrastructure rather than just another app in someone else's automation.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">A Real Example Workflow</h2>
+<p class="text-white/65 leading-relaxed">A practical pattern: build an n8n workflow that handles a specific business process (say, enriching a lead record across three internal systems), expose it via the MCP Server Trigger node, and now any MCP-compatible AI client — Claude Desktop, a custom agent — can invoke that entire multi-step workflow as a single tool call, without needing to understand n8n's internals at all.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Self-Hosted, Open Source Advantage</h2>
+<p class="text-white/65 leading-relaxed">Because n8n is open source and commonly self-hosted, this MCP integration gives you a genuinely controllable, on-premises way to expose internal business logic to AI agents — a meaningfully different trust model than depending on a third-party SaaS automation platform for the same capability.</p>`
   },
   {
     slug: "mcp-server-for-sendgrid",
-    title: "MCP Server for SendGrid: Email Automation",
-    date: "2026-07-19",
+    title: "SendGrid MCP: Community-Built Email Marketing Access",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "1 min read",
-    excerpt: "Building MCP servers for SendGrid email automation.",
+    readTime: "4 min read",
+    excerpt: "Community-built MCP servers expose SendGrid's Marketing Campaigns API — contact management, list management, email sending, templates, and analytics — not an official SendGrid-published server.",
     keywords: ["SendGrid MCP", "MCP SendGrid server", "email automation MCP"],
     ugcElements: ["Email templates", "SendGrid automation examples"],
-    internalLinks: ["mcp-server-for-n8n", "mcp-server-for-twilio"],
-    content: `<p class="text-white/65 leading-relaxed">SendGrid MCP servers enable transactional email automation.</p>`
+    internalLinks: ["mcp-server-for-n8n", "mcp-server-for-twilio", "mcp-server-for-zapier"],
+    content: `<p class="text-white/65 leading-relaxed">Community-built MCP servers provide access to SendGrid's Marketing Campaigns API — contact management, list management, sending emails, template management, and analytics. No official, SendGrid-published MCP server has been confirmed; real options include a dedicated community project and a CData-built connector exposing SendGrid as a toolset for LLMs like Claude.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Since SendGrid Is Now Under Twilio</h2>
+<p class="text-white/65 leading-relaxed">Worth knowing: SendGrid is owned by Twilio, which does have its own official, extensive MCP server (1,800+ endpoints across 30+ products, covered on this site's <a href="/blog/mcp-server-for-twilio" class="text-cyan-300 hover:text-cyan-200">Twilio MCP page</a>). Whether Twilio's official server's API surface includes SendGrid-specific email functionality, or whether that remains a separate product with only community MCP coverage, is worth checking directly against Twilio's own documentation before assuming either way.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Email Sending Deserves the Same Caution as Payments</h2>
+<p class="text-white/65 leading-relaxed">An AI agent that can send transactional or marketing email on your behalf is a real reputational and deliverability risk if it goes wrong — apply the same confirmation-step discipline covered throughout this site's payment-MCP content before letting an agent send email autonomously at any scale.</p>`
   },
   {
     slug: "mcp-server-for-twilio",
@@ -2627,81 +2905,114 @@ spec:
   },
   {
     slug: "mcp-server-for-dropbox",
-    title: "How to Create MCP Server for Dropbox",
-    date: "2026-07-19",
+    title: "Dropbox's Official MCP Server: In Beta, Vendor-Supported",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "1 min read",
-    excerpt: "Building MCP servers for Dropbox file storage integration.",
+    readTime: "4 min read",
+    excerpt: "Dropbox runs its own official remote MCP server, currently in beta, maintained and verified by Dropbox itself — long-term support and direct vendor assistance, unlike the several community-built alternatives that also exist.",
     keywords: ["Dropbox MCP", "MCP Dropbox server", "Dropbox integration MCP"],
     ugcElements: ["Dropbox automation", "File sync examples"],
-    internalLinks: ["mcp-server-for-airtable", "mcp-server-for-onedrive"],
-    content: `<p class="text-white/65 leading-relaxed">Dropbox MCP servers enable file storage and sharing automation.</p>`
+    internalLinks: ["mcp-server-for-airtable", "mcp-server-for-onedrive", "mcp-server-for-box"],
+    content: `<p class="text-white/65 leading-relaxed">Dropbox runs its own official remote MCP server, documented at help.dropbox.com/integrations/connect-dropbox-mcp-server — currently in beta, built on the open MCP standard, and explicitly maintained and verified by Dropbox itself.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Why "Official" Matters Here Specifically</h2>
+<p class="text-white/65 leading-relaxed">Dropbox's own positioning draws a direct contrast with community-maintained alternatives (of which several exist, including Go and Node implementations): the official server offers long-term support, comprehensive documentation, and direct vendor assistance — the same distinction that matters across every integration covered on this site between a first-party and third-party server.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Community Alternatives Still Have a Place</h2>
+<p class="text-white/65 leading-relaxed">Community projects like <code class="bg-gray-800 px-1 py-0.5 rounded">ngs/dropbox-mcp-server</code> (Go) and others focused on specific capabilities (file recovery, search, download) remain relevant if you need self-hosted control or a narrower tool set than Dropbox's official offering provides — being in beta, the official server may also not yet cover every capability a specialized community project does.</p>`
   },
   {
     slug: "mcp-server-for-onedrive",
-    title: "How to Create MCP Server for OneDrive",
-    date: "2026-07-19",
+    title: "OneDrive MCP: Community-Built via Microsoft Graph API",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "1 min read",
-    excerpt: "Building MCP servers for Microsoft OneDrive file storage.",
+    readTime: "4 min read",
+    excerpt: "Community-built MCP servers wrap OneDrive through the Microsoft Graph API — real, functioning projects offering file CRUD, search, and sharing, though not an official Microsoft-published OneDrive-specific server.",
     keywords: ["OneDrive MCP", "MCP OneDrive server", "OneDrive integration MCP"],
     ugcElements: ["OneDrive sync", "Microsoft 365 integration"],
-    internalLinks: ["mcp-server-for-dropbox", "mcp-server-for-box"],
-    content: `<p class="text-white/65 leading-relaxed">OneDrive MCP servers integrate with Microsoft 365 ecosystem.</p>`
+    internalLinks: ["mcp-server-for-dropbox", "mcp-server-for-box", "mcp-server-for-outlook"],
+    content: `<p class="text-white/65 leading-relaxed">Community-built MCP servers manage OneDrive files through the Microsoft Graph API, with real implementations exposing around 9 tools covering CRUD operations, search, and sharing. No standalone, OneDrive-specific official server from Microsoft has been confirmed independent of the broader Microsoft 365 MCP ecosystem.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Part of the Broader Microsoft 365 Picture</h2>
+<p class="text-white/65 leading-relaxed">Rather than a dedicated OneDrive product, Microsoft's own MCP activity in this space centers on broader Microsoft 365 coverage — Work IQ MCPs (Mail, Calendar, Teams) and community projects like <code class="bg-gray-800 px-1 py-0.5 rounded">Softeria/ms-365-mcp-server</code>, which bundles OneDrive alongside Outlook, Excel, SharePoint, and more (200+ tools total) rather than treating OneDrive as its own separate product.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Which to Pick</h2>
+<p class="text-white/65 leading-relaxed">If you only need OneDrive file operations, a focused community server keeps the tool surface small; if your agent needs to work across the broader Microsoft 365 suite, the combined servers covering multiple products at once are the more practical choice.</p>`
   },
   {
     slug: "mcp-server-for-box",
-    title: "MCP Server for Box.com: Enterprise File Management",
-    date: "2026-07-19",
+    title: "Box MCP: Community-Built Document Intelligence",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "1 min read",
-    excerpt: "Building MCP servers for Box.com enterprise file storage.",
+    readTime: "4 min read",
+    excerpt: "A community-built MCP server integrates with Box cloud storage for document search, text extraction, and content analysis of PDFs and Word documents — not an official Box-published server.",
     keywords: ["Box MCP", "MCP Box server", "Box integration MCP"],
     ugcElements: ["Box workflows", "Enterprise file management"],
-    internalLinks: ["mcp-server-for-onedrive", "mcp-server-for-zoom"],
-    content: `<p class="text-white/65 leading-relaxed">Box MCP servers provide secure enterprise file management.</p>`
+    internalLinks: ["mcp-server-for-onedrive", "mcp-server-for-zoom", "mcp-server-for-dropbox"],
+    content: `<p class="text-white/65 leading-relaxed">A community-built MCP server integrates with Box cloud storage, enabling searching, reading, and processing of PDF and Word documents through the Box API — covering document search, text extraction, content analysis, and structured data retrieval. No official, Box-published MCP server has been confirmed.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Document Intelligence, Not Just File Sync</h2>
+<p class="text-white/65 leading-relaxed">What distinguishes this from a basic file-listing integration is the document-processing layer — actually extracting and reasoning about content inside PDFs and Word docs stored in Box, rather than just exposing file metadata. That's genuinely more useful for an AI research or compliance-review agent than simple file browsing would be.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Enterprise Considerations</h2>
+<p class="text-white/65 leading-relaxed">Box is heavily used in enterprise and regulated industries specifically because of its compliance and governance features — before connecting any community MCP server to a Box account holding sensitive documents, verify it respects your existing folder-level permissions rather than assuming broad access, the same due diligence covered across this site's other file-storage integrations.</p>`
   },
   {
     slug: "mcp-server-for-zoom",
-    title: "MCP Server for Zoom: Video Conferencing Integration",
-    date: "2026-07-19",
+    title: "Zoom MCP: Community-Built, Plus a Notable Cross-Platform Option",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "1 min read",
-    excerpt: "Building MCP servers for Zoom video conferencing.",
+    readTime: "4 min read",
+    excerpt: "Community MCP servers bridge Claude with the Zoom API for meeting details and account settings — and tl;dv's MCP server offers full support across Zoom, Google Meet, and Microsoft Teams in one integration.",
     keywords: ["Zoom MCP", "MCP Zoom server", "video conferencing MCP"],
     ugcElements: ["Meeting automation", "Zoom integration examples"],
-    internalLinks: ["mcp-server-for-box", "mcp-server-for-discord"],
-    content: `<p class="text-white/65 leading-relaxed">Zoom MCP servers enable meeting scheduling and management automation.</p>`
+    internalLinks: ["mcp-server-for-box", "mcp-server-for-discord", "mcp-server-for-msteams"],
+    content: `<p class="text-white/65 leading-relaxed">Community-built MCP servers bridge Claude and other AI clients with the Zoom API, enabling retrieval of user information, meeting details, recordings, and account settings through server-to-server OAuth 2.0. No standalone official Zoom-published MCP server has been separately confirmed, though Zoom does maintain its own MCP developer documentation (developers.zoom.us/docs/mcp/).</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">A Real Cross-Platform Alternative Worth Knowing</h2>
+<p class="text-white/65 leading-relaxed">tl;dv (a meeting-recording and transcription company) has released an official MCP server offering full support across Google Meet, Zoom, and Microsoft Teams in a single integration — genuinely useful if your agent needs to work across whichever video platform a given meeting happens to use, rather than building separate integrations per platform.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Meeting Data Carries Real Privacy Weight</h2>
+<p class="text-white/65 leading-relaxed">Meeting recordings and transcripts routinely contain sensitive business discussions. Before connecting any meeting-platform MCP server — official Zoom docs, community wrapper, or tl;dv's cross-platform option — be deliberate about which meetings and data the connected account can actually access, the same principle covered across this site's other data-access integrations.</p>`
   },
   {
     slug: "mcp-server-for-discord",
-    title: "MCP Server for Discord Bot Integration",
-    date: "2026-07-19",
+    title: "Discord: No Official MCP Server Found",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "1 min read",
-    excerpt: "Building MCP servers for Discord bot communication.",
+    readTime: "3 min read",
+    excerpt: "No official Discord MCP server has been confirmed. Real community-built servers do exist for messaging, channel management, and forum posts, functioning as bots rather than an official Discord product.",
     keywords: ["Discord MCP", "MCP Discord server", "Discord bot MCP"],
     ugcElements: ["Discord bot showcases", "Community automation"],
-    internalLinks: ["mcp-server-for-zoom", "mcp-server-for-msteams"],
-    content: `<p class="text-white/65 leading-relaxed">Discord MCP servers enable community bot automation.</p>`
+    internalLinks: ["mcp-server-for-zoom", "mcp-server-for-msteams", "mcp-server-for-slack"],
+    content: `<p class="text-white/65 leading-relaxed">No official MCP server from Discord has been confirmed. Real community-built servers do exist, enabling AI assistants to send messages, manage channels, handle forum posts, and work with reactions — functioning as a Discord bot wrapped in MCP's protocol, not a Discord-published product.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Why This Differs From Slack's Situation</h2>
+<p class="text-white/65 leading-relaxed">Worth contrasting with <a href="/blog/mcp-server-for-slack" class="text-cyan-300 hover:text-cyan-200">Slack</a>, which replaced an early Anthropic reference implementation with its own official, first-party server. Discord hasn't followed a comparable path — community bot-based integrations remain the only real option, requiring your own Discord bot token and standard Discord bot permission scoping.</p>`
   },
   {
     slug: "mcp-server-for-msteams",
-    title: "MCP Server for Microsoft Teams",
-    date: "2026-07-19",
+    title: "Microsoft Teams MCP: Official Work IQ, Plus Real Community Options",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "1 min read",
-    excerpt: "Building MCP servers for Microsoft Teams communication.",
+    readTime: "5 min read",
+    excerpt: "Microsoft's own Teams AI Library now supports MCP, alongside official Work IQ Teams tooling — plus real community servers, including one from Inditex (the fashion retail group) covering messages, replies, and mentions.",
     keywords: ["Teams MCP", "MCP Teams server", "Microsoft Teams MCP"],
     ugcElements: ["Teams automation", "Microsoft 365 integration"],
-    internalLinks: ["mcp-server-for-discord", "mcp-server-for-woocommerce"],
-    content: `<p class="text-white/65 leading-relaxed">Microsoft Teams MCP servers enable enterprise communication automation.</p>`
+    internalLinks: ["mcp-server-for-discord", "mcp-server-for-outlook", "mcp-server-for-slack"],
+    content: `<p class="text-white/65 leading-relaxed">Microsoft's Teams AI Library (formerly the Teams AI Library) now officially supports Model Context Protocol, letting agents built on it leverage external AI services and expand their action set. Separately, Microsoft provides official Work IQ MCPs — including Work IQ Teams — bringing meeting, chat, and collaboration insights into agent workflows.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Real Community Options Also Exist</h2>
+<p class="text-white/65 leading-relaxed">Beyond Microsoft's own tooling, real community-built servers exist too — notably <code class="bg-gray-800 px-1 py-0.5 rounded">InditexTech/mcp-teams-server</code>, published by Inditex (the fashion retail group behind Zara), providing capabilities to read messages, create messages, reply to messages, and mention members. A large non-tech retailer publishing real MCP tooling is itself a notable signal of how far MCP adoption has spread beyond software companies.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Which Option Fits Your Use Case</h2>
+<p class="text-white/65 leading-relaxed">For general Microsoft 365 workflows spanning Teams, Outlook, and OneDrive together, the broader <code class="bg-gray-800 px-1 py-0.5 rounded">Softeria/ms-365-mcp-server</code> (200+ tools across the whole Graph API surface) may be more practical than a Teams-only integration; for Teams-specific messaging automation, the Inditex server or Microsoft's own Work IQ Teams tooling are the more targeted real options.</p>`
   },
   {
     slug: "mcp-server-for-woocommerce",
@@ -3331,7 +3642,15 @@ spec:
     keywords: ["MCP benchmarking", "MCP performance testing", "load testing MCP"],
     ugcElements: ["Benchmark results", "Performance tools"],
     internalLinks: ["mcp-server-performance-optimization", "how-to-scale-mcp-servers-horizontally"],
-    content: `<p class="text-white/65 leading-relaxed">Learn how to properly benchmark your MCP server performance.</p>`
+    content: `<p class="text-white/65 leading-relaxed">Benchmark with realistic tool mixes, not only happy-path single tools.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">What to measure</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li>Tool call latency distribution under normal and peak load.</li>
+  <li>Cold-start time for stdio servers versus keep-alive remote servers.</li>
+  <li>Failure modes under backpressure: timeout cascades and queue buildup.</li>
+  <li>Resource usage per concurrent client or per batch of requests.</li>
+</ul>`
   },
   {
     slug: "mcp-server-monitoring-alerting",
@@ -3344,7 +3663,15 @@ spec:
     keywords: ["MCP monitoring", "MCP alerting", "MCP observability"],
     ugcElements: ["Monitoring configs", "Alert examples"],
     internalLinks: ["mcp-server-monitoring-setup", "mcp-devops-automating-server-management"],
-    content: `<p class="text-white/65 leading-relaxed">Implement effective monitoring and alerting for your MCP servers.</p>`
+    content: `<p class="text-white/65 leading-relaxed">Monitoring should tell you whether the server is usable, not just whether the process is running.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Helpful signals</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li>Tool init, call, and error rates per server instance.</li>
+  <li>Latency percentiles by tool, not only average latency.</li>
+  <li>Auth failure spike alerts with throttling to avoid paging noise.</li>
+  <li>Health-check failure thresholds before automatic traffic removal.</li>
+</ul>`
   },
 
   // Additional Advanced Architecture posts (4 more to reach 25)
@@ -3359,7 +3686,14 @@ spec:
     keywords: ["Kafka MCP", "MCP Kafka server", "event streaming MCP"],
     ugcElements: ["Kafka examples", "Streaming patterns"],
     internalLinks: ["mcp-server-for-vector-database", "mcp-multi-agent-systems"],
-    content: `<p class="text-white/65 leading-relaxed">Kafka MCP servers enable real-time event streaming capabilities for AI agents.</p>`
+    content: `<p class="text-white/65 leading-relaxed">Kafka-backed MCP servers are useful when the value is in stream continuity, not isolated tool calls.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Integration shape</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li>Expose topic metadata or recent event summaries as resources.</li>
+  <li>Offer controlled publish tools with schema validation and ACL checks.</li>
+  <li>Keep consumer group management and offset tracking out of model-facing tools unless intentional.</li>
+</ul>`
   },
   {
     slug: "mcp-server-for-rabbitmq",
@@ -3372,7 +3706,14 @@ spec:
     keywords: ["RabbitMQ MCP", "MCP RabbitMQ server", "message queue MCP"],
     ugcElements: ["RabbitMQ examples", "Queue patterns"],
     internalLinks: ["mcp-server-for-kafka", "mcp-multi-agent-systems"],
-    content: `<p class="text-white/65 leading-relaxed">RabbitMQ MCP servers provide reliable message queue integration for AI agents.</p>`
+    content: `<p class="text-white/65 leading-relaxed">Use RabbitMQ when routing, retry behavior, or consumer workflows matter more than raw throughput.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Integration tips</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li>Expose queue status and message counts as read-only resources.</li>
+  <li>Keep publish-side tools narrowly scoped by routing key and payload schema.</li>
+  <li>Prefer explicit acknowledgements and dead-letter handling over fire-and-forget tool design.</li>
+</ul>`
   },
   {
     slug: "mcp-server-for-redis-streams",
@@ -3385,7 +3726,14 @@ spec:
     keywords: ["Redis Streams MCP", "MCP Redis Streams", "real-time processing MCP"],
     ugcElements: ["Redis Streams examples", "Stream processing"],
     internalLinks: ["mcp-server-for-redis", "mcp-server-for-kafka"],
-    content: `<p class="text-white/65 leading-relaxed">Redis Streams MCP servers enable real-time data processing capabilities for AI agents.</p>`
+    content: `<p class="text-white/65 leading-relaxed">Redis Streams works well when you want low-latency append/read patterns without heavier broker infrastructure.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Usable patterns</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li>Expose stream consumer group state as a resource.</li>
+  <li>Provide bounded read tools with max length and timeout controls.</li>
+  <li>Avoid exposing administrative FLUSH or CONFIG commands to client workflows.</li>
+</ul>`
   },
   {
     slug: "mcp-server-for-nats",
@@ -3398,7 +3746,14 @@ spec:
     keywords: ["NATS MCP", "MCP NATS server", "lightweight messaging MCP"],
     ugcElements: ["NATS examples", "Messaging patterns"],
     internalLinks: ["mcp-server-for-rabbitmq", "mcp-multi-agent-systems"],
-    content: `<p class="text-white/65 leading-relaxed">NATS MCP servers provide lightweight, high-performance messaging for AI agents.</p>`
+    content: `<p class="text-white/65 leading-relaxed">NATS is useful when you want lightweight publish/subscribe or request/reply behavior with minimal operational overhead.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Integration guidance</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li>Use subject-based tools only when the naming scheme is stable and reviewed.</li>
+  <li>Keep payload size bounded and schema documented for model authors.</li>
+  <li>Prefer JetStream only when durability is explicitly required; otherwise keep ephemeral messaging simple.</li>
+</ul>`
   },
   
   // Additional UGC Community Hub posts (5 more to reach 50)
@@ -3638,7 +3993,15 @@ spec:
     keywords: ["MCP code review", "code review best practices", "peer review MCP"],
     ugcElements: ["Review checklists", "Feedback examples"],
     internalLinks: ["mcp-server-advanced-techniques-guide", "how-i-built-my-first-mcp-server"],
-    content: `<p class="text-white/65 leading-relaxed">Implement effective code review processes to improve MCP server code quality.</p>`
+    content: `<p class="text-white/65 leading-relaxed">Good code review for MCP servers focuses more on auth, data handling, and tool contracts than style alone.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Review checklist</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li>Verify tool descriptions are useful for model selection, not just human readers.</li>
+  <li>Check for secret leakage in logs, errors, and tool outputs.</li>
+  <li>Review schema changes for backward compatibility.</li>
+  <li>Ask whether destructive tools require separate approval gating.</li>
+</ul>`
   },
   {
     slug: "mcp-server-mentorship-program",
@@ -3651,7 +4014,14 @@ spec:
     keywords: ["MCP mentorship", "learn from experts", "developer mentorship"],
     ugcElements: ["Mentor profiles", "Learning paths"],
     internalLinks: ["mcp-server-beginner-tutorial-series", "mcp-server-advanced-techniques-guide"],
-    content: `<p class="text-white/65 leading-relaxed">Accelerate your MCP server development learning through mentorship from experienced community members.</p>`
+    content: `<p class="text-white/65 leading-relaxed">A mentorship program works best when it targets concrete milestones instead of vague “become better at MCP” goals.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Useful structure</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li>Pair mentees on shipped code, not only conceptual discussions.</li>
+  <li>Share review artifacts: audit logs, schema changes, and deployment checklists.</li>
+  <li>Prefer short, time-boxed mentorship cycles with defined outputs.</li>
+</ul>`
   },
   {
     slug: "mcp-server-hackathon-guide",
@@ -3664,7 +4034,14 @@ spec:
     keywords: ["MCP hackathon", "innovation events", "community hackathon"],
     ugcElements: ["Event planning", "Challenge ideas"],
     internalLinks: ["mcp-server-local-meetup-guide", "mcp-server-online-workshop-guide"],
-    content: `<p class="text-white/65 leading-relaxed">Organize engaging hackathons to spark innovation in the MCP server community.</p>`
+    content: `<p class="text-white/65 leading-relaxed">A tight scope helps participants ship something reviewable instead of leaving projects half-finished.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Suggested format</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li>Choose one problem domain per event rather than open-ended tool building.</li>
+  <li>Require working schema, one test, and documented auth assumptions.</li>
+  <li>Use the MCP Inspector during demos so judges see actual tool calls.</li>
+</ul>`
   },
   {
     slug: "mcp-server-documentation-sprint",
@@ -3677,7 +4054,14 @@ spec:
     keywords: ["MCP documentation sprint", "docs improvement", "community documentation"],
     ugcElements: ["Documentation tasks", "Collaboration tools"],
     internalLinks: ["mcp-server-documentation-community-wiki", "mcp-server-online-workshop-guide"],
-    content: `<p class="text-white/65 leading-relaxed">Collaborate with the community to improve MCP server documentation through focused sprints.</p>`
+    content: `<p class="text-white/65 leading-relaxed">Documentation sprints work best with small, tractable tasks instead of broad cleanup.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Good sprint tasks</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li>Verify broken internal links and outdated version references.</li>
+  <li>Add real configuration examples instead of generic placeholders.</li>
+  <li>Improve FAQ coverage from community issues rather than imagined questions.</li>
+</ul>`
   },
   {
     slug: "mcp-server-translation-initiative",
@@ -3690,7 +4074,14 @@ spec:
     keywords: ["MCP translation", "multilingual docs", "global accessibility"],
     ugcElements: ["Translation resources", "Language teams"],
     internalLinks: ["mcp-server-documentation-sprint", "mcp-server-community-join-the-conversation"],
-    content: `<p class="text-white/65 leading-relaxed">Help make MCP server documentation accessible to developers worldwide through translation efforts.</p>`
+    content: `<p class="text-white/65 leading-relaxed">Translation quality depends more on terminology consistency than on fluency alone.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Practical steps</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li>Create one shared glossary for terms like tool, resource, prompt, transport, and namespace.</li>
+  <li>Review translated docs against code samples; mismatched terms are harder to spot later.</li>
+  <li>Prefer translated navigation and headings even when full body translation lags.</li>
+</ul>`
   },
   {
     slug: "mcp-server-diversity-inclusion",
@@ -3703,7 +4094,14 @@ spec:
     keywords: ["MCP diversity", "inclusive community", "welcoming environment"],
     ugcElements: ["Inclusion resources", "Best practices"],
     internalLinks: ["mcp-server-community-join-the-conversation", "mcp-server-contributors-hall-of-fame"],
-    content: `<p class="text-white/65 leading-relaxed">Build a welcoming and inclusive MCP server community that values diversity and equity.</p>`
+    content: `<p class="text-white/65 leading-relaxed">Inclusion usually improves with codified norms, not only good intentions.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Useful tactics</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li>Publish contribution guidelines with concrete examples of acceptable and unacceptable behavior.</li>
+  <li>Offer multiple ways to contribute: docs, code review, issue triage, and localization.</li>
+  <li>Provide feedback that is specific, actionable, and tied to project goals.</li>
+</ul>`
   },
   {
     slug: "mcp-server-accessibility-guide",
@@ -3716,7 +4114,14 @@ spec:
     keywords: ["MCP accessibility", "accessible development", "inclusive design"],
     ugcElements: ["Accessibility standards", "WCAG compliance"],
     internalLinks: ["mcp-server-advanced-techniques-guide", "how-i-built-my-first-mcp-server"],
-    content: `<p class="text-white/65 leading-relaxed">Ensure your MCP servers are accessible to all users, including those with disabilities.</p>`
+    content: `<p class="text-white/65 leading-relaxed">Accessibility work should start with documentation and client-facing error messages, not only UI layers.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Helpful focus areas</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li>Plain-language tool descriptions and error outcomes.</li>
+  <li>Consistent response formatting so assistive tools can parse outcomes predictably.</li>
+  <li>Documentation sites with semantic headings, readable contrast, and keyboard-friendly navigation.</li>
+</ul>`
   },
   {
     slug: "mcp-server-sustainability-guide",
@@ -3729,7 +4134,14 @@ spec:
     keywords: ["MCP sustainability", "green computing", "eco-friendly development"],
     ugcElements: ["Sustainability tips", "Environmental impact"],
     internalLinks: ["mcp-server-advanced-techniques-guide", "how-i-built-my-first-mcp-server"],
-    content: `<p class="text-white/65 leading-relaxed">Implement sustainable practices in your MCP server development to reduce environmental impact.</p>`
+    content: `<p class="text-white/65 leading-relaxed">Sustainable MCP work mostly means avoiding waste: fewer unnecessary recomputations, smaller model contexts, and right-sized hosting.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Practical measures</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li>Cache stable tool descriptions and metadata instead of regenerating every request.</li>
+  <li>Batch or debounce cheaper tools instead of firing repeated identical calls.</li>
+  <li>Choose region and runtime size based on actual traffic patterns rather than defaults.</li>
+</ul>`
   },
   {
     slug: "mcp-server-ethics-guide",
@@ -3742,7 +4154,15 @@ spec:
     keywords: ["MCP ethics", "responsible AI", "ethical AI development"],
     ugcElements: ["Ethical frameworks", "Case studies"],
     internalLinks: ["mcp-server-accessibility-guide", "mcp-server-sustainability-guide"],
-    content: `<p class="text-white/65 leading-relaxed">Navigate ethical considerations in MCP server development to ensure responsible AI agent interactions.</p>`
+    content: `<p class="text-white/65 leading-relaxed">Ethical risk usually shows up in scope, permissions, and data handling more than in protocol design.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Core questions</h2>
+<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
+  <li>Who approves write actions, and can users see what changed afterward?</li>
+  <li>Is sensitive data minimized before it reaches any model or tool result?</li>
+  <li>Can users withdraw access or request deletion cleanly?</li>
+  <li>Are limits and fallback behaviors clearly documented for operators?</li>
+</ul>`
   },
   {
     slug: "mcp-server-future-trends-workshop",
@@ -6059,146 +6479,164 @@ pip install phonepe-pg-docs-mcp</code></pre>
   },
   {
     slug: "dunzo-mcp-india",
-    title: "Dunzo MCP Server – Hyperlocal Services",
-    date: "2026-07-20",
+    title: "Dunzo: No MCP Server Found",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "4 min read",
-    excerpt: "Dunzo MCP Server – Hyperlocal Services integration for automated workflows in India.",
-    keywords: ["dunzo-mcp-india", "India MCP", "MCP integration"],
+    readTime: "3 min read",
+    excerpt: "No official or community MCP server has been confirmed for Dunzo, consistent with the broader gap in quick-commerce and hyperlocal delivery MCP adoption.",
+    keywords: ["dunzo-mcp-india", "Dunzo MCP", "India hyperlocal delivery MCP"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["urbancompany-mcp-india", "goibibo-mcp-india", "indian-railways-mcp-india"],
-    content: "<p>Dunzo MCP Server – Hyperlocal Services - detailed guide coming soon.</p>"
+    internalLinks: ["urbancompany-mcp-india", "blinkit-mcp-india", "swiggy-mcp-india"],
+    content: `<p class="text-white/65 leading-relaxed">No official or notable community MCP server has been confirmed for Dunzo. This fits the broader pattern in quick-commerce and hyperlocal delivery: unlike food delivery (Zomato, Swiggy), which has real official, checkout-capable MCP servers, the hyperlocal-errands category hasn't seen comparable adoption yet.</p>`
   },
   {
     slug: "urbancompany-mcp-india",
-    title: "Urban Company MCP Server – Home Services",
-    date: "2026-07-20",
+    title: "Urban Company: No MCP Server Found",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "4 min read",
-    excerpt: "Urban Company MCP Server – Home Services integration for automated workflows in India.",
-    keywords: ["urbancompany-mcp-india", "India MCP", "MCP integration"],
+    readTime: "3 min read",
+    excerpt: "No official or community MCP server has been confirmed for Urban Company, consistent with the broader gap in home-services-booking MCP adoption.",
+    keywords: ["urbancompany-mcp-india", "Urban Company MCP", "India home services MCP"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["dunzo-mcp-india", "goibibo-mcp-india", "indian-railways-mcp-india"],
-    content: "<p>Urban Company MCP Server – Home Services - detailed guide coming soon.</p>"
+    internalLinks: ["dunzo-mcp-india", "oyo-mcp-india", "swiggy-mcp-india"],
+    content: `<p class="text-white/65 leading-relaxed">No official or notable community MCP server has been confirmed for Urban Company, the home-services booking platform. Home services booking is another category, like hyperlocal delivery, that hasn't seen the same MCP adoption as food delivery or payments.</p>`
   },
   {
     slug: "oyo-mcp-india",
-    title: "OYO MCP Server – Hotel Booking",
-    date: "2026-07-20",
+    title: "OYO: No MCP Server Found",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "4 min read",
-    excerpt: "OYO MCP Server – Hotel Booking integration for automated workflows in India.",
-    keywords: ["oyo-mcp-india", "India MCP", "MCP integration"],
+    readTime: "3 min read",
+    excerpt: "No official or community MCP server has been confirmed for OYO, consistent with the broader absence of MCP activity across Indian hotel and travel booking platforms.",
+    keywords: ["oyo-mcp-india", "OYO MCP", "India hotel booking MCP"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["makemytrip-mcp-india", "razorpay-mcp-server-india", "zoho-books-mcp-accounting-india"],
-    content: "<p>OYO MCP Server – Hotel Booking - detailed guide coming soon.</p>"
+    internalLinks: ["makemytrip-mcp-india", "goibibo-mcp-india", "urbancompany-mcp-india"],
+    content: `<p class="text-white/65 leading-relaxed">No official or notable community MCP server has been confirmed for OYO. Real coverage of AI-and-travel-booking MCP servers exists at a category level (flight search aggregators, hotel-detail scrapers), but nothing OYO-branded specifically was found.</p>`
   },
   {
     slug: "makemytrip-mcp-india",
-    title: "MakeMyTrip MCP Server – Travel Booking",
-    date: "2026-07-20",
+    title: "MakeMyTrip: Unofficial Scrapers Exist, No Official Server",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
     readTime: "4 min read",
-    excerpt: "MakeMyTrip MCP Server – Travel Booking integration for automated workflows in India.",
-    keywords: ["makemytrip-mcp-india", "India MCP", "MCP integration"],
+    excerpt: "No official MakeMyTrip MCP server exists, but real community projects — a hotel-details scraper and a flight-search aggregator supporting MakeMyTrip — provide unofficial, read-only data access.",
+    keywords: ["makemytrip-mcp-india", "MakeMyTrip MCP", "India travel booking MCP"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["oyo-mcp-india", "goibibo-mcp-india", "razorpay-mcp-server-india"],
-    content: "<p>MakeMyTrip MCP Server – Travel Booking - detailed guide coming soon.</p>"
+    internalLinks: ["goibibo-mcp-india", "oyo-mcp-india", "irctc-mcp-india"],
+    content: `<p class="text-white/65 leading-relaxed">No official MakeMyTrip MCP server exists, but two real community projects touch it: an Apify-hosted MakeMyTrip Hotel Details Scraper (room details, pricing, images, user-generated content) and an Indian Flight Search MCP server that currently supports MakeMyTrip specifically, with Cleartrip and Yatra support planned.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Data Access, Not Booking Automation</h2>
+<p class="text-white/65 leading-relaxed">Both are read-only data tools — useful for a travel-research AI assistant comparing options, not for an agent that can actually complete a booking on your behalf. Nothing MakeMyTrip-affiliated or booking-capable was found.</p>`
   },
   {
     slug: "goibibo-mcp-india",
-    title: "Goibibo MCP Server – Travel Services",
-    date: "2026-07-20",
+    title: "Goibibo: No MCP Server Found",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "4 min read",
-    excerpt: "Goibibo MCP Server – Travel Services integration for automated workflows in India.",
-    keywords: ["goibibo-mcp-india", "India MCP", "MCP integration"],
+    readTime: "3 min read",
+    excerpt: "No official or community MCP server has been confirmed for Goibibo specifically, though it may be covered by a planned expansion of the same flight-search MCP project that already supports MakeMyTrip.",
+    keywords: ["goibibo-mcp-india", "Goibibo MCP", "India travel booking MCP"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["dunzo-mcp-india", "urbancompany-mcp-india", "makemytrip-mcp-india"],
-    content: "<p>Goibibo MCP Server – Travel Services - detailed guide coming soon.</p>"
+    internalLinks: ["makemytrip-mcp-india", "oyo-mcp-india", "irctc-mcp-india"],
+    content: `<p class="text-white/65 leading-relaxed">No official or notable community MCP server has been confirmed for Goibibo specifically. See this site's <a href="/blog/makemytrip-mcp-india" class="text-cyan-300 hover:text-cyan-200">MakeMyTrip coverage</a> for the one real, adjacent project (an Indian flight-search MCP server) that currently supports MakeMyTrip with Cleartrip and Yatra planned — Goibibo wasn't named among the providers covered as of this writing.</p>`
   },
   {
     slug: "irctc-mcp-india",
-    title: "IRCTC MCP Server – Train Tickets",
-    date: "2026-07-20",
+    title: "IRCTC: Multiple Real, Unofficial MCP Servers Exist",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "4 min read",
-    excerpt: "IRCTC MCP Server – Train Tickets integration for automated workflows in India.",
-    keywords: ["irctc-mcp-india", "India MCP", "MCP integration"],
+    readTime: "5 min read",
+    excerpt: "No official IRCTC MCP server exists, but several real, working community projects provide PNR status, live train status, and seat availability — all explicitly disclaiming any IRCTC affiliation.",
+    keywords: ["irctc-mcp-india", "IRCTC MCP", "India railways MCP"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["redbus-mcp-india", "razorpay-mcp-server-india", "zoho-books-mcp-accounting-india"],
-    content: "<p>IRCTC MCP Server – Train Tickets - detailed guide coming soon.</p>"
+    internalLinks: ["indian-railways-mcp-india", "makemytrip-mcp-india", "gst-mcp-server-tax-compliance"],
+    content: `<p class="text-white/65 leading-relaxed">No official IRCTC MCP server exists, but this is one of the more actively-developed community categories found across this entire coverage — multiple real, working projects exist: <code class="bg-gray-800 px-1 py-0.5 rounded">maasir554/indian-railway-mcp-server</code>, <code class="bg-gray-800 px-1 py-0.5 rounded">rajprem4214/indian-railways-mcp</code>, and <code class="bg-gray-800 px-1 py-0.5 rounded">amith-vp/indian-railway-mcp</code> among them, plus an IRCTC-specific server requiring a RapidAPI account with IRCTC API subscription.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">What These Servers Provide</h2>
+<p class="text-white/65 leading-relaxed">Common real capabilities across these projects: PNR status checks, live train running status at a specific station, train schedules between two stations, and seat availability — genuinely useful, practical data for anyone building a travel-assistant AI agent.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">Every One Explicitly Disclaims IRCTC Affiliation</h2>
+<p class="text-white/65 leading-relaxed">Multiple of these projects carry an explicit disclaimer: not endorsed by, affiliated with, or officially connected to IRCTC, Indian Railways, or their subsidiaries — with an explicit warning to verify critical travel information through official channels. That's worth taking seriously: PNR and seat-availability data from an unofficial scraper should be treated as informational, not authoritative, especially before a real trip.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">A Notable Multilingual Project</h2>
+<p class="text-white/65 leading-relaxed">One project in this space, "Yatra Saarthi," is specifically designed as a multilingual AI concierge for Indian Railways travelers, supporting queries in Hindi, Marathi, Tamil, Telugu, Bengali, and English — a genuinely India-specific design choice worth noting given how much MCP tooling defaults to English-only.</p>`
   },
   {
     slug: "indian-railways-mcp-india",
-    title: "Indian Railways MCP Server – Rail Services",
-    date: "2026-07-20",
+    title: "Indian Railways MCP: Same Real Community Projects as IRCTC",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "4 min read",
-    excerpt: "Indian Railways MCP Server – Rail Services integration for automated workflows in India.",
-    keywords: ["indian-railways-mcp-india", "India MCP", "MCP integration"],
+    readTime: "3 min read",
+    excerpt: "Indian Railways and IRCTC coverage overlap — the same real, unofficial community MCP servers providing PNR status, live train tracking, and schedules apply to both.",
+    keywords: ["indian-railways-mcp-india", "Indian Railways MCP", "India rail MCP"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["razorpay-mcp-server-india", "zoho-books-mcp-accounting-india", "upstox-mcp-trading"],
-    content: "<p>Indian Railways MCP Server – Rail Services - detailed guide coming soon.</p>"
+    internalLinks: ["irctc-mcp-india", "redbus-mcp-india", "gst-mcp-server-tax-compliance"],
+    content: `<p class="text-white/65 leading-relaxed">"Indian Railways" and "IRCTC" largely overlap for MCP purposes — the same real community projects (maasir554/indian-railway-mcp-server, rajprem4214/indian-railways-mcp, amith-vp/indian-railway-mcp, and others) provide PNR status, live train tracking, and schedule data. See this site's <a href="/blog/irctc-mcp-india" class="text-cyan-300 hover:text-cyan-200">fuller IRCTC coverage</a> for the complete detail, including the important disclaimer that none of these are officially affiliated with Indian Railways or IRCTC.</p>`
   },
   {
     slug: "redbus-mcp-india",
-    title: "RedBus MCP Server – Bus Tickets",
-    date: "2026-07-20",
+    title: "RedBus: No MCP Server Found",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "4 min read",
-    excerpt: "RedBus MCP Server – Bus Tickets integration for automated workflows in India.",
-    keywords: ["redbus-mcp-india", "India MCP", "MCP integration"],
+    readTime: "3 min read",
+    excerpt: "No official or community MCP server has been confirmed for RedBus, in contrast to the more actively-developed IRCTC/Indian Railways community MCP space.",
+    keywords: ["redbus-mcp-india", "RedBus MCP", "India bus booking MCP"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["irctc-mcp-india", "razorpay-mcp-server-india", "zoho-books-mcp-accounting-india"],
-    content: "<p>RedBus MCP Server – Bus Tickets - detailed guide coming soon.</p>"
+    internalLinks: ["irctc-mcp-india", "rapido-mcp-india", "makemytrip-mcp-india"],
+    content: `<p class="text-white/65 leading-relaxed">No official or notable community MCP server has been confirmed for RedBus. This is a real contrast worth noting: rail travel (IRCTC/Indian Railways) has multiple real, actively-developed community MCP projects, while intercity bus booking hasn't seen comparable attention yet.</p>`
   },
   {
     slug: "rapido-mcp-india",
-    title: "Rapido MCP Server – Bike Taxi",
-    date: "2026-07-20",
+    title: "Rapido: No MCP Server Found",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "4 min read",
-    excerpt: "Rapido MCP Server – Bike Taxi integration for automated workflows in India.",
-    keywords: ["rapido-mcp-india", "India MCP", "MCP integration"],
+    readTime: "3 min read",
+    excerpt: "No official or community MCP server has been confirmed for Rapido, India's bike-taxi platform.",
+    keywords: ["rapido-mcp-india", "Rapido MCP", "India bike taxi MCP"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["razorpay-mcp-server-india", "zoho-books-mcp-accounting-india", "icici-bank-mcp-india"],
-    content: "<p>Rapido MCP Server – Bike Taxi - detailed guide coming soon.</p>"
+    internalLinks: ["uber-india-mcp", "ola-mcp-india", "redbus-mcp-india"],
+    content: `<p class="text-white/65 leading-relaxed">No official or notable community MCP server has been confirmed for Rapido. Ride-hailing generally has thin MCP coverage even globally — see this site's Uber and Ola coverage for the closest comparable findings, both of which are unofficial at best.</p>`
   },
   {
     slug: "uber-india-mcp",
-    title: "Uber India MCP Server – Ride Services",
-    date: "2026-07-20",
+    title: "Uber (India): Unofficial MCP Servers Exist, Explicitly Unaffiliated",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
     readTime: "4 min read",
-    excerpt: "Uber India MCP Server – Ride Services integration for automated workflows in India.",
-    keywords: ["uber-india-mcp", "India MCP", "MCP integration"],
+    excerpt: "Unofficial MCP servers let AI agents request Uber rides and track trips — real, functioning projects that explicitly disclaim any Uber affiliation, applicable to Uber's India operations too.",
+    keywords: ["uber-india-mcp", "Uber MCP", "India ride hailing MCP"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["paytm-mcp-server-india-payments", "google-pay-mcp-india", "zoho-crm-mcp-india"],
-    content: "<p>Uber India MCP Server – Ride Services - detailed guide coming soon.</p>"
+    internalLinks: ["ola-mcp-india", "rapido-mcp-india", "makemytrip-mcp-india"],
+    content: `<p class="text-white/65 leading-relaxed">No official Uber MCP server exists, in India or globally. Real, unofficial community projects do exist — one lets an AI assistant request rides, watch a trip in progress, and browse activity history via stdio or HTTP+OAuth, explicitly stating it is "not affiliated with Uber."</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">What This Means Practically</h2>
+<p class="text-white/65 leading-relaxed">These projects require your own Uber API credentials, configured as environment variables — meaning you're trusting a third-party codebase with real account access to request rides (and implicitly, spend money) on your behalf. Review the actual code before connecting a real account, the same due diligence covered across this site's other unofficial-integration coverage.</p>
+
+<h2 class="mt-8 text-2xl font-black text-white">No India-Specific Version</h2>
+<p class="text-white/65 leading-relaxed">Nothing India-market-specific was found — these are general Uber API wrappers that would work anywhere Uber operates, India included, rather than an India-tailored integration.</p>`
   },
   {
     slug: "ola-mcp-india",
-    title: "Ola MCP Server – Ride & Mobility",
-    date: "2026-07-20",
+    title: "Ola: No MCP Server Found",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "4 min read",
-    excerpt: "Ola MCP Server – Ride & Mobility integration for automated workflows in India.",
-    keywords: ["ola-mcp-india", "India MCP", "MCP integration"],
+    readTime: "3 min read",
+    excerpt: "No official or community MCP server has been confirmed for Ola, in contrast to Uber which at least has unofficial, unaffiliated community wrappers.",
+    keywords: ["ola-mcp-india", "Ola MCP", "India ride hailing MCP"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["uber-india-mcp", "razorpay-mcp-server-india", "zoho-books-mcp-accounting-india"],
-    content: "<p>Ola MCP Server – Ride & Mobility - detailed guide coming soon.</p>"
+    internalLinks: ["uber-india-mcp", "rapido-mcp-india", "redbus-mcp-india"],
+    content: `<p class="text-white/65 leading-relaxed">No official or notable community MCP server has been confirmed for Ola, India's own ride-hailing platform. This is a real, notable gap relative to Uber, which at least has unofficial (if unaffiliated) community wrappers for ride requests and trip tracking — nothing comparable was found for Ola.</p>`
   },
   {
     slug: "cricbuzz-mcp-india",
@@ -6639,16 +7077,17 @@ pip install phonepe-pg-docs-mcp</code></pre>
   },
   {
     slug: "tamil-maharaja-mcp-tn",
-    title: "Tamil Nadu Mercantile MCP Server – South India",
-    date: "2026-07-20",
+    title: "Tamil Nadu Mercantile Bank: No Confirmed MCP Server",
+    date: "2026-07-21",
     category: "Integrations & Tools",
     cluster: "integrations-tools",
-    readTime: "4 min read",
-    excerpt: "Tamil Nadu Mercantile MCP Server – South India integration for automated workflows in India.",
-    keywords: ["tamil-maharaja-mcp-tn", "India MCP", "MCP integration"],
+    readTime: "3 min read",
+    excerpt: "No official or community MCP server has been confirmed for Tamil Nadu Mercantile Bank, consistent with the pattern across regional Indian banks generally.",
+    keywords: ["tamil-maharaja-mcp-tn", "Tamil Nadu Mercantile Bank API", "India MCP banking"],
     ugcElements: ["Integration examples", "API configs"],
-    internalLinks: ["kmb-mcp-server-karnataka", "city-union-mcp-chennai", "paytm-mcp-server-india-payments"],
-    content: "<p>Tamil Nadu Mercantile MCP Server – South India - detailed guide coming soon.</p>"
+    internalLinks: ["kmb-mcp-server-karnataka", "city-union-mcp-chennai", "federal-bank-mcp-kerala"],
+    content: `<p class="text-white/65 leading-relaxed">No official or notable community MCP server has been confirmed for Tamil Nadu Mercantile Bank, consistent with the pattern across every regional Indian bank covered on this site (Karnataka Bank, City Union Bank, Federal Bank) — none have a public developer API program mature enough to support a real MCP integration yet.</p>
+<p class="text-white/65 leading-relaxed">The Account Aggregator framework remains the more realistic near-term path for third-party programmatic access, the same conclusion reached across this site's broader regional-banking coverage.</p>`
   },
   {
     slug: "manipal-mcp-india",
