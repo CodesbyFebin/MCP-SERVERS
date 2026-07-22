@@ -1,6 +1,8 @@
 import {
   Badge,
   CodeDemo,
+  ComparisonTable,
+  ComplianceSection,
   Container,
   CtaBanner,
   DividerSection,
@@ -101,6 +103,18 @@ const homeFaqs = [
   {
     question: "Do I need to manage infrastructure?",
     answer: "No. MCPServer.in handles deployment, scaling, TLS, monitoring, and regional failover. You configure your MCP server, and we run it on India-first infrastructure."
+  },
+  {
+    question: "Which AI clients support MCP?",
+    answer: "Any client implementing the Model Context Protocol specification can connect — this includes Claude Desktop, Cursor, VS Code extensions, and a growing list of MCP-compatible agents. Because MCP is an open standard, a server you deploy once works across every compatible client without per-client integration work."
+  },
+  {
+    question: "Can I build and deploy my own MCP server?",
+    answer: "Yes. Use the open-source MCP SDKs to build a server exposing your own tools, data, or APIs, then deploy it through MCPServer.in's hosting to get TLS, monitoring, and India-region placement without managing infrastructure yourself."
+  },
+  {
+    question: "How is my data handled?",
+    answer: "Data for hosted servers stays in Indian regions (ap-south-1/ap-south-2) by default. We maintain audit logs of server activity and follow DPDP-aligned data-handling practices. We don't claim third-party compliance certifications we haven't obtained — ask our support team for current documentation if you need it for a vendor review."
   }
 ];
 
@@ -176,26 +190,26 @@ export default function Home() {
             <div className="mt-8 grid gap-6 md:grid-cols-2">
               <div>
                 <h3 className="text-xl font-semibold text-white">How MCP Works</h3>
-                <p className="mt-3 space-y-3 text-white/60">
+                <div className="mt-3 space-y-3 text-white/60">
                   <p>MCP consists of two core components:</p>
                   <ul className="list-space-y-2 pl-4">
                     <li><strong className="text-cyan-300">MCP Host</strong> - The AI model or application that requests tools</li>
                     <li><strong className="text-cyan-300">MCP Client</strong> - The tool or server being accessed</li>
                   </ul>
                   <p>The protocol enables secure, real-time communication with automatic schema validation and consent management.</p>
-                </p>
+                </div>
               </div>
-              
+
               <div>
                 <h3 className="text-xl font-semibold text-white">Why MCP Matters</h3>
-                <p className="mt-3 space-y-3 text-white/60">
+                <div className="mt-3 space-y-3 text-white/60">
                   <p>MCP eliminates vendor lock-in by providing:</p>
                   <ul className="list-space-y-2 pl-4">
                     <li><strong className="text-cyan-300">Interoperability</strong> - Connect any model to any tool</li>
                     <li><strong className="text-cyan-300">Extensibility</strong> - Build custom tools without modifying models</li>
                     <li><strong className="text-cyan-300">Security</strong> - Fine-grained permissions and audit trails</li>
                   </ul>
-                </p>
+                </div>
               </div>
             </div>
             
@@ -274,8 +288,24 @@ export default function Home() {
 
       <DividerSection>
         <Container>
+          <ComplianceSection />
+        </Container>
+      </DividerSection>
+
+      <DividerSection>
+        <Container>
           <SectionTitle title="Loved by Builders Worldwide" />
           <Testimonials />
+        </Container>
+      </DividerSection>
+
+      <DividerSection>
+        <Container>
+          <SectionTitle
+            title={<>Why Host on <span className="text-cyan-300">MCPserver.in?</span></>}
+            subtitle="How we compare to self-hosting your own servers or using a generic cloud provider."
+          />
+          <ComparisonTable />
         </Container>
       </DividerSection>
 
