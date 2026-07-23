@@ -51,7 +51,6 @@ export const metadata: Metadata = {
     languages: {
       "en-IN": "/",
       "en": "/",
-      "hi-IN": "/hi",
       "x-default": "/",
     }
   },
@@ -103,6 +102,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={`dark ${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}>
       <head>
+        <link rel="alternate" hrefLang="en-IN" href="https://www.mcpserver.in/" />
+        <link rel="alternate" hrefLang="en" href="https://www.mcpserver.in/" />
+        <link rel="alternate" hrefLang="x-default" href="https://www.mcpserver.in/" />
         {process.env.NEXT_PUBLIC_GTM_ID && (
           <Script id="gtm-script" strategy="afterInteractive">
             {`
