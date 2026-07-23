@@ -31,6 +31,7 @@ import SchemaJsonLd from "../src/components/SchemaJsonLd";
 import AnswerBox from "../src/components/AnswerBox";
 import FAQ from "../src/components/FAQ";
 import MermaidDiagram from "../src/components/MermaidDiagram";
+import dynamic from "next/dynamic";
 
 const categoryIcons = { Code: Code2, Database, Briefcase, CreditCard } as const;
 
@@ -126,6 +127,15 @@ const homeFaqs = [
 ];
 
 const { datePublished: homeDatePublished, dateModified: homeDateModified } = getContentDates("page:home");
+
+const DynamicFeatureGrid = dynamic(() => import("../src/components/ReferenceLanding").then((m) => m.FeatureGrid), { ssr: true });
+const DynamicIntegrationRail = dynamic(() => import("../src/components/ReferenceLanding").then((m) => m.IntegrationRail), { ssr: true });
+const DynamicCodeDemo = dynamic(() => import("../src/components/ReferenceLanding").then((m) => m.CodeDemo), { ssr: true });
+const DynamicUseCaseGrid = dynamic(() => import("../src/components/ReferenceLanding").then((m) => m.UseCaseGrid), { ssr: true });
+const DynamicSecurityBand = dynamic(() => import("../src/components/ReferenceLanding").then((m) => m.SecurityBand), { ssr: true });
+const DynamicComplianceSection = dynamic(() => import("../src/components/ReferenceLanding").then((m) => m.ComplianceSection), { ssr: true });
+const DynamicTestimonials = dynamic(() => import("../src/components/ReferenceLanding").then((m) => m.Testimonials), { ssr: true });
+const DynamicComparisonTable = dynamic(() => import("../src/components/ReferenceLanding").then((m) => m.ComparisonTable), { ssr: true });
 
 const unifiedGraphSchema = getUnifiedGraphSchema({
   pageUrl: "/",
@@ -319,7 +329,7 @@ export default function Home() {
             title={<>Why MCP <span className="text-violet-300">SERVER?</span></>}
             subtitle="The infrastructure layer for AI. Built for developers. Loved by AI agents."
           />
-          <FeatureGrid />
+          <DynamicFeatureGrid />
         </Container>
       </DividerSection>
 
@@ -329,13 +339,13 @@ export default function Home() {
             title={<>Connect to Anything. <span className="text-cyan-300">Automate Everything.</span></>}
             subtitle="Directory of MCP servers across databases, dev tools, and popular SaaS platforms."
           />
-          <IntegrationRail />
+          <DynamicIntegrationRail />
         </Container>
       </DividerSection>
 
       <DividerSection>
         <Container>
-          <CodeDemo />
+          <DynamicCodeDemo />
         </Container>
       </DividerSection>
 
@@ -345,26 +355,26 @@ export default function Home() {
             title={<>Built for Every <span className="text-violet-300">Use Case</span></>}
             subtitle="From simple automations to complex enterprise workflows."
           />
-          <UseCaseGrid />
+          <DynamicUseCaseGrid />
         </Container>
       </DividerSection>
 
       <DividerSection className="pt-8">
         <Container>
-          <SecurityBand />
+          <DynamicSecurityBand />
         </Container>
       </DividerSection>
 
       <DividerSection>
         <Container>
-          <ComplianceSection />
+          <DynamicComplianceSection />
         </Container>
       </DividerSection>
 
       <DividerSection>
         <Container>
           <SectionTitle title="Loved by Builders Worldwide" />
-          <Testimonials />
+          <DynamicTestimonials />
         </Container>
       </DividerSection>
 
@@ -374,7 +384,7 @@ export default function Home() {
             title={<>Why Host on <span className="text-cyan-300">MCPserver.in?</span></>}
             subtitle="How we compare to self-hosting your own servers or using a generic cloud provider."
           />
-          <ComparisonTable />
+          <DynamicComparisonTable />
         </Container>
       </DividerSection>
 

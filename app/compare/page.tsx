@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     languages: {
       "en-IN": "/compare",
       "en": "/compare",
-        }
+    }
   },
 
 };
@@ -21,6 +21,7 @@ export default function ComparePage() {
       <div className="min-h-screen bg-[#050508] text-white flex items-center justify-center">
         <div className="text-center space-y-4">
           <div className="w-12 h-12 border-t-2 border-b-2 border-cyan-500 rounded-full animate-spin mx-auto"></div>
+          <h1 className="text-xl font-bold text-white">Compare MCP Server Integrations</h1>
           <p className="text-xs text-gray-500">Loading comparison engine...</p>
         </div>
       </div>
