@@ -274,6 +274,35 @@ allSourceFiles.forEach((filePath) => {
   }
 });
 
+const duplicateSlugCheck = (() => {
+  const seen = new Map<string, string>();
+  const duplicates: string[] = [];
+
+  const check = (path: string, type: string) => {
+    const key = path.toLowerCase();
+    if (seen.has(key)) {
+      duplicates.push(`Duplicate path "${path}" in ${type} conflicts with ${seen.get(key)}`);
+    } else {
+      seen.set(key, type);
+    }
+  };
+
+  pillars.forEach((p: any) => check(`/${p.slug}/`, "pillar"));
+  topics.forEach((t: any) => check(`/topics/${t.slug}/`, "topic"));
+  servers.forEach((s: any) => check(`/servers/${s.slug}/`, "server"));
+  glossaryTerms.forEach((g: any) => check(`/glossary/${g.slug}/`, "glossary"));
+  comparisons.forEach((c: any) => check(`/compare/${c.slug}/`, "comparison"));
+  blogPosts.forEach((p: any) => check(`/blog/${p.slug}/`, "blog"));
+
+  return duplicates;
+})();
+
+if (duplicateSlugCheck.length > 0) {
+  console.error("❌ [ERROR] Duplicate slugs detected across content registries:");
+  duplicateSlugCheck.forEach((msg) => console.error(`  - ${msg}`));
+  errorsCount += duplicateSlugCheck.length;
+}
+
 console.log("--------------------------------------------------");
 console.log(`📊 Static Audit Finished: Found ${errorsCount} Errors, ${warningsCount} Warnings.`);
 console.log("--------------------------------------------------");
