@@ -64,46 +64,48 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: "/what-is-mcp", changeFrequency: "weekly" as const, priority: 0.9 },
   ];
 
-  const staticEntries = staticPaths.map((p) => ({
-    url: `${baseUrl}${p.url}/`,
-    lastModified: today,
-    changeFrequency: p.changeFrequency,
-    priority: p.priority,
-  }));
+  const staticEntries = staticPaths.map((p) => {
+    const mod = p.url === "/" ? undefined : today;
+    return {
+      url: `${baseUrl}${p.url}/`,
+      ...(mod ? { lastModified: mod } : {}),
+      changeFrequency: p.changeFrequency,
+      priority: p.priority,
+    };
+  });
 
-  // Pillars (includes timestamps if available)
-  const pillarEntries = pillars.map((p) => ({
-    url: `${baseUrl}/${p.slug}/`,
-    lastModified: (p as any).updatedAt || (p as any).publishedAt || today,
-    changeFrequency: "weekly" as const,
-    priority: 0.9,
-  }));
+  const pillarEntries = pillars.map((p) => {
+    const mod = (p as any).updatedAt || (p as any).publishedAt;
+    return {
+      url: `${baseUrl}/${p.slug}/`,
+      ...(mod ? { lastModified: mod } : {}),
+      changeFrequency: "weekly" as const,
+      priority: 0.9,
+    };
+  });
 
-  // Topics
   const topicEntries = topics.map((t) => ({
     url: `${baseUrl}/topics/${t.slug}/`,
-    lastModified: today,
     changeFrequency: "weekly" as const,
     priority: 0.8,
   }));
 
-  // Servers
   const serverEntries = servers.map((s) => ({
     url: `${baseUrl}/servers/${s.slug}/`,
-    lastModified: today,
     changeFrequency: "weekly" as const,
     priority: 0.8,
   }));
 
-  // Glossary Detail pages (includes timestamps if available)
-  const glossaryEntries = glossaryTerms.map((g) => ({
-    url: `${baseUrl}/glossary/${g.slug}/`,
-    lastModified: (g as any).updatedAt || (g as any).publishedAt || today,
-    changeFrequency: "weekly" as const,
-    priority: 0.7,
-  }));
+  const glossaryEntries = glossaryTerms.map((g) => {
+    const mod = (g as any).updatedAt || (g as any).publishedAt;
+    return {
+      url: `${baseUrl}/glossary/${g.slug}/`,
+      ...(mod ? { lastModified: mod } : {}),
+      changeFrequency: "weekly" as const,
+      priority: 0.7,
+    };
+  });
 
-  // Technical comparisons
   const comparisonSlugs = [
     ...comparisons.map((c) => c.slug),
     ...popularComparisonSlugs,
@@ -111,28 +113,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const comparisonEntries = comparisonSlugs.map((slug) => ({
     url: `${baseUrl}/compare/${slug}/`,
-    lastModified: today,
     changeFrequency: "weekly" as const,
     priority: 0.8,
   }));
 
-  // Directory Categories
   const categoryEntries = categories.map((c) => ({
     url: `${baseUrl}/directory/${c.slug}/`,
-    lastModified: today,
     changeFrequency: "weekly" as const,
     priority: 0.8,
   }));
 
-  // Documentation knowledge base
   const docsEntries = docsPages.map((doc) => ({
     url: `${baseUrl}${getDocsPath(doc)}/`,
-    lastModified: today,
     changeFrequency: doc.changefreq,
     priority: doc.priority,
   }));
 
-  // Developer Tools
   const toolSlugs = [
     "mcp-playground",
     "mcp-server-checker",
@@ -145,26 +141,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
   const toolEntries = toolSlugs.map((slug) => ({
     url: `${baseUrl}/tools/${slug}/`,
-    lastModified: today,
     changeFrequency: "weekly" as const,
     priority: 0.8,
   }));
 
-  // Blog clusters
   const clusterEntries = clusters.map((cluster) => ({
     url: `${baseUrl}/blog/cluster/${cluster.slug}/`,
-    lastModified: today,
     changeFrequency: "weekly" as const,
     priority: 0.7,
   }));
 
-  // Blog posts (includes timestamps if available)
-  const blogPostEntries = blogPosts.map((post) => ({
-    url: `${baseUrl}/blog/${post.slug}/`,
-    lastModified: (post as any).updatedAt || (post as any).publishedAt || new Date(post.date),
-    changeFrequency: "monthly" as const,
-    priority: 0.6,
-  }));
+  const blogPostEntries = blogPosts.map((post) => {
+    const mod = (post as any).updatedAt || (post as any).publishedAt || new Date(post.date);
+    return {
+      url: `${baseUrl}/blog/${post.slug}/`,
+      lastModified: mod,
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    };
+  });
 
   return [
     ...staticEntries,

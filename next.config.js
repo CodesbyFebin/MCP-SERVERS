@@ -3,7 +3,7 @@ const nextConfig = {
   turbopack: {},
 
   images: {
-    unoptimized: true,
+    formats: ["image/avif", "image/webp"],
     remotePatterns: [
       { protocol: "https", hostname: "**" },
     ],
@@ -24,9 +24,9 @@ const nextConfig = {
         ],
       },
       {
-        source: "/public/data/:path*",
+        source: "/data/:path*",
         headers: [
-          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+          { key: "Cache-Control", value: "public, max-age=31536000, s-maxage=31536000, immutable" },
         ],
       },
       {
