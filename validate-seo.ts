@@ -10,6 +10,7 @@ import { comparisons } from "./src/data/comparisons";
 import { categories } from "./src/data/categories";
 import { docsPages, getDocsPath } from "./src/data/docs";
 import { blogPosts, clusters } from "./src/data/blogPosts";
+import { phaseAApprovedRoutes } from "./src/data/phase-a-authority.generated";
 
 console.log("--------------------------------------------------");
 console.log("🔍 STARTING STRICT METADATA, SCHEMA & SEO AUDIT");
@@ -56,6 +57,14 @@ const validPaths = new Set<string>([
   "/authors/",
   "/editorial-policy/",
   "/what-is-mcp/",
+  "/admin/",
+  "/admin/entities/",
+  "/admin/candidates/",
+  "/admin/quality/",
+  "/admin/reviews/",
+  "/admin/drafts/",
+  "/admin/content/",
+  "/search/",
 ]);
 
 // Register dynamic route entities with trailing slash
@@ -66,12 +75,18 @@ glossaryTerms.forEach((g) => validPaths.add(`/glossary/${g.slug}/`));
 comparisons.forEach((c) => validPaths.add(`/compare/${c.slug}/`));
 categories.forEach((cat) => validPaths.add(`/directory/${cat.slug}/`));
 docsPages.forEach((doc) => validPaths.add(`${getDocsPath(doc)}/`));
+phaseAApprovedRoutes.forEach((route) => validPaths.add(route));
 
 const popularPairings = [
   "github-mcp-server-vs-gitlab-mcp-server",
-  "postgres-mcp-server-vs-sqlite-mcp-server",
+  "postgres-mcp-server-vs-mysql-mcp-server",
   "slack-mcp-server-vs-discord-mcp-server",
-  "github-mcp-server-vs-postgres-mcp-server"
+  "docker-mcp-server-vs-kubernetes-mcp-server",
+  "vercel-mcp-server-vs-cloudflare-mcp-server",
+  "sentry-mcp-server-vs-datadog-mcp-server",
+  "jira-mcp-server-vs-linear-mcp-server",
+  "postman-mcp-server-vs-swagger-mcp-server",
+  "redis-mcp-server-vs-mongodb-mcp-server",
 ];
 popularPairings.forEach((p) => validPaths.add(`/compare/${p}/`));
 
@@ -89,9 +104,28 @@ const toolSlugs = [
 ];
 toolSlugs.forEach((ts) => validPaths.add(`/tools/${ts}/`));
 
-const blogPostSlugs = blogPosts.map((post) => post.slug);
+const redirectedBlogSlugs = new Set(["how-to-build-mcp-server-from-scratch"]);
+const blogPostSlugs = blogPosts.map((post) => post.slug).filter((slug) => !redirectedBlogSlugs.has(slug));
 blogPostSlugs.forEach((slug) => validPaths.add(`/blog/${slug}/`));
 clusters.forEach((cluster) => validPaths.add(`/blog/cluster/${cluster.slug}/`));
+
+const pagesDir = path.join(process.cwd(), "content", "pages");
+if (fs.existsSync(pagesDir)) {
+  function walkPages(dir: string, prefix = ""): void {
+    const files = fs.readdirSync(dir);
+    for (const file of files) {
+      const fullPath = path.join(dir, file);
+      const relativePath = path.join(prefix, file);
+      if (fs.statSync(fullPath).isDirectory()) {
+        walkPages(fullPath, relativePath);
+      } else if (file.endsWith(".md")) {
+        const slug = relativePath.replace(/\.md$/, "");
+        validPaths.add(`/${slug}/`);
+      }
+    }
+  }
+  walkPages(pagesDir);
+}
 
 console.log(`✅ Loaded ${validPaths.size} highly structured canonical paths from Knowledge Graph data lists.`);
 
@@ -338,6 +372,7 @@ const buildUrlNode = (loc: string, lastmod: string, changefreq: string, priority
       "sitemap-comparisons.xml",
       "sitemap-categories.xml",
       "sitemap-docs.xml",
+      "sitemap-phase-a.xml",
     ];
     const urls = sitemapFiles.flatMap((fileName) => {
       const filePath = `./public/${fileName}`;
@@ -400,9 +435,11 @@ ${blogPostSlugs.map((slug) => buildUrlNode(`/blog/${slug}/`, today, "weekly", "0
   fs.writeFileSync("./public/sitemap-pages.xml", sitemapPagesContent);
 
   // 2. sitemap-pillars.xml
+  const redirectedPillarSlugs = new Set(["mcp-hosting", "mcp-tutorial"]);
   const sitemapPillarsContent = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${Array.from(pillars)
+  .filter((p) => !redirectedPillarSlugs.has(p.slug))
   .map((p) => buildUrlNode(`/${p.slug}/`, today, "weekly", "0.9"))
   .join("\n")}
 </urlset>`;
@@ -462,7 +499,14 @@ ${Array.from(docsPages)
 </urlset>`;
   fs.writeFileSync("./public/sitemap-docs.xml", sitemapDocsContent);
 
-  // 8. sitemap-images.xml
+  // 9. sitemap-phase-a.xml
+  const sitemapPhaseAContent = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${phaseAApprovedRoutes.map((route) => buildUrlNode(route, today, "weekly", "0.82")).join("\n")}
+</urlset>`;
+  fs.writeFileSync("./public/sitemap-phase-a.xml", sitemapPhaseAContent);
+
+  // 10. sitemap-images.xml
   const sitemapImagesContent = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
@@ -476,7 +520,7 @@ ${Array.from(docsPages)
 </urlset>`;
   fs.writeFileSync("./public/sitemap-images.xml", sitemapImagesContent);
 
-  // 9. sitemap.xml Index (Unified index including categories)
+  // 11. sitemap.xml Index (Unified index including categories)
   const sitemapIndexContent = `<?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <sitemap>
@@ -509,6 +553,10 @@ ${Array.from(docsPages)
   </sitemap>
   <sitemap>
     <loc>${siteUrl}/sitemap-docs.xml</loc>
+    <lastmod>${today}</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>${siteUrl}/sitemap-phase-a.xml</loc>
     <lastmod>${today}</lastmod>
   </sitemap>
   <sitemap>
