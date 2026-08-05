@@ -559,7 +559,7 @@ await server.connect(transport);</code></pre>
 <h2 class="mt-8 text-2xl font-black text-white">Common First-Run Problems</h2>
 <ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
   <li><strong class="text-white">Relative paths in config:</strong> use the full absolute path to your server file — a relative path may not resolve correctly depending on the client's working directory.</li>
-  <li><strong class="text-white">Wrong transport:</strong> a server built for stdio won't work if a client expects HTTP/SSE, and vice versa — check what transport your target client actually supports before writing the server.</li>
+  <li><strong class="text-white">Wrong transport:</strong> a server built for stdio won't work if a client expects Streamable HTTP, and vice versa — check what transport your target client actually supports before writing the server.</li>
   <li><strong class="text-white">Silent startup failures:</strong> stdio servers that crash on launch often fail silently from the client's perspective — run the server directly from a terminal first to see any startup errors before wiring it into a client config.</li>
 </ul>`
   },
@@ -1167,7 +1167,7 @@ npm install -D typescript @types/node tsx</code></pre>`
     keywords: ["MCP CVE", "MCP vulnerability", "CVE-2025-6514", "mcp-remote"],
     ugcElements: ["Patching experiences", "Vulnerability reports"],
     internalLinks: ["mcp-server-security-checklist", "mcp-threat-model", "mcp-server-exploits-real-attack-scenarios"],
-    content: `<p class="text-white/65 leading-relaxed">CVE-2025-6514 is a real, publicly disclosed, critical vulnerability — CVSS score 9.6 — found in <code class="bg-gray-800 px-1 py-0.5 rounded">mcp-remote</code>, a widely used tool that lets MCP clients (Claude Desktop, VS Code, Cursor) connect to remote MCP servers over HTTP/SSE. It was discovered and disclosed by JFrog's security research team, and covered by The Hacker News, SentinelOne, Wiz, and GitHub's own Advisory Database (GHSA-6xpm-ggf7-wc3p). At the time of disclosure, mcp-remote had more than 437,000 downloads.</p>
+    content: `<p class="text-white/65 leading-relaxed">CVE-2025-6514 is a real, publicly disclosed, critical vulnerability — CVSS score 9.6 — found in <code class="bg-gray-800 px-1 py-0.5 rounded">mcp-remote</code>, a widely used tool that lets MCP clients (Claude Desktop, VS Code, Cursor) connect to remote MCP servers, including legacy HTTP+SSE deployments. It was discovered and disclosed by JFrog's security research team, and covered by The Hacker News, SentinelOne, Wiz, and GitHub's own Advisory Database (GHSA-6xpm-ggf7-wc3p). At the time of disclosure, mcp-remote had more than 437,000 downloads.</p>
 
 <h2 class="mt-8 text-2xl font-black text-white">What Actually Went Wrong</h2>
 <p class="text-white/65 leading-relaxed">The root cause is specific: mcp-remote mishandles the <code class="bg-gray-800 px-1 py-0.5 rounded">authorization_endpoint</code> URL it receives during OAuth flow initialization. When a client connects to a malicious or compromised MCP server, that server can respond with a specially crafted <code class="bg-gray-800 px-1 py-0.5 rounded">authorization_endpoint</code> value. When mcp-remote processes that value and passes it to the system's <code class="bg-gray-800 px-1 py-0.5 rounded">open()</code> function (the mechanism used to launch the user's browser for the OAuth login step), a carefully constructed URL can inject and execute arbitrary OS commands on the machine running mcp-remote.</p>
@@ -1547,7 +1547,7 @@ server.setRequestHandler("tools/call", async (request, { role }) => {
   <li><strong class="text-white">Untrusted content treated as untrusted.</strong> Any text a tool returns (a webpage, a file, a database row) can contain instructions an LLM might follow as if they came from the user. Don't assume tool output is inert data.</li>
   <li><strong class="text-white">Confirmation gates on destructive actions.</strong> As covered across this site's payment-MCP guides (Zerodha, Zomato, Razorpay), anything that spends money, sends a message, or deletes data should have an explicit confirmation step in front of it in production, not just in the demo.</li>
   <li><strong class="text-white">Rate limiting per-tool, not just per-connection.</strong> An LLM in an agentic loop can call a tool far more times per second than a human ever would — a single generous connection-level rate limit doesn't stop a runaway loop from hammering one specific expensive tool.</li>
-  <li><strong class="text-white">Transport matches the deployment context.</strong> stdio is fine for a locally-run, single-user server; anything reachable over a network needs the HTTP/SSE transport with real authentication, not stdio's implicit trust model.</li>
+  <li><strong class="text-white">Transport matches the deployment context.</strong> stdio is fine for a locally-run, single-user server; anything reachable over a network needs Streamable HTTP with real authentication, origin validation, and TLS, not stdio's implicit trust model.</li>
 </ul>
 
 <h2 class="mt-8 text-2xl font-black text-white">Before You Flip the Switch</h2>
@@ -2451,7 +2451,7 @@ await server.connect(new StdioServerTransport());</code></pre>
 <h2 class="mt-8 text-2xl font-black text-white">Option overview</h2>
 <ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
   <li>EC2 for full OS control and long-running stdio bridging.</li>
-  <li>ECS or Fargate for containerized HTTP/SSE workloads.</li>
+  <li>ECS or Fargate for containerized Streamable HTTP workloads.</li>
   <li>Lambda only for small, request-scoped tool endpoints; avoid stateful assumptions.</li>
 </ul>
 
@@ -2497,7 +2497,7 @@ await server.connect(new StdioServerTransport());</code></pre>
 
 <h2 class="mt-8 text-2xl font-black text-white">Practical options</h2>
 <ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
-  <li>Cloud Run for containerized HTTP/SSE servers with autoscaling.</li>
+  <li>Cloud Run for containerized Streamable HTTP servers with autoscaling.</li>
   <li>GCE for dedicated VM hosting when you need full OS control.</li>
   <li>GKE when multiple services or namespaces need coordinated deployment.</li>
 </ul>`

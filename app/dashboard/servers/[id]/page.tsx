@@ -2,7 +2,7 @@ import { MicroBillingDashboard } from '../../../../src/components/dashboard/Micr
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Server Dashboard - MCPserver.in",
+  title: "Server Dashboard",
   description: "Managed MCP server dashboard for deployments, logs, and health monitoring.",
   robots: {
     index: false,

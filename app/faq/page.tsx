@@ -5,9 +5,9 @@ import SchemaJsonLd from "../../src/components/SchemaJsonLd";
 import { getFAQSchema, getUnifiedGraphSchema } from "../../src/lib/schema";
 
 export const metadata: Metadata = {
-  title: "MCPserver.in FAQ - Hosting, Security, Pricing and MCP Setup",
+  title: "FAQ: MCP Hosting, Security, Pricing and Setup",
   description:
-    "Answers to common MCPserver.in questions covering Model Context Protocol basics, managed hosting, security controls, pricing, and India-ready compliance.",
+    "Answers to common questions covering Model Context Protocol basics, managed hosting, security controls, pricing, and compliance.",
   alternates: {
     canonical: "/faq",
     languages: {
@@ -41,7 +41,7 @@ const platformFaqs = [
   {
     question: "Is MCPserver.in compliant with India's DPDP Act?",
     answer:
-      "Yes. MCPserver.in is fully DPDP compliant with automated data localization, consent management, and breach notification protocols built into the platform.",
+      "MCPserver.in is designed to support DPDP-aware deployments with regional hosting options, consent-aware patterns, audit trails, and incident-response workflows. Final compliance depends on your data flows, configuration, contracts, and operating process.",
   },
   {
     question: "What is the p99 latency for MCP servers in India?",
@@ -60,8 +60,8 @@ export default function FaqPage() {
   const faqSchema = getFAQSchema(faqs);
   const unifiedSchema = getUnifiedGraphSchema({
     pageUrl: "/faq",
-    title: "MCPserver.in FAQ - Hosting, Security, Pricing and MCP Setup",
-    description: "Answers to common MCPserver.in questions covering Model Context Protocol basics, managed hosting, security controls, pricing, and India-ready compliance.",
+    title: "FAQ: MCP Hosting, Security, Pricing and Setup",
+    description: "Answers to common questions covering Model Context Protocol basics, managed hosting, security controls, pricing, and compliance.",
     speakable: ["#faq-page"],
     breadcrumbs: [
       { name: "Home", item: "/" },

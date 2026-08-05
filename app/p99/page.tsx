@@ -5,7 +5,7 @@ import { getUnifiedGraphSchema } from "../../src/lib/schema";
 import P99DashboardLoader from "./P99DashboardLoader";
 
 export const metadata: Metadata = {
-  title: "P99 Latency Dashboard (Illustrative) - MCPserver.in",
+  title: "P99 Latency Dashboard (Illustrative)",
   description:
     "An illustrative example of a p50/p90/p99 latency dashboard across Mumbai, Bengaluru, secure gateway, and browser sandbox infrastructure — sample data, not live telemetry.",
   alternates: {

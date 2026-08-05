@@ -5,7 +5,7 @@ import SchemaJsonLd from "../../../src/components/SchemaJsonLd";
 import { CheckCircle2, XCircle, AlertTriangle } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "MCP Compliance Matrix — MCPserver.in",
+  title: "MCP Compliance Matrix: DPDP, SOC 2, GDPR Controls",
   description:
     "Framework-by-framework compliance matrix for hosting MCP servers in India: DPDP Act 2023, RBI guidelines, GDPR, SOC 2, and practical control mappings.",
   alternates: {

@@ -7,7 +7,7 @@ import { getContentDates } from "../../../src/lib/contentDates";
 import { indiaServices } from "../../../src/data/india-services";
 
 export const metadata: Metadata = {
-  title: "India Services Integration Hub: Razorpay, Zoho CRM MCP Servers | MCPserver.in",
+  title: "India Services Integration Hub: Razorpay, Zoho CRM MCP Servers",
   description:
     "Real, working MCP server examples for Indian SaaS and payment platforms — Razorpay and Zoho CRM — using the official SDKs and MCP TypeScript SDK.",
   alternates: {

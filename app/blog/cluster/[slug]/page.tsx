@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: { params: ClusterPageParams }
   const cluster = clusters.find(c => c.slug === slug);
   if (!cluster) return {};
   return {
-    title: `${cluster.title} Blog Posts | MCPserver.in`,
+    title: `${cluster.title} — Blog Cluster`,
     description: `All ${cluster.postCount} posts in the ${cluster.title} cluster.`,
     alternates: {
       canonical: `/blog/cluster/${slug}`,

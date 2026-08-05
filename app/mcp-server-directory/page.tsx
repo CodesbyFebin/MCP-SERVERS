@@ -2,8 +2,8 @@ import DirectoryClient from "./DirectoryClient";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "MCP Server Directory - Explore 100+ Integrations - MCPserver.in",
-  description: "Browse the curated directory of Model Context Protocol (MCP) servers. Integrate databases, web APIs, developer tools, and SaaS platforms side-by-side.",
+  title: "MCP Server Directory: Browse Verified Integrations",
+  description: "Browse the curated directory of Model Context Protocol (MCP) servers. Databases, web APIs, developer tools, and SaaS platforms.",
   alternates: {
     canonical: "/mcp-server-directory",
     languages: {

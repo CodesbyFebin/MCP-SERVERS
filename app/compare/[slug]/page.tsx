@@ -3,11 +3,13 @@ import Link from "next/link";
 import { comparisons } from "../../../src/data/comparisons";
 import { servers } from "../../../src/data/servers";
 import Breadcrumbs from "../../../src/components/Breadcrumbs";
+import GeneratedContent from "../../../src/components/GeneratedContent";
 import { 
   Scale, Check, X, ShieldAlert, Award, ArrowRight, Database, 
   Terminal, Layers, MessageSquare, Cloud, Cpu, Globe 
 } from "lucide-react";
 import { notFound } from "next/navigation";
+import { loadComparisonContent } from "../../../src/lib/content/content-loader";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -37,7 +39,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const comparison = comparisons.find((c) => c.slug === slug);
   if (comparison) {
     return {
-      title: `${comparison.title} - MCPserver.in`,
+      title: `${comparison.title}`,
       description: comparison.shortAnswer,
       alternates: {
         canonical: `/compare/${slug}`,
@@ -57,7 +59,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       const serverB = servers.find(s => s.slug === parts[1] || s.slug === `${parts[1]}-mcp-server`);
       if (serverA && serverB) {
         return {
-          title: `Compare ${serverA.name} vs ${serverB.name} MCP Server Integration - MCPserver.in`,
+      title: `Compare ${serverA.name} vs ${serverB.name} MCP Servers`,
           description: `Analyze and compare ${serverA.name} vs ${serverB.name} Model Context Protocol (MCP) integrations. View features, use cases, security controls, and authentication side-by-side.`,
           alternates: {
             canonical: `/compare/${slug}`,
@@ -85,7 +87,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function ComparePage({ params }: PageProps) {
   const { slug } = await params;
-  
+
   // 1. Check predefined conceptual comparisons
   const comparison = comparisons.find((c) => c.slug === slug);
 
@@ -100,6 +102,8 @@ export default async function ComparePage({ params }: PageProps) {
       serverB = servers.find(s => s.slug === parts[1] || s.slug === `${parts[1]}-mcp-server`);
     }
   }
+
+  const generatedContent = loadComparisonContent(slug)
 
   // If neither found, 404
   if (!comparison && (!serverA || !serverB)) {
@@ -237,6 +241,10 @@ export default async function ComparePage({ params }: PageProps) {
               </div>
             </div>
 
+           </div>
+
+          <div className="mt-12">
+            <GeneratedContent content={generatedContent} />
           </div>
 
         </div>

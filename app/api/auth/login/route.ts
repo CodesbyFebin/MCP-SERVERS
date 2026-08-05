@@ -1,44 +1,44 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { getUserByEmail } from '../../../../src/lib/db';
-import { verifyPassword, createSessionToken, SESSION_COOKIE_NAME, sessionCookieOptions } from '../../../../src/lib/auth';
+import { NextRequest, NextResponse } from "next/server"
+import { verifyPassword, hashPassword, createSessionToken, sessionCookieOptions } from "../../../../src/lib/auth"
+import { getUserByEmail, createUser } from "../../../../src/lib/db"
 
-function toPublicUser(user: { id: string; email: string; name: string; company_name: string | null }) {
-  return { id: user.id, email: user.email, name: user.name, companyName: user.company_name };
-}
-
-export async function POST(req: NextRequest) {
-  let body: { email?: string; password?: string };
+export async function POST(request: NextRequest) {
   try {
-    body = await req.json();
-  } catch {
-    return NextResponse.json({ error: 'Invalid JSON body' }, { status: 400 });
-  }
+    const { email, password } = await request.json()
 
-  const email = body.email?.trim().toLowerCase();
-  const password = body.password;
+    if (!email || !password) {
+      return NextResponse.json({ error: "Email and password are required" }, { status: 400 })
+    }
 
-  if (!email || !password) {
-    return NextResponse.json({ error: 'email and password are required' }, { status: 400 });
-  }
+    let user = await getUserByEmail(email)
 
-  try {
-    const user = await getUserByEmail(email);
     if (!user) {
-      return NextResponse.json({ error: 'Invalid email or password' }, { status: 401 });
+      const passwordHash = await hashPassword(password)
+      user = await createUser({
+        email,
+        passwordHash,
+        name: email.split("@")[0],
+        companyName: null,
+      })
+    } else {
+      const valid = await verifyPassword(password, user.password_hash)
+      if (!valid) {
+        return NextResponse.json({ error: "Invalid credentials" }, { status: 401 })
+      }
     }
 
-    const valid = await verifyPassword(password, user.password_hash);
-    if (!valid) {
-      return NextResponse.json({ error: 'Invalid email or password' }, { status: 401 });
-    }
+    const token = await createSessionToken({
+      sub: user.id,
+      email: user.email,
+    })
 
-    const token = await createSessionToken({ sub: user.id, email: user.email });
-    const response = NextResponse.json({ user: toPublicUser(user) });
-    response.cookies.set(SESSION_COOKIE_NAME, token, sessionCookieOptions);
-    return response;
+    const response = NextResponse.json({ success: true, user: { id: user.id, email: user.email, name: user.name } })
+
+    response.cookies.set("mcpserver_session", token, sessionCookieOptions)
+
+    return response
   } catch (error) {
-    console.error('Login failed:', error);
-    const message = error instanceof Error ? error.message : 'Unknown error';
-    return NextResponse.json({ error: `Login failed: ${message}` }, { status: 500 });
+    console.error("Login error:", error)
+    return NextResponse.json({ error: "Something went wrong" }, { status: 500 })
   }
 }

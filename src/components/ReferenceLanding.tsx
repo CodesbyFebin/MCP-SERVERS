@@ -548,7 +548,7 @@ export function Testimonials({ client = false }: { client?: boolean }) {
     ? [
         ["Faster integration", "Wrap an existing API as an MCP server once, and any MCP-compatible AI client can use it — no per-client integration work."],
         ["Ecosystem compatibility", "Standard JSON-RPC 2.0 transport means the same server works across Claude Desktop, Cursor, VS Code, and other MCP clients."],
-        ["Built for scale", "Deploy stdio servers locally for development, or move to SSE/HTTP-based remote servers as usage grows."],
+        ["Built for scale", "Deploy stdio servers locally for development, or move to Streamable HTTP remote servers as usage grows."],
         ["Security by design", "Least-privilege tool scoping and explicit confirmation for destructive actions, from the first server you deploy."]
       ]
     : [
@@ -573,12 +573,16 @@ export function CtaBanner({
   title = "Ready to Supercharge Your AI Agents?",
   subtitle = "Join builders using MCP SERVER to build the future.",
   primaryHref = "/mcp-server-directory",
-  primaryLabel = "Explore MCP Servers"
+  primaryLabel = "Explore MCP Servers",
+  secondaryHref = "/pricing",
+  secondaryLabel = "Deploy Your MCP Server",
 }: {
   title?: string;
   subtitle?: string;
   primaryHref?: string;
   primaryLabel?: string;
+  secondaryHref?: string;
+  secondaryLabel?: string;
 }) {
   return (
     <div className="relative overflow-hidden rounded-xl border border-violet-300/25 bg-gradient-to-r from-violet-950 via-[#241266] to-[#07152d] p-6 sm:p-8">
@@ -589,7 +593,7 @@ export function CtaBanner({
           <p className="mt-2 text-sm text-white/70">{subtitle}</p>
           <div className="mt-6 flex flex-wrap gap-3">
             <PrimaryButton href={primaryHref}>{primaryLabel}</PrimaryButton>
-            <SecondaryButton href="/pricing">Deploy Your MCP Server</SecondaryButton>
+            <SecondaryButton href={secondaryHref}>{secondaryLabel}</SecondaryButton>
           </div>
         </div>
         <div className="hidden justify-end md:flex">
@@ -887,7 +891,7 @@ export function KnowledgeGraph() {
 
 export function ComparisonTable() {
   const rows = [
-    ["DPDP & RBI Compliant", true, false, "Varies by provider"],
+    ["DPDP-aware and RBI-aligned controls", true, false, "Varies by provider"],
     ["Verified Server Directory", true, false, "Limited"],
     ["One-Click Deploy", true, false, "Complex setup"],
     ["Monitoring & Alerts", true, false, "Add-on required"],
@@ -954,18 +958,18 @@ export function ComparisonTable() {
 export function ComplianceSection() {
   return (
     <section className="rounded-xl border border-violet-300/15 bg-gradient-to-b from-violet-950/40 to-transparent p-6 sm:p-8">
-      <h3 className="text-xl font-black text-white">DPDP & RBI Compliant — Data Sovereignty Built In</h3>
+      <h3 className="text-xl font-black text-white">DPDP-aware and RBI-aligned controls</h3>
       <p className="mt-2 text-sm text-white/65">
-        MCPserver.in is designed with Indian compliance requirements — DPDP and RBI-aligned data handling — in mind from the ground up.
+        MCPserver.in is designed to support Indian compliance reviews with regional deployment options, audit trails, and security controls. Final compliance depends on your workload, configuration, subprocessors, and contract terms.
       </p>
       <div className="mt-6 grid gap-4 sm:grid-cols-2">
         <div className="rounded-lg border border-white/8 bg-white/[0.02] p-5">
           <h4 className="text-sm font-black text-cyan-200">DPDP Act 2023</h4>
           <ul className="mt-3 space-y-2 text-xs text-white/65">
             {[
-              "All data stored exclusively in India (AWS Mumbai & GCP Delhi)",
-              "Consent-based data handling with full audit trails",
-              "Automated breach notification (Rule 6 compliant)"
+              "India-region hosting options for eligible hosted workloads",
+              "Consent-aware data handling patterns with audit trails",
+              "Incident response workflows designed to support statutory notification duties"
             ].map((item) => (
               <li key={item} className="flex items-start gap-2">
                 <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-300" />
@@ -978,9 +982,9 @@ export function ComplianceSection() {
           <h4 className="text-sm font-black text-violet-200">RBI Cyber Framework</h4>
           <ul className="mt-3 space-y-2 text-xs text-white/65">
             {[
-              "Phishing-resistant authentication for all accounts",
-              "Real-time transaction telemetry and anomaly detection",
-              "Vendor risk management controls with quarterly reviews"
+              "Strong authentication options for administrative access",
+              "Telemetry patterns for monitoring sensitive tool activity",
+              "Vendor risk documentation available for enterprise review"
             ].map((item) => (
               <li key={item} className="flex items-start gap-2">
                 <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-300" />
@@ -994,7 +998,7 @@ export function ComplianceSection() {
         <div className="flex items-center gap-3">
           <Globe2 className="h-5 w-5 text-cyan-300" />
           <p className="text-xs font-semibold text-white/70">
-            All data stays within Indian borders — no cross-border transfers without explicit consent.
+            Residency scope, regions, subprocessors, retention, and exceptions should be confirmed in the current security documentation before production rollout.
           </p>
         </div>
       </div>

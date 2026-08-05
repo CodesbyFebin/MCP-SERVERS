@@ -1051,19 +1051,19 @@ node server.js`,
   }),
   page({
     slug: ["protocol", "transports"],
-    title: "MCP Transports: Stdio vs HTTP/SSE",
-    description: "Choose between stdio and HTTP/SSE transports for Model Context Protocol servers, with tradeoffs for local development versus production cloud deployments.",
+    title: "MCP Transports: Stdio vs Streamable HTTP",
+    description: "Choose between stdio and Streamable HTTP transports for Model Context Protocol servers, with tradeoffs for local development versus production cloud deployments.",
     category: "protocol",
     cluster: "transports",
     tags: ["transports", "stdio", "sse", "protocol"],
-    targetKeywords: ["mcp transports", "mcp stdio", "mcp http sse", "mcp remote server"],
+    targetKeywords: ["mcp transports", "mcp stdio", "mcp streamable http", "mcp remote server"],
     schemaType: "TechArticle",
     priority: 0.85,
     changefreq: "weekly",
-    directAnswer: "MCP is transport-agnostic: the same JSON-RPC 2.0 messages flow over either channel. Use stdio for local development and single-user desktop clients such as Claude Desktop or Cursor; use HTTP with Server-Sent Events for production, multi-tenant, cloud-hosted servers that serve multiple clients at once.",
+    directAnswer: "MCP is transport-agnostic: the same JSON-RPC messages can flow over supported bindings. Use stdio for local development and single-user desktop clients; use Streamable HTTP for remote, production, multi-tenant, cloud-hosted servers. Streamable HTTP may use Server-Sent Events for server-to-client streaming, but the transport is no longer the older separate HTTP+SSE pattern.",
     keyTakeaways: [
       "Stdio ties the server to the client process and needs no network configuration or authentication.",
-      "HTTP/SSE supports multiple concurrent clients and remote access, but requires TLS, auth, and rate limiting.",
+      "Streamable HTTP supports remote access and can use SSE for server streaming, but requires TLS, auth, origin validation, and rate limiting.",
       "Switching transports later does not require rewriting tool logic, only the transport initialization.",
     ],
     sections: [
@@ -1079,20 +1079,24 @@ const transport = new StdioServerTransport();
 await server.connect(transport);`,
       },
       {
-        heading: "HTTP/SSE transport (remote)",
+        heading: "Streamable HTTP transport (remote)",
         body: [
-          "HTTP POST carries client-to-server requests such as tools/call and resources/read, while Server-Sent Events stream server-to-client notifications and long-running operation updates. This is standard REST-like infrastructure carrying JSON-RPC payloads, so it works behind load balancers and supports OAuth or API-key authentication.",
+          "Streamable HTTP uses a single MCP endpoint that supports HTTP POST and GET. POST carries client-to-server JSON-RPC messages, while the server can return JSON directly or use Server-Sent Events when it needs to stream multiple messages.",
           "The tradeoff: it needs TLS, CORS, and auth configured correctly, and carries more latency than a local pipe.",
         ],
         code: `import express from "express";
-import { SSEServerTransport } from "@modelcontextprotocol/sdk/server/sse.js";
+import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
 
 const app = express();
 app.use(express.json());
 
-app.post("/mcp", async (req, res) => {
-  const transport = new SSEServerTransport("/messages", res);
+const transport = new StreamableHTTPServerTransport({
+  sessionIdGenerator: undefined
+});
+
+app.all("/mcp", async (req, res) => {
   await server.connect(transport);
+  await transport.handleRequest(req, res, req.body);
 });
 
 app.listen(3000);`,
@@ -1106,7 +1110,7 @@ app.listen(3000);`,
         C[Cursor] -->|stdio| B
     end
     subgraph Remote[Remote / Multi-tenant]
-        D[Web Client] -->|HTTPS / SSE| E[Load Balancer]
+        D[Web Client] -->|Streamable HTTP| E[Load Balancer]
         E --> F[MCP Server Cluster]
         F -->|SSE stream| D
     end
@@ -1118,16 +1122,16 @@ app.listen(3000);`,
             ["Local development", "Stdio"],
             ["Claude Desktop or Cursor integration", "Stdio"],
             ["Single-user desktop app", "Stdio"],
-            ["Team collaboration tool", "HTTP/SSE"],
-            ["Multi-tenant SaaS product", "HTTP/SSE"],
-            ["Enterprise or mobile-app backend", "HTTP/SSE"],
+            ["Team collaboration tool", "Streamable HTTP"],
+            ["Multi-tenant SaaS product", "Streamable HTTP"],
+            ["Enterprise or mobile-app backend", "Streamable HTTP"],
           ]
         ),
       },
     ],
     faqs: [
-      { question: "Can I switch from stdio to HTTP/SSE later?", answer: "Yes. The protocol layer is identical either way; only the transport initialization code changes, so tool definitions and business logic stay the same." },
-      { question: "Does HTTP/SSE support streaming responses?", answer: "Yes. Server-Sent Events are designed for one-way server-to-client streaming, which suits long-running tool executions and real-time notifications." },
+      { question: "Can I switch from stdio to Streamable HTTP later?", answer: "Yes. Tool definitions and business logic usually stay the same; the transport initialization and remote security controls change." },
+      { question: "Does Streamable HTTP support streaming responses?", answer: "Yes. Streamable HTTP can use Server-Sent Events for server-to-client streaming when long-running operations or notifications need it." },
       { question: "Is stdio transport secure?", answer: "It is secure for local, single-user scenarios because the trust boundary is the local machine, but it should never be exposed directly over a network." },
     ],
     citations: [officialCitations.mcp, officialCitations.jsonRpc, officialCitations.sse],
@@ -1394,7 +1398,7 @@ app.listen(3000);`,
     category: "compliance",
     cluster: "dpdp-compliance-guide",
     tags: ["dpdp", "privacy", "india"],
-    targetKeywords: ["dpdp compliant mcp server", "data protection mcp server india", "dpdp act mcp compliance"],
+    targetKeywords: ["dpdp-aware mcp server", "data protection mcp server india", "dpdp act mcp compliance"],
     schemaType: "HowTo",
     priority: 0.95,
     changefreq: "weekly",
@@ -1419,7 +1423,7 @@ app.listen(3000);`,
       },
     ],
     faqs: [
-      { question: "Is an MCP server automatically DPDP compliant?", answer: "No. Compliance depends on the data, purpose, consent model, security controls, contracts, and operational process." },
+      { question: "Is an MCP server automatically DPDP-compliant?", answer: "No. Compliance depends on the data, purpose, consent model, security controls, contracts, and operational process." },
       { question: "How do I make MCP DPDP-aware?", answer: "Map data flows, redact sensitive fields, log tool calls, enforce purpose limits, and review transfers and retention." },
       { question: "Should models see Aadhaar or PAN values?", answer: "Avoid exposing sensitive identifiers unless there is a clear lawful purpose and strong controls. Prefer masking or tokenization." },
       { question: "What penalties apply under DPDP?", answer: "The DPDP Act includes significant monetary penalties for certain failures. Confirm current rules and thresholds with official sources and legal counsel." },
@@ -1619,7 +1623,7 @@ function authorize(role: string, method: string) {
       { question: "Is API key auth enough?", answer: "It is a start, but production should also use scopes, rotation, logging, and approval policies." },
       { question: "Can MCP leak secrets?", answer: "Yes if tools return secrets or logs store raw headers. Redact aggressively." },
       { question: "Should tools run in sandboxes?", answer: "Use sandboxing for file, shell, browser, or network-capable tools." },
-      { question: "Does the MCP protocol enforce authentication?", answer: "No. MCP does not mandate a specific auth mechanism. Any server exposed over HTTP/SSE must add authentication and transport encryption itself." },
+      { question: "Does the MCP protocol enforce authentication?", answer: "No. MCP does not mandate a specific auth mechanism. Any server exposed over Streamable HTTP must add authentication, origin validation, and transport encryption itself." },
       { question: "How do I rotate API keys without downtime?", answer: "Accept both the old and new key for a transition window, move clients to the new key, then revoke the old one once nothing is using it." },
     ],
     citations: [officialCitations.mcp],
@@ -2467,7 +2471,7 @@ for await (const row of stream) {
     schemaType: "TechArticle",
     priority: 0.7,
     changefreq: "weekly",
-    directAnswer: "MCP servers stream real-time updates over the HTTP/SSE transport: the client opens a persistent SSE connection, the server keeps a handle to that connection keyed by session, and long-running tools push incremental progress notifications through it instead of returning only a single final response.",
+    directAnswer: "MCP servers can stream real-time updates over Streamable HTTP: the client connects to the MCP endpoint, and the server can use Server-Sent Events when long-running tools need to push incremental progress notifications instead of returning only a single final response.",
     keyTakeaways: [
       "SSE is the recommended streaming approach for MCP because it is plain HTTP and works through standard firewalls and load balancers.",
       "Track each client's transport by session ID so a long-running tool can find the right connection to push updates to.",
@@ -2506,7 +2510,7 @@ app.post("/messages", async (req, res) => {
     faqs: [
       { question: "Is SSE better than WebSockets for MCP?", answer: "SSE is the recommended default because it is one-directional, plain HTTP, and needs no special proxy configuration. WebSockets add complexity that most MCP streaming use cases do not need." },
       { question: "What happens if the client disconnects mid-stream?", answer: "The server's close handler should remove the session from its connection map immediately so no tool handler tries to write to a dead connection." },
-      { question: "Can stdio servers stream too?", answer: "Stdio can deliver notifications, but true concurrent multi-client streaming needs the HTTP/SSE transport since stdio is tied to a single client process." },
+      { question: "Can stdio servers stream too?", answer: "Stdio can deliver notifications, but concurrent remote multi-client streaming needs Streamable HTTP since stdio is tied to a single client process." },
     ],
     citations: [officialCitations.mcp, officialCitations.sse],
     related: ["/docs/protocol/transports", "/docs/protocol/events", "/docs/advanced/multi-agent-orchestration"],
@@ -3370,7 +3374,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       {
         heading: "Invoke and terminate",
         body: [
-          "Once initialized, the client can call tools, read resources, and fetch prompts freely and in any order. Termination differs by transport: a stdio server exits when its client process closes the pipe; an HTTP/SSE server closes the session on an explicit disconnect or a timeout.",
+          "Once initialized, the client can call tools, read resources, and fetch prompts freely and in any order. Termination differs by transport: a stdio server exits when its client process closes the pipe; a Streamable HTTP server closes the remote connection or session on an explicit disconnect or a timeout.",
         ],
       },
     ],

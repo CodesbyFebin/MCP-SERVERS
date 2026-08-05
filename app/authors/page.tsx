@@ -4,7 +4,7 @@ import Breadcrumbs from "../../src/components/Breadcrumbs";
 import { authors } from "../../src/data/authors";
 
 export const metadata: Metadata = {
-  title: "Authors - MCPserver.in",
+  title: "Authors",
   description: "The teams behind MCPserver.in's documentation, protocol standards, security guidance, and ecosystem research.",
   alternates: {
     canonical: "/authors",

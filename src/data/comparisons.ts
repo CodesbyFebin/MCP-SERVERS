@@ -1,3 +1,5 @@
+import { phaseAComparisons } from "./phase-a-authority.generated";
+
 export interface Comparison {
   slug: string;
   title: string;
@@ -10,7 +12,7 @@ export interface Comparison {
   verdict: string;
 }
 
-export const comparisons: Comparison[] = [
+const baseComparisons: Comparison[] = [
   {
     slug: "mcp-vs-api",
     title: "Model Context Protocol (MCP) vs Traditional REST APIs",
@@ -86,3 +88,13 @@ export const comparisons: Comparison[] = [
     verdict: "ChatGPT plugins pioneered web tools for LLMs, but MCP perfected the architecture by creating a robust, distributed, multi-transport standard."
   }
 ];
+
+function mergeComparisons(base: Comparison[], overrides: Comparison[]): Comparison[] {
+  const bySlug = new Map(base.map((item) => [item.slug, item]));
+  for (const item of overrides) {
+    bySlug.set(item.slug, item);
+  }
+  return [...bySlug.values()];
+}
+
+export const comparisons: Comparison[] = mergeComparisons(baseComparisons, phaseAComparisons);

@@ -95,7 +95,7 @@ Based on MCP ecosystem analysis, search intent mapping, and content gap research
 - Aligns with your domain strategy (mcpserver.in)
 
 **Trending Signals:**
-- "dpdp compliant ai" - exploding search trend in India
+- "dpdp-aware ai" - emerging search trend in India
 - RBI data localization + AI - emerging topic in TechCrunch India
 - Reddit r/india tech discussions about AI regulation
 
@@ -805,7 +805,7 @@ Based on search trend analysis, Reddit discussions, and GitHub activity, these a
 ### Exploding Topics (Create Content NOW)
 
 1. **"MCP vs LangChain 2026"** - Search volume up 400% YoY
-2. **"DPDP compliant AI agents"** - Exploding in India (new regulation)
+2. **"DPDP-aware AI agents"** - Emerging in India (new regulation)
 3. **"MCP server not working Claude Desktop"** - Top troubleshooting query
 4. **"How to build MCP server tutorial"** - Rising developer interest
 5. **"MCP security vulnerabilities"** - Emerging security concerns
@@ -856,7 +856,7 @@ Based on search trend analysis, Reddit discussions, and GitHub activity, these a
 | "mcp database server" | 3,900/mo | Medium | Transactional | HIGH |
 | "build mcp server" | 3,200/mo | Low | Transactional | HIGH |
 | "mcp server india" | 1,800/mo | Low | Informational | HIGH (Unique) |
-| "dpdp compliant mcp" | 880/mo | Low | Informational | HIGH (Unique) |
+| "dpdp-aware mcp" | 880/mo | Low | Informational | HIGH (Unique) |
 | "mcp server monitoring" | 1,400/mo | Medium | Transactional | MEDIUM |
 | "mcp server performance" | 1,100/mo | Medium | Informational | MEDIUM |
 

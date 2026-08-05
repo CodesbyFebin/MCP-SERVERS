@@ -3,7 +3,7 @@ import Breadcrumbs from "../../src/components/Breadcrumbs";
 import { Scale, ShieldCheck } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy - MCPserver.in",
+  title: "Privacy Policy",
   description: "Examine the privacy rules, encryption guarantees, and data collection standards for MCPserver.in.",
   alternates: {
     canonical: "/privacy",

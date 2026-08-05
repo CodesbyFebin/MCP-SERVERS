@@ -511,7 +511,7 @@ MCP Architect, 40 hours: MCP fundamentals, server design, secure tool schemas, d
 ### Blog Drafts
 
 1. MCP p99 latency India: Mumbai vs Bengaluru edge routing.
-2. DPDP compliant LLM tools for Indian enterprises.
+2. DPDP-aware LLM tools for Indian enterprises.
 3. AI agent infrastructure cost model for 50M daily executions.
 4. MCP vs REST for SaaS teams.
 5. How to scan MCP servers for CVEs.

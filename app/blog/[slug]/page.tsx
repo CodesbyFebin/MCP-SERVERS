@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: { params: BlogPostPageParams 
   const post = blogPosts.find(p => p.slug === slug);
   if (!post) return {};
   return {
-    title: `${post.title} | MCPserver.in Blog`,
+    title: `${post.title}`,
     description: post.excerpt,
     alternates: {
       canonical: `/blog/${slug}`,

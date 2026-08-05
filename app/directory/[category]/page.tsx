@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { categories } from "../../../src/data/categories";
-import { servers } from "../../../src/data/servers";
+import { publishedServers } from "../../../src/data/publishing";
 import ServerCard from "../../../src/components/ServerCard";
 import Breadcrumbs from "../../../src/components/Breadcrumbs";
 import { BookOpen, Database, ArrowLeft, Cpu, Shield } from "lucide-react";
@@ -25,8 +25,8 @@ export async function generateMetadata({ params }: PageProps) {
   if (!category) return {};
 
   return {
-    title: `${category.name} MCP Servers Directory - MCPserver.in`,
-    description: `Discover top ${category.name} Model Context Protocol (MCP) servers. ${category.description} Ready to deploy on low-latency India infrastructure.`,
+    title: `${category.name} MCP Servers Directory`,
+    description: `Browse ${category.name} Model Context Protocol (MCP) server profiles. ${category.description} Each public listing is gated by MCPServer.in publication checks.`,
     alternates: {
       canonical: `/directory/${categorySlug}`,
       languages: {
@@ -46,7 +46,7 @@ export default async function CategoryPage({ params }: PageProps) {
   }
 
   // Filter servers that belong to this category
-  const matchedServers = servers.filter(
+  const matchedServers = publishedServers.filter(
     (s) => s.category.toLowerCase() === category.name.toLowerCase()
   );
 
@@ -106,7 +106,7 @@ export default async function CategoryPage({ params }: PageProps) {
             {category.name} MCP Servers
           </h1>
           <p className="mt-3 text-xs sm:text-sm text-white/50 max-w-2xl mx-auto leading-relaxed">
-            {category.description} Explore our curated catalog of production-ready Model Context Protocol integrations.
+            {category.description} Explore published Model Context Protocol directory profiles with visible evidence and claim state.
           </p>
         </div>
 
@@ -117,8 +117,8 @@ export default async function CategoryPage({ params }: PageProps) {
               Showing <strong className="text-white">{matchedServers.length}</strong> integrations under {category.name}
             </div>
             <div className="flex items-center gap-4">
-              <span className="flex items-center gap-1"><Cpu className="w-3.5 h-3.5 text-cyan-500" /> Stdio & SSE Transport</span>
-              <span className="flex items-center gap-1"><Shield className="w-3.5 h-3.5 text-cyan-500" /> Encrypted Credentials</span>
+              <span className="flex items-center gap-1"><Cpu className="w-3.5 h-3.5 text-cyan-500" /> MCP Profile</span>
+              <span className="flex items-center gap-1"><Shield className="w-3.5 h-3.5 text-cyan-500" /> Claims Labelled</span>
             </div>
           </div>
 
@@ -141,7 +141,7 @@ export default async function CategoryPage({ params }: PageProps) {
           <BookOpen className="w-6 h-6 text-cyan-500 mx-auto mb-3" />
           <h3 className="text-sm sm:text-base font-display font-bold text-white">Need a custom {category.name} integration?</h3>
           <p className="text-xs text-white/50 mt-1 max-w-md mx-auto leading-relaxed">
-            Suggest a new API connector or database protocol. Our team builds and certifies high-demand custom servers in under 48 hours.
+            Suggest a new API connector or database protocol. Submissions enter editorial review before they can appear in public indexable routes.
           </p>
           <div className="mt-4">
             <Link

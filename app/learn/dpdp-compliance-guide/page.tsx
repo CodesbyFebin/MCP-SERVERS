@@ -7,7 +7,7 @@ import { getUnifiedGraphSchema } from "../../../src/lib/schema";
 import { getContentDates } from "../../../src/lib/contentDates";
 
 export const metadata: Metadata = {
-  title: "DPDP Compliance Checklist for MCP Servers | MCPserver.in",
+  title: "DPDP Compliance Checklist for MCP Servers",
   description:
     "A practical educational checklist for aligning MCP server deployments with India's Digital Personal Data Protection Act (DPDP) 2023 — data localization, consent, and audit logging.",
   alternates: {

@@ -7,6 +7,7 @@ export interface AuthorBoxProps {
   publishedDate?: string;
   updatedDate?: string;
   citations?: { label: string; url: string }[];
+  reviewLabel?: string;
   className?: string;
 }
 
@@ -17,6 +18,7 @@ export default function AuthorBox({
   publishedDate = "2026-07-01",
   updatedDate = "2026-07-09",
   citations = [],
+  reviewLabel = "Editorial record",
   className = "",
 }: AuthorBoxProps) {
   return (
@@ -37,7 +39,7 @@ export default function AuthorBox({
           <div>
             <div className="flex items-center gap-1.5">
               <span className="text-sm font-semibold text-white font-sans">{authorName}</span>
-              <span title="Expert Reviewed">
+              <span title={reviewLabel}>
                 <ShieldCheck className="w-4 h-4 text-cyan-400" />
               </span>
             </div>

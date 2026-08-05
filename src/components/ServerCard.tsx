@@ -18,7 +18,7 @@ export default function ServerCard({ server }: ServerCardProps) {
           </span>
           <span className="flex items-center gap-1 text-cyan-400">
             <ShieldAlert className="w-3 h-3 text-cyan-450" />
-            {server.auth.includes("OAuth") ? "OAuth Safe" : "Secure API"}
+            {server.auth.includes("OAuth") ? "OAuth Required" : "Credentialed"}
           </span>
         </div>
 
@@ -45,7 +45,7 @@ export default function ServerCard({ server }: ServerCardProps) {
 
       {/* Footer link */}
       <div className="mt-5 pt-4 border-t border-white/5 flex items-center justify-between text-xs font-semibold text-cyan-400">
-        <span className="text-white/40 group-hover:text-cyan-400/80 transition-colors">Setup Guide</span>
+        <span className="text-white/40 group-hover:text-cyan-400/80 transition-colors">Profile</span>
         <Link
           href={`/servers/${server.slug}`}
           className="inline-flex items-center gap-1 text-white/60 group-hover:text-cyan-400 transition-colors"

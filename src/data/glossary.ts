@@ -2299,7 +2299,7 @@ export const glossaryTerms: GlossaryTerm[] = [
       slug: "rate-limiting",
       term: "Rate Limiting",
       definition: "Rate limiting controls the number of requests a client can send to an MCP server within a given time window, preventing abuse and ensuring fair usage.",
-      detailedExplanation: "MCP servers can be overwhelmed by excessive requests from a single client or malicious actor. Rate limiting strategies include: per-IP limits, per-user limits, and per-tool limits. Common algorithms include token bucket, leaky bucket, and sliding window counters. Many MCP servers implement rate limiting at the transport layer (HTTP/SSE) or application layer (middleware).",
+      detailedExplanation: "MCP servers can be overwhelmed by excessive requests from a single client or malicious actor. Rate limiting strategies include: per-IP limits, per-user limits, and per-tool limits. Common algorithms include token bucket, leaky bucket, and sliding window counters. Many remote MCP servers implement rate limiting at the Streamable HTTP transport layer or application layer (middleware).",
       keyTakeaways: [
         "Protects against DoS attacks",
         "Enforces fair usage across clients",
@@ -2320,7 +2320,7 @@ export const glossaryTerms: GlossaryTerm[] = [
       slug: "encryption-in-transit",
       term: "Encryption in Transit",
       definition: "Encryption in transit protects data as it travels between the MCP client and server, preventing eavesdropping and man-in-the-middle attacks.",
-      detailedExplanation: "For remote MCP servers (HTTP/SSE), TLS 1.3 is the standard encryption protocol. It provides confidentiality, integrity, and authentication. Mutual TLS (mTLS) adds client certificate authentication. For local stdio connections, encryption is less critical since the communication stays within the same machine, but OS-level security is still important.",
+      detailedExplanation: "For remote MCP servers using Streamable HTTP, TLS 1.3 is the standard encryption protocol. It provides confidentiality, integrity, and authentication. Mutual TLS (mTLS) adds client certificate authentication. For local stdio connections, encryption is less critical since the communication stays within the same machine, but OS-level security is still important.",
       keyTakeaways: [
         "Use TLS 1.3 for all remote connections",
         "Enable HSTS to enforce HTTPS",
@@ -2726,7 +2726,7 @@ export const glossaryTerms: GlossaryTerm[] = [
       technicalDetails: {
         protocolLayer: "MCP over stdio",
         format: "JSON-RPC 2.0",
-        latencyProfile: "Local-only; sub-50ms for simple tool calls"
+        latencyProfile: "Local-only; typically low latency for simple tool calls"
       },
       references: ["https://cursor.sh/"]
     },
@@ -2783,7 +2783,7 @@ export const glossaryTerms: GlossaryTerm[] = [
       technicalDetails: {
         protocolLayer: "MCP over stdio",
         format: "JSON-RPC 2.0",
-        latencyProfile: "Local-only; sub-50ms for simple tool calls"
+        latencyProfile: "Local-only; typically low latency for simple tool calls"
       },
       references: ["https://zed.dev/"]
     },
@@ -2851,7 +2851,7 @@ export const glossaryTerms: GlossaryTerm[] = [
       detailedExplanation: "Latency is critical for AI applications. Deploying MCP servers in India (Mumbai, Bengaluru) reduces round-trip times to under 50ms for Indian users. This improves AI response times and user experience. The MCP server can be configured to route traffic to the nearest edge node.",
       keyTakeaways: [
         "Mumbai and Bengaluru edge nodes provide low latency",
-        "Sub-50ms round-trip times for Indian users",
+        "Low round-trip times for Indian users when infrastructure is placed near users and data",
         "Optimizes AI response times",
         "Improves user experience for Indian developers"
       ],
@@ -3581,7 +3581,7 @@ export const glossaryTerms: GlossaryTerm[] = [
       technicalDetails: {
         protocolLayer: "MCP application layer",
         format: "JSON-RPC 2.0",
-        latencyProfile: "Sub-50ms for version negotiation"
+        latencyProfile: "Low overhead for version negotiation"
       },
       references: ["https://spec.modelcontextprotocol.io/versioning/"]
     },
@@ -3741,7 +3741,7 @@ export const glossaryTerms: GlossaryTerm[] = [
       slug: "mcp-private-cloud",
       term: "Private Cloud MCP",
       definition: "Private cloud MCP deployments run on cloud infrastructure that is dedicated to a single organization, providing enhanced security and control.",
-      detailedExplanation: "Private clouds offer the scalability of cloud with the isolation of on-premises. MCP servers in private clouds can leverage dedicated hardware, private networking, and compliance certifications (like SOC2, ISO27001) tailored to the organization.",
+      detailedExplanation: "Private clouds offer the scalability of cloud with the isolation of on-premises. MCP servers in private clouds can leverage dedicated hardware, private networking, and organization-specific compliance programs when those controls are implemented and audited.",
       keyTakeaways: [
         "Dedicated cloud infrastructure",
         "Enhanced security and control",
@@ -3750,7 +3750,7 @@ export const glossaryTerms: GlossaryTerm[] = [
       ],
       useCase: "A healthcare organization deploys MCP servers in a private cloud to meet data privacy requirements.",
       technicalDetails: {
-        protocolLayer: "MCP over HTTP/SSE",
+        protocolLayer: "MCP over Streamable HTTP",
         format: "JSON-RPC 2.0",
         latencyProfile: "Depends on network and hardware"
       },
@@ -3819,7 +3819,7 @@ export const glossaryTerms: GlossaryTerm[] = [
     definition: "Auto scaling automatically adjusts the number of running instances of an MCP server based on load, so a server handling many concurrent tool calls doesn't fall over during traffic spikes and doesn't waste resources when idle.",
     detailedExplanation: "MCP itself has nothing to say about deployment topology — the spec covers the JSON-RPC message exchange between client and server, not how a server is scaled. Auto scaling is an infrastructure concern that sits underneath a remote (SSE or Streamable HTTP) MCP server, typically handled by the same mechanism used for any other backend service: a Kubernetes Horizontal Pod Autoscaler reacting to CPU/memory or request-rate metrics, or a platform-managed autoscaler on services like Cloud Run or ECS. A stdio-launched local MCP server, by contrast, has no auto-scaling concept at all — the client spawns exactly one process per session.",
     keyTakeaways: [
-      "Only applies to remote (HTTP/SSE) MCP servers — stdio servers are single-process, spawned per client session.",
+      "Only applies to remote Streamable HTTP MCP servers — stdio servers are single-process, spawned per client session.",
       "MCP itself defines no deployment or scaling behavior; this is ordinary backend infrastructure layered underneath it.",
       "Autoscaling triggers are usually CPU/memory or in-flight-request count, same as any other API service.",
       "Stateful tool calls (long-running operations, held connections) complicate horizontal scaling and often need sticky sessions or external state."
@@ -3885,7 +3885,7 @@ export const glossaryTerms: GlossaryTerm[] = [
     definition: "A DNS provider resolves the hostname a remote MCP server is reached at (e.g. mcp.example.com) to the IP address of the server or load balancer in front of it — standard infrastructure plumbing, not something MCP itself touches.",
     detailedExplanation: "Remote MCP servers (SSE or Streamable HTTP transport) are reached over ordinary HTTPS URLs, so they rely on conventional DNS the same way any web API does: an A/AAAA or CNAME record pointing at the hosting platform, managed through a registrar/DNS provider such as Cloudflare, Route 53, or the DNS service bundled with the hosting platform. MCP's specification has nothing to say about DNS — it assumes the client already has a working URL (or, for stdio, a local command) to connect to. DNS only becomes an operational concern when self-hosting a remote server: propagation delay after a change, TTL tuning, and TLS certificate issuance (commonly via Let's Encrypt) tied to the domain.",
     keyTakeaways: [
-      "Only relevant to remote (HTTP/SSE) MCP servers — stdio servers have no DNS involved.",
+      "Only relevant to remote Streamable HTTP MCP servers — stdio servers have no DNS involved.",
       "MCP does not define or reference DNS in its specification; this is ordinary web infrastructure.",
       "TLS certificate issuance is usually tied to whichever domain/DNS setup is in front of the server.",
       "DNS propagation delay is a real operational factor when migrating a server's hostname."
@@ -3908,7 +3908,7 @@ export const glossaryTerms: GlossaryTerm[] = [
     keyTakeaways: [
       "MCP tool-call responses are dynamic and generally not cacheable by a CDN.",
       "A CDN's real value here is edge TLS termination, routing, and DDoS protection — not response caching.",
-      "Only applies to remote (HTTP/SSE) MCP servers, not local stdio servers.",
+      "Only applies to remote Streamable HTTP MCP servers, not local stdio servers.",
       "Long-lived SSE connections need a CDN/proxy configured to not buffer or time out streaming responses."
     ],
     useCase: "A publicly reachable MCP server sits behind Cloudflare for TLS termination and DDoS protection, with caching explicitly disabled on the MCP endpoint path since every response is dynamic and session-specific.",
@@ -4663,7 +4663,7 @@ export const glossaryTerms: GlossaryTerm[] = [
     detailedExplanation: "Because a remote MCP server is deployed like any other backend service, standard progressive-delivery techniques apply directly: route a small percentage of client connections to the new version, watch error rates and latency, and expand the rollout if healthy. The one MCP-specific wrinkle is that in-flight sessions on the old version should be allowed to finish rather than being abruptly cut, since a client mid-tool-call would otherwise see a broken connection.",
     keyTakeaways: [
       "Ordinary progressive-delivery technique, applied to MCP server infrastructure — no MCP-specific mechanism involved.",
-      "Only meaningful for remote (HTTP/SSE) servers; stdio servers are simply whatever version the client installed.",
+      "Only meaningful for remote Streamable HTTP servers; stdio servers are simply whatever version the client installed.",
       "In-flight sessions on the old version should drain gracefully rather than being cut abruptly.",
       "Per-tool error-rate monitoring (see the monitoring-tool entry) is what typically informs a canary's health check."
     ],
@@ -4831,7 +4831,7 @@ export const glossaryTerms: GlossaryTerm[] = [
     detailedExplanation: "Since remote MCP servers are reached over HTTPS, they need a valid TLS certificate the same as any web API, typically issued automatically via Let's Encrypt through a tool like cert-manager, or handled transparently by the hosting platform (Vercel, Cloudflare, a managed load balancer). The only MCP-relevant consequence of a misconfigured or expired certificate is a hard connection failure — no MCP-level fallback exists, since the transport itself can't be established without valid TLS.",
     keyTakeaways: [
       "Standard web/TLS infrastructure — MCP's spec doesn't reference certificate management at all.",
-      "Only relevant to remote (HTTP/SSE) servers; stdio servers have no TLS layer.",
+      "Only relevant to remote Streamable HTTP servers; stdio servers have no TLS layer.",
       "Automated renewal (via cert-manager or the hosting platform) avoids the common failure mode of an expired cert.",
       "An expired certificate causes a hard connection failure — there's no MCP-level fallback."
     ],
@@ -6474,10 +6474,10 @@ export const glossaryTerms: GlossaryTerm[] = [
     slug: "mcp-inspector",
     term: "MCP Inspector",
     definition: "The official interactive testing and debugging tool for MCP servers, run via npx @modelcontextprotocol/inspector, which connects to a server and lets a developer list and manually invoke its tools, resources, and prompts without needing a full AI client.",
-    detailedExplanation: "Before wiring a new MCP server into Claude Desktop, Cursor, or any other client, the Inspector is the standard way to verify it actually works: it launches the server (over stdio or by connecting to an HTTP/SSE endpoint), lists whatever tools/resources/prompts it declares, and provides a UI (or --cli flag for headless/scripted use) to call them directly and inspect the raw JSON-RPC responses. This makes it useful both for interactive development and as a CI smoke test - running it with --cli in a deploy pipeline to confirm tool registration didn't silently break is a common pattern.",
+    detailedExplanation: "Before wiring a new MCP server into Claude Desktop, Cursor, or any other client, the Inspector is the standard way to verify it actually works: it launches the server over stdio or connects to a remote HTTP endpoint, lists whatever tools/resources/prompts it declares, and provides a UI (or --cli flag for headless/scripted use) to call them directly and inspect the raw JSON-RPC responses. This makes it useful both for interactive development and as a CI smoke test - running it with --cli in a deploy pipeline to confirm tool registration didn't silently break is a common pattern.",
     keyTakeaways: [
       "Launched via npx @modelcontextprotocol/inspector - no separate installation needed for most workflows.",
-      "Works against both local stdio servers and remote HTTP/SSE endpoints.",
+      "Works against both local stdio servers and remote Streamable HTTP endpoints.",
       "The --cli flag enables headless, scriptable use - useful as an automated smoke test in a CI pipeline, not just interactive debugging."
     ],
     useCase: "Before adding a new server to claude_desktop_config.json, a developer runs npx @modelcontextprotocol/inspector node server.js to confirm its tools list correctly and that a sample tool call returns the expected result.",

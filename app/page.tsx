@@ -38,11 +38,11 @@ const categoryIcons = { Code: Code2, Database, Briefcase, CreditCard } as const;
 export const metadata = {
   metadataBase: new URL("https://www.mcpserver.in"),
   title: {
-    default: "MCPServer.in: Curated Model Context Protocol Directory & Hosting",
+    default: "MCP Server Directory & Hosting in India | MCPserver.in",
     template: "%s | MCPServer.in"
   },
-  description: "Discover and deploy MCP servers. Hosted infrastructure for AI agents with India-region hosting and compliance features.",
-  keywords: ["MCP server India", "Model Context Protocol hosting", "free MCP servers", "DPDP compliant AI tools", "MCP hosting Mumbai", "AI agent integration", "AI MCP servers", "AI tools India", "MCP deployment India"],
+  description: "Discover and deploy MCP servers. Hosted infrastructure for AI agents with India-region hosting and DPDP-aware security controls.",
+  keywords: ["MCP server India", "Model Context Protocol hosting", "free MCP servers", "DPDP-aware AI tools", "MCP hosting Mumbai", "AI agent integration", "AI MCP servers", "AI tools India", "MCP deployment India"],
   authors: [{ name: "MCPserver.in Engineering" }],
   creator: "MCPserver.in",
   publisher: "MCPserver.in",
@@ -69,7 +69,7 @@ export const metadata = {
     type: "website",
     url: "https://www.mcpserver.in",
     siteName: "MCPserver.in",
-    title: "MCPServer.in: Curated Model Context Protocol Directory & Hosting",
+    title: "MCP Server Directory & Hosting in India",
     description: "Discover, test, and deploy Model Context Protocol servers. India-ready infrastructure with DPDP-aligned data controls and low-latency edge hosting.",
     locale: "en_IN",
   },
@@ -94,15 +94,15 @@ export const metadata = {
 const homeFaqs = [
   {
     question: "What is MCPserver.in?",
-    answer: "MCPserver.in is an India-focused Model Context Protocol (MCP) platform. We provide a curated directory of MCP servers and free/paid hosting with DPDP-aligned data controls from Mumbai and Bengaluru edge nodes."
+    answer: "MCPserver.in is an India-focused Model Context Protocol (MCP) platform. We provide a curated directory of MCP servers and free/paid hosting with DPDP-aware data controls and India-region deployment options."
   },
   {
     question: "Is MCP hosting really free?",
-    answer: "Yes. Our Developer tier is free for local stdio MCP servers and lightweight remote servers. Paid SSE hosting starts at ₹999/month for production workloads requiring persistent connections and higher throughput."
+    answer: "Yes. Our Developer tier is free for local stdio MCP servers and lightweight remote servers. Paid Streamable HTTP hosting starts at ₹999/month for production workloads requiring authenticated remote access and higher throughput."
   },
   {
-    question: "What does DPDP compliant mean?",
-    answer: "DPDP compliance means our platform follows India's Digital Personal Data Protection Act. This includes data localization in Indian regions (ap-south-1/ap-south-2), immutable audit logs, consent-aware routing, and breach-notification workflows."
+    question: "What does DPDP-aware mean?",
+    answer: "DPDP-aware means the platform is designed to support India's Digital Personal Data Protection Act through regional deployment options, audit logs, consent-aware routing patterns, and incident-response workflows. It is not a blanket certification claim; your final compliance position depends on your workload and contract."
   },
   {
     question: "How fast are MCP servers on MCPServer.in?",
@@ -140,13 +140,13 @@ const DynamicComparisonTable = dynamic(() => import("../src/components/Reference
 const unifiedGraphSchema = getUnifiedGraphSchema({
   pageUrl: "/",
   title: "MCPServer.in: Free Hosted MCP Servers in India",
-  description: "Curated Model Context Protocol directory and hosting with DPDP-aligned compliance and Mumbai/Bengaluru edge hosting.",
+  description: "Curated Model Context Protocol directory and hosting with DPDP-aware controls and India-region deployment options.",
   breadcrumbs: [{ name: "Home", item: "/" }],
   speakable: ["#homepage"],
   faq: homeFaqs,
   article: {
     title: "MCPServer.in: Free Hosted MCP Servers in India",
-    description: "Curated Model Context Protocol directory and hosting with DPDP-aligned compliance and Mumbai/Bengaluru edge hosting.",
+    description: "Curated Model Context Protocol directory and hosting with DPDP-aware controls and India-region deployment options.",
     authorName: "MCPserver.in Engineering",
     authorRole: "Platform Team",
     datePublished: homeDatePublished,
@@ -175,13 +175,13 @@ export default function Home() {
             <div>
               <Badge>India-ready hosted MCP platform</Badge>
               <h1 className="mt-6 max-w-3xl text-4xl font-black leading-[1.05] tracking-tight text-white sm:text-5xl md:text-6xl">
-                 Curated MCP Server Directory. <br />
+                 MCP Server Directory and Hosting for AI Agents. <br />
                 <span className="bg-gradient-to-r from-cyan-300 via-blue-300 to-fuchsia-400 bg-clip-text text-transparent">
-                  Hosted in India. DPDP-aligned Infrastructure.
+                  Hosted in India. DPDP-aware Infrastructure.
                 </span>
               </h1>
               <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/68">
-                Deploy LLM tools from India-first edge infrastructure with DPDP-aligned data controls. Explore a curated directory of MCP servers and integrations.
+                Deploy LLM tools from India-region infrastructure with DPDP-aware data controls. Explore a curated directory of MCP servers and integrations.
               </p>
               <div className="mt-6 max-w-2xl">
                 <HeroTrustBadges />
@@ -199,11 +199,11 @@ export default function Home() {
       <Container>
         <AnswerBox
           question="What is MCPserver.in?"
-          answer="MCPserver.in is a curated directory and hosting platform for Model Context Protocol (MCP) servers, built for AI agents that need to connect to tools, databases, and APIs. Browse verified servers, deploy your own with one click, and host from India-region edge infrastructure with DPDP-aligned data controls."
+          answer="MCPserver.in is a curated directory and hosting platform for Model Context Protocol (MCP) servers, built for AI agents that need to connect to tools, databases, and APIs. Browse verified servers, deploy your own with one click, and host from India-region infrastructure with DPDP-aware data controls."
           keyTakeaways={[
             "Curated directory of MCP servers across developer tools, databases, productivity, and finance",
             "One-click hosting from Mumbai and Bengaluru regions",
-            "Free tier for local stdio servers; paid tiers for hosted SSE servers"
+            "Free tier for local stdio servers; paid tiers for hosted Streamable HTTP MCP servers"
           ]}
         />
       </Container>
@@ -226,12 +226,13 @@ export default function Home() {
               <div>
                 <h3 className="text-xl font-semibold text-white">How MCP Works</h3>
                 <div className="mt-3 space-y-3 text-white/60">
-                  <p>MCP consists of two core components:</p>
+                  <p>MCP uses a host-client-server architecture:</p>
                   <ul className="list-space-y-2 pl-4">
-                    <li><strong className="text-cyan-300">MCP Host</strong> - The AI model or application that requests tools</li>
-                    <li><strong className="text-cyan-300">MCP Client</strong> - The tool or server being accessed</li>
+                    <li><strong className="text-cyan-300">MCP Host</strong> - The AI application that manages one or more clients</li>
+                    <li><strong className="text-cyan-300">MCP Client</strong> - The protocol component that maintains an isolated connection to one server</li>
+                    <li><strong className="text-cyan-300">MCP Server</strong> - The service that exposes tools, resources, and prompts</li>
                   </ul>
-                  <p>The protocol enables secure, real-time communication with automatic schema validation and consent management.</p>
+                  <p>Those components exchange JSON-RPC messages over stdio or Streamable HTTP.</p>
                 </div>
               </div>
 
@@ -251,11 +252,12 @@ export default function Home() {
             <div className="mt-12 rounded-xl border border-white/10 bg-white/[0.02] p-6">
               <h3 className="text-xl font-semibold text-white">MCP Architecture at a Glance</h3>
               <p className="mt-2 text-sm text-white/60">
-                An AI client (Claude Desktop, Cursor, or a custom agent) connects to an MCP server over stdio or HTTP/SSE, discovers its tools and resources, then invokes them through standardized JSON-RPC 2.0 messages.
+                An MCP host such as Claude Desktop, Cursor, or a custom agent manages a client connection to an MCP server over stdio or Streamable HTTP, discovers tools and resources, then invokes them through standardized JSON-RPC messages.
               </p>
               <MermaidDiagram
                 chart={`graph LR
-  A[AI Client] -->|initialize + discover| B[MCP Server]
+  H[MCP Host] -->|manages| A[MCP Client]
+  A -->|initialize + discover| B[MCP Server]
   B -->|tools/list, resources/list| A
   A -->|tools/call| B
   B -->|invoke| C[Tool / Database / API]
@@ -277,7 +279,7 @@ export default function Home() {
                 </div>
                 <div className="rounded-lg bg-white/10 p-4">
                   <h4 className="font-semibold text-white">MCP Server India</h4>
-                  <p className="mt-2 text-sm">DPDP-aligned controls, low-latency edge hosting, and a curated directory of MCP servers.</p>
+                  <p className="mt-2 text-sm">DPDP-aware controls, low-latency India-region hosting, and a curated directory of MCP servers.</p>
                 </div>
               </div>
             </div>
@@ -392,7 +394,7 @@ export default function Home() {
         <Container>
           <SectionTitle
             title={<>Simple, <span className="text-emerald-300">Transparent Pricing</span></>}
-            subtitle="Start free with local stdio servers. Upgrade when you need hosted, always-on SSE servers."
+            subtitle="Start free with local stdio servers. Upgrade when you need hosted Streamable HTTP servers."
           />
           <div className="grid gap-4 md:grid-cols-3">
             {pricingPlans.slice(0, 3).map((plan) => (
@@ -461,7 +463,7 @@ export default function Home() {
                 </div>
               </div>
               <p className="mt-4 text-sm leading-relaxed text-white/58">
-                Expert answers on hosting, latency, DPDP compliance, pricing in India, and enterprise MCP deployment. Optimized for voice search and AI retrieval.
+                Expert answers on hosting, latency, DPDP-aware deployment, pricing in India, and enterprise MCP rollout. Optimized for voice search and AI retrieval.
               </p>
               <div className="mt-4 inline-flex items-center gap-1 text-xs font-bold text-violet-300">
                 Start learning <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5" />
@@ -478,7 +480,7 @@ export default function Home() {
                 </div>
               </div>
               <p className="mt-4 text-sm leading-relaxed text-white/58">
-                Technical reference for building, hosting, and securing MCP servers — from your first stdio server to production HTTP/SSE deployments.
+                Technical reference for building, hosting, and securing MCP servers — from your first stdio server to production Streamable HTTP deployments.
               </p>
               <div className="mt-4 inline-flex items-center gap-1 text-xs font-bold text-amber-300">
                 Read the docs <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5" />

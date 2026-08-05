@@ -6,7 +6,7 @@ import { getUnifiedGraphSchema } from "../../../src/lib/schema";
 import { getContentDates } from "../../../src/lib/contentDates";
 
 export const metadata: Metadata = {
-  title: "India MCP Infrastructure Benchmarks | MCPserver.in",
+  title: "India MCP Infrastructure Benchmarks",
   description:
     "Illustrative architecture estimates for MCP server latency and throughput when deploying from Indian cloud regions versus international ones.",
   alternates: {

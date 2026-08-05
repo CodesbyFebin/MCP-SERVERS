@@ -7,6 +7,7 @@ import AuthorBox from "../../../src/components/AuthorBox";
 import SchemaJsonLd from "../../../src/components/SchemaJsonLd";
 import { getFAQSchema } from "../../../src/lib/schema";
 import { getContentDates } from "../../../src/lib/contentDates";
+import { isLowValueGlossarySlug } from "../../../src/lib/glossarySeo";
 import { notFound } from "next/navigation";
 import { 
   ArrowLeft, Tag, Info, Cpu, FileText, Quote
@@ -31,7 +32,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
   return {
-    title: `${term.term} - MCP Glossary Definition - MCPserver.in`,
+    title: `What Is ${term.term}? — MCP Glossary`,
     description: term.definition,
     alternates: {
       canonical: `/glossary/${slug}`,
@@ -40,6 +41,16 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         "en": `/glossary/${slug}`,
       }
     },
+    robots: isLowValueGlossarySlug(slug)
+      ? {
+          index: false,
+          follow: true,
+          googleBot: {
+            index: false,
+            follow: true,
+          },
+        }
+      : undefined,
   };
 }
 

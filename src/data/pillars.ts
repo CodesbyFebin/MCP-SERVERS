@@ -1,3 +1,5 @@
+import { phaseAPillars } from "./phase-a-authority.generated";
+
 export interface Pillar {
   slug: string;
   title: string;
@@ -9,12 +11,12 @@ export interface Pillar {
   related: string[];
 }
 
-export const pillars: Pillar[] = [
+const basePillars: Pillar[] = [
   {
     slug: "mcp-server",
     title: "MCP Server",
     subtitle: "The Universal Connector for AI Agents",
-    shortAnswer: "An MCP server is a JSON-RPC 2.0 service that exposes tools, resources, and prompts to AI clients, enabling dynamic integration without custom code.",
+    shortAnswer: "An MCP server is a program that exposes tools, resources, or reusable prompts to an AI application through the Model Context Protocol. A host application creates an MCP client connection to the server, negotiates capabilities, and invokes supported functions through JSON-RPC.",
     description: "Complete guide to Model Context Protocol servers – architecture, transport, security, and deployment.",
     primaryKeyword: "MCP server",
     faqCluster: "mcp-server",
@@ -604,3 +606,13 @@ export const pillars: Pillar[] = [
     related: ["what-is-mcp", "mcp-marketplaces", "mcp-categories"]
   }
 ];
+
+function mergePillars(base: Pillar[], overrides: Pillar[]): Pillar[] {
+  const bySlug = new Map(base.map((item) => [item.slug, item]));
+  for (const item of overrides) {
+    bySlug.set(item.slug, item);
+  }
+  return [...bySlug.values()];
+}
+
+export const pillars: Pillar[] = mergePillars(basePillars, phaseAPillars);

@@ -1,16 +1,22 @@
 import { MetadataRoute } from "next";
 import { pillars } from "../src/data/pillars";
 import { topics } from "../src/data/topics";
-import { servers } from "../src/data/servers";
+import { publishedServers } from "../src/data/publishing";
 import { glossaryTerms } from "../src/data/glossary";
 import { comparisons } from "../src/data/comparisons";
 import { categories } from "../src/data/categories";
 import { docsPages, getDocsPath } from "../src/data/docs";
 import { blogPosts, clusters } from "../src/data/blogPosts";
+import { isLowValueGlossarySlug } from "../src/lib/glossarySeo";
+import { phaseAApprovedRoutes } from "../src/data/phase-a-authority.generated";
 
 export const dynamic = "force-static";
 
-const baseUrl = (process.env.NEXT_PUBLIC_BASE_URL || "https://www.mcpserver.in").replace(/\/$/, "");
+const canonicalHost = "https://www.mcpserver.in";
+const baseUrl = (process.env.NEXT_PUBLIC_BASE_URL || canonicalHost)
+  .replace(/^http:\/\/(?:www\.)?mcpserver\.in/i, canonicalHost)
+  .replace(/^https:\/\/mcpserver\.in/i, canonicalHost)
+  .replace(/\/$/, "");
 
 const popularComparisonSlugs = [
   "github-mcp-server-vs-gitlab-mcp-server",
@@ -18,6 +24,7 @@ const popularComparisonSlugs = [
   "slack-mcp-server-vs-discord-mcp-server",
   "github-mcp-server-vs-postgres-mcp-server",
 ];
+const redirectedBlogSlugs = new Set(["how-to-build-mcp-server-from-scratch"]);
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const today = new Date();
@@ -26,6 +33,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticPaths = [
     { url: "", changeFrequency: "daily" as const, priority: 1.0 },
     { url: "/complete-guide-mcp-servers", changeFrequency: "weekly" as const, priority: 0.95 },
+    { url: "/how-to-build-mcp-server", changeFrequency: "weekly" as const, priority: 0.95 },
+    { url: "/mcp-server-hosting", changeFrequency: "weekly" as const, priority: 0.95 },
     { url: "/servers", changeFrequency: "daily" as const, priority: 0.9 },
     { url: "/categories", changeFrequency: "weekly" as const, priority: 0.8 },
     { url: "/mcp-server-directory", changeFrequency: "daily" as const, priority: 0.9 },
@@ -62,6 +71,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: "/community", changeFrequency: "weekly" as const, priority: 0.7 },
     { url: "/editorial-policy", changeFrequency: "monthly" as const, priority: 0.5 },
     { url: "/what-is-mcp", changeFrequency: "weekly" as const, priority: 0.9 },
+    // Indexable pages that are not produced by any of the generated blocks
+    // below and were previously orphaned from the sitemap while still
+    // returning 200 with `index, follow`.
+    // /glossary/mcp-host/ is served from content/pages (via a rewrite) rather
+    // than src/data/glossary.ts, so the glossary block does not emit it.
+    { url: "/glossary/mcp-host", changeFrequency: "monthly" as const, priority: 0.7 },
+    { url: "/best/best-mcp-servers-for-databases", changeFrequency: "weekly" as const, priority: 0.8 },
   ];
 
   const staticEntries = staticPaths.map((p) => {
@@ -74,7 +90,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     };
   });
 
-  const pillarEntries = pillars.map((p) => {
+  const redirectedPillarSlugs = new Set(["mcp-hosting", "mcp-tutorial"]);
+  const pillarEntries = pillars.filter((p) => !redirectedPillarSlugs.has(p.slug)).map((p) => {
     const mod = (p as any).updatedAt || (p as any).publishedAt;
     return {
       url: `${baseUrl}/${p.slug}/`,
@@ -90,13 +107,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  const serverEntries = servers.map((s) => ({
+  const serverEntries = publishedServers.map((s) => ({
     url: `${baseUrl}/servers/${s.slug}/`,
     changeFrequency: "weekly" as const,
     priority: 0.8,
   }));
 
-  const glossaryEntries = glossaryTerms.map((g) => {
+  const glossaryEntries = glossaryTerms.filter((g) => !isLowValueGlossarySlug(g.slug)).map((g) => {
     const mod = (g as any).updatedAt || (g as any).publishedAt;
     return {
       url: `${baseUrl}/glossary/${g.slug}/`,
@@ -151,7 +168,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  const blogPostEntries = blogPosts.map((post) => {
+  const blogPostEntries = blogPosts.filter((post) => !redirectedBlogSlugs.has(post.slug)).map((post) => {
     const mod = (post as any).updatedAt || (post as any).publishedAt || new Date(post.date);
     return {
       url: `${baseUrl}/blog/${post.slug}/`,
@@ -160,6 +177,29 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.6,
     };
   });
+
+  const existingUrls = new Set([
+    ...staticEntries,
+    ...pillarEntries,
+    ...topicEntries,
+    ...serverEntries,
+    ...glossaryEntries,
+    ...comparisonEntries,
+    ...categoryEntries,
+    ...docsEntries,
+    ...toolEntries,
+    ...clusterEntries,
+    ...blogPostEntries,
+  ].map((entry) => entry.url));
+
+  const phaseAEntries = phaseAApprovedRoutes
+    .map((route) => ({
+      url: `${baseUrl}${route}`,
+      lastModified: today,
+      changeFrequency: "weekly" as const,
+      priority: 0.82,
+    }))
+    .filter((entry) => !existingUrls.has(entry.url));
 
   return [
     ...staticEntries,
@@ -173,5 +213,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...toolEntries,
     ...clusterEntries,
     ...blogPostEntries,
+    ...phaseAEntries,
   ];
 }

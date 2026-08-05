@@ -1,167 +1,79 @@
 import type { Metadata } from "next";
-import {
-  Badge,
-  ApiConsole,
-  Container,
-  CtaBanner,
-  DividerSection,
-  EcosystemVisual,
-  FeatureGrid,
-  IntegrationCards,
-  IntegrationRail,
-  LogoCloud,
-  PageShell,
-  PrimaryButton,
-  SearchPanel,
-  SectionTitle,
-  StatStrip
-} from "../../src/components/ReferenceLanding";
-import { ArrowRight, CheckCircle2, KeyRound, PlugZap, Settings2 } from "lucide-react";
+import Link from "next/link";
+import { integrations } from "../../src/data/entities";
+import Breadcrumbs from "../../src/components/Breadcrumbs";
+import SchemaJsonLd from "../../src/components/SchemaJsonLd";
+import { getUnifiedGraphSchema } from "../../src/lib/schema";
 
 export const metadata: Metadata = {
-  title: "MCP Integrations - Connect Apps, APIs and Databases",
-  description: "Browse MCP SERVER integrations for apps, APIs, databases, cloud platforms and developer tools.",
-  alternates: {
-    canonical: "/integrations",
-    languages: {
-      "en-IN": "/integrations",
-      "en": "/integrations",
-        }
-  },
-
+  title: "MCP Server Integration Guides",
+  description: "Step-by-step integration guides for connecting GitHub, Slack, PostgreSQL, AWS, Notion, and 1,000+ platforms to AI clients using MCP servers.",
+  alternates: { canonical: "https://www.mcpserver.in/integrations/" },
 };
 
-export default function IntegrationsPage() {
-  return (
-    <PageShell id="integrations-page">
-      <section className="py-12 lg:py-16">
-        <Container>
-          <div className="grid items-center gap-10 lg:grid-cols-[0.43fr_0.57fr]">
-            <div>
-              <div className="text-xs font-bold text-violet-300">Home / Integrations</div>
-              <h1 className="mt-7 text-4xl font-black leading-[1.05] tracking-tight text-white sm:text-5xl">
-                Integrate Anything. <br />
-                <span className="bg-gradient-to-r from-cyan-300 via-blue-300 to-violet-400 bg-clip-text text-transparent">Power Everything.</span>
-              </h1>
-               <p className="mt-6 max-w-xl text-base leading-relaxed text-white/68">
-                 Connect apps, APIs, databases and services to MCP. Explore integrations across categories and use cases.
-               </p>
-              <div className="mt-7 grid grid-cols-4 gap-4 text-sm">
-                {[
-                   ["Growing", "Integrations"],
-                   ["Multiple", "Categories"],
-                   ["Several", "Enterprise Ready"],
-                   ["Targeting", "High Uptime"]
-                ].map(([value, label]) => (
-                  <div key={label}>
-                    <div className="font-black text-emerald-300">{value}</div>
-                    <div className="mt-1 text-xs text-white/45">{label}</div>
-                  </div>
-                ))}
-              </div>
-              <div className="mt-7">
-                <SearchPanel showTitle={false} />
-              </div>
-            </div>
-            <EcosystemVisual variant="integrations" />
-          </div>
-        </Container>
-      </section>
+const schema = getUnifiedGraphSchema({
+  pageUrl: "/integrations/",
+  title: "MCP Server Integration Guides",
+  description: "Step-by-step integration guides for connecting every major platform to AI clients via Model Context Protocol servers.",
+  breadcrumbs: [{ name: "Integrations", item: "/integrations" }],
+  itemList: integrations.map((e) => ({
+    name: `${e.name} MCP Server`,
+    url: e.route,
+    description: e.metaDescription,
+  })),
+});
 
-      <DividerSection>
-        <Container>
-          <div className="rounded-xl border border-white/10 bg-white/[0.025] p-7">
-            <SectionTitle title="How Integrations Work" subtitle="Connect your favorite tools in minutes." />
-            <div className="grid gap-6 md:grid-cols-4">
-              {[
-                ["Choose Integration", "Browse the directory of pre-built integrations.", PlugZap],
-                ["Authenticate", "Securely connect your account in one click.", KeyRound],
-                ["Configure", "Set permissions, map data and customize settings.", Settings2],
-                ["Activate", "Start using the integration with your AI agents.", CheckCircle2]
-              ].map(([title, body, Icon], index) => (
-                <div key={title as string} className="relative">
-                  <div className="mb-4 flex items-center gap-3">
-                    <span className="grid h-12 w-12 place-items-center rounded-xl bg-violet-600 text-lg font-black text-white">{index + 1}</span>
-                    {index < 3 && <ArrowRight className="hidden h-6 w-6 text-violet-300 md:block" />}
+export default function IntegrationsIndexPage() {
+  const published = integrations.filter((e) => e.status === "published");
+  const candidates = integrations.filter((e) => e.status === "candidate");
+
+  return (
+    <div className="min-h-screen py-6 pb-20 bg-[#050508] text-white">
+      <SchemaJsonLd schema={schema} />
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <Breadcrumbs items={[{ name: "Integrations", href: "/integrations" }]} />
+
+        <header className="py-8 border-b border-white/5">
+          <h1 className="text-4xl font-display font-bold text-white">MCP Server Integration Guides</h1>
+          <p className="mt-3 text-white/60 max-w-2xl text-sm leading-relaxed">
+            Step-by-step guides for connecting GitHub, Slack, PostgreSQL, AWS, and every major platform to AI clients using Model Context Protocol servers.
+          </p>
+        </header>
+
+        {published.length > 0 && (
+          <section className="mt-10">
+            <h2 className="text-lg font-bold text-white mb-4">Published Guides ({published.length})</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {published.map((e) => (
+                <Link key={e.id} href={e.route} className="block p-5 rounded-2xl border border-white/5 bg-white/[0.02] hover:border-cyan-500/30 transition-all">
+                  <div className="text-xs text-cyan-400 font-semibold mb-1">{e.platformCategory}</div>
+                  <div className="text-sm font-bold text-white">{e.name} MCP Server</div>
+                  <p className="text-xs text-white/55 mt-1 leading-relaxed line-clamp-2">{e.metaDescription}</p>
+                  <div className="flex flex-wrap gap-1.5 mt-3">
+                    {e.transports.map((t) => (
+                      <span key={t} className="px-2 py-0.5 rounded-full text-[10px] border border-white/10 text-white/40">{t}</span>
+                    ))}
                   </div>
-                  <Icon className="mb-3 h-7 w-7 text-cyan-300" />
-                  <h3 className="text-sm font-black text-white">{title as string}</h3>
-                  <p className="mt-2 text-xs leading-relaxed text-white/55">{body as string}</p>
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {candidates.length > 0 && (
+          <section className="mt-10">
+            <h2 className="text-lg font-bold text-white mb-4">Coming Soon ({candidates.length})</h2>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              {candidates.map((e) => (
+                <div key={e.id} className="p-4 rounded-xl border border-white/5 bg-white/[0.01] opacity-60">
+                  <div className="text-xs font-semibold text-white/60">{e.name}</div>
+                  <div className="text-[10px] text-white/30 mt-0.5">In progress</div>
                 </div>
               ))}
             </div>
-          </div>
-        </Container>
-      </DividerSection>
-
-      <DividerSection>
-        <Container>
-          <SectionTitle title="Browse by Category" />
-          <IntegrationRail />
-        </Container>
-      </DividerSection>
-
-      <DividerSection>
-        <Container>
-          <div className="mb-5 flex items-center justify-between">
-            <h2 className="text-2xl font-black text-white">Popular Integrations</h2>
-            <a className="text-xs font-bold text-violet-300">View all integrations {"->"}</a>
-          </div>
-          <IntegrationCards />
-        </Container>
-      </DividerSection>
-
-      <DividerSection>
-        <Container>
-          <div className="grid gap-8 rounded-xl border border-white/10 bg-white/[0.025] p-7 lg:grid-cols-[0.46fr_0.54fr]">
-            <div>
-              <h2 className="text-2xl font-black text-white">Powerful Integration Capabilities</h2>
-              <FeatureGrid
-                items={[
-                  { title: "Secure & OAuth 2.0", body: "Enterprise-grade security with OAuth 2.0, API keys and role-based access.", icon: "KeyRound", accent: "cyan" },
-                  { title: "Real-time Sync", body: "Bi-directional sync and real-time data updates.", icon: "PlugZap", accent: "cyan" },
-                  { title: "No-Code Connectors", body: "Connect your tools without writing a single line of code.", icon: "Settings2", accent: "blue" },
-                  { title: "Custom Workflows", body: "Build custom automation and workflows across integrations.", icon: "CheckCircle2", accent: "violet" },
-                  { title: "Data Mapping", body: "Map fields, transform data and create powerful pipelines.", icon: "ArrowRight", accent: "pink" },
-                  { title: "Monitoring & Logs", body: "Track usage, monitor health and debug with detailed logs.", icon: "CheckCircle2", accent: "pink" }
-                ]}
-              />
-            </div>
-            <EcosystemVisual variant="compact" />
-          </div>
-        </Container>
-      </DividerSection>
-
-      <Container>
-        <LogoCloud client />
-      </Container>
-
-      <DividerSection>
-        <Container>
-          <div className="grid gap-6 lg:grid-cols-[0.32fr_0.48fr_0.2fr]">
-            <div>
-              <h2 className="text-2xl font-black text-white">For Developers</h2>
-              <p className="mt-2 text-sm text-white/55">Integrate anything. Build everything.</p>
-              <div className="mt-5 space-y-4 text-sm text-white/65">
-                <div><span className="font-black text-white">Unified API</span><br />One API to connect all your tools and services.</div>
-                <div><span className="font-black text-white">SDKs & Libraries</span><br />Official SDKs for Python, Node.js, Go and more.</div>
-                <div><span className="font-black text-white">Webhooks</span><br />Real-time event notifications and webhooks.</div>
-              </div>
-            </div>
-            <ApiConsole />
-            <div className="grid gap-3">
-              <StatStrip items={[                   ["Growing", "API Requests/Day"], ["Targeting", "API Uptime"], ["Multiple", "Regions"], ["Low", "Response Time"]]} />
-              <PrimaryButton href="/docs">View API Documentation</PrimaryButton>
-            </div>
-          </div>
-        </Container>
-      </DividerSection>
-
-      <DividerSection className="pb-14">
-        <Container>
-          <CtaBanner title="Can't find the integration you need?" subtitle="Request a new integration and we'll build it for you." primaryHref="/contact" primaryLabel="Request Integration" />
-        </Container>
-      </DividerSection>
-    </PageShell>
+          </section>
+        )}
+      </div>
+    </div>
   );
 }

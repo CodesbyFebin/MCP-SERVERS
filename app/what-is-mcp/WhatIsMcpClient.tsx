@@ -123,7 +123,7 @@ export default function WhatIsMcpClient() {
               question={`What is the core meaning and value of Model Context Protocol?`}
               answer={shortAnswer}
               keyTakeaways={[
-                "Sub-15ms connection latency inside India (Mumbai, Bengaluru edge regions)",
+                "Low-latency regional connections for Indian users when workloads are placed near users and data",
                 "Standardized JSON-RPC 2.0 communication format",
                 "Fully compatible with Claude Desktop, Cursor, and custom LLM routers",
                 "Eliminates hardcoded custom translation codebases"
@@ -471,7 +471,7 @@ export default function WhatIsMcpClient() {
                 </li>
                 <li className="flex items-center gap-1.5">
                   <LockKeyhole className="w-3.5 h-3.5 text-cyan-400" />
-                  DPDP & RBI compliant
+                  DPDP-aware and RBI-aligned
                 </li>
               </ul>
             </div>
