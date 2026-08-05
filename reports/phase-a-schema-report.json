@@ -1,0 +1,711 @@
+{
+  "generatedAt": "2026-08-04T21:12:13.846Z",
+  "total": 100,
+  "invalidJsonLd": 0,
+  "schemaProfiles": [
+    {
+      "url": "https://www.mcpserver.in/what-is-mcp/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/mcp-server/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/mcp-architecture/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/mcp-client/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/mcp-host/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/mcp-tools/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/mcp-resources/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/mcp-prompts/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/mcp-server-directory/",
+      "schemaTypes": [
+        "CollectionPage",
+        "ItemList",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/how-to-build-mcp-server/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/clients/claude-desktop/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/clients/claude-code/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/clients/chatgpt/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/clients/cursor/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/clients/vscode/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/clients/cline/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/clients/continue/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/clients/windsurf/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/clients/github-copilot/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/clients/open-webui/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/integrations/github-mcp-server/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/integrations/gitlab-mcp-server/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/integrations/slack-mcp-server/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/integrations/notion-mcp-server/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/integrations/google-drive-mcp-server/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/integrations/gmail-mcp-server/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/integrations/google-calendar-mcp-server/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/integrations/jira-mcp-server/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/integrations/confluence-mcp-server/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/integrations/linear-mcp-server/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/integrations/figma-mcp-server/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/integrations/sentry-mcp-server/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/integrations/stripe-mcp-server/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/integrations/shopify-mcp-server/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/integrations/salesforce-mcp-server/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/integrations/servicenow-mcp-server/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/integrations/hubspot-mcp-server/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/integrations/zendesk-mcp-server/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/integrations/n8n-mcp-server/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/integrations/wordpress-mcp-server/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/databases/postgresql-mcp-server/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/databases/mysql-mcp-server/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/databases/mongodb-mcp-server/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/databases/redis-mcp-server/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/databases/sqlite-mcp-server/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/databases/supabase-mcp-server/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/databases/firebase-mcp-server/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/databases/bigquery-mcp-server/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/databases/snowflake-mcp-server/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/databases/elasticsearch-mcp-server/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/sdk/typescript/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/sdk/python/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/sdk/java/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/sdk/go/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/sdk/rust/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/frameworks/fastmcp/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/frameworks/langchain-mcp/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/frameworks/llamaindex-mcp/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/frameworks/spring-ai-mcp/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/frameworks/semantic-kernel-mcp/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/mcp-server-hosting/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/deployment/docker/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/deployment/kubernetes/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/deployment/aws/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/deployment/azure/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/deployment/google-cloud/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/deployment/vercel/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/deployment/cloudflare-workers/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/deployment/railway/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/deployment/self-hosted/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/mcp-security/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/security/authentication/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/security/authorization/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/security/oauth/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/security/api-keys/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/security/secrets-management/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/security/prompt-injection/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/security/tool-poisoning/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/security/sandboxing/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/security/audit-logging/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/troubleshooting/mcp-server-not-starting/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/troubleshooting/mcp-tools-not-appearing/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/troubleshooting/mcp-server-timeout/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/troubleshooting/mcp-authentication-failed/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/troubleshooting/mcp-oauth-error/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/troubleshooting/mcp-stdio-error/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/troubleshooting/mcp-streamable-http-error/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/troubleshooting/claude-desktop-mcp-not-working/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/troubleshooting/cursor-mcp-not-working/",
+      "schemaTypes": [
+        "TechArticle",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/compare/mcp-vs-rest-api/",
+      "schemaTypes": [
+        "Article",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/compare/mcp-vs-function-calling/",
+      "schemaTypes": [
+        "Article",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/compare/mcp-vs-plugins/",
+      "schemaTypes": [
+        "Article",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/compare/mcp-vs-openapi/",
+      "schemaTypes": [
+        "Article",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/compare/stdio-vs-streamable-http/",
+      "schemaTypes": [
+        "Article",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/compare/local-vs-remote-mcp-server/",
+      "schemaTypes": [
+        "Article",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/compare/python-vs-typescript-mcp/",
+      "schemaTypes": [
+        "Article",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/best/mcp-servers/",
+      "schemaTypes": [
+        "ItemList",
+        "Article",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/best/open-source-mcp-servers/",
+      "schemaTypes": [
+        "ItemList",
+        "Article",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "https://www.mcpserver.in/best/mcp-servers-for-developers/",
+      "schemaTypes": [
+        "ItemList",
+        "Article",
+        "BreadcrumbList"
+      ]
+    }
+  ]
+}

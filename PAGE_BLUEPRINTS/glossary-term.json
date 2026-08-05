@@ -1,0 +1,29 @@
+{
+  "generatedAt": "2026-08-04T21:48:46.123Z",
+  "blueprint": "glossary-term",
+  "content_family": "glossary",
+  "minimum_words": 1200,
+  "quality_target": 90,
+  "required_schemas": [
+    "WebPage",
+    "BreadcrumbList",
+    "Organization",
+    "DefinedTerm"
+  ],
+  "required_sections": [
+    "direct_answer",
+    "entity_overview",
+    "implementation_context",
+    "configuration_or_workflow",
+    "security_considerations",
+    "validation_steps",
+    "related_links",
+    "evidence_and_sources",
+    "faq"
+  ],
+  "required_governance": {
+    "status": "candidate",
+    "publish_approved": false,
+    "indexable": false
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "generatedAt": "2026-08-04T21:13:23.574Z",
+  "totalApprovedUrls": 100,
+  "publicationApprovalFailures": 0,
+  "states": {
+    "publish_approved": 100
+  },
+  "deployment": {
+    "provider": "Vercel",
+    "account": "projects555",
+    "project": "mcp-servers",
+    "deploymentId": "dpl_DioQkZtwuasdoVSVCo7HexPCztf2",
+    "deploymentUrl": "https://mcp-servers-q9f42utf8-projects555.vercel.app",
+    "productionUrl": "https://mcpserver.in",
+    "canonicalBaseUrl": "https://www.mcpserver.in",
+    "inspectorUrl": "https://vercel.com/projects555/mcp-servers/DioQkZtwuasdoVSVCo7HexPCztf2",
+    "readyState": "READY"
+  },
+  "build": {
+    "local": "passed",
+    "vercel": "passed",
+    "staticPagesGenerated": 3344
+  },
+  "liveVerification": {
+    "status": "passed",
+    "totalUrls": 100,
+    "ok": 100,
+    "failed": 0,
+    "evidence": ".safe-deep/evidence/phase-a-production-verification.json"
+  },
+  "sitemapVerification": {
+    "status": "passed",
+    "sitemap": "https://www.mcpserver.in/sitemap-phase-a.xml",
+    "phaseAUrlCount": 100,
+    "totalUniqueSitemapUrls": 1179,
+    "failingUrls": 0
+  },
+  "indexing": {
+    "indexNow": {
+      "submittedDuringVercelPostbuild": true,
+      "host": "www.mcpserver.in",
+      "urlCount": 1181,
+      "responseStatus": 200,
+      "source": "Vercel postbuild log for dpl_DioQkZtwuasdoVSVCo7HexPCztf2"
+    },
+    "searchConsole": {
+      "status": "pending-external-access",
+      "evidence": ".safe-deep/evidence/search-console.json",
+      "reason": "No Google Search Console API token or connected Search Console session is available in this environment."
+    }
+  },
+  "risks": [
+    "Search Console submission, URL inspection, indexed state, Google-selected canonical, and last crawl date require external Google Search Console access and were not fabricated.",
+    "Production http://mcpserver.in/ has a Vercel platform HTTP-to-HTTPS hop before app canonicalization; canonical HTTPS www routes verify cleanly."
+  ]
+}

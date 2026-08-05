@@ -1,0 +1,28 @@
+{
+  "generatedAt": "2026-08-05T02:21:01.099Z",
+  "total": 5000,
+  "generated": 5000,
+  "skipped": 0,
+  "byFamily": {
+    "category-hub": 100,
+    "mcp-server-profile": 700,
+    "client-guide": 120,
+    "integration-guide": 700,
+    "tutorial": 350,
+    "comparison": 250,
+    "news-release": 90,
+    "client-integration-guide": 400,
+    "troubleshooting": 350,
+    "best-list": 120,
+    "glossary": 350,
+    "enterprise-guide": 170,
+    "sdk-framework-guide": 220,
+    "deployment-guide": 170,
+    "database-guide": 170,
+    "security-guide": 170,
+    "template": 120,
+    "example-project": 170,
+    "registry-guide": 80,
+    "india-guide": 200
+  }
+}

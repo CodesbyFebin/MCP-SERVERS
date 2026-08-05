@@ -1,0 +1,30 @@
+{
+  "generatedAt": "2026-08-04T21:48:46.123Z",
+  "blueprint": "sdk-framework-guide",
+  "content_family": "sdk-framework-guide",
+  "minimum_words": 2400,
+  "quality_target": 92,
+  "required_schemas": [
+    "WebPage",
+    "BreadcrumbList",
+    "Organization",
+    "TechArticle",
+    "SoftwareApplication"
+  ],
+  "required_sections": [
+    "direct_answer",
+    "entity_overview",
+    "implementation_context",
+    "configuration_or_workflow",
+    "security_considerations",
+    "validation_steps",
+    "related_links",
+    "evidence_and_sources",
+    "faq"
+  ],
+  "required_governance": {
+    "status": "candidate",
+    "publish_approved": false,
+    "indexable": false
+  }
+}

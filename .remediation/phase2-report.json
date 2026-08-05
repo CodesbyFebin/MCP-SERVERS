@@ -1,0 +1,15 @@
+{
+  "total": 2442,
+  "canonical": 1592,
+  "redirect": 684,
+  "noindex": 166,
+  "conflicts": 684,
+  "byIntent": {
+    "review": 1,
+    "list": 6,
+    "how-to": 1486,
+    "comparison": 21,
+    "informational": 927,
+    "integration": 1
+  }
+}

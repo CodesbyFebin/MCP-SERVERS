@@ -1,0 +1,31 @@
+{
+  "generatedAt": "2026-08-04T21:48:46.123Z",
+  "blueprint": "implementation-guide",
+  "content_family": "tutorial",
+  "minimum_words": 2800,
+  "quality_target": 93,
+  "required_schemas": [
+    "WebPage",
+    "BreadcrumbList",
+    "Organization",
+    "HowTo",
+    "TechArticle",
+    "FAQPage"
+  ],
+  "required_sections": [
+    "direct_answer",
+    "entity_overview",
+    "implementation_context",
+    "configuration_or_workflow",
+    "security_considerations",
+    "validation_steps",
+    "related_links",
+    "evidence_and_sources",
+    "faq"
+  ],
+  "required_governance": {
+    "status": "candidate",
+    "publish_approved": false,
+    "indexable": false
+  }
+}

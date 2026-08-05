@@ -1,0 +1,3206 @@
+{
+  "generatedAt": "2026-08-04T19:02:57.096Z",
+  "total": 320,
+  "inventory": [
+    {
+      "slug": "model-context-protocol",
+      "path": "/glossary/model-context-protocol/",
+      "term": "Model Context Protocol (MCP)",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "json-rpc",
+      "path": "/glossary/json-rpc/",
+      "term": "JSON-RPC 2.0",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "stdio",
+      "path": "/glossary/stdio/",
+      "term": "Stdio Transport (Standard Input/Output)",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "sse",
+      "path": "/glossary/sse/",
+      "term": "SSE Transport (Server-Sent Events)",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-server",
+      "path": "/glossary/mcp-server/",
+      "term": "MCP Server",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-client",
+      "path": "/glossary/mcp-client/",
+      "term": "MCP Client",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "gateway",
+      "path": "/glossary/gateway/",
+      "term": "MCP Gateway",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "tool",
+      "path": "/glossary/tool/",
+      "term": "MCP Tools / Tool",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "resource",
+      "path": "/glossary/resource/",
+      "term": "MCP Resources / Resource",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "prompt",
+      "path": "/glossary/prompt/",
+      "term": "MCP Prompts / Prompt",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "oauth",
+      "path": "/glossary/oauth/",
+      "term": "OAuth",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "dpdp",
+      "path": "/glossary/dpdp/",
+      "term": "DPDP",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "ros",
+      "path": "/glossary/ros/",
+      "term": "ROS (Robot Operating System)",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-robot-control",
+      "path": "/glossary/mcp-robot-control/",
+      "term": "MCP Robot Control",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "ros2-mcp-bridge",
+      "path": "/glossary/ros2-mcp-bridge/",
+      "term": "ROS2 MCP Bridge",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "simulation-mcp",
+      "path": "/glossary/simulation-mcp/",
+      "term": "Simulation MCP",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "hardware-abstraction-mcp",
+      "path": "/glossary/hardware-abstraction-mcp/",
+      "term": "Hardware Abstraction MCP",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "ollama-mcp",
+      "path": "/glossary/ollama-mcp/",
+      "term": "Ollama MCP Integration",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "lm-studio-mcp",
+      "path": "/glossary/lm-studio-mcp/",
+      "term": "LM Studio MCP Integration",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "gpt4all-mcp",
+      "path": "/glossary/gpt4all-mcp/",
+      "term": "GPT4All",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "llamaindex-mcp",
+      "path": "/glossary/llamaindex-mcp/",
+      "term": "LlamaIndex MCP Integration",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "crewai-mcp",
+      "path": "/glossary/crewai-mcp/",
+      "term": "CrewAI MCP Integration",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "qdrant-mcp",
+      "path": "/glossary/qdrant-mcp/",
+      "term": "Qdrant MCP Integration",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-systemd-service",
+      "path": "/glossary/mcp-systemd-service/",
+      "term": "MCP Server as a systemd Service",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-pm2-process-manager",
+      "path": "/glossary/mcp-pm2-process-manager/",
+      "term": "MCP Server with PM2",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "indic-language-mcp-server",
+      "path": "/glossary/indic-language-mcp-server/",
+      "term": "Indic Language MCP Server (Local, Offline)",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "streamable-http",
+      "path": "/glossary/streamable-http/",
+      "term": "Streamable HTTP Transport",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-sampling",
+      "path": "/glossary/mcp-sampling/",
+      "term": "MCP Sampling",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-roots",
+      "path": "/glossary/mcp-roots/",
+      "term": "MCP Roots",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-initialization",
+      "path": "/glossary/mcp-initialization/",
+      "term": "MCP Initialization",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-ping-pong",
+      "path": "/glossary/mcp-ping-pong/",
+      "term": "MCP Ping/Pong",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-cancel",
+      "path": "/glossary/mcp-cancel/",
+      "term": "MCP Cancel",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-progress",
+      "path": "/glossary/mcp-progress/",
+      "term": "MCP Progress",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-logging",
+      "path": "/glossary/mcp-logging/",
+      "term": "MCP Logging",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-elicitation",
+      "path": "/glossary/mcp-elicitation/",
+      "term": "MCP Elicitation",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-tool-list-changed",
+      "path": "/glossary/mcp-tool-list-changed/",
+      "term": "MCP Tool List Changed",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-resource-list-changed",
+      "path": "/glossary/mcp-resource-list-changed/",
+      "term": "MCP Resource List Changed",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-resource-updated",
+      "path": "/glossary/mcp-resource-updated/",
+      "term": "MCP Resource Updated",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-prompt-list-changed",
+      "path": "/glossary/mcp-prompt-list-changed/",
+      "term": "MCP Prompt List Changed",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-client-capabilities",
+      "path": "/glossary/mcp-client-capabilities/",
+      "term": "MCP Client Capabilities",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-server-capabilities",
+      "path": "/glossary/mcp-server-capabilities/",
+      "term": "MCP Server Capabilities",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-tool-result",
+      "path": "/glossary/mcp-tool-result/",
+      "term": "MCP Tool Result",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-tool-error",
+      "path": "/glossary/mcp-tool-error/",
+      "term": "MCP Tool Error",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-json-schema",
+      "path": "/glossary/mcp-json-schema/",
+      "term": "MCP JSON Schema",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-uri-scheme",
+      "path": "/glossary/mcp-uri-scheme/",
+      "term": "MCP URI Scheme",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-annotation",
+      "path": "/glossary/mcp-annotation/",
+      "term": "MCP Annotation",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-tool-input-schema",
+      "path": "/glossary/mcp-tool-input-schema/",
+      "term": "MCP Tool Input Schema",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-tool-output-schema",
+      "path": "/glossary/mcp-tool-output-schema/",
+      "term": "MCP Tool Output Schema",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-resource-contents",
+      "path": "/glossary/mcp-resource-contents/",
+      "term": "MCP Resource Contents",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-resource-template",
+      "path": "/glossary/mcp-resource-template/",
+      "term": "MCP Resource Template",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-prompt-argument",
+      "path": "/glossary/mcp-prompt-argument/",
+      "term": "MCP Prompt Argument",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-protocol-version",
+      "path": "/glossary/mcp-protocol-version/",
+      "term": "MCP Protocol Version",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-capability-negotiation",
+      "path": "/glossary/mcp-capability-negotiation/",
+      "term": "MCP Capability Negotiation",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-request-id",
+      "path": "/glossary/mcp-request-id/",
+      "term": "MCP Request ID",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-method",
+      "path": "/glossary/mcp-method/",
+      "term": "MCP Method",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-params",
+      "path": "/glossary/mcp-params/",
+      "term": "MCP Params",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-result",
+      "path": "/glossary/mcp-result/",
+      "term": "MCP Result",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-error",
+      "path": "/glossary/mcp-error/",
+      "term": "MCP Error",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-notification",
+      "path": "/glossary/mcp-notification/",
+      "term": "MCP Notification",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-feature-flags",
+      "path": "/glossary/mcp-feature-flags/",
+      "term": "MCP Feature Flags",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "large-language-model",
+      "path": "/glossary/large-language-model/",
+      "term": "Large Language Model (LLM)",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "transformer-architecture",
+      "path": "/glossary/transformer-architecture/",
+      "term": "Transformer Architecture",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "token",
+      "path": "/glossary/token/",
+      "term": "Token",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "embedding",
+      "path": "/glossary/embedding/",
+      "term": "Embedding",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "vector-database",
+      "path": "/glossary/vector-database/",
+      "term": "Vector Database",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "rag",
+      "path": "/glossary/rag/",
+      "term": "RAG (Retrieval-Augmented Generation)",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "fine-tuning",
+      "path": "/glossary/fine-tuning/",
+      "term": "Fine-tuning",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "prompt-engineering",
+      "path": "/glossary/prompt-engineering/",
+      "term": "Prompt Engineering",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "context-window",
+      "path": "/glossary/context-window/",
+      "term": "Context Window",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "temperature",
+      "path": "/glossary/temperature/",
+      "term": "Temperature",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "top-p-nucleus-sampling",
+      "path": "/glossary/top-p-nucleus-sampling/",
+      "term": "Top-p (Nucleus Sampling)",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "few-shot-learning",
+      "path": "/glossary/few-shot-learning/",
+      "term": "Few-shot Learning",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "zero-shot-learning",
+      "path": "/glossary/zero-shot-learning/",
+      "term": "Zero-shot Learning",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "chain-of-thought",
+      "path": "/glossary/chain-of-thought/",
+      "term": "Chain of Thought (CoT)",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "react",
+      "path": "/glossary/react/",
+      "term": "ReAct (Reason + Act)",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "agent",
+      "path": "/glossary/agent/",
+      "term": "AI Agent",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "tool-calling",
+      "path": "/glossary/tool-calling/",
+      "term": "Tool Calling (Function Calling)",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "hallucination",
+      "path": "/glossary/hallucination/",
+      "term": "Hallucination",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "alignment",
+      "path": "/glossary/alignment/",
+      "term": "Alignment",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "rlhf",
+      "path": "/glossary/rlhf/",
+      "term": "RLHF (Reinforcement Learning from Human Feedback)",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "guardrails",
+      "path": "/glossary/guardrails/",
+      "term": "Guardrails",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "prompt-injection",
+      "path": "/glossary/prompt-injection/",
+      "term": "Prompt Injection",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "system-prompt",
+      "path": "/glossary/system-prompt/",
+      "term": "System Prompt",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "model-context",
+      "path": "/glossary/model-context/",
+      "term": "Model Context",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "inference",
+      "path": "/glossary/inference/",
+      "term": "Inference",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "quantization",
+      "path": "/glossary/quantization/",
+      "term": "Quantization",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "gguf",
+      "path": "/glossary/gguf/",
+      "term": "GGUF",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "lora",
+      "path": "/glossary/lora/",
+      "term": "LoRA (Low-Rank Adaptation)",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "semantic-search",
+      "path": "/glossary/semantic-search/",
+      "term": "Semantic Search",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "hybrid-search",
+      "path": "/glossary/hybrid-search/",
+      "term": "Hybrid Search",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "cosine-similarity",
+      "path": "/glossary/cosine-similarity/",
+      "term": "Cosine Similarity",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "hnsw",
+      "path": "/glossary/hnsw/",
+      "term": "HNSW (Hierarchical Navigable Small World)",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "tokenizer",
+      "path": "/glossary/tokenizer/",
+      "term": "Tokenizer",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "bpe",
+      "path": "/glossary/bpe/",
+      "term": "BPE (Byte Pair Encoding)",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "multimodal-llm",
+      "path": "/glossary/multimodal-llm/",
+      "term": "Multimodal LLM",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "vision-language-model",
+      "path": "/glossary/vision-language-model/",
+      "term": "Vision-Language Model (VLM)",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "clip",
+      "path": "/glossary/clip/",
+      "term": "CLIP (Contrastive Language-Image Pre-training)",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "whisper",
+      "path": "/glossary/whisper/",
+      "term": "Whisper",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "tts",
+      "path": "/glossary/tts/",
+      "term": "TTS (Text-to-Speech)",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "asr",
+      "path": "/glossary/asr/",
+      "term": "ASR (Automatic Speech Recognition)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "llm-ops",
+      "path": "/glossary/llm-ops/",
+      "term": "LLMOps",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "model-serving",
+      "path": "/glossary/model-serving/",
+      "term": "Model Serving",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "kv-cache",
+      "path": "/glossary/kv-cache/",
+      "term": "KV Cache",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "cve-management",
+      "path": "/glossary/cve-management/",
+      "term": "CVE Management",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "input-validation",
+      "path": "/glossary/input-validation/",
+      "term": "Input Validation",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "rate-limiting",
+      "path": "/glossary/rate-limiting/",
+      "term": "Rate Limiting",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "encryption-in-transit",
+      "path": "/glossary/encryption-in-transit/",
+      "term": "Encryption in Transit",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "sla-monitoring",
+      "path": "/glossary/sla-monitoring/",
+      "term": "SLA Monitoring",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-readiness-probe",
+      "path": "/glossary/mcp-readiness-probe/",
+      "term": "Readiness Probe",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-langchain",
+      "path": "/glossary/mcp-langchain/",
+      "term": "LangChain",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-autogen",
+      "path": "/glossary/mcp-autogen/",
+      "term": "AutoGen",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-autogpt",
+      "path": "/glossary/mcp-autogpt/",
+      "term": "AutoGPT",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-babyagi",
+      "path": "/glossary/mcp-babyagi/",
+      "term": "BabyAGI",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-dynamodb",
+      "path": "/glossary/mcp-dynamodb/",
+      "term": "DynamoDB",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-bigquery",
+      "path": "/glossary/mcp-bigquery/",
+      "term": "BigQuery",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-pinecone",
+      "path": "/glossary/mcp-pinecone/",
+      "term": "Pinecone",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-weaviate",
+      "path": "/glossary/mcp-weaviate/",
+      "term": "Weaviate",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-chromadb",
+      "path": "/glossary/mcp-chromadb/",
+      "term": "ChromaDB",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-milvus",
+      "path": "/glossary/mcp-milvus/",
+      "term": "Milvus",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-qdrant",
+      "path": "/glossary/mcp-qdrant/",
+      "term": "Qdrant",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-clickhouse",
+      "path": "/glossary/mcp-clickhouse/",
+      "term": "ClickHouse",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-reddit-api",
+      "path": "/glossary/mcp-reddit-api/",
+      "term": "Reddit API MCP",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-reddit-pipeline",
+      "path": "/glossary/mcp-reddit-pipeline/",
+      "term": "Reddit Data Pipeline",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-reddit-sentiment",
+      "path": "/glossary/mcp-reddit-sentiment/",
+      "term": "Reddit Sentiment Analysis",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-reddit-trends",
+      "path": "/glossary/mcp-reddit-trends/",
+      "term": "Reddit Trend Detection",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-cursor-editor",
+      "path": "/glossary/mcp-cursor-editor/",
+      "term": "Cursor Editor",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-vscode",
+      "path": "/glossary/mcp-vscode/",
+      "term": "VSCode MCP Extension",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-jetbrains",
+      "path": "/glossary/mcp-jetbrains/",
+      "term": "JetBrains MCP Plugin",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-zed-editor",
+      "path": "/glossary/mcp-zed-editor/",
+      "term": "Zed MCP Integration",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-data-localization",
+      "path": "/glossary/mcp-data-localization/",
+      "term": "Data Localization",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-rbi-guidelines",
+      "path": "/glossary/mcp-rbi-guidelines/",
+      "term": "RBI Guidelines",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-sebi-compliance",
+      "path": "/glossary/mcp-sebi-compliance/",
+      "term": "SEBI Compliance",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-india-latency",
+      "path": "/glossary/mcp-india-latency/",
+      "term": "India Latency",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-soc-2",
+      "path": "/glossary/mcp-soc-2/",
+      "term": "SOC 2 Compliance",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-iso-27001",
+      "path": "/glossary/mcp-iso-27001/",
+      "term": "ISO 27001 Certification",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-gdpr",
+      "path": "/glossary/mcp-gdpr/",
+      "term": "GDPR Compliance",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-ccpa",
+      "path": "/glossary/mcp-ccpa/",
+      "term": "CCPA Compliance",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-prometheus",
+      "path": "/glossary/mcp-prometheus/",
+      "term": "Prometheus",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-grafana-dashboards",
+      "path": "/glossary/mcp-grafana-dashboards/",
+      "term": "Grafana Dashboards",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-datadog",
+      "path": "/glossary/mcp-datadog/",
+      "term": "Datadog",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-newrelic",
+      "path": "/glossary/mcp-newrelic/",
+      "term": "New Relic",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-gitlab",
+      "path": "/glossary/mcp-gitlab/",
+      "term": "GitLab",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-discord",
+      "path": "/glossary/mcp-discord/",
+      "term": "Discord",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-teams",
+      "path": "/glossary/mcp-teams/",
+      "term": "Microsoft Teams",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-excel",
+      "path": "/glossary/mcp-excel/",
+      "term": "Excel",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-indian-languages",
+      "path": "/glossary/mcp-indian-languages/",
+      "term": "Indian Languages",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-hindi-support",
+      "path": "/glossary/mcp-hindi-support/",
+      "term": "Hindi Support",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-tamil-support",
+      "path": "/glossary/mcp-tamil-support/",
+      "term": "Tamil Support",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-telugu-support",
+      "path": "/glossary/mcp-telugu-support/",
+      "term": "Telugu Support",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-bengali-support",
+      "path": "/glossary/mcp-bengali-support/",
+      "term": "Bengali Support",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-india-government",
+      "path": "/glossary/mcp-india-government/",
+      "term": "India Government Services",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-india-banking",
+      "path": "/glossary/mcp-india-banking/",
+      "term": "India Banking Integration",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-india-fintech",
+      "path": "/glossary/mcp-india-fintech/",
+      "term": "India Fintech Integration",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 3,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-india-healthcare",
+      "path": "/glossary/mcp-india-healthcare/",
+      "term": "India Healthcare Integration",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-india-education",
+      "path": "/glossary/mcp-india-education/",
+      "term": "India Education Integration",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-india-ecommerce",
+      "path": "/glossary/mcp-india-ecommerce/",
+      "term": "India E-commerce Integration",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 3,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-agent-orchestration",
+      "path": "/glossary/mcp-agent-orchestration/",
+      "term": "Agent Orchestration",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-agent-workflow",
+      "path": "/glossary/mcp-agent-workflow/",
+      "term": "Agent Workflows",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-agent-tools",
+      "path": "/glossary/mcp-agent-tools/",
+      "term": "Agent Tool Use",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-agent-memory",
+      "path": "/glossary/mcp-agent-memory/",
+      "term": "Agent Memory",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-agent-planning",
+      "path": "/glossary/mcp-agent-planning/",
+      "term": "Agent Planning",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-agent-reflection",
+      "path": "/glossary/mcp-agent-reflection/",
+      "term": "Agent Reflection",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-agent-collaboration",
+      "path": "/glossary/mcp-agent-collaboration/",
+      "term": "Agent Collaboration",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-agent-delegation",
+      "path": "/glossary/mcp-agent-delegation/",
+      "term": "Agent Delegation",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-woocommerce",
+      "path": "/glossary/mcp-woocommerce/",
+      "term": "WooCommerce",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-bigcommerce",
+      "path": "/glossary/mcp-bigcommerce/",
+      "term": "BigCommerce",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-hubspot",
+      "path": "/glossary/mcp-hubspot/",
+      "term": "HubSpot",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-zendesk",
+      "path": "/glossary/mcp-zendesk/",
+      "term": "Zendesk",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-intercom",
+      "path": "/glossary/mcp-intercom/",
+      "term": "Intercom",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-freshdesk",
+      "path": "/glossary/mcp-freshdesk/",
+      "term": "Freshdesk",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-versioning",
+      "path": "/glossary/mcp-versioning/",
+      "term": "MCP Versioning",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-discovery",
+      "path": "/glossary/mcp-discovery/",
+      "term": "MCP Discovery",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-timeout",
+      "path": "/glossary/mcp-timeout/",
+      "term": "MCP Timeout",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-retry-logic",
+      "path": "/glossary/mcp-retry-logic/",
+      "term": "MCP Retry Logic",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-graceful-shutdown",
+      "path": "/glossary/mcp-graceful-shutdown/",
+      "term": "MCP Graceful Shutdown",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-key-rotation",
+      "path": "/glossary/mcp-key-rotation/",
+      "term": "Key Rotation",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-secrets-manager",
+      "path": "/glossary/mcp-secrets-manager/",
+      "term": "Secrets Manager",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-hashicorp-vault",
+      "path": "/glossary/mcp-hashicorp-vault/",
+      "term": "HashiCorp Vault",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-self-hosted",
+      "path": "/glossary/mcp-self-hosted/",
+      "term": "Self-Hosted MCP",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-private-cloud",
+      "path": "/glossary/mcp-private-cloud/",
+      "term": "Private Cloud MCP",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 2,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-on-premise",
+      "path": "/glossary/mcp-on-premise/",
+      "term": "On-Premise MCP",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-p95-latency",
+      "path": "/glossary/mcp-p95-latency/",
+      "term": "P95 Latency",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-alerting",
+      "path": "/glossary/mcp-alerting/",
+      "term": "Alerting",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-auto-scaling-0",
+      "path": "/glossary/mcp-auto-scaling-0/",
+      "term": "Auto Scaling (MCP Server Deployment)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 2,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-container-registry-1",
+      "path": "/glossary/mcp-container-registry-1/",
+      "term": "Container Registry (MCP Server Distribution)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 2,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-secret-management-2",
+      "path": "/glossary/mcp-secret-management-2/",
+      "term": "Secret Management (MCP Servers)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 2,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-dns-provider-3",
+      "path": "/glossary/mcp-dns-provider-3/",
+      "term": "DNS Provider (MCP Server Hosting)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-cdn-service-4",
+      "path": "/glossary/mcp-cdn-service-4/",
+      "term": "CDN (Content Delivery Network) for MCP",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-message-broker-5",
+      "path": "/glossary/mcp-message-broker-5/",
+      "term": "Message Broker (behind an MCP Server)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-event-bus-6",
+      "path": "/glossary/mcp-event-bus-6/",
+      "term": "Event Bus (behind an MCP Server)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-task-queue-7",
+      "path": "/glossary/mcp-task-queue-7/",
+      "term": "Task Queue (behind a Long-Running MCP Tool)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-workflow-engine-8",
+      "path": "/glossary/mcp-workflow-engine-8/",
+      "term": "Workflow Engine (behind an MCP Server)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-cache-layer-9",
+      "path": "/glossary/mcp-cache-layer-9/",
+      "term": "Cache Layer (MCP Server Performance)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-search-engine-10",
+      "path": "/glossary/mcp-search-engine-10/",
+      "term": "Search Engine (as an MCP Tool Backend)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-analytics-platform-11",
+      "path": "/glossary/mcp-analytics-platform-11/",
+      "term": "Analytics Platform (MCP Server Usage)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-monitoring-tool-12",
+      "path": "/glossary/mcp-monitoring-tool-12/",
+      "term": "Monitoring Tool (MCP Server Observability)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-logging-service-13",
+      "path": "/glossary/mcp-logging-service-13/",
+      "term": "Logging Service (MCP Server Observability)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-api-gateway-14",
+      "path": "/glossary/mcp-api-gateway-14/",
+      "term": "API Gateway (in front of an MCP Server)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-load-balancer-15",
+      "path": "/glossary/mcp-load-balancer-15/",
+      "term": "Load Balancer (in front of an MCP Server)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-traffic-manager-16",
+      "path": "/glossary/mcp-traffic-manager-16/",
+      "term": "Traffic Manager (Multi-Region MCP Routing)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-rate-limiter-17",
+      "path": "/glossary/mcp-rate-limiter-17/",
+      "term": "Rate Limiting (MCP Tool Calls)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-auth-provider-18",
+      "path": "/glossary/mcp-auth-provider-18/",
+      "term": "Auth Provider / OAuth (MCP Authorization)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-identity-service-19",
+      "path": "/glossary/mcp-identity-service-19/",
+      "term": "Identity Service (MCP Client/User Identity)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-file-storage-20",
+      "path": "/glossary/mcp-file-storage-20/",
+      "term": "File Storage (as an MCP Tool Backend)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-object-store-21",
+      "path": "/glossary/mcp-object-store-21/",
+      "term": "Object Store (S3-style, as an MCP Tool Backend)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-block-storage-22",
+      "path": "/glossary/mcp-block-storage-22/",
+      "term": "Block Storage (MCP Server Infrastructure)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-database-service-23",
+      "path": "/glossary/mcp-database-service-23/",
+      "term": "Database Service (as an MCP Tool Backend)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-nosql-db-24",
+      "path": "/glossary/mcp-nosql-db-24/",
+      "term": "NoSQL Database (as an MCP Tool Backend)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-document-store-25",
+      "path": "/glossary/mcp-document-store-25/",
+      "term": "Document Store (as an MCP Tool Backend)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-key-value-store-26",
+      "path": "/glossary/mcp-key-value-store-26/",
+      "term": "Key-Value Store (as an MCP Tool Backend)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-graph-database-27",
+      "path": "/glossary/mcp-graph-database-27/",
+      "term": "Graph Database (as an MCP Tool Backend)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-time-series-db-28",
+      "path": "/glossary/mcp-time-series-db-28/",
+      "term": "Time-Series Database (as an MCP Tool Backend)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-vector-store-29",
+      "path": "/glossary/mcp-vector-store-29/",
+      "term": "Vector Store (as an MCP Tool Backend / RAG Retrieval)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-ml-model-serving-30",
+      "path": "/glossary/mcp-ml-model-serving-30/",
+      "term": "ML Model Serving (as an MCP Tool Backend)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-data-pipeline-31",
+      "path": "/glossary/mcp-data-pipeline-31/",
+      "term": "Data Pipeline (Triggered via an MCP Tool)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-etl-tool-32",
+      "path": "/glossary/mcp-etl-tool-32/",
+      "term": "ETL Tool (Triggered via an MCP Tool)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-stream-processing-33",
+      "path": "/glossary/mcp-stream-processing-33/",
+      "term": "Stream Processing (Queried via an MCP Tool)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-batch-processing-34",
+      "path": "/glossary/mcp-batch-processing-34/",
+      "term": "Batch Processing (Triggered via an MCP Tool)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-feature-store-35",
+      "path": "/glossary/mcp-feature-store-35/",
+      "term": "Feature Store (as an MCP Tool Backend)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-model-registry-36",
+      "path": "/glossary/mcp-model-registry-36/",
+      "term": "Model Registry (as an MCP Tool Backend)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-experiment-tracker-37",
+      "path": "/glossary/mcp-experiment-tracker-37/",
+      "term": "Experiment Tracker (as an MCP Tool Backend)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-hyperparameter-tune-38",
+      "path": "/glossary/mcp-hyperparameter-tune-38/",
+      "term": "Hyperparameter Tuning (Triggered via an MCP Tool)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-a-b-test-39",
+      "path": "/glossary/mcp-a-b-test-39/",
+      "term": "A/B Testing (Queried via an MCP Tool)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-canary-deploy-40",
+      "path": "/glossary/mcp-canary-deploy-40/",
+      "term": "Canary Deployment (of an MCP Server)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-blue-green-deploy-41",
+      "path": "/glossary/mcp-blue-green-deploy-41/",
+      "term": "Blue-Green Deployment (of an MCP Server)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-rolling-update-42",
+      "path": "/glossary/mcp-rolling-update-42/",
+      "term": "Rolling Update (of an MCP Server)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-health-check-43",
+      "path": "/glossary/mcp-health-check-43/",
+      "term": "Health Check (of a Remote MCP Server)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-readiness-probe-44",
+      "path": "/glossary/mcp-readiness-probe-44/",
+      "term": "Readiness Probe (of a Remote MCP Server, Kubernetes)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-liveness-probe-45",
+      "path": "/glossary/mcp-liveness-probe-45/",
+      "term": "Liveness Probe (of a Remote MCP Server, Kubernetes)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-config-map-46",
+      "path": "/glossary/mcp-config-map-46/",
+      "term": "Config Map (Kubernetes, for MCP Server Deployment)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-secret-store-47",
+      "path": "/glossary/mcp-secret-store-47/",
+      "term": "Secret Store (Infrastructure Component, for MCP Servers)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-certificate-manager-48",
+      "path": "/glossary/mcp-certificate-manager-48/",
+      "term": "Certificate Manager (TLS, for a Remote MCP Server)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-ssl-terminator-49",
+      "path": "/glossary/mcp-ssl-terminator-49/",
+      "term": "SSL/TLS Termination (in front of a Remote MCP Server)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-http-cache-50",
+      "path": "/glossary/mcp-http-cache-50/",
+      "term": "HTTP Cache (and why it mostly doesn't apply to MCP)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-edge-compute-51",
+      "path": "/glossary/mcp-edge-compute-51/",
+      "term": "Edge Compute (for MCP Server Hosting)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-serverless-func-52",
+      "path": "/glossary/mcp-serverless-func-52/",
+      "term": "Serverless Function (for MCP Server Hosting)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-function-orchestrator-53",
+      "path": "/glossary/mcp-function-orchestrator-53/",
+      "term": "Function Orchestrator (behind an MCP Server)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-job-scheduler-54",
+      "path": "/glossary/mcp-job-scheduler-54/",
+      "term": "Job Scheduler (behind an MCP Server)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-cron-service-55",
+      "path": "/glossary/mcp-cron-service-55/",
+      "term": "Cron Service (behind an MCP Server)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-backup-service-56",
+      "path": "/glossary/mcp-backup-service-56/",
+      "term": "Backup Service (MCP Server Data, not MCP-specific)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-disaster-recovery-57",
+      "path": "/glossary/mcp-disaster-recovery-57/",
+      "term": "Disaster Recovery (MCP Server Infrastructure)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-replication-service-58",
+      "path": "/glossary/mcp-replication-service-58/",
+      "term": "Replication Service (behind an MCP Server's Data)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-sync-engine-59",
+      "path": "/glossary/mcp-sync-engine-59/",
+      "term": "Sync Engine (behind an MCP Server)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-data-migrator-60",
+      "path": "/glossary/mcp-data-migrator-60/",
+      "term": "Data Migrator (Triggered via an MCP Tool)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-schema-registry-61",
+      "path": "/glossary/mcp-schema-registry-61/",
+      "term": "Schema Registry (vs. an MCP Tool's JSON Schema)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-message-router-62",
+      "path": "/glossary/mcp-message-router-62/",
+      "term": "Message Router (behind an MCP Server)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-event-processor-63",
+      "path": "/glossary/mcp-event-processor-63/",
+      "term": "Event Processor (behind an MCP Server)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-stream-aggregator-64",
+      "path": "/glossary/mcp-stream-aggregator-64/",
+      "term": "Stream Aggregator (Queried via an MCP Tool)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-log-aggregator-65",
+      "path": "/glossary/mcp-log-aggregator-65/",
+      "term": "Log Aggregator (Queried via an MCP Tool)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-metric-collector-66",
+      "path": "/glossary/mcp-metric-collector-66/",
+      "term": "Metric Collector (Queried via an MCP Tool)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-trace-collector-67",
+      "path": "/glossary/mcp-trace-collector-67/",
+      "term": "Trace Collector (Queried via an MCP Tool)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-alert-manager-68",
+      "path": "/glossary/mcp-alert-manager-68/",
+      "term": "Alert Manager (Queried via an MCP Tool)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-notification-service-69",
+      "path": "/glossary/mcp-notification-service-69/",
+      "term": "Notification Service (behind an MCP Server)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-email-service-70",
+      "path": "/glossary/mcp-email-service-70/",
+      "term": "Email Service (behind an MCP Server)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-sms-gateway-71",
+      "path": "/glossary/mcp-sms-gateway-71/",
+      "term": "SMS Gateway (behind an MCP Server)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-push-notification-72",
+      "path": "/glossary/mcp-push-notification-72/",
+      "term": "Push Notification (behind an MCP Server)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-webhook-receiver-73",
+      "path": "/glossary/mcp-webhook-receiver-73/",
+      "term": "Webhook Receiver (vs. MCP's Client-Initiated Model)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-callback-handler-74",
+      "path": "/glossary/mcp-callback-handler-74/",
+      "term": "Callback Handler (OAuth Redirect, for MCP Authorization)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-file-watcher-75",
+      "path": "/glossary/mcp-file-watcher-75/",
+      "term": "File Watcher (behind an MCP Server)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-cron-trigger-76",
+      "path": "/glossary/mcp-cron-trigger-76/",
+      "term": "CronJob (Kubernetes, for MCP-Adjacent Scheduled Work)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-web-scraper-77",
+      "path": "/glossary/mcp-web-scraper-77/",
+      "term": "Web Scraper (as an MCP Tool Backend)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-api-client-78",
+      "path": "/glossary/mcp-api-client-78/",
+      "term": "API Client (behind an MCP Tool)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-graphql-gateway-79",
+      "path": "/glossary/mcp-graphql-gateway-79/",
+      "term": "GraphQL Gateway (behind an MCP Tool)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-grpc-proxy-80",
+      "path": "/glossary/mcp-grpc-proxy-80/",
+      "term": "gRPC Proxy (behind an MCP Tool)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-http-proxy-81",
+      "path": "/glossary/mcp-http-proxy-81/",
+      "term": "HTTP Proxy (in front of a Remote MCP Server)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-tcp-proxy-82",
+      "path": "/glossary/mcp-tcp-proxy-82/",
+      "term": "TCP Proxy (Generally Not Applicable to MCP)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-udp-proxy-83",
+      "path": "/glossary/mcp-udp-proxy-83/",
+      "term": "UDP Proxy (Not Applicable to MCP)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-websocket-proxy-84",
+      "path": "/glossary/mcp-websocket-proxy-84/",
+      "term": "WebSocket Proxy (vs. MCP's Actual Transports)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-sse-gateway-85",
+      "path": "/glossary/mcp-sse-gateway-85/",
+      "term": "SSE (Server-Sent Events) — an Actual MCP Transport",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-websocket-server-86",
+      "path": "/glossary/mcp-websocket-server-86/",
+      "term": "WebSocket Server (vs. MCP's SSE/Streamable HTTP)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-socket-adapter-87",
+      "path": "/glossary/mcp-socket-adapter-87/",
+      "term": "Socket Adapter (stdio, an Actual MCP Transport)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-polling-service-88",
+      "path": "/glossary/mcp-polling-service-88/",
+      "term": "Polling (as an Alternative to MCP Notifications)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-subscription-manager-89",
+      "path": "/glossary/mcp-subscription-manager-89/",
+      "term": "Subscription Manager (MCP Resource Subscriptions)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-pubsub-system-90",
+      "path": "/glossary/mcp-pubsub-system-90/",
+      "term": "Pub/Sub System (vs. MCP's Resource Subscriptions)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-message-queue-91",
+      "path": "/glossary/mcp-message-queue-91/",
+      "term": "Message Queue (behind an MCP Server)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-job-queue-92",
+      "path": "/glossary/mcp-job-queue-92/",
+      "term": "Job Queue (behind an MCP Server)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-task-runner-93",
+      "path": "/glossary/mcp-task-runner-93/",
+      "term": "Task Runner (the Worker Consuming an MCP-Triggered Job)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-worker-pool-94",
+      "path": "/glossary/mcp-worker-pool-94/",
+      "term": "Worker Pool (MCP Server Concurrency)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-thread-pool-95",
+      "path": "/glossary/mcp-thread-pool-95/",
+      "term": "Thread Pool (MCP Server Runtime, Language-Specific)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-process-manager-96",
+      "path": "/glossary/mcp-process-manager-96/",
+      "term": "Process Manager (for stdio MCP Servers)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-process-monitor-97",
+      "path": "/glossary/mcp-process-monitor-97/",
+      "term": "Process Monitor (for Remote MCP Server Deployments)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-process-restart-98",
+      "path": "/glossary/mcp-process-restart-98/",
+      "term": "Process Restart (MCP Server Recovery)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-log-rotation-99",
+      "path": "/glossary/mcp-log-rotation-99/",
+      "term": "Log Rotation (MCP Server Operations)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-log-export-100",
+      "path": "/glossary/mcp-log-export-100/",
+      "term": "Log Export (MCP Server Observability)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-metric-export-101",
+      "path": "/glossary/mcp-metric-export-101/",
+      "term": "Metric Export (MCP Server Observability)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-trace-export-102",
+      "path": "/glossary/mcp-trace-export-102/",
+      "term": "Trace Export (MCP Server Observability, OpenTelemetry)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-audit-logger-103",
+      "path": "/glossary/mcp-audit-logger-103/",
+      "term": "Audit Logger (MCP Tool Calls)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-compliance-checker-104",
+      "path": "/glossary/mcp-compliance-checker-104/",
+      "term": "Compliance Checker (an MCP Tool Category)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-security-scanner-105",
+      "path": "/glossary/mcp-security-scanner-105/",
+      "term": "Security Scanner (an MCP Tool Category, and a Real Concern for MCP Servers Themselves)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-vulnerability-scan-106",
+      "path": "/glossary/mcp-vulnerability-scan-106/",
+      "term": "Vulnerability Scanning (an MCP Tool Category)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-dependency-check-107",
+      "path": "/glossary/mcp-dependency-check-107/",
+      "term": "Dependency Check (an MCP Tool Category)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-license-checker-108",
+      "path": "/glossary/mcp-license-checker-108/",
+      "term": "License Checker (an MCP Tool Category)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-policy-engine-109",
+      "path": "/glossary/mcp-policy-engine-109/",
+      "term": "Policy Engine (Authorization Decisions for MCP Tool Calls)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-rule-engine-110",
+      "path": "/glossary/mcp-rule-engine-110/",
+      "term": "Rule Engine (Business Logic behind an MCP Tool)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-state-machine-113",
+      "path": "/glossary/mcp-state-machine-113/",
+      "term": "State Machine (behind an MCP Tool or Workflow)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-fact-checker-116",
+      "path": "/glossary/mcp-fact-checker-116/",
+      "term": "Fact Checker (an MCP Tool for Grounding Agent Output)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-data-validator-117",
+      "path": "/glossary/mcp-data-validator-117/",
+      "term": "Custom Validation Logic (Beyond JSON Schema, in an MCP Tool)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "mcp-schema-validator-118",
+      "path": "/glossary/mcp-schema-validator-118/",
+      "term": "Schema Validation (MCP Tool Input, JSON Schema)",
+      "action": "NOINDEX_FOLLOW",
+      "indexable": false,
+      "hasNumericSuffix": true,
+      "references": 1,
+      "reason": "Low standalone search value or generated numeric/generic slug; useful for navigation only."
+    },
+    {
+      "slug": "prometheus-mcp",
+      "path": "/glossary/prometheus-mcp/",
+      "term": "Prometheus (MCP monitoring)",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "github-actions-mcp",
+      "path": "/glossary/github-actions-mcp/",
+      "term": "GitHub Actions (MCP CI/CD)",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "bigquery-mcp",
+      "path": "/glossary/bigquery-mcp/",
+      "term": "BigQuery (MCP integration)",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "terraform-mcp",
+      "path": "/glossary/terraform-mcp/",
+      "term": "Terraform (MCP infrastructure)",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "datadog-mcp",
+      "path": "/glossary/datadog-mcp/",
+      "term": "Datadog (MCP observability)",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "new-relic-mcp",
+      "path": "/glossary/new-relic-mcp/",
+      "term": "New Relic (MCP observability)",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "splunk-mcp",
+      "path": "/glossary/splunk-mcp/",
+      "term": "Splunk (MCP log search)",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "clickhouse-mcp",
+      "path": "/glossary/clickhouse-mcp/",
+      "term": "ClickHouse (MCP analytics)",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "snowflake-mcp",
+      "path": "/glossary/snowflake-mcp/",
+      "term": "Snowflake (MCP data warehouse)",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "elasticsearch-mcp",
+      "path": "/glossary/elasticsearch-mcp/",
+      "term": "Elasticsearch (MCP search)",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "supabase-mcp",
+      "path": "/glossary/supabase-mcp/",
+      "term": "Supabase (MCP integration)",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "dynamodb-mcp",
+      "path": "/glossary/dynamodb-mcp/",
+      "term": "DynamoDB (MCP integration)",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "mcp-inspector",
+      "path": "/glossary/mcp-inspector/",
+      "term": "MCP Inspector",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "tool-annotations",
+      "path": "/glossary/tool-annotations/",
+      "term": "Tool Annotations",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "docker-mcp",
+      "path": "/glossary/docker-mcp/",
+      "term": "Docker (MCP integration)",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "kubernetes-mcp",
+      "path": "/glossary/kubernetes-mcp/",
+      "term": "Kubernetes (MCP integration)",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "pinecone-mcp",
+      "path": "/glossary/pinecone-mcp/",
+      "term": "Pinecone (MCP vector search)",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "weaviate-mcp",
+      "path": "/glossary/weaviate-mcp/",
+      "term": "Weaviate (MCP vector search)",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "chromadb-mcp",
+      "path": "/glossary/chromadb-mcp/",
+      "term": "ChromaDB (MCP vector search)",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "milvus-mcp",
+      "path": "/glossary/milvus-mcp/",
+      "term": "Milvus (MCP vector search)",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "rabbitmq-mcp",
+      "path": "/glossary/rabbitmq-mcp/",
+      "term": "RabbitMQ (MCP integration)",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    },
+    {
+      "slug": "kafka-mcp",
+      "path": "/glossary/kafka-mcp/",
+      "term": "Kafka (MCP integration)",
+      "action": "KEEP",
+      "indexable": true,
+      "hasNumericSuffix": false,
+      "references": 1,
+      "reason": "Clean MCP-specific term with references."
+    }
+  ]
+}

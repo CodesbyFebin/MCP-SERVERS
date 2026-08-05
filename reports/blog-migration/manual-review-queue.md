@@ -1,0 +1,117 @@
+# Manual Review Queue
+
+Generated: 2026-08-05T01:28:44.345Z
+
+## Priority Pages for Review
+
+The following pages are flagged for manual editorial review before publication:
+
+- https://www.mcpserver.in/categories/developer-tools/ (category-hub, P1) — H1: Developer Tools MCP Servers and Guides
+- https://www.mcpserver.in/categories/databases/ (category-hub, P1) — H1: Databases MCP Servers and Guides
+- https://www.mcpserver.in/categories/vector-databases/ (category-hub, P2) — H1: Vector Databases MCP Servers and Guides
+- https://www.mcpserver.in/categories/communication/ (category-hub, P2) — H1: Communication MCP Servers and Guides
+- https://www.mcpserver.in/categories/productivity/ (category-hub, P2) — H1: Productivity MCP Servers and Guides
+- https://www.mcpserver.in/categories/project-management/ (category-hub, P2) — H1: Project Management MCP Servers and Guides
+- https://www.mcpserver.in/categories/cloud/ (category-hub, P1) — H1: Cloud MCP Servers and Guides
+- https://www.mcpserver.in/categories/deployment/ (category-hub, P1) — H1: Deployment MCP Servers and Guides
+- https://www.mcpserver.in/categories/security/ (category-hub, P1) — H1: Security MCP Servers and Guides
+- https://www.mcpserver.in/categories/identity/ (category-hub, P2) — H1: Identity MCP Servers and Guides
+- https://www.mcpserver.in/categories/observability/ (category-hub, P2) — H1: Observability MCP Servers and Guides
+- https://www.mcpserver.in/categories/analytics/ (category-hub, P2) — H1: Analytics MCP Servers and Guides
+- https://www.mcpserver.in/categories/finance/ (category-hub, P2) — H1: Finance MCP Servers and Guides
+- https://www.mcpserver.in/categories/payments/ (category-hub, P2) — H1: Payments MCP Servers and Guides
+- https://www.mcpserver.in/categories/ecommerce/ (category-hub, P2) — H1: Ecommerce MCP Servers and Guides
+- https://www.mcpserver.in/categories/crm/ (category-hub, P2) — H1: CRM MCP Servers and Guides
+- https://www.mcpserver.in/categories/support/ (category-hub, P2) — H1: Support MCP Servers and Guides
+- https://www.mcpserver.in/categories/erp/ (category-hub, P2) — H1: ERP MCP Servers and Guides
+- https://www.mcpserver.in/categories/marketing/ (category-hub, P2) — H1: Marketing MCP Servers and Guides
+- https://www.mcpserver.in/categories/storage/ (category-hub, P2) — H1: Storage MCP Servers and Guides
+- https://www.mcpserver.in/categories/file-systems/ (category-hub, P2) — H1: File Systems MCP Servers and Guides
+- https://www.mcpserver.in/categories/browser-automation/ (category-hub, P2) — H1: Browser Automation MCP Servers and Guides
+- https://www.mcpserver.in/categories/knowledge-management/ (category-hub, P2) — H1: Knowledge Management MCP Servers and Guides
+- https://www.mcpserver.in/categories/search/ (category-hub, P2) — H1: Search MCP Servers and Guides
+- https://www.mcpserver.in/categories/ai-ml/ (category-hub, P2) — H1: Ai Ml MCP Servers and Guides
+- https://www.mcpserver.in/categories/data-engineering/ (category-hub, P2) — H1: Data Engineering MCP Servers and Guides
+- https://www.mcpserver.in/categories/devops/ (category-hub, P2) — H1: Devops MCP Servers and Guides
+- https://www.mcpserver.in/categories/infrastructure/ (category-hub, P2) — H1: Infrastructure MCP Servers and Guides
+- https://www.mcpserver.in/categories/monitoring/ (category-hub, P2) — H1: Monitoring MCP Servers and Guides
+- https://www.mcpserver.in/categories/testing/ (category-hub, P2) — H1: Testing MCP Servers and Guides
+- https://www.mcpserver.in/categories/documentation/ (category-hub, P2) — H1: Documentation MCP Servers and Guides
+- https://www.mcpserver.in/categories/design/ (category-hub, P2) — H1: Design MCP Servers and Guides
+- https://www.mcpserver.in/categories/automation/ (category-hub, P2) — H1: Automation MCP Servers and Guides
+- https://www.mcpserver.in/categories/workflow/ (category-hub, P2) — H1: Workflow MCP Servers and Guides
+- https://www.mcpserver.in/categories/registry/ (category-hub, P2) — H1: Registry MCP Servers and Guides
+- https://www.mcpserver.in/categories/governance/ (category-hub, P2) — H1: Governance MCP Servers and Guides
+- https://www.mcpserver.in/categories/enterprise/ (category-hub, P2) — H1: Enterprise MCP Servers and Guides
+- https://www.mcpserver.in/categories/compliance/ (category-hub, P2) — H1: Compliance MCP Servers and Guides
+- https://www.mcpserver.in/categories/india/ (category-hub, P1) — H1: India MCP Servers and Guides
+- https://www.mcpserver.in/categories/education/ (category-hub, P2) — H1: Education MCP Servers and Guides
+- https://www.mcpserver.in/categories/developer-tools-servers/ (category-hub, P1) — H1: Developer Tools Servers MCP Hub
+- https://www.mcpserver.in/categories/developer-tools-integrations/ (category-hub, P1) — H1: Developer Tools Integrations MCP Hub
+- https://www.mcpserver.in/categories/developer-tools-tutorials/ (category-hub, P1) — H1: Developer Tools Tutorials MCP Hub
+- https://www.mcpserver.in/categories/developer-tools-security/ (category-hub, P1) — H1: Developer Tools Security MCP Hub
+- https://www.mcpserver.in/categories/developer-tools-deployment/ (category-hub, P1) — H1: Developer Tools Deployment MCP Hub
+- https://www.mcpserver.in/categories/developer-tools-troubleshooting/ (category-hub, P1) — H1: Developer Tools Troubleshooting MCP Hub
+- https://www.mcpserver.in/categories/developer-tools-templates/ (category-hub, P1) — H1: Developer Tools Templates MCP Hub
+- https://www.mcpserver.in/categories/developer-tools-examples/ (category-hub, P1) — H1: Developer Tools Examples MCP Hub
+- https://www.mcpserver.in/categories/developer-tools-comparisons/ (category-hub, P1) — H1: Developer Tools Comparisons MCP Hub
+- https://www.mcpserver.in/categories/developer-tools-clients/ (category-hub, P1) — H1: Developer Tools Clients MCP Hub
+- https://www.mcpserver.in/categories/developer-tools-sdk/ (category-hub, P2) — H1: Developer Tools SDK MCP Hub
+- https://www.mcpserver.in/categories/developer-tools-registry/ (category-hub, P2) — H1: Developer Tools Registry MCP Hub
+- https://www.mcpserver.in/categories/developer-tools-enterprise/ (category-hub, P2) — H1: Developer Tools Enterprise MCP Hub
+- https://www.mcpserver.in/categories/developer-tools-benchmarks/ (category-hub, P2) — H1: Developer Tools Benchmarks MCP Hub
+- https://www.mcpserver.in/categories/databases-servers/ (category-hub, P2) — H1: Databases Servers MCP Hub
+- https://www.mcpserver.in/categories/databases-integrations/ (category-hub, P2) — H1: Databases Integrations MCP Hub
+- https://www.mcpserver.in/categories/databases-tutorials/ (category-hub, P2) — H1: Databases Tutorials MCP Hub
+- https://www.mcpserver.in/categories/databases-security/ (category-hub, P2) — H1: Databases Security MCP Hub
+- https://www.mcpserver.in/categories/databases-deployment/ (category-hub, P2) — H1: Databases Deployment MCP Hub
+- https://www.mcpserver.in/categories/databases-troubleshooting/ (category-hub, P2) — H1: Databases Troubleshooting MCP Hub
+- https://www.mcpserver.in/categories/databases-templates/ (category-hub, P2) — H1: Databases Templates MCP Hub
+- https://www.mcpserver.in/categories/databases-examples/ (category-hub, P2) — H1: Databases Examples MCP Hub
+- https://www.mcpserver.in/categories/databases-comparisons/ (category-hub, P2) — H1: Databases Comparisons MCP Hub
+- https://www.mcpserver.in/categories/databases-clients/ (category-hub, P2) — H1: Databases Clients MCP Hub
+- https://www.mcpserver.in/categories/databases-sdk/ (category-hub, P2) — H1: Databases SDK MCP Hub
+- https://www.mcpserver.in/categories/databases-registry/ (category-hub, P2) — H1: Databases Registry MCP Hub
+- https://www.mcpserver.in/categories/databases-enterprise/ (category-hub, P2) — H1: Databases Enterprise MCP Hub
+- https://www.mcpserver.in/categories/databases-benchmarks/ (category-hub, P2) — H1: Databases Benchmarks MCP Hub
+- https://www.mcpserver.in/categories/vector-databases-servers/ (category-hub, P2) — H1: Vector Databases Servers MCP Hub
+- https://www.mcpserver.in/categories/vector-databases-integrations/ (category-hub, P2) — H1: Vector Databases Integrations MCP Hub
+- https://www.mcpserver.in/categories/vector-databases-tutorials/ (category-hub, P2) — H1: Vector Databases Tutorials MCP Hub
+- https://www.mcpserver.in/categories/vector-databases-security/ (category-hub, P2) — H1: Vector Databases Security MCP Hub
+- https://www.mcpserver.in/categories/vector-databases-deployment/ (category-hub, P2) — H1: Vector Databases Deployment MCP Hub
+- https://www.mcpserver.in/categories/vector-databases-troubleshooting/ (category-hub, P2) — H1: Vector Databases Troubleshooting MCP Hub
+- https://www.mcpserver.in/categories/vector-databases-templates/ (category-hub, P2) — H1: Vector Databases Templates MCP Hub
+- https://www.mcpserver.in/categories/vector-databases-examples/ (category-hub, P2) — H1: Vector Databases Examples MCP Hub
+- https://www.mcpserver.in/categories/vector-databases-comparisons/ (category-hub, P2) — H1: Vector Databases Comparisons MCP Hub
+- https://www.mcpserver.in/categories/vector-databases-clients/ (category-hub, P2) — H1: Vector Databases Clients MCP Hub
+- https://www.mcpserver.in/categories/vector-databases-sdk/ (category-hub, P2) — H1: Vector Databases SDK MCP Hub
+- https://www.mcpserver.in/categories/vector-databases-registry/ (category-hub, P2) — H1: Vector Databases Registry MCP Hub
+- https://www.mcpserver.in/categories/vector-databases-enterprise/ (category-hub, P2) — H1: Vector Databases Enterprise MCP Hub
+- https://www.mcpserver.in/categories/vector-databases-benchmarks/ (category-hub, P2) — H1: Vector Databases Benchmarks MCP Hub
+- https://www.mcpserver.in/categories/communication-servers/ (category-hub, P2) — H1: Communication Servers MCP Hub
+- https://www.mcpserver.in/categories/communication-integrations/ (category-hub, P2) — H1: Communication Integrations MCP Hub
+- https://www.mcpserver.in/categories/communication-tutorials/ (category-hub, P2) — H1: Communication Tutorials MCP Hub
+- https://www.mcpserver.in/categories/communication-security/ (category-hub, P2) — H1: Communication Security MCP Hub
+- https://www.mcpserver.in/categories/communication-deployment/ (category-hub, P2) — H1: Communication Deployment MCP Hub
+- https://www.mcpserver.in/categories/communication-troubleshooting/ (category-hub, P2) — H1: Communication Troubleshooting MCP Hub
+- https://www.mcpserver.in/categories/communication-templates/ (category-hub, P2) — H1: Communication Templates MCP Hub
+- https://www.mcpserver.in/categories/communication-examples/ (category-hub, P2) — H1: Communication Examples MCP Hub
+- https://www.mcpserver.in/categories/communication-comparisons/ (category-hub, P2) — H1: Communication Comparisons MCP Hub
+- https://www.mcpserver.in/categories/communication-clients/ (category-hub, P2) — H1: Communication Clients MCP Hub
+- https://www.mcpserver.in/categories/communication-sdk/ (category-hub, P2) — H1: Communication SDK MCP Hub
+- https://www.mcpserver.in/categories/communication-registry/ (category-hub, P2) — H1: Communication Registry MCP Hub
+- https://www.mcpserver.in/categories/communication-enterprise/ (category-hub, P2) — H1: Communication Enterprise MCP Hub
+- https://www.mcpserver.in/categories/communication-benchmarks/ (category-hub, P2) — H1: Communication Benchmarks MCP Hub
+- https://www.mcpserver.in/categories/productivity-servers/ (category-hub, P2) — H1: Productivity Servers MCP Hub
+- https://www.mcpserver.in/categories/productivity-integrations/ (category-hub, P2) — H1: Productivity Integrations MCP Hub
+- https://www.mcpserver.in/categories/productivity-tutorials/ (category-hub, P2) — H1: Productivity Tutorials MCP Hub
+- https://www.mcpserver.in/categories/productivity-security/ (category-hub, P2) — H1: Productivity Security MCP Hub
+
+## Review Criteria
+
+- H1 accurately describes page intent
+- Canonical is correct and self-referencing
+- Content is original and valuable
+- No unsupported claims
+- Proper entity ownership
+- Correct schema assignment

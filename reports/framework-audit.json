@@ -1,0 +1,128 @@
+{
+  "generatedAt": "2026-08-04T19:03:09.830Z",
+  "repositoryRoot": "/Users/cyberteck/Desktop/MCP-SERVERS-master",
+  "framework": {
+    "name": "Next.js",
+    "version": "^16.2.10",
+    "appRouter": true
+  },
+  "packageManager": {
+    "decision": "npm",
+    "authoritativeLockfile": "package-lock.json",
+    "installCommand": "npm ci",
+    "localCommand": "npm run dev",
+    "lockfilesFound": [
+      "./package-lock.json",
+      "/Users/cyberteck/package-lock.json"
+    ],
+    "nestedLockfilesIntentional": false
+  },
+  "workspace": {
+    "root": "/Users/cyberteck/Desktop/MCP-SERVERS-master",
+    "nextConfigPinsRoot": true,
+    "vercelRootDirectory": "."
+  },
+  "routing": {
+    "middlewareTsExists": false,
+    "rootProxyTsExists": true,
+    "srcProxyTsExists": false,
+    "redirectSources": {
+      "proxy": [
+        "host normalization",
+        "protocol normalization",
+        "slash normalization",
+        "query cleanup",
+        "legacy intent consolidation"
+      ],
+      "nextConfig": [
+        "none currently returned; hook retained for future deterministic mappings"
+      ],
+      "vercelJson": [
+        "/blog/mcp-server-on-freebsd/",
+        "/blog/mcp-server-on-netbsd/",
+        "/blog/mcp-server-on-openbsd/",
+        "/blog/mcp-server-on-solaris/",
+        "/blog/mcp-server-on-alpine-linux/",
+        "/blog/mcp-server-on-alpine-with-musl/",
+        "/blog/mcp-server-on-centos-stream/",
+        "/blog/mcp-server-on-rocky-linux/",
+        "/blog/mcp-server-on-alma-linux/",
+        "/blog/mcp-server-on-debian/",
+        "/blog/mcp-server-on-ubuntu-lts/",
+        "/blog/mcp-server-on-gentoo/",
+        "/blog/mcp-server-on-nixos/",
+        "/glossary/mcp-auto-scaling-126/",
+        "/glossary/mcp-container-registry-127/",
+        "/glossary/mcp-secret-management-128/",
+        "/glossary/mcp-dns-provider-129/",
+        "/glossary/mcp-cdn-service-130/",
+        "/glossary/mcp-message-broker-131/",
+        "/glossary/mcp-event-bus-132/",
+        "/glossary/mcp-task-queue-133/",
+        "/glossary/mcp-workflow-engine-112/",
+        "/glossary/mcp-workflow-engine-134/",
+        "/glossary/mcp-cache-layer-135/",
+        "/glossary/mcp-search-engine-136/",
+        "/glossary/mcp-analytics-platform-137/",
+        "/glossary/mcp-monitoring-tool-138/",
+        "/glossary/mcp-logging-service-139/",
+        "/glossary/mcp-api-gateway-140/",
+        "/glossary/mcp-load-balancer-141/",
+        "/glossary/mcp-traffic-manager-142/",
+        "/glossary/mcp-rate-limiter-143/",
+        "/glossary/mcp-auth-provider-144/",
+        "/glossary/mcp-identity-service-145/",
+        "/glossary/mcp-file-storage-146/",
+        "/glossary/mcp-object-store-147/",
+        "/glossary/mcp-block-storage-148/",
+        "/glossary/mcp-database-service-149/",
+        "/glossary/mcp-nosql-db-150/",
+        "/glossary/mcp-document-store-151/",
+        "/glossary/mcp-key-value-store-152/",
+        "/glossary/mcp-graph-database-153/",
+        "/glossary/mcp-time-series-db-154/",
+        "/glossary/mcp-vector-store-155/",
+        "/glossary/mcp-ml-model-serving-156/",
+        "/glossary/mcp-data-pipeline-157/",
+        "/glossary/mcp-etl-tool-158/",
+        "/glossary/mcp-stream-processing-159/",
+        "/glossary/mcp-batch-processing-160/",
+        "/glossary/mcp-feature-store-161/",
+        "/glossary/mcp-model-registry-162/",
+        "/glossary/mcp-experiment-tracker-163/",
+        "/glossary/mcp-hyperparameter-tune-164/",
+        "/glossary/mcp-a-b-test-165/",
+        "/glossary/mcp-canary-deploy-166/",
+        "/glossary/mcp-decision-engine-111/",
+        "/glossary/mcp-event-machine-114/",
+        "/glossary/mcp-rule-processor-115/",
+        "/glossary/mcp-type-checker-119/",
+        "/glossary/mcp-format-validator-120/",
+        "/glossary/mcp-range-validator-121/",
+        "/glossary/mcp-enum-validator-122/",
+        "/glossary/mcp-custom-validator-123/",
+        "/glossary/mcp-async-validator-124/",
+        "/glossary/mcp-sync-validator-125/"
+      ]
+    },
+    "rewriteSources": {
+      "nextConfig": true
+    },
+    "canonicalSources": [
+      "proxy.ts",
+      "app/sitemap.ts",
+      "app/robots.ts",
+      "page metadata"
+    ]
+  },
+  "risks": [
+    "Parent home-directory package-lock.json exists; Next root must be pinned."
+  ],
+  "filesRequiringModification": [
+    "proxy.ts",
+    "next.config.js",
+    "vercel.json",
+    "package.json",
+    "docs/adr/lockfile-and-package-manager.md"
+  ]
+}

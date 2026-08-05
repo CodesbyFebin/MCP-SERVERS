@@ -1,0 +1,68 @@
+{
+  "generatedAt": "2026-08-05T00:00:00.000Z",
+  "rules": [
+    {
+      "source": "http://mcpserver.in/<path>",
+      "destination": "https://www.mcpserver.in/<path>/",
+      "owner": "proxy",
+      "permanent": true,
+      "reason": "host, protocol, slash, duplicate slash, and query canonicalization require request context"
+    },
+    {
+      "source": "/mcp-hosting/",
+      "destination": "/mcp-server-hosting/",
+      "owner": "proxy",
+      "permanent": true,
+      "reason": "legacy intent consolidation combined with host/query normalization in one hop"
+    },
+    {
+      "source": "/mcp-tutorial/",
+      "destination": "/how-to-build-mcp-server/",
+      "owner": "proxy",
+      "permanent": true,
+      "reason": "legacy intent consolidation combined with host/query normalization in one hop"
+    },
+    {
+      "source": "/blog/how-to-build-mcp-server-from-scratch/",
+      "destination": "/how-to-build-mcp-server/",
+      "owner": "proxy",
+      "permanent": true,
+      "reason": "legacy tutorial consolidation"
+    },
+    {
+      "source": "/complete-mcp-guide/",
+      "destination": "/complete-guide-mcp-servers/",
+      "owner": "proxy",
+      "permanent": true,
+      "reason": "legacy guide consolidation"
+    },
+    {
+      "source": "/build-an-mcp-server/",
+      "destination": "/how-to-build-mcp-server/",
+      "owner": "proxy",
+      "permanent": true,
+      "reason": "legacy build intent consolidation"
+    },
+    {
+      "source": "/host-mcp-server/",
+      "destination": "/mcp-server-hosting/",
+      "owner": "proxy",
+      "permanent": true,
+      "reason": "legacy hosting intent consolidation"
+    },
+    {
+      "source": "/blog/mcp-server-on-freebsd/",
+      "destination": "/blog/mcp-server-on-linux/",
+      "owner": "vercel",
+      "permanent": true,
+      "reason": "deterministic historical blog consolidation"
+    },
+    {
+      "source": "/glossary/mcp-decision-engine-111/",
+      "destination": "/glossary/mcp-rule-engine-110/",
+      "owner": "vercel",
+      "permanent": true,
+      "reason": "deterministic historical glossary consolidation"
+    }
+  ]
+}

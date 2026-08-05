@@ -1,0 +1,30 @@
+{
+  "generatedAt": "2026-08-04T21:48:46.123Z",
+  "blueprint": "troubleshooting-guide",
+  "content_family": "troubleshooting",
+  "minimum_words": 1800,
+  "quality_target": 93,
+  "required_schemas": [
+    "WebPage",
+    "BreadcrumbList",
+    "Organization",
+    "TechArticle",
+    "FAQPage"
+  ],
+  "required_sections": [
+    "direct_answer",
+    "entity_overview",
+    "implementation_context",
+    "configuration_or_workflow",
+    "security_considerations",
+    "validation_steps",
+    "related_links",
+    "evidence_and_sources",
+    "faq"
+  ],
+  "required_governance": {
+    "status": "candidate",
+    "publish_approved": false,
+    "indexable": false
+  }
+}

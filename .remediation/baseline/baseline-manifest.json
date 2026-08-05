@@ -1,0 +1,47 @@
+{
+  "CONTENT_INVENTORY.json": {
+    "hash": "missing",
+    "size": 1219263,
+    "timestamp": "2026-08-04T18:22:49.380Z"
+  },
+  "URL_MAP.json": {
+    "hash": "missing",
+    "size": 324335,
+    "timestamp": "2026-08-04T18:57:41.129Z"
+  },
+  "ENTITY_GRAPH.json": {
+    "hash": "missing",
+    "size": 272423,
+    "timestamp": "2026-08-04T18:25:54.462Z"
+  },
+  "PRODUCTION_MANIFEST.json": {
+    "hash": "missing",
+    "size": 901,
+    "timestamp": "2026-08-04T18:57:41.554Z"
+  },
+  "PHASE1_AUDIT_REPORT.json": {
+    "hash": "missing",
+    "size": 2245909,
+    "timestamp": "2026-08-04T18:20:06.051Z"
+  },
+  "SAFE_DEEP_REPORT.json": {
+    "hash": "missing",
+    "size": 289162,
+    "timestamp": "2026-08-04T18:50:33.224Z"
+  },
+  "QUALITY_REPORT.json": {
+    "hash": "missing",
+    "size": 867703,
+    "timestamp": "2026-08-04T18:51:50.684Z"
+  },
+  "SEO_REPORT.md": {
+    "hash": "missing",
+    "size": 447,
+    "timestamp": "2026-08-04T18:57:41.368Z"
+  },
+  "INTERNAL_LINK_GRAPH.json": {
+    "hash": "missing",
+    "size": 207100,
+    "timestamp": "2026-08-04T18:57:41.553Z"
+  }
+}

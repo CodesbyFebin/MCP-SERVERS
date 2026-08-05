@@ -1,0 +1,402 @@
+{
+  "buildId": "build-1785343704335",
+  "timestamp": "2026-07-29T16:48:24.335Z",
+  "entityCount": 76,
+  "pageCount": 76,
+  "sitemapCount": 2,
+  "indexCount": 76,
+  "qualityGateResults": [
+    {
+      "route": "/servers/github-mcp-server/",
+      "passed": true,
+      "score": 96
+    },
+    {
+      "route": "/servers/gitlab-mcp-server/",
+      "passed": true,
+      "score": 96
+    },
+    {
+      "route": "/servers/bitbucket-mcp-server/",
+      "passed": true,
+      "score": 96
+    },
+    {
+      "route": "/servers/docker-mcp-server/",
+      "passed": true,
+      "score": 96
+    },
+    {
+      "route": "/servers/kubernetes-mcp-server/",
+      "passed": true,
+      "score": 96
+    },
+    {
+      "route": "/servers/vercel-mcp-server/",
+      "passed": true,
+      "score": 96
+    },
+    {
+      "route": "/servers/cloudflare-mcp-server/",
+      "passed": true,
+      "score": 96
+    },
+    {
+      "route": "/servers/sentry-mcp-server/",
+      "passed": true,
+      "score": 93
+    },
+    {
+      "route": "/servers/postman-mcp-server/",
+      "passed": true,
+      "score": 86
+    },
+    {
+      "route": "/servers/sonarqube-mcp-server/",
+      "passed": true,
+      "score": 93
+    },
+    {
+      "route": "/servers/circleci-mcp-server/",
+      "passed": true,
+      "score": 93
+    },
+    {
+      "route": "/servers/heroku-mcp-server/",
+      "passed": true,
+      "score": 93
+    },
+    {
+      "route": "/servers/jenkins-mcp-server/",
+      "passed": true,
+      "score": 93
+    },
+    {
+      "route": "/servers/gitbook-mcp-server/",
+      "passed": true,
+      "score": 93
+    },
+    {
+      "route": "/servers/swagger-mcp-server/",
+      "passed": true,
+      "score": 89
+    },
+    {
+      "route": "/servers/postgres-mcp-server/",
+      "passed": true,
+      "score": 96
+    },
+    {
+      "route": "/servers/mysql-mcp-server/",
+      "passed": true,
+      "score": 96
+    },
+    {
+      "route": "/servers/mongodb-mcp-server/",
+      "passed": true,
+      "score": 96
+    },
+    {
+      "route": "/servers/sqlite-mcp-server/",
+      "passed": true,
+      "score": 93
+    },
+    {
+      "route": "/servers/redis-mcp-server/",
+      "passed": true,
+      "score": 96
+    },
+    {
+      "route": "/servers/supabase-mcp-server/",
+      "passed": true,
+      "score": 96
+    },
+    {
+      "route": "/servers/firebase-mcp-server/",
+      "passed": true,
+      "score": 96
+    },
+    {
+      "route": "/servers/pinecone-mcp-server/",
+      "passed": true,
+      "score": 96
+    },
+    {
+      "route": "/servers/vector-database-mcp-server/",
+      "passed": true,
+      "score": 93
+    },
+    {
+      "route": "/servers/cassandra-mcp-server/",
+      "passed": true,
+      "score": 93
+    },
+    {
+      "route": "/servers/neo4j-mcp-server/",
+      "passed": true,
+      "score": 93
+    },
+    {
+      "route": "/servers/dynamodb-mcp-server/",
+      "passed": true,
+      "score": 93
+    },
+    {
+      "route": "/servers/clickhouse-mcp-server/",
+      "passed": true,
+      "score": 93
+    },
+    {
+      "route": "/servers/elasticsearch-mcp-server/",
+      "passed": true,
+      "score": 93
+    },
+    {
+      "route": "/servers/oracle-mcp-server/",
+      "passed": true,
+      "score": 93
+    },
+    {
+      "route": "/servers/slack-mcp-server/",
+      "passed": true,
+      "score": 96
+    },
+    {
+      "route": "/servers/gmail-mcp-server/",
+      "passed": true,
+      "score": 96
+    },
+    {
+      "route": "/servers/google-calendar-mcp-server/",
+      "passed": true,
+      "score": 96
+    },
+    {
+      "route": "/servers/google-drive-mcp-server/",
+      "passed": true,
+      "score": 96
+    },
+    {
+      "route": "/servers/notion-mcp-server/",
+      "passed": true,
+      "score": 96
+    },
+    {
+      "route": "/servers/jira-mcp-server/",
+      "passed": true,
+      "score": 96
+    },
+    {
+      "route": "/servers/linear-mcp-server/",
+      "passed": true,
+      "score": 96
+    },
+    {
+      "route": "/servers/trello-mcp-server/",
+      "passed": true,
+      "score": 96
+    },
+    {
+      "route": "/servers/hubspot-mcp-server/",
+      "passed": true,
+      "score": 96
+    },
+    {
+      "route": "/servers/salesforce-mcp-server/",
+      "passed": true,
+      "score": 93
+    },
+    {
+      "route": "/servers/ms-teams-mcp-server/",
+      "passed": true,
+      "score": 93
+    },
+    {
+      "route": "/servers/zoom-mcp-server/",
+      "passed": true,
+      "score": 93
+    },
+    {
+      "route": "/servers/discord-mcp-server/",
+      "passed": true,
+      "score": 93
+    },
+    {
+      "route": "/servers/figma-mcp-server/",
+      "passed": true,
+      "score": 93
+    },
+    {
+      "route": "/servers/asana-mcp-server/",
+      "passed": true,
+      "score": 93
+    },
+    {
+      "route": "/servers/stripe-mcp-server/",
+      "passed": true,
+      "score": 93
+    },
+    {
+      "route": "/servers/razorpay-mcp-server/",
+      "passed": true,
+      "score": 89
+    },
+    {
+      "route": "/servers/shopify-mcp-server/",
+      "passed": true,
+      "score": 93
+    },
+    {
+      "route": "/servers/paypal-mcp-server/",
+      "passed": true,
+      "score": 89
+    },
+    {
+      "route": "/servers/quickbooks-mcp-server/",
+      "passed": true,
+      "score": 89
+    },
+    {
+      "route": "/servers/woocommerce-mcp-server/",
+      "passed": true,
+      "score": 89
+    },
+    {
+      "route": "/servers/xero-mcp-server/",
+      "passed": true,
+      "score": 89
+    },
+    {
+      "route": "/servers/chargebee-mcp-server/",
+      "passed": true,
+      "score": 89
+    },
+    {
+      "route": "/servers/paddle-mcp-server/",
+      "passed": true,
+      "score": 89
+    },
+    {
+      "route": "/servers/adyen-mcp-server/",
+      "passed": true,
+      "score": 89
+    },
+    {
+      "route": "/servers/openai-mcp-server/",
+      "passed": true,
+      "score": 96
+    },
+    {
+      "route": "/servers/anthropic-mcp-server/",
+      "passed": true,
+      "score": 93
+    },
+    {
+      "route": "/servers/google-gemini-mcp-server/",
+      "passed": true,
+      "score": 93
+    },
+    {
+      "route": "/servers/ollama-mcp-server/",
+      "passed": true,
+      "score": 89
+    },
+    {
+      "route": "/servers/mistral-mcp-server/",
+      "passed": true,
+      "score": 90
+    },
+    {
+      "route": "/servers/cohere-mcp-server/",
+      "passed": true,
+      "score": 93
+    },
+    {
+      "route": "/servers/prometheus-mcp-server/",
+      "passed": true,
+      "score": 96
+    },
+    {
+      "route": "/servers/grafana-mcp-server/",
+      "passed": true,
+      "score": 96
+    },
+    {
+      "route": "/servers/datadog-mcp-server/",
+      "passed": true,
+      "score": 96
+    },
+    {
+      "route": "/servers/newrelic-mcp-server/",
+      "passed": true,
+      "score": 96
+    },
+    {
+      "route": "/servers/opentelemetry-mcp-server/",
+      "passed": true,
+      "score": 96
+    },
+    {
+      "route": "/servers/aws-mcp-server/",
+      "passed": true,
+      "score": 96
+    },
+    {
+      "route": "/servers/google-cloud-mcp-server/",
+      "passed": true,
+      "score": 96
+    },
+    {
+      "route": "/servers/azure-mcp-server/",
+      "passed": true,
+      "score": 96
+    },
+    {
+      "route": "/servers/digitalocean-mcp-server/",
+      "passed": true,
+      "score": 93
+    },
+    {
+      "route": "/servers/linode-mcp-server/",
+      "passed": true,
+      "score": 93
+    },
+    {
+      "route": "/servers/supabase-cloud-mcp-server/",
+      "passed": true,
+      "score": 93
+    },
+    {
+      "route": "/servers/fly-io-mcp-server/",
+      "passed": true,
+      "score": 90
+    },
+    {
+      "route": "/servers/railway-mcp-server/",
+      "passed": true,
+      "score": 93
+    },
+    {
+      "route": "/servers/render-mcp-server/",
+      "passed": true,
+      "score": 93
+    },
+    {
+      "route": "/servers/scaleway-mcp-server/",
+      "passed": true,
+      "score": 90
+    }
+  ],
+  "validation": {
+    "ok": true,
+    "errors": [],
+    "warnings": [],
+    "publishedServerCount": 76,
+    "candidateRouteCount": 8
+  },
+  "pipeline": {
+    "stepsCompleted": 31,
+    "stepsFailed": 0,
+    "totalDurationMs": 119
+  }
+}
