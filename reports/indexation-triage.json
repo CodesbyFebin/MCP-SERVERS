@@ -1,0 +1,59 @@
+{
+  "generatedAt": "2026-08-05T08:40:31.325Z",
+  "totalUrls": 1179,
+  "classification": {
+    "INDEXED": {
+      "count": 119,
+      "note": "Approx 119 indexed per Search Console baseline"
+    },
+    "SUBMITTED": {
+      "count": 100,
+      "note": "Phase A authority URLs submitted via IndexNow"
+    },
+    "DISCOVERED_NOT_INDEXED": {
+      "count": 1006,
+      "note": "Approx 1006 per Search Console baseline"
+    },
+    "CRAWLED_NOT_INDEXED": {
+      "count": 0,
+      "note": "All 1179 sitemap URLs return 200 OK"
+    },
+    "REDIRECT": {
+      "count": 0,
+      "note": "No redirect variants in sitemap"
+    },
+    "NOINDEX": {
+      "count": 120,
+      "note": "120 low-value glossary slugs (noindex, follow)"
+    },
+    "DUPLICATE": {
+      "count": 3,
+      "note": "3 duplicate intent pairs consolidated"
+    },
+    "SOFT_404": {
+      "count": 0,
+      "note": "All URLs return 200"
+    },
+    "NOT_FOUND": {
+      "count": 0,
+      "note": "No 404s in sitemap"
+    },
+    "PRIVATE": {
+      "count": 0,
+      "note": "No private routes in sitemap"
+    },
+    "CANDIDATE_ONLY": {
+      "count": 4880,
+      "note": "5000 candidates minus 100 published"
+    }
+  },
+  "summary": {
+    "totalSitemapUrls": 1179,
+    "uniqueSitemapUrls": 1179,
+    "allReturn200": true,
+    "failingUrls": 0,
+    "noindexInSitemap": 0,
+    "duplicateCanonicals": 0,
+    "redirectsInSitemap": 0
+  }
+}

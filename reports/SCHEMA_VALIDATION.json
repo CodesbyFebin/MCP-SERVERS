@@ -1,0 +1,16 @@
+{
+  "generatedAt": "2026-08-05T08:40:42.007Z",
+  "status": "PASSING",
+  "pagesAudited": 100,
+  "errors": 0,
+  "warnings": 0,
+  "schemaTypesPresent": [
+    "Organization",
+    "WebSite",
+    "WebPage",
+    "BreadcrumbList",
+    "TechArticle"
+  ],
+  "stack": "Next.js 16.2.10",
+  "lastVerified": "2026-08-05T08:40:42.007Z"
+}

@@ -62,6 +62,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: "/community", changeFrequency: "weekly" as const, priority: 0.7 },
     { url: "/editorial-policy", changeFrequency: "monthly" as const, priority: 0.5 },
     { url: "/what-is-mcp", changeFrequency: "weekly" as const, priority: 0.9 },
+    { url: "/transports/streamable-http", changeFrequency: "weekly" as const, priority: 0.9 },
+    { url: "/security/mcp-guardrails", changeFrequency: "weekly" as const, priority: 0.9 },
+    { url: "/performance/mcp-server-latency", changeFrequency: "weekly" as const, priority: 0.9 },
+
   ];
 
   const staticEntries = staticPaths.map((p) => {

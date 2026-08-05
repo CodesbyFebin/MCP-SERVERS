@@ -1,0 +1,19 @@
+{
+  "generatedAt": "2026-08-05T16:57:48.201Z",
+  "gitCommit": "2445fb32ea710ad86dcc5186ab2c8fce9141b698",
+  "branch": "master",
+  "deploymentId": "production",
+  "canonicalOrigin": "https://www.mcpserver.in/",
+  "totalSitemapUrls": 1179,
+  "totalIndexableEntities": 81,
+  "totalPublishedPages": 100,
+  "totalCandidatePages": 5000,
+  "priorityPagesRestored": [
+    "transports/streamable-http",
+    "security/mcp-guardrails",
+    "performance/mcp-server-latency"
+  ],
+  "duplicateIntentsConsolidated": 3,
+  "brandDuplicationFixed": 150,
+  "glossaryRedirectsRemoved": 114
+}

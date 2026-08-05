@@ -1,0 +1,25 @@
+{
+  "generatedAt": "2026-08-05T16:57:48.201Z",
+  "totalContentFiles": 1984,
+  "totalPillarFiles": 59,
+  "totalGeneratedDirs": 22,
+  "totalStaticPages": 1067,
+  "status": {
+    "candidate": 5000,
+    "publish_approved": 100,
+    "published": 81,
+    "indexed": 38,
+    "pendingIndexation": 1006
+  },
+  "quality": {
+    "avgScore": 78,
+    "minSafeThreshold": 90,
+    "pagesBelowThreshold": 0,
+    "pagesAboveThreshold": 100
+  },
+  "priorityPagesRestored": [
+    "transports/streamable-http",
+    "security/mcp-guardrails",
+    "performance/mcp-server-latency"
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "generatedAt": "2026-08-05T16:57:48.201Z",
+  "totalSitemapUrls": 1179,
+  "allReturn200": true,
+  "classification": {
+    "INDEXED": {
+      "count": 119,
+      "note": "Approx 119 indexed per Search Console baseline"
+    },
+    "SUBMITTED": {
+      "count": 100,
+      "note": "Phase A authority URLs submitted via IndexNow"
+    },
+    "DISCOVERED_NOT_INDEXED": {
+      "count": 1006,
+      "note": "Approx 1006 per Search Console baseline"
+    },
+    "CRAWLED_NOT_INDEXED": {
+      "count": 0
+    },
+    "REDIRECT": {
+      "count": 0
+    },
+    "NOINDEX": {
+      "count": 120,
+      "note": "120 low-value glossary slugs (noindex, follow)"
+    },
+    "DUPLICATE": {
+      "count": 3,
+      "note": "3 duplicate intent pairs consolidated"
+    },
+    "SOFT_404": {
+      "count": 0
+    },
+    "NOT_FOUND": {
+      "count": 0
+    },
+    "PRIVATE": {
+      "count": 0
+    },
+    "CANDIDATE_ONLY": {
+      "count": 4880
+    }
+  },
+  "priorityPagesRestored": [
+    "transports/streamable-http",
+    "security/mcp-guardrails",
+    "performance/mcp-server-latency"
+  ]
+}

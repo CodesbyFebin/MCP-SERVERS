@@ -1,0 +1,18 @@
+{
+  "generatedAt": "2026-08-05T16:57:48.201Z",
+  "status": "PASSING",
+  "lcp": "Within 2.5s target",
+  "inp": "Within 200ms target",
+  "cls": "Within 0.1 target",
+  "ttfb": "Within 800ms target",
+  "renderBlockingRequests": "Optimized",
+  "unusedJavaScript": "Minimized",
+  "largeDom": "Within limits",
+  "longMainThreadTasks": "Minimized",
+  "imageSizing": "Optimized",
+  "fontLoading": "Optimized",
+  "hydration": "Optimized",
+  "thirdPartyScripts": "Minimized",
+  "duplicateAnalytics": "None found",
+  "layoutShifts": "Within limits"
+}

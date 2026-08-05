@@ -1,0 +1,22 @@
+{
+  "generatedAt": "2026-08-05T16:57:48.201Z",
+  "status": "PASSING",
+  "csp": "Configured",
+  "hsts": "Configured",
+  "xContentTypeOptions": "nosniff",
+  "xFrameOptions": "DENY",
+  "referrerPolicy": "strict-origin-when-cross-origin",
+  "permissionsPolicy": "Not configured",
+  "exposedDebugRoutes": "None found",
+  "leakedSecrets": "None found",
+  "publicTrustPages": [
+    "/about/",
+    "/contact/",
+    "/editorial-policy/",
+    "/security/",
+    "/privacy/",
+    "/terms/",
+    "/authors/",
+    "/status/"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "generatedAt": "2026-08-05T16:57:48.201Z",
+  "score": 55,
+  "status": "Improving",
+  "entityNaming": "Present on priority pages",
+  "canonicalEntityIdentity": "Verified",
+  "sourceAttribution": "Present on technical pages",
+  "retrievalFriendlyHeadings": "Present on all pages",
+  "llmsTxt": "Missing - needs creation",
+  "geoOptimizationOpportunities": [
+    "Create llms.txt",
+    "Add AI crawler allow rules",
+    "Implement quotable definitions"
+  ]
+}

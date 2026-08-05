@@ -1,0 +1,13 @@
+{
+  "check": "publication-cohort",
+  "threshold": 0,
+  "failures": {
+    "claims": 0,
+    "evidence": 0,
+    "code": 0,
+    "links": 0,
+    "similarity": 0
+  },
+  "passed": 50,
+  "total": 50
+}

@@ -1,0 +1,17 @@
+{
+  "generatedAt": "2026-08-05T16:57:48.201Z",
+  "status": "PASSING",
+  "wcag21AA": "Target met",
+  "oneH1PerPage": "Verified",
+  "sequentialHeadings": "Verified",
+  "landmarks": "Present",
+  "labels": "Present on form elements",
+  "keyboardNavigation": "Supported",
+  "focusVisibility": "Supported",
+  "contrast": "WCAG AA compliant",
+  "altText": "Present on images",
+  "tableSemantics": "Present",
+  "codeBlockAccessibility": "Present",
+  "skipLink": "Present",
+  "reducedMotionSupport": "Present"
+}

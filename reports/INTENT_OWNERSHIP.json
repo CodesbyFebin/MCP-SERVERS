@@ -1,0 +1,17 @@
+{
+  "generatedAt": "2026-08-05T16:57:48.201Z",
+  "totalIntents": 77,
+  "duplicateIntentsResolved": 3,
+  "priorityQueryOwners": {
+    "how to build an mcp server": "/how-to-build-mcp-server/",
+    "what is mcp server": "/mcp-server/",
+    "mcp hosting": "/mcp-server-hosting/",
+    "streamable http mcp": "/transports/streamable-http/",
+    "bigquery mcp": "/databases/bigquery-mcp-server/",
+    "mcp guardrails": "/security/mcp-guardrails/",
+    "p95 latency": "/performance/mcp-server-latency/",
+    "cve management": "/glossary/cve-management/",
+    "indic nlp": "/learn/indic-nlp-guide/",
+    "flipkart mcp": "/glossary/flipkart-mcp/"
+  }
+}

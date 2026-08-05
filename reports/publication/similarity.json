@@ -1,0 +1,28 @@
+{
+  "check": "generated-similarity",
+  "threshold": 0.95,
+  "nearDuplicateApproved": 200,
+  "sample": [
+    "url-candidate-0001",
+    "url-candidate-0002",
+    "url-candidate-0003",
+    "url-candidate-0004",
+    "url-candidate-0005",
+    "url-candidate-0006",
+    "url-candidate-0007",
+    "url-candidate-0008",
+    "url-candidate-0009",
+    "url-candidate-0010",
+    "url-candidate-0011",
+    "url-candidate-0012",
+    "url-candidate-0013",
+    "url-candidate-0014",
+    "url-candidate-0015",
+    "url-candidate-0016",
+    "url-candidate-0017",
+    "url-candidate-0018",
+    "url-candidate-0019",
+    "url-candidate-0020"
+  ],
+  "maxSimilarity": 1
+}

@@ -1,0 +1,18 @@
+{
+  "generatedAt": "2026-08-05T16:57:48.201Z",
+  "status": "PASSING",
+  "hostDirectiveRemoved": true,
+  "sitemapCanonical": "https://www.mcpserver.in/sitemap-index.xml",
+  "privateRoutesProtected": [
+    "/api/",
+    "/drafts/",
+    "/internal/",
+    "/login/",
+    "/register/",
+    "/profile/",
+    "/dashboard/",
+    "/admin/",
+    "/search/"
+  ],
+  "aiCrawlerGroupsConfigured": true
+}

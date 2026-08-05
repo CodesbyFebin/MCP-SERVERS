@@ -1,0 +1,74 @@
+{
+  "generatedAt": "2026-08-05T16:57:48.201Z",
+  "overallScore": 86,
+  "categories": {
+    "TechnicalSEO": {
+      "score": 10,
+      "weight": 10,
+      "status": "Passing"
+    },
+    "Canonicals": {
+      "score": 9,
+      "weight": 8,
+      "status": "Passing"
+    },
+    "IndexationQuality": {
+      "score": 10,
+      "weight": 10,
+      "status": "Passing"
+    },
+    "ContentQuality": {
+      "score": 5,
+      "weight": 10,
+      "status": "Below threshold - remediation needed"
+    },
+    "EntityGraph": {
+      "score": 10,
+      "weight": 8,
+      "status": "Passing"
+    },
+    "InternalLinking": {
+      "score": 8,
+      "weight": 8,
+      "status": "Improving"
+    },
+    "StructuredData": {
+      "score": 8,
+      "weight": 8,
+      "status": "Passing"
+    },
+    "AEOReadiness": {
+      "score": 6,
+      "weight": 8,
+      "status": "Improving"
+    },
+    "GEOReadiness": {
+      "score": 5,
+      "weight": 8,
+      "status": "Improving"
+    },
+    "Performance": {
+      "score": 7,
+      "weight": 7,
+      "status": "Improving"
+    },
+    "Accessibility": {
+      "score": 5,
+      "weight": 5,
+      "status": "Improving"
+    },
+    "SecurityTrust": {
+      "score": 8,
+      "weight": 5,
+      "status": "Passing"
+    },
+    "SAFEDEEPGovernance": {
+      "score": 9,
+      "weight": 5,
+      "status": "Passing"
+    }
+  },
+  "totalScore": 86,
+  "maxScore": 100,
+  "issuesIdentified": 150
+}
