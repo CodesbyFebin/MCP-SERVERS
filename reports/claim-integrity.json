@@ -1,20 +1,9 @@
 {
-  "generatedAt": "2026-08-05T02:48:22.013Z",
+  "generatedAt": "2026-08-05T04:21:43.325Z",
   "scanner": "node-native",
-  "filesScanned": 7868,
-  "totalMatches": 1,
+  "filesScanned": 7869,
+  "totalMatches": 0,
   "qualified": 0,
-  "failures": 1,
-  "matches": [
-    {
-      "file": "docs/__claimtest.md",
-      "line": 1,
-      "text": "We are SOC 2 certified with 99.99% uptime.",
-      "status": "REMOVED_REQUIRED",
-      "source": null,
-      "scope": null,
-      "verificationDate": "2026-08-05",
-      "owner": "MCPserver.in Engineering"
-    }
-  ]
+  "failures": 0,
+  "matches": []
 }

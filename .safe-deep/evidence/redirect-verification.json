@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-05T02:48:39.263Z",
+  "generatedAt": "2026-08-05T04:21:42.028Z",
   "origin": "http://127.0.0.1:3130",
   "results": [
     {
@@ -204,5 +204,10 @@
       "error": null,
       "frameworkPreProxyHop": false
     }
-  ]
+  ],
+  "destinations": {
+    "checked": 50,
+    "declared": 70,
+    "broken": []
+  }
 }

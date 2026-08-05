@@ -1,0 +1,26 @@
+{
+  "check": "publication-cohort",
+  "cohortSize": 200,
+  "results": {
+    "duplicateCanonicals": 0,
+    "duplicatePrimaryIntents": 0,
+    "unsupportedClaims": 0,
+    "missingEvidenceBundles": 0,
+    "unverifiedCodeExamples": 0,
+    "brokenLinks": 0,
+    "orphanApprovedPages": 0,
+    "pagesBelowQualityThreshold": 200,
+    "nearDuplicateApprovedPages": 200
+  },
+  "violations": [
+    [
+      "pagesBelowQualityThreshold",
+      200
+    ],
+    [
+      "nearDuplicateApprovedPages",
+      200
+    ]
+  ],
+  "allPass": false
+}
