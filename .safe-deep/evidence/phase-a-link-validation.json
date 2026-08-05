@@ -1,0 +1,1610 @@
+{
+  "generatedAt": "2026-08-05T02:47:05.307Z",
+  "total": 100,
+  "brokenInternalLinks": 0,
+  "orphanPages": 0,
+  "sitemapOmissions": 0,
+  "graph": [
+    {
+      "url": "https://www.mcpserver.in/what-is-mcp/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/mcp-server/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/mcp-architecture/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/mcp-client/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/mcp-host/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/mcp-tools/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/mcp-resources/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/mcp-prompts/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/mcp-server-directory/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/how-to-build-mcp-server/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/clients/claude-desktop/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/clients/claude-code/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/clients/chatgpt/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/clients/cursor/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/clients/vscode/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/clients/cline/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/clients/continue/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/clients/windsurf/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/clients/github-copilot/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/clients/open-webui/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/integrations/github-mcp-server/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/integrations/gitlab-mcp-server/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/integrations/slack-mcp-server/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/integrations/notion-mcp-server/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/integrations/google-drive-mcp-server/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/integrations/gmail-mcp-server/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/integrations/google-calendar-mcp-server/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/integrations/jira-mcp-server/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/integrations/confluence-mcp-server/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/integrations/linear-mcp-server/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/integrations/figma-mcp-server/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/integrations/sentry-mcp-server/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/integrations/stripe-mcp-server/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/integrations/shopify-mcp-server/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/integrations/salesforce-mcp-server/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/integrations/servicenow-mcp-server/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/integrations/hubspot-mcp-server/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/integrations/zendesk-mcp-server/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/integrations/n8n-mcp-server/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/integrations/wordpress-mcp-server/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/databases/postgresql-mcp-server/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/databases/mysql-mcp-server/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/databases/mongodb-mcp-server/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/databases/redis-mcp-server/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/databases/sqlite-mcp-server/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/databases/supabase-mcp-server/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/databases/firebase-mcp-server/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/databases/bigquery-mcp-server/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/databases/snowflake-mcp-server/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/databases/elasticsearch-mcp-server/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/sdk/typescript/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/sdk/python/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/sdk/java/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/sdk/go/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/sdk/rust/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/frameworks/fastmcp/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/frameworks/langchain-mcp/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/frameworks/llamaindex-mcp/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/frameworks/spring-ai-mcp/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/frameworks/semantic-kernel-mcp/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/mcp-server-hosting/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/deployment/docker/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/deployment/kubernetes/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/deployment/aws/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/deployment/azure/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/deployment/google-cloud/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/deployment/vercel/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/deployment/cloudflare-workers/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/deployment/railway/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/deployment/self-hosted/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/mcp-security/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/security/authentication/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/security/authorization/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/security/oauth/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/security/api-keys/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/security/secrets-management/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/security/prompt-injection/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/security/tool-poisoning/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/security/sandboxing/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/security/audit-logging/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/troubleshooting/mcp-server-not-starting/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/troubleshooting/mcp-tools-not-appearing/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/troubleshooting/mcp-server-timeout/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/troubleshooting/mcp-authentication-failed/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/troubleshooting/mcp-oauth-error/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/troubleshooting/mcp-stdio-error/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/troubleshooting/mcp-streamable-http-error/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/troubleshooting/claude-desktop-mcp-not-working/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/troubleshooting/cursor-mcp-not-working/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/compare/mcp-vs-rest-api/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/compare/mcp-vs-function-calling/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/compare/mcp-vs-plugins/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/compare/mcp-vs-openapi/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/compare/stdio-vs-streamable-http/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/compare/local-vs-remote-mcp-server/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/compare/python-vs-typescript-mcp/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/best/mcp-servers/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/best/open-source-mcp-servers/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    },
+    {
+      "url": "https://www.mcpserver.in/best/mcp-servers-for-developers/",
+      "relatedPages": [
+        "https://www.mcpserver.in/",
+        "https://www.mcpserver.in/mcp-server-directory/",
+        "https://www.mcpserver.in/how-to-build-mcp-server/",
+        "https://www.mcpserver.in/mcp-server/",
+        "https://www.mcpserver.in/mcp-tools/",
+        "https://www.mcpserver.in/security/authentication/",
+        "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+        "https://www.mcpserver.in/glossary/mcp-server/",
+        "https://www.mcpserver.in/compare/mcp-vs-rest-api/"
+      ],
+      "sitemapPresence": true,
+      "internalLinks": 10
+    }
+  ],
+  "errors": []
+}

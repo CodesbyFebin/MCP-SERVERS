@@ -1,0 +1,89 @@
+{
+  "generatedAt": "2026-08-04T21:48:46.123Z",
+  "canonical_base": "https://www.mcpserver.in",
+  "active_indexable_urls": [],
+  "candidate_urls_excluded_from_sitemaps": 5000,
+  "reason": "All generated master manifest records start as SAFE-DEEP candidates with indexable=false.",
+  "future_sitemap_partitions": {
+    "mcp-server-profile": {
+      "candidate_count": 700,
+      "sitemap_enabled_when": "publish_approved && published && indexable"
+    },
+    "integration-guide": {
+      "candidate_count": 700,
+      "sitemap_enabled_when": "publish_approved && published && indexable"
+    },
+    "client-integration-guide": {
+      "candidate_count": 400,
+      "sitemap_enabled_when": "publish_approved && published && indexable"
+    },
+    "tutorial": {
+      "candidate_count": 350,
+      "sitemap_enabled_when": "publish_approved && published && indexable"
+    },
+    "troubleshooting": {
+      "candidate_count": 350,
+      "sitemap_enabled_when": "publish_approved && published && indexable"
+    },
+    "comparison": {
+      "candidate_count": 250,
+      "sitemap_enabled_when": "publish_approved && published && indexable"
+    },
+    "best-list": {
+      "candidate_count": 120,
+      "sitemap_enabled_when": "publish_approved && published && indexable"
+    },
+    "category-hub": {
+      "candidate_count": 100,
+      "sitemap_enabled_when": "publish_approved && published && indexable"
+    },
+    "glossary": {
+      "candidate_count": 350,
+      "sitemap_enabled_when": "publish_approved && published && indexable"
+    },
+    "enterprise-guide": {
+      "candidate_count": 170,
+      "sitemap_enabled_when": "publish_approved && published && indexable"
+    },
+    "sdk-framework-guide": {
+      "candidate_count": 220,
+      "sitemap_enabled_when": "publish_approved && published && indexable"
+    },
+    "client-guide": {
+      "candidate_count": 120,
+      "sitemap_enabled_when": "publish_approved && published && indexable"
+    },
+    "deployment-guide": {
+      "candidate_count": 170,
+      "sitemap_enabled_when": "publish_approved && published && indexable"
+    },
+    "database-guide": {
+      "candidate_count": 170,
+      "sitemap_enabled_when": "publish_approved && published && indexable"
+    },
+    "security-guide": {
+      "candidate_count": 170,
+      "sitemap_enabled_when": "publish_approved && published && indexable"
+    },
+    "template": {
+      "candidate_count": 120,
+      "sitemap_enabled_when": "publish_approved && published && indexable"
+    },
+    "example-project": {
+      "candidate_count": 170,
+      "sitemap_enabled_when": "publish_approved && published && indexable"
+    },
+    "registry-guide": {
+      "candidate_count": 80,
+      "sitemap_enabled_when": "publish_approved && published && indexable"
+    },
+    "india-guide": {
+      "candidate_count": 200,
+      "sitemap_enabled_when": "publish_approved && published && indexable"
+    },
+    "news-release": {
+      "candidate_count": 90,
+      "sitemap_enabled_when": "publish_approved && published && indexable"
+    }
+  }
+}

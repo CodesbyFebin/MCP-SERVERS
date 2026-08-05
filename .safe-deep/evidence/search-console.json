@@ -1,0 +1,42 @@
+{
+  "generatedAt": "2026-08-04T21:13:23.574Z",
+  "status": "pending-external-access",
+  "sitemapUrl": "https://www.mcpserver.in/sitemap.xml",
+  "sitemapLiveStatus": 200,
+  "urlsPreparedForInspection": [
+    "https://www.mcpserver.in/what-is-mcp/",
+    "https://www.mcpserver.in/mcp-server/",
+    "https://www.mcpserver.in/mcp-server-directory/",
+    "https://www.mcpserver.in/how-to-build-mcp-server/",
+    "https://www.mcpserver.in/clients/claude-desktop/",
+    "https://www.mcpserver.in/integrations/github-mcp-server/",
+    "https://www.mcpserver.in/databases/postgresql-mcp-server/",
+    "https://www.mcpserver.in/security/prompt-injection/",
+    "https://www.mcpserver.in/troubleshooting/mcp-server-not-connecting/",
+    "https://www.mcpserver.in/best/mcp-servers/"
+  ],
+  "submittedInThisRun": false,
+  "reason": "No Google Search Console API token or connected Search Console session is available in this environment.",
+  "doNotClaim": [
+    "indexed status",
+    "Google-selected canonical",
+    "last crawl date",
+    "sitemap acceptance",
+    "URL inspection result"
+  ],
+  "manualNextSteps": [
+    "Open Google Search Console property for https://www.mcpserver.in/.",
+    "Submit https://www.mcpserver.in/sitemap.xml if it is not already submitted.",
+    "Inspect the prepared URLs and request indexing where the page is indexable and canonical.",
+    "Record Google-selected canonical, crawl result, indexing state, and last crawl/read dates back into this file."
+  ],
+  "alternateSubmissionCompleted": {
+    "service": "IndexNow",
+    "host": "www.mcpserver.in",
+    "urlCount": 1181,
+    "responseStatus": 200,
+    "source": "Vercel postbuild log for dpl_DioQkZtwuasdoVSVCo7HexPCztf2"
+  },
+  "phaseASitemapUrl": "https://www.mcpserver.in/sitemap-phase-a.xml",
+  "phaseASitemapLiveStatus": 200
+}

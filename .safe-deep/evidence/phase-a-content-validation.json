@@ -1,0 +1,12 @@
+{
+  "generatedAt": "2026-08-05T02:47:04.692Z",
+  "totalApprovedUrls": 100,
+  "missingH1": 0,
+  "missingCanonicals": 0,
+  "duplicatePrimaryIntents": 0,
+  "duplicateCanonicals": 0,
+  "pagesBelowQualityScore90": 0,
+  "publicationApprovalFailures": 0,
+  "evidenceIncomplete": 0,
+  "errors": []
+}

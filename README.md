@@ -1,20 +1,48 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# MCPServer.in
 
-# Run and deploy your AI Studio app
+The global knowledge, discovery, deployment and intelligence platform for the Model Context Protocol ecosystem.
 
-This contains everything you need to run your app locally.
+## Positioning
 
-View your app in AI Studio: https://ai.studio/apps/8475e4e4-1f49-4e27-b240-66dfb4b97bed
+Discover, evaluate, build, secure and deploy MCP servers from one trusted platform.
 
-## Run Locally
+## Quick Start
 
-**Prerequisites:**  Node.js
+```bash
+# Install dependencies
+npm install
 
+# Run development server
+npm run dev
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+# Build for production
+npm run build
+
+# Run content pipeline
+npm run content:build
+
+# Validate publishing
+npm run seo:audit
+```
+
+## Documentation
+
+- `ARCHITECTURE.md` - System architecture and data flow
+- `ENTITY_MODEL.md` - Entity types and schemas
+- `CONTENT_PIPELINE.md` - 32-step content pipeline
+- `docs/AUDIT_REPORT.md` - Comprehensive codebase audit
+
+## Tech Stack
+
+- **Frontend**: Next.js App Router, TypeScript, Tailwind CSS
+- **Backend**: Fastify / Next.js API routes
+- **Database**: PostgreSQL with Vercel Postgres
+- **ORM**: Drizzle ORM / Prisma
+- **Cache**: Redis
+- **Queue**: BullMQ
+- **Search**: pgvector for similarity detection
+- **Infrastructure**: Vercel, Docker, GitHub Actions
+
+## License
+
+Proprietary - All rights reserved
