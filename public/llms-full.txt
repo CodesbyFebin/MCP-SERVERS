@@ -1,0 +1,93 @@
+# MCPServer.in Full Index
+
+Generated: 2026-07-28T22:28:36.904Z
+
+## Servers
+
+- GitHub: /servers/github-mcp-server
+- GitLab: /servers/gitlab-mcp-server
+- Bitbucket: /servers/bitbucket-mcp-server
+- Docker: /servers/docker-mcp-server
+- Kubernetes: /servers/kubernetes-mcp-server
+- Vercel: /servers/vercel-mcp-server
+- Cloudflare: /servers/cloudflare-mcp-server
+- Sentry: /servers/sentry-mcp-server
+- Postman: /servers/postman-mcp-server
+- SonarQube: /servers/sonarqube-mcp-server
+- CircleCI: /servers/circleci-mcp-server
+- Heroku: /servers/heroku-mcp-server
+- Jenkins: /servers/jenkins-mcp-server
+- GitBook: /servers/gitbook-mcp-server
+- Swagger: /servers/swagger-mcp-server
+- PostgreSQL: /servers/postgres-mcp-server
+- MySQL: /servers/mysql-mcp-server
+- MongoDB: /servers/mongodb-mcp-server
+- SQLite: /servers/sqlite-mcp-server
+- Redis: /servers/redis-mcp-server
+- Supabase: /servers/supabase-mcp-server
+- Firebase: /servers/firebase-mcp-server
+- Pinecone: /servers/pinecone-mcp-server
+- Vector Database: /servers/vector-database-mcp-server
+- Cassandra: /servers/cassandra-mcp-server
+- Neo4j: /servers/neo4j-mcp-server
+- DynamoDB: /servers/dynamodb-mcp-server
+- ClickHouse: /servers/clickhouse-mcp-server
+- Elasticsearch: /servers/elasticsearch-mcp-server
+- Oracle DB: /servers/oracle-mcp-server
+- Slack: /servers/slack-mcp-server
+- Gmail: /servers/gmail-mcp-server
+- Google Calendar: /servers/google-calendar-mcp-server
+- Google Drive: /servers/google-drive-mcp-server
+- Notion: /servers/notion-mcp-server
+- Jira: /servers/jira-mcp-server
+- Linear: /servers/linear-mcp-server
+- Trello: /servers/trello-mcp-server
+- HubSpot: /servers/hubspot-mcp-server
+- Salesforce: /servers/salesforce-mcp-server
+- Microsoft Teams: /servers/ms-teams-mcp-server
+- Zoom: /servers/zoom-mcp-server
+- Discord: /servers/discord-mcp-server
+- Figma: /servers/figma-mcp-server
+- Asana: /servers/asana-mcp-server
+- Stripe: /servers/stripe-mcp-server
+- Razorpay: /servers/razorpay-mcp-server
+- Shopify: /servers/shopify-mcp-server
+- PayPal: /servers/paypal-mcp-server
+- QuickBooks: /servers/quickbooks-mcp-server
+- WooCommerce: /servers/woocommerce-mcp-server
+- Xero: /servers/xero-mcp-server
+- Chargebee: /servers/chargebee-mcp-server
+- Paddle: /servers/paddle-mcp-server
+- Adyen: /servers/adyen-mcp-server
+- OpenAI: /servers/openai-mcp-server
+- Anthropic: /servers/anthropic-mcp-server
+- Google Gemini: /servers/google-gemini-mcp-server
+- Ollama: /servers/ollama-mcp-server
+- Mistral: /servers/mistral-mcp-server
+- Cohere: /servers/cohere-mcp-server
+- Prometheus: /servers/prometheus-mcp-server
+- Grafana: /servers/grafana-mcp-server
+- Datadog: /servers/datadog-mcp-server
+- New Relic: /servers/newrelic-mcp-server
+- OpenTelemetry: /servers/opentelemetry-mcp-server
+- AWS: /servers/aws-mcp-server
+- Google Cloud: /servers/google-cloud-mcp-server
+- Azure: /servers/azure-mcp-server
+- DigitalOcean: /servers/digitalocean-mcp-server
+- Linode: /servers/linode-mcp-server
+- Supabase Cloud: /servers/supabase-cloud-mcp-server
+- Fly.io: /servers/fly-io-mcp-server
+- Railway: /servers/railway-mcp-server
+- Render: /servers/render-mcp-server
+- Scaleway: /servers/scaleway-mcp-server
+
+## Categories
+
+- Developer Tools: /servers/category/developer-tools
+- Databases: /servers/category/databases
+- Productivity: /servers/category/productivity
+- Cloud Services: /servers/category/cloud
+- AI/ML Services: /servers/category/ai-ml
+- Monitoring & Observability: /servers/category/monitoring
+
+Total published pages: 76

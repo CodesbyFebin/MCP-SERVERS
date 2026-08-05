@@ -13,7 +13,7 @@
     { "time": "21:00", "p50": 7, "p90": 15, "p99": 31, "mumbai": 11, "bengaluru": 9 }
   ],
   "regions": [
-    { "name": "Mumbai Edge", "latencyMs": 11, "uptime": "99.99%", "status": "Operational" },
+    { "name": "Mumbai Edge", "latencyMs": 11, "uptime": "Monitored", "status": "Operational" },
     { "name": "Bengaluru Edge", "latencyMs": 9, "uptime": "99.98%", "status": "Operational" },
     { "name": "Secure Gateway Proxy", "latencyMs": 3, "uptime": "100%", "status": "Operational" },
     { "name": "In-Browser Sandbox", "latencyMs": 1, "uptime": "99.95%", "status": "Operational" }
