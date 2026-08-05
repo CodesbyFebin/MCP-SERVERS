@@ -1,0 +1,1927 @@
+{
+  "total": 320,
+  "keep": 205,
+  "redirect": 115,
+  "items": [
+    {
+      "slug": "model-context-protocol",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "json-rpc",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "stdio",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "sse",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-server",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-client",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "gateway",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "tool",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "resource",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "prompt",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "oauth",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "dpdp",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "ros",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-robot-control",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "ros2-mcp-bridge",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "simulation-mcp",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "hardware-abstraction-mcp",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "ollama-mcp",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "lm-studio-mcp",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "gpt4all-mcp",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "llamaindex-mcp",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "crewai-mcp",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "qdrant-mcp",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-systemd-service",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-pm2-process-manager",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "indic-language-mcp-server",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "streamable-http",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-sampling",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-roots",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-initialization",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-ping-pong",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-cancel",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-progress",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-logging",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-elicitation",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-tool-list-changed",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-resource-list-changed",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-resource-updated",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-prompt-list-changed",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-client-capabilities",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-server-capabilities",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-tool-result",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-tool-error",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-json-schema",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-uri-scheme",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-annotation",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-tool-input-schema",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-tool-output-schema",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-resource-contents",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-resource-template",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-prompt-argument",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-protocol-version",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-capability-negotiation",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-request-id",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-method",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-params",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-result",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-error",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-notification",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-feature-flags",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "large-language-model",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "transformer-architecture",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "token",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "embedding",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "vector-database",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "rag",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "fine-tuning",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "prompt-engineering",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "context-window",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "temperature",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "top-p-nucleus-sampling",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "few-shot-learning",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "zero-shot-learning",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "chain-of-thought",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "react",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "agent",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "tool-calling",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "hallucination",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "alignment",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "rlhf",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "guardrails",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "prompt-injection",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "system-prompt",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "model-context",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "inference",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "quantization",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "gguf",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "lora",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "semantic-search",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "hybrid-search",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "cosine-similarity",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "hnsw",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "tokenizer",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "bpe",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "multimodal-llm",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "vision-language-model",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "clip",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "whisper",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "tts",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "asr",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "llm-ops",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "model-serving",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "kv-cache",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "cve-management",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "input-validation",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "rate-limiting",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "encryption-in-transit",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "sla-monitoring",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-readiness-probe",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-langchain",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-autogen",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-autogpt",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-babyagi",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-dynamodb",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-bigquery",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-pinecone",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-weaviate",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-chromadb",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-milvus",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-qdrant",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-clickhouse",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-reddit-api",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-reddit-pipeline",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-reddit-sentiment",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-reddit-trends",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-cursor-editor",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-vscode",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-jetbrains",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-zed-editor",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-data-localization",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-rbi-guidelines",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-sebi-compliance",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-india-latency",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-soc-2",
+      "hasNumericSuffix": true,
+      "isAllowlisted": true,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-iso-27001",
+      "hasNumericSuffix": true,
+      "isAllowlisted": true,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-gdpr",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-ccpa",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-prometheus",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-grafana-dashboards",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-datadog",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-newrelic",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-gitlab",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-discord",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-teams",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-excel",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-indian-languages",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-hindi-support",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-tamil-support",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-telugu-support",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-bengali-support",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-india-government",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-india-banking",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-india-fintech",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-india-healthcare",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-india-education",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-india-ecommerce",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-agent-orchestration",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-agent-workflow",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-agent-tools",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-agent-memory",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-agent-planning",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-agent-reflection",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-agent-collaboration",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-agent-delegation",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-woocommerce",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-bigcommerce",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-hubspot",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-zendesk",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-intercom",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-freshdesk",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-versioning",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-discovery",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-timeout",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-retry-logic",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-graceful-shutdown",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-key-rotation",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-secrets-manager",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-hashicorp-vault",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-self-hosted",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-private-cloud",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-on-premise",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-p95-latency",
+      "hasNumericSuffix": false,
+      "isAllowlisted": true,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-alerting",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-auto-scaling-0",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-container-registry-1",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-secret-management-2",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-dns-provider-3",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-cdn-service-4",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-message-broker-5",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-event-bus-6",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-task-queue-7",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-workflow-engine-8",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-cache-layer-9",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-search-engine-10",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-analytics-platform-11",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-monitoring-tool-12",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-logging-service-13",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-api-gateway-14",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-load-balancer-15",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-traffic-manager-16",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-rate-limiter-17",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-auth-provider-18",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-identity-service-19",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-file-storage-20",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-object-store-21",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-block-storage-22",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-database-service-23",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-nosql-db-24",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-document-store-25",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-key-value-store-26",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-graph-database-27",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-time-series-db-28",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-vector-store-29",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-ml-model-serving-30",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-data-pipeline-31",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-etl-tool-32",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-stream-processing-33",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-batch-processing-34",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-feature-store-35",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-model-registry-36",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-experiment-tracker-37",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-hyperparameter-tune-38",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-a-b-test-39",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-canary-deploy-40",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-blue-green-deploy-41",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-rolling-update-42",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-health-check-43",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-readiness-probe-44",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-liveness-probe-45",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-config-map-46",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-secret-store-47",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-certificate-manager-48",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-ssl-terminator-49",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-http-cache-50",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-edge-compute-51",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-serverless-func-52",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-function-orchestrator-53",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-job-scheduler-54",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-cron-service-55",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-backup-service-56",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-disaster-recovery-57",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-replication-service-58",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-sync-engine-59",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-data-migrator-60",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-schema-registry-61",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-message-router-62",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-event-processor-63",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-stream-aggregator-64",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-log-aggregator-65",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-metric-collector-66",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-trace-collector-67",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-alert-manager-68",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-notification-service-69",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-email-service-70",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-sms-gateway-71",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-push-notification-72",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-webhook-receiver-73",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-callback-handler-74",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-file-watcher-75",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-cron-trigger-76",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-web-scraper-77",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-api-client-78",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-graphql-gateway-79",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-grpc-proxy-80",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-http-proxy-81",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-tcp-proxy-82",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-udp-proxy-83",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-websocket-proxy-84",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-sse-gateway-85",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-websocket-server-86",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-socket-adapter-87",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-polling-service-88",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-subscription-manager-89",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-pubsub-system-90",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-message-queue-91",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-job-queue-92",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-task-runner-93",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-worker-pool-94",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-thread-pool-95",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-process-manager-96",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-process-monitor-97",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-process-restart-98",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-log-rotation-99",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-log-export-100",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-metric-export-101",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-trace-export-102",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-audit-logger-103",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-compliance-checker-104",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-security-scanner-105",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-vulnerability-scan-106",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-dependency-check-107",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-license-checker-108",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-policy-engine-109",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-rule-engine-110",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-state-machine-113",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-fact-checker-116",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-data-validator-117",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "mcp-schema-validator-118",
+      "hasNumericSuffix": true,
+      "isAllowlisted": false,
+      "action": "REDIRECT_301"
+    },
+    {
+      "slug": "prometheus-mcp",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "github-actions-mcp",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "bigquery-mcp",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "terraform-mcp",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "datadog-mcp",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "new-relic-mcp",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "splunk-mcp",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "clickhouse-mcp",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "snowflake-mcp",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "elasticsearch-mcp",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "supabase-mcp",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "dynamodb-mcp",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "mcp-inspector",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "tool-annotations",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "docker-mcp",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "kubernetes-mcp",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "pinecone-mcp",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "weaviate-mcp",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "chromadb-mcp",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "milvus-mcp",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "rabbitmq-mcp",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    },
+    {
+      "slug": "kafka-mcp",
+      "hasNumericSuffix": false,
+      "isAllowlisted": false,
+      "action": "KEEP"
+    }
+  ]
+}

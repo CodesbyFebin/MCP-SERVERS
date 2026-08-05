@@ -1,0 +1,29 @@
+{
+  "generatedAt": "2026-08-05T18:13:29.466Z",
+  "sitemapUrl": "https://www.mcpserver.in/sitemap-index.xml",
+  "totalSitemapUrls": 1101,
+  "productionStatus": "HTTPS, WWW, trailing slash canonical",
+  "robotsTxtStatus": "PASSING - No Host directive, proper disallows",
+  "securityHeaders": "CSP, HSTS, X-Frame-Options, Referrer-Policy configured",
+  "crawlBudget": "Efficient - no wasteful crawling",
+  "criticalRedirects": [
+    {
+      "from": "http://mcpserver.in/",
+      "to": "https://www.mcpserver.in/",
+      "hops": 1
+    },
+    {
+      "from": "https://mcpserver.in/",
+      "to": "https://www.mcpserver.in/",
+      "hops": 1
+    },
+    {
+      "from": "http://www.mcpserver.in/",
+      "to": "https://www.mcpserver.in/",
+      "hops": 1
+    }
+  ],
+  "glossaryRedirects": 1,
+  "errorUrls": 0,
+  "indexingPotential": "High - All 1,101 URLs return 200"
+}

@@ -1,0 +1,38 @@
+User-agent: *
+Allow: /
+
+# AI Search Crawler Configuration (2026)
+# Allow citation bots
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# Block training bots (optional - depends on data policy)
+User-agent: GPTBot
+Disallow: /
+
+User-agent: Meta-ExternalFetcher
+Disallow: /
+
+# Admin and sensitive areas
+Disallow: /admin/
+Disallow: /api/
+Disallow: /login
+Disallow: /register
+Disallow: /*?
+Disallow: /*utm_
+Disallow: /checkout/
+
+# Sitemap references
+Sitemap: https://www.mcpserver.in/sitemap.xml
+
+# Core Web Vitals optimization hint
+Host: www.mcpserver.in

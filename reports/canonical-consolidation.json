@@ -1,0 +1,14 @@
+{
+  "generatedAt": "2026-08-05T18:15:32.722Z",
+  "canonicalStatus": {
+    "httpsEnforced": true,
+    "wwwEnforced": true,
+    "trailingSlashRequired": true,
+    "canonicalRedirects": []
+  },
+  "recommendations": [
+    "Ensure all URLs use https://www.mcpserver.in/ with trailing slash",
+    "Verify no duplicate active canonicals exist",
+    "Confirm one-hop redirects where infrastructure allows"
+  ]
+}

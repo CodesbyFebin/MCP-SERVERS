@@ -50,5 +50,13 @@
     "tailwindcss": "^4.1.14",
     "tsx": "^4.21.0",
     "typescript": "~5.8.2"
+  },
+  "allowScripts": {
+    "@google/genai@2.10.0": true,
+    "bufferutil@4.1.0": true,
+    "esbuild@0.25.12": true,
+    "esbuild@0.28.1": true,
+    "fsevents@2.3.3": true,
+    "protobufjs@7.6.5": true
   }
 }

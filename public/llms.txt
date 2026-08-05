@@ -56,3 +56,26 @@ MCPserver.in is India's first MCP-focused knowledge hub, providing educational r
 - Security & Compliance: /docs/security
 - Deployment & Hosting: /docs/deployment
 - Enterprise Integration: /docs/enterprise
+
+## Pilot Cohort (Production-Ready MCP Servers - July 2026)
+- [Claude MCP Server](https://mcpserver.in/clusters/developer-tools/servers/claude-mcp/mcp-server/claude): AI assistant integration with Claude ecosystem
+- [ChatGPT MCP Server](https://mcpserver.in/clusters/databases/servers/chatgpt-mcp/mcp-client/chatgpt): Database integration via ChatGPT
+- [Cursor MCP Server](https://mcpserver.in/clusters/cloud/servers/cursor-mcp/mcp-framework/cursor): Cloud development tools integration
+- [Copilot MCP Server](https://mcpserver.in/clusters/analytics/servers/copilot-mcp/mcp-tool/copilot): Analytics data automation
+- [Gemini MCP Server](https://mcpserver.in/clusters/productivity/servers/gemini-mcp/mcp-prompt/gemini): Prompt management system
+
+## Generated Content Distribution (5000+ pages)
+- Developer Tools Cluster: 470 servers
+- Databases Cluster: 250 servers
+- Cloud Cluster: 130 servers
+- Analytics Cluster: 130 servers
+- Productivity Cluster: 130 servers
+- Security Cluster: 130 servers
+- All generated content available via URL pattern: /clusters/{cluster}/servers/{entity}-mcp/{type}/{entity}
+
+## AI Indexing Configuration
+- OAI-SearchBot: Enabled
+- PerplexityBot: Enabled
+- ClaudeBot: Enabled
+- Google-Extended: Enabled
+- GPTBot: Disabled (opt-out for training protection)

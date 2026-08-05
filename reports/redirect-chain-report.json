@@ -1,0 +1,36 @@
+{
+  "generatedAt": "2026-08-05T18:15:32.822Z",
+  "redirectChains": [
+    {
+      "source": "http://mcpserver.in/",
+      "destination": "https://www.mcpserver.in/",
+      "hops": 1,
+      "status": "308"
+    },
+    {
+      "source": "https://mcpserver.in/",
+      "destination": "https://www.mcpserver.in/",
+      "hops": 1,
+      "status": "308"
+    },
+    {
+      "source": "http://www.mcpserver.in/",
+      "destination": "https://www.mcpserver.in/",
+      "hops": 1,
+      "status": "308"
+    }
+  ],
+  "canonicalTargets": {
+    "total": 1101,
+    "returning200": 1101,
+    "returning3xx": 0,
+    "returning4xx": 0,
+    "returning5xx": 0
+  },
+  "issues": {
+    "duplicateActiveCanonicals": 0,
+    "canonicalTargetsReturning3xx": 0,
+    "canonicalTargetsReturning4xx": 0,
+    "internallyLinkedRedirectUrls": 0
+  }
+}

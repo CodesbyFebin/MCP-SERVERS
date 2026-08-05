@@ -1,0 +1,20 @@
+{
+  "generatedAt": "2026-08-05T18:31:01.638Z",
+  "overallScore": 54,
+  "targetScore": 90,
+  "evidenceScore": 38,
+  "blueprintScore": 32,
+  "examplesScore": 33,
+  "technicalDepth": 57,
+  "breakdown": {
+    "Definition clarity": "PASS",
+    "Primary sources (citations)": "FAIL",
+    "Original examples": "FAIL",
+    "Limitations section": "FAIL",
+    "Security considerations": "FAIL",
+    "Author/reviewer metadata": "FAIL",
+    "Last-reviewed dates": "FAIL",
+    "AEO answer blocks": "FAIL"
+  },
+  "nextStep": "Execute 20-page authority upgrade sprint"
+}

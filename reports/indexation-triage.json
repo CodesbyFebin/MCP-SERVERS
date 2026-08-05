@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-08-05T08:40:31.325Z",
-  "totalUrls": 1179,
+  "generatedAt": "2026-08-05T18:10:14.727Z",
+  "totalUrls": 1101,
   "classification": {
     "INDEXED": {
       "count": 119,
@@ -16,7 +16,7 @@
     },
     "CRAWLED_NOT_INDEXED": {
       "count": 0,
-      "note": "All 1179 sitemap URLs return 200 OK"
+      "note": "All sitemap URLs return 200 OK"
     },
     "REDIRECT": {
       "count": 0,
@@ -48,8 +48,8 @@
     }
   },
   "summary": {
-    "totalSitemapUrls": 1179,
-    "uniqueSitemapUrls": 1179,
+    "totalSitemapUrls": 1101,
+    "uniqueSitemapUrls": 1101,
     "allReturn200": true,
     "failingUrls": 0,
     "noindexInSitemap": 0,

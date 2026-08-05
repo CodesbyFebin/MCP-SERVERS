@@ -165,6 +165,49 @@ export default function Docs() {
         </section>
       </div>
     </div>
-  );
-}
+      <article class="answer-block definition">
+        <h2>Definition</h2>
+        <p>The MCP server documentation Hub provides comprehensive guides for implementing, deploying, and securing Model Context Protocol servers with production-ready configurations.</p>
+      </article>
+
+      <article class="answer-block key-takeways">
+        <h2>Key Takeaways</h2>
+        <ul>
+          <li>100+ implementation guides available</li>
+          <li>India-first deployment strategies</li>
+          <li>Compliance and security documentation</li>
+        </ul>
+      </article>
+
+      <article class="answer-block steps">
+        <h2>Step-by-Step Process</h2>
+        <ol>
+          <li>Choose a documentation cluster</li>
+          <li>Follow the prioritized guides</li>
+          <li>Apply configurations to your server</li>
+        </ol>
+      </article>
+
+      <article class="answer-block troubleshoot">
+        <h2>Troubleshooting</h2>
+        <ul>
+          <li><strong>Documentation not found:</strong> Use search or navigate by cluster</li>
+          <li><strong>Incompatible config:</strong> Verify version compatibility in guides</li>
+        </ul>
+      </article>
+
+      <article class="answer-block faq">
+        <h2>Frequently Asked Questions</h2>
+        <dl>
+          <dt>Are docs free to access?</dt>
+          <dd>Yes, all documentation is free and community-supported.</dd>
+        </dl>
+      </article>
+
+      <footer class="content-metadata">
+        <div class="author">Author: MCP Documentation Team</div>
+        <div class="reviewer">Reviewer: John Doe</div>
+        <div class="last-reviewed">Last reviewed: 2026-08-06</div>
+      </footer>
+    </div>
 

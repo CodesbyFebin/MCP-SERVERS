@@ -1,0 +1,30 @@
+{
+  "generatedAt": "2026-08-05T18:31:01.553Z",
+  "scope": "20 priority pages",
+  "currentQualityScore": 54,
+  "targetQualityScore": 90,
+  "requiredBlocks": [
+    "Direct answer (first paragraph)",
+    "Entity-specific explanations",
+    "Verified primary sources with citations",
+    "Tested code or configuration",
+    "Limitations and failure cases",
+    "Security considerations",
+    "Original tables or diagrams",
+    "Author and reviewer metadata",
+    "Last-reviewed date",
+    "AEO answer blocks: Definition, Key Takeaways, Steps, Comparison, Troubleshooting, FAQ, Limitations"
+  ],
+  "priorityPages": [
+    "how-to-build-mcp-server",
+    "mcp-server",
+    "mcp-server-hosting",
+    "transports/streamable-http",
+    "databases/bigquery-mcp-server",
+    "security/mcp-guardrails",
+    "performance/mcp-server-latency",
+    "mcp-server-directory",
+    "complete-guide-mcp-servers",
+    "docs"
+  ]
+}
