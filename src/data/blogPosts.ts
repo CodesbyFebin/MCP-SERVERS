@@ -2441,25 +2441,41 @@ await server.connect(new StdioServerTransport());</code></pre>
     date: "2026-07-19",
     category: "Platform Specific",
     cluster: "platform-specific",
-    readTime: "1 min read",
+    readTime: "2 min read",
     excerpt: "Deploying MCP servers on AWS infrastructure with best practices.",
     keywords: ["AWS MCP", "MCP AWS server", "deploy MCP on AWS"],
     ugcElements: ["AWS architecture sharing", "Deployment templates"],
-    internalLinks: ["how-to-build-mcp-server-from-scratch", "mcp-server-on-azure"],
-    content: `<p class="text-white/65 leading-relaxed">Deploy MCP servers on AWS using EC2, ECS, or Lambda for scalable infrastructure.</p>
+    internalLinks: ["how-to-build-mcp-server-from-scratch", "mcp-server-on-azure", "mcp-serverless-architecture"],
+    content: `<p class="text-white/65 leading-relaxed">Which AWS service fits your MCP server depends almost entirely on which transport it speaks. A remote MCP server generally exposes the Streamable HTTP transport (a stateless HTTP endpoint, optionally upgraded to a server-sent-events stream), which fits AWS's request-driven compute well. An stdio-transport server, by contrast, is meant to be spawned as a local child process by a client like Claude Desktop — it has no business running on AWS at all.</p>
 
-<h2 class="mt-8 text-2xl font-black text-white">Option overview</h2>
-<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
-  <li>EC2 for full OS control and long-running stdio bridging.</li>
-  <li>ECS or Fargate for containerized Streamable HTTP workloads.</li>
-  <li>Lambda only for small, request-scoped tool endpoints; avoid stateful assumptions.</li>
+<h2 class="mt-8 text-2xl font-black text-white">Picking a Compute Option</h2>
+<ul class="text-white/65 leading-relaxed">
+  <li><strong>EC2 / Lightsail:</strong> Run the server as a long-lived process under systemd. Simplest mental model, full control over the network path, but you own patching and scaling.</li>
+  <li><strong>ECS Fargate:</strong> Package the server as a container behind an Application Load Balancer. Good default for a team that already containerizes its services — the ALB handles TLS termination and can hold SSE connections open past typical idle timeouts if you raise <code>idle_timeout.timeout_seconds</code>.</li>
+  <li><strong>Lambda + API Gateway / Lambda Function URLs:</strong> Works for simple, stateless request/response MCP tool calls, but Lambda's execution model fights long-lived SSE streams — a function invocation has a hard 15-minute ceiling and doesn't hold a persistent connection the way a streaming response needs. If your server needs to push server-initiated notifications, Lambda is the wrong fit; use it only for tools that are genuinely one request in, one response out.</li>
 </ul>
 
-<h2 class="mt-8 text-2xl font-black text-white">Deployment Options</h2>
+<h2 class="mt-8 text-2xl font-black text-white">Minimal ECS Fargate Task Definition</h2>
+<pre class="bg-gray-900 p-4 rounded-lg"><code class="language-json">{
+  "family": "mcp-server",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "256",
+  "memory": "512",
+  "containerDefinitions": [{
+    "name": "mcp-server",
+    "image": "&lt;account-id&gt;.dkr.ecr.&lt;region&gt;.amazonaws.com/mcp-server:latest",
+    "portMappings": [{ "containerPort": 3000 }],
+    "environment": [{ "name": "NODE_ENV", "value": "production" }],
+    "secrets": [{ "name": "API_KEY", "valueFrom": "arn:aws:secretsmanager:...:secret:mcp/api-key" }]
+  }]
+}</code></pre>
+
+<h2 class="mt-8 text-2xl font-black text-white">Common Pitfalls</h2>
 <ul class="text-white/65 leading-relaxed">
-  <li><strong>EC2:</strong> Full control over server environment</li>
-  <li><strong>ECS:</strong> Containerized deployment with orchestration</li>
-  <li><strong>Lambda:</strong> Serverless MCP server deployment</li>
+  <li><strong>Storing API keys in plain environment variables in the task definition:</strong> use Secrets Manager or SSM Parameter Store and reference them via the <code>secrets</code> block, not <code>environment</code>.</li>
+  <li><strong>Default ALB idle timeout (60s) killing SSE streams:</strong> raise it explicitly if your server holds connections open for tool progress notifications.</li>
+  <li><strong>Trying to force a stdio-only MCP server onto Lambda:</strong> if the server you're deploying was written for stdio, it needs an HTTP transport wrapper first — there's no way to attach stdin/stdout to a Lambda invocation.</li>
 </ul>`
   },
   {
@@ -2468,19 +2484,36 @@ await server.connect(new StdioServerTransport());</code></pre>
     date: "2026-07-19",
     category: "Platform Specific",
     cluster: "platform-specific",
-    readTime: "1 min read",
+    readTime: "2 min read",
     excerpt: "Deploying MCP servers on Microsoft Azure platforms.",
     keywords: ["Azure MCP", "MCP Azure server", "Azure Functions MCP"],
     ugcElements: ["Azure templates", "App Service examples"],
-    internalLinks: ["mcp-server-on-aws", "mcp-server-on-gcp"],
-    content: `<p class="text-white/65 leading-relaxed">Azure hosting options for MCP servers include Functions, App Service, and container-based deployments.</p>
+    internalLinks: ["mcp-server-on-aws", "mcp-server-on-gcp", "mcp-serverless-architecture"],
+    content: `<p class="text-white/65 leading-relaxed">Azure's two realistic homes for an HTTP-transport MCP server are App Service and Azure Container Apps — Azure Functions is worth naming only to explain why it's usually the wrong choice.</p>
 
-<h2 class="mt-8 text-2xl font-black text-white">Common choices</h2>
-<ul class="text-white/65 leading-relaxed list-disc pl-5 space-y-1">
-  <li>Functions for lightweight tool endpoints with event-driven scaling.</li>
-  <li>App Service for long-running stdio bridging or managed container workloads.</li>
-  <li>Container Apps or AKS when you need predictable networking and separate tool services.</li>
-</ul>`
+<h2 class="mt-8 text-2xl font-black text-white">App Service vs. Container Apps vs. Functions</h2>
+<ul class="text-white/65 leading-relaxed">
+  <li><strong>App Service (Linux, Node/Python runtime stack):</strong> The straightforward option. Enable "Always On" so the process isn't idled after inactivity — an MCP server that gets cold-started mid tool-call adds latency the client didn't expect. Set secrets under Configuration &gt; Application settings, or better, reference Azure Key Vault.</li>
+  <li><strong>Azure Container Apps:</strong> If you're already shipping a Dockerfile, Container Apps gives you the same experience as App Service with more control over scaling rules, and supports scale-to-zero if you're fine with occasional cold starts on low-traffic internal tools.</li>
+  <li><strong>Azure Functions:</strong> Consumption-plan Functions time out well before a long SSE stream would naturally close, and cold starts are more pronounced than App Service. It's usable for single-shot stateless tool calls exposed over HTTP, but don't reach for it if the server needs to hold a connection open.</li>
+</ul>
+
+<h2 class="mt-8 text-2xl font-black text-white">App Service Deployment (Azure CLI)</h2>
+<pre class="bg-gray-900 p-4 rounded-lg"><code class="language-bash">az webapp create \\
+  --resource-group mcp-rg \\
+  --plan mcp-plan \\
+  --name my-mcp-server \\
+  --runtime "NODE:20-lts"
+
+az webapp config appsettings set \\
+  --resource-group mcp-rg --name my-mcp-server \\
+  --settings WEBSITES_PORT=3000
+
+az webapp deployment source config-zip \\
+  --resource-group mcp-rg --name my-mcp-server --src dist.zip</code></pre>
+
+<h2 class="mt-8 text-2xl font-black text-white">Common Pitfalls</h2>
+<p class="text-white/65 leading-relaxed">The single most common mistake is leaving "Always On" disabled on the free/shared tier (where it's unavailable anyway) and being surprised the server appears to hang on the first request after idle time — that's App Service cold-starting the worker, not a bug in the MCP server itself.</p>`
   },
   {
     slug: "mcp-server-on-gcp",
@@ -4161,7 +4194,7 @@ spec:
   <li>Health-check failure thresholds before automatic traffic removal.</li>
 </ul>`
   },
-
+  
   // Additional Advanced Architecture posts (4 more to reach 25)
   {
     slug: "mcp-server-for-kafka",
@@ -4346,7 +4379,7 @@ spec:
   <li>Solutions architecture for regulated industries adopting MCP.</li>
 </ul>`
   },
-
+  
   // Additional Advanced Architecture posts (10 more to reach 25)
   {
     slug: "mcp-server-for-pulsar",

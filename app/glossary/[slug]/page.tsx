@@ -122,8 +122,8 @@ export default async function GlossaryDetailPage({ params }: PageProps) {
       "name": "MCPserver.in Engineering",
       "url": "https://mcpserver.in"
     },
-    "datePublished": datePublished,
-    "dateModified": dateModified,
+    "datePublished": "2026-03-24",
+    "dateModified": "2026-07-09",
     "citation": [
       ...term.references.map(ref => ({
         "@type": "CreativeWork",
@@ -259,7 +259,7 @@ export default async function GlossaryDetailPage({ params }: PageProps) {
               <h3 className="text-xs font-bold text-cyan-400 mb-2">Cite This Page</h3>
               <p className="text-xs text-gray-400 mb-2">MLA Style:</p>
               <blockquote className="text-xs text-gray-300 bg-black/20 p-3 rounded border border-gray-800">
-                <span className="text-cyan-400">MCPserver.in Engineering</span>. &quot;<span className="text-white">{term.term}</span>.&quot; <span className="text-cyan-400">MCPserver.in Knowledge Hub</span>, {new Date(dateModified).toLocaleDateString("en-GB", { day: "2-digit", month: "long", year: "numeric" })}, <span className="text-cyan-400">mcpserver.in/glossary/{term.slug}</span>.
+                <span className="text-cyan-400">MCPserver.in Engineering</span>. &quot;<span className="text-white">{term.term}</span>.&quot; <span className="text-cyan-400">MCPserver.in Knowledge Hub</span>, 09 July 2026, <span className="text-cyan-400">mcpserver.in/glossary/{term.slug}</span>.
               </blockquote>
             </div>
 

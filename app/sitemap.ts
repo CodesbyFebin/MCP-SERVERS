@@ -78,15 +78,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     };
   });
 
-  const pillarEntries = pillars.map((p) => {
-    const mod = (p as any).updatedAt || (p as any).publishedAt;
-    return {
-      url: `${baseUrl}/${p.slug}/`,
-      ...(mod ? { lastModified: mod } : {}),
-      changeFrequency: "weekly" as const,
-      priority: 0.9,
-    };
-  });
+  // Pillars (includes timestamps if available)
+  const pillarEntries = pillars.map((p) => ({
+    url: `${baseUrl}/${p.slug}/`,
+    lastModified: (p as any).updatedAt || (p as any).publishedAt || today,
+    changeFrequency: "weekly" as const,
+    priority: 0.9,
+  }));
 
   const topicEntries = topics.map((t) => ({
     url: `${baseUrl}/topics/${t.slug}/`,
@@ -100,15 +98,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  const glossaryEntries = glossaryTerms.map((g) => {
-    const mod = (g as any).updatedAt || (g as any).publishedAt;
-    return {
-      url: `${baseUrl}/glossary/${g.slug}/`,
-      ...(mod ? { lastModified: mod } : {}),
-      changeFrequency: "weekly" as const,
-      priority: 0.7,
-    };
-  });
+  // Glossary Detail pages (includes timestamps if available)
+  const glossaryEntries = glossaryTerms.map((g) => ({
+    url: `${baseUrl}/glossary/${g.slug}/`,
+    lastModified: (g as any).updatedAt || (g as any).publishedAt || today,
+    changeFrequency: "weekly" as const,
+    priority: 0.7,
+  }));
 
   const comparisonSlugs = [
     ...comparisons.map((c) => c.slug),
@@ -155,15 +151,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  const blogPostEntries = blogPosts.map((post) => {
-    const mod = (post as any).updatedAt || (post as any).publishedAt || new Date(post.date);
-    return {
-      url: `${baseUrl}/blog/${post.slug}/`,
-      lastModified: mod,
-      changeFrequency: "monthly" as const,
-      priority: 0.6,
-    };
-  });
+  // Blog posts (includes timestamps if available)
+  const blogPostEntries = blogPosts.map((post) => ({
+    url: `${baseUrl}/blog/${post.slug}/`,
+    lastModified: (post as any).updatedAt || (post as any).publishedAt || new Date(post.date),
+    changeFrequency: "monthly" as const,
+    priority: 0.6,
+  }));
 
   return [
     ...staticEntries,

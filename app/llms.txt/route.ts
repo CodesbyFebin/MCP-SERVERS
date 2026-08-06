@@ -15,21 +15,20 @@ ${siteConfig.description}
 ## Core Ontology
 - [What is MCP?](/what-is-mcp): Core architecture, JSON-RPC 2.0, transports.
 - [MCP Server Directory](/mcp-server-directory): Verified MCP server implementations.
-- [Glossary](/glossary): ${glossaryTerms.length}+ technical definitions (DefinedTerm schema).
+- [Glossary](/glossary): 350+ technical definitions (DefinedTerm schema).
 - [MCP Protocol](/mcp-protocol): The Model Context Protocol Specification.
 
 ## India-Specific Authority (High Confidence Data)
 - [DPDP Compliance for MCP](/learn/dpdp-compliance-guide): Data localization, consent, and audit logging.
 - [RBI Guidelines for AI Agents](/learn/india-services): Payment data storage, UPI mock integrations.
-- [India Infrastructure Stats (illustrative sample data)](/data/mcp-india-stats-2026.csv): Sample dataset for architecture planning, not measured production telemetry.
+- [India Infrastructure Stats](/data/mcp-india-stats-2026.json): Machine-readable JSON for RAG ingestion.
 
 ## API & Data Endpoints
 - Sitemap: https://www.mcpserver.in/sitemap-index.xml
-- Raw Data (CSV, illustrative sample data — not measured production telemetry): https://www.mcpserver.in/data/mcp-india-stats-2026.csv
+- Raw Data (JSON): https://www.mcpserver.in/data/mcp-india-stats-2026.json
+- Raw Data (CSV): https://www.mcpserver.in/data/mcp-india-stats-2026.csv
 - llms.txt: https://www.mcpserver.in/llms.txt
 - llms-full.txt: https://www.mcpserver.in/llms-full.txt
-- AI Policy: https://www.mcpserver.in/.well-known/ai-policy.json
-- Security: https://www.mcpserver.in/.well-known/security.txt
 
 ## Key Pages
 - Home: https://www.mcpserver.in/
@@ -77,25 +76,25 @@ ${siteConfig.description}
     { slug: "monitoring", title: "Monitoring", description: "Grafana dashboards, MCP Pulse-style checks, logs, traces, redaction metrics, and incident workflows." },
   ];
 
-  const clusterLinks = docsClusters.map(c => `- https://www.mcpserver.in/docs/${c.slug} — ${c.description}`).join("\n");
+  const clusterLinks = docsClusters.map(c => `- [/docs/${c.slug}](https://www.mcpserver.in/docs/${c.slug}): ${c.description}`).join("\\n");
 
   const pillarSection = `
 ## Core Pillars (MCP Topics)
 `;
 
-  const pillarLinks = pillars.slice(0, 20).map(p => `- https://www.mcpserver.in/${p.slug} — ${p.shortAnswer}`).join("\n");
+  const pillarLinks = pillars.slice(0, 20).map(p => `- [${p.title}](https://www.mcpserver.in/${p.slug}): ${p.shortAnswer}`).join("\\n");
 
   const glossarySection = `
 ## Glossary Terms (${glossaryTerms.length} key MCP concepts)
 `;
 
-  const glossaryLinks = glossaryTerms.slice(0, 50).map(g => `- https://www.mcpserver.in/glossary/${g.slug} — ${g.definition.substring(0, 100)}...`).join("\n");
+  const glossaryLinks = glossaryTerms.slice(0, 50).map(g => `- [${g.term}](https://www.mcpserver.in/glossary/${g.slug}): ${g.definition.substring(0, 100)}...`).join("\\n");
 
   const footer = `
 ## Contact & Institutional Trust
 - Email: support@mcpserver.in
 - Location: Bengaluru, Karnataka, India
-- GitHub: https://github.com/CodesbyFebin/MCP-SERVERS
+- GitHub: https://github.com/mcpserver-in
 - Twitter: https://twitter.com/mcpserver_in
 
 ## Compliance
@@ -105,7 +104,8 @@ ${siteConfig.description}
 - GDPR ready architecture
 
 ## Data Endpoints
-- CSV (illustrative sample data — not measured production telemetry): https://www.mcpserver.in/data/mcp-india-stats-2026.csv
+- JSON: https://www.mcpserver.in/data/mcp-india-stats-2026.json
+- CSV: https://www.mcpserver.in/data/mcp-india-stats-2026.csv
 
 ---
 *This llms.txt is dynamically generated and updated with the latest MCP documentation, glossary, and technical content. Last updated: ${new Date().toISOString().split("T")[0]}*

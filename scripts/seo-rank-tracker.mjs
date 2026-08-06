@@ -15,20 +15,16 @@ const pillarSlugs = Array.from(new Set(pillarsContent.matchAll(/slug:\s*"([^"]+)
 const glossaryContent = fs.readFileSync(glossaryPath, "utf8");
 const glossaryTerms = Array.from(new Set(glossaryContent.matchAll(/term:\s*"([^"]+)"/g)), m => m[1].toLowerCase());
 
-// Build glossary keyword list with robust slug lookup
-const termToSlug = new Map();
-const termBlocks = glossaryContent.split(/\n\s*}/g);
-for (const block of termBlocks) {
-  const termMatch = block.match(/term:\s*"([^"]+)"/);
-  const slugMatch = block.match(/slug:\s*"([^"]+)"/);
-  if (termMatch && slugMatch) {
-    termToSlug.set(termMatch[1].toLowerCase(), slugMatch[1]);
-  }
-}
+// Primary keywords to track (50 pillars)
+const pillarKeywords = pillarSlugs.map(slug => ({
+  keyword: slug.replace(/-/g, " "),
+  url: `https://www.mcpserver.in/${slug}`
+}));
 
+// Glossary terms to track
 const glossaryKeywords = glossaryTerms.slice(0, 25).map(term => ({
   keyword: term,
-  url: `https://www.mcpserver.in/glossary/${termToSlug.get(term) || "unknown"}`
+  url: `https://www.mcpserver.in/glossary/${glossaryContent.match(new RegExp(`slug:.*"[^"]*"[^}]*term:.*"${term}"`))?.[1] || "unknown"}`
 }));
 
 const trackedKeywords = [

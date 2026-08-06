@@ -46,25 +46,61 @@ export function getRelatedLinks(currentSlug: string, type: "pillar" | "topic" | 
   return links;
 }
 
-export function injectInternalLinks(content: string, maxLinks: number = 5): string {
-  const { glossaryTerms } = require('../data/glossary');
-  
-  let result = content;
-  const links: { term: string; slug: string }[] = [];
-  
-  for (const term of glossaryTerms) {
-    const regex = new RegExp(`\\b${term.term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'gi');
-    if (regex.test(result) && links.length < maxLinks) {
-      links.push({ term: term.term, slug: term.slug });
+/**
+ * Safely injects internal links from glossary terms into HTML content.
+ * Uses a DOM parser to avoid regex injection into <pre>/<code> blocks.
+ * Performs longest-match-first to prevent overlapping replacements.
+ */
+export function injectInternalLinks(html: string, glossary: GlossaryTerm[]): string {
+  if (!html || !glossary || glossary.length === 0) return html;
+
+  const termMap = new Map<string, string>();
+  for (const term of glossary) {
+    const lower = term.term.toLowerCase();
+    termMap.set(lower, term.slug);
+    if (term.technicalDetails?.alias) {
+      for (const alias of term.technicalDetails.alias) {
+        termMap.set(alias.toLowerCase(), term.slug);
+      }
     }
   }
-  
-  for (const link of links) {
-    const regex = new RegExp(`\\b${link.term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'gi');
-    result = result.replace(regex, (match) => {
-      return `[${match}](/glossary/${link.slug})`;
+
+  const sortedTerms = Array.from(termMap.keys()).sort((a, b) => b.length - a.length);
+
+  const $ = require('cheerio').load(html, { decodeEntities: false });
+
+  $('body *')
+    .contents()
+    .each(function (this: any, i: number, el: any) {
+      if (el.type !== 'text') return;
+
+      const text = el.data;
+      if (!text || text.trim().length === 0) return;
+
+      const parent = $(el.parent);
+      if (parent.is('a, code, pre, script, style, h1, h2, h3, h4, h5, h6')) return;
+
+      let modifiedText = text;
+      let changed = false;
+
+      for (const term of sortedTerms) {
+        const regex = new RegExp(`\\b${term}\\b`, 'gi');
+        if (regex.test(modifiedText)) {
+          const slug = termMap.get(term);
+          if (slug) {
+            modifiedText = modifiedText.replace(regex, (match: string) => {
+              const link = `<a href="/glossary/${slug}" class="glossary-link">${match}</a>`;
+              changed = true;
+              return link;
+            });
+          }
+        }
+      }
+
+      if (changed) {
+        $(el).replaceWith(modifiedText);
+      }
     });
-  }
-  
-  return result;
+
+  return $.html();
 }

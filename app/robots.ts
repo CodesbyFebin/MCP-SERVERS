@@ -33,21 +33,30 @@ export default function robots(): MetadataRoute.Robots {
       // These crawlers add no value and inflate server load.
       {
         userAgent: [
+          "GPTBot",
+          "ChatGPT-User",
+          "ClaudeBot",
+          "Claude-Img",
+          "PerplexityBot",
+          "Perplexity-Skimen",
+          "Google-Extended",
+          "Bytespider",
+          "Applebot-Extended",
+          "cohere-ai",
+          "cohere-training-crawler",
+        ],
+        allow: "/",
+      },
+      {
+        userAgent: [
           "AhrefsBot",
           "SemrushBot",
           "MJ12bot",
-          "DotBot",
-          "BLEXBot",
-          "DataForSeoBot",
         ],
         disallow: "/",
-      },
+      }
     ],
-    // Note: robots.txt does not provide access control. /admin/, /internal/,
-    // and /dashboard/ are also protected by JWT session verification in
-    // middleware.ts. Disallowing crawling here only prevents indexing.
-    sitemap: sitemapUrl,
-    // `host` is not a valid robots.txt directive recognised by Google.
-    // Removed to eliminate the Search Console "unsupported directive" warning.
+    sitemap: `${baseUrl}/sitemap-index.xml`,
+    host: baseUrl,
   };
 }
