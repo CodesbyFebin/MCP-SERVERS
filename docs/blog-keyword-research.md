@@ -381,7 +381,7 @@ These are distributed across the 10 pillars, with heavy concentration in Pillar 
 - MCP Cohere Server
 - MCP Anthropic Server
 - MCP OpenAI Server
-- MCP Google AI Studio Server
+- MCP Google Vertex AI Server
 - MCP LlamaIndex Server
 - MCP CrewAI Server
 - MCP AutoGen Server
