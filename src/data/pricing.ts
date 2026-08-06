@@ -29,7 +29,7 @@ export const pricingPlans: PricingPlan[] = [
     period: "month",
     description: "Ideal for individual developers building custom private integrations and hosting secure remotes.",
     features: [
-      "Up to 10 Hosted SSE Servers",
+      "Up to 10 Hosted Streamable HTTP Servers",
       "Secure API credentials isolation",
       "100,000 tool executions / day",
       "Basic logs and monitoring stream",
@@ -45,7 +45,7 @@ export const pricingPlans: PricingPlan[] = [
     period: "month",
     description: "Designed for power users, agency builders, and growing startup development teams.",
     features: [
-      "Up to 30 Hosted SSE Servers",
+      "Up to 30 Hosted Streamable HTTP Servers",
       "Centralized MCP Gateway proxies",
       "1,000,000 tool executions / day",
       "Detailed request trace logs",
@@ -78,7 +78,7 @@ export const pricingPlans: PricingPlan[] = [
       "Fully Isolated cloud container pods",
       "Strict OAuth token verification hooks",
       "50,000,000 tool executions / day",
-      "Tamper-proof audit logs (SOC2 path)",
+      "Audit-log retention controls for vendor review",
       "VPC Peering database connections",
       "Dedicated Account Manager"
     ],

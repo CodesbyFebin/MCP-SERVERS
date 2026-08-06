@@ -7,7 +7,7 @@ import { getUnifiedGraphSchema } from "../../../src/lib/schema";
 import { getContentDates } from "../../../src/lib/contentDates";
 
 export const metadata: Metadata = {
-  title: "Indic NLP Guide: Local AI Models for Indian Languages | MCPserver.in",
+  title: "Indic NLP Guide: Local AI Models for Indian Languages",
   description:
     "Run Hindi, Tamil, Telugu, Bengali, and other Indian-language NLP models locally with Ollama or Hugging Face Transformers, and expose them to AI agents through MCP.",
   alternates: {

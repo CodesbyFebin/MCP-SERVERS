@@ -3,7 +3,7 @@ import Breadcrumbs from "../../src/components/Breadcrumbs";
 import { Scale, ShieldCheck } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Terms of Service - MCPserver.in",
+  title: "Terms of Service",
   description: "Read the service terms and acceptable usage rules for our managed Model Context Protocol hosting.",
   alternates: {
     canonical: "/terms",

@@ -6,7 +6,7 @@ import { getOrganizationSchema } from "../../src/lib/schema";
 import { siteConfig } from "../../src/data/site";
 
 export const metadata: Metadata = {
-  title: "About MCPserver.in - India-first MCP Platform",
+  title: "About: The MCP Authority Platform",
   description:
     "Learn about MCPserver.in — an India-first Model Context Protocol integration platform built and maintained by Febin Francis (CodesbyFebin).",
   alternates: {

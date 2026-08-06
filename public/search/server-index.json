@@ -1,0 +1,762 @@
+[
+  {
+    "slug": "github-mcp-server",
+    "name": "GitHub",
+    "category": "Developer Tools",
+    "auth": "GitHub Personal Access Token / OAuth 2.0",
+    "description": "Securely connect your AI agents to private and public GitHub repositories to write, review, and automate code workflows, pull requests, issues, and releases.",
+    "route": "/servers/github-mcp-server/",
+    "status": "published",
+    "qualityScore": 96
+  },
+  {
+    "slug": "gitlab-mcp-server",
+    "name": "GitLab",
+    "category": "Developer Tools",
+    "auth": "GitLab Private Token",
+    "description": "Orchestrate GitLab pipelines, manage merge requests, and perform secure code reviews inside private instances using Model Context Protocol.",
+    "route": "/servers/gitlab-mcp-server/",
+    "status": "published",
+    "qualityScore": 96
+  },
+  {
+    "slug": "bitbucket-mcp-server",
+    "name": "Bitbucket",
+    "category": "Developer Tools",
+    "auth": "App Password / OAuth",
+    "description": "Allows autonomous agents to perform file modifications, check commits, and manage pull requests on Bitbucket Cloud or Server.",
+    "route": "/servers/bitbucket-mcp-server/",
+    "status": "published",
+    "qualityScore": 96
+  },
+  {
+    "slug": "docker-mcp-server",
+    "name": "Docker",
+    "category": "Developer Tools",
+    "auth": "Local Unix Socket / SSH",
+    "description": "Manage containers, inspect active Docker configurations, execute container commands, and troubleshoot local microservices instantly using natural language.",
+    "route": "/servers/docker-mcp-server/",
+    "status": "published",
+    "qualityScore": 96
+  },
+  {
+    "slug": "kubernetes-mcp-server",
+    "name": "Kubernetes",
+    "category": "Developer Tools",
+    "auth": "Kubeconfig Credentials",
+    "description": "Query Pods, Services, and Deployments in your Kubernetes clusters. Instantly debug server errors or deploy YAML configurations safely.",
+    "route": "/servers/kubernetes-mcp-server/",
+    "status": "published",
+    "qualityScore": 96
+  },
+  {
+    "slug": "vercel-mcp-server",
+    "name": "Vercel",
+    "category": "Developer Tools",
+    "auth": "Vercel Personal Access Token",
+    "description": "List Vercel deployments, check preview urls, trigger production builds, and retrieve site analytics directly inside code chats.",
+    "route": "/servers/vercel-mcp-server/",
+    "status": "published",
+    "qualityScore": 96
+  },
+  {
+    "slug": "cloudflare-mcp-server",
+    "name": "Cloudflare",
+    "category": "Developer Tools",
+    "auth": "Cloudflare API Token",
+    "description": "Manage Cloudflare DNS records, configure Page Rules, purge CDN caches, and monitor Worker scripts effortlessly with AI support.",
+    "route": "/servers/cloudflare-mcp-server/",
+    "status": "published",
+    "qualityScore": 96
+  },
+  {
+    "slug": "sentry-mcp-server",
+    "name": "Sentry",
+    "category": "Developer Tools",
+    "auth": "Sentry Integration Token",
+    "description": "Expose application errors, trace logs, and exception dumps to help AI models diagnose and repair application bugs in real-time.",
+    "route": "/servers/sentry-mcp-server/",
+    "status": "published",
+    "qualityScore": 93
+  },
+  {
+    "slug": "postman-mcp-server",
+    "name": "Postman",
+    "category": "Developer Tools",
+    "auth": "Postman API Key",
+    "description": "Expose Postman collections, run automated test suites, and validate active HTTP configurations inside LLM workspaces.",
+    "route": "/servers/postman-mcp-server/",
+    "status": "published",
+    "qualityScore": 86
+  },
+  {
+    "slug": "sonarqube-mcp-server",
+    "name": "SonarQube",
+    "category": "Developer Tools",
+    "auth": "SonarQube User Token",
+    "description": "Expose code quality audits, security vulnerabilities, and code smell warnings directly to autonomous development agents.",
+    "route": "/servers/sonarqube-mcp-server/",
+    "status": "published",
+    "qualityScore": 93
+  },
+  {
+    "slug": "circleci-mcp-server",
+    "name": "CircleCI",
+    "category": "Developer Tools",
+    "auth": "CircleCI Personal Token",
+    "description": "Expose pipeline statuses, retry failed tests, and automate continuous integration setups directly inside AI workflows.",
+    "route": "/servers/circleci-mcp-server/",
+    "status": "published",
+    "qualityScore": 93
+  },
+  {
+    "slug": "heroku-mcp-server",
+    "name": "Heroku",
+    "category": "Developer Tools",
+    "auth": "Heroku API Key",
+    "description": "Check Heroku app dyno health, manage configurations, and trigger direct git deployments through Model Context Protocol.",
+    "route": "/servers/heroku-mcp-server/",
+    "status": "published",
+    "qualityScore": 93
+  },
+  {
+    "slug": "jenkins-mcp-server",
+    "name": "Jenkins",
+    "category": "Developer Tools",
+    "auth": "Jenkins API Token",
+    "description": "Connect legacy CI/CD pipelines to modern AI workflows, triggering parameterized jobs and pulling logs dynamically.",
+    "route": "/servers/jenkins-mcp-server/",
+    "status": "published",
+    "qualityScore": 93
+  },
+  {
+    "slug": "gitbook-mcp-server",
+    "name": "GitBook",
+    "category": "Developer Tools",
+    "auth": "GitBook API Key",
+    "description": "Sync code documentation, read guide contents, and write structured wiki files instantly with AI assistance.",
+    "route": "/servers/gitbook-mcp-server/",
+    "status": "published",
+    "qualityScore": 93
+  },
+  {
+    "slug": "swagger-mcp-server",
+    "name": "Swagger",
+    "category": "Developer Tools",
+    "auth": "None / Shared Keys",
+    "description": "Integrate old Swagger v2 files directly into agent contexts, converting static definitions to operational tools on-the-fly.",
+    "route": "/servers/swagger-mcp-server/",
+    "status": "published",
+    "qualityScore": 89
+  },
+  {
+    "slug": "postgres-mcp-server",
+    "name": "PostgreSQL",
+    "category": "Databases",
+    "auth": "Database Connection String",
+    "description": "Expose PostgreSQL databases to AI agents. Let your models query schemas, run safely-isolated SELECT queries, and automate database administration tasks.",
+    "route": "/servers/postgres-mcp-server/",
+    "status": "published",
+    "qualityScore": 96
+  },
+  {
+    "slug": "mysql-mcp-server",
+    "name": "MySQL",
+    "category": "Databases",
+    "auth": "MySQL Credentials",
+    "description": "Connect to MySQL and MariaDB instances. Allow models to analyze relational databases, run query plans, and export records securely.",
+    "route": "/servers/mysql-mcp-server/",
+    "status": "published",
+    "qualityScore": 96
+  },
+  {
+    "slug": "mongodb-mcp-server",
+    "name": "MongoDB",
+    "category": "Databases",
+    "auth": "MongoDB URI connection",
+    "description": "Connect AI systems to document databases. Run safe aggregates, retrieve document structures, and automate collections management.",
+    "route": "/servers/mongodb-mcp-server/",
+    "status": "published",
+    "qualityScore": 96
+  },
+  {
+    "slug": "sqlite-mcp-server",
+    "name": "SQLite",
+    "category": "Databases",
+    "auth": "Local File Path",
+    "description": "The ideal database tool for local AI agents. Run instant queries on local database files with zero network latency.",
+    "route": "/servers/sqlite-mcp-server/",
+    "status": "published",
+    "qualityScore": 93
+  },
+  {
+    "slug": "redis-mcp-server",
+    "name": "Redis",
+    "category": "Databases",
+    "auth": "Redis Connection String",
+    "description": "Expose fast in-memory key-value data, trace application sessions, clear stale caches, and manage message queues with AI support.",
+    "route": "/servers/redis-mcp-server/",
+    "status": "published",
+    "qualityScore": 96
+  },
+  {
+    "slug": "supabase-mcp-server",
+    "name": "Supabase",
+    "category": "Databases",
+    "auth": "Supabase Service Key / URL",
+    "description": "Manage Supabase projects, write PostgreSQL functions, inspect Edge Functions, and manage public files buckets through natural language.",
+    "route": "/servers/supabase-mcp-server/",
+    "status": "published",
+    "qualityScore": 96
+  },
+  {
+    "slug": "firebase-mcp-server",
+    "name": "Firebase",
+    "category": "Databases",
+    "auth": "Firebase Admin Service Account JSON",
+    "description": "Allows models to read/write Firestore collections, audit Firebase Authentication users, and monitor Realtime Database paths.",
+    "route": "/servers/firebase-mcp-server/",
+    "status": "published",
+    "qualityScore": 96
+  },
+  {
+    "slug": "pinecone-mcp-server",
+    "name": "Pinecone",
+    "category": "Databases",
+    "auth": "Pinecone API Key",
+    "description": "Manage Pinecone vector namespaces, perform semantic searches, insert vector records, and review active search metrics.",
+    "route": "/servers/pinecone-mcp-server/",
+    "status": "published",
+    "qualityScore": 96
+  },
+  {
+    "slug": "vector-database-mcp-server",
+    "name": "Vector Database",
+    "category": "Databases",
+    "auth": "Custom Server Credentials",
+    "description": "A generalized MCP server supporting ChromaDB, Milvus, and Weaviate. Let your AI search across dynamic high-dimensional vectors.",
+    "route": "/servers/vector-database-mcp-server/",
+    "status": "published",
+    "qualityScore": 93
+  },
+  {
+    "slug": "cassandra-mcp-server",
+    "name": "Cassandra",
+    "category": "Databases",
+    "auth": "Cassandra Connection Credentials",
+    "description": "Query wide-column Cassandra database tables and execute Cassandra Query Language (CQL) safely inside models.",
+    "route": "/servers/cassandra-mcp-server/",
+    "status": "published",
+    "qualityScore": 93
+  },
+  {
+    "slug": "neo4j-mcp-server",
+    "name": "Neo4j",
+    "category": "Databases",
+    "auth": "Neo4j Auth Credentials",
+    "description": "Connect to Neo4j graph databases. Allow AI models to execute Cypher queries and traverse intricate network relationships.",
+    "route": "/servers/neo4j-mcp-server/",
+    "status": "published",
+    "qualityScore": 93
+  },
+  {
+    "slug": "dynamodb-mcp-server",
+    "name": "DynamoDB",
+    "category": "Databases",
+    "auth": "AWS Access Keys",
+    "description": "Expose AWS DynamoDB tables to your agents. Perform high-performance document reads, partition key queries, and schema updates.",
+    "route": "/servers/dynamodb-mcp-server/",
+    "status": "published",
+    "qualityScore": 93
+  },
+  {
+    "slug": "clickhouse-mcp-server",
+    "name": "ClickHouse",
+    "category": "Databases",
+    "auth": "ClickHouse HTTP Auth",
+    "description": "Query ClickHouse analytical databases. Run massive aggregates on millions of events instantly under LLM guidance.",
+    "route": "/servers/clickhouse-mcp-server/",
+    "status": "published",
+    "qualityScore": 93
+  },
+  {
+    "slug": "elasticsearch-mcp-server",
+    "name": "Elasticsearch",
+    "category": "Databases",
+    "auth": "Elastic Search Token",
+    "description": "Expose Elasticsearch indexes. Perform full-text search, audit cluster states, and map complex query filters.",
+    "route": "/servers/elasticsearch-mcp-server/",
+    "status": "published",
+    "qualityScore": 93
+  },
+  {
+    "slug": "oracle-mcp-server",
+    "name": "Oracle DB",
+    "category": "Databases",
+    "auth": "Oracle Connection Credentials",
+    "description": "Expose secure Oracle Database instances to enterprise-grade AI models, enabling SQL*Plus actions and data retrieval.",
+    "route": "/servers/oracle-mcp-server/",
+    "status": "published",
+    "qualityScore": 93
+  },
+  {
+    "slug": "slack-mcp-server",
+    "name": "Slack",
+    "category": "Productivity",
+    "auth": "Slack Bot User Token / OAuth",
+    "description": "Let AI agents read public channels, send instant Slack updates, search for historical threads, and manage channel setups.",
+    "route": "/servers/slack-mcp-server/",
+    "status": "published",
+    "qualityScore": 96
+  },
+  {
+    "slug": "gmail-mcp-server",
+    "name": "Gmail",
+    "category": "Productivity",
+    "auth": "Google OAuth 2.0 Credentials",
+    "description": "Connect to your Google Workspace Inbox. Allow AI agents to draft emails, summarize unread items, search messages, and apply labels.",
+    "route": "/servers/gmail-mcp-server/",
+    "status": "published",
+    "qualityScore": 96
+  },
+  {
+    "slug": "google-calendar-mcp-server",
+    "name": "Google Calendar",
+    "category": "Productivity",
+    "auth": "Google OAuth 2.0 Credentials",
+    "description": "Allow your personal AI assistant to schedule meetings, list upcoming events, check participant availability, and manage invites.",
+    "route": "/servers/google-calendar-mcp-server/",
+    "status": "published",
+    "qualityScore": 96
+  },
+  {
+    "slug": "google-drive-mcp-server",
+    "name": "Google Drive",
+    "category": "Productivity",
+    "auth": "Google OAuth 2.0 Credentials",
+    "description": "Securely explore, read, search, and structure your corporate documents, spreadsheets, and slides directly within models.",
+    "route": "/servers/google-drive-mcp-server/",
+    "status": "published",
+    "qualityScore": 96
+  },
+  {
+    "slug": "notion-mcp-server",
+    "name": "Notion",
+    "category": "Productivity",
+    "auth": "Notion Integration Token",
+    "description": "Expose Notion workspaces, read dynamic wiki pages, append developer logs, and manage project tables cleanly.",
+    "route": "/servers/notion-mcp-server/",
+    "status": "published",
+    "qualityScore": 96
+  },
+  {
+    "slug": "jira-mcp-server",
+    "name": "Jira",
+    "category": "Productivity",
+    "auth": "Jira API Token / Basic Auth",
+    "description": "Connect AI agents to your Jira backlog. Allow models to query tickets, create issues, transition statuses, and append comments.",
+    "route": "/servers/jira-mcp-server/",
+    "status": "published",
+    "qualityScore": 96
+  },
+  {
+    "slug": "linear-mcp-server",
+    "name": "Linear",
+    "category": "Productivity",
+    "auth": "Linear Personal API Key",
+    "description": "Expose the modern developer ticketing tool. Create issues, search cycles, and assign developers instantly using models.",
+    "route": "/servers/linear-mcp-server/",
+    "status": "published",
+    "qualityScore": 96
+  },
+  {
+    "slug": "trello-mcp-server",
+    "name": "Trello",
+    "category": "Productivity",
+    "auth": "Trello API Key & Token",
+    "description": "Read Trello boards, move tasks across workflow lists, search cards, and append labels based on code changes.",
+    "route": "/servers/trello-mcp-server/",
+    "status": "published",
+    "qualityScore": 96
+  },
+  {
+    "slug": "hubspot-mcp-server",
+    "name": "HubSpot",
+    "category": "Productivity",
+    "auth": "HubSpot Private App Access Token",
+    "description": "Expose HubSpot contacts, pipelines, deals, and engagement history to let models act as personalized sales assistants.",
+    "route": "/servers/hubspot-mcp-server/",
+    "status": "published",
+    "qualityScore": 96
+  },
+  {
+    "slug": "salesforce-mcp-server",
+    "name": "Salesforce",
+    "category": "Productivity",
+    "auth": "Salesforce OAuth Credentials",
+    "description": "Connect enterprise-level customer relationships databases, running SOQL queries and updating records inside workflows.",
+    "route": "/servers/salesforce-mcp-server/",
+    "status": "published",
+    "qualityScore": 93
+  },
+  {
+    "slug": "ms-teams-mcp-server",
+    "name": "Microsoft Teams",
+    "category": "Productivity",
+    "auth": "Microsoft Graph Token",
+    "description": "Post chat updates, schedule team calls, and search corporate threads inside your secure Microsoft Cloud.",
+    "route": "/servers/ms-teams-mcp-server/",
+    "status": "published",
+    "qualityScore": 93
+  },
+  {
+    "slug": "zoom-mcp-server",
+    "name": "Zoom",
+    "category": "Productivity",
+    "auth": "Zoom Server-to-Server OAuth",
+    "description": "Generate zoom invitation links, search meeting summaries, and retrieve participant details under AI instructions.",
+    "route": "/servers/zoom-mcp-server/",
+    "status": "published",
+    "qualityScore": 93
+  },
+  {
+    "slug": "discord-mcp-server",
+    "name": "Discord",
+    "category": "Productivity",
+    "auth": "Discord Bot Token",
+    "description": "Automate user moderations, log community ideas, search channels, and post system announcements via your Discord Bot.",
+    "route": "/servers/discord-mcp-server/",
+    "status": "published",
+    "qualityScore": 93
+  },
+  {
+    "slug": "figma-mcp-server",
+    "name": "Figma",
+    "category": "Productivity",
+    "auth": "Figma Personal Access Token",
+    "description": "Expose design canvas frames, inspect CSS variables, retrieve design components metadata, and track comments.",
+    "route": "/servers/figma-mcp-server/",
+    "status": "published",
+    "qualityScore": 93
+  },
+  {
+    "slug": "asana-mcp-server",
+    "name": "Asana",
+    "category": "Productivity",
+    "auth": "Asana Personal Token",
+    "description": "Expose Asana tasks, manage workspace projects, assign ticket owners, and log developer times natively.",
+    "route": "/servers/asana-mcp-server/",
+    "status": "published",
+    "qualityScore": 93
+  },
+  {
+    "slug": "stripe-mcp-server",
+    "name": "Stripe",
+    "category": "Finance",
+    "auth": "Stripe Restricted Secret Key",
+    "description": "Safely audit invoices, search payments details, track active subscriptions, and view billing charts inside corporate platforms.",
+    "route": "/servers/stripe-mcp-server/",
+    "status": "published",
+    "qualityScore": 93
+  },
+  {
+    "slug": "razorpay-mcp-server",
+    "name": "Razorpay",
+    "category": "Finance",
+    "auth": "Razorpay API Key & Secret",
+    "description": "Optimized for Indian startups. Audit transactions, trace refund requests, and manage Razorpay Route splits.",
+    "route": "/servers/razorpay-mcp-server/",
+    "status": "published",
+    "qualityScore": 89
+  },
+  {
+    "slug": "shopify-mcp-server",
+    "name": "Shopify",
+    "category": "Finance",
+    "auth": "Shopify Admin Access Token",
+    "description": "Connect e-commerce stores. Track customer orders, check inventory levels, and update catalog descriptions via AI.",
+    "route": "/servers/shopify-mcp-server/",
+    "status": "published",
+    "qualityScore": 93
+  },
+  {
+    "slug": "paypal-mcp-server",
+    "name": "PayPal",
+    "category": "Finance",
+    "auth": "PayPal Client ID & Secret",
+    "description": "Audit PayPal Business transactions, invoice details, subscription setups, and payout profiles dynamically.",
+    "route": "/servers/paypal-mcp-server/",
+    "status": "published",
+    "qualityScore": 89
+  },
+  {
+    "slug": "quickbooks-mcp-server",
+    "name": "QuickBooks",
+    "category": "Finance",
+    "auth": "QuickBooks OAuth Token",
+    "description": "Expose balance sheets, company accounts files, tax summaries, and client invoice ledgers to finance assistants safely.",
+    "route": "/servers/quickbooks-mcp-server/",
+    "status": "published",
+    "qualityScore": 89
+  },
+  {
+    "slug": "woocommerce-mcp-server",
+    "name": "WooCommerce",
+    "category": "Finance",
+    "auth": "WooCommerce Consumer Key",
+    "description": "Connect WooCommerce stores. Audit orders, configure coupon parameters, and analyze category performance.",
+    "route": "/servers/woocommerce-mcp-server/",
+    "status": "published",
+    "qualityScore": 89
+  },
+  {
+    "slug": "xero-mcp-server",
+    "name": "Xero",
+    "category": "Finance",
+    "auth": "Xero OAuth Access",
+    "description": "Integrate Xero accounting. Export invoice details, map bank transactions, and review company balances.",
+    "route": "/servers/xero-mcp-server/",
+    "status": "published",
+    "qualityScore": 89
+  },
+  {
+    "slug": "chargebee-mcp-server",
+    "name": "Chargebee",
+    "category": "Finance",
+    "auth": "Chargebee API Key",
+    "description": "Audit subscription billing lifecycles, manage dynamic coupon setups, and trace customer churn indicators.",
+    "route": "/servers/chargebee-mcp-server/",
+    "status": "published",
+    "qualityScore": 89
+  },
+  {
+    "slug": "paddle-mcp-server",
+    "name": "Paddle",
+    "category": "Finance",
+    "auth": "Paddle Vendor Auth",
+    "description": "Audit international merchant-of-record (MoR) sales, monitor global sales tax compliance, and track payouts.",
+    "route": "/servers/paddle-mcp-server/",
+    "status": "published",
+    "qualityScore": 89
+  },
+  {
+    "slug": "adyen-mcp-server",
+    "name": "Adyen",
+    "category": "Finance",
+    "auth": "Adyen Merchant Credentials",
+    "description": "Expose global payment rails. Audit transaction completion percentages, configure chargeback logs, and audit cards metrics.",
+    "route": "/servers/adyen-mcp-server/",
+    "status": "published",
+    "qualityScore": 89
+  },
+  {
+    "slug": "openai-mcp-server",
+    "name": "OpenAI",
+    "category": "AI Models",
+    "auth": "OpenAI API Key",
+    "description": "Connect to OpenAI models (GPT-4, GPT-3.5-turbo) for chat completions, embeddings, and image generation.",
+    "route": "/servers/openai-mcp-server/",
+    "status": "published",
+    "qualityScore": 96
+  },
+  {
+    "slug": "anthropic-mcp-server",
+    "name": "Anthropic",
+    "category": "AI Models",
+    "auth": "Anthropic API Key",
+    "description": "Access Claude models (Claude 3 Opus, Sonnet, Haiku) for reasoning-intensive tasks with constitutional AI.",
+    "route": "/servers/anthropic-mcp-server/",
+    "status": "published",
+    "qualityScore": 93
+  },
+  {
+    "slug": "google-gemini-mcp-server",
+    "name": "Google Gemini",
+    "category": "AI Models",
+    "auth": "Google AI API Key",
+    "description": "Use Gemini models (Gemini 1.5 Pro, Flash) for multimodal reasoning and Google Workspace integration.",
+    "route": "/servers/google-gemini-mcp-server/",
+    "status": "published",
+    "qualityScore": 93
+  },
+  {
+    "slug": "ollama-mcp-server",
+    "name": "Ollama",
+    "category": "AI Models",
+    "auth": "None (local)",
+    "description": "Run open-weight models locally (Llama 3, Mistral, Gemma) with no data leaving your infrastructure.",
+    "route": "/servers/ollama-mcp-server/",
+    "status": "published",
+    "qualityScore": 89
+  },
+  {
+    "slug": "mistral-mcp-server",
+    "name": "Mistral",
+    "category": "AI Models",
+    "auth": "Mistral API Key",
+    "description": "Access Mistral models (Mixtral, Mistral 7B) optimized for code and multilingual tasks.",
+    "route": "/servers/mistral-mcp-server/",
+    "status": "published",
+    "qualityScore": 90
+  },
+  {
+    "slug": "cohere-mcp-server",
+    "name": "Cohere",
+    "category": "AI Models",
+    "auth": "Cohere API Key",
+    "description": "Use Cohere models (Command R, Command R+) for enterprise-grade retrieval and multilingual chat.",
+    "route": "/servers/cohere-mcp-server/",
+    "status": "published",
+    "qualityScore": 93
+  },
+  {
+    "slug": "prometheus-mcp-server",
+    "name": "Prometheus",
+    "category": "Observability",
+    "auth": "Prometheus Bearer Token",
+    "description": "Query Prometheus metrics, check alert rules, and analyze time-series data for MCP server performance monitoring.",
+    "route": "/servers/prometheus-mcp-server/",
+    "status": "published",
+    "qualityScore": 96
+  },
+  {
+    "slug": "grafana-mcp-server",
+    "name": "Grafana",
+    "category": "Observability",
+    "auth": "Grafana API Key",
+    "description": "Manage Grafana dashboards, query data sources, and visualize MCP server metrics through natural language.",
+    "route": "/servers/grafana-mcp-server/",
+    "status": "published",
+    "qualityScore": 96
+  },
+  {
+    "slug": "datadog-mcp-server",
+    "name": "Datadog",
+    "category": "Observability",
+    "auth": "Datadog API Key",
+    "description": "Monitor cloud infrastructure, check APM traces, and analyze logs for MCP server deployments.",
+    "route": "/servers/datadog-mcp-server/",
+    "status": "published",
+    "qualityScore": 96
+  },
+  {
+    "slug": "newrelic-mcp-server",
+    "name": "New Relic",
+    "category": "Observability",
+    "auth": "New Relic API Key",
+    "description": "Query New Relic telemetry, manage dashboards, and troubleshoot MCP server performance via NRQL.",
+    "route": "/servers/newrelic-mcp-server/",
+    "status": "published",
+    "qualityScore": 96
+  },
+  {
+    "slug": "opentelemetry-mcp-server",
+    "name": "OpenTelemetry",
+    "category": "Observability",
+    "auth": "OTLP Endpoint",
+    "description": "Collect traces, metrics, and logs from MCP servers with OpenTelemetry Collector and query telemetry data.",
+    "route": "/servers/opentelemetry-mcp-server/",
+    "status": "published",
+    "qualityScore": 96
+  },
+  {
+    "slug": "aws-mcp-server",
+    "name": "AWS",
+    "category": "Cloud",
+    "auth": "AWS Access & Secret Keys",
+    "description": "Allow your models to inspect EC2 instance statuses, check S3 bucket permissions, monitor CloudWatch logs, and check AWS bill metrics safely.",
+    "route": "/servers/aws-mcp-server/",
+    "status": "published",
+    "qualityScore": 96
+  },
+  {
+    "slug": "google-cloud-mcp-server",
+    "name": "Google Cloud",
+    "category": "Cloud",
+    "auth": "GCP Service Account Credentials JSON",
+    "description": "Connect GCP projects. Monitor Cloud Run services, query BigQuery analytics, and check Cloud Logging details instantly.",
+    "route": "/servers/google-cloud-mcp-server/",
+    "status": "published",
+    "qualityScore": 96
+  },
+  {
+    "slug": "azure-mcp-server",
+    "name": "Azure",
+    "category": "Cloud",
+    "auth": "Azure Active Directory Client Secret",
+    "description": "Expose Azure resource groups, monitor Virtual Machines telemetry, and manage Blob Storage security parameters.",
+    "route": "/servers/azure-mcp-server/",
+    "status": "published",
+    "qualityScore": 96
+  },
+  {
+    "slug": "digitalocean-mcp-server",
+    "name": "DigitalOcean",
+    "category": "Cloud",
+    "auth": "DigitalOcean Personal Access Token",
+    "description": "Check active droplets health, manage firewall configurations, and trigger backup droplets cycles safely.",
+    "route": "/servers/digitalocean-mcp-server/",
+    "status": "published",
+    "qualityScore": 93
+  },
+  {
+    "slug": "linode-mcp-server",
+    "name": "Linode",
+    "category": "Cloud",
+    "auth": "Linode Personal Token",
+    "description": "Manage Linode compute nodes, check NodeBalancers configs, and review Object Storage allocations.",
+    "route": "/servers/linode-mcp-server/",
+    "status": "published",
+    "qualityScore": 93
+  },
+  {
+    "slug": "supabase-cloud-mcp-server",
+    "name": "Supabase Cloud",
+    "category": "Cloud",
+    "auth": "Supabase Partner Access",
+    "description": "Monitor multi-project cloud deployments, track database size indicators, and inspect active edge-functions.",
+    "route": "/servers/supabase-cloud-mcp-server/",
+    "status": "published",
+    "qualityScore": 93
+  },
+  {
+    "slug": "fly-io-mcp-server",
+    "name": "Fly.io",
+    "category": "Cloud",
+    "auth": "Fly.io Access Token",
+    "description": "Check Fly app volumes, monitor edge routing telemetry, and restart failed fly machines.",
+    "route": "/servers/fly-io-mcp-server/",
+    "status": "published",
+    "qualityScore": 90
+  },
+  {
+    "slug": "railway-mcp-server",
+    "name": "Railway",
+    "category": "Cloud",
+    "auth": "Railway API Token",
+    "description": "Audit Railway project services, check live service logs, and update environment secrets dynamically.",
+    "route": "/servers/railway-mcp-server/",
+    "status": "published",
+    "qualityScore": 93
+  },
+  {
+    "slug": "render-mcp-server",
+    "name": "Render",
+    "category": "Cloud",
+    "auth": "Render API Key",
+    "description": "Check Render web services, deploy static websites, and review private service networking parameters.",
+    "route": "/servers/render-mcp-server/",
+    "status": "published",
+    "qualityScore": 93
+  },
+  {
+    "slug": "scaleway-mcp-server",
+    "name": "Scaleway",
+    "category": "Cloud",
+    "auth": "Scaleway Token",
+    "description": "Expose Scaleway cloud elements, audit bare metal nodes, and manage S3-compatible objects.",
+    "route": "/servers/scaleway-mcp-server/",
+    "status": "published",
+    "qualityScore": 90
+  }
+]

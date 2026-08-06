@@ -7,7 +7,7 @@ import { getUnifiedGraphSchema } from "../../../src/lib/schema";
 import { getContentDates } from "../../../src/lib/contentDates";
 
 export const metadata: Metadata = {
-  title: "GST Integration Guide for MCP Servers | MCPserver.in",
+  title: "GST Integration Guide for MCP Servers",
   description:
     "How to build GST-compliant MCP servers for Indian businesses — invoice fetching, reconciliation APIs, and tax-tech integrations.",
   alternates: {

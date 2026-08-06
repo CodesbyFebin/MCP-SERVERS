@@ -1,0 +1,494 @@
+{
+  "total": 2442,
+  "passed": 456,
+  "failed": 1986,
+  "passRate": 19,
+  "sampleFailures": [
+    {
+      "page": "content/README.md",
+      "issues": [
+        "Missing code examples",
+        "Missing external references",
+        "Missing case studies or real-world examples",
+        "Missing title",
+        "Missing description",
+        "Missing keywords",
+        "Word count 59 below 1000 minimum"
+      ],
+      "score": 65
+    },
+    {
+      "page": "content/blog/advanced-architecture.md",
+      "issues": [
+        "Missing external references",
+        "Missing title",
+        "Missing description",
+        "Missing keywords",
+        "Word count 423 below 1000 minimum"
+      ],
+      "score": 115
+    },
+    {
+      "page": "content/blog/development-coding.md",
+      "issues": [
+        "Missing external references",
+        "Missing title",
+        "Missing description",
+        "Missing keywords",
+        "Word count 427 below 1000 minimum"
+      ],
+      "score": 115
+    },
+    {
+      "page": "content/blog/getting-started.md",
+      "issues": [
+        "Missing external references",
+        "Missing title",
+        "Missing description",
+        "Missing keywords",
+        "Word count 425 below 1000 minimum"
+      ],
+      "score": 115
+    },
+    {
+      "page": "content/blog/integrations-tools.md",
+      "issues": [
+        "Missing external references",
+        "Missing title",
+        "Missing description",
+        "Missing keywords",
+        "Word count 425 below 1000 minimum"
+      ],
+      "score": 115
+    },
+    {
+      "page": "content/blog/platform-specific.md",
+      "issues": [
+        "Missing external references",
+        "Missing title",
+        "Missing description",
+        "Missing keywords",
+        "Word count 424 below 1000 minimum"
+      ],
+      "score": 115
+    },
+    {
+      "page": "content/blog/security-production.md",
+      "issues": [
+        "Missing external references",
+        "Missing title",
+        "Missing description",
+        "Missing keywords",
+        "Word count 426 below 1000 minimum"
+      ],
+      "score": 115
+    },
+    {
+      "page": "content/blog/ugc-community-hub.md",
+      "issues": [
+        "Missing external references",
+        "Missing title",
+        "Missing description",
+        "Missing keywords",
+        "Word count 428 below 1000 minimum"
+      ],
+      "score": 115
+    },
+    {
+      "page": "content/compare/docker-mcp-server-vs-kubernetes-mcp-server.md",
+      "issues": [
+        "Missing external references",
+        "Word count 727 below 1000 minimum"
+      ],
+      "score": 145
+    },
+    {
+      "page": "content/compare/github-mcp-server-vs-gitlab-mcp-server.md",
+      "issues": [
+        "Missing external references",
+        "Word count 732 below 1000 minimum"
+      ],
+      "score": 145
+    },
+    {
+      "page": "content/compare/jira-mcp-server-vs-linear-mcp-server.md",
+      "issues": [
+        "Missing external references",
+        "Word count 719 below 1000 minimum"
+      ],
+      "score": 145
+    },
+    {
+      "page": "content/compare/postgres-mcp-server-vs-mysql-mcp-server.md",
+      "issues": [
+        "Missing external references",
+        "Word count 707 below 1000 minimum"
+      ],
+      "score": 145
+    },
+    {
+      "page": "content/compare/postman-mcp-server-vs-swagger-mcp-server.md",
+      "issues": [
+        "Missing external references",
+        "Word count 721 below 1000 minimum"
+      ],
+      "score": 145
+    },
+    {
+      "page": "content/compare/redis-mcp-server-vs-mongodb-mcp-server.md",
+      "issues": [
+        "Missing external references",
+        "Word count 708 below 1000 minimum"
+      ],
+      "score": 145
+    },
+    {
+      "page": "content/compare/sentry-mcp-server-vs-datadog-mcp-server.md",
+      "issues": [
+        "Missing external references",
+        "Word count 713 below 1000 minimum"
+      ],
+      "score": 145
+    },
+    {
+      "page": "content/compare/slack-mcp-server-vs-discord-mcp-server.md",
+      "issues": [
+        "Missing external references",
+        "Word count 722 below 1000 minimum"
+      ],
+      "score": 145
+    },
+    {
+      "page": "content/compare/slack-mcp-server-vs-gmail-mcp-server.md",
+      "issues": [
+        "Missing external references",
+        "Word count 731 below 1000 minimum"
+      ],
+      "score": 145
+    },
+    {
+      "page": "content/compare/vercel-mcp-server-vs-cloudflare-mcp-server.md",
+      "issues": [
+        "Missing external references",
+        "Word count 721 below 1000 minimum"
+      ],
+      "score": 145
+    },
+    {
+      "page": "content/glossary/mcp-client.md",
+      "issues": [
+        "Missing external references",
+        "Missing title",
+        "Missing description",
+        "Missing keywords",
+        "Word count 507 below 1000 minimum"
+      ],
+      "score": 115
+    },
+    {
+      "page": "content/glossary/mcp-server.md",
+      "issues": [
+        "Missing external references",
+        "Missing title",
+        "Missing description",
+        "Missing keywords",
+        "Word count 510 below 1000 minimum"
+      ],
+      "score": 115
+    },
+    {
+      "page": "content/glossary/model-context-protocol.md",
+      "issues": [
+        "Missing external references",
+        "Missing title",
+        "Missing description",
+        "Missing keywords",
+        "Word count 543 below 1000 minimum"
+      ],
+      "score": 115
+    },
+    {
+      "page": "content/pages/adyen-mcp-server-advanced-guide.md",
+      "issues": [
+        "Missing code examples",
+        "Missing external references",
+        "Missing canonical",
+        "Word count 353 below 1000 minimum"
+      ],
+      "score": 110
+    },
+    {
+      "page": "content/pages/adyen-mcp-server-alternatives.md",
+      "issues": [
+        "Missing code examples",
+        "Missing external references",
+        "Missing canonical",
+        "Word count 340 below 1000 minimum"
+      ],
+      "score": 110
+    },
+    {
+      "page": "content/pages/adyen-mcp-server-beginner-guide.md",
+      "issues": [
+        "Missing code examples",
+        "Missing external references",
+        "Missing canonical",
+        "Word count 352 below 1000 minimum"
+      ],
+      "score": 110
+    },
+    {
+      "page": "content/pages/adyen-mcp-server-best-practices.md",
+      "issues": [
+        "Missing code examples",
+        "Missing external references",
+        "Missing canonical",
+        "Word count 347 below 1000 minimum"
+      ],
+      "score": 110
+    },
+    {
+      "page": "content/pages/adyen-mcp-server-community.md",
+      "issues": [
+        "Missing code examples",
+        "Missing external references",
+        "Missing canonical"
+      ],
+      "score": 120
+    },
+    {
+      "page": "content/pages/adyen-mcp-server-ratings.md",
+      "issues": [
+        "Missing code examples",
+        "Missing external references",
+        "Missing canonical",
+        "Word count 707 below 1000 minimum"
+      ],
+      "score": 110
+    },
+    {
+      "page": "content/pages/adyen-mcp-server-reviews.md",
+      "issues": [
+        "Missing code examples",
+        "Missing external references",
+        "Missing canonical"
+      ],
+      "score": 120
+    },
+    {
+      "page": "content/pages/adyen-mcp-server-testimonials.md",
+      "issues": [
+        "Missing code examples",
+        "Missing external references",
+        "Missing canonical",
+        "Word count 837 below 1000 minimum"
+      ],
+      "score": 110
+    },
+    {
+      "page": "content/pages/adyen-mcp-server-troubleshooting.md",
+      "issues": [
+        "Missing code examples",
+        "Missing external references",
+        "Missing canonical",
+        "Word count 346 below 1000 minimum"
+      ],
+      "score": 110
+    },
+    {
+      "page": "content/pages/anthropic-mcp-server-advanced-guide.md",
+      "issues": [
+        "Missing code examples",
+        "Missing external references",
+        "Missing canonical",
+        "Word count 352 below 1000 minimum"
+      ],
+      "score": 110
+    },
+    {
+      "page": "content/pages/anthropic-mcp-server-alternatives.md",
+      "issues": [
+        "Missing code examples",
+        "Missing external references",
+        "Missing canonical",
+        "Word count 339 below 1000 minimum"
+      ],
+      "score": 110
+    },
+    {
+      "page": "content/pages/anthropic-mcp-server-beginner-guide.md",
+      "issues": [
+        "Missing code examples",
+        "Missing external references",
+        "Missing canonical",
+        "Word count 349 below 1000 minimum"
+      ],
+      "score": 110
+    },
+    {
+      "page": "content/pages/anthropic-mcp-server-best-practices.md",
+      "issues": [
+        "Missing code examples",
+        "Missing external references",
+        "Missing canonical",
+        "Word count 351 below 1000 minimum"
+      ],
+      "score": 110
+    },
+    {
+      "page": "content/pages/anthropic-mcp-server-community.md",
+      "issues": [
+        "Missing code examples",
+        "Missing external references",
+        "Missing canonical"
+      ],
+      "score": 120
+    },
+    {
+      "page": "content/pages/anthropic-mcp-server-ratings.md",
+      "issues": [
+        "Missing code examples",
+        "Missing external references",
+        "Missing canonical",
+        "Word count 704 below 1000 minimum"
+      ],
+      "score": 110
+    },
+    {
+      "page": "content/pages/anthropic-mcp-server-reviews.md",
+      "issues": [
+        "Missing code examples",
+        "Missing external references",
+        "Missing canonical"
+      ],
+      "score": 120
+    },
+    {
+      "page": "content/pages/anthropic-mcp-server-testimonials.md",
+      "issues": [
+        "Missing code examples",
+        "Missing external references",
+        "Missing canonical",
+        "Word count 841 below 1000 minimum"
+      ],
+      "score": 110
+    },
+    {
+      "page": "content/pages/anthropic-mcp-server-troubleshooting.md",
+      "issues": [
+        "Missing code examples",
+        "Missing external references",
+        "Missing canonical",
+        "Word count 340 below 1000 minimum"
+      ],
+      "score": 110
+    },
+    {
+      "page": "content/pages/api-testing-mcp-servers.md",
+      "issues": [
+        "Missing code examples",
+        "Missing external references",
+        "Missing case studies or real-world examples",
+        "Word count 237 below 1000 minimum"
+      ],
+      "score": 95
+    },
+    {
+      "page": "content/pages/archestra-mcp-catalog-ugc.md",
+      "issues": [
+        "Missing code examples",
+        "Missing external references",
+        "Word count 418 below 1000 minimum"
+      ],
+      "score": 120
+    },
+    {
+      "page": "content/pages/asana-mcp-server-advanced-guide.md",
+      "issues": [
+        "Missing code examples",
+        "Missing external references",
+        "Missing canonical",
+        "Word count 351 below 1000 minimum"
+      ],
+      "score": 110
+    },
+    {
+      "page": "content/pages/asana-mcp-server-alternatives.md",
+      "issues": [
+        "Missing code examples",
+        "Missing external references",
+        "Missing canonical",
+        "Word count 342 below 1000 minimum"
+      ],
+      "score": 110
+    },
+    {
+      "page": "content/pages/asana-mcp-server-beginner-guide.md",
+      "issues": [
+        "Missing code examples",
+        "Missing external references",
+        "Missing canonical",
+        "Word count 348 below 1000 minimum"
+      ],
+      "score": 110
+    },
+    {
+      "page": "content/pages/asana-mcp-server-best-practices.md",
+      "issues": [
+        "Missing code examples",
+        "Missing external references",
+        "Missing canonical",
+        "Word count 348 below 1000 minimum"
+      ],
+      "score": 110
+    },
+    {
+      "page": "content/pages/asana-mcp-server-community.md",
+      "issues": [
+        "Missing code examples",
+        "Missing external references",
+        "Missing canonical"
+      ],
+      "score": 120
+    },
+    {
+      "page": "content/pages/asana-mcp-server-ratings.md",
+      "issues": [
+        "Missing code examples",
+        "Missing external references",
+        "Missing canonical",
+        "Word count 707 below 1000 minimum"
+      ],
+      "score": 110
+    },
+    {
+      "page": "content/pages/asana-mcp-server-reviews.md",
+      "issues": [
+        "Missing code examples",
+        "Missing external references",
+        "Missing canonical"
+      ],
+      "score": 120
+    },
+    {
+      "page": "content/pages/asana-mcp-server-testimonials.md",
+      "issues": [
+        "Missing code examples",
+        "Missing external references",
+        "Missing canonical",
+        "Word count 839 below 1000 minimum"
+      ],
+      "score": 110
+    },
+    {
+      "page": "content/pages/asana-mcp-server-troubleshooting.md",
+      "issues": [
+        "Missing code examples",
+        "Missing external references",
+        "Missing canonical",
+        "Word count 339 below 1000 minimum"
+      ],
+      "score": 110
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "check": "generated-evidence",
+  "threshold": 0,
+  "failing": 0,
+  "passed": 200,
+  "total": 200,
+  "sampleFailures": []
+}

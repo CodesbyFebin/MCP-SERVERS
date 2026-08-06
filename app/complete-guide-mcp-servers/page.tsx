@@ -10,7 +10,7 @@ import VotingWidget from "../../src/components/ugc/VotingWidget";
 import UserSubmissionForm from "../../src/components/ugc/UserSubmissionForm";
 
 export const metadata: Metadata = {
-  title: "The Complete Guide to MCP Servers in 2025-2026 | MCPserver.in",
+  title: "The Complete Guide to MCP Servers in 2025-2026",
   description:
     "Everything you need to know about Model Context Protocol: architecture, security, production deployment, platform support, integrations, and where MCP is headed in 2026. The pillar guide for every MCP server cluster on this site.",
   alternates: {

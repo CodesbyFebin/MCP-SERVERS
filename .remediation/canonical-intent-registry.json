@@ -1,0 +1,2795 @@
+[
+  {
+    "entity_id": "adyen-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/adyen-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/adyen-mcp-server-alternatives.md",
+      "content/pages/adyen-mcp-server-beginner-guide.md",
+      "content/pages/adyen-mcp-server-best-practices.md",
+      "content/pages/adyen-mcp-server-community.md",
+      "content/pages/adyen-mcp-server-ratings.md",
+      "content/pages/adyen-mcp-server-reviews.md",
+      "content/pages/adyen-mcp-server-testimonials.md",
+      "content/pages/adyen-mcp-server-troubleshooting.md",
+      "content/servers/adyen-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "anthropic-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/anthropic-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/anthropic-mcp-server-alternatives.md",
+      "content/pages/anthropic-mcp-server-beginner-guide.md",
+      "content/pages/anthropic-mcp-server-best-practices.md",
+      "content/pages/anthropic-mcp-server-community.md",
+      "content/pages/anthropic-mcp-server-ratings.md",
+      "content/pages/anthropic-mcp-server-reviews.md",
+      "content/pages/anthropic-mcp-server-testimonials.md",
+      "content/pages/anthropic-mcp-server-troubleshooting.md",
+      "content/servers/anthropic-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "archestra-mcp-catalog",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/archestra-mcp-catalog-ugc.md",
+    "supporting_queries": [
+      "content/ugc/topics/archestra-mcp-catalog-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "asana-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/asana-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/asana-mcp-server-alternatives.md",
+      "content/pages/asana-mcp-server-beginner-guide.md",
+      "content/pages/asana-mcp-server-best-practices.md",
+      "content/pages/asana-mcp-server-community.md",
+      "content/pages/asana-mcp-server-ratings.md",
+      "content/pages/asana-mcp-server-reviews.md",
+      "content/pages/asana-mcp-server-testimonials.md",
+      "content/pages/asana-mcp-server-troubleshooting.md",
+      "content/servers/asana-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "awesome-mcp-registries",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/awesome-mcp-registries-ugc.md",
+    "supporting_queries": [
+      "content/ugc/topics/awesome-mcp-registries-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "aws-mcp-hosting-options",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/aws-mcp-hosting-options-ugc.md",
+    "supporting_queries": [
+      "content/ugc/topics/aws-mcp-hosting-options-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "aws-mcp-hosting",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/aws-mcp-hosting-ugc.md",
+    "supporting_queries": [
+      "content/ugc/topics/aws-mcp-hosting-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "aws-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/aws-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/aws-mcp-server-alternatives.md",
+      "content/pages/aws-mcp-server-beginner-guide.md",
+      "content/pages/aws-mcp-server-best-practices.md",
+      "content/pages/aws-mcp-server-community.md",
+      "content/pages/aws-mcp-server-ratings.md",
+      "content/pages/aws-mcp-server-reviews.md",
+      "content/pages/aws-mcp-server-testimonials.md",
+      "content/pages/aws-mcp-server-troubleshooting.md",
+      "content/servers/aws-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "azure-mcp-hosting-options",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/azure-mcp-hosting-options-ugc.md",
+    "supporting_queries": [
+      "content/ugc/topics/azure-mcp-hosting-options-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "azure-mcp-hosting",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/azure-mcp-hosting-ugc.md",
+    "supporting_queries": [
+      "content/ugc/topics/azure-mcp-hosting-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "azure-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/azure-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/azure-mcp-server-alternatives.md",
+      "content/pages/azure-mcp-server-beginner-guide.md",
+      "content/pages/azure-mcp-server-best-practices.md",
+      "content/pages/azure-mcp-server-community.md",
+      "content/pages/azure-mcp-server-ratings.md",
+      "content/pages/azure-mcp-server-reviews.md",
+      "content/pages/azure-mcp-server-testimonials.md",
+      "content/pages/azure-mcp-server-troubleshooting.md",
+      "content/servers/azure-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "bitbucket-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/bitbucket-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/bitbucket-mcp-server-alternatives.md",
+      "content/pages/bitbucket-mcp-server-beginner-guide.md",
+      "content/pages/bitbucket-mcp-server-best-practices.md",
+      "content/pages/bitbucket-mcp-server-community.md",
+      "content/pages/bitbucket-mcp-server-ratings.md",
+      "content/pages/bitbucket-mcp-server-reviews.md",
+      "content/pages/bitbucket-mcp-server-testimonials.md",
+      "content/pages/bitbucket-mcp-server-troubleshooting.md",
+      "content/servers/bitbucket-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "build-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/build-mcp-server-ugc.md",
+    "supporting_queries": [
+      "content/ugc/topics/build-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "cassandra-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/cassandra-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/cassandra-mcp-server-alternatives.md",
+      "content/pages/cassandra-mcp-server-beginner-guide.md",
+      "content/pages/cassandra-mcp-server-best-practices.md",
+      "content/pages/cassandra-mcp-server-community.md",
+      "content/pages/cassandra-mcp-server-ratings.md",
+      "content/pages/cassandra-mcp-server-reviews.md",
+      "content/pages/cassandra-mcp-server-testimonials.md",
+      "content/pages/cassandra-mcp-server-troubleshooting.md",
+      "content/servers/cassandra-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "chargebee-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/chargebee-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/chargebee-mcp-server-alternatives.md",
+      "content/pages/chargebee-mcp-server-beginner-guide.md",
+      "content/pages/chargebee-mcp-server-best-practices.md",
+      "content/pages/chargebee-mcp-server-community.md",
+      "content/pages/chargebee-mcp-server-ratings.md",
+      "content/pages/chargebee-mcp-server-reviews.md",
+      "content/pages/chargebee-mcp-server-testimonials.md",
+      "content/pages/chargebee-mcp-server-troubleshooting.md",
+      "content/servers/chargebee-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "circleci-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/circleci-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/circleci-mcp-server-alternatives.md",
+      "content/pages/circleci-mcp-server-beginner-guide.md",
+      "content/pages/circleci-mcp-server-best-practices.md",
+      "content/pages/circleci-mcp-server-community.md",
+      "content/pages/circleci-mcp-server-ratings.md",
+      "content/pages/circleci-mcp-server-reviews.md",
+      "content/pages/circleci-mcp-server-testimonials.md",
+      "content/pages/circleci-mcp-server-troubleshooting.md",
+      "content/servers/circleci-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "clickhouse-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/clickhouse-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/clickhouse-mcp-server-alternatives.md",
+      "content/pages/clickhouse-mcp-server-beginner-guide.md",
+      "content/pages/clickhouse-mcp-server-best-practices.md",
+      "content/pages/clickhouse-mcp-server-community.md",
+      "content/pages/clickhouse-mcp-server-ratings.md",
+      "content/pages/clickhouse-mcp-server-reviews.md",
+      "content/pages/clickhouse-mcp-server-testimonials.md",
+      "content/pages/clickhouse-mcp-server-troubleshooting.md",
+      "content/servers/clickhouse-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "cloudflare-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/cloudflare-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/cloudflare-mcp-server-alternatives.md",
+      "content/pages/cloudflare-mcp-server-beginner-guide.md",
+      "content/pages/cloudflare-mcp-server-best-practices.md",
+      "content/pages/cloudflare-mcp-server-community.md",
+      "content/pages/cloudflare-mcp-server-ratings.md",
+      "content/pages/cloudflare-mcp-server-reviews.md",
+      "content/pages/cloudflare-mcp-server-testimonials.md",
+      "content/pages/cloudflare-mcp-server-troubleshooting.md",
+      "content/servers/cloudflare-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "cohere-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/cohere-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/cohere-mcp-server-alternatives.md",
+      "content/pages/cohere-mcp-server-beginner-guide.md",
+      "content/pages/cohere-mcp-server-best-practices.md",
+      "content/pages/cohere-mcp-server-community.md",
+      "content/pages/cohere-mcp-server-ratings.md",
+      "content/pages/cohere-mcp-server-reviews.md",
+      "content/pages/cohere-mcp-server-testimonials.md",
+      "content/pages/cohere-mcp-server-troubleshooting.md",
+      "content/servers/cohere-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "datadog-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/datadog-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/datadog-mcp-server-alternatives.md",
+      "content/pages/datadog-mcp-server-beginner-guide.md",
+      "content/pages/datadog-mcp-server-best-practices.md",
+      "content/pages/datadog-mcp-server-community.md",
+      "content/pages/datadog-mcp-server-ratings.md",
+      "content/pages/datadog-mcp-server-reviews.md",
+      "content/pages/datadog-mcp-server-testimonials.md",
+      "content/pages/datadog-mcp-server-troubleshooting.md",
+      "content/servers/datadog-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "digitalocean-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/digitalocean-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/digitalocean-mcp-server-alternatives.md",
+      "content/pages/digitalocean-mcp-server-beginner-guide.md",
+      "content/pages/digitalocean-mcp-server-best-practices.md",
+      "content/pages/digitalocean-mcp-server-community.md",
+      "content/pages/digitalocean-mcp-server-ratings.md",
+      "content/pages/digitalocean-mcp-server-reviews.md",
+      "content/pages/digitalocean-mcp-server-testimonials.md",
+      "content/pages/digitalocean-mcp-server-troubleshooting.md",
+      "content/servers/digitalocean-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "discord-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/discord-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/discord-mcp-server-alternatives.md",
+      "content/pages/discord-mcp-server-beginner-guide.md",
+      "content/pages/discord-mcp-server-best-practices.md",
+      "content/pages/discord-mcp-server-community.md",
+      "content/pages/discord-mcp-server-ratings.md",
+      "content/pages/discord-mcp-server-reviews.md",
+      "content/pages/discord-mcp-server-testimonials.md",
+      "content/pages/discord-mcp-server-troubleshooting.md",
+      "content/servers/discord-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "docker-mcp-catalog",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/docker-mcp-catalog-ugc.md",
+    "supporting_queries": [
+      "content/ugc/topics/docker-mcp-catalog-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "docker-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/docker-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/docker-mcp-server-alternatives.md",
+      "content/pages/docker-mcp-server-beginner-guide.md",
+      "content/pages/docker-mcp-server-best-practices.md",
+      "content/pages/docker-mcp-server-community.md",
+      "content/pages/docker-mcp-server-ratings.md",
+      "content/pages/docker-mcp-server-reviews.md",
+      "content/pages/docker-mcp-server-testimonials.md",
+      "content/pages/docker-mcp-server-troubleshooting.md",
+      "content/servers/docker-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "dynamodb-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/dynamodb-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/dynamodb-mcp-server-alternatives.md",
+      "content/pages/dynamodb-mcp-server-beginner-guide.md",
+      "content/pages/dynamodb-mcp-server-best-practices.md",
+      "content/pages/dynamodb-mcp-server-community.md",
+      "content/pages/dynamodb-mcp-server-ratings.md",
+      "content/pages/dynamodb-mcp-server-reviews.md",
+      "content/pages/dynamodb-mcp-server-testimonials.md",
+      "content/pages/dynamodb-mcp-server-troubleshooting.md",
+      "content/servers/dynamodb-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "elasticsearch-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/elasticsearch-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/elasticsearch-mcp-server-alternatives.md",
+      "content/pages/elasticsearch-mcp-server-beginner-guide.md",
+      "content/pages/elasticsearch-mcp-server-best-practices.md",
+      "content/pages/elasticsearch-mcp-server-community.md",
+      "content/pages/elasticsearch-mcp-server-ratings.md",
+      "content/pages/elasticsearch-mcp-server-reviews.md",
+      "content/pages/elasticsearch-mcp-server-testimonials.md",
+      "content/pages/elasticsearch-mcp-server-troubleshooting.md",
+      "content/servers/elasticsearch-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "enterprise-mcp",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/enterprise-mcp-ugc.md",
+    "supporting_queries": [
+      "content/ugc/pillars/enterprise-mcp-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "figma-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/figma-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/figma-mcp-server-alternatives.md",
+      "content/pages/figma-mcp-server-beginner-guide.md",
+      "content/pages/figma-mcp-server-best-practices.md",
+      "content/pages/figma-mcp-server-community.md",
+      "content/pages/figma-mcp-server-ratings.md",
+      "content/pages/figma-mcp-server-reviews.md",
+      "content/pages/figma-mcp-server-testimonials.md",
+      "content/pages/figma-mcp-server-troubleshooting.md",
+      "content/servers/figma-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "firebase-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/firebase-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/firebase-mcp-server-alternatives.md",
+      "content/pages/firebase-mcp-server-beginner-guide.md",
+      "content/pages/firebase-mcp-server-best-practices.md",
+      "content/pages/firebase-mcp-server-community.md",
+      "content/pages/firebase-mcp-server-ratings.md",
+      "content/pages/firebase-mcp-server-reviews.md",
+      "content/pages/firebase-mcp-server-testimonials.md",
+      "content/pages/firebase-mcp-server-troubleshooting.md",
+      "content/servers/firebase-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "fly-io-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/fly-io-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/fly-io-mcp-server-alternatives.md",
+      "content/pages/fly-io-mcp-server-beginner-guide.md",
+      "content/pages/fly-io-mcp-server-best-practices.md",
+      "content/pages/fly-io-mcp-server-community.md",
+      "content/pages/fly-io-mcp-server-ratings.md",
+      "content/pages/fly-io-mcp-server-reviews.md",
+      "content/pages/fly-io-mcp-server-testimonials.md",
+      "content/pages/fly-io-mcp-server-troubleshooting.md",
+      "content/servers/fly-io-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "free-mcp-hosting",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/free-mcp-hosting-ugc.md",
+    "supporting_queries": [
+      "content/ugc/topics/free-mcp-hosting-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "free-vs-paid-mcp-servers",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/free-vs-paid-mcp-servers-ugc.md",
+    "supporting_queries": [
+      "content/ugc/topics/free-vs-paid-mcp-servers-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "gitbook-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/gitbook-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/gitbook-mcp-server-alternatives.md",
+      "content/pages/gitbook-mcp-server-beginner-guide.md",
+      "content/pages/gitbook-mcp-server-best-practices.md",
+      "content/pages/gitbook-mcp-server-community.md",
+      "content/pages/gitbook-mcp-server-ratings.md",
+      "content/pages/gitbook-mcp-server-reviews.md",
+      "content/pages/gitbook-mcp-server-testimonials.md",
+      "content/pages/gitbook-mcp-server-troubleshooting.md",
+      "content/servers/gitbook-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "github-mcp-registry",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/github-mcp-registry-ugc.md",
+    "supporting_queries": [
+      "content/ugc/topics/github-mcp-registry-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "github-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/github-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/github-mcp-server-alternatives.md",
+      "content/pages/github-mcp-server-beginner-guide.md",
+      "content/pages/github-mcp-server-best-practices.md",
+      "content/pages/github-mcp-server-community.md",
+      "content/pages/github-mcp-server-ratings.md",
+      "content/pages/github-mcp-server-reviews.md",
+      "content/pages/github-mcp-server-testimonials.md",
+      "content/pages/github-mcp-server-troubleshooting.md",
+      "content/servers/github-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "gitlab-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/gitlab-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/gitlab-mcp-server-alternatives.md",
+      "content/pages/gitlab-mcp-server-beginner-guide.md",
+      "content/pages/gitlab-mcp-server-best-practices.md",
+      "content/pages/gitlab-mcp-server-community.md",
+      "content/pages/gitlab-mcp-server-ratings.md",
+      "content/pages/gitlab-mcp-server-reviews.md",
+      "content/pages/gitlab-mcp-server-testimonials.md",
+      "content/pages/gitlab-mcp-server-troubleshooting.md",
+      "content/servers/gitlab-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "glama-mcp",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/glama-mcp-ugc.md",
+    "supporting_queries": [
+      "content/ugc/topics/glama-mcp-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "gmail-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/gmail-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/gmail-mcp-server-alternatives.md",
+      "content/pages/gmail-mcp-server-beginner-guide.md",
+      "content/pages/gmail-mcp-server-best-practices.md",
+      "content/pages/gmail-mcp-server-community.md",
+      "content/pages/gmail-mcp-server-ratings.md",
+      "content/pages/gmail-mcp-server-reviews.md",
+      "content/pages/gmail-mcp-server-testimonials.md",
+      "content/pages/gmail-mcp-server-troubleshooting.md",
+      "content/servers/gmail-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "google-calendar-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/google-calendar-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/google-calendar-mcp-server-alternatives.md",
+      "content/pages/google-calendar-mcp-server-beginner-guide.md",
+      "content/pages/google-calendar-mcp-server-best-practices.md",
+      "content/pages/google-calendar-mcp-server-community.md",
+      "content/pages/google-calendar-mcp-server-ratings.md",
+      "content/pages/google-calendar-mcp-server-reviews.md",
+      "content/pages/google-calendar-mcp-server-testimonials.md",
+      "content/pages/google-calendar-mcp-server-troubleshooting.md",
+      "content/servers/google-calendar-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "google-cloud-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/google-cloud-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/google-cloud-mcp-server-alternatives.md",
+      "content/pages/google-cloud-mcp-server-beginner-guide.md",
+      "content/pages/google-cloud-mcp-server-best-practices.md",
+      "content/pages/google-cloud-mcp-server-community.md",
+      "content/pages/google-cloud-mcp-server-ratings.md",
+      "content/pages/google-cloud-mcp-server-reviews.md",
+      "content/pages/google-cloud-mcp-server-testimonials.md",
+      "content/pages/google-cloud-mcp-server-troubleshooting.md",
+      "content/servers/google-cloud-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "google-drive-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/google-drive-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/google-drive-mcp-server-alternatives.md",
+      "content/pages/google-drive-mcp-server-beginner-guide.md",
+      "content/pages/google-drive-mcp-server-best-practices.md",
+      "content/pages/google-drive-mcp-server-community.md",
+      "content/pages/google-drive-mcp-server-ratings.md",
+      "content/pages/google-drive-mcp-server-reviews.md",
+      "content/pages/google-drive-mcp-server-testimonials.md",
+      "content/pages/google-drive-mcp-server-troubleshooting.md",
+      "content/servers/google-drive-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "google-gemini-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/google-gemini-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/google-gemini-mcp-server-alternatives.md",
+      "content/pages/google-gemini-mcp-server-beginner-guide.md",
+      "content/pages/google-gemini-mcp-server-best-practices.md",
+      "content/pages/google-gemini-mcp-server-community.md",
+      "content/pages/google-gemini-mcp-server-ratings.md",
+      "content/pages/google-gemini-mcp-server-reviews.md",
+      "content/pages/google-gemini-mcp-server-testimonials.md",
+      "content/pages/google-gemini-mcp-server-troubleshooting.md",
+      "content/servers/google-gemini-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "grafana-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/grafana-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/grafana-mcp-server-alternatives.md",
+      "content/pages/grafana-mcp-server-beginner-guide.md",
+      "content/pages/grafana-mcp-server-best-practices.md",
+      "content/pages/grafana-mcp-server-community.md",
+      "content/pages/grafana-mcp-server-ratings.md",
+      "content/pages/grafana-mcp-server-reviews.md",
+      "content/pages/grafana-mcp-server-testimonials.md",
+      "content/pages/grafana-mcp-server-troubleshooting.md",
+      "content/servers/grafana-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "heroku-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/heroku-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/heroku-mcp-server-alternatives.md",
+      "content/pages/heroku-mcp-server-beginner-guide.md",
+      "content/pages/heroku-mcp-server-best-practices.md",
+      "content/pages/heroku-mcp-server-community.md",
+      "content/pages/heroku-mcp-server-ratings.md",
+      "content/pages/heroku-mcp-server-reviews.md",
+      "content/pages/heroku-mcp-server-testimonials.md",
+      "content/pages/heroku-mcp-server-troubleshooting.md",
+      "content/servers/heroku-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "how-mcp-works",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/how-mcp-works-ugc.md",
+    "supporting_queries": [
+      "content/ugc/topics/how-mcp-works-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "hubspot-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/hubspot-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/hubspot-mcp-server-alternatives.md",
+      "content/pages/hubspot-mcp-server-beginner-guide.md",
+      "content/pages/hubspot-mcp-server-best-practices.md",
+      "content/pages/hubspot-mcp-server-community.md",
+      "content/pages/hubspot-mcp-server-ratings.md",
+      "content/pages/hubspot-mcp-server-reviews.md",
+      "content/pages/hubspot-mcp-server-testimonials.md",
+      "content/pages/hubspot-mcp-server-troubleshooting.md",
+      "content/servers/hubspot-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "install-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/install-mcp-server-ugc.md",
+    "supporting_queries": [
+      "content/ugc/topics/install-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "jenkins-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/jenkins-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/jenkins-mcp-server-alternatives.md",
+      "content/pages/jenkins-mcp-server-beginner-guide.md",
+      "content/pages/jenkins-mcp-server-best-practices.md",
+      "content/pages/jenkins-mcp-server-community.md",
+      "content/pages/jenkins-mcp-server-ratings.md",
+      "content/pages/jenkins-mcp-server-reviews.md",
+      "content/pages/jenkins-mcp-server-testimonials.md",
+      "content/pages/jenkins-mcp-server-troubleshooting.md",
+      "content/servers/jenkins-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "jira-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/jira-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/jira-mcp-server-alternatives.md",
+      "content/pages/jira-mcp-server-beginner-guide.md",
+      "content/pages/jira-mcp-server-best-practices.md",
+      "content/pages/jira-mcp-server-community.md",
+      "content/pages/jira-mcp-server-ratings.md",
+      "content/pages/jira-mcp-server-reviews.md",
+      "content/pages/jira-mcp-server-testimonials.md",
+      "content/pages/jira-mcp-server-troubleshooting.md",
+      "content/servers/jira-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "kubernetes-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/kubernetes-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/kubernetes-mcp-server-alternatives.md",
+      "content/pages/kubernetes-mcp-server-beginner-guide.md",
+      "content/pages/kubernetes-mcp-server-best-practices.md",
+      "content/pages/kubernetes-mcp-server-community.md",
+      "content/pages/kubernetes-mcp-server-ratings.md",
+      "content/pages/kubernetes-mcp-server-reviews.md",
+      "content/pages/kubernetes-mcp-server-testimonials.md",
+      "content/pages/kubernetes-mcp-server-troubleshooting.md",
+      "content/servers/kubernetes-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "linear-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/linear-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/linear-mcp-server-alternatives.md",
+      "content/pages/linear-mcp-server-beginner-guide.md",
+      "content/pages/linear-mcp-server-best-practices.md",
+      "content/pages/linear-mcp-server-community.md",
+      "content/pages/linear-mcp-server-ratings.md",
+      "content/pages/linear-mcp-server-reviews.md",
+      "content/pages/linear-mcp-server-testimonials.md",
+      "content/pages/linear-mcp-server-troubleshooting.md",
+      "content/servers/linear-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "linode-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/linode-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/linode-mcp-server-alternatives.md",
+      "content/pages/linode-mcp-server-beginner-guide.md",
+      "content/pages/linode-mcp-server-best-practices.md",
+      "content/pages/linode-mcp-server-community.md",
+      "content/pages/linode-mcp-server-ratings.md",
+      "content/pages/linode-mcp-server-reviews.md",
+      "content/pages/linode-mcp-server-testimonials.md",
+      "content/pages/linode-mcp-server-troubleshooting.md",
+      "content/servers/linode-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "mcp-agent",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-agent-ugc.md",
+    "supporting_queries": [
+      "content/ugc/pillars/mcp-agent-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-api",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-api-ugc.md",
+    "supporting_queries": [
+      "content/ugc/pillars/mcp-api-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-architecture",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-architecture-ugc.md",
+    "supporting_queries": [
+      "content/ugc/topics/mcp-architecture-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-as-control-layer",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-as-control-layer-ugc.md",
+    "supporting_queries": [
+      "content/ugc/topics/mcp-as-control-layer-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-authentication",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-authentication-ugc.md",
+    "supporting_queries": [
+      "content/ugc/pillars/mcp-authentication-ugc.md",
+      "content/ugc/topics/mcp-authentication-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 2
+  },
+  {
+    "entity_id": "mcp-automation",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-automation-ugc.md",
+    "supporting_queries": [
+      "content/ugc/pillars/mcp-automation-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-azure-ai",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-azure-ai-ugc.md",
+    "supporting_queries": [
+      "content/ugc/topics/mcp-azure-ai-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-bin",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-bin-ugc.md",
+    "supporting_queries": [
+      "content/ugc/topics/mcp-bin-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-boilerplate",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-boilerplate-ugc.md",
+    "supporting_queries": [
+      "content/ugc/pillars/mcp-boilerplate-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-browser-automation",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-browser-automation-ugc.md",
+    "supporting_queries": [
+      "content/ugc/topics/mcp-browser-automation-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-categories-guide",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-categories-guide-ugc.md",
+    "supporting_queries": [
+      "content/ugc/topics/mcp-categories-guide-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-categories",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-categories-ugc.md",
+    "supporting_queries": [
+      "content/ugc/pillars/mcp-categories-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-chatgpt",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-chatgpt-ugc.md",
+    "supporting_queries": [
+      "content/ugc/pillars/mcp-chatgpt-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-claude-desktop",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-claude-desktop-ugc.md",
+    "supporting_queries": [
+      "content/ugc/topics/mcp-claude-desktop-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-claude",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-claude-ugc.md",
+    "supporting_queries": [
+      "content/ugc/pillars/mcp-claude-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-client",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-client-ugc.md",
+    "supporting_queries": [
+      "content/ugc/pillars/mcp-client-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-clients",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-clients-ugc.md",
+    "supporting_queries": [
+      "content/ugc/pillars/mcp-clients-ugc.md",
+      "content/ugc/topics/mcp-clients-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 2
+  },
+  {
+    "entity_id": "mcp-cloud-infrastructure",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-cloud-infrastructure-ugc.md",
+    "supporting_queries": [
+      "content/ugc/topics/mcp-cloud-infrastructure-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-cloud",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-cloud-ugc.md",
+    "supporting_queries": [
+      "content/ugc/pillars/mcp-cloud-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-config",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-config-ugc.md",
+    "supporting_queries": [
+      "content/ugc/pillars/mcp-config-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-containerization",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-containerization-ugc.md",
+    "supporting_queries": [
+      "content/ugc/topics/mcp-containerization-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-credential-management",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-credential-management-ugc.md",
+    "supporting_queries": [
+      "content/ugc/topics/mcp-credential-management-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-cursor",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-cursor-ugc.md",
+    "supporting_queries": [
+      "content/ugc/pillars/mcp-cursor-ugc.md",
+      "content/ugc/topics/mcp-cursor-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 2
+  },
+  {
+    "entity_id": "mcp-data-extraction",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-data-extraction-ugc.md",
+    "supporting_queries": [
+      "content/ugc/pillars/mcp-data-extraction-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-database-analytics",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-database-analytics-ugc.md",
+    "supporting_queries": [
+      "content/ugc/topics/mcp-database-analytics-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-database",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-database-ugc.md",
+    "supporting_queries": [
+      "content/ugc/pillars/mcp-database-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-debugging",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-debugging-ugc.md",
+    "supporting_queries": [
+      "content/ugc/pillars/mcp-debugging-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-deployment",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-deployment-ugc.md",
+    "supporting_queries": [
+      "content/ugc/pillars/mcp-deployment-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-design-tools",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-design-tools-ugc.md",
+    "supporting_queries": [
+      "content/ugc/topics/mcp-design-tools-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-developer-tools",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-developer-tools-ugc.md",
+    "supporting_queries": [
+      "content/ugc/topics/mcp-developer-tools-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-development",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-development-ugc.md",
+    "supporting_queries": [
+      "content/ugc/pillars/mcp-development-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-directory-listing",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-directory-listing-ugc.md",
+    "supporting_queries": [
+      "content/ugc/topics/mcp-directory-listing-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-docker-hosting",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-docker-hosting-ugc.md",
+    "supporting_queries": [
+      "content/ugc/topics/mcp-docker-hosting-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-docker",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-docker-ugc.md",
+    "supporting_queries": [
+      "content/ugc/pillars/mcp-docker-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-dpdp",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-dpdp-ugc.md",
+    "supporting_queries": [
+      "content/ugc/pillars/mcp-dpdp-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-ecosystem-growth",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-ecosystem-growth-ugc.md",
+    "supporting_queries": [
+      "content/ugc/topics/mcp-ecosystem-growth-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-enterprise",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-enterprise-ugc.md",
+    "supporting_queries": [
+      "content/ugc/pillars/mcp-enterprise-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-examples",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-examples-ugc.md",
+    "supporting_queries": [
+      "content/ugc/pillars/mcp-examples-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-filesystem",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-filesystem-ugc.md",
+    "supporting_queries": [
+      "content/ugc/pillars/mcp-filesystem-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-forge",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-forge-ugc.md",
+    "supporting_queries": [
+      "content/ugc/topics/mcp-forge-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-github-copilot",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-github-copilot-ugc.md",
+    "supporting_queries": [
+      "content/ugc/topics/mcp-github-copilot-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-grafana",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-grafana-ugc.md",
+    "supporting_queries": [
+      "content/ugc/pillars/mcp-grafana-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-hosting",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-hosting-ugc.md",
+    "supporting_queries": [
+      "content/ugc/pillars/mcp-hosting-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-india",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-india-ugc.md",
+    "supporting_queries": [
+      "content/ugc/pillars/mcp-india-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-install",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-install-ugc.md",
+    "supporting_queries": [
+      "content/ugc/pillars/mcp-install-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-installation",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-installation-ugc.md",
+    "supporting_queries": [
+      "content/ugc/pillars/mcp-installation-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-integration",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-integration-ugc.md",
+    "supporting_queries": [
+      "content/ugc/pillars/mcp-integration-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-knowledge-management",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-knowledge-management-ugc.md",
+    "supporting_queries": [
+      "content/ugc/topics/mcp-knowledge-management-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-kubernetes",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-kubernetes-ugc.md",
+    "supporting_queries": [
+      "content/ugc/pillars/mcp-kubernetes-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-least-privilege",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-least-privilege-ugc.md",
+    "supporting_queries": [
+      "content/ugc/topics/mcp-least-privilege-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-list",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-list-ugc.md",
+    "supporting_queries": [
+      "content/ugc/pillars/mcp-list-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-local-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-local-server-ugc.md",
+    "supporting_queries": [
+      "content/ugc/topics/mcp-local-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-local",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-local-ugc.md",
+    "supporting_queries": [
+      "content/ugc/pillars/mcp-local-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-logging-monitoring",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-logging-monitoring-ugc.md",
+    "supporting_queries": [
+      "content/ugc/topics/mcp-logging-monitoring-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-manual-configuration",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-manual-configuration-ugc.md",
+    "supporting_queries": [
+      "content/ugc/topics/mcp-manual-configuration-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-marketplace",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-marketplace-ugc.md",
+    "supporting_queries": [
+      "content/ugc/pillars/mcp-marketplace-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-marketplaces",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-marketplaces-ugc.md",
+    "supporting_queries": [
+      "content/ugc/pillars/mcp-marketplaces-ugc.md",
+      "content/ugc/topics/mcp-marketplaces-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 2
+  },
+  {
+    "entity_id": "mcp-monetization",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-monetization-ugc.md",
+    "supporting_queries": [
+      "content/ugc/topics/mcp-monetization-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-performance",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-performance-ugc.md",
+    "supporting_queries": [
+      "content/ugc/pillars/mcp-performance-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-production",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-production-ugc.md",
+    "supporting_queries": [
+      "content/ugc/pillars/mcp-production-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-protocol",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-protocol-ugc.md",
+    "supporting_queries": [
+      "content/ugc/pillars/mcp-protocol-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-python",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-python-ugc.md",
+    "supporting_queries": [
+      "content/ugc/pillars/mcp-python-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-reddit-scraper",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-reddit-scraper-ugc.md",
+    "supporting_queries": [
+      "content/ugc/pillars/mcp-reddit-scraper-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-reddit",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-reddit-ugc.md",
+    "supporting_queries": [
+      "content/ugc/pillars/mcp-reddit-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-remote-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-remote-server-ugc.md",
+    "supporting_queries": [
+      "content/ugc/topics/mcp-remote-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-remote",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-remote-ugc.md",
+    "supporting_queries": [
+      "content/ugc/pillars/mcp-remote-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-scaling",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-scaling-ugc.md",
+    "supporting_queries": [
+      "content/ugc/pillars/mcp-scaling-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-sdk",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-sdk-ugc.md",
+    "supporting_queries": [
+      "content/ugc/topics/mcp-sdk-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-security-best-practices",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-security-best-practices-ugc.md",
+    "supporting_queries": [
+      "content/ugc/topics/mcp-security-best-practices-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-security-checklist",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-security-checklist-ugc.md",
+    "supporting_queries": [
+      "content/ugc/topics/mcp-security-checklist-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-security",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-security-ugc.md",
+    "supporting_queries": [
+      "content/ugc/pillars/mcp-security-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-sentiment-analysis",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-sentiment-analysis-ugc.md",
+    "supporting_queries": [
+      "content/ugc/pillars/mcp-sentiment-analysis-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-server-examples",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-server-examples-ugc.md",
+    "supporting_queries": [
+      "content/ugc/topics/mcp-server-examples-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-server-monitoring",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-server-monitoring-ugc.md",
+    "supporting_queries": [
+      "content/ugc/pillars/mcp-server-monitoring-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-server-testing",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-server-testing-ugc.md",
+    "supporting_queries": [
+      "content/ugc/topics/mcp-server-testing-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-server-ugc.md",
+    "supporting_queries": [
+      "content/ugc/pillars/mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-setup",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-setup-ugc.md",
+    "supporting_queries": [
+      "content/ugc/pillars/mcp-setup-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-steering-group",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-steering-group-ugc.md",
+    "supporting_queries": [
+      "content/ugc/topics/mcp-steering-group-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-task-based-vs-resource-based",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-task-based-vs-resource-based-ugc.md",
+    "supporting_queries": [
+      "content/ugc/topics/mcp-task-based-vs-resource-based-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-testing",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-testing-ugc.md",
+    "supporting_queries": [
+      "content/ugc/pillars/mcp-testing-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-tools-definition",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-tools-definition-ugc.md",
+    "supporting_queries": [
+      "content/ugc/topics/mcp-tools-definition-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-tools",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-tools-ugc.md",
+    "supporting_queries": [
+      "content/ugc/pillars/mcp-tools-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-transport",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-transport-ugc.md",
+    "supporting_queries": [
+      "content/ugc/topics/mcp-transport-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-trends",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-trends-ugc.md",
+    "supporting_queries": [
+      "content/ugc/pillars/mcp-trends-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-tutorial",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-tutorial-ugc.md",
+    "supporting_queries": [
+      "content/ugc/pillars/mcp-tutorial-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-typescript",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-typescript-ugc.md",
+    "supporting_queries": [
+      "content/ugc/pillars/mcp-typescript-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-validator",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-validator-ugc.md",
+    "supporting_queries": [
+      "content/ugc/pillars/mcp-validator-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-vs-a2a",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-vs-a2a-ugc.md",
+    "supporting_queries": [
+      "content/ugc/topics/mcp-vs-a2a-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-vs-api",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-vs-api-ugc.md",
+    "supporting_queries": [
+      "content/ugc/pillars/mcp-vs-api-ugc.md",
+      "content/ugc/topics/mcp-vs-api-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 2
+  },
+  {
+    "entity_id": "mcp-vs-rest-api",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-vs-rest-api-ugc.md",
+    "supporting_queries": [
+      "content/ugc/topics/mcp-vs-rest-api-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-vscode",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-vscode-ugc.md",
+    "supporting_queries": [
+      "content/ugc/topics/mcp-vscode-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-workflow",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-workflow-ugc.md",
+    "supporting_queries": [
+      "content/ugc/pillars/mcp-workflow-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcp-zerodha",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcp-zerodha-ugc.md",
+    "supporting_queries": [
+      "content/ugc/pillars/mcp-zerodha-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mcpso-mcp",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mcpso-mcp-ugc.md",
+    "supporting_queries": [
+      "content/ugc/topics/mcpso-mcp-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "mistral-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mistral-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/mistral-mcp-server-alternatives.md",
+      "content/pages/mistral-mcp-server-beginner-guide.md",
+      "content/pages/mistral-mcp-server-best-practices.md",
+      "content/pages/mistral-mcp-server-community.md",
+      "content/pages/mistral-mcp-server-ratings.md",
+      "content/pages/mistral-mcp-server-reviews.md",
+      "content/pages/mistral-mcp-server-testimonials.md",
+      "content/pages/mistral-mcp-server-troubleshooting.md",
+      "content/servers/mistral-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "mongodb-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mongodb-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/mongodb-mcp-server-alternatives.md",
+      "content/pages/mongodb-mcp-server-beginner-guide.md",
+      "content/pages/mongodb-mcp-server-best-practices.md",
+      "content/pages/mongodb-mcp-server-community.md",
+      "content/pages/mongodb-mcp-server-ratings.md",
+      "content/pages/mongodb-mcp-server-reviews.md",
+      "content/pages/mongodb-mcp-server-testimonials.md",
+      "content/pages/mongodb-mcp-server-troubleshooting.md",
+      "content/servers/mongodb-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "ms-teams-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/ms-teams-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/ms-teams-mcp-server-alternatives.md",
+      "content/pages/ms-teams-mcp-server-beginner-guide.md",
+      "content/pages/ms-teams-mcp-server-best-practices.md",
+      "content/pages/ms-teams-mcp-server-community.md",
+      "content/pages/ms-teams-mcp-server-ratings.md",
+      "content/pages/ms-teams-mcp-server-reviews.md",
+      "content/pages/ms-teams-mcp-server-testimonials.md",
+      "content/pages/ms-teams-mcp-server-troubleshooting.md",
+      "content/servers/ms-teams-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "mysql-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/mysql-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/mysql-mcp-server-alternatives.md",
+      "content/pages/mysql-mcp-server-beginner-guide.md",
+      "content/pages/mysql-mcp-server-best-practices.md",
+      "content/pages/mysql-mcp-server-community.md",
+      "content/pages/mysql-mcp-server-ratings.md",
+      "content/pages/mysql-mcp-server-reviews.md",
+      "content/pages/mysql-mcp-server-testimonials.md",
+      "content/pages/mysql-mcp-server-troubleshooting.md",
+      "content/servers/mysql-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "neo4j-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/neo4j-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/neo4j-mcp-server-alternatives.md",
+      "content/pages/neo4j-mcp-server-beginner-guide.md",
+      "content/pages/neo4j-mcp-server-best-practices.md",
+      "content/pages/neo4j-mcp-server-community.md",
+      "content/pages/neo4j-mcp-server-ratings.md",
+      "content/pages/neo4j-mcp-server-reviews.md",
+      "content/pages/neo4j-mcp-server-testimonials.md",
+      "content/pages/neo4j-mcp-server-troubleshooting.md",
+      "content/servers/neo4j-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "newrelic-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/newrelic-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/newrelic-mcp-server-alternatives.md",
+      "content/pages/newrelic-mcp-server-beginner-guide.md",
+      "content/pages/newrelic-mcp-server-best-practices.md",
+      "content/pages/newrelic-mcp-server-community.md",
+      "content/pages/newrelic-mcp-server-ratings.md",
+      "content/pages/newrelic-mcp-server-reviews.md",
+      "content/pages/newrelic-mcp-server-testimonials.md",
+      "content/pages/newrelic-mcp-server-troubleshooting.md",
+      "content/servers/newrelic-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "notion-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/notion-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/notion-mcp-server-alternatives.md",
+      "content/pages/notion-mcp-server-beginner-guide.md",
+      "content/pages/notion-mcp-server-best-practices.md",
+      "content/pages/notion-mcp-server-community.md",
+      "content/pages/notion-mcp-server-ratings.md",
+      "content/pages/notion-mcp-server-reviews.md",
+      "content/pages/notion-mcp-server-testimonials.md",
+      "content/pages/notion-mcp-server-troubleshooting.md",
+      "content/servers/notion-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "official-mcp-integrations",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/official-mcp-integrations-ugc.md",
+    "supporting_queries": [
+      "content/ugc/topics/official-mcp-integrations-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "official-mcp-servers",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/official-mcp-servers-ugc.md",
+    "supporting_queries": [
+      "content/ugc/pillars/official-mcp-servers-ugc.md",
+      "content/ugc/topics/official-mcp-servers-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 2
+  },
+  {
+    "entity_id": "ollama-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/ollama-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/ollama-mcp-server-alternatives.md",
+      "content/pages/ollama-mcp-server-beginner-guide.md",
+      "content/pages/ollama-mcp-server-best-practices.md",
+      "content/pages/ollama-mcp-server-community.md",
+      "content/pages/ollama-mcp-server-ratings.md",
+      "content/pages/ollama-mcp-server-reviews.md",
+      "content/pages/ollama-mcp-server-testimonials.md",
+      "content/pages/ollama-mcp-server-troubleshooting.md",
+      "content/servers/ollama-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "openai-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/openai-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/openai-mcp-server-alternatives.md",
+      "content/pages/openai-mcp-server-beginner-guide.md",
+      "content/pages/openai-mcp-server-best-practices.md",
+      "content/pages/openai-mcp-server-community.md",
+      "content/pages/openai-mcp-server-ratings.md",
+      "content/pages/openai-mcp-server-reviews.md",
+      "content/pages/openai-mcp-server-testimonials.md",
+      "content/pages/openai-mcp-server-troubleshooting.md",
+      "content/servers/openai-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "opentelemetry-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/opentelemetry-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/opentelemetry-mcp-server-alternatives.md",
+      "content/pages/opentelemetry-mcp-server-beginner-guide.md",
+      "content/pages/opentelemetry-mcp-server-best-practices.md",
+      "content/pages/opentelemetry-mcp-server-community.md",
+      "content/pages/opentelemetry-mcp-server-ratings.md",
+      "content/pages/opentelemetry-mcp-server-reviews.md",
+      "content/pages/opentelemetry-mcp-server-testimonials.md",
+      "content/pages/opentelemetry-mcp-server-troubleshooting.md",
+      "content/servers/opentelemetry-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "oracle-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/oracle-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/oracle-mcp-server-alternatives.md",
+      "content/pages/oracle-mcp-server-beginner-guide.md",
+      "content/pages/oracle-mcp-server-best-practices.md",
+      "content/pages/oracle-mcp-server-community.md",
+      "content/pages/oracle-mcp-server-ratings.md",
+      "content/pages/oracle-mcp-server-reviews.md",
+      "content/pages/oracle-mcp-server-testimonials.md",
+      "content/pages/oracle-mcp-server-troubleshooting.md",
+      "content/servers/oracle-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "paddle-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/paddle-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/paddle-mcp-server-alternatives.md",
+      "content/pages/paddle-mcp-server-beginner-guide.md",
+      "content/pages/paddle-mcp-server-best-practices.md",
+      "content/pages/paddle-mcp-server-community.md",
+      "content/pages/paddle-mcp-server-ratings.md",
+      "content/pages/paddle-mcp-server-reviews.md",
+      "content/pages/paddle-mcp-server-testimonials.md",
+      "content/pages/paddle-mcp-server-troubleshooting.md",
+      "content/servers/paddle-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "paypal-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/paypal-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/paypal-mcp-server-alternatives.md",
+      "content/pages/paypal-mcp-server-beginner-guide.md",
+      "content/pages/paypal-mcp-server-best-practices.md",
+      "content/pages/paypal-mcp-server-community.md",
+      "content/pages/paypal-mcp-server-ratings.md",
+      "content/pages/paypal-mcp-server-reviews.md",
+      "content/pages/paypal-mcp-server-testimonials.md",
+      "content/pages/paypal-mcp-server-troubleshooting.md",
+      "content/servers/paypal-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "pinecone-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/pinecone-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/pinecone-mcp-server-alternatives.md",
+      "content/pages/pinecone-mcp-server-beginner-guide.md",
+      "content/pages/pinecone-mcp-server-best-practices.md",
+      "content/pages/pinecone-mcp-server-community.md",
+      "content/pages/pinecone-mcp-server-ratings.md",
+      "content/pages/pinecone-mcp-server-reviews.md",
+      "content/pages/pinecone-mcp-server-testimonials.md",
+      "content/pages/pinecone-mcp-server-troubleshooting.md",
+      "content/servers/pinecone-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "postgres-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/postgres-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/postgres-mcp-server-alternatives.md",
+      "content/pages/postgres-mcp-server-beginner-guide.md",
+      "content/pages/postgres-mcp-server-best-practices.md",
+      "content/pages/postgres-mcp-server-community.md",
+      "content/pages/postgres-mcp-server-ratings.md",
+      "content/pages/postgres-mcp-server-reviews.md",
+      "content/pages/postgres-mcp-server-testimonials.md",
+      "content/pages/postgres-mcp-server-troubleshooting.md",
+      "content/servers/postgres-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "postman-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/postman-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/postman-mcp-server-alternatives.md",
+      "content/pages/postman-mcp-server-beginner-guide.md",
+      "content/pages/postman-mcp-server-best-practices.md",
+      "content/pages/postman-mcp-server-community.md",
+      "content/pages/postman-mcp-server-ratings.md",
+      "content/pages/postman-mcp-server-reviews.md",
+      "content/pages/postman-mcp-server-testimonials.md",
+      "content/pages/postman-mcp-server-troubleshooting.md",
+      "content/servers/postman-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "powerbi-mcp",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/powerbi-mcp-ugc.md",
+    "supporting_queries": [
+      "content/ugc/topics/powerbi-mcp-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "prometheus-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/prometheus-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/prometheus-mcp-server-alternatives.md",
+      "content/pages/prometheus-mcp-server-beginner-guide.md",
+      "content/pages/prometheus-mcp-server-best-practices.md",
+      "content/pages/prometheus-mcp-server-community.md",
+      "content/pages/prometheus-mcp-server-ratings.md",
+      "content/pages/prometheus-mcp-server-reviews.md",
+      "content/pages/prometheus-mcp-server-testimonials.md",
+      "content/pages/prometheus-mcp-server-troubleshooting.md",
+      "content/servers/prometheus-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "pulsemcp",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/pulsemcp-ugc.md",
+    "supporting_queries": [
+      "content/ugc/topics/pulsemcp-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "quickbooks-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/quickbooks-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/quickbooks-mcp-server-alternatives.md",
+      "content/pages/quickbooks-mcp-server-beginner-guide.md",
+      "content/pages/quickbooks-mcp-server-best-practices.md",
+      "content/pages/quickbooks-mcp-server-community.md",
+      "content/pages/quickbooks-mcp-server-ratings.md",
+      "content/pages/quickbooks-mcp-server-reviews.md",
+      "content/pages/quickbooks-mcp-server-testimonials.md",
+      "content/pages/quickbooks-mcp-server-troubleshooting.md",
+      "content/servers/quickbooks-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "railway-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/railway-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/railway-mcp-server-alternatives.md",
+      "content/pages/railway-mcp-server-beginner-guide.md",
+      "content/pages/railway-mcp-server-best-practices.md",
+      "content/pages/railway-mcp-server-community.md",
+      "content/pages/railway-mcp-server-ratings.md",
+      "content/pages/railway-mcp-server-reviews.md",
+      "content/pages/railway-mcp-server-testimonials.md",
+      "content/pages/railway-mcp-server-troubleshooting.md",
+      "content/servers/railway-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "razorpay-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/razorpay-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/razorpay-mcp-server-alternatives.md",
+      "content/pages/razorpay-mcp-server-beginner-guide.md",
+      "content/pages/razorpay-mcp-server-best-practices.md",
+      "content/pages/razorpay-mcp-server-community.md",
+      "content/pages/razorpay-mcp-server-ratings.md",
+      "content/pages/razorpay-mcp-server-reviews.md",
+      "content/pages/razorpay-mcp-server-testimonials.md",
+      "content/pages/razorpay-mcp-server-troubleshooting.md",
+      "content/servers/razorpay-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "redis-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/redis-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/redis-mcp-server-alternatives.md",
+      "content/pages/redis-mcp-server-beginner-guide.md",
+      "content/pages/redis-mcp-server-best-practices.md",
+      "content/pages/redis-mcp-server-community.md",
+      "content/pages/redis-mcp-server-ratings.md",
+      "content/pages/redis-mcp-server-reviews.md",
+      "content/pages/redis-mcp-server-testimonials.md",
+      "content/pages/redis-mcp-server-troubleshooting.md",
+      "content/servers/redis-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "remote-mcp-trends",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/remote-mcp-trends-ugc.md",
+    "supporting_queries": [
+      "content/ugc/topics/remote-mcp-trends-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "render-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/render-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/render-mcp-server-alternatives.md",
+      "content/pages/render-mcp-server-beginner-guide.md",
+      "content/pages/render-mcp-server-best-practices.md",
+      "content/pages/render-mcp-server-community.md",
+      "content/pages/render-mcp-server-ratings.md",
+      "content/pages/render-mcp-server-reviews.md",
+      "content/pages/render-mcp-server-testimonials.md",
+      "content/pages/render-mcp-server-troubleshooting.md",
+      "content/servers/render-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "salesforce-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/salesforce-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/salesforce-mcp-server-alternatives.md",
+      "content/pages/salesforce-mcp-server-beginner-guide.md",
+      "content/pages/salesforce-mcp-server-best-practices.md",
+      "content/pages/salesforce-mcp-server-community.md",
+      "content/pages/salesforce-mcp-server-ratings.md",
+      "content/pages/salesforce-mcp-server-reviews.md",
+      "content/pages/salesforce-mcp-server-testimonials.md",
+      "content/pages/salesforce-mcp-server-troubleshooting.md",
+      "content/servers/salesforce-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "salesforce-mcp",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/salesforce-mcp-ugc.md",
+    "supporting_queries": [
+      "content/ugc/topics/salesforce-mcp-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "sap-mcp",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/sap-mcp-ugc.md",
+    "supporting_queries": [
+      "content/ugc/topics/sap-mcp-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "scaleway-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/scaleway-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/scaleway-mcp-server-alternatives.md",
+      "content/pages/scaleway-mcp-server-beginner-guide.md",
+      "content/pages/scaleway-mcp-server-best-practices.md",
+      "content/pages/scaleway-mcp-server-community.md",
+      "content/pages/scaleway-mcp-server-ratings.md",
+      "content/pages/scaleway-mcp-server-reviews.md",
+      "content/pages/scaleway-mcp-server-testimonials.md",
+      "content/pages/scaleway-mcp-server-troubleshooting.md",
+      "content/servers/scaleway-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "sentry-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/sentry-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/sentry-mcp-server-alternatives.md",
+      "content/pages/sentry-mcp-server-beginner-guide.md",
+      "content/pages/sentry-mcp-server-best-practices.md",
+      "content/pages/sentry-mcp-server-community.md",
+      "content/pages/sentry-mcp-server-ratings.md",
+      "content/pages/sentry-mcp-server-reviews.md",
+      "content/pages/sentry-mcp-server-testimonials.md",
+      "content/pages/sentry-mcp-server-troubleshooting.md",
+      "content/servers/sentry-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "servicenow-mcp",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/servicenow-mcp-ugc.md",
+    "supporting_queries": [
+      "content/ugc/topics/servicenow-mcp-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "shopify-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/shopify-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/shopify-mcp-server-alternatives.md",
+      "content/pages/shopify-mcp-server-beginner-guide.md",
+      "content/pages/shopify-mcp-server-best-practices.md",
+      "content/pages/shopify-mcp-server-community.md",
+      "content/pages/shopify-mcp-server-ratings.md",
+      "content/pages/shopify-mcp-server-reviews.md",
+      "content/pages/shopify-mcp-server-testimonials.md",
+      "content/pages/shopify-mcp-server-troubleshooting.md",
+      "content/servers/shopify-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "slack-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/slack-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/slack-mcp-server-alternatives.md",
+      "content/pages/slack-mcp-server-beginner-guide.md",
+      "content/pages/slack-mcp-server-best-practices.md",
+      "content/pages/slack-mcp-server-community.md",
+      "content/pages/slack-mcp-server-ratings.md",
+      "content/pages/slack-mcp-server-reviews.md",
+      "content/pages/slack-mcp-server-testimonials.md",
+      "content/pages/slack-mcp-server-troubleshooting.md",
+      "content/servers/slack-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "smithery-cli",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/smithery-cli-ugc.md",
+    "supporting_queries": [
+      "content/ugc/topics/smithery-cli-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "smithery-mcp",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/smithery-mcp-ugc.md",
+    "supporting_queries": [
+      "content/ugc/topics/smithery-mcp-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "sonarqube-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/sonarqube-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/sonarqube-mcp-server-alternatives.md",
+      "content/pages/sonarqube-mcp-server-beginner-guide.md",
+      "content/pages/sonarqube-mcp-server-best-practices.md",
+      "content/pages/sonarqube-mcp-server-community.md",
+      "content/pages/sonarqube-mcp-server-ratings.md",
+      "content/pages/sonarqube-mcp-server-reviews.md",
+      "content/pages/sonarqube-mcp-server-testimonials.md",
+      "content/pages/sonarqube-mcp-server-troubleshooting.md",
+      "content/servers/sonarqube-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "sqlite-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/sqlite-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/sqlite-mcp-server-alternatives.md",
+      "content/pages/sqlite-mcp-server-beginner-guide.md",
+      "content/pages/sqlite-mcp-server-best-practices.md",
+      "content/pages/sqlite-mcp-server-community.md",
+      "content/pages/sqlite-mcp-server-ratings.md",
+      "content/pages/sqlite-mcp-server-reviews.md",
+      "content/pages/sqlite-mcp-server-testimonials.md",
+      "content/pages/sqlite-mcp-server-troubleshooting.md",
+      "content/servers/sqlite-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "stripe-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/stripe-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/stripe-mcp-server-alternatives.md",
+      "content/pages/stripe-mcp-server-beginner-guide.md",
+      "content/pages/stripe-mcp-server-best-practices.md",
+      "content/pages/stripe-mcp-server-community.md",
+      "content/pages/stripe-mcp-server-ratings.md",
+      "content/pages/stripe-mcp-server-reviews.md",
+      "content/pages/stripe-mcp-server-testimonials.md",
+      "content/pages/stripe-mcp-server-troubleshooting.md",
+      "content/servers/stripe-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "supabase-cloud-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/supabase-cloud-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/supabase-cloud-mcp-server-alternatives.md",
+      "content/pages/supabase-cloud-mcp-server-beginner-guide.md",
+      "content/pages/supabase-cloud-mcp-server-best-practices.md",
+      "content/pages/supabase-cloud-mcp-server-community.md",
+      "content/pages/supabase-cloud-mcp-server-ratings.md",
+      "content/pages/supabase-cloud-mcp-server-reviews.md",
+      "content/pages/supabase-cloud-mcp-server-testimonials.md",
+      "content/pages/supabase-cloud-mcp-server-troubleshooting.md",
+      "content/servers/supabase-cloud-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "supabase-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/supabase-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/supabase-mcp-server-alternatives.md",
+      "content/pages/supabase-mcp-server-beginner-guide.md",
+      "content/pages/supabase-mcp-server-best-practices.md",
+      "content/pages/supabase-mcp-server-community.md",
+      "content/pages/supabase-mcp-server-ratings.md",
+      "content/pages/supabase-mcp-server-reviews.md",
+      "content/pages/supabase-mcp-server-testimonials.md",
+      "content/pages/supabase-mcp-server-troubleshooting.md",
+      "content/servers/supabase-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "swagger-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/swagger-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/swagger-mcp-server-alternatives.md",
+      "content/pages/swagger-mcp-server-beginner-guide.md",
+      "content/pages/swagger-mcp-server-best-practices.md",
+      "content/pages/swagger-mcp-server-community.md",
+      "content/pages/swagger-mcp-server-ratings.md",
+      "content/pages/swagger-mcp-server-reviews.md",
+      "content/pages/swagger-mcp-server-testimonials.md",
+      "content/pages/swagger-mcp-server-troubleshooting.md",
+      "content/servers/swagger-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "top-mcp-servers-developers",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/top-mcp-servers-developers-ugc.md",
+    "supporting_queries": [
+      "content/ugc/topics/top-mcp-servers-developers-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "trello-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/trello-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/trello-mcp-server-alternatives.md",
+      "content/pages/trello-mcp-server-beginner-guide.md",
+      "content/pages/trello-mcp-server-best-practices.md",
+      "content/pages/trello-mcp-server-community.md",
+      "content/pages/trello-mcp-server-ratings.md",
+      "content/pages/trello-mcp-server-reviews.md",
+      "content/pages/trello-mcp-server-testimonials.md",
+      "content/pages/trello-mcp-server-troubleshooting.md",
+      "content/servers/trello-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "vector-database-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/vector-database-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/vector-database-mcp-server-alternatives.md",
+      "content/pages/vector-database-mcp-server-beginner-guide.md",
+      "content/pages/vector-database-mcp-server-best-practices.md",
+      "content/pages/vector-database-mcp-server-community.md",
+      "content/pages/vector-database-mcp-server-ratings.md",
+      "content/pages/vector-database-mcp-server-reviews.md",
+      "content/pages/vector-database-mcp-server-testimonials.md",
+      "content/pages/vector-database-mcp-server-troubleshooting.md",
+      "content/servers/vector-database-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "vercel-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/vercel-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/vercel-mcp-server-alternatives.md",
+      "content/pages/vercel-mcp-server-beginner-guide.md",
+      "content/pages/vercel-mcp-server-best-practices.md",
+      "content/pages/vercel-mcp-server-community.md",
+      "content/pages/vercel-mcp-server-ratings.md",
+      "content/pages/vercel-mcp-server-reviews.md",
+      "content/pages/vercel-mcp-server-testimonials.md",
+      "content/pages/vercel-mcp-server-troubleshooting.md",
+      "content/servers/vercel-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "what-is-mcp",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/what-is-mcp-ugc.md",
+    "supporting_queries": [
+      "content/ugc/pillars/what-is-mcp-ugc.md",
+      "content/ugc/topics/what-is-mcp-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 2
+  },
+  {
+    "entity_id": "woocommerce-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/woocommerce-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/woocommerce-mcp-server-alternatives.md",
+      "content/pages/woocommerce-mcp-server-beginner-guide.md",
+      "content/pages/woocommerce-mcp-server-best-practices.md",
+      "content/pages/woocommerce-mcp-server-community.md",
+      "content/pages/woocommerce-mcp-server-ratings.md",
+      "content/pages/woocommerce-mcp-server-reviews.md",
+      "content/pages/woocommerce-mcp-server-testimonials.md",
+      "content/pages/woocommerce-mcp-server-troubleshooting.md",
+      "content/servers/woocommerce-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "workday-mcp",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/workday-mcp-ugc.md",
+    "supporting_queries": [
+      "content/ugc/topics/workday-mcp-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 1
+  },
+  {
+    "entity_id": "xero-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/xero-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/xero-mcp-server-alternatives.md",
+      "content/pages/xero-mcp-server-beginner-guide.md",
+      "content/pages/xero-mcp-server-best-practices.md",
+      "content/pages/xero-mcp-server-community.md",
+      "content/pages/xero-mcp-server-ratings.md",
+      "content/pages/xero-mcp-server-reviews.md",
+      "content/pages/xero-mcp-server-testimonials.md",
+      "content/pages/xero-mcp-server-troubleshooting.md",
+      "content/servers/xero-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  },
+  {
+    "entity_id": "zoom-mcp-server",
+    "primary_intent": "informational",
+    "canonical_route": "content/pages/zoom-mcp-server-advanced-guide.md",
+    "supporting_queries": [
+      "content/pages/zoom-mcp-server-alternatives.md",
+      "content/pages/zoom-mcp-server-beginner-guide.md",
+      "content/pages/zoom-mcp-server-best-practices.md",
+      "content/pages/zoom-mcp-server-community.md",
+      "content/pages/zoom-mcp-server-ratings.md",
+      "content/pages/zoom-mcp-server-reviews.md",
+      "content/pages/zoom-mcp-server-testimonials.md",
+      "content/pages/zoom-mcp-server-troubleshooting.md",
+      "content/servers/zoom-mcp-server-ugc.md"
+    ],
+    "content_family": "unknown",
+    "status": "active",
+    "conflicts": 9
+  }
+]

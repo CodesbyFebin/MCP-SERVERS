@@ -40,7 +40,7 @@ export default function CTA() {
           </div>
 
           <p className="mt-4 text-xs text-gray-500">
-            No credit card required for local tools & basic play. Fully managed SSE servers start at ₹999/mo.
+            No credit card required for local tools & basic play. Fully managed Streamable HTTP servers start at ₹999/mo.
           </p>
         </div>
       </div>

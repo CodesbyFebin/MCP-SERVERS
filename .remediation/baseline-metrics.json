@@ -1,0 +1,15 @@
+{
+  "timestamp": "2026-08-04T19:05:58.240Z",
+  "totalPages": 2442,
+  "missingCanonicals": 2442,
+  "missingH1s": 1834,
+  "brokenInternalLinks": 1360,
+  "deadEndPages": 2131,
+  "duplicateEntities": 198,
+  "duplicateHeadings": 742,
+  "duplicateKeywords": 796,
+  "safeDeepFailures": 2442,
+  "averageQualityScore": 54,
+  "entityCount": 220,
+  "relationshipCount": 1091
+}

@@ -1,0 +1,8 @@
+{
+  "check": "generated-links",
+  "threshold_broken": 0,
+  "threshold_orphan": 0,
+  "brokenLinks": 0,
+  "orphanApproved": 0,
+  "sampleBroken": []
+}

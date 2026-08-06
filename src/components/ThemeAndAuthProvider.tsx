@@ -116,7 +116,7 @@ export default function ThemeAndAuthProvider({ children }: { children: ReactNode
   const [theme, setTheme] = useState<Theme>("dark");
 
   // Auth state — the real session lives in an httpOnly cookie verified server-side
-  // (see src/lib/auth.ts + middleware.ts). This just mirrors it for the UI.
+  // (see src/lib/auth.ts + proxy.ts). This just mirrors it for the UI.
   const [user, setUser] = useState<User | null>(null);
   const [authLoading, setAuthLoading] = useState(true);
 

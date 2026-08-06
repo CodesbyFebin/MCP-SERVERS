@@ -1,0 +1,2082 @@
+[
+  {
+    "route": "/servers/github-mcp-server/",
+    "entityId": "server:github-mcp-server",
+    "title": "GitHub MCP Server",
+    "description": "Securely connect your AI agents to private and public GitHub repositories to write, review, and automate code workflows, pull requests, issues, and releases.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 96,
+    "updatedAt": "2026-08-04T20:10:35.912Z"
+  },
+  {
+    "route": "/servers/gitlab-mcp-server/",
+    "entityId": "server:gitlab-mcp-server",
+    "title": "GitLab MCP Server",
+    "description": "Orchestrate GitLab pipelines, manage merge requests, and perform secure code reviews inside private instances using Model Context Protocol.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 96,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/bitbucket-mcp-server/",
+    "entityId": "server:bitbucket-mcp-server",
+    "title": "Bitbucket MCP Server",
+    "description": "Allows autonomous agents to perform file modifications, check commits, and manage pull requests on Bitbucket Cloud or Server.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 96,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/docker-mcp-server/",
+    "entityId": "server:docker-mcp-server",
+    "title": "Docker MCP Server",
+    "description": "Manage containers, inspect active Docker configurations, execute container commands, and troubleshoot local microservices instantly using natural language.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 96,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/kubernetes-mcp-server/",
+    "entityId": "server:kubernetes-mcp-server",
+    "title": "Kubernetes MCP Server",
+    "description": "Query Pods, Services, and Deployments in your Kubernetes clusters. Instantly debug server errors or deploy YAML configurations safely.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 96,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/vercel-mcp-server/",
+    "entityId": "server:vercel-mcp-server",
+    "title": "Vercel MCP Server",
+    "description": "List Vercel deployments, check preview urls, trigger production builds, and retrieve site analytics directly inside code chats.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 96,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/cloudflare-mcp-server/",
+    "entityId": "server:cloudflare-mcp-server",
+    "title": "Cloudflare MCP Server",
+    "description": "Manage Cloudflare DNS records, configure Page Rules, purge CDN caches, and monitor Worker scripts effortlessly with AI support.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 96,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/sentry-mcp-server/",
+    "entityId": "server:sentry-mcp-server",
+    "title": "Sentry MCP Server",
+    "description": "Expose application errors, trace logs, and exception dumps to help AI models diagnose and repair application bugs in real-time.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 93,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/postman-mcp-server/",
+    "entityId": "server:postman-mcp-server",
+    "title": "Postman MCP Server",
+    "description": "Expose Postman collections, run automated test suites, and validate active HTTP configurations inside LLM workspaces.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 86,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/sonarqube-mcp-server/",
+    "entityId": "server:sonarqube-mcp-server",
+    "title": "SonarQube MCP Server",
+    "description": "Expose code quality audits, security vulnerabilities, and code smell warnings directly to autonomous development agents.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 93,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/circleci-mcp-server/",
+    "entityId": "server:circleci-mcp-server",
+    "title": "CircleCI MCP Server",
+    "description": "Expose pipeline statuses, retry failed tests, and automate continuous integration setups directly inside AI workflows.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 93,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/heroku-mcp-server/",
+    "entityId": "server:heroku-mcp-server",
+    "title": "Heroku MCP Server",
+    "description": "Check Heroku app dyno health, manage configurations, and trigger direct git deployments through Model Context Protocol.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 93,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/jenkins-mcp-server/",
+    "entityId": "server:jenkins-mcp-server",
+    "title": "Jenkins MCP Server",
+    "description": "Connect legacy CI/CD pipelines to modern AI workflows, triggering parameterized jobs and pulling logs dynamically.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 93,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/gitbook-mcp-server/",
+    "entityId": "server:gitbook-mcp-server",
+    "title": "GitBook MCP Server",
+    "description": "Sync code documentation, read guide contents, and write structured wiki files instantly with AI assistance.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 93,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/swagger-mcp-server/",
+    "entityId": "server:swagger-mcp-server",
+    "title": "Swagger MCP Server",
+    "description": "Integrate old Swagger v2 files directly into agent contexts, converting static definitions to operational tools on-the-fly.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 89,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/postgres-mcp-server/",
+    "entityId": "server:postgres-mcp-server",
+    "title": "PostgreSQL MCP Server",
+    "description": "Expose PostgreSQL databases to AI agents. Let your models query schemas, run safely-isolated SELECT queries, and automate database administration tasks.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 96,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/mysql-mcp-server/",
+    "entityId": "server:mysql-mcp-server",
+    "title": "MySQL MCP Server",
+    "description": "Connect to MySQL and MariaDB instances. Allow models to analyze relational databases, run query plans, and export records securely.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 96,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/mongodb-mcp-server/",
+    "entityId": "server:mongodb-mcp-server",
+    "title": "MongoDB MCP Server",
+    "description": "Connect AI systems to document databases. Run safe aggregates, retrieve document structures, and automate collections management.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 96,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/sqlite-mcp-server/",
+    "entityId": "server:sqlite-mcp-server",
+    "title": "SQLite MCP Server",
+    "description": "The ideal database tool for local AI agents. Run instant queries on local database files with zero network latency.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 93,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/redis-mcp-server/",
+    "entityId": "server:redis-mcp-server",
+    "title": "Redis MCP Server",
+    "description": "Expose fast in-memory key-value data, trace application sessions, clear stale caches, and manage message queues with AI support.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 96,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/supabase-mcp-server/",
+    "entityId": "server:supabase-mcp-server",
+    "title": "Supabase MCP Server",
+    "description": "Manage Supabase projects, write PostgreSQL functions, inspect Edge Functions, and manage public files buckets through natural language.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 96,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/firebase-mcp-server/",
+    "entityId": "server:firebase-mcp-server",
+    "title": "Firebase MCP Server",
+    "description": "Allows models to read/write Firestore collections, audit Firebase Authentication users, and monitor Realtime Database paths.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 96,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/pinecone-mcp-server/",
+    "entityId": "server:pinecone-mcp-server",
+    "title": "Pinecone MCP Server",
+    "description": "Manage Pinecone vector namespaces, perform semantic searches, insert vector records, and review active search metrics.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 96,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/vector-database-mcp-server/",
+    "entityId": "server:vector-database-mcp-server",
+    "title": "Vector Database MCP Server",
+    "description": "A generalized MCP server supporting ChromaDB, Milvus, and Weaviate. Let your AI search across dynamic high-dimensional vectors.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 93,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/cassandra-mcp-server/",
+    "entityId": "server:cassandra-mcp-server",
+    "title": "Cassandra MCP Server",
+    "description": "Query wide-column Cassandra database tables and execute Cassandra Query Language (CQL) safely inside models.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 93,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/neo4j-mcp-server/",
+    "entityId": "server:neo4j-mcp-server",
+    "title": "Neo4j MCP Server",
+    "description": "Connect to Neo4j graph databases. Allow AI models to execute Cypher queries and traverse intricate network relationships.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 93,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/dynamodb-mcp-server/",
+    "entityId": "server:dynamodb-mcp-server",
+    "title": "DynamoDB MCP Server",
+    "description": "Expose AWS DynamoDB tables to your agents. Perform high-performance document reads, partition key queries, and schema updates.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 93,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/clickhouse-mcp-server/",
+    "entityId": "server:clickhouse-mcp-server",
+    "title": "ClickHouse MCP Server",
+    "description": "Query ClickHouse analytical databases. Run massive aggregates on millions of events instantly under LLM guidance.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 93,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/elasticsearch-mcp-server/",
+    "entityId": "server:elasticsearch-mcp-server",
+    "title": "Elasticsearch MCP Server",
+    "description": "Expose Elasticsearch indexes. Perform full-text search, audit cluster states, and map complex query filters.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 93,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/oracle-mcp-server/",
+    "entityId": "server:oracle-mcp-server",
+    "title": "Oracle DB MCP Server",
+    "description": "Expose secure Oracle Database instances to enterprise-grade AI models, enabling SQL*Plus actions and data retrieval.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 93,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/slack-mcp-server/",
+    "entityId": "server:slack-mcp-server",
+    "title": "Slack MCP Server",
+    "description": "Let AI agents read public channels, send instant Slack updates, search for historical threads, and manage channel setups.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 96,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/gmail-mcp-server/",
+    "entityId": "server:gmail-mcp-server",
+    "title": "Gmail MCP Server",
+    "description": "Connect to your Google Workspace Inbox. Allow AI agents to draft emails, summarize unread items, search messages, and apply labels.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 96,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/google-calendar-mcp-server/",
+    "entityId": "server:google-calendar-mcp-server",
+    "title": "Google Calendar MCP Server",
+    "description": "Allow your personal AI assistant to schedule meetings, list upcoming events, check participant availability, and manage invites.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 96,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/google-drive-mcp-server/",
+    "entityId": "server:google-drive-mcp-server",
+    "title": "Google Drive MCP Server",
+    "description": "Securely explore, read, search, and structure your corporate documents, spreadsheets, and slides directly within models.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 96,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/notion-mcp-server/",
+    "entityId": "server:notion-mcp-server",
+    "title": "Notion MCP Server",
+    "description": "Expose Notion workspaces, read dynamic wiki pages, append developer logs, and manage project tables cleanly.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 96,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/jira-mcp-server/",
+    "entityId": "server:jira-mcp-server",
+    "title": "Jira MCP Server",
+    "description": "Connect AI agents to your Jira backlog. Allow models to query tickets, create issues, transition statuses, and append comments.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 96,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/linear-mcp-server/",
+    "entityId": "server:linear-mcp-server",
+    "title": "Linear MCP Server",
+    "description": "Expose the modern developer ticketing tool. Create issues, search cycles, and assign developers instantly using models.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 96,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/trello-mcp-server/",
+    "entityId": "server:trello-mcp-server",
+    "title": "Trello MCP Server",
+    "description": "Read Trello boards, move tasks across workflow lists, search cards, and append labels based on code changes.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 96,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/hubspot-mcp-server/",
+    "entityId": "server:hubspot-mcp-server",
+    "title": "HubSpot MCP Server",
+    "description": "Expose HubSpot contacts, pipelines, deals, and engagement history to let models act as personalized sales assistants.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 96,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/salesforce-mcp-server/",
+    "entityId": "server:salesforce-mcp-server",
+    "title": "Salesforce MCP Server",
+    "description": "Connect enterprise-level customer relationships databases, running SOQL queries and updating records inside workflows.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 93,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/ms-teams-mcp-server/",
+    "entityId": "server:ms-teams-mcp-server",
+    "title": "Microsoft Teams MCP Server",
+    "description": "Post chat updates, schedule team calls, and search corporate threads inside your secure Microsoft Cloud.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 93,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/zoom-mcp-server/",
+    "entityId": "server:zoom-mcp-server",
+    "title": "Zoom MCP Server",
+    "description": "Generate zoom invitation links, search meeting summaries, and retrieve participant details under AI instructions.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 93,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/discord-mcp-server/",
+    "entityId": "server:discord-mcp-server",
+    "title": "Discord MCP Server",
+    "description": "Automate user moderations, log community ideas, search channels, and post system announcements via your Discord Bot.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 93,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/figma-mcp-server/",
+    "entityId": "server:figma-mcp-server",
+    "title": "Figma MCP Server",
+    "description": "Expose design canvas frames, inspect CSS variables, retrieve design components metadata, and track comments.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 93,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/asana-mcp-server/",
+    "entityId": "server:asana-mcp-server",
+    "title": "Asana MCP Server",
+    "description": "Expose Asana tasks, manage workspace projects, assign ticket owners, and log developer times natively.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 93,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/stripe-mcp-server/",
+    "entityId": "server:stripe-mcp-server",
+    "title": "Stripe MCP Server",
+    "description": "Safely audit invoices, search payments details, track active subscriptions, and view billing charts inside corporate platforms.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 93,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/razorpay-mcp-server/",
+    "entityId": "server:razorpay-mcp-server",
+    "title": "Razorpay MCP Server",
+    "description": "Optimized for Indian startups. Audit transactions, trace refund requests, and manage Razorpay Route splits.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 89,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/shopify-mcp-server/",
+    "entityId": "server:shopify-mcp-server",
+    "title": "Shopify MCP Server",
+    "description": "Connect e-commerce stores. Track customer orders, check inventory levels, and update catalog descriptions via AI.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 93,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/paypal-mcp-server/",
+    "entityId": "server:paypal-mcp-server",
+    "title": "PayPal MCP Server",
+    "description": "Audit PayPal Business transactions, invoice details, subscription setups, and payout profiles dynamically.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 89,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/quickbooks-mcp-server/",
+    "entityId": "server:quickbooks-mcp-server",
+    "title": "QuickBooks MCP Server",
+    "description": "Expose balance sheets, company accounts files, tax summaries, and client invoice ledgers to finance assistants safely.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 89,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/woocommerce-mcp-server/",
+    "entityId": "server:woocommerce-mcp-server",
+    "title": "WooCommerce MCP Server",
+    "description": "Connect WooCommerce stores. Audit orders, configure coupon parameters, and analyze category performance.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 89,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/xero-mcp-server/",
+    "entityId": "server:xero-mcp-server",
+    "title": "Xero MCP Server",
+    "description": "Integrate Xero accounting. Export invoice details, map bank transactions, and review company balances.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 89,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/chargebee-mcp-server/",
+    "entityId": "server:chargebee-mcp-server",
+    "title": "Chargebee MCP Server",
+    "description": "Audit subscription billing lifecycles, manage dynamic coupon setups, and trace customer churn indicators.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 89,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/paddle-mcp-server/",
+    "entityId": "server:paddle-mcp-server",
+    "title": "Paddle MCP Server",
+    "description": "Audit international merchant-of-record (MoR) sales, monitor global sales tax compliance, and track payouts.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 89,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/adyen-mcp-server/",
+    "entityId": "server:adyen-mcp-server",
+    "title": "Adyen MCP Server",
+    "description": "Expose global payment rails. Audit transaction completion percentages, configure chargeback logs, and audit cards metrics.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 89,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/openai-mcp-server/",
+    "entityId": "server:openai-mcp-server",
+    "title": "OpenAI MCP Server",
+    "description": "Connect to OpenAI models (GPT-4, GPT-3.5-turbo) for chat completions, embeddings, and image generation.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 96,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/anthropic-mcp-server/",
+    "entityId": "server:anthropic-mcp-server",
+    "title": "Anthropic MCP Server",
+    "description": "Access Claude models (Claude 3 Opus, Sonnet, Haiku) for reasoning-intensive tasks with constitutional AI.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 93,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/google-gemini-mcp-server/",
+    "entityId": "server:google-gemini-mcp-server",
+    "title": "Google Gemini MCP Server",
+    "description": "Use Gemini models (Gemini 1.5 Pro, Flash) for multimodal reasoning and Google Workspace integration.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 93,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/ollama-mcp-server/",
+    "entityId": "server:ollama-mcp-server",
+    "title": "Ollama MCP Server",
+    "description": "Run open-weight models locally (Llama 3, Mistral, Gemma) with no data leaving your infrastructure.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 89,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/mistral-mcp-server/",
+    "entityId": "server:mistral-mcp-server",
+    "title": "Mistral MCP Server",
+    "description": "Access Mistral models (Mixtral, Mistral 7B) optimized for code and multilingual tasks.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 90,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/cohere-mcp-server/",
+    "entityId": "server:cohere-mcp-server",
+    "title": "Cohere MCP Server",
+    "description": "Use Cohere models (Command R, Command R+) for enterprise-grade retrieval and multilingual chat.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 93,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/prometheus-mcp-server/",
+    "entityId": "server:prometheus-mcp-server",
+    "title": "Prometheus MCP Server",
+    "description": "Query Prometheus metrics, check alert rules, and analyze time-series data for MCP server performance monitoring.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 96,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/grafana-mcp-server/",
+    "entityId": "server:grafana-mcp-server",
+    "title": "Grafana MCP Server",
+    "description": "Manage Grafana dashboards, query data sources, and visualize MCP server metrics through natural language.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 96,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/datadog-mcp-server/",
+    "entityId": "server:datadog-mcp-server",
+    "title": "Datadog MCP Server",
+    "description": "Monitor cloud infrastructure, check APM traces, and analyze logs for MCP server deployments.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 96,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/newrelic-mcp-server/",
+    "entityId": "server:newrelic-mcp-server",
+    "title": "New Relic MCP Server",
+    "description": "Query New Relic telemetry, manage dashboards, and troubleshoot MCP server performance via NRQL.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 96,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/opentelemetry-mcp-server/",
+    "entityId": "server:opentelemetry-mcp-server",
+    "title": "OpenTelemetry MCP Server",
+    "description": "Collect traces, metrics, and logs from MCP servers with OpenTelemetry Collector and query telemetry data.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 96,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/aws-mcp-server/",
+    "entityId": "server:aws-mcp-server",
+    "title": "AWS MCP Server",
+    "description": "Allow your models to inspect EC2 instance statuses, check S3 bucket permissions, monitor CloudWatch logs, and check AWS bill metrics safely.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 96,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/google-cloud-mcp-server/",
+    "entityId": "server:google-cloud-mcp-server",
+    "title": "Google Cloud MCP Server",
+    "description": "Connect GCP projects. Monitor Cloud Run services, query BigQuery analytics, and check Cloud Logging details instantly.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 96,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/azure-mcp-server/",
+    "entityId": "server:azure-mcp-server",
+    "title": "Azure MCP Server",
+    "description": "Expose Azure resource groups, monitor Virtual Machines telemetry, and manage Blob Storage security parameters.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 96,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/digitalocean-mcp-server/",
+    "entityId": "server:digitalocean-mcp-server",
+    "title": "DigitalOcean MCP Server",
+    "description": "Check active droplets health, manage firewall configurations, and trigger backup droplets cycles safely.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 93,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/linode-mcp-server/",
+    "entityId": "server:linode-mcp-server",
+    "title": "Linode MCP Server",
+    "description": "Manage Linode compute nodes, check NodeBalancers configs, and review Object Storage allocations.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 93,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/supabase-cloud-mcp-server/",
+    "entityId": "server:supabase-cloud-mcp-server",
+    "title": "Supabase Cloud MCP Server",
+    "description": "Monitor multi-project cloud deployments, track database size indicators, and inspect active edge-functions.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 93,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/fly-io-mcp-server/",
+    "entityId": "server:fly-io-mcp-server",
+    "title": "Fly.io MCP Server",
+    "description": "Check Fly app volumes, monitor edge routing telemetry, and restart failed fly machines.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 90,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/railway-mcp-server/",
+    "entityId": "server:railway-mcp-server",
+    "title": "Railway MCP Server",
+    "description": "Audit Railway project services, check live service logs, and update environment secrets dynamically.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 93,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/render-mcp-server/",
+    "entityId": "server:render-mcp-server",
+    "title": "Render MCP Server",
+    "description": "Check Render web services, deploy static websites, and review private service networking parameters.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 93,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/servers/scaleway-mcp-server/",
+    "entityId": "server:scaleway-mcp-server",
+    "title": "Scaleway MCP Server",
+    "description": "Expose Scaleway cloud elements, audit bare metal nodes, and manage S3-compatible objects.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 90,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/topics/what-is-mcp",
+    "entityId": "topic-what-is-mcp",
+    "title": "What is MCP? The Model Context Protocol Explained",
+    "description": "MCP is an open protocol that standardizes how applications provide context to language models. APIs connect machines; MCP connects intelligence to machines.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/topics/mcp-architecture",
+    "entityId": "topic-mcp-architecture",
+    "title": "MCP Architecture: How AI Agents Connect to External Tools",
+    "description": "MCP architecture is composed of a light protocol layer running over asynchronous I/O transport. It maintains a stateful connection for session duration.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/topics/mcp-vs-api",
+    "entityId": "topic-mcp-vs-api",
+    "title": "MCP vs API: Understanding the Difference",
+    "description": "APIs are resource-based; MCP servers are task-based. An API is a human-oriented interface for software-to-software communication; MCP is an AI-oriented protocol.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/topics/mcp-vs-a2a",
+    "entityId": "topic-mcp-vs-a2a",
+    "title": "MCP vs A2A: Agent-to-Agent Protocol Comparison",
+    "description": "MCP servers can operate as both MCP and A2A (Agent-to-Agent) servers, providing flexibility in how AI agents communicate.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/topics/mcp-clients",
+    "entityId": "topic-mcp-clients",
+    "title": "MCP Clients: The Complete Guide",
+    "description": "An MCP client is any application (like Claude Desktop, Cursor IDE, or custom CLI) that initiates a Model Context Protocol connection to a server to consume tools.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/topics/how-mcp-works",
+    "entityId": "topic-how-mcp-works",
+    "title": "How MCP Works: Core Architecture and Workflows",
+    "description": "MCP works through a simple client-server handshake where the client launches the server and queries its capabilities via JSON-RPC 2.0.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/topics/official-mcp-servers",
+    "entityId": "topic-official-mcp-servers",
+    "title": "Official MCP Servers: Reference Implementations from Anthropic",
+    "description": "Anthropic maintains an official collection of reference MCP servers for core utilities. The modelcontextprotocol/servers repo houses reference implementations.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/topics/official-mcp-integrations",
+    "entityId": "topic-official-mcp-integrations",
+    "title": "Official MCP Integrations: Company-Maintained Servers",
+    "description": "Servers maintained by companies for their platforms, listed in the MCP Servers Repository Official Integrations section.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/topics/mcp-steering-group",
+    "entityId": "topic-mcp-steering-group",
+    "title": "MCP Steering Group: Reference Server Governance",
+    "description": "The MCP steering group maintains a small number of reference servers that set the standard for the ecosystem.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/topics/mcp-marketplaces",
+    "entityId": "topic-mcp-marketplaces",
+    "title": "The Complete Guide to MCP Server Marketplaces",
+    "description": "Smithery.ai is the primary MCP server marketplace with 2,211+ servers. Glama.ai, MCP.so, PulseMCP, and Docker MCP Catalog are other key discovery platforms.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/topics/smithery-mcp",
+    "entityId": "topic-smithery-mcp",
+    "title": "Smithery.ai: The Primary MCP Server Marketplace",
+    "description": "Smithery is the primary MCP server marketplace with 2,211+ servers, one-click installable, with editorial review.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/topics/glama-mcp",
+    "entityId": "topic-glama-mcp",
+    "title": "Glama.ai: Algorithmic Quality Scores for MCP Servers",
+    "description": "Glama provides algorithmic quality scores based on GitHub activity, stars, and maintenance signals for MCP servers.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/topics/mcpso-mcp",
+    "entityId": "topic-mcpso-mcp",
+    "title": "MCP.so: Free Directory for MCP Servers",
+    "description": "MCP.so is a popular free directory for MCP servers, complementing other discovery platforms.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/topics/pulsemcp",
+    "entityId": "topic-pulsemcp",
+    "title": "PulseMCP: Free Directory for MCP Server Discovery",
+    "description": "PulseMCP is another free directory for MCP server discovery, often listing the same servers as MCP.so.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/topics/github-mcp-registry",
+    "entityId": "topic-github-mcp-registry",
+    "title": "GitHub MCP Registry: 44 Official Integrations",
+    "description": "The GitHub MCP Registry has 44 MCP servers including Playwright, GitHub MCP, Context7, MarkItDown, Terraform.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/topics/docker-mcp-catalog",
+    "entityId": "topic-docker-mcp-catalog",
+    "title": "Docker MCP Catalog: Containerized MCP Servers",
+    "description": "Browse MCP servers at hub.docker.com/mcp or in Docker Desktop for containerized deployment.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/topics/awesome-mcp-registries",
+    "entityId": "topic-awesome-mcp-registries",
+    "title": "Awesome MCP Registries: AI-Curated Server Rankings",
+    "description": "AI-curated, self-updating directories analyzing and ranking MCP servers weekly.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/topics/archestra-mcp-catalog",
+    "entityId": "topic-archestra-mcp-catalog",
+    "title": "Archestra MCP Server Catalog: Implementation Quality Rankings",
+    "description": "Archestra ranks 879+ MCP servers by implementation quality, helping developers find the best-built servers.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/topics/mcp-categories-guide",
+    "entityId": "topic-mcp-categories-guide",
+    "title": "MCP Server Categories & Use Cases: Complete Guide",
+    "description": "MCP servers span development tools, databases, design, ITSM, cloud infrastructure, browser automation, knowledge management, DevOps, and cryptocurrency.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/topics/mcp-developer-tools",
+    "entityId": "topic-mcp-developer-tools",
+    "title": "MCP for Developers: GitHub, GitLab, and Coding Tools",
+    "description": "GitHub MCP (100+ tools), GitLab MCP, and Cursor integration power the developer workflow.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/topics/mcp-database-analytics",
+    "entityId": "topic-mcp-database-analytics",
+    "title": "MCP Database & Analytics: Power BI, MongoDB, and More",
+    "description": "Power BI MCP, MongoDB MCP, and Universal Database MCP enable AI-powered database interactions.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/topics/mcp-design-tools",
+    "entityId": "topic-mcp-design-tools",
+    "title": "MCP Design Tools: Figma and Creative Workflows",
+    "description": "Figma MCP (Dev Mode) brings design decisions into tools where code gets written.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/topics/mcp-cloud-infrastructure",
+    "entityId": "topic-mcp-cloud-infrastructure",
+    "title": "MCP Cloud Infrastructure: Azure, Terraform, and DevOps",
+    "description": "Azure MCP, Terraform MCP, and DevOps-focused MCP servers enable infrastructure automation.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/topics/mcp-browser-automation",
+    "entityId": "topic-mcp-browser-automation",
+    "title": "MCP Browser Automation: Playwright and Beyond",
+    "description": "Playwright MCP enables browser automation for testing, scraping, and workflow automation.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/topics/mcp-knowledge-management",
+    "entityId": "topic-mcp-knowledge-management",
+    "title": "MCP Knowledge Management: Notion, Obsidian, and More",
+    "description": "Notion MCP and Obsidian MCP enable AI-powered knowledge management and note-taking.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/topics/mcp-vs-rest-api",
+    "entityId": "topic-mcp-vs-rest-api",
+    "title": "MCP vs REST API: The Architectural Difference",
+    "description": "APIs are human-oriented interfaces for software-to-software communication; MCP is an AI-oriented protocol built for models that reason with text but cannot safely execute code.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/topics/mcp-task-based-vs-resource-based",
+    "entityId": "topic-mcp-task-based-vs-resource-based",
+    "title": "Task-Based vs Resource-Based: MCP vs API Deep Dive",
+    "description": "APIs are resource-based; MCP servers are task-based. This fundamental difference changes how AI interacts with systems.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/topics/mcp-as-control-layer",
+    "entityId": "topic-mcp-as-control-layer",
+    "title": "MCP as Control Layer: Packaging APIs into Workflows",
+    "description": "An MCP server sits above APIs, packaging them into workflows with sequencing, validation, and guardrails.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/topics/mcp-claude-desktop",
+    "entityId": "topic-mcp-claude-desktop",
+    "title": "MCP in Claude Desktop: Complete Setup Guide",
+    "description": "Claude Desktop provides native MCP support via Developer settings, allowing seamless connection to MCP servers.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/topics/mcp-vscode",
+    "entityId": "topic-mcp-vscode",
+    "title": "MCP in VS Code: Complete Setup Guide",
+    "description": "VS Code is a full Model Context Protocol client supporting tools, resources, prompts, sampling, and OAuth.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/topics/mcp-cursor",
+    "entityId": "topic-mcp-cursor",
+    "title": "Cursor IDE MCP Integration: Native Support",
+    "description": "Cursor supports remote MCP servers over Streamable HTTP natively, enabling seamless AI-powered development.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/topics/mcp-github-copilot",
+    "entityId": "topic-mcp-github-copilot",
+    "title": "GitHub Copilot MCP: Connecting to External Tools",
+    "description": "GitHub Copilot integrates with MCP servers via the GitHub MCP Server, extending its capabilities.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/topics/mcp-azure-ai",
+    "entityId": "topic-mcp-azure-ai",
+    "title": "Azure AI Agents MCP: Dynamic Tool Catalog",
+    "description": "Azure AI Agents connect to MCP servers via dynamic tool catalog, enabling enterprise AI workflows.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/topics/servicenow-mcp",
+    "entityId": "topic-servicenow-mcp",
+    "title": "ServiceNow MCP Server: Complete Integration Guide",
+    "description": "ServiceNow's Zurich release introduces a native MCP Server Console for publishing MCP Tools with OAuth-based authentication.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/topics/powerbi-mcp",
+    "entityId": "topic-powerbi-mcp",
+    "title": "Power BI MCP Server: Natural Language Analytics",
+    "description": "The remote Power BI MCP server enables AI agents to query Power BI semantic models using natural language via DAX.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/topics/azure-mcp-hosting",
+    "entityId": "topic-azure-mcp-hosting",
+    "title": "Azure MCP Server: Hosting Options Compared",
+    "description": "Azure provides multiple hosting options for MCP servers: Container Apps, Functions, and Dynamic Sessions.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/topics/aws-mcp-hosting",
+    "entityId": "topic-aws-mcp-hosting",
+    "title": "AWS MCP Server: Lambda, ECS, and Bedrock AgentCore",
+    "description": "AWS offers Lambda, ECS on Fargate, and Bedrock AgentCore for hosting MCP servers.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/topics/salesforce-mcp",
+    "entityId": "topic-salesforce-mcp",
+    "title": "Salesforce MCP Server: Enterprise CRM Integration",
+    "description": "Salesforce MCP server enables enterprise CRM integration with AI agents.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/topics/sap-mcp",
+    "entityId": "topic-sap-mcp",
+    "title": "SAP MCP Server: Enterprise Resource Planning",
+    "description": "SAP MCP server enables AI agents to interact with SAP enterprise resource planning systems.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/topics/workday-mcp",
+    "entityId": "topic-workday-mcp",
+    "title": "Workday MCP Server: HR and Financial Management",
+    "description": "Workday MCP server enables AI agents to interact with HR and financial management systems.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/topics/mcp-local-server",
+    "entityId": "topic-mcp-local-server",
+    "title": "Local MCP Servers: Low-Latency, Zero-Network Integrations",
+    "description": "Local MCP servers run directly on the developer's workstation, using Standard Input/Output (Stdio) as the low-latency transport layer.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/topics/mcp-remote-server",
+    "entityId": "topic-mcp-remote-server",
+    "title": "Setting Up Secure Remote MCP Servers",
+    "description": "A remote MCP server runs in a cloud network and communicates via Server-Sent Events (SSE) or secure WebSockets over standard HTTPS channels.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/topics/mcp-docker-hosting",
+    "entityId": "topic-mcp-docker-hosting",
+    "title": "Docker MCP: Containerized Deployment Guide",
+    "description": "Docker enables containerized MCP server deployment with consistent execution environments.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/topics/free-mcp-hosting",
+    "entityId": "topic-free-mcp-hosting",
+    "title": "Free MCP Hosting: CreateOS and Alternatives (2026)",
+    "description": "The best free hosting for an MCP server in 2026 is CreateOS — $0 tier with native MCP auto-discovery.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/topics/azure-mcp-hosting-options",
+    "entityId": "topic-azure-mcp-hosting-options",
+    "title": "Azure MCP Hosting: Container Apps and Functions",
+    "description": "Azure Container Apps and Azure Functions provide flexible, scalable hosting for MCP servers.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/topics/aws-mcp-hosting-options",
+    "entityId": "topic-aws-mcp-hosting-options",
+    "title": "AWS MCP Hosting: Lambda, ECS, and Bedrock",
+    "description": "AWS Lambda works well for lightweight, stateless tool endpoints with bursty traffic patterns. ECS on Fargate provides more control.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/topics/mcp-security-best-practices",
+    "entityId": "topic-mcp-security-best-practices",
+    "title": "MCP Server Security Best Practices",
+    "description": "Never expose MCP over the public internet without mTLS or equivalent. Replace .env files with runtime secret injection.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/topics/mcp-authentication",
+    "entityId": "topic-mcp-authentication",
+    "title": "MCP Authentication: mTLS, OAuth, and API Keys",
+    "description": "Never expose MCP over the public internet without mTLS or equivalent. OAuth and API keys provide additional authentication layers.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/topics/mcp-least-privilege",
+    "entityId": "topic-mcp-least-privilege",
+    "title": "MCP Least Privilege: Tool Scoping and Permissions",
+    "description": "Scope every tool to minimum necessary permissions to reduce the blast radius of potential compromises.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/topics/mcp-credential-management",
+    "entityId": "topic-mcp-credential-management",
+    "title": "MCP Credential Management: Secrets and Keys",
+    "description": "Replace .env files with runtime secret injection; implement per-server credentials for maximum security.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/topics/mcp-containerization",
+    "entityId": "topic-mcp-containerization",
+    "title": "MCP Containerization: Sandboxing and Isolation",
+    "description": "Containerize MCP servers and run them outside corporate/private networks to reduce attack surface.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/topics/mcp-logging-monitoring",
+    "entityId": "topic-mcp-logging-monitoring",
+    "title": "MCP Logging & Monitoring: Observability Guide",
+    "description": "Log every request, tool invocation, and significant action for security and debugging.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/topics/mcp-security-checklist",
+    "entityId": "topic-mcp-security-checklist",
+    "title": "MCP Security Checklist: Comprehensive Audit Guide",
+    "description": "A comprehensive checklist for MCP server deployments covering authentication, least privilege, input validation, and monitoring.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/topics/build-mcp-server",
+    "entityId": "topic-build-mcp-server",
+    "title": "How to Build Your First MCP Server",
+    "description": "Learn how to build an MCP server from scratch using Python or TypeScript SDKs.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/topics/mcp-sdk",
+    "entityId": "topic-mcp-sdk",
+    "title": "MCP SDKs: Python, TypeScript, and .NET",
+    "description": "Python, TypeScript, and .NET SDKs are available for building MCP servers with official support.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/topics/mcp-tools-definition",
+    "entityId": "topic-mcp-tools-definition",
+    "title": "MCP Tools: Defining Tools for LLM Consumption",
+    "description": "Defining tools with @tool decorators for LLM consumption using JSON Schema.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/topics/mcp-transport",
+    "entityId": "topic-mcp-transport",
+    "title": "STDIO vs SSE: MCP Transport Mechanisms",
+    "description": "STDIO is for local development; SSE is for remote server communication over HTTP.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/topics/mcp-server-examples",
+    "entityId": "topic-mcp-server-examples",
+    "title": "MCP Server Examples: Reference Implementations",
+    "description": "Reference implementations and starter projects for building MCP servers.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/topics/mcp-server-testing",
+    "entityId": "topic-mcp-server-testing",
+    "title": "Testing MCP Servers: A Comprehensive Guide",
+    "description": "How to validate MCP server implementations using testing frameworks and tools.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/topics/install-mcp-server",
+    "entityId": "topic-install-mcp-server",
+    "title": "How to Install and Configure MCP Servers",
+    "description": "Smithery's CLI (npx @smithery/cli install) handles config automatically. mcp-forge is a cross-platform CLI to install, run, and manage MCP servers.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/topics/smithery-cli",
+    "entityId": "topic-smithery-cli",
+    "title": "Smithery CLI: One-Click MCP Server Installation",
+    "description": "Smithery's CLI (npx @smithery/cli install) handles MCP server configuration automatically.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/topics/mcp-forge",
+    "entityId": "topic-mcp-forge",
+    "title": "mcp-forge: Cross-Platform MCP Server Management",
+    "description": "mcp-forge is a cross-platform CLI to install, run, and manage MCP servers from one interface.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/topics/mcp-bin",
+    "entityId": "topic-mcp-bin",
+    "title": "mcp-bin: Run Prebuilt MCP Server Binaries",
+    "description": "mcp-bin runs prebuilt MCP server binaries straight from GitHub or GitLab releases.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/topics/mcp-manual-configuration",
+    "entityId": "topic-mcp-manual-configuration",
+    "title": "Manual MCP Configuration: JSON Config Guide",
+    "description": "Manual JSON config updates and path discovery for MCP clients when CLI tools are not available.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/topics/mcp-ecosystem-growth",
+    "entityId": "topic-mcp-ecosystem-growth",
+    "title": "The State of MCP in 2026: Ecosystem Growth & Adoption",
+    "description": "The broader MCP Ecosystem has 300K+ stars (servers, clients, etc.). 7,260 MCP servers as of May 30, 2025.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/topics/top-mcp-servers-developers",
+    "entityId": "topic-top-mcp-servers-developers",
+    "title": "Top 10 MCP Servers for Developers",
+    "description": "The top MCP servers for developers include GitHub MCP, Docker MCP, Playwright MCP, and database connectors.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/topics/free-vs-paid-mcp-servers",
+    "entityId": "topic-free-vs-paid-mcp-servers",
+    "title": "Free vs Paid MCP Servers: What's Available?",
+    "description": "Free MCP servers are available for developers, while paid servers offer enterprise features and support.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/topics/remote-mcp-trends",
+    "entityId": "topic-remote-mcp-trends",
+    "title": "Remote MCP Servers: The Shift to Hosted Infrastructure",
+    "description": "Remote MCP servers are becoming the standard for enterprise and production deployments.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/topics/mcp-monetization",
+    "entityId": "topic-mcp-monetization",
+    "title": "MCP Server Monetization: Marketplace Models and Paid Servers",
+    "description": "Paid MCP servers and marketplace models are emerging as the ecosystem matures.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/topics/mcp-directory-listing",
+    "entityId": "topic-mcp-directory-listing",
+    "title": "MCP Server Directories: How to Get Your Server Listed",
+    "description": "Getting listed on MCP directories increases visibility and adoption of your MCP server.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/mcp-server",
+    "entityId": "pillar-mcp-server",
+    "title": "MCP Server",
+    "description": "An MCP server is a program that exposes tools, resources, or reusable prompts to an AI application through the Model Context Protocol. A host application creates an MCP client connection to the server, negotiates capabilities, and invokes supported functions through JSON-RPC.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/mcp-hosting",
+    "entityId": "pillar-mcp-hosting",
+    "title": "MCP Hosting",
+    "description": "Host MCP servers on cloud instances, container platforms, or local development environments – balancing latency, cost, and security.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/mcp-tutorial",
+    "entityId": "pillar-mcp-tutorial",
+    "title": "MCP Tutorial",
+    "description": "A hands-on tutorial to create a simple MCP server with TypeScript or Python, connect it to Claude Desktop, and execute a custom tool.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/mcp-tools",
+    "entityId": "pillar-mcp-tools",
+    "title": "MCP Tools",
+    "description": "MCP tools are executable functions exposed by an MCP server, allowing AI agents to perform actions like file access, database queries, and API calls.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/mcp-reddit",
+    "entityId": "pillar-mcp-reddit",
+    "title": "MCP Reddit",
+    "description": "The MCP Reddit server provides tools to search posts, monitor subreddits, and perform sentiment analysis on Reddit data.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/mcp-deployment",
+    "entityId": "pillar-mcp-deployment",
+    "title": "MCP Deployment",
+    "description": "Deploy MCP servers reliably using Docker, Kubernetes, or serverless platforms, with attention to environment variables and secret management.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/mcp-integration",
+    "entityId": "pillar-mcp-integration",
+    "title": "MCP Integration",
+    "description": "MCP integrates with services like GitHub, Slack, Notion, and Salesforce via purpose-built servers that translate between AI intents and external APIs.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/mcp-claude",
+    "entityId": "pillar-mcp-claude",
+    "title": "MCP Claude",
+    "description": "Claude Desktop supports MCP via a local configuration file, allowing Claude to access files, databases, and web APIs.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/mcp-chatgpt",
+    "entityId": "pillar-mcp-chatgpt",
+    "title": "MCP ChatGPT",
+    "description": "While ChatGPT has its own function-calling mechanism, you can use a proxy layer to bridge MCP servers and OpenAI's API.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/mcp-security",
+    "entityId": "pillar-mcp-security",
+    "title": "MCP Security",
+    "description": "Security for MCP servers includes authentication, transport encryption, least-privilege execution, and input validation to prevent injection attacks.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/mcp-authentication",
+    "entityId": "pillar-mcp-authentication",
+    "title": "MCP Authentication",
+    "description": "MCP servers can implement various authentication strategies: API keys, OAuth 2.0, JWT, or client certificate authentication.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/mcp-database",
+    "entityId": "pillar-mcp-database",
+    "title": "MCP Database",
+    "description": "MCP database servers allow AI agents to execute SQL queries, inspect schemas, and generate reports from relational and NoSQL databases.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/mcp-filesystem",
+    "entityId": "pillar-mcp-filesystem",
+    "title": "MCP Filesystem",
+    "description": "The filesystem MCP server provides tools for file listing, reading, writing, and directory operations, with configurable allowed paths.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/mcp-vs-api",
+    "entityId": "pillar-mcp-vs-api",
+    "title": "MCP vs API",
+    "description": "MCP is a dynamic, self-describing protocol that enables AI to discover and use tools, while REST APIs are static and require prior knowledge of endpoints.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/mcp-cursor",
+    "entityId": "pillar-mcp-cursor",
+    "title": "MCP Cursor",
+    "description": "Cursor, the AI-powered code editor, supports MCP servers, enabling you to run tools directly from your development environment.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/mcp-list",
+    "entityId": "pillar-mcp-list",
+    "title": "MCP List",
+    "description": "A curated directory of the most popular and useful MCP servers, categorised by function and quality.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/mcp-marketplace",
+    "entityId": "pillar-mcp-marketplace",
+    "title": "MCP Marketplace",
+    "description": "The MCP marketplace is a platform where developers can list, discover, and rate MCP servers for various use cases.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/mcp-docker",
+    "entityId": "pillar-mcp-docker",
+    "title": "MCP Docker",
+    "description": "Packaging MCP servers in Docker ensures consistent runtime environments and simplifies deployment on any platform.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/mcp-kubernetes",
+    "entityId": "pillar-mcp-kubernetes",
+    "title": "MCP Kubernetes",
+    "description": "Kubernetes provides auto-scaling, self-healing, and service discovery for MCP servers in production environments.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.949Z"
+  },
+  {
+    "route": "/mcp-production",
+    "entityId": "pillar-mcp-production",
+    "title": "MCP Production",
+    "description": "Production-ready MCP servers require logging, monitoring, health checks, and graceful shutdown handling.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.950Z"
+  },
+  {
+    "route": "/mcp-reddit-scraper",
+    "entityId": "pillar-mcp-reddit-scraper",
+    "title": "MCP Reddit Scraper",
+    "description": "The Reddit scraper MCP server provides tools to search, filter, and extract structured data from Reddit for analysis.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.950Z"
+  },
+  {
+    "route": "/mcp-data-extraction",
+    "entityId": "pillar-mcp-data-extraction",
+    "title": "MCP Data Extraction",
+    "description": "MCP data extraction servers can scrape web pages, parse HTML, and convert unstructured content into structured data for LLMs.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.950Z"
+  },
+  {
+    "route": "/mcp-sentiment-analysis",
+    "entityId": "pillar-mcp-sentiment-analysis",
+    "title": "MCP Sentiment Analysis",
+    "description": "MCP sentiment analysis tools use NLP models to classify text as positive, negative, or neutral, often applied to social media and reviews.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.950Z"
+  },
+  {
+    "route": "/mcp-server-monitoring",
+    "entityId": "pillar-mcp-server-monitoring",
+    "title": "MCP Monitoring",
+    "description": "MCP monitoring involves collecting logs, metrics, and traces to ensure servers are healthy and performant.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.950Z"
+  },
+  {
+    "route": "/mcp-validator",
+    "entityId": "pillar-mcp-validator",
+    "title": "MCP Validator",
+    "description": "MCP validators check the conformance of a server implementation against the MCP specification, ensuring compatibility.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.950Z"
+  },
+  {
+    "route": "/mcp-python",
+    "entityId": "pillar-mcp-python",
+    "title": "MCP Python",
+    "description": "Python is a popular language for MCP server development, with official SDK support via the mcp package.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.950Z"
+  },
+  {
+    "route": "/mcp-typescript",
+    "entityId": "pillar-mcp-typescript",
+    "title": "MCP TypeScript",
+    "description": "TypeScript is the primary language for the official MCP SDK, offering type safety and a rich ecosystem.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.950Z"
+  },
+  {
+    "route": "/mcp-india",
+    "entityId": "pillar-mcp-india",
+    "title": "MCP India",
+    "description": "India has a growing MCP community, with a focus on local compliance (DPDP, RBI) and latency-optimised hosting in Mumbai and Bengaluru.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.950Z"
+  },
+  {
+    "route": "/mcp-dpdp",
+    "entityId": "pillar-mcp-dpdp",
+    "title": "MCP DPDP",
+    "description": "The Digital Personal Data Protection Act (DPDP) requires data localisation and consent management; MCP servers can be designed to meet these requirements.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.950Z"
+  },
+  {
+    "route": "/mcp-zerodha",
+    "entityId": "pillar-mcp-zerodha",
+    "title": "MCP Zerodha",
+    "description": "A Zerodha MCP server allows AI agents to access market data, place orders, and analyze portfolio holdings via the Kite Connect API.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.950Z"
+  },
+  {
+    "route": "/mcp-grafana",
+    "entityId": "pillar-mcp-grafana",
+    "title": "MCP Grafana",
+    "description": "A Grafana MCP server enables AI agents to query Grafana dashboards, fetch metrics, and generate anomaly reports.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.950Z"
+  },
+  {
+    "route": "/mcp-agent",
+    "entityId": "pillar-mcp-agent",
+    "title": "MCP Agent",
+    "description": "MCP enables the development of agentic systems where multiple AI agents coordinate and use shared tools via MCP servers.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.950Z"
+  },
+  {
+    "route": "/mcp-automation",
+    "entityId": "pillar-mcp-automation",
+    "title": "MCP Automation",
+    "description": "MCP servers can automate data extraction, monitoring, and reporting by responding to AI instructions.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.950Z"
+  },
+  {
+    "route": "/mcp-workflow",
+    "entityId": "pillar-mcp-workflow",
+    "title": "MCP Workflow",
+    "description": "MCP servers can be chained to perform multi-step workflows, where the output of one tool becomes the input of another.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.950Z"
+  },
+  {
+    "route": "/mcp-enterprise",
+    "entityId": "pillar-mcp-enterprise",
+    "title": "MCP Enterprise",
+    "description": "Enterprise MCP deployments require SSO, RBAC, audit logging, and high availability to meet corporate governance standards.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.950Z"
+  },
+  {
+    "route": "/mcp-cloud",
+    "entityId": "pillar-mcp-cloud",
+    "title": "MCP Cloud",
+    "description": "MCP servers can run on major cloud providers like AWS, Azure, and GCP, using services like EC2, ECS, or Cloud Run.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.950Z"
+  },
+  {
+    "route": "/mcp-local",
+    "entityId": "pillar-mcp-local",
+    "title": "MCP Local",
+    "description": "Local MCP servers use stdio transport and are ideal for development, testing, and personal use with desktop AI clients.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.950Z"
+  },
+  {
+    "route": "/mcp-remote",
+    "entityId": "pillar-mcp-remote",
+    "title": "MCP Remote",
+    "description": "Remote MCP servers use SSE or HTTP transport, allowing AI clients to access tools hosted elsewhere.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.950Z"
+  },
+  {
+    "route": "/mcp-api",
+    "entityId": "pillar-mcp-api",
+    "title": "MCP API",
+    "description": "The MCP API is a JSON-RPC 2.0 interface with specific methods for initialization, tool discovery, tool invocation, resources, and prompts.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.950Z"
+  },
+  {
+    "route": "/mcp-protocol",
+    "entityId": "pillar-mcp-protocol",
+    "title": "MCP Protocol",
+    "description": "MCP is an open protocol that standardises how AI clients and tool servers communicate, enabling plug-and-play tool integration.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.950Z"
+  },
+  {
+    "route": "/mcp-client",
+    "entityId": "pillar-mcp-client",
+    "title": "MCP Client",
+    "description": "An MCP client is any application that can connect to MCP servers, discover tools, and invoke them – e.g., Claude Desktop, Cursor, or a custom app.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.950Z"
+  },
+  {
+    "route": "/mcp-config",
+    "entityId": "pillar-mcp-config",
+    "title": "MCP Config",
+    "description": "MCP configuration involves setting environment variables, JSON config files, and command-line arguments to control server behaviour.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.950Z"
+  },
+  {
+    "route": "/mcp-install",
+    "entityId": "pillar-mcp-install",
+    "title": "MCP Install",
+    "description": "MCP servers are typically installed via npm, pip, or as standalone binaries, and then configured in the client's config file.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.950Z"
+  },
+  {
+    "route": "/mcp-setup",
+    "entityId": "pillar-mcp-setup",
+    "title": "MCP Setup",
+    "description": "Setting up MCP involves installing the server, configuring the client, and testing the connection.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.950Z"
+  },
+  {
+    "route": "/mcp-examples",
+    "entityId": "pillar-mcp-examples",
+    "title": "MCP Examples",
+    "description": "A collection of example MCP servers covering common use cases – filesystem, database, web search, and more.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.950Z"
+  },
+  {
+    "route": "/mcp-boilerplate",
+    "entityId": "pillar-mcp-boilerplate",
+    "title": "MCP Boilerplate",
+    "description": "Boilerplate projects for quickly scaffolding new MCP servers, including testing and configuration.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.950Z"
+  },
+  {
+    "route": "/mcp-testing",
+    "entityId": "pillar-mcp-testing",
+    "title": "MCP Testing",
+    "description": "Testing MCP servers involves unit tests for individual tools and integration tests with a mock client.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.950Z"
+  },
+  {
+    "route": "/mcp-debugging",
+    "entityId": "pillar-mcp-debugging",
+    "title": "MCP Debugging",
+    "description": "Debugging MCP servers involves examining logs, using the MCP Inspector, and tracing messages between client and server.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.950Z"
+  },
+  {
+    "route": "/mcp-performance",
+    "entityId": "pillar-mcp-performance",
+    "title": "MCP Performance",
+    "description": "Performance tuning for MCP servers includes connection pooling, caching, efficient serialization, and resource management.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.950Z"
+  },
+  {
+    "route": "/mcp-scaling",
+    "entityId": "pillar-mcp-scaling",
+    "title": "MCP Scaling",
+    "description": "Scaling MCP servers involves adding replicas, distributing load, and managing state to handle increased request volume.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.950Z"
+  },
+  {
+    "route": "/what-is-mcp",
+    "entityId": "pillar-what-is-mcp",
+    "title": "What is MCP? — The Protocol Layer",
+    "description": "MCP is an open protocol that standardizes how applications provide context to language models. APIs connect machines; MCP connects intelligence to machines.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.950Z"
+  },
+  {
+    "route": "/official-mcp-servers",
+    "entityId": "pillar-official-mcp-servers",
+    "title": "Official MCP Servers & Reference Implementations",
+    "description": "The modelcontextprotocol/servers repo houses reference implementations and community submissions maintained by the MCP steering group.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.950Z"
+  },
+  {
+    "route": "/mcp-marketplaces",
+    "entityId": "pillar-mcp-marketplaces",
+    "title": "MCP Server Marketplaces & Directories",
+    "description": "Smithery.ai is the primary MCP server marketplace with 2,211+ servers. Glama.ai, MCP.so, PulseMCP, and Docker MCP Catalog are other key discovery platforms.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.950Z"
+  },
+  {
+    "route": "/mcp-categories",
+    "entityId": "pillar-mcp-categories",
+    "title": "MCP Server Categories & Use Cases",
+    "description": "MCP servers span development tools, databases, design, ITSM, cloud infrastructure, browser automation, knowledge management, DevOps, and cryptocurrency.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.950Z"
+  },
+  {
+    "route": "/mcp-clients",
+    "entityId": "pillar-mcp-clients",
+    "title": "MCP Server Clients & Integrations",
+    "description": "VS Code is a full MCP client supporting tools, resources, prompts, sampling, and OAuth. Cursor supports remote MCP servers over Streamable HTTP natively.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.950Z"
+  },
+  {
+    "route": "/enterprise-mcp",
+    "entityId": "pillar-enterprise-mcp",
+    "title": "Enterprise MCP Servers",
+    "description": "ServiceNow's Zurich release introduces a native MCP Server Console for publishing MCP Tools. The remote Power BI MCP server enables AI agents to query Power BI semantic models using natural language.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.950Z"
+  },
+  {
+    "route": "/mcp-development",
+    "entityId": "pillar-mcp-development",
+    "title": "MCP Server Development",
+    "description": "Python, TypeScript, and .NET SDKs are available for building MCP servers. MCP Archetypes demonstrates implementations using different frameworks, transports, and authorization methods.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.950Z"
+  },
+  {
+    "route": "/mcp-installation",
+    "entityId": "pillar-mcp-installation",
+    "title": "MCP Server Installation & Management",
+    "description": "Smithery's CLI (npx @smithery/cli install) handles config automatically. mcp-forge is a cross-platform CLI to install, run, and manage MCP servers.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.950Z"
+  },
+  {
+    "route": "/mcp-trends",
+    "entityId": "pillar-mcp-trends",
+    "title": "MCP Server Trends & Ecosystem Growth",
+    "description": "The broader MCP Ecosystem has 300K+ stars (servers, clients, etc.). 7,260 MCP servers as of May 30, 2025. MCP is being adopted rapidly — security guidance is lagging behind.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.950Z"
+  },
+  {
+    "route": "/compare/mcp-vs-api",
+    "entityId": "comparison-mcp-vs-api",
+    "title": "Model Context Protocol (MCP) vs Traditional REST APIs",
+    "description": "While traditional REST APIs provide unstructured data meant for custom software apps, MCP wraps APIs in semantic descriptors (prompts, resources, and tools) optimized specifically for Large Language Models, eliminating custom client integration code.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.950Z"
+  },
+  {
+    "route": "/compare/mcp-vs-function-calling",
+    "entityId": "comparison-mcp-vs-function-calling",
+    "title": "Model Context Protocol vs Proprietary Function Calling",
+    "description": "Function calling is a model-specific, closed-source API capability provided by individual LLM vendors. MCP is an open-source, client-server standard that abstractly exposes tools to any AI model, offering complete code reusability across providers.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.950Z"
+  },
+  {
+    "route": "/compare/mcp-vs-plugins",
+    "entityId": "comparison-mcp-vs-plugins",
+    "title": "Model Context Protocol vs Deprecated ChatGPT Plugins",
+    "description": "ChatGPT plugins were restricted webhooks hosted in a proprietary store, whereas MCP is a lightweight, bidirectional, open transport standard allowing both local command executions and secure remote SSE connections.",
+    "locale": "en",
+    "status": "published",
+    "qualityScore": 95,
+    "updatedAt": "2026-08-04T20:10:35.950Z"
+  }
+]

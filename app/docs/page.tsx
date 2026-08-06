@@ -7,8 +7,8 @@ import { docsClusters, docsPages, getDocsPath } from "../../src/data/docs";
 import { ArrowRight, BookOpen, FileText, Search, ShieldCheck, Zap } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "MCP Server Documentation India - MCPserver.in",
-  description: "Explore India-first MCP docs for setup, pricing, compliance, deployment, performance, monitoring, and glossary topics.",
+  title: "MCP Server Documentation: Build, Configure and Deploy",
+  description: "Comprehensive MCP documentation covering setup, SDK guides, deployment, compliance, performance, and monitoring.",
   alternates: {
     canonical: "https://www.mcpserver.in/docs/",
     languages: {

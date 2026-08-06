@@ -63,11 +63,6 @@ export function getWebApplicationSchema() {
     "description": "Hosted MCP platform for discovering, building, testing, deploying and managing production-ready Model Context Protocol servers with India-focused compliance controls.",
     "applicationCategory": "DeveloperApplication",
     "operatingSystem": "Cross-Platform",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "INR"
-    },
     "publisher": {
       "@id": `${siteConfig.url}/#organization`
     }
@@ -171,11 +166,6 @@ export function getSoftwareApplicationSchema(name: string, description: string) 
     "operatingSystem": "All",
     "applicationCategory": "DeveloperApplication",
     "description": description,
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "INR"
-    }
   };
 }
 
@@ -347,11 +337,6 @@ export function getUnifiedGraphSchema(options: UnifiedGraphOptions) {
       "description": options.softwareApplication.description,
       "publisher": {
         "@id": `${siteConfig.url}/#organization`
-      },
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "INR"
       }
     };
     

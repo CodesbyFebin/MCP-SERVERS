@@ -1,0 +1,6 @@
+{
+  "check": "generated-code",
+  "threshold": 0,
+  "unverified": 0,
+  "sampleFailures": []
+}

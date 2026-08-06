@@ -1,0 +1,260 @@
+{
+  "generatedAt": "2026-08-04T21:11:16.754Z",
+  "baseUrl": "https://www.mcpserver.in",
+  "sitemapStatus": 200,
+  "pages": [
+    {
+      "url": "https://www.mcpserver.in/",
+      "status": 200,
+      "redirectCount": 0,
+      "finalUrl": "https://www.mcpserver.in/",
+      "title": "MCP Server Directory &amp; Hosting in India | MCPserver.in",
+      "metaDescription": "Discover and deploy MCP servers. Hosted infrastructure for AI agents with India-region hosting and DPDP-aware security controls.",
+      "h1": "MCP Server Directory and Hosting for AI Agents. Hosted in India. DPDP-aware Infrastructure.",
+      "canonical": "https://www.mcpserver.in/",
+      "metaRobots": "index, follow",
+      "jsonLdTypes": [
+        "BreadcrumbList",
+        "FAQPage",
+        "Organization",
+        "TechArticle",
+        "WebApplication",
+        "WebPage",
+        "WebSite"
+      ],
+      "sitemapPresence": true,
+      "internalLinkCount": 60,
+      "securityHeaders": {
+        "contentSecurityPolicy": "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: https:; connect-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com; frame-src https://www.googletagmanager.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'",
+        "strictTransportSecurity": "max-age=63072000",
+        "xContentTypeOptions": "nosniff",
+        "xFrameOptions": "DENY"
+      },
+      "ok": true,
+      "errors": []
+    },
+    {
+      "url": "https://www.mcpserver.in/mcp-server/",
+      "status": 200,
+      "redirectCount": 0,
+      "finalUrl": "https://www.mcpserver.in/mcp-server/",
+      "title": "MCP Server - Model Context Protocol Hub | MCPserver.in",
+      "metaDescription": "An MCP server is a program that exposes tools, resources, or reusable prompts to an AI application through the Model Context Protocol. A host application creates an MCP client connection to the server, negotiates capabilities, and invokes supported functions through JSON-RPC.",
+      "h1": "MCP Server",
+      "canonical": "https://www.mcpserver.in/mcp-server/",
+      "metaRobots": "index, follow",
+      "jsonLdTypes": [
+        "BreadcrumbList",
+        "FAQPage",
+        "Organization",
+        "TechArticle",
+        "WebApplication",
+        "WebPage",
+        "WebSite"
+      ],
+      "sitemapPresence": true,
+      "internalLinkCount": 60,
+      "securityHeaders": {
+        "contentSecurityPolicy": "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: https:; connect-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com; frame-src https://www.googletagmanager.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'",
+        "strictTransportSecurity": "max-age=63072000",
+        "xContentTypeOptions": "nosniff",
+        "xFrameOptions": "DENY"
+      },
+      "ok": true,
+      "errors": []
+    },
+    {
+      "url": "https://www.mcpserver.in/what-is-mcp/",
+      "status": 200,
+      "redirectCount": 0,
+      "finalUrl": "https://www.mcpserver.in/what-is-mcp/",
+      "title": "What Is MCP (Model Context Protocol)? - Model Context Protocol Hub | MCPserver.in",
+      "metaDescription": "Learn what the Model Context Protocol (MCP) is, how client-server connections work, and explore our comprehensive directory of supported integrations and related topics.",
+      "h1": "What Is MCP (Model Context Protocol)?",
+      "canonical": "https://www.mcpserver.in/what-is-mcp/",
+      "metaRobots": "index, follow",
+      "jsonLdTypes": [
+        "BreadcrumbList",
+        "FAQPage",
+        "Organization",
+        "TechArticle",
+        "WebApplication",
+        "WebPage",
+        "WebSite"
+      ],
+      "sitemapPresence": true,
+      "internalLinkCount": 53,
+      "securityHeaders": {
+        "contentSecurityPolicy": "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: https:; connect-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com; frame-src https://www.googletagmanager.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'",
+        "strictTransportSecurity": "max-age=63072000",
+        "xContentTypeOptions": "nosniff",
+        "xFrameOptions": "DENY"
+      },
+      "ok": true,
+      "errors": []
+    },
+    {
+      "url": "https://www.mcpserver.in/mcp-server-directory/",
+      "status": 200,
+      "redirectCount": 0,
+      "finalUrl": "https://www.mcpserver.in/mcp-server-directory/",
+      "title": "MCP Server Directory - Explore 100+ Integrations - MCPserver.in | MCPserver.in",
+      "metaDescription": "Browse the curated directory of Model Context Protocol (MCP) servers. Integrate databases, web APIs, developer tools, and SaaS platforms side-by-side.",
+      "h1": "Discover. Deploy. Scale. Everything MCP.",
+      "canonical": "https://www.mcpserver.in/mcp-server-directory/",
+      "metaRobots": "index, follow",
+      "jsonLdTypes": [
+        "Organization",
+        "WebApplication",
+        "WebSite"
+      ],
+      "sitemapPresence": true,
+      "internalLinkCount": 116,
+      "securityHeaders": {
+        "contentSecurityPolicy": "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: https:; connect-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com; frame-src https://www.googletagmanager.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'",
+        "strictTransportSecurity": "max-age=63072000",
+        "xContentTypeOptions": "nosniff",
+        "xFrameOptions": "DENY"
+      },
+      "ok": true,
+      "errors": []
+    },
+    {
+      "url": "https://www.mcpserver.in/how-to-build-mcp-server/",
+      "status": 200,
+      "redirectCount": 0,
+      "finalUrl": "https://www.mcpserver.in/how-to-build-mcp-server/",
+      "title": "How to Build an MCP Server - Model Context Protocol Tutorial | MCPserver.in",
+      "metaDescription": "A hands-on tutorial to create a simple MCP server with TypeScript or Python, connect it to Claude Desktop, and execute a custom tool.",
+      "h1": "How to Build an MCP Server",
+      "canonical": "https://www.mcpserver.in/how-to-build-mcp-server/",
+      "metaRobots": "index, follow",
+      "jsonLdTypes": [
+        "BreadcrumbList",
+        "Organization",
+        "TechArticle",
+        "WebApplication",
+        "WebPage",
+        "WebSite"
+      ],
+      "sitemapPresence": true,
+      "internalLinkCount": 60,
+      "securityHeaders": {
+        "contentSecurityPolicy": "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: https:; connect-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com; frame-src https://www.googletagmanager.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'",
+        "strictTransportSecurity": "max-age=63072000",
+        "xContentTypeOptions": "nosniff",
+        "xFrameOptions": "DENY"
+      },
+      "ok": true,
+      "errors": []
+    },
+    {
+      "url": "https://www.mcpserver.in/mcp-server-hosting/",
+      "status": 200,
+      "redirectCount": 0,
+      "finalUrl": "https://www.mcpserver.in/mcp-server-hosting/",
+      "title": "MCP Server Hosting - Model Context Protocol Hub | MCPserver.in",
+      "metaDescription": "Host MCP servers on cloud instances, container platforms, or local development environments – balancing latency, cost, and security.",
+      "h1": "MCP Server Hosting",
+      "canonical": "https://www.mcpserver.in/mcp-server-hosting/",
+      "metaRobots": "index, follow",
+      "jsonLdTypes": [
+        "BreadcrumbList",
+        "Organization",
+        "TechArticle",
+        "WebApplication",
+        "WebPage",
+        "WebSite"
+      ],
+      "sitemapPresence": true,
+      "internalLinkCount": 60,
+      "securityHeaders": {
+        "contentSecurityPolicy": "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: https:; connect-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com; frame-src https://www.googletagmanager.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'",
+        "strictTransportSecurity": "max-age=63072000",
+        "xContentTypeOptions": "nosniff",
+        "xFrameOptions": "DENY"
+      },
+      "ok": true,
+      "errors": []
+    }
+  ],
+  "redirects": [
+    {
+      "source": "http://mcpserver.in/",
+      "finalUrl": "https://www.mcpserver.in/",
+      "finalStatus": 200,
+      "redirectCount": 2,
+      "hops": [
+        {
+          "url": "http://mcpserver.in/",
+          "status": 308,
+          "location": "https://mcpserver.in/"
+        },
+        {
+          "url": "https://mcpserver.in/",
+          "status": 308,
+          "location": "https://www.mcpserver.in/"
+        },
+        {
+          "url": "https://www.mcpserver.in/",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "expectedFinalUrl": "https://www.mcpserver.in/",
+      "expectedMaxHops": 1,
+      "platformHttpHop": true,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "source": "https://mcpserver.in/",
+      "finalUrl": "https://www.mcpserver.in/",
+      "finalStatus": 200,
+      "redirectCount": 1,
+      "hops": [
+        {
+          "url": "https://mcpserver.in/",
+          "status": 308,
+          "location": "https://www.mcpserver.in/"
+        },
+        {
+          "url": "https://www.mcpserver.in/",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "expectedFinalUrl": "https://www.mcpserver.in/",
+      "expectedMaxHops": 1,
+      "platformHttpHop": false,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "source": "http://www.mcpserver.in/",
+      "finalUrl": "https://www.mcpserver.in/",
+      "finalStatus": 200,
+      "redirectCount": 1,
+      "hops": [
+        {
+          "url": "http://www.mcpserver.in/",
+          "status": 308,
+          "location": "https://www.mcpserver.in/"
+        },
+        {
+          "url": "https://www.mcpserver.in/",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "expectedFinalUrl": "https://www.mcpserver.in/",
+      "expectedMaxHops": 1,
+      "platformHttpHop": false,
+      "ok": true,
+      "errors": []
+    }
+  ],
+  "warnings": [
+    "http://mcpserver.in/ has a Vercel platform HTTP-to-HTTPS hop before app canonicalization."
+  ]
+}

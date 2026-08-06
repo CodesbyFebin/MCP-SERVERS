@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   return {
-    title: `${author.name} - ${author.role} | MCPserver.in`,
+    title: `${author.name} — ${author.role}`,
     description: author.bio,
     alternates: {
       canonical: `/authors/${name}`,

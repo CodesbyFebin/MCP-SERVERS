@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   return {
-    title: `${page.title} - MCPserver.in Docs`,
+    title: `${page.title}`,
     description: page.description,
     keywords: page.targetKeywords,
     alternates: {

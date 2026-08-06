@@ -1,0 +1,26 @@
+[
+  {
+    "slug": "mcp-vs-api",
+    "title": "Model Context Protocol (MCP) vs Traditional REST APIs",
+    "vs": "REST APIs",
+    "route": "/compare/mcp-vs-api",
+    "status": "published",
+    "qualityScore": 95
+  },
+  {
+    "slug": "mcp-vs-function-calling",
+    "title": "Model Context Protocol vs Proprietary Function Calling",
+    "vs": "Function Calling",
+    "route": "/compare/mcp-vs-function-calling",
+    "status": "published",
+    "qualityScore": 95
+  },
+  {
+    "slug": "mcp-vs-plugins",
+    "title": "Model Context Protocol vs Deprecated ChatGPT Plugins",
+    "vs": "ChatGPT Plugins",
+    "route": "/compare/mcp-vs-plugins",
+    "status": "published",
+    "qualityScore": 95
+  }
+]

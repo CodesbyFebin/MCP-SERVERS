@@ -4,7 +4,7 @@ import Breadcrumbs from "../../src/components/Breadcrumbs";
 import { ShieldAlert, Zap, Globe, Clock, CheckCircle } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Managed MCP Hosting Pricing - MCPserver.in",
+  title: "Managed MCP Hosting Pricing",
   description: "Examine hosting plans for the Model Context Protocol. Deploy secure SSE server nodes with low-latency in Mumbai/Bengaluru starting at ₹999/mo.",
   alternates: {
     canonical: "/pricing",

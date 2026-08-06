@@ -5,7 +5,7 @@ import { FileCheck, GitPullRequest, ShieldAlert } from "lucide-react";
 import { getOrganizationSchema } from "../../src/lib/schema";
 
 export const metadata: Metadata = {
-  title: "Editorial Policy - MCPserver.in",
+  title: "Editorial Policy",
   description:
     "How MCPserver.in sources, validates, and corrects its technical documentation and MCP server directory listings.",
   alternates: {

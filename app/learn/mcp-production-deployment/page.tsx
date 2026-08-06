@@ -510,12 +510,12 @@ resource "aws_ssm_parameter" "mcp_api_key" {
                   <ShieldCheck className="h-5 w-5 text-emerald-200" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-black text-white">DPDP & RBI Compliant Hosting</h3>
-                  <p className="text-[11px] text-white/50">India-first data governance built in</p>
+                  <h3 className="text-lg font-black text-white">DPDP-aware and RBI-aligned hosting</h3>
+                  <p className="text-[11px] text-white/50">India-first data governance support</p>
                 </div>
               </div>
               <p className="mt-4 text-xs leading-relaxed text-white/65">
-                Skip the compliance overhead. MCPserver.in provides automated data localization, consent management, and breach notification protocols aligned with Indian digital regulations. Deploy from Mumbai and Bengaluru edge nodes designed for low latency.
+                Reduce implementation overhead with regional deployment options, consent-aware handling patterns, audit trails, and incident-response workflows aligned to Indian regulatory reviews. Deploy from India-region nodes designed for low latency.
               </p>
             </div>
             <div className="flex items-center">

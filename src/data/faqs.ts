@@ -129,7 +129,7 @@ export const faqs: FAQ[] = [
   },
   {
     question: "What is an MCP endpoint?",
-    answer: "An MCP endpoint is the URL or address where an MCP server listens for connections. For local servers, this is typically a stdio transport; for remote servers, it's an HTTP/SSE endpoint.",
+    answer: "An MCP endpoint is the URL or address where an MCP server listens for connections. For local servers, this is typically a stdio transport; for remote servers, it is usually a Streamable HTTP endpoint.",
     cluster: "mcp-basics",
     keywords: ["mcp endpoint", "endpoint"]
   },
@@ -189,13 +189,13 @@ export const faqs: FAQ[] = [
   },
   {
     question: "What is an MCP transport?",
-    answer: "MCP transport defines how messages are exchanged between client and server. Stdio is used for local processes, while HTTP/SSE is used for remote servers.",
+    answer: "MCP transport defines how messages are exchanged between client and server. Stdio is used for local processes, while Streamable HTTP is used for remote servers.",
     cluster: "mcp-basics",
     keywords: ["mcp transport", "transport"]
   },
   {
     question: "What is MCP over HTTP?",
-    answer: "MCP over HTTP uses HTTP POST requests for client-to-server communication and Server-Sent Events (SSE) for server-to-client streaming, ideal for remote deployments.",
+    answer: "MCP over Streamable HTTP uses a single HTTP endpoint for remote deployments. The server can return JSON directly or use Server-Sent Events (SSE) when it needs to stream server-to-client messages.",
     cluster: "mcp-basics",
     keywords: ["mcp http", "http transport"]
   },
@@ -207,7 +207,7 @@ export const faqs: FAQ[] = [
   },
   {
     question: "What is remote MCP?",
-    answer: "Remote MCP refers to MCP servers hosted on cloud infrastructure, accessible over HTTP/SSE, enabling shared access and scalable deployments.",
+    answer: "Remote MCP refers to MCP servers hosted on cloud infrastructure, usually accessible over Streamable HTTP, enabling shared access and scalable deployments.",
     cluster: "mcp-basics",
     keywords: ["remote mcp", "mcp remote"]
   },

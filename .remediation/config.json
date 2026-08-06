@@ -1,0 +1,38 @@
+{
+  "frozen": true,
+  "frozenAt": "2026-08-04T19:05:58.224Z",
+  "baseline": {
+    "contentInventory": "baseline/CONTENT_INVENTORY.json",
+    "urlMap": "baseline/URL_MAP.json",
+    "entityGraph": "baseline/ENTITY_GRAPH.json",
+    "productionManifest": "baseline/PRODUCTION_MANIFEST.json",
+    "phase1Audit": "baseline/PHASE1_AUDIT_REPORT.json",
+    "safeDeepReport": "baseline/SAFE_DEEP_REPORT.json",
+    "qualityReport": "baseline/QUALITY_REPORT.json",
+    "seoReport": "baseline/SEO_REPORT.md",
+    "internalLinkGraph": "baseline/INTERNAL_LINK_GRAPH.json"
+  },
+  "disabledGenerators": ".remediation/disabled-generators/",
+  "ledger": ".remediation/remediation-ledger.csv",
+  "phases": {
+    "canonical": "pending",
+    "h1": "pending",
+    "internalLinks": "pending",
+    "deduplication": "pending",
+    "reclassification": "pending",
+    "contentQuality": "pending",
+    "structuredData": "pending",
+    "safeDeepGates": "pending"
+  },
+  "acceptanceCriteria": {
+    "missingCanonicals": 2442,
+    "missingH1s": 1834,
+    "brokenInternalLinks": 1360,
+    "deadEndPages": 2131,
+    "duplicateEntities": 198,
+    "duplicateHeadings": 742,
+    "duplicateKeywords": 796,
+    "safeDeepFailures": 2442,
+    "averageQualityScore": 54
+  }
+}

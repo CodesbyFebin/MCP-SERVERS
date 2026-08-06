@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     template: "%s | MCPserver.in"
   },
   description: "Discover and deploy MCP servers. Hosted infrastructure for AI agents with India-region hosting and compliance features.",
-  keywords: ["MCP server hosting India", "hosted MCP platform", "DPDP compliant AI tools", "MCP servers Mumbai", "MCP servers Bengaluru", "Model Context Protocol hosting"],
+  keywords: ["MCP server hosting India", "hosted MCP platform", "DPDP-aware AI tools", "MCP servers Mumbai", "MCP servers Bengaluru", "Model Context Protocol hosting"],
   authors: [{ name: "MCPserver.in Engineering" }],
   creator: "MCPserver.in",
   publisher: "MCPserver.in",

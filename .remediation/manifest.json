@@ -1,0 +1,81 @@
+{
+  "purpose": "Documentation of cleaned up artifacts from consolidation process",
+  "cleaned_up_at": "2026-08-05T22:44:39+05:30",
+  "removed_items": {
+    "large_generated_artifacts": [
+      {
+        "path": ".remediation/baseline/",
+        "size_mb": 5.2,
+        "description": "Baseline reports from consolidation audit including phase reports, quality metrics, entity graphs, and link graphs"
+      },
+      {
+        "path": ".remediation/heading-duplicates.json",
+        "size_mb": 1.4,
+        "description": "Duplicate heading detection report from content audit"
+      },
+      {
+        "path": ".remediation/canonical-registry.json",
+        "size_mb": 0.828,
+        "description": "Canonical URL registry generated during consolidation"
+      },
+      {
+        "path": ".remediation/action-plan.json",
+        "size_mb": 0.692,
+        "description": "Action plan generated from consolidation audit findings"
+      },
+      {
+        "path": ".remediation/page-classification-registry.json",
+        "size_mb": 0.648,
+        "description": "Page classification registry from content audit"
+      }
+    ],
+    "removed_directories": [
+      {
+        "path": ".remediation/disabled-generators/",
+        "size_mb": 0.336,
+        "description": "Disabled content generation scripts from migration process"
+      }
+    ],
+    "total_removed_mb": 8.436
+  },
+  "preserved_items": [
+    {
+      "path": ".remediation/config.json",
+      "size_kb": 4,
+      "description": "Consolidation configuration file"
+    },
+    {
+      "path": ".remediation/canonical-intent-registry.json",
+      "size_kb": 96,
+      "description": "Canonical intent registry for SEO governance"
+    },
+    {
+      "path": ".remediation/keyword-duplicates.json",
+      "size_kb": 76,
+      "description": "Duplicate keyword detection report"
+    },
+    {
+      "path": ".remediation/safe-deep-gate-report.json",
+      "size_kb": 16,
+      "description": "SAFE-DEEP gate validation report"
+    },
+    {
+      "path": ".remediation/remediation-ledger.csv",
+      "size_kb": 4,
+      "description": "Ledger of remediation actions taken"
+    },
+    {
+      "path": ".remediation/final-verification-report.json",
+      "size_kb": 4,
+      "description": "Final verification report from consolidation"
+    },
+    {
+      "path": ".remediation/phase2-report.json",
+      "size_kb": 4,
+      "description": "Phase 2 consolidation report"
+    }
+  ],
+  "total_preserved_mb": 0.204,
+  "net_space_saved_mb": 8.232,
+  "note": "All removed items were generated artifacts from the consolidation process. The preserved items contain configuration and reference data needed for ongoing operations."
+}

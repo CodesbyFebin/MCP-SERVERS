@@ -200,7 +200,7 @@ export default function PillarPageTemplate({
 
             {/* GEO Definitive Statement */}
             <blockquote className="geo-definitive-statement">
-              <strong>Key Compliance Rule:</strong> Under the DPDP Act 2023, MCP servers processing Indian user data must enforce data localization and maintain immutable audit logs.
+              <strong>Compliance note:</strong> MCP servers that process Indian personal data should be designed around purpose limitation, consent-aware access, auditability, retention controls, and incident-response duties under the DPDP Act 2023.
             </blockquote>
 
             {/* 2. How it works */}

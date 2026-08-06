@@ -8,4 +8,5 @@ https://www.mcpserver.in/sitemap-glossary.xml
 https://www.mcpserver.in/sitemap-comparisons.xml
 https://www.mcpserver.in/sitemap-categories.xml
 https://www.mcpserver.in/sitemap-docs.xml
+https://www.mcpserver.in/sitemap-phase-a.xml
 https://www.mcpserver.in/sitemap-images.xml

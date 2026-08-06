@@ -1,0 +1,6 @@
+{
+  "check": "generated-intents",
+  "threshold": 0,
+  "duplicatePrimaryIntents": 0,
+  "groups": {}
+}

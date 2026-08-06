@@ -30,7 +30,7 @@ import {
   Zap
 } from "lucide-react";
 import ServerCard from "../../src/components/ServerCard";
-import { servers } from "../../src/data/servers";
+import { publishedServers as servers } from "../../src/data/publishing";
 
 const categoryIcons: Record<string, typeof Boxes> = {
   "Developer Tools": Code2,
@@ -79,13 +79,13 @@ export default function DirectoryClient() {
                 <span className="bg-gradient-to-r from-blue-300 to-violet-400 bg-clip-text text-transparent">Everything MCP.</span>
               </h1>
                <p className="mt-6 max-w-xl text-base leading-relaxed text-white/68">
-                 Connect any AI agent to MCP servers. One API. Growing directory of {servers.length} integrations across {categories.length} categories.
+                Browse published MCP server profiles with visible evidence state, claim labels, and implementation notes across {categories.length} categories.
                </p>
               <div className="mt-7 grid grid-cols-3 gap-4">
                {[
                    ["Curated", "MCP Servers", Server],
-                   ["One Click", "Deploy", Rocket],
-                   ["Global", "Edge Network", ShieldCheck]
+                   ["Evidence", "Labelled", Rocket],
+                   ["Claims", "Traceable", ShieldCheck]
                  ].map(([value, label, Icon]) => (
                   <div key={label as string} className="flex items-center gap-3">
                     <Icon className="h-8 w-8 text-cyan-300" />
@@ -98,7 +98,7 @@ export default function DirectoryClient() {
               </div>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <PrimaryButton href="#browse">Browse MCP Servers</PrimaryButton>
-                <SecondaryButton href="/pricing">Deploy Your Server</SecondaryButton>
+                <SecondaryButton href="/editorial-policy">Publication Policy</SecondaryButton>
               </div>
             </div>
             <EcosystemVisual variant="compact" />
@@ -203,12 +203,12 @@ export default function DirectoryClient() {
           <SectionTitle title="The Complete MCP Platform" subtitle="Everything you need to discover, deploy and manage MCP servers at scale." />
           <FeatureGrid
             items={[
-               { title: "Curated Registry", body: `A curated set of ${servers.length} MCP servers across ${categories.length} categories.`, icon: "Server", accent: "violet" },
-              { title: "One API Gateway", body: "One endpoint to access a growing set of MCP servers.", icon: "Zap", accent: "cyan" },
-               { title: "Hosted Infrastructure", body: "Managed edge hosting for MCP server workloads.", icon: "Cloud", accent: "amber" },
-              { title: "Enterprise Ready", body: "Advanced security, compliance and access controls.", icon: "ShieldCheck", accent: "blue" },
+              { title: "Curated Registry", body: `A curated set of ${servers.length} published MCP profiles across ${categories.length} categories.`, icon: "Server", accent: "violet" },
+              { title: "Evidence Labels", body: "Directory records show source, claim, and refresh state instead of blanket trust badges.", icon: "Zap", accent: "cyan" },
+              { title: "Page Contracts", body: "Public routes are governed by deterministic publication contracts and quality checks.", icon: "Cloud", accent: "amber" },
+              { title: "Enterprise Aware", body: "Profiles call out authentication boundaries, credential handling, and review status.", icon: "ShieldCheck", accent: "blue" },
               { title: "Developer First", body: "Open source friendly with SDKs and extensive docs.", icon: "Code2", accent: "pink" },
-              { title: "Marketplace", body: "Publish, monetize and discover premium MCP servers.", icon: "Layers3", accent: "amber" }
+              { title: "Marketplace Ready", body: "Vendor listings can be added once review, moderation, and payment workflows are implemented.", icon: "Layers3", accent: "amber" }
             ]}
           />
         </Container>
@@ -216,13 +216,13 @@ export default function DirectoryClient() {
 
       <DividerSection>
         <Container>
-          <SectionTitle eyebrow="How it works" title="Deploy in 4 Simple Steps" />
+          <SectionTitle eyebrow="How it works" title="Publish in 4 Review Steps" />
           <div className="grid gap-4 md:grid-cols-4">
             {[
-               ["Choose Server", "Browse or search from our curated set of MCP servers.", Search],
-              ["Configure", "Add your credentials and configure the server settings.", Zap],
-              ["Deploy", "One click and we handle the infrastructure, scaling and security.", Cloud],
-              ["Connect & Use", "Get your endpoint and start using with your AI agents.", Rocket]
+              ["Create Entity", "Record the server, category, auth model, and owner context.", Search],
+              ["Attach Evidence", "Link claims to sources and passages before publication.", Zap],
+              ["Score Quality", "Run metadata, schema, canonical, and internal-link checks.", Cloud],
+              ["Publish", "Only approved canonical pages enter directory and sitemap outputs.", Rocket]
             ].map(([title, body, Icon], index) => (
               <div key={title as string} className="rounded-xl border border-white/10 bg-white/[0.035] p-6">
                 <div className="grid h-8 w-8 place-items-center rounded-full bg-violet-600 text-sm font-black text-white">{index + 1}</div>
@@ -237,14 +237,21 @@ export default function DirectoryClient() {
 
       <DividerSection>
         <Container>
-          <SectionTitle title="Loved by Developers" subtitle="Feedback from developers building with MCP." />
+          <SectionTitle title="Editorial Notes" subtitle="Directory feedback is shown only when sourced and reviewed." />
           <Testimonials />
         </Container>
       </DividerSection>
 
       <DividerSection className="pb-14">
         <Container>
-          <CtaBanner title="Ready to Supercharge Your AI?" subtitle="Join the MCP directory today." primaryHref="/register" primaryLabel="Get Started for Free" />
+          <CtaBanner
+            title="Submit an MCP Server"
+            subtitle="New listings enter editorial review before becoming indexable."
+            primaryHref="/community"
+            primaryLabel="Start Submission"
+            secondaryHref="/editorial-policy"
+            secondaryLabel="Read Policy"
+          />
         </Container>
       </DividerSection>
     </PageShell>

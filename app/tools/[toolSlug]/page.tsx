@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { toolSlug } = await params;
   if (!VALID_TOOLS.has(toolSlug)) {
     return {
-      title: "Tool Not Found - MCPserver.in",
+      title: "Tool Not Found",
       alternates: {
         canonical: `/tools/${toolSlug}`,
         languages: {
@@ -44,7 +44,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   if (toolSlug === "dpdp-compliance-scanner") {
     return {
-      title: "DPDP Compliance Scanner - MCPserver.in",
+      title: "DPDP Compliance Scanner",
       description:
         "Run live technical compliance checks against a GitHub repository or a live MCP server endpoint: license, security policy, data-handling disclosure, HTTPS, and access control.",
       alternates: {
@@ -59,7 +59,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   if (toolSlug === "dpdp-compliance-checklist") {
     return {
-      title: "DPDP & RBI Compliance Checklist - MCPserver.in",
+      title: "DPDP & RBI Compliance Checklist",
       description:
         "Educational compliance checklist for MCP deployments in India. Covers DPDP Act 2023, RBI guidelines, data localization, consent management, and breach notification requirements.",
       alternates: {
@@ -84,7 +84,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const toolTitle = titleMap[normalized] || "MCP Developer Suite";
 
   return {
-    title: `${toolTitle} - MCPserver.in`,
+    title: `${toolTitle}`,
     description: `Diagnose, test, analyze, and package Model Context Protocol (MCP) capabilities inside your browser with the ${toolTitle}.`,
     alternates: {
       canonical: `/tools/${toolSlug}`,

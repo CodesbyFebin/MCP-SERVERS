@@ -1,0 +1,213 @@
+{
+  "generatedAt": "2026-08-05T04:21:42.028Z",
+  "origin": "http://127.0.0.1:3130",
+  "results": [
+    {
+      "source": "http://mcpserver.in/",
+      "expected": "https://www.mcpserver.in/",
+      "status": 308,
+      "maxHops": 1,
+      "finalUrl": "https://www.mcpserver.in/",
+      "finalStatus": 200,
+      "hops": [
+        {
+          "source": "http://mcpserver.in/",
+          "status": 308,
+          "location": "https://www.mcpserver.in/"
+        },
+        {
+          "source": "https://www.mcpserver.in/",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "ok": true,
+      "error": null,
+      "frameworkPreProxyHop": false
+    },
+    {
+      "source": "https://mcpserver.in/",
+      "expected": "https://www.mcpserver.in/",
+      "status": 308,
+      "maxHops": 1,
+      "finalUrl": "https://www.mcpserver.in/",
+      "finalStatus": 200,
+      "hops": [
+        {
+          "source": "https://mcpserver.in/",
+          "status": 308,
+          "location": "https://www.mcpserver.in/"
+        },
+        {
+          "source": "https://www.mcpserver.in/",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "ok": true,
+      "error": null,
+      "frameworkPreProxyHop": false
+    },
+    {
+      "source": "http://www.mcpserver.in/",
+      "expected": "https://www.mcpserver.in/",
+      "status": 308,
+      "maxHops": 1,
+      "finalUrl": "https://www.mcpserver.in/",
+      "finalStatus": 200,
+      "hops": [
+        {
+          "source": "http://www.mcpserver.in/",
+          "status": 308,
+          "location": "https://www.mcpserver.in/"
+        },
+        {
+          "source": "https://www.mcpserver.in/",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "ok": true,
+      "error": null,
+      "frameworkPreProxyHop": false
+    },
+    {
+      "source": "http://mcpserver.in/how-to-build-mcp-server?utm_source=test",
+      "expected": "https://www.mcpserver.in/how-to-build-mcp-server/",
+      "status": 308,
+      "maxHops": 1,
+      "finalUrl": "https://www.mcpserver.in/how-to-build-mcp-server/",
+      "finalStatus": 200,
+      "hops": [
+        {
+          "source": "http://mcpserver.in/how-to-build-mcp-server?utm_source=test",
+          "status": 308,
+          "location": "https://www.mcpserver.in/how-to-build-mcp-server/"
+        },
+        {
+          "source": "https://www.mcpserver.in/how-to-build-mcp-server/",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "ok": true,
+      "error": null,
+      "frameworkPreProxyHop": false
+    },
+    {
+      "source": "http://mcpserver.in/mcp-hosting?utm_source=test",
+      "expected": "https://www.mcpserver.in/mcp-server-hosting/",
+      "status": 308,
+      "maxHops": 1,
+      "finalUrl": "https://www.mcpserver.in/mcp-server-hosting/",
+      "finalStatus": 200,
+      "hops": [
+        {
+          "source": "http://mcpserver.in/mcp-hosting?utm_source=test",
+          "status": 308,
+          "location": "https://www.mcpserver.in/mcp-server-hosting/"
+        },
+        {
+          "source": "https://www.mcpserver.in/mcp-server-hosting/",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "ok": true,
+      "error": null,
+      "frameworkPreProxyHop": false
+    },
+    {
+      "source": "https://www.mcpserver.in/glossary/streamable-http?ref=duplicate",
+      "expected": "https://www.mcpserver.in/glossary/streamable-http/",
+      "status": 308,
+      "maxHops": 1,
+      "finalUrl": "https://www.mcpserver.in/glossary/streamable-http/",
+      "finalStatus": 200,
+      "hops": [
+        {
+          "source": "https://www.mcpserver.in/glossary/streamable-http?ref=duplicate",
+          "status": 308,
+          "location": "https://www.mcpserver.in/glossary/streamable-http/"
+        },
+        {
+          "source": "https://www.mcpserver.in/glossary/streamable-http/",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "ok": true,
+      "error": null,
+      "frameworkPreProxyHop": false
+    },
+    {
+      "source": "http://mcpserver.in//glossary//streamable-http?utm_medium=x",
+      "expected": "https://www.mcpserver.in/glossary/streamable-http/",
+      "status": 308,
+      "maxHops": 1,
+      "finalUrl": "https://www.mcpserver.in/glossary/streamable-http/",
+      "finalStatus": 200,
+      "hops": [
+        {
+          "source": "http://mcpserver.in//glossary//streamable-http?utm_medium=x",
+          "status": 308,
+          "location": "/glossary/streamable-http?utm_medium=x"
+        },
+        {
+          "source": "http://mcpserver.in/glossary/streamable-http?utm_medium=x",
+          "status": 308,
+          "location": "https://www.mcpserver.in/glossary/streamable-http/"
+        },
+        {
+          "source": "https://www.mcpserver.in/glossary/streamable-http/",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "ok": true,
+      "error": null,
+      "frameworkPreProxyHop": true
+    },
+    {
+      "source": "https://www.mcpserver.in/how-to-build-mcp-server/",
+      "expected": "https://www.mcpserver.in/how-to-build-mcp-server/",
+      "status": 200,
+      "maxHops": 0,
+      "finalUrl": "https://www.mcpserver.in/how-to-build-mcp-server/",
+      "finalStatus": 200,
+      "hops": [
+        {
+          "source": "https://www.mcpserver.in/how-to-build-mcp-server/",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "ok": true,
+      "error": null,
+      "frameworkPreProxyHop": false
+    },
+    {
+      "source": "https://www.mcpserver.in/mcp-server-hosting/",
+      "expected": "https://www.mcpserver.in/mcp-server-hosting/",
+      "status": 200,
+      "maxHops": 0,
+      "finalUrl": "https://www.mcpserver.in/mcp-server-hosting/",
+      "finalStatus": 200,
+      "hops": [
+        {
+          "source": "https://www.mcpserver.in/mcp-server-hosting/",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "ok": true,
+      "error": null,
+      "frameworkPreProxyHop": false
+    }
+  ],
+  "destinations": {
+    "checked": 50,
+    "declared": 70,
+    "broken": []
+  }
+}

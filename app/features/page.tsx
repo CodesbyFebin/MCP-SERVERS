@@ -5,7 +5,7 @@ import { Container, DividerSection, FeatureGrid, PageShell, SectionTitle, StatSt
 import { getUnifiedGraphSchema } from "../../src/lib/schema";
 
 export const metadata: Metadata = {
-  title: "MCPserver.in Features - Hosted MCP Infrastructure",
+  title: "Features: Hosted MCP Infrastructure",
   description:
     "Explore MCPserver.in features for server discovery, managed hosting, zero-trust security, observability, India edge latency, and enterprise governance.",
   alternates: {
@@ -59,7 +59,7 @@ export default function FeaturesPage() {
           <FeatureGrid
             items={[
               { title: "Server Directory", body: "Search verified MCP servers by category, auth model, and use case.", icon: "Boxes", accent: "cyan" },
-              { title: "Hosted Runtime", body: "Deploy stdio and SSE servers behind managed HTTPS endpoints.", icon: "Rocket", accent: "violet" },
+              { title: "Hosted Runtime", body: "Deploy stdio and Streamable HTTP servers behind managed HTTPS endpoints.", icon: "Rocket", accent: "violet" },
               { title: "Zero-Trust Gateway", body: "Validate auth, payloads, scopes, and tool policies before execution.", icon: "ShieldCheck", accent: "green" },
               { title: "India Edge", body: "Route traffic through Mumbai and Bengaluru for lower regional latency.", icon: "Globe2", accent: "amber" },
               { title: "Observability", body: "Track latency percentiles, errors, logs, traces, and audit events.", icon: "Activity", accent: "blue" },

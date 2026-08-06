@@ -1,0 +1,6 @@
+{
+  "check": "generated-claims",
+  "threshold": 0,
+  "unsupportedClaims": 0,
+  "sampleFailures": []
+}

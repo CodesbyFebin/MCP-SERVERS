@@ -7,7 +7,7 @@ import { getUnifiedGraphSchema } from "../../../src/lib/schema";
 import { getContentDates } from "../../../src/lib/contentDates";
 
 export const metadata: Metadata = {
-  title: "Aadhaar Mock Sandbox for MCP Servers | MCPserver.in",
+  title: "Aadhaar Mock Sandbox for MCP Servers",
   description:
     "Practice Aadhaar-aware MCP integration patterns in a safe sandbox — redaction, masking, consent flows, and audit logging without real identity data.",
   alternates: {

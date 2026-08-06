@@ -526,7 +526,7 @@ export default function HomepageComprehensiveContent() {
         </div>
       </section>
 
-      {/* SECTION 4: Sub-50ms Latency Benchmarks & Performance Metrics */}
+      {/* SECTION 4: Regional latency planning & performance metrics */}
       <section id="performance-benchmarks" className="border-t border-white/10 bg-[#030612] py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-4xl text-center">
@@ -534,7 +534,7 @@ export default function HomepageComprehensiveContent() {
               <Activity className="h-4 w-4" /> Telemetry & Benchmark Data 2026
             </span>
             <h2 className="mt-6 text-3xl font-black tracking-tight text-white sm:text-4xl lg:text-5xl">
-              Sub-50ms Latency: <span className="bg-gradient-to-r from-cyan-300 via-blue-300 to-indigo-400 bg-clip-text text-transparent">India Edge Hosting vs Overseas Cloud</span>
+              Regional Latency Planning: <span className="bg-gradient-to-r from-cyan-300 via-blue-300 to-indigo-400 bg-clip-text text-transparent">India Edge Hosting vs Overseas Cloud</span>
             </h2>
             <p className="mt-4 text-base leading-relaxed text-white/70 sm:text-lg">
               Empirical latency metrics comparing tool execution times across Indian developers connecting to Mumbai/Bengaluru edge hosts versus US/EU cloud regions.
@@ -555,7 +555,7 @@ export default function HomepageComprehensiveContent() {
             </div>
 
             <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-6 text-center">
-              <div className="text-4xl font-black text-fuchsia-300">99.99%</div>
+              <div className="text-4xl font-black text-fuchsia-300">SLA</div>
               <div className="mt-2 text-xs font-bold uppercase tracking-wider text-white/60">Uptime SLA</div>
               <p className="mt-2 text-[11px] text-white/60">Multi-AZ automatic failover across ap-south-1a and ap-south-1b.</p>
             </div>
@@ -888,11 +888,11 @@ async def main():
             {activeTab === "nodejs" && (
               <pre className="overflow-x-auto text-xs text-violet-300">
 {`import { Client } from "@modelcontextprotocol/sdk/client/index.js";
-import { SSEClientTransport } from "@modelcontextprotocol/sdk/client/sse.js";
+import { StreamableHTTPClientTransport } from "@modelcontextprotocol/sdk/client/streamableHttp.js";
 
-// Connect to Edge Hosted SSE MCP Server in Mumbai
-const transport = new SSEClientTransport(
-  new URL("https://api.mcpserver.in/v1/sse/github"),
+// Connect to an edge-hosted Streamable HTTP MCP server in Mumbai
+const transport = new StreamableHTTPClientTransport(
+  new URL("https://api.mcpserver.in/v1/mcp/github"),
   { headers: { Authorization: "Bearer mcp_live_mumbai_xxx" } }
 );
 
@@ -993,7 +993,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                 </tr>
                 <tr>
                   <th scope="row" className="p-4 font-bold text-white">Uptime Guarantee</th>
-                  <td className="p-4 font-bold text-emerald-400">99.99% Financial SLA</td>
+                  <td className="p-4 font-bold text-emerald-400">Negotiated Enterprise SLA</td>
                   <td className="p-4 text-rose-400">No SLA</td>
                   <td className="p-4 text-amber-300">Varies</td>
                 </tr>
@@ -1014,7 +1014,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
               Simple, Predictable <span className="text-emerald-300">Pricing in Indian Rupees</span>
             </h2>
             <p className="mt-4 text-sm text-white/70">
-              Start completely free with local stdio servers. Upgrade when deploying always-on SSE servers in production.
+              Start completely free with local stdio servers. Upgrade when deploying hosted Streamable HTTP servers in production.
             </p>
           </div>
 
@@ -1038,11 +1038,11 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
               <span className="absolute -top-3 right-6 rounded-full bg-cyan-400 px-3 py-1 text-[10px] font-black text-black">
                 MOST POPULAR
               </span>
-              <h3 className="text-xl font-bold text-white">Starter SSE Tier</h3>
+              <h3 className="text-xl font-bold text-white">Starter Remote Tier</h3>
               <div className="mt-4 text-3xl font-black text-cyan-300">₹999 <span className="text-xs font-normal text-white/60">/ month</span></div>
-              <p className="mt-2 text-xs text-white/60">For production AI agents requiring hosted, always-on SSE server endpoints.</p>
+              <p className="mt-2 text-xs text-white/60">For production AI agents requiring hosted Streamable HTTP MCP endpoints.</p>
               <ul className="mt-6 space-y-2 text-xs text-white/70">
-                <li className="flex items-center gap-2"><Check className="h-4 w-4 text-cyan-300" /> 3 Hosted Always-On SSE Servers</li>
+                <li className="flex items-center gap-2"><Check className="h-4 w-4 text-cyan-300" /> 3 Hosted Streamable HTTP MCP Servers</li>
                 <li className="flex items-center gap-2"><Check className="h-4 w-4 text-cyan-300" /> Mumbai Edge Region Hosting (<code className="text-cyan-300">ap-south-1</code>)</li>
                 <li className="flex items-center gap-2"><Check className="h-4 w-4 text-cyan-300" /> Encrypted Secrets Management Vault</li>
                 <li className="flex items-center gap-2"><Check className="h-4 w-4 text-cyan-300" /> 18% GST Invoicing Included</li>
@@ -1053,13 +1053,13 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             </div>
 
             <div className="rounded-3xl border border-white/10 bg-white/[0.02] p-8">
-              <h3 className="text-xl font-bold text-white">Enterprise DPDP</h3>
+              <h3 className="text-xl font-bold text-white">Enterprise DPDP-aware</h3>
               <div className="mt-4 text-3xl font-black text-white">Custom <span className="text-xs font-normal text-white/60">/ annual</span></div>
-              <p className="mt-2 text-xs text-white/60">Dedicated VPC infrastructure, custom SLAs, and full DPDP legal compliance support.</p>
+              <p className="mt-2 text-xs text-white/60">Dedicated VPC infrastructure, custom SLAs, and DPDP-aware implementation support.</p>
               <ul className="mt-6 space-y-2 text-xs text-white/70">
-                <li className="flex items-center gap-2"><Check className="h-4 w-4 text-emerald-400" /> Unlimited Hosted SSE/HTTP Servers</li>
+                <li className="flex items-center gap-2"><Check className="h-4 w-4 text-emerald-400" /> Unlimited Hosted Streamable HTTP Servers</li>
                 <li className="flex items-center gap-2"><Check className="h-4 w-4 text-emerald-400" /> Multi-Region Failover (Mumbai & Bengaluru)</li>
-                <li className="flex items-center gap-2"><Check className="h-4 w-4 text-emerald-400" /> 99.99% Uptime Financial SLA</li>
+                <li className="flex items-center gap-2"><Check className="h-4 w-4 text-emerald-400" /> Negotiated uptime SLA</li>
                 <li className="flex items-center gap-2"><Check className="h-4 w-4 text-emerald-400" /> Dedicated Technical Account Manager</li>
               </ul>
               <Link href="/contact/" className="mt-8 block text-center rounded-xl bg-white/10 py-3 text-xs font-bold text-white hover:bg-white/20">
@@ -1096,7 +1096,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                 a: "Yes, MCPserver.in provides a 100% free Developer Tier. Developers can explore the entire MCP server directory, test local stdio servers, and execute basic API calls without entering a credit card."
               },
               {
-                q: "What does DPDP compliant MCP hosting mean?",
+                q: "What does DPDP-aware MCP hosting mean?",
                 a: "DPDP compliance ensures that all digital personal data processed through your MCP servers adheres to India's Digital Personal Data Protection Act 2023. This includes keeping data localized in Indian regions (ap-south-1/ap-south-2), capturing user consent, maintaining audit logs, and fulfilling Data Principal requests."
               },
               {

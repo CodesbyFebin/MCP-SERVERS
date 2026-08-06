@@ -1,0 +1,1934 @@
+[
+  {
+    "sourceId": "server:github-mcp-server",
+    "targetId": "category:developer-tools",
+    "type": "belongs_to_category",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:github-mcp-server",
+    "targetId": "server:gitlab-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:github-mcp-server",
+    "targetId": "server:bitbucket-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:github-mcp-server",
+    "targetId": "server:jira-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:gitlab-mcp-server",
+    "targetId": "category:developer-tools",
+    "type": "belongs_to_category",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:gitlab-mcp-server",
+    "targetId": "server:github-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:gitlab-mcp-server",
+    "targetId": "server:bitbucket-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:gitlab-mcp-server",
+    "targetId": "server:docker-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:bitbucket-mcp-server",
+    "targetId": "category:developer-tools",
+    "type": "belongs_to_category",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:bitbucket-mcp-server",
+    "targetId": "server:github-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:bitbucket-mcp-server",
+    "targetId": "server:gitlab-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:bitbucket-mcp-server",
+    "targetId": "server:jira-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:docker-mcp-server",
+    "targetId": "category:developer-tools",
+    "type": "belongs_to_category",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:docker-mcp-server",
+    "targetId": "server:kubernetes-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:docker-mcp-server",
+    "targetId": "server:aws-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:docker-mcp-server",
+    "targetId": "server:vercel-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:kubernetes-mcp-server",
+    "targetId": "category:developer-tools",
+    "type": "belongs_to_category",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:kubernetes-mcp-server",
+    "targetId": "server:docker-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:kubernetes-mcp-server",
+    "targetId": "server:aws-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:kubernetes-mcp-server",
+    "targetId": "server:google-cloud-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:vercel-mcp-server",
+    "targetId": "category:developer-tools",
+    "type": "belongs_to_category",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:vercel-mcp-server",
+    "targetId": "server:cloudflare-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:vercel-mcp-server",
+    "targetId": "server:github-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:vercel-mcp-server",
+    "targetId": "server:aws-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:cloudflare-mcp-server",
+    "targetId": "category:developer-tools",
+    "type": "belongs_to_category",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:cloudflare-mcp-server",
+    "targetId": "server:vercel-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:cloudflare-mcp-server",
+    "targetId": "server:aws-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:cloudflare-mcp-server",
+    "targetId": "server:supabase-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:sentry-mcp-server",
+    "targetId": "category:developer-tools",
+    "type": "belongs_to_category",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:sentry-mcp-server",
+    "targetId": "server:github-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:sentry-mcp-server",
+    "targetId": "server:jira-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:postman-mcp-server",
+    "targetId": "category:developer-tools",
+    "type": "belongs_to_category",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:sonarqube-mcp-server",
+    "targetId": "category:developer-tools",
+    "type": "belongs_to_category",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:sonarqube-mcp-server",
+    "targetId": "server:github-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:sonarqube-mcp-server",
+    "targetId": "server:gitlab-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:circleci-mcp-server",
+    "targetId": "category:developer-tools",
+    "type": "belongs_to_category",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:circleci-mcp-server",
+    "targetId": "server:github-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:circleci-mcp-server",
+    "targetId": "server:docker-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:heroku-mcp-server",
+    "targetId": "category:developer-tools",
+    "type": "belongs_to_category",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:heroku-mcp-server",
+    "targetId": "server:vercel-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:heroku-mcp-server",
+    "targetId": "server:postgres-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:jenkins-mcp-server",
+    "targetId": "category:developer-tools",
+    "type": "belongs_to_category",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:jenkins-mcp-server",
+    "targetId": "server:gitlab-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:jenkins-mcp-server",
+    "targetId": "server:docker-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:gitbook-mcp-server",
+    "targetId": "category:developer-tools",
+    "type": "belongs_to_category",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:gitbook-mcp-server",
+    "targetId": "server:github-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:gitbook-mcp-server",
+    "targetId": "server:notion-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:swagger-mcp-server",
+    "targetId": "category:developer-tools",
+    "type": "belongs_to_category",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:swagger-mcp-server",
+    "targetId": "server:postman-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:postgres-mcp-server",
+    "targetId": "category:databases",
+    "type": "belongs_to_category",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:postgres-mcp-server",
+    "targetId": "server:mysql-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:postgres-mcp-server",
+    "targetId": "server:supabase-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:postgres-mcp-server",
+    "targetId": "server:sqlite-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:mysql-mcp-server",
+    "targetId": "category:databases",
+    "type": "belongs_to_category",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:mysql-mcp-server",
+    "targetId": "server:postgres-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:mysql-mcp-server",
+    "targetId": "server:sqlite-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:mysql-mcp-server",
+    "targetId": "server:mongodb-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:mongodb-mcp-server",
+    "targetId": "category:databases",
+    "type": "belongs_to_category",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:mongodb-mcp-server",
+    "targetId": "server:postgres-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:mongodb-mcp-server",
+    "targetId": "server:redis-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:mongodb-mcp-server",
+    "targetId": "server:supabase-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:sqlite-mcp-server",
+    "targetId": "category:databases",
+    "type": "belongs_to_category",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:sqlite-mcp-server",
+    "targetId": "server:postgres-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:sqlite-mcp-server",
+    "targetId": "server:mysql-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:redis-mcp-server",
+    "targetId": "category:databases",
+    "type": "belongs_to_category",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:redis-mcp-server",
+    "targetId": "server:postgres-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:redis-mcp-server",
+    "targetId": "server:mongodb-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:redis-mcp-server",
+    "targetId": "server:supabase-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:supabase-mcp-server",
+    "targetId": "category:databases",
+    "type": "belongs_to_category",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:supabase-mcp-server",
+    "targetId": "server:postgres-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:supabase-mcp-server",
+    "targetId": "server:firebase-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:supabase-mcp-server",
+    "targetId": "server:cloudflare-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:firebase-mcp-server",
+    "targetId": "category:databases",
+    "type": "belongs_to_category",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:firebase-mcp-server",
+    "targetId": "server:supabase-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:firebase-mcp-server",
+    "targetId": "server:mongodb-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:firebase-mcp-server",
+    "targetId": "server:google-cloud-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:pinecone-mcp-server",
+    "targetId": "category:databases",
+    "type": "belongs_to_category",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:pinecone-mcp-server",
+    "targetId": "server:vector-database-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:pinecone-mcp-server",
+    "targetId": "server:supabase-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:pinecone-mcp-server",
+    "targetId": "server:redis-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:vector-database-mcp-server",
+    "targetId": "category:databases",
+    "type": "belongs_to_category",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:vector-database-mcp-server",
+    "targetId": "server:pinecone-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:vector-database-mcp-server",
+    "targetId": "server:postgres-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:cassandra-mcp-server",
+    "targetId": "category:databases",
+    "type": "belongs_to_category",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:cassandra-mcp-server",
+    "targetId": "server:postgres-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:cassandra-mcp-server",
+    "targetId": "server:redis-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:neo4j-mcp-server",
+    "targetId": "category:databases",
+    "type": "belongs_to_category",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:neo4j-mcp-server",
+    "targetId": "server:postgres-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:neo4j-mcp-server",
+    "targetId": "server:mongodb-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:dynamodb-mcp-server",
+    "targetId": "category:databases",
+    "type": "belongs_to_category",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:dynamodb-mcp-server",
+    "targetId": "server:aws-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:dynamodb-mcp-server",
+    "targetId": "server:mongodb-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:clickhouse-mcp-server",
+    "targetId": "category:databases",
+    "type": "belongs_to_category",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:clickhouse-mcp-server",
+    "targetId": "server:postgres-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:clickhouse-mcp-server",
+    "targetId": "server:mysql-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:elasticsearch-mcp-server",
+    "targetId": "category:databases",
+    "type": "belongs_to_category",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:elasticsearch-mcp-server",
+    "targetId": "server:redis-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:elasticsearch-mcp-server",
+    "targetId": "server:mongodb-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:oracle-mcp-server",
+    "targetId": "category:databases",
+    "type": "belongs_to_category",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:oracle-mcp-server",
+    "targetId": "server:postgres-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:oracle-mcp-server",
+    "targetId": "server:mysql-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:slack-mcp-server",
+    "targetId": "category:productivity",
+    "type": "belongs_to_category",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:slack-mcp-server",
+    "targetId": "server:gmail-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:slack-mcp-server",
+    "targetId": "server:trello-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:slack-mcp-server",
+    "targetId": "server:jira-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:gmail-mcp-server",
+    "targetId": "category:productivity",
+    "type": "belongs_to_category",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:gmail-mcp-server",
+    "targetId": "server:google-calendar-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:gmail-mcp-server",
+    "targetId": "server:google-drive-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:gmail-mcp-server",
+    "targetId": "server:slack-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:google-calendar-mcp-server",
+    "targetId": "category:productivity",
+    "type": "belongs_to_category",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:google-calendar-mcp-server",
+    "targetId": "server:gmail-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:google-calendar-mcp-server",
+    "targetId": "server:google-drive-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:google-calendar-mcp-server",
+    "targetId": "server:notion-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:google-drive-mcp-server",
+    "targetId": "category:productivity",
+    "type": "belongs_to_category",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:google-drive-mcp-server",
+    "targetId": "server:gmail-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:google-drive-mcp-server",
+    "targetId": "server:google-calendar-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:google-drive-mcp-server",
+    "targetId": "server:notion-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:notion-mcp-server",
+    "targetId": "category:productivity",
+    "type": "belongs_to_category",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:notion-mcp-server",
+    "targetId": "server:google-drive-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:notion-mcp-server",
+    "targetId": "server:jira-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:notion-mcp-server",
+    "targetId": "server:trello-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:jira-mcp-server",
+    "targetId": "category:productivity",
+    "type": "belongs_to_category",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:jira-mcp-server",
+    "targetId": "server:linear-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:jira-mcp-server",
+    "targetId": "server:trello-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:jira-mcp-server",
+    "targetId": "server:github-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:linear-mcp-server",
+    "targetId": "category:productivity",
+    "type": "belongs_to_category",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:linear-mcp-server",
+    "targetId": "server:jira-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:linear-mcp-server",
+    "targetId": "server:trello-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:linear-mcp-server",
+    "targetId": "server:github-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:trello-mcp-server",
+    "targetId": "category:productivity",
+    "type": "belongs_to_category",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:trello-mcp-server",
+    "targetId": "server:jira-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:trello-mcp-server",
+    "targetId": "server:notion-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:trello-mcp-server",
+    "targetId": "server:slack-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:hubspot-mcp-server",
+    "targetId": "category:productivity",
+    "type": "belongs_to_category",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:hubspot-mcp-server",
+    "targetId": "server:salesforce-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:hubspot-mcp-server",
+    "targetId": "server:stripe-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:hubspot-mcp-server",
+    "targetId": "server:gmail-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:salesforce-mcp-server",
+    "targetId": "category:productivity",
+    "type": "belongs_to_category",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:salesforce-mcp-server",
+    "targetId": "server:hubspot-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:salesforce-mcp-server",
+    "targetId": "server:stripe-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:ms-teams-mcp-server",
+    "targetId": "category:productivity",
+    "type": "belongs_to_category",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:ms-teams-mcp-server",
+    "targetId": "server:slack-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:ms-teams-mcp-server",
+    "targetId": "server:gmail-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:zoom-mcp-server",
+    "targetId": "category:productivity",
+    "type": "belongs_to_category",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:zoom-mcp-server",
+    "targetId": "server:google-calendar-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:zoom-mcp-server",
+    "targetId": "server:slack-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:discord-mcp-server",
+    "targetId": "category:productivity",
+    "type": "belongs_to_category",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:discord-mcp-server",
+    "targetId": "server:slack-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:discord-mcp-server",
+    "targetId": "server:github-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:figma-mcp-server",
+    "targetId": "category:productivity",
+    "type": "belongs_to_category",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:figma-mcp-server",
+    "targetId": "server:github-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:figma-mcp-server",
+    "targetId": "server:slack-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:asana-mcp-server",
+    "targetId": "category:productivity",
+    "type": "belongs_to_category",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:asana-mcp-server",
+    "targetId": "server:jira-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:asana-mcp-server",
+    "targetId": "server:trello-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:stripe-mcp-server",
+    "targetId": "server:razorpay-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:stripe-mcp-server",
+    "targetId": "server:shopify-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:stripe-mcp-server",
+    "targetId": "server:hubspot-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:razorpay-mcp-server",
+    "targetId": "server:stripe-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:razorpay-mcp-server",
+    "targetId": "server:shopify-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:shopify-mcp-server",
+    "targetId": "server:stripe-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:shopify-mcp-server",
+    "targetId": "server:razorpay-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:shopify-mcp-server",
+    "targetId": "server:hubspot-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:paypal-mcp-server",
+    "targetId": "server:stripe-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:paypal-mcp-server",
+    "targetId": "server:shopify-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:quickbooks-mcp-server",
+    "targetId": "server:stripe-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:quickbooks-mcp-server",
+    "targetId": "server:salesforce-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:woocommerce-mcp-server",
+    "targetId": "server:shopify-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:woocommerce-mcp-server",
+    "targetId": "server:stripe-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:xero-mcp-server",
+    "targetId": "server:quickbooks-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:xero-mcp-server",
+    "targetId": "server:stripe-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:chargebee-mcp-server",
+    "targetId": "server:stripe-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:chargebee-mcp-server",
+    "targetId": "server:hubspot-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:paddle-mcp-server",
+    "targetId": "server:stripe-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:paddle-mcp-server",
+    "targetId": "server:chargebee-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:adyen-mcp-server",
+    "targetId": "server:stripe-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:adyen-mcp-server",
+    "targetId": "server:paypal-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:openai-mcp-server",
+    "targetId": "category:ai-ml",
+    "type": "belongs_to_category",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:openai-mcp-server",
+    "targetId": "server:anthropic-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:openai-mcp-server",
+    "targetId": "server:google-gemini-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:openai-mcp-server",
+    "targetId": "server:ollama-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:anthropic-mcp-server",
+    "targetId": "category:ai-ml",
+    "type": "belongs_to_category",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:anthropic-mcp-server",
+    "targetId": "server:openai-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:anthropic-mcp-server",
+    "targetId": "server:google-gemini-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:google-gemini-mcp-server",
+    "targetId": "category:ai-ml",
+    "type": "belongs_to_category",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:google-gemini-mcp-server",
+    "targetId": "server:openai-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:google-gemini-mcp-server",
+    "targetId": "server:anthropic-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:ollama-mcp-server",
+    "targetId": "category:ai-ml",
+    "type": "belongs_to_category",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:ollama-mcp-server",
+    "targetId": "server:openai-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:mistral-mcp-server",
+    "targetId": "category:ai-ml",
+    "type": "belongs_to_category",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:mistral-mcp-server",
+    "targetId": "server:openai-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:mistral-mcp-server",
+    "targetId": "server:cohere-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:cohere-mcp-server",
+    "targetId": "category:ai-ml",
+    "type": "belongs_to_category",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:cohere-mcp-server",
+    "targetId": "server:openai-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:cohere-mcp-server",
+    "targetId": "server:mistral-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:prometheus-mcp-server",
+    "targetId": "category:monitoring",
+    "type": "belongs_to_category",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:prometheus-mcp-server",
+    "targetId": "server:grafana-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:prometheus-mcp-server",
+    "targetId": "server:aws-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:prometheus-mcp-server",
+    "targetId": "server:kubernetes-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:grafana-mcp-server",
+    "targetId": "category:monitoring",
+    "type": "belongs_to_category",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:grafana-mcp-server",
+    "targetId": "server:prometheus-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:grafana-mcp-server",
+    "targetId": "server:datadog-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:grafana-mcp-server",
+    "targetId": "server:newrelic-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:datadog-mcp-server",
+    "targetId": "category:monitoring",
+    "type": "belongs_to_category",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:datadog-mcp-server",
+    "targetId": "server:prometheus-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:datadog-mcp-server",
+    "targetId": "server:grafana-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:datadog-mcp-server",
+    "targetId": "server:aws-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:newrelic-mcp-server",
+    "targetId": "category:monitoring",
+    "type": "belongs_to_category",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:newrelic-mcp-server",
+    "targetId": "server:datadog-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:newrelic-mcp-server",
+    "targetId": "server:grafana-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:newrelic-mcp-server",
+    "targetId": "server:aws-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:opentelemetry-mcp-server",
+    "targetId": "category:monitoring",
+    "type": "belongs_to_category",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:opentelemetry-mcp-server",
+    "targetId": "server:prometheus-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:opentelemetry-mcp-server",
+    "targetId": "server:grafana-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:opentelemetry-mcp-server",
+    "targetId": "server:kubernetes-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:aws-mcp-server",
+    "targetId": "category:cloud",
+    "type": "belongs_to_category",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:aws-mcp-server",
+    "targetId": "server:google-cloud-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:aws-mcp-server",
+    "targetId": "server:azure-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:aws-mcp-server",
+    "targetId": "server:kubernetes-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:google-cloud-mcp-server",
+    "targetId": "category:cloud",
+    "type": "belongs_to_category",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:google-cloud-mcp-server",
+    "targetId": "server:aws-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:google-cloud-mcp-server",
+    "targetId": "server:azure-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:google-cloud-mcp-server",
+    "targetId": "server:kubernetes-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:azure-mcp-server",
+    "targetId": "category:cloud",
+    "type": "belongs_to_category",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:azure-mcp-server",
+    "targetId": "server:aws-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:azure-mcp-server",
+    "targetId": "server:google-cloud-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:azure-mcp-server",
+    "targetId": "server:kubernetes-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:digitalocean-mcp-server",
+    "targetId": "category:cloud",
+    "type": "belongs_to_category",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:digitalocean-mcp-server",
+    "targetId": "server:aws-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:digitalocean-mcp-server",
+    "targetId": "server:cloudflare-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:linode-mcp-server",
+    "targetId": "category:cloud",
+    "type": "belongs_to_category",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:linode-mcp-server",
+    "targetId": "server:digitalocean-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:linode-mcp-server",
+    "targetId": "server:aws-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:supabase-cloud-mcp-server",
+    "targetId": "category:cloud",
+    "type": "belongs_to_category",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:supabase-cloud-mcp-server",
+    "targetId": "server:supabase-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:supabase-cloud-mcp-server",
+    "targetId": "server:vercel-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:fly-io-mcp-server",
+    "targetId": "category:cloud",
+    "type": "belongs_to_category",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:fly-io-mcp-server",
+    "targetId": "server:vercel-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:fly-io-mcp-server",
+    "targetId": "server:docker-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:railway-mcp-server",
+    "targetId": "category:cloud",
+    "type": "belongs_to_category",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:railway-mcp-server",
+    "targetId": "server:vercel-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:railway-mcp-server",
+    "targetId": "server:supabase-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:render-mcp-server",
+    "targetId": "category:cloud",
+    "type": "belongs_to_category",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:render-mcp-server",
+    "targetId": "server:vercel-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:render-mcp-server",
+    "targetId": "server:railway-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:scaleway-mcp-server",
+    "targetId": "category:cloud",
+    "type": "belongs_to_category",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:scaleway-mcp-server",
+    "targetId": "server:aws-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server:scaleway-mcp-server",
+    "targetId": "server:digitalocean-mcp-server",
+    "type": "related_to_server",
+    "confidence": 1
+  },
+  {
+    "sourceId": "server-aws-mcp-server",
+    "targetId": "pillar-mcp-cloud",
+    "type": "related-to",
+    "confidence": 0.8
+  },
+  {
+    "sourceId": "server-google-cloud-mcp-server",
+    "targetId": "pillar-mcp-cloud",
+    "type": "related-to",
+    "confidence": 0.8
+  },
+  {
+    "sourceId": "server-azure-mcp-server",
+    "targetId": "pillar-mcp-cloud",
+    "type": "related-to",
+    "confidence": 0.8
+  },
+  {
+    "sourceId": "server-digitalocean-mcp-server",
+    "targetId": "pillar-mcp-cloud",
+    "type": "related-to",
+    "confidence": 0.8
+  },
+  {
+    "sourceId": "server-linode-mcp-server",
+    "targetId": "pillar-mcp-cloud",
+    "type": "related-to",
+    "confidence": 0.8
+  },
+  {
+    "sourceId": "server-supabase-cloud-mcp-server",
+    "targetId": "pillar-mcp-cloud",
+    "type": "related-to",
+    "confidence": 0.8
+  },
+  {
+    "sourceId": "server-fly-io-mcp-server",
+    "targetId": "pillar-mcp-cloud",
+    "type": "related-to",
+    "confidence": 0.8
+  },
+  {
+    "sourceId": "server-railway-mcp-server",
+    "targetId": "pillar-mcp-cloud",
+    "type": "related-to",
+    "confidence": 0.8
+  },
+  {
+    "sourceId": "server-render-mcp-server",
+    "targetId": "pillar-mcp-cloud",
+    "type": "related-to",
+    "confidence": 0.8
+  },
+  {
+    "sourceId": "server-scaleway-mcp-server",
+    "targetId": "pillar-mcp-cloud",
+    "type": "related-to",
+    "confidence": 0.8
+  },
+  {
+    "sourceId": "topic-what-is-mcp",
+    "targetId": "pillar-what-is-mcp",
+    "type": "related-to",
+    "confidence": 0.8
+  },
+  {
+    "sourceId": "topic-mcp-vs-api",
+    "targetId": "pillar-mcp-vs-api",
+    "type": "related-to",
+    "confidence": 0.8
+  },
+  {
+    "sourceId": "topic-mcp-clients",
+    "targetId": "pillar-mcp-client",
+    "type": "related-to",
+    "confidence": 0.8
+  },
+  {
+    "sourceId": "topic-mcp-clients",
+    "targetId": "pillar-mcp-clients",
+    "type": "related-to",
+    "confidence": 0.8
+  },
+  {
+    "sourceId": "topic-official-mcp-servers",
+    "targetId": "pillar-mcp-server",
+    "type": "related-to",
+    "confidence": 0.8
+  },
+  {
+    "sourceId": "topic-official-mcp-servers",
+    "targetId": "pillar-official-mcp-servers",
+    "type": "related-to",
+    "confidence": 0.8
+  },
+  {
+    "sourceId": "topic-mcp-marketplaces",
+    "targetId": "pillar-mcp-marketplace",
+    "type": "related-to",
+    "confidence": 0.8
+  },
+  {
+    "sourceId": "topic-mcp-marketplaces",
+    "targetId": "pillar-mcp-marketplaces",
+    "type": "related-to",
+    "confidence": 0.8
+  },
+  {
+    "sourceId": "topic-awesome-mcp-registries",
+    "targetId": "pillar-mcp-server",
+    "type": "related-to",
+    "confidence": 0.8
+  },
+  {
+    "sourceId": "topic-mcp-categories-guide",
+    "targetId": "pillar-mcp-server",
+    "type": "related-to",
+    "confidence": 0.8
+  },
+  {
+    "sourceId": "topic-mcp-categories-guide",
+    "targetId": "pillar-mcp-categories",
+    "type": "related-to",
+    "confidence": 0.8
+  },
+  {
+    "sourceId": "topic-mcp-database-analytics",
+    "targetId": "pillar-mcp-database",
+    "type": "related-to",
+    "confidence": 0.8
+  },
+  {
+    "sourceId": "topic-mcp-local-server",
+    "targetId": "pillar-mcp-server",
+    "type": "related-to",
+    "confidence": 0.8
+  },
+  {
+    "sourceId": "topic-mcp-remote-server",
+    "targetId": "pillar-mcp-server",
+    "type": "related-to",
+    "confidence": 0.8
+  },
+  {
+    "sourceId": "topic-free-mcp-hosting",
+    "targetId": "pillar-mcp-hosting",
+    "type": "related-to",
+    "confidence": 0.8
+  },
+  {
+    "sourceId": "topic-azure-mcp-hosting-options",
+    "targetId": "pillar-mcp-hosting",
+    "type": "related-to",
+    "confidence": 0.8
+  },
+  {
+    "sourceId": "topic-aws-mcp-hosting-options",
+    "targetId": "pillar-mcp-hosting",
+    "type": "related-to",
+    "confidence": 0.8
+  },
+  {
+    "sourceId": "topic-mcp-security-best-practices",
+    "targetId": "pillar-mcp-security",
+    "type": "related-to",
+    "confidence": 0.8
+  },
+  {
+    "sourceId": "topic-mcp-authentication",
+    "targetId": "pillar-mcp-authentication",
+    "type": "related-to",
+    "confidence": 0.8
+  },
+  {
+    "sourceId": "topic-mcp-security-checklist",
+    "targetId": "pillar-mcp-security",
+    "type": "related-to",
+    "confidence": 0.8
+  },
+  {
+    "sourceId": "topic-build-mcp-server",
+    "targetId": "pillar-mcp-server",
+    "type": "related-to",
+    "confidence": 0.8
+  },
+  {
+    "sourceId": "topic-build-mcp-server",
+    "targetId": "pillar-mcp-development",
+    "type": "related-to",
+    "confidence": 0.8
+  },
+  {
+    "sourceId": "topic-mcp-tools-definition",
+    "targetId": "pillar-mcp-tools",
+    "type": "related-to",
+    "confidence": 0.8
+  },
+  {
+    "sourceId": "topic-mcp-server-examples",
+    "targetId": "pillar-mcp-server",
+    "type": "related-to",
+    "confidence": 0.8
+  },
+  {
+    "sourceId": "topic-mcp-server-testing",
+    "targetId": "pillar-mcp-server",
+    "type": "related-to",
+    "confidence": 0.8
+  },
+  {
+    "sourceId": "topic-install-mcp-server",
+    "targetId": "pillar-mcp-server",
+    "type": "related-to",
+    "confidence": 0.8
+  },
+  {
+    "sourceId": "topic-install-mcp-server",
+    "targetId": "pillar-mcp-installation",
+    "type": "related-to",
+    "confidence": 0.8
+  },
+  {
+    "sourceId": "topic-mcp-manual-configuration",
+    "targetId": "pillar-mcp-config",
+    "type": "related-to",
+    "confidence": 0.8
+  },
+  {
+    "sourceId": "topic-mcp-ecosystem-growth",
+    "targetId": "pillar-mcp-trends",
+    "type": "related-to",
+    "confidence": 0.8
+  },
+  {
+    "sourceId": "topic-top-mcp-servers-developers",
+    "targetId": "pillar-mcp-server",
+    "type": "related-to",
+    "confidence": 0.8
+  },
+  {
+    "sourceId": "topic-free-vs-paid-mcp-servers",
+    "targetId": "pillar-mcp-server",
+    "type": "related-to",
+    "confidence": 0.8
+  },
+  {
+    "sourceId": "topic-remote-mcp-trends",
+    "targetId": "pillar-mcp-server",
+    "type": "related-to",
+    "confidence": 0.8
+  },
+  {
+    "sourceId": "topic-mcp-monetization",
+    "targetId": "pillar-mcp-server",
+    "type": "related-to",
+    "confidence": 0.8
+  },
+  {
+    "sourceId": "topic-mcp-directory-listing",
+    "targetId": "pillar-mcp-server",
+    "type": "related-to",
+    "confidence": 0.8
+  },
+  {
+    "sourceId": "pillar-mcp-server",
+    "targetId": "topic-official-mcp-servers",
+    "type": "contains",
+    "confidence": 0.9
+  },
+  {
+    "sourceId": "pillar-mcp-server",
+    "targetId": "topic-awesome-mcp-registries",
+    "type": "contains",
+    "confidence": 0.9
+  },
+  {
+    "sourceId": "pillar-mcp-server",
+    "targetId": "topic-mcp-categories-guide",
+    "type": "contains",
+    "confidence": 0.9
+  },
+  {
+    "sourceId": "pillar-mcp-server",
+    "targetId": "topic-mcp-local-server",
+    "type": "contains",
+    "confidence": 0.9
+  },
+  {
+    "sourceId": "pillar-mcp-server",
+    "targetId": "topic-mcp-remote-server",
+    "type": "contains",
+    "confidence": 0.9
+  },
+  {
+    "sourceId": "pillar-mcp-hosting",
+    "targetId": "topic-free-mcp-hosting",
+    "type": "contains",
+    "confidence": 0.9
+  },
+  {
+    "sourceId": "pillar-mcp-hosting",
+    "targetId": "topic-azure-mcp-hosting-options",
+    "type": "contains",
+    "confidence": 0.9
+  },
+  {
+    "sourceId": "pillar-mcp-hosting",
+    "targetId": "topic-aws-mcp-hosting-options",
+    "type": "contains",
+    "confidence": 0.9
+  },
+  {
+    "sourceId": "pillar-mcp-tools",
+    "targetId": "topic-mcp-tools-definition",
+    "type": "contains",
+    "confidence": 0.9
+  },
+  {
+    "sourceId": "pillar-mcp-security",
+    "targetId": "topic-mcp-security-best-practices",
+    "type": "contains",
+    "confidence": 0.9
+  },
+  {
+    "sourceId": "pillar-mcp-security",
+    "targetId": "topic-mcp-security-checklist",
+    "type": "contains",
+    "confidence": 0.9
+  },
+  {
+    "sourceId": "pillar-mcp-authentication",
+    "targetId": "topic-mcp-authentication",
+    "type": "contains",
+    "confidence": 0.9
+  },
+  {
+    "sourceId": "pillar-mcp-database",
+    "targetId": "topic-mcp-database-analytics",
+    "type": "contains",
+    "confidence": 0.9
+  },
+  {
+    "sourceId": "pillar-mcp-vs-api",
+    "targetId": "topic-mcp-vs-api",
+    "type": "contains",
+    "confidence": 0.9
+  },
+  {
+    "sourceId": "pillar-mcp-marketplace",
+    "targetId": "topic-mcp-marketplaces",
+    "type": "contains",
+    "confidence": 0.9
+  },
+  {
+    "sourceId": "pillar-mcp-cloud",
+    "targetId": "server-aws-mcp-server",
+    "type": "references",
+    "confidence": 0.8
+  },
+  {
+    "sourceId": "pillar-mcp-cloud",
+    "targetId": "server-google-cloud-mcp-server",
+    "type": "references",
+    "confidence": 0.8
+  },
+  {
+    "sourceId": "pillar-mcp-cloud",
+    "targetId": "server-azure-mcp-server",
+    "type": "references",
+    "confidence": 0.8
+  },
+  {
+    "sourceId": "pillar-mcp-cloud",
+    "targetId": "server-digitalocean-mcp-server",
+    "type": "references",
+    "confidence": 0.8
+  },
+  {
+    "sourceId": "pillar-mcp-cloud",
+    "targetId": "server-linode-mcp-server",
+    "type": "references",
+    "confidence": 0.8
+  },
+  {
+    "sourceId": "pillar-mcp-client",
+    "targetId": "topic-mcp-clients",
+    "type": "contains",
+    "confidence": 0.9
+  },
+  {
+    "sourceId": "pillar-mcp-config",
+    "targetId": "topic-mcp-manual-configuration",
+    "type": "contains",
+    "confidence": 0.9
+  },
+  {
+    "sourceId": "pillar-what-is-mcp",
+    "targetId": "topic-what-is-mcp",
+    "type": "contains",
+    "confidence": 0.9
+  },
+  {
+    "sourceId": "pillar-official-mcp-servers",
+    "targetId": "topic-official-mcp-servers",
+    "type": "contains",
+    "confidence": 0.9
+  },
+  {
+    "sourceId": "pillar-mcp-marketplaces",
+    "targetId": "topic-mcp-marketplaces",
+    "type": "contains",
+    "confidence": 0.9
+  },
+  {
+    "sourceId": "pillar-mcp-categories",
+    "targetId": "topic-mcp-categories-guide",
+    "type": "contains",
+    "confidence": 0.9
+  },
+  {
+    "sourceId": "pillar-mcp-clients",
+    "targetId": "topic-mcp-clients",
+    "type": "contains",
+    "confidence": 0.9
+  },
+  {
+    "sourceId": "pillar-mcp-development",
+    "targetId": "topic-build-mcp-server",
+    "type": "contains",
+    "confidence": 0.9
+  },
+  {
+    "sourceId": "pillar-mcp-installation",
+    "targetId": "topic-install-mcp-server",
+    "type": "contains",
+    "confidence": 0.9
+  },
+  {
+    "sourceId": "pillar-mcp-trends",
+    "targetId": "topic-mcp-ecosystem-growth",
+    "type": "contains",
+    "confidence": 0.9
+  }
+]

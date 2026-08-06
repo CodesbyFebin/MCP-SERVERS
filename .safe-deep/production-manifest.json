@@ -1,0 +1,60 @@
+{
+  "generatedAt": "2026-08-04T21:13:23.574Z",
+  "site": "MCPserver.in",
+  "canonicalBaseUrl": "https://www.mcpserver.in",
+  "deployment": {
+    "provider": "Vercel",
+    "account": "projects555",
+    "project": "mcp-servers",
+    "deploymentId": "dpl_DioQkZtwuasdoVSVCo7HexPCztf2",
+    "deploymentUrl": "https://mcp-servers-q9f42utf8-projects555.vercel.app",
+    "productionAliases": [
+      "https://mcpserver.in",
+      "https://www.mcpserver.in"
+    ],
+    "inspectorUrl": "https://vercel.com/projects555/mcp-servers/DioQkZtwuasdoVSVCo7HexPCztf2",
+    "readyState": "READY"
+  },
+  "releaseCommand": "npm run build; vercel deploy --prod --yes; npm run verify:phase-a-production; npm run verify:sitemaps; npm run verify:production",
+  "releaseResult": "passed",
+  "indexing": {
+    "indexNow": {
+      "submittedDuringVercelPostbuild": true,
+      "host": "www.mcpserver.in",
+      "urlCount": 1181,
+      "responseStatus": 200
+    },
+    "searchConsole": {
+      "status": "pending-external-access",
+      "evidence": ".safe-deep/evidence/search-console.json"
+    }
+  },
+  "coreUrls": [
+    "https://www.mcpserver.in/",
+    "https://www.mcpserver.in/mcp-server/",
+    "https://www.mcpserver.in/what-is-mcp/",
+    "https://www.mcpserver.in/mcp-server-directory/",
+    "https://www.mcpserver.in/how-to-build-mcp-server/",
+    "https://www.mcpserver.in/mcp-server-hosting/"
+  ],
+  "notes": [
+    "Phase A authority expansion created exactly 100 publish-approved URLs and verified all 100 live on production.",
+    "Vercel remote build and local build passed.",
+    "Search Console status remains pending external access; no indexing claim was fabricated."
+  ],
+  "phaseA": {
+    "exactApprovedUrlCount": 100,
+    "liveVerifiedUrlCount": 100,
+    "productionRouteFailures": 0,
+    "sitemapUrl": "https://www.mcpserver.in/sitemap-phase-a.xml",
+    "reports": [
+      "reports/phase-a-url-inventory.json",
+      "reports/phase-a-url-inventory.csv",
+      "reports/phase-a-intent-map.json",
+      "reports/phase-a-internal-link-graph.json",
+      "reports/phase-a-quality-report.json",
+      "reports/phase-a-schema-report.json",
+      "reports/phase-a-publication-report.json"
+    ]
+  }
+}

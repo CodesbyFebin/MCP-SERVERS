@@ -8,7 +8,7 @@ import { computeReadTime } from "../../src/lib/readTime";
 import { blogPosts, clusters } from "../../src/data/blogPosts";
 
 export const metadata: Metadata = {
-  title: "MCPserver.in Blog - MCP Infrastructure, Security and India AI Agents",
+  title: "Blog: MCP Infrastructure, Security and AI Integration",
   description:
     "Read MCPserver.in updates, technical guides, and India-first AI infrastructure articles on MCP latency, DPDP, security, and hosted servers.",
   alternates: {

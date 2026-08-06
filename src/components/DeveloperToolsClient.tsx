@@ -203,7 +203,7 @@ export default function DeveloperToolsClient({ toolSlug }: DeveloperToolsClientP
                 <h3 className="font-display font-bold text-base text-white">Interactive MCP Simulator</h3>
               </div>
               <p className="text-xs text-white/50 leading-relaxed">
-                Connect and test your local or hosted SSE nodes. You can run mock commands and review returned markdown responses.
+                Connect and test your local stdio or hosted Streamable HTTP nodes. You can run mock commands and review returned markdown responses.
               </p>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -250,7 +250,7 @@ export default function DeveloperToolsClient({ toolSlug }: DeveloperToolsClientP
                 <h3 className="font-display font-bold text-base text-white">Server Connection Auditing</h3>
               </div>
               <p className="text-xs text-white/50 leading-relaxed">
-                Provide your remote server's HTTP/SSE URL to verify JSON-RPC handshake standards and extract capabilities schemas.
+                Provide your remote server's Streamable HTTP URL to verify JSON-RPC handshake standards and extract capabilities schemas.
               </p>
 
               <div className="flex gap-2">

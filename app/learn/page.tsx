@@ -16,9 +16,9 @@ const guides = [
 ];
 
 export const metadata: Metadata = {
-  title: "MCPserver.in Learn - MCP Knowledge Hub & AI Infrastructure Guides",
+  title: "Learn: MCP Knowledge Hub & AI Infrastructure Guides",
   description:
-    "Answers on Model Context Protocol hosting, latency, DPDP compliance, pricing in India, and enterprise MCP deployment strategies.",
+    "Guides on Model Context Protocol hosting, latency, compliance, pricing, and enterprise MCP deployment strategies.",
   alternates: {
     canonical: "/learn",
     languages: {
@@ -72,7 +72,7 @@ const learnSections = [
     questions: [
       {
         question: "Is MCPserver.in compliant with India's DPDP Act?",
-        answer: "Yes. MCPserver.in is fully DPDP compliant with automated data localization, consent management, and breach notification protocols built into the platform."
+        answer: "MCPserver.in is designed to support DPDP-aware deployments with regional hosting options, consent-aware implementation patterns, audit trails, and incident-response workflows. Final compliance depends on your data flows, configuration, contracts, and operating process."
       },
       {
         question: "How are credentials protected in hosted MCP?",
@@ -127,8 +127,8 @@ export default function LearnPage() {
   const faqSchema = getFAQSchema(allFaqs);
   const unifiedSchema = getUnifiedGraphSchema({
     pageUrl: "/learn",
-    title: "MCPserver.in Learn - MCP Knowledge Hub & AI Infrastructure Guides",
-    description: "Answers on Model Context Protocol hosting, latency, DPDP compliance, pricing in India, and enterprise MCP deployment strategies.",
+    title: "Learn: MCP Knowledge Hub & AI Infrastructure Guides",
+    description: "Answers on Model Context Protocol hosting, latency, compliance, pricing, and enterprise MCP deployment strategies.",
     breadcrumbs: [
       { name: "Home", item: "/" },
       { name: "Learn", item: "/learn" }

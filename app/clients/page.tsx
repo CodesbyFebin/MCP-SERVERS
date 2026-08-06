@@ -1,160 +1,70 @@
 import type { Metadata } from "next";
-import {
-  Badge,
-  ClientCaseStudies,
-  clientStats,
-  Container,
-  CtaBanner,
-  DividerSection,
-  EcosystemVisual,
-  FeatureGrid,
-  LogoCloud,
-  PageShell,
-  PrimaryButton,
-  SecondaryButton,
-  SectionTitle,
-  StatStrip,
-  Testimonials
-} from "../../src/components/ReferenceLanding";
-import {
-  BadgeCheck,
-  Cloud,
-  Database,
-  GraduationCap,
-  HeartPulse,
-  Plane,
-  ShieldCheck,
-  ShoppingCart,
-  Sparkles,
-  Truck,
-  Wrench
-} from "lucide-react";
+import Link from "next/link";
+import { clients } from "../../src/data/entities";
+import Breadcrumbs from "../../src/components/Breadcrumbs";
+import SchemaJsonLd from "../../src/components/SchemaJsonLd";
+import { getUnifiedGraphSchema } from "../../src/lib/schema";
+import { Monitor, Cpu } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "MCP Clients - Trusted by Innovators",
-  description: "See companies, client stories and industries using MCP SERVER to power AI agents at scale.",
-  alternates: {
-    canonical: "/clients",
-    languages: {
-      "en-IN": "/clients",
-      "en": "/clients",
-        }
-  },
-
+  title: "MCP Client Configuration Guides",
+  description: "Setup and configuration guides for every MCP-compatible AI client: Claude Desktop, Cursor, VS Code, Claude Code, and more.",
+  alternates: { canonical: "https://www.mcpserver.in/clients/" },
 };
 
-export default function ClientsPage() {
+const CLIENT_TYPE_LABELS: Record<string, string> = {
+  "desktop-app": "Desktop App",
+  "ide": "IDE / Editor",
+  "cli": "CLI Tool",
+  "web-app": "Web App",
+  "framework": "AI Framework",
+};
+
+export default function ClientsIndexPage() {
+  const schema = getUnifiedGraphSchema({
+    pageUrl: "/clients/",
+    title: "MCP Client Configuration Guides",
+    description: "Setup and configuration guides for every MCP-compatible AI client.",
+    breadcrumbs: [{ name: "Clients", item: "/clients" }],
+    itemList: clients.map((e) => ({
+      name: e.name,
+      url: e.route,
+      description: e.metaDescription,
+    })),
+  });
+
   return (
-    <PageShell id="clients-page">
-      <section className="py-12 lg:py-16">
-        <Container>
-          <div className="grid items-center gap-10 lg:grid-cols-[0.45fr_0.55fr]">
-            <div>
-              <div className="text-xs font-bold text-violet-300">Home / Clients</div>
-              <h1 className="mt-7 text-4xl font-black leading-[1.05] tracking-tight text-white sm:text-5xl">
-                Trusted by Innovators. <br />
-                Powering <span className="bg-gradient-to-r from-blue-300 to-violet-400 bg-clip-text text-transparent">Real-World AI.</span>
-              </h1>
-              <p className="mt-6 max-w-xl text-base leading-relaxed text-white/68">
-                Thousands of companies, startups and developers use MCP SERVER to connect, build and scale AI agents with confidence.
-              </p>
-              <div className="mt-7 grid grid-cols-2 gap-4 md:grid-cols-4">
-                {[
-                  ["Production Ready", "Enterprise grade infrastructure", BadgeCheck],
-                  ["Secure & Compliant", "SOC 2, GDPR ready and encrypted", ShieldCheck],
-                  ["Scalable & Reliable", "High uptime and global edge network", Cloud],
-                   ["Loved by Developers", "A growing community of builders", Wrench]
-                ].map(([title, body, Icon]) => (
-                  <div key={title as string} className="flex gap-3">
-                    <Icon className="mt-1 h-5 w-5 shrink-0 text-emerald-300" />
-                    <div>
-                      <div className="text-xs font-black text-white">{title as string}</div>
-                      <div className="mt-1 text-[11px] leading-relaxed text-white/45">{body as string}</div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <PrimaryButton href="/mcp-server-directory">Explore MCP Servers</PrimaryButton>
-                <SecondaryButton href="/contact">Book a Demo</SecondaryButton>
-              </div>
-            </div>
-            <EcosystemVisual variant="clients" />
-          </div>
-        </Container>
-      </section>
-
-      <DividerSection className="pt-0">
-        <Container>
-          <StatStrip items={clientStats} />
-        </Container>
-      </DividerSection>
-
-      <Container>
-        <LogoCloud client />
-      </Container>
-
-      <DividerSection>
-        <Container>
-          <ClientCaseStudies />
-        </Container>
-      </DividerSection>
-
-      <DividerSection>
-        <Container>
-          <SectionTitle title="What Our Clients Love" subtitle="Real feedback from developers, engineers and founders." />
-          <Testimonials client />
-        </Container>
-      </DividerSection>
-
-      <DividerSection>
-        <Container>
-          <SectionTitle title="Why Clients Choose MCP SERVER" subtitle="Everything you need to build, connect and scale AI with confidence." />
-          <FeatureGrid
-            items={[
-              { title: "Easy Integration", body: "One API. Connect to a growing directory of tools, apps and data sources.", icon: "Sparkles", accent: "cyan" },
-              { title: "Enterprise Security", body: "SOC 2, GDPR ready with end-to-end encryption and access control.", icon: "ShieldCheck", accent: "violet" },
-              { title: "Global Infrastructure", body: "Hosted on a global edge network for low latency and high availability.", icon: "Cloud", accent: "green" },
-              { title: "Developer First", body: "Beautiful APIs, SDKs, docs and tools that developers love.", icon: "Code2", accent: "pink" },
-              { title: "Scalable by Design", body: "From prototypes to millions of requests, we scale with you.", icon: "Database", accent: "cyan" },
-              { title: "Active Support", body: "24/7 expert support from real engineers who care.", icon: "Zap", accent: "violet" }
-            ]}
-          />
-        </Container>
-      </DividerSection>
-
-      <DividerSection>
-        <Container>
-          <div className="rounded-xl border border-white/10 bg-white/[0.025] p-7">
-            <SectionTitle title="Industries We Serve" />
-            <div className="grid grid-cols-2 gap-5 text-center md:grid-cols-5 lg:grid-cols-10">
-              {[
-                ["Fintech", Database],
-                ["EdTech", GraduationCap],
-                ["Healthcare", HeartPulse],
-                ["Retail & Ecommerce", ShoppingCart],
-                ["Logistics", Truck],
-                ["SaaS", Cloud],
-                ["Media", Sparkles],
-                ["Travel", Plane],
-                ["Manufacturing", Wrench],
-                ["Government", BadgeCheck]
-              ].map(([label, Icon]) => (
-                <div key={label as string}>
-                  <Icon className="mx-auto h-7 w-7 text-violet-300" />
-                  <div className="mt-3 text-xs font-semibold text-white/75">{label as string}</div>
+    <div className="min-h-screen py-6 pb-20 bg-[#050508] text-white">
+      <SchemaJsonLd schema={schema} />
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <Breadcrumbs items={[{ name: "AI Clients", href: "/clients" }]} />
+        <header className="py-8 border-b border-white/5">
+          <h1 className="text-4xl font-display font-bold text-white">MCP Client Configuration Guides</h1>
+          <p className="mt-3 text-white/60 max-w-2xl text-sm leading-relaxed">
+            Configure MCP servers in Claude Desktop, Cursor, VS Code, and every other MCP-compatible AI client.
+          </p>
+        </header>
+        <section className="mt-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {clients.map((e) => (
+              <Link key={e.id} href={e.route} className="block p-5 rounded-2xl border border-white/5 bg-white/[0.02] hover:border-cyan-500/30 transition-all">
+                <div className="flex items-center gap-2 mb-2">
+                  <Cpu className="w-4 h-4 text-cyan-400" />
+                  <span className="text-xs text-white/40">{CLIENT_TYPE_LABELS[e.clientType] ?? e.clientType}</span>
+                  <span className="ml-auto text-[10px] text-white/30">{e.vendor}</span>
                 </div>
-              ))}
-            </div>
+                <div className="text-sm font-bold text-white">{e.name}</div>
+                <p className="text-xs text-white/55 mt-1 leading-relaxed line-clamp-2">{e.metaDescription}</p>
+                <div className="flex flex-wrap gap-1.5 mt-3">
+                  {e.mcpFeatures.slice(0, 3).map((f) => (
+                    <span key={f} className="px-2 py-0.5 rounded-full text-[10px] border border-white/10 text-white/40">{f}</span>
+                  ))}
+                </div>
+              </Link>
+            ))}
           </div>
-        </Container>
-      </DividerSection>
-
-      <DividerSection className="pb-14">
-        <Container>
-          <CtaBanner title="Start Building With MCP" subtitle="Build smarter AI agents. Integrate anything. Scale everything." primaryHref="/integrations" primaryLabel="Start Integrating Now" />
-        </Container>
-      </DividerSection>
-    </PageShell>
+        </section>
+      </div>
+    </div>
   );
 }

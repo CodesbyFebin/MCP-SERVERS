@@ -40,9 +40,17 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    ".next/dev/types/**/*.ts"
+    ".next/dev/types/**/*.ts",
+    "src/lib/content/**/*.ts",
+    "src/data/content-registry/**/*.ts",
+    "src/lib/editorial/**/*.ts",
+    "src/lib/search/**/*.ts",
+    "src/lib/multilingual/**/*.ts",
+    "src/lib/marketplace/**/*.ts",
+    "src/lib/observability/**/*.ts"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "scripts"
   ]
 }

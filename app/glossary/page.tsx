@@ -1,151 +1,67 @@
-"use client";
-
-import { useState } from "react";
+import type { Metadata } from "next";
 import Link from "next/link";
-import { glossaryTerms, GlossaryTerm } from "../../src/data/glossary";
+import { glossaryTerms } from "../../src/data/entities";
 import Breadcrumbs from "../../src/components/Breadcrumbs";
 import SchemaJsonLd from "../../src/components/SchemaJsonLd";
-import { 
-  BookOpen, Search, Cpu, HelpCircle
-} from "lucide-react";
+import { getUnifiedGraphSchema } from "../../src/lib/schema";
+import { BookOpen } from "lucide-react";
 
-export default function GlossaryPage() {
-  const [searchQuery, setSearchQuery] = useState("");
+export const metadata: Metadata = {
+  title: "MCP Glossary — Model Context Protocol Terms Defined",
+  description: "Definitions for every Model Context Protocol term: MCP server, MCP client, MCP host, stdio, Streamable HTTP, tools, resources, and prompts.",
+  alternates: { canonical: "https://www.mcpserver.in/glossary/" },
+};
 
-  const filteredTerms = glossaryTerms.filter(
-    (t) =>
-      t.term.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      t.definition.toLowerCase().includes(searchQuery.toLowerCase())
-  );
-
-  // Group terms alphabetically for professional catalog presentation
-  const groupedTerms: Record<string, GlossaryTerm[]> = {};
-  filteredTerms.forEach((t) => {
-    const firstLetter = t.term.charAt(0).toUpperCase();
-    if (!groupedTerms[firstLetter]) {
-      groupedTerms[firstLetter] = [];
-    }
-    groupedTerms[firstLetter].push(t);
+export default function GlossaryIndexPage() {
+  const schema = getUnifiedGraphSchema({
+    pageUrl: "/glossary/",
+    title: "MCP Glossary",
+    description: "Definitions for every Model Context Protocol term.",
+    breadcrumbs: [{ name: "Glossary", item: "/glossary" }],
+    itemList: glossaryTerms.map((e) => ({
+      name: e.term,
+      url: e.route,
+      description: e.shortDefinition,
+    })),
   });
 
-  const alphabetIndex = Object.keys(groupedTerms).sort();
-
-  // Glossary Index set schema definition
-  const indexSchema = {
-    "@context": "https://schema.org",
-    "@type": "DefinedTermSet",
-    "@id": "https://mcpserver.in/glossary/#termset",
-    "name": "Model Context Protocol Industry Glossary",
-    "description": "The definitive glossary of technical terms for the Model Context Protocol (MCP) ecosystem, including transport methods, communication frameworks, and integration tools.",
-    "url": "https://mcpserver.in/glossary",
-    "hasDefinedTerm": glossaryTerms.map((t) => ({
-      "@type": "DefinedTerm",
-      "name": t.term,
-      "description": t.definition,
-      "url": `https://mcpserver.in/glossary/${t.slug}`
-    }))
-  };
-
-  const indexBreadcrumbs = [{ name: "Glossary Index", href: "/glossary" }];
+  // Group terms alphabetically
+  const grouped: Record<string, typeof glossaryTerms> = {};
+  for (const term of glossaryTerms) {
+    const letter = term.term[0].toUpperCase();
+    if (!grouped[letter]) grouped[letter] = [];
+    grouped[letter].push(term);
+  }
+  const sortedLetters = Object.keys(grouped).sort();
 
   return (
-    <div id="glossary-root" className="min-h-screen bg-[#050508] text-white pt-6 pb-16 font-sans">
-      <SchemaJsonLd schema={indexSchema} />
-
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <Breadcrumbs items={indexBreadcrumbs} />
-
-        <div>
-          {/* Hero Section of Glossary */}
-          <div className="text-center max-w-3xl mx-auto py-8 space-y-4">
-            <span className="px-3 py-1 rounded-full text-xs font-bold bg-cyan-950/50 border border-cyan-800 text-cyan-400">
-              AI & LLM Integration Standards
-            </span>
-            <h1 className="text-3xl sm:text-5xl font-sans font-extrabold tracking-tight text-white">
-              Model Context Protocol <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-indigo-500">Glossary</span>
-            </h1>
-            <p className="text-xs sm:text-sm text-gray-400 leading-relaxed">
-              Understand key communication formats, transport mechanisms, systems design patterns, and protocol primitives that govern the modern Model Context Protocol (MCP) ecosystem.
-            </p>
-
-            {/* Real-time search */}
-            <div className="relative max-w-lg mx-auto mt-6">
-              <Search className="absolute left-3.5 top-3 w-4 h-4 text-gray-500" />
-              <input
-                type="text"
-                placeholder="Search technical terms (e.g. JSON-RPC, SSE, Stdio)..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-gray-900/40 border border-gray-800 rounded-xl py-2.5 pl-10 pr-4 text-xs sm:text-sm text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500/20 backdrop-blur-sm transition-all"
-              />
-            </div>
-          </div>
-
-          {/* Alpha Quick Jumper */}
-          {alphabetIndex.length > 0 && (
-            <div className="flex flex-wrap items-center justify-center gap-2 py-4 border-y border-gray-900 my-8">
-              <span className="text-xs text-gray-500 mr-2 uppercase tracking-wider font-semibold">Jump to:</span>
-              {alphabetIndex.map((letter) => (
-                <a
-                  key={letter}
-                  href={`#letter-${letter}`}
-                  className="w-7 h-7 flex items-center justify-center rounded bg-gray-900/50 border border-gray-900 hover:border-cyan-500/40 hover:text-cyan-400 text-xs text-gray-400 font-sans font-bold transition-all"
-                >
-                  {letter}
-                </a>
-              ))}
-            </div>
-          )}
-
-          {/* Glossary Catalog */}
-          <div className="mt-8 space-y-12">
-            {alphabetIndex.length === 0 ? (
-              <div className="text-center py-12 bg-gray-900/10 rounded-2xl border border-gray-900">
-                <HelpCircle className="w-10 h-10 text-gray-600 mx-auto mb-3" />
-                <p className="text-gray-400 text-xs sm:text-sm">No technical terms match your active search filter.</p>
-                <button
-                  onClick={() => setSearchQuery("")}
-                  className="mt-3 text-xs text-cyan-400 font-semibold hover:underline"
-                >
-                  Clear search query
-                </button>
+    <div className="min-h-screen py-6 pb-20 bg-[#050508] text-white">
+      <SchemaJsonLd schema={schema} />
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <Breadcrumbs items={[{ name: "Glossary", href: "/glossary" }]} />
+        <header className="py-8 border-b border-white/5">
+          <h1 className="text-4xl font-display font-bold text-white">MCP Glossary</h1>
+          <p className="mt-3 text-white/60 max-w-2xl text-sm">
+            Definitions for every Model Context Protocol term: servers, clients, hosts, transports, primitives, and protocol concepts.
+          </p>
+        </header>
+        <div className="mt-10 space-y-8">
+          {sortedLetters.map((letter) => (
+            <section key={letter}>
+              <h2 className="text-xs font-bold uppercase tracking-widest text-white/30 mb-3 border-b border-white/5 pb-1">{letter}</h2>
+              <div className="space-y-3">
+                {grouped[letter].map((e) => (
+                  <Link key={e.id} href={e.route} className="flex items-start gap-3 p-4 rounded-xl border border-white/5 bg-white/[0.01] hover:border-cyan-500/30 transition-all">
+                    <BookOpen className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
+                    <div>
+                      <span className="text-sm font-semibold text-white">{e.term}</span>
+                      <p className="text-xs text-white/50 mt-0.5 leading-relaxed">{e.shortDefinition}</p>
+                    </div>
+                  </Link>
+                ))}
               </div>
-            ) : (
-              alphabetIndex.map((letter) => (
-                <div key={letter} id={`letter-${letter}`} className="scroll-mt-6 space-y-4">
-                  <div className="flex items-center gap-3">
-                    <h2 className="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-500">
-                      {letter}
-                    </h2>
-                    <div className="h-[1px] flex-grow bg-gray-900"></div>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {groupedTerms[letter].map((termItem) => (
-                      <Link
-                        key={termItem.slug}
-                        href={`/glossary/${termItem.slug}`}
-                        className="p-5 rounded-2xl bg-gray-900/10 border border-gray-900 hover:border-cyan-500/30 backdrop-blur-sm shadow-sm transition-all hover:shadow-cyan-950/10 group flex flex-col justify-between"
-                      >
-                        <div className="space-y-2">
-                          <h3 className="text-sm sm:text-base font-bold text-white group-hover:text-cyan-400 transition-colors">
-                            {termItem.term}
-                          </h3>
-                          <p className="text-xs text-gray-400 leading-relaxed">
-                            {termItem.definition}
-                          </p>
-                        </div>
-
-                        <div className="flex items-center gap-1.5 text-[10px] text-cyan-400/80 mt-4 font-bold group-hover:text-cyan-300">
-                          Learn more <Cpu className="w-3 h-3" />
-                        </div>
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              ))
-            )}
-          </div>
+            </section>
+          ))}
         </div>
       </div>
     </div>

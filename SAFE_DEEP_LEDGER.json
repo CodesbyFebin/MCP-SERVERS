@@ -1,0 +1,111 @@
+{
+  "generatedAt": "2026-08-04T21:48:46.123Z",
+  "status": "passed",
+  "governance": {
+    "default_status": "candidate",
+    "default_publish_approved": false,
+    "default_indexable": false,
+    "lifecycle": [
+      "candidate",
+      "intent_validated",
+      "evidence_complete",
+      "blueprint_approved",
+      "generated_draft",
+      "automated_validation",
+      "human_review",
+      "publish_approved",
+      "published",
+      "indexed"
+    ]
+  },
+  "validation": {
+    "generatedAt": "2026-08-04T21:48:46.123Z",
+    "expected_total": 5000,
+    "actual_total": 5000,
+    "target_counts": {
+      "mcp-server-profile": 700,
+      "integration-guide": 700,
+      "client-integration-guide": 400,
+      "tutorial": 350,
+      "troubleshooting": 350,
+      "comparison": 250,
+      "best-list": 120,
+      "category-hub": 100,
+      "glossary": 350,
+      "enterprise-guide": 170,
+      "sdk-framework-guide": 220,
+      "client-guide": 120,
+      "deployment-guide": 170,
+      "database-guide": 170,
+      "security-guide": 170,
+      "template": 120,
+      "example-project": 170,
+      "registry-guide": 80,
+      "india-guide": 200,
+      "news-release": 90
+    },
+    "actual_counts": {
+      "category-hub": 100,
+      "mcp-server-profile": 700,
+      "client-guide": 120,
+      "integration-guide": 700,
+      "tutorial": 350,
+      "comparison": 250,
+      "news-release": 90,
+      "client-integration-guide": 400,
+      "troubleshooting": 350,
+      "best-list": 120,
+      "glossary": 350,
+      "enterprise-guide": 170,
+      "sdk-framework-guide": 220,
+      "deployment-guide": 170,
+      "database-guide": 170,
+      "security-guide": 170,
+      "template": 120,
+      "example-project": 170,
+      "registry-guide": 80,
+      "india-guide": 200
+    },
+    "duplicate_urls": [],
+    "duplicate_canonical_urls": [],
+    "duplicate_h1s": [],
+    "duplicate_primary_intents": [],
+    "duplicate_entities": [],
+    "unresolved_entities": [],
+    "unresolved_parent_hubs": [],
+    "missing_evidence_requirements": [],
+    "missing_schemas": [],
+    "missing_breadcrumbs": [],
+    "missing_blueprint": [],
+    "missing_quality_gates": [],
+    "placeholder_routes": [],
+    "non_candidate_records": [],
+    "numeric_suffix_routes": [],
+    "invalid_canonical_format": [],
+    "broken_internal_links": [],
+    "orphan_pages": [],
+    "max_crawl_depth": 3,
+    "errors": [],
+    "passed": true
+  },
+  "events": [
+    {
+      "timestamp": "2026-08-04T21:48:46.123Z",
+      "event": "MASTER_CANONICAL_ARCHITECTURE_GENERATED",
+      "status": "passed",
+      "summary": "Generated 5000 canonical candidate routes with placeholder routes excluded."
+    },
+    {
+      "timestamp": "2026-08-04T21:48:46.123Z",
+      "event": "SAFE_DEEP_DEFAULTS_APPLIED",
+      "status": "passed",
+      "summary": "Every record starts as candidate, publish_approved=false, indexable=false."
+    },
+    {
+      "timestamp": "2026-08-04T21:48:46.123Z",
+      "event": "INTERNAL_LINK_GRAPH_GENERATED",
+      "status": "passed",
+      "summary": "Generated parent, sibling, tutorial, troubleshooting, security, SDK, framework, server, client, deployment, and glossary link slots."
+    }
+  ]
+}
