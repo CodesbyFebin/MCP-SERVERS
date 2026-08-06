@@ -1,15 +1,15 @@
 # SEO Report
 
-Generated: 2026-08-04T18:57:41.367Z
+Generated: 2026-08-06T08:36:49.011Z
 
 ## Summary
 
-- Total pages: 2442
-- Missing title: 18 (1%)
-- Missing description: 18 (1%)
-- Missing canonical: 2442 (100%)
-- Missing H1: 2434 (100%)
-- Missing schema: 18 (1%)
+- Total pages: 7444
+- Missing title: 2 (0%)
+- Missing description: 2 (0%)
+- Missing canonical: 852 (11%)
+- Missing H1: 2426 (33%)
+- Missing schema: 5002 (67%)
 
 ## Recommendations
 
@@ -21,4 +21,4 @@ Generated: 2026-08-04T18:57:41.367Z
 
 ## Status
 
-Overall SEO health: -20%
+Overall SEO health: -2%

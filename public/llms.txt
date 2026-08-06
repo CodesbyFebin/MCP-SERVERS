@@ -63,4 +63,4 @@ MCPserver.in is India's first MCP-focused knowledge hub, providing educational r
 
 ---
 
-*This document is dynamically generated and contains educational content about MCP. Last updated: 2026-07-20*
+*Machine-readable for AI agents and search crawlers. Last updated: 2026-08-06*
