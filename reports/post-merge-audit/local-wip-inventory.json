@@ -1,0 +1,41 @@
+{
+  "inventory_timestamp": "2026-08-06T17:18:06+05:30",
+  "local_wip": {
+    "staged_files_count": 65,
+    "untracked_files_count": 2,
+    "large_files_excluded": [
+      "./dist/cache/turbopack/v16.3.0-d73f5622/00000031.sst",
+      "./dist/cache/turbopack/v16.3.0-d73f5622/00000030.sst",
+      "./ENTITY_GRAPH.json",
+      "./MCPSERVER_CONTENT_MANIFEST.json",
+      "./reports/mcpserver-5000-url-master.json"
+    ],
+    "secrets_status": "SAFE",
+    "secrets_notes": "Only GitHub Actions secrets declarations, no actual credentials"
+  },
+  "modified_files": [
+    {"path": ".github/workflows/quarterly-audit.yml", "status": "A"},
+    {"path": "app/admin/candidates/page.tsx", "status": "M"},
+    {"path": "app/mcp-server/page.tsx", "status": "A"},
+    {"path": "public/llms.txt", "status": "M"},
+    {"path": "public/sitemap-glossary.xml", "status": "M"},
+    {"path": "package.json", "status": "M"},
+    {"path": "src/lib/internalLinks.ts", "status": "M"}
+  ],
+  "feature_groups": [
+    "homepage_restructuring",
+    "mcp_server_pillar",
+    "comparison_pages",
+    "tool_pages",
+    "documentation",
+    "seo_infrastructure",
+    "admin_dashboards",
+    "data_updates"
+  ],
+  "classification": {
+    "generated_pages": 25,
+    "hand_authored": 40,
+    "infrastructure": 5,
+    "is_wip_safe": true
+  }
+}

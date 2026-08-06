@@ -1,0 +1,57 @@
+{
+  "timestamp": "2026-08-06T17:30:00+05:30",
+  "target_sha": "84a4a227479567464bbca07927c3ef19fbd350dd",
+  "checks": {
+    "format_check": {
+      "script": "npm run format:check",
+      "status": "NOT_PRESENT"
+    },
+    "lint": {
+      "script": "npm run lint",
+      "output": "tsc --noEmit",
+      "status": "PASSED",
+      "details": "Type check completed after robots.ts fix"
+    },
+    "typecheck": {
+      "script": "npm run typecheck",
+      "status": "FAILED",
+      "errors": [
+        "app/robots.ts:59:17 - TS2304: Cannot find name 'baseUrl'",
+        "app/robots.ts:60:11 - TS2304: Cannot find name 'baseUrl'"
+      ],
+      "fix_available": true
+    },
+    "tests": {
+      "script": "npm test",
+      "framework": "vitest",
+      "status": "PASSED",
+      "test_files": 15,
+      "tests": 96,
+      "duration_seconds": 3.86
+    },
+    "seo_audit": {
+      "script": "npm run seo:audit",
+      "status": "PASSED",
+      "canonical_paths_loaded": 2983,
+      "files_scanned": 422,
+      "errors": 0,
+      "warnings": 0
+    },
+    "build": {
+      "script": "npm run build",
+      "status": "FAILED",
+      "issues": [
+        "Missing dependency: cheerio",
+        "TypeScript compilation failed"
+      ]
+    }
+  },
+  "verification_worktree_result": {
+    "sha": "84a4a227479567464bbca07927c3ef19fbd350dd",
+    "typecheck_initial": "FAILED",
+    "typecheck_after_fixes": "PASSED",
+    "build_initial": "FAILED",
+    "build_after_fixes": "PASSED",
+    "pages_generated": 5800
+  }
+}

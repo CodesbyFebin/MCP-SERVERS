@@ -1,0 +1,23 @@
+{
+  "audit_timestamp": "2026-08-06T17:18:06+05:30",
+  "local_path": "/Users/cyberteck/Desktop/MCP-SERVERS-master",
+  "canonical_domain": "https://www.mcpserver.in/",
+  "current_branch": "backup/uncommitted-post-merge-20260806",
+  "local_sha": "427bb1941500f3199f13c42ce7274fe9ee68bb0b",
+  "refs": {
+    "origin_master": "84a4a227479567464bbca07927c3ef19fbd350dd",
+    "origin_main": "d690caef7fdb7b98fc672356fc67447e555e552c",
+    "origin_mesquite_sloth": "dfc107e438cb205f721365208370b786e4c56ced",
+    "origin_consolidation_single_master": "c6804b60346a4c4906ea46b36cfc70b051d35adf",
+    "local_master": "84a4a227479567464bbca07927c3ef19fbd350dd",
+    "local_main": "d690caef7fdb7b98fc672356fc67447e555e552c"
+  },
+  "backup_branches": [
+    "backup/uncommitted-post-merge-20260806",
+    "backup/main-pre-consolidation",
+    "backup/master-pre-consolidation",
+    "backup/pre-consolidation-blog-migration-5000"
+  ],
+  "working_tree_status": "dirty",
+  "unknown_local_work_present": true
+}

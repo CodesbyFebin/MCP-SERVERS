@@ -2,18 +2,12 @@ import { MetadataRoute } from "next";
 
 export const dynamic = "force-static";
 
-// Always point at the canonical HTTPS www origin regardless of deployment URL.
-// Canonical host consolidation is handled by redirects and <link rel="canonical">,
-// not by the unsupported robots.txt `Host` directive.
-const sitemapUrl = "https://www.mcpserver.in/sitemap-index.xml";
+const baseUrl = "https://www.mcpserver.in";
+const sitemapUrl = `${baseUrl}/sitemap-index.xml`;
 
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
-      // ── All crawlers (including Googlebot, Bingbot, Applebot, AI crawlers) ──
-      // Google picks the most-specific matching group and does NOT merge it with
-      // the wildcard. Keeping Googlebot and other well-behaved crawlers inside
-      // the wildcard group means they inherit all the disallow rules below.
       {
         userAgent: "*",
         allow: "/",
@@ -29,8 +23,6 @@ export default function robots(): MetadataRoute.Robots {
           "/search/",
         ],
       },
-      // ── SEO scrapers — full block ────────────────────────────────────────────
-      // These crawlers add no value and inflate server load.
       {
         userAgent: [
           "GPTBot",
@@ -56,7 +48,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: "/",
       }
     ],
-    sitemap: `${baseUrl}/sitemap-index.xml`,
-    host: baseUrl,
+    sitemap: sitemapUrl,
   };
 }

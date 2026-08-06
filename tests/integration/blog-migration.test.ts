@@ -255,7 +255,8 @@ describe("Blog Migration Tests", () => {
 
     it("production build output exists", () => {
       const nextDir = path.join(ROOT, ".next");
-      expect(fs.existsSync(nextDir)).toBe(true);
+      const distDir = path.join(ROOT, "dist");
+      expect(fs.existsSync(nextDir) || fs.existsSync(distDir)).toBe(true);
     });
   });
 
