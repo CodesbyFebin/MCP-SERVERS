@@ -3,5 +3,8 @@ export function createEmptySearchIndex() {
     type: "empty",
     created: new Date().toISOString(),
     documents: [],
+    entities: [],
+    relationships: [],
+    pages: [],
   };
 }
