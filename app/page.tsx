@@ -72,6 +72,14 @@ export const metadata = {
     title: "MCP Server Directory & Hosting in India",
     description: "Discover, test, and deploy Model Context Protocol servers. India-ready infrastructure with DPDP-aligned data controls and low-latency edge hosting.",
     locale: "en_IN",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1536,
+        height: 1024,
+        alt: "MCP Server Directory - Model Context Protocol ecosystem visualization"
+      }
+    ]
   },
   twitter: {
     card: "summary_large_image",
