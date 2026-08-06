@@ -37,7 +37,7 @@ export default function P99Page() {
       <SchemaJsonLd schema={schema} />
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Breadcrumbs items={[{ name: "P99 Dashboard", href: "/p99" }]} />
-<section className="py-10">
+        <section className="py-10">
           <div className="inline-flex items-center gap-2 rounded-full border border-amber-400/20 bg-amber-500/10 px-3 py-1 text-[11px] font-bold text-amber-200">
             Illustrative example — not live telemetry
           </div>
@@ -62,99 +62,12 @@ export default function P99Page() {
             </a>
             <a
               href="/data/mcp-stats-2026.json"
-              className="inline-flex min-h-11 items-center rounded-md border bg-violet-600 px-4 text-xs font-black text-white hover:bg-violet-500"
+              className="inline-flex min-h-11 items-center rounded-md bg-violet-600 px-4 text-xs font-black text-white hover:bg-violet-500"
             >
               View JSON snapshot
             </a>
           </div>
         </section>
-
-        <article class="answer-block definition">
-          <h2>Definition</h2>
-          <p>P99 latency measures the time within which 99% of MCP tool calls complete successfully — a critical metric for understanding tail latency and user experience quality in production deployments.</p>
-        </article>
-
-        <article class="answer-block key-takeways">
-          <h2>Key Takeaways</h2>
-          <ul>
-            <li>P99 indicates worst-case response time for 99% of requests</li>
-            <li>Target: ≤ 500ms for production MCP servers</li>
-            <li>Higher percentiles reveal infrastructure bottlenecks</li>
-          </ul>
-        </article>
-
-        <article class="answer-block steps">
-          <h2>Step-by-Step Process</h2>
-          <ol>
-            <li>Collect latency data from all server endpoints</li>
-            <li>Calculate P50, P90, P95, and P99 percentiles</li>
-            <li>Identify outliers and investigate root causes</li>
-            <li>Optimize infrastructure and repeat measurements</li>
-          </ol>
-        </article>
-
-        <article class="answer-block comparison">
-          <h2>Comparison Table</h2>
-          <table class="table">
-            <thead>
-              <tr>
-                <th>Metric</th>
-                <th>Target (Production)</th>
-                <th>Action if Exceeding</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>P50</td>
-                <td>≤ 100ms</td>
-                <td>Optimize basic path performance</td>
-              </tr>
-              <tr>
-                <td>P95</td>
-                <td>≤ 300ms</td>
-                <td>Check resource limits and caching</td>
-              </tr>
-              <tr>
-                <td>P99</td>
-                <td>≤ 500ms</td>
-                <td>Investigate outliers and edge cases</td>
-              </tr>
-            </tbody>
-          </table>
-        </article>
-
-        <article class="answer-block troubleshoot">
-          <h2>Troubleshooting</h2>
-          <ul>
-            <li><strong>High P99:</strong> Check resource constraints and network latency</li>
-            <li><strong>Spikes:</strong> Review GC pauses and query complexity</li>
-          </ul>
-        </article>
-
-        <article class="answer-block faq">
-          <h2>Frequently Asked Questions</h2>
-          <dl>
-            <dt>Why focus on P99 instead of average latency?</dt>
-            <dd>Percentiles reveal the worst 1% of experiences, helping identify performance issues that averages hide.</dd>
-            <dt>How is this data collected?</dt>
-            <dd>Sample data for illustrative purposes. Real monitoring requires instrumentation in your MCP server code.</dd>
-          </dl>
-        </article>
-
-        <article class="answer-block limitations">
-          <h2>Limitations</h2>
-          <ul>
-            <li>Illustrative values - not measured production data</li>
-            <li>Actual performance varies by implementation and infrastructure</li>
-          </ul>
-        </article>
-
-        <footer class="content-metadata">
-          <div class="author">Author: John Doe</div>
-          <div class="reviewer">Reviewer: Jane Smith</div>
-          <div class="last-reviewed">Last reviewed: 2026-08-06</div>
-        </footer>
-
         <P99DashboardLoader />
       </div>
     </div>

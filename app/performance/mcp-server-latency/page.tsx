@@ -20,12 +20,12 @@ export default function MpcServerLatency() {
         <p className="text-gray-400">Performance monitoring and latency optimization content will be implemented</p>
       </div>
 
-      <article class="answer-block definition">
+      <article className="answer-block definition">
         <h2>Definition</h2>
         <p>MCP Server Performance & Latency refers to monitoring, measuring, and optimizing the response times and throughput of Model Context Protocol servers under varying loads.</p>
       </article>
 
-      <article class="answer-block key-takeways">
+      <article className="answer-block key-takeways">
         <h2>Key Takeaways</h2>
         <ul>
           <li>Performance metrics include P95, P99, and P100 latency</li>
@@ -34,7 +34,7 @@ export default function MpcServerLatency() {
         </ul>
       </article>
 
-      <article class="answer-block steps">
+      <article className="answer-block steps">
         <h2>Step-by-Step Process</h2>
         <ol>
           <li>Instrument server with performance metrics</li>
@@ -44,9 +44,9 @@ export default function MpcServerLatency() {
         </ol>
       </article>
 
-      <article class="answer-block comparison">
+      <article className="answer-block comparison">
         <h2>Comparison Table</h2>
-        <table class="table">
+        <table className="table">
           <tr>
             <th>Metric</th>
             <th>Target</th>
@@ -70,7 +70,7 @@ export default function MpcServerLatency() {
         </table>
       </article>
 
-      <article class="answer-block troubleshoot">
+      <article className="answer-block troubleshoot">
         <h2>Troubleshooting</h2>
         <ul>
           <li><strong>High Latency:</strong> Check resource allocations and network latency</li>
@@ -78,7 +78,7 @@ export default function MpcServerLatency() {
         </ul>
       </article>
 
-      <article class="answer-block faq">
+      <article className="answer-block faq">
         <h2>Frequently Asked Questions</h2>
         <dl>
           <dt>What is MCP Server Latency?</dt>
@@ -88,7 +88,7 @@ export default function MpcServerLatency() {
         </dl>
       </article>
 
-      <article class="answer-block limitations">
+      <article className="answer-block limitations">
         <h2>Limitations</h2>
         <ul>
           <li>Latency varies by transport protocol</li>
@@ -96,10 +96,10 @@ export default function MpcServerLatency() {
         </ul>
       </article>
 
-      <footer class="content-metadata">
-        <div class="author">Author: John Doe</div>
-        <div class="reviewer">Reviewer: Jane Smith</div>
-        <div class="last-reviewed">Last reviewed: 2026-08-06</div>
+      <footer className="content-metadata">
+        <div className="author">Author: John Doe</div>
+        <div className="reviewer">Reviewer: Jane Smith</div>
+        <div className="last-reviewed">Last reviewed: 2026-08-06</div>
       </footer>
     </div>
   )

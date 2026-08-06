@@ -20,12 +20,12 @@ export default function StreamableHTTPComparison() {
         <p className="text-gray-400">Comparison content will be implemented</p>
       </div>
 
-      <article class="answer-block definition">
+      <article className="answer-block definition">
         <h2>Definition</h2>
         <p>Streamable HTTP transport in MCP enables servers to send responses as a stream of data over HTTP, allowing clients to receive partial results incrementally and improving perceived performance.</p>
       </article>
 
-      <article class="answer-block key-takeways">
+      <article className="answer-block key-takeways">
         <h2>Key Takeaways</h2>
         <ul>
           <li>Streamable HTTP enables incremental response delivery</li>
@@ -34,7 +34,7 @@ export default function StreamableHTTPComparison() {
         </ul>
       </article>
 
-      <article class="answer-block steps">
+      <article className="answer-block steps">
         <h2>Step-by-Step Process</h2>
         <ol>
           <li>Configure server to emit streamable responses</li>
@@ -44,9 +44,9 @@ export default function StreamableHTTPComparison() {
         </ol>
       </article>
 
-      <article class="answer-block comparison">
+      <article className="answer-block comparison">
         <h2>Comparison Table</h2>
-        <table class="table">
+        <table className="table">
           <tr>
             <th>Transport</th>
             <th>Latency</th>
@@ -74,7 +74,7 @@ export default function StreamableHTTPComparison() {
         </table>
       </article>
 
-      <article class="answer-block troubleshoot">
+      <article className="answer-block troubleshoot">
         <h2>Troubleshooting</h2>
         <ul>
           <li><strong>Connection Drops:</strong> Check timeout settings and keepalive</li>
@@ -82,7 +82,7 @@ export default function StreamableHTTPComparison() {
         </ul>
       </article>
 
-      <article class="answer-block faq">
+      <article className="answer-block faq">
         <h2>Frequently Asked Questions</h2>
         <dl>
           <dt>Why use Streamable HTTP?</dt>
@@ -92,7 +92,7 @@ export default function StreamableHTTPComparison() {
         </dl>
       </article>
 
-      <article class="answer-block limitations">
+      <article className="answer-block limitations">
         <h2>Limitations</h2>
         <ul>
           <li>Requires server-side streaming support</li>
@@ -100,10 +100,10 @@ export default function StreamableHTTPComparison() {
         </ul>
       </article>
 
-      <footer class="content-metadata">
-        <div class="author">Author: John Doe</div>
-        <div class="reviewer">Reviewer: Jane Smith</div>
-        <div class="last-reviewed">Last reviewed: 2026-08-06</div>
+      <footer className="content-metadata">
+        <div className="author">Author: John Doe</div>
+        <div className="reviewer">Reviewer: Jane Smith</div>
+        <div className="last-reviewed">Last reviewed: 2026-08-06</div>
       </footer>
     </div>
   )

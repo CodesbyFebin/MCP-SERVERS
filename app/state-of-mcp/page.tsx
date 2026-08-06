@@ -198,105 +198,25 @@ export default function StateOfMcpPage() {
           </p>
         </section>
 
-<section className="mt-12 rounded-2xl border border-white/10 bg-white/[0.02] p-8">
-           <div className="flex items-center gap-3">
-             <Users className="h-5="h-5 w-5 text-pink-300" />
-             <h2 className="text-2xl font-bold text-white">Explore Further</h2>
-           </div>
-           <p className="mt-2 text-sm text-white/58">
-             The illustrative estimates above are meant as planning references, not measured telemetry — see the architecture estimate dashboard for the same kind of directional data in more depth.
-           </p>
-             <div className="mt-6 flex flex-wrap gap-3">
-             <Link href="/p99" className="inline-flex items-center gap-2 rounded-md bg-violet-600 px-4 py-2.5 text-xs font-bold text-white">
-               <BarChart3 className="h-4 w-4" />
-               View Architecture Estimate Dashboard
-             </Link>
-             <Link href="/docs" className="inline-flex items-center gap-2 rounded-md border border-white/10 bg-white/[0.04] px-4 py-2.5 text-xs font-bold text-white">
-               Read Methodology <ArrowRight className="h-4 w-4" />
-             </Link>
-           </div>
-         </section>
-
-         <article class="answer-block definition">
-           <h2>Definition</h2>
-           <p>The State of MCP in India 2026 provides illustrative estimates and trends of Model Context Protocol adoption across India, focusing on regional deployment patterns, architectural trade-offs, and resource utilization for MCP server implementations.</p>
-         </article>
-
-         <article class="answer-block key-takeways">
-           <h2>Key Takeaways</h2>
-           <ul>
-             <li>India-focused MCP adoption trends</li>
-             <li>Regional deployment patterns and latency metrics</li>
-             <li>Architectural trade-offs between edge and traditional serverless</li>
-           </ul>
-         </article>
-
-         <article class="answer-block steps">
-           <h2>Step-by-Step Process</h2>
-           <ol>
-             <li>Review regional deployment patterns</li>
-             <li>Analyze edge vs traditional serverless trade-offs</li>
-             <li>Apply considerations to your deployment planning</li>
-           </ol>
-         </article>
-
-         <article class="answer-block comparison">
-           <h2>Comparison Table</h2>
-           <table class="table">
-             <thead>
-               <tr>
-                 <th>Aspect</th>
-                 <th>Edge MCP</th>
-                 <th>Traditional Serverless</th>
-               </tr>
-             </thead>
-             <tbody>
-               <tr>
-                 <td>Cold Starts</td>
-                 <td>Negligible (persistently running)</td>
-                 <td>Typical penalty on infrequent invocations</td>
-               </tr>
-               <tr>
-                 <td>Cost Predictability</td>
-                 <td>Fixed monthly cost</td>
-                 <td>Per-invocation pricing</td>
-               </tr>
-               <tr>
-                 <td>Data Egress</td>
-                 <td>Low when colocated with data</td>
-                 <td>Cross-region charges often apply</td>
-               </tr>
-               <tr>
-                 <td>Operational Overhead</td>
-                 <td>More control, self-managed</td>
-                 <td>Platform handles scaling/patching</td>
-               </tr>
-             </tbody>
-           </table>
-         </article>
-
-         <article class="answer-block faq">
-           <h2>Frequently Asked Questions</h2>
-           <dl>
-             <dt>Is edge MCP more reliable than serverless?</dt>
-             <dd>Edge MCP offers predictable performance, but requires managing your own infrastructure. Serverless scales automatically but may have cold-start latency.</dd>
-           </dl>
-         </article>
-
-         <article class="answer-block limitations">
-           <h2>Limitations</h2>
-           <ul>
-             <li>Estimates are illustrative, not measured analytics</li>
-             <li>Patterns may vary by region and use case</li>
-           </ul>
-         </article>
-
-         <footer class="content-metadata">
-           <div class="author">Author: John Doe</div>
-           <div class="reviewer">Reviewer: Jane Smith</div>
-           <div class="last-reviewed">Last reviewed: 2026-08-06</div>
-         </footer>
-       </div>
-     </div>
-   );
- }
+        <section className="mt-12 rounded-2xl border border-white/10 bg-white/[0.02] p-8">
+          <div className="flex items-center gap-3">
+            <Users className="h-5 w-5 text-pink-300" />
+            <h2 className="text-2xl font-black text-white">Explore Further</h2>
+          </div>
+          <p className="mt-2 text-sm text-white/58">
+            The illustrative estimates above are meant as planning references, not measured telemetry — see the architecture estimate dashboard for the same kind of directional data in more depth.
+          </p>
+            <div className="mt-6 flex flex-wrap gap-3">
+            <Link href="/p99" className="inline-flex items-center gap-2 rounded-md bg-violet-600 px-4 py-2.5 text-xs font-black text-white">
+              <BarChart3 className="h-4 w-4" />
+              View Architecture Estimate Dashboard
+            </Link>
+            <Link href="/docs" className="inline-flex items-center gap-2 rounded-md border border-white/10 bg-white/[0.04] px-4 py-2.5 text-xs font-black text-white">
+              Read Methodology <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+        </section>
+      </div>
+    </div>
+  );
+}

@@ -20,12 +20,12 @@ export default function DirectoryPage() {
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <DirectoryClient />
 
-        <article class="answer-block definition">
+        <article className="answer-block definition">
           <h2>Definition</h2>
           <p>The MCP Server Directory is a curated catalog of Model Context Protocol servers organized by category, integration type, and capability.</p>
         </article>
 
-        <article class="answer-block key-takeways">
+        <article className="answer-block key-takeways">
           <h2>Key Takeaways</h2>
           <ul>
             <li>Browse 100+ MCP server integrations</li>
@@ -34,7 +34,7 @@ export default function DirectoryPage() {
           </ul>
         </article>
 
-        <article class="answer-block steps">
+        <article className="answer-block steps">
           <h2>Step-by-Step Process</h2>
           <ol>
             <li>Select a category from the directory</li>
@@ -43,9 +43,9 @@ export default function DirectoryPage() {
           </ol>
         </article>
 
-        <article class="answer-block comparison">
+        <article className="answer-block comparison">
           <h2>Comparison Table</h2>
-          <table class="table">
+          <table className="table">
             <tr>
               <th>Category</th>
               <th>Example Servers</th>
@@ -69,7 +69,7 @@ export default function DirectoryPage() {
           </table>
         </article>
 
-        <article class="answer-block troubleshoot">
+        <article className="answer-block troubleshoot">
           <h2>Troubleshooting</h2>
           <ul>
             <li><strong>Server not found:</strong> Check category filters or use search</li>
@@ -77,7 +77,7 @@ export default function DirectoryPage() {
           </ul>
         </article>
 
-        <article class="answer-block faq">
+        <article className="answer-block faq">
           <h2>Frequently Asked Questions</h2>
           <dl>
             <dt>How many servers are listed?</dt>
@@ -87,7 +87,7 @@ export default function DirectoryPage() {
           </dl>
         </article>
 
-        <article class="answer-block limitations">
+        <article className="answer-block limitations">
           <h2>Limitations</h2>
           <ul>
             <li>Directory coverage depends on community submissions</li>
@@ -95,10 +95,10 @@ export default function DirectoryPage() {
           </ul>
         </article>
 
-        <footer class="content-metadata">
-          <div class="author">Author: John Doe</div>
-          <div class="reviewer">Reviewer: Jane Smith</div>
-          <div class="last-reviewed">Last reviewed: 2026-08-06</div>
+        <footer className="content-metadata">
+          <div className="author">Author: John Doe</div>
+          <div className="reviewer">Reviewer: Jane Smith</div>
+          <div className="last-reviewed">Last reviewed: 2026-08-06</div>
         </footer>
       </div>
     </div>

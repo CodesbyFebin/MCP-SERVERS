@@ -20,12 +20,12 @@ export default function MpcGuardrails() {
         <p className="text-gray-400">Security guardrails content will be implemented</p>
       </div>
 
-      <article class="answer-block definition">
+      <article className="answer-block definition">
         <h2>Definition</h2>
         <p>Security guardrails are configurable policies that enforce safe usage of MCP servers, preventing unauthorized access and ensuring compliance.</p>
       </article>
 
-      <article class="answer-block key-takeways">
+      <article className="answer-block key-takeways">
         <h2>Key Takeaways</h2>
         <ul>
           <li>Definition of MCP guardrails</li>
@@ -34,7 +34,7 @@ export default function MpcGuardrails() {
         </ul>
       </article>
 
-      <article class="answer-block steps">
+      <article className="answer-block steps">
         <h2>Step-by-Step Process</h2>
         <ol>
           <li>Define guardrail policies</li>
@@ -43,9 +43,9 @@ export default function MpcGuardrails() {
         </ol>
       </article>
 
-      <article class="answer-block comparison">
+      <article className="answer-block comparison">
         <h2>Comparison Table</h2>
-        <table class="table">
+        <table className="table">
           <tr>
             <th>Guardrail Type</th>
             <th>Enforcement Mechanism</th>
@@ -65,7 +65,7 @@ export default function MpcGuardrails() {
         </table>
       </article>
 
-      <article class="answer-block troubleshoot">
+      <article className="answer-block troubleshoot">
         <h2>Troubleshooting</h2>
         <ul>
           <li><strong>Issue:</strong> Misconfigured policies</li>
@@ -73,7 +73,7 @@ export default function MpcGuardrails() {
         </ul>
       </article>
 
-      <article class="answer-block faq">
+      <article className="answer-block faq">
         <h2>Frequently Asked Questions</h2>
         <dl>
           <dt>What are MCP guardrails?</dt>
@@ -83,7 +83,7 @@ export default function MpcGuardrails() {
         </dl>
       </article>
 
-      <article class="answer-block limitations">
+      <article className="answer-block limitations">
         <h2>Limitations</h2>
         <ul>
           <li>Requires proper configuration</li>
@@ -91,10 +91,10 @@ export default function MpcGuardrails() {
         </ul>
       </article>
 
-      <footer class="content-metadata">
-        <div class="author">Author: John Doe</div>
-        <div class="reviewer">Reviewer: Jane Smith</div>
-        <div class="last-reviewed">Last reviewed: 2026-08-06</div>
+      <footer className="content-metadata">
+        <div className="author">Author: John Doe</div>
+        <div className="reviewer">Reviewer: Jane Smith</div>
+        <div className="last-reviewed">Last reviewed: 2026-08-06</div>
       </footer>
     </div>
   )

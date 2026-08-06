@@ -74,8 +74,8 @@ MCPserver.in is India's first MCP-focused knowledge hub, providing educational r
 - All generated content available via URL pattern: /clusters/{cluster}/servers/{entity}-mcp/{type}/{entity}
 
 ## AI Indexing Configuration
-- OAI-SearchBot: Enabled
-- PerplexityBot: Enabled
-- ClaudeBot: Enabled
-- Google-Extended: Enabled
-- GPTBot: Disabled (opt-out for training protection)
+- OAI-SearchBot: enabled for ChatGPT search citations
+- PerplexityBot: enabled for Perplexity citations
+- ClaudeBot: enabled for Claude search
+- Google-Extended: enabled for Google AI Overviews
+- GPTBot: disabled for training protection
