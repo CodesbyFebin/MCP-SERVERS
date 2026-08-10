@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { pillars } from "../../src/data/pillars";
 import PillarPageTemplate from "../../src/components/PillarPageTemplate";
@@ -5,46 +6,40 @@ import GeneratedContent from "../../src/components/GeneratedContent";
 import { loadPillarContent } from "../../src/lib/content/content-loader";
 
 interface PageProps {
-  params: Promise<{
-    slug: string;
-  }>;
+  params: Promise<{ slug: string }>;
 }
 
 export async function generateStaticParams() {
-  return pillars
-    .filter((p) => p.slug !== "what-is-mcp")
-    .map((p) => ({
-      slug: p.slug,
-    }));
+  return pillars.filter((p) => p.slug !== "what-is-mcp").map((p) => ({ slug: p.slug }));
 }
 
-export async function generateMetadata({ params }: PageProps) {
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const pillar = pillars.find((p) => p.slug === slug);
-  if (!pillar) return {};
+  if (!pillar) return { title: "Not Found", robots: { index: false, follow: false } };
 
+  const canonical = `/${slug}/`;
   return {
     title: `${pillar.title} - Model Context Protocol Hub`,
     description: pillar.shortAnswer,
     alternates: {
-      canonical: `/${slug}`,
+      canonical,
       languages: {
-        "en-IN": `/${slug}`,
-        "en": `/${slug}`,
-      }
+        "en-IN": canonical,
+        "en": canonical,
+        "x-default": canonical,
+      },
     },
+    robots: { index: true, follow: true },
   };
 }
 
 export default async function Page({ params }: PageProps) {
   const { slug } = await params;
   const pillar = pillars.find((p) => p.slug === slug);
+  if (!pillar) notFound();
 
-  if (!pillar) {
-    notFound();
-  }
-
-  const generatedContent = loadPillarContent(slug)
+  const generatedContent = loadPillarContent(slug);
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -57,7 +52,6 @@ export default async function Page({ params }: PageProps) {
           slug={pillar.slug}
           faqCluster={pillar.faqCluster}
         />
-
         <div className="mt-12">
           <GeneratedContent content={generatedContent} />
         </div>
