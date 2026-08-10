@@ -14,40 +14,36 @@ interface PageProps {
 }
 
 export async function generateStaticParams() {
-  return publishedServers.map((server) => ({
-    slug: server.slug,
-  }));
+  return publishedServers.map((server) => ({ slug: server.slug }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const profile = getServerPublicationProfile(slug);
   if (!profile || profile.status !== "published") {
-    return {
-      title: "Server Integration Not Found",
-    };
+    return { title: "Server Integration Not Found", robots: { index: false, follow: false } };
   }
   const { server } = profile;
+  const canonical = `/servers/${slug}/`;
   return {
     title: `${server.name} MCP Server Integration Guide`,
     description: `Review the ${server.name} Model Context Protocol (MCP) server profile, recorded auth model, use cases, evidence state, and setup considerations.`,
     alternates: {
-      canonical: `/servers/${slug}`,
+      canonical,
       languages: {
-        "en-IN": `/servers/${slug}`,
-        "en": `/servers/${slug}`,
-      }
+        "en-IN": canonical,
+        "en": canonical,
+        "x-default": canonical,
+      },
     },
+    robots: { index: true, follow: true },
   };
 }
 
 export default async function ServerPage({ params }: PageProps) {
   const { slug } = await params;
   const profile = getServerPublicationProfile(slug);
-
-  if (!profile || profile.status !== "published") {
-    notFound();
-  }
+  if (!profile || profile.status !== "published") notFound();
 
   const server = profile.server;
   const sources = getEvidenceSources(profile.evidence);
@@ -69,24 +65,9 @@ export default async function ServerPage({ params }: PageProps) {
           contentHash={profile.contract.contentHash}
           qualityScore={profile.quality.total}
           qualityNotes={profile.quality.notes}
-          claims={profile.claims.map((claim) => ({
-            id: claim.id,
-            text: claim.text,
-            expiresAt: claim.expiresAt,
-          }))}
-          evidence={profile.evidence.map((evidence) => ({
-            id: evidence.id,
-            text: evidence.text,
-            sourceId: evidence.sourceId,
-            expiresAt: evidence.expiresAt,
-          }))}
-          sources={sources.map((source) => ({
-            id: source.id,
-            title: source.title,
-            url: source.url,
-            publisher: source.publisher,
-            credibility: source.credibility,
-          }))}
+          claims={profile.claims.map((claim) => ({ id: claim.id, text: claim.text, expiresAt: claim.expiresAt }))}
+          evidence={profile.evidence.map((evidence) => ({ id: evidence.id, text: evidence.text, sourceId: evidence.sourceId, expiresAt: evidence.expiresAt }))}
+          sources={sources.map((source) => ({ id: source.id, title: source.title, url: source.url, publisher: source.publisher, credibility: source.credibility }))}
         />
 
         <div className="mt-12">
