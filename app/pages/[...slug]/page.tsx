@@ -16,7 +16,7 @@ const PAGES_ROOT = path.join(process.cwd(), "content", "pages");
 function isApprovedFile(filePath: string): boolean {
   if (!fs.existsSync(filePath)) return false;
   const source = fs.readFileSync(filePath, "utf8");
-  const frontmatter = source.match(/^---\n([\s\S]*?)\n---\n/)
+  const frontmatter = source.match(/^---\n([\s\S]*?)\n---\n/);
   if (!frontmatter) return false;
   const fm = frontmatter[1];
 
@@ -48,7 +48,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return { title: "Page Not Found", robots: { index: false, follow: false } };
   }
 
-  const canonical = `https://mcpserver.in/${slugPath.replace(/^\/+|\/+$/g, "")}/`;
+  const canonical = `https://mcpserver.in/pages/${slugPath.replace(/^\/+|\/+$/g, "")}/`;
   return {
     title: content.title,
     description: content.description,
