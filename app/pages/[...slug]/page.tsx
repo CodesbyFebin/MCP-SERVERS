@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import fs from "node:fs";
+import path from "node:path";
 import GeneratedContent from "../../../src/components/GeneratedContent";
 import { notFound } from "next/navigation";
 import { loadPageContent } from "../../../src/lib/content/content-loader";
@@ -7,58 +9,68 @@ interface PageProps {
   params: Promise<{ slug: string[] }>;
 }
 
+export const dynamicParams = false;
+
+const PAGES_ROOT = path.join(process.cwd(), "content", "pages");
+
+function isApprovedFile(filePath: string): boolean {
+  if (!fs.existsSync(filePath)) return false;
+  const source = fs.readFileSync(filePath, "utf8");
+  const frontmatter = source.match(/^---\n([\s\S]*?)\n---\n/)
+  if (!frontmatter) return false;
+  const fm = frontmatter[1];
+
+  // Candidate/UGC pages are never public by default. Publication must be explicit.
+  if (/^redirectTo:\s*/m.test(fm) || /^category:\s*["']?ugc["']?/im.test(fm)) return false;
+  return /^(?:publicationState|publication_state):\s*["']?publish_approved["']?\s*$/m.test(fm)
+    || /^(?:indexable|published):\s*true\s*$/im.test(fm);
+}
+
+function approvedSlugs(): string[] {
+  if (!fs.existsSync(PAGES_ROOT)) return [];
+  return fs.readdirSync(PAGES_ROOT)
+    .filter((file) => file.endsWith(".md"))
+    .filter((file) => isApprovedFile(path.join(PAGES_ROOT, file)))
+    .map((file) => file.replace(/\.md$/, ""));
+}
+
 export async function generateStaticParams() {
-  const fs = require("fs");
-  const path = require("path");
-  const pagesDir = path.join(process.cwd(), "content", "pages");
-  
-  if (!fs.existsSync(pagesDir)) {
-    return [];
-  }
-
-  const files = fs.readdirSync(pagesDir).filter((file: string) => file.endsWith(".md"));
-  const params: { slug: string[] }[] = [];
-
-  for (const file of files) {
-    const slug = file.replace(/\.md$/, "");
-    params.push({ slug: [slug] });
-  }
-
-  return params;
+  return approvedSlugs().map((slug) => ({ slug: [slug] }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const slugPath = slug.join("/");
-  const content = loadPageContent(slugPath);
-  
+  const filePath = path.join(PAGES_ROOT, `${slugPath}.md`);
+  const content = isApprovedFile(filePath) ? loadPageContent(slugPath) : null;
+
   if (!content) {
-    return {
-      title: "Page Not Found",
-    };
+    return { title: "Page Not Found", robots: { index: false, follow: false } };
   }
 
+  const canonical = `https://mcpserver.in/${slugPath.replace(/^\/+|\/+$/g, "")}/`;
   return {
     title: content.title,
     description: content.description,
     alternates: {
-      canonical: `/${slugPath}/`,
+      canonical,
       languages: {
-        "en-IN": `/${slugPath}/`,
-        "en": `/${slugPath}/`,
-      }
+        "en-IN": canonical,
+        "en": canonical,
+        "x-default": canonical,
+      },
     },
+    robots: { index: true, follow: true },
   };
 }
 
 export default async function Page({ params }: PageProps) {
   const { slug } = await params;
   const slugPath = slug.join("/");
-  const content = loadPageContent(slugPath);
+  const filePath = path.join(PAGES_ROOT, `${slugPath}.md`);
+  const content = isApprovedFile(filePath) ? loadPageContent(slugPath) : null;
 
-  if (!content) {
-    notFound();
-  }
+  if (!content) notFound();
 
   return (
     <div className="min-h-screen bg-gray-50">
