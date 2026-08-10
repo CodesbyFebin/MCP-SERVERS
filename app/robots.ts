@@ -3,7 +3,7 @@ import { MetadataRoute } from "next";
 export const dynamic = "force-static";
 
 const baseUrl = "https://mcpserver.in";
-const sitemapUrl = `${baseUrl}/sitemap-index.xml`;
+const sitemapUrl = `${baseUrl}/sitemap.xml`;
 
 export default function robots(): MetadataRoute.Robots {
   return {
