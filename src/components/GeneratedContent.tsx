@@ -117,7 +117,6 @@ function markdownToHtml(markdown: string, fallbackTitle?: string): string {
   const hasH1 = /^#\s+.+$/m.test(markdown)
   const source = !hasH1 && fallbackTitle ? `# ${fallbackTitle}\n\n${markdown}` : markdown
   let html = escapeHtml(source)
-
   html = html.replace(/^### (.*$)/gim, '<h3 class="text-xl font-semibold text-gray-900 mt-6 mb-3">$1</h3>')
   html = html.replace(/^## (.*$)/gim, '<h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">$1</h2>')
   html = html.replace(/^# (.*$)/gim, '<h1 class="text-3xl font-bold text-gray-900 mb-6">$1</h1>')
@@ -146,7 +145,8 @@ function unescapeHtml(value: string): string {
 
 function safeHref(value: string): string {
   const href = value.trim()
-  if (href.startsWith("/") || href.startsWith("#")) return href
+  if (href.startsWith("/") && !href.startsWith("//")) return href
+  if (href.startsWith("#")) return href
   try {
     const url = new URL(href)
     if (url.protocol === "https:" || url.protocol === "http:") return url.toString()
