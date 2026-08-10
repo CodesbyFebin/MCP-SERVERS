@@ -20,6 +20,7 @@
     "verify:production": "node scripts/verify-production.mjs",
     "verify:security": "tsx scripts/verify-security.ts",
     "verify:links": "tsx scripts/verify-internal-links.ts",
+    "verify:sitemap": "node scripts/verify-sitemap.mjs",
     "submit-indexnow": "node scripts/submit-indexnow.mjs",
     "clean": "rm -rf dist .next"
   },
