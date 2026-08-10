@@ -3,7 +3,7 @@ import { verifySessionToken, SESSION_COOKIE_NAME } from "./src/lib/auth";
 
 const PROTECTED_ROUTES = ["/dashboard", "/api/v1/billing", "/api/v1/servers"];
 const ALLOWED_COUNTRIES = ["IN"];
-const CANONICAL_HOST = "www.mcpserver.in";
+const CANONICAL_HOST = "mcpserver.in";
 const FUNCTIONAL_QUERY_PATHS = ["/search", "/api", "/tools", "/login", "/register"];
 const PUBLIC_FILE_PATTERN = /\.[a-z0-9]+$/i;
 const LEGACY_PATH_REDIRECTS: Record<string, string> = {
@@ -24,13 +24,7 @@ function isProtectedRoute(pathname: string): boolean {
 }
 
 function shouldSkipCanonicalRedirect(pathname: string): boolean {
-  return (
-    pathname.startsWith("/_next/") ||
-    pathname.startsWith("/api/") ||
-    pathname.startsWith("/.well-known/") ||
-    pathname === "/favicon.ico" ||
-    PUBLIC_FILE_PATTERN.test(pathname)
-  );
+  return pathname.startsWith("/_next/") || pathname.startsWith("/api/") || pathname.startsWith("/.well-known/") || pathname === "/favicon.ico" || PUBLIC_FILE_PATTERN.test(pathname);
 }
 
 function shouldStripQuery(pathname: string): boolean {
@@ -41,63 +35,37 @@ function normalizePath(pathname: string): string {
   const collapsed = pathname.replace(/\/{2,}/g, "/");
   const pathWithoutTrailingSlash = collapsed === "/" ? collapsed : collapsed.replace(/\/$/, "");
   const legacyDestination = LEGACY_PATH_REDIRECTS[pathWithoutTrailingSlash];
-
-  if (legacyDestination) {
-    return legacyDestination;
-  }
-
-  if (collapsed !== "/" && !collapsed.endsWith("/")) {
-    return `${collapsed}/`;
-  }
-
+  if (legacyDestination) return legacyDestination;
+  if (collapsed !== "/" && !collapsed.endsWith("/")) return `${collapsed}/`;
   return collapsed;
 }
 
 function getCanonicalRedirect(request: NextRequest): string | null {
   const { pathname, search } = request.nextUrl;
-  const host = request.headers.get("host") || "";
-  const isLocalhost = host.includes("localhost") || host.includes("127.0.0.1");
-
-  if (isLocalhost || shouldSkipCanonicalRedirect(pathname)) {
-    return null;
-  }
+  const host = (request.headers.get("host") || "").split(":")[0].toLowerCase();
+  const isLocalhost = host === "localhost" || host === "127.0.0.1";
+  if (isLocalhost || shouldSkipCanonicalRedirect(pathname)) return null;
 
   const forwardedProto = request.headers.get("x-forwarded-proto");
   const normalizedPath = normalizePath(pathname);
   const keepSearch = search && !shouldStripQuery(pathname);
   const normalizedSearch = keepSearch ? search : "";
   const isCanonicalHost = host === CANONICAL_HOST;
-  const isApexHost = host === "mcpserver.in";
   const isHttps = forwardedProto ? forwardedProto === "https" : request.nextUrl.protocol === "https:";
-  const needsRedirect =
-    isApexHost ||
-    !isCanonicalHost ||
-    !isHttps ||
-    normalizedPath !== pathname ||
-    normalizedSearch !== search;
-
-  if (!needsRedirect) {
-    return null;
-  }
-
+  const needsRedirect = !isCanonicalHost || !isHttps || normalizedPath !== pathname || normalizedSearch !== search;
+  if (!needsRedirect) return null;
   return `https://${CANONICAL_HOST}${normalizedPath}${normalizedSearch}`;
 }
 
 export async function proxy(request: NextRequest) {
   const canonicalRedirect = getCanonicalRedirect(request);
-
   if (canonicalRedirect) {
-    return new NextResponse(null, {
-      status: 308,
-      headers: {
-        Location: canonicalRedirect,
-      },
-    });
+    return new NextResponse(null, { status: 308, headers: { Location: canonicalRedirect } });
   }
 
   const { pathname } = request.nextUrl;
-  const host = request.headers.get("host") || "";
-  const isLocalhost = host.includes("localhost") || host.includes("127.0.0.1");
+  const host = (request.headers.get("host") || "").split(":")[0].toLowerCase();
+  const isLocalhost = host === "localhost" || host === "127.0.0.1";
 
   if (isProtectedRoute(pathname)) {
     const geo = (request as any).geo;
@@ -105,18 +73,7 @@ export async function proxy(request: NextRequest) {
 
     if (!isLocalhost && country && !ALLOWED_COUNTRIES.includes(country)) {
       console.warn(`[DPDP Geo-Block] Blocked access from ${country} to ${pathname}`);
-
-      return new NextResponse(
-        JSON.stringify({
-          error: "Access Denied (403)",
-          message:
-            "To comply with the DPDP Act 2023, this management interface is restricted to Indian IP addresses.",
-        }),
-        {
-          status: 403,
-          headers: { "Content-Type": "application/json" },
-        },
-      );
+      return new NextResponse(JSON.stringify({ error: "Access Denied (403)", message: "To comply with the DPDP Act 2023, this management interface is restricted to Indian IP addresses." }), { status: 403, headers: { "Content-Type": "application/json" } });
     }
 
     if (isLocalhost) {
@@ -125,11 +82,8 @@ export async function proxy(request: NextRequest) {
 
     const token = request.cookies.get(SESSION_COOKIE_NAME)?.value;
     const session = token ? await verifySessionToken(token) : null;
-
     if (!session) {
-      if (isApiRoute(pathname)) {
-        return NextResponse.json({ error: "Authentication required" }, { status: 401 });
-      }
+      if (isApiRoute(pathname)) return NextResponse.json({ error: "Authentication required" }, { status: 401 });
       const loginUrl = new URL("/login", request.url);
       loginUrl.searchParams.set("next", pathname);
       return NextResponse.redirect(loginUrl);
