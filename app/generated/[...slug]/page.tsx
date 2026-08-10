@@ -26,33 +26,42 @@ function parseFrontmatter(content: string): Record<string, string> {
 }
 
 function loadGeneratedByRoute(route: string): string | null {
-  const r = route.replace(/^\/|\/$/g, "");
+  const r = route.replace(/^\/+|\/+$/g, "");
   const fp = path.join(GENERATED_ROOT, r, "index.md");
   return fs.existsSync(fp) ? fs.readFileSync(fp, "utf-8") : null;
 }
 
 export async function generateStaticParams() {
-  // Only published pages become routes. Currently 0 approved => 0 routes.
   return getPublishedGeneratedPages().map((p) => ({
-    slug: p.route.replace(/^\/|\/$/g, "").split("/"),
+    slug: p.route.replace(/^\/+|\/+$/g, "").split("/"),
   }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const route = "/" + slug.join("/") + "/";
+  const route = `/${slug.join("/").replace(/^\/+|\/+$/g, "")}/`;
   const page = getGeneratedPageByRoute(route);
-  if (!page) return { title: "Not Found" };
+  if (!page) return { title: "Not Found", robots: { index: false, follow: false } };
+
+  const canonical = page.canonical_url.endsWith("/") ? page.canonical_url : `${page.canonical_url}/`;
   return {
     title: page.primary_entity,
     description: `MCP guide for ${page.primary_entity}. ${page.primary_keyword}.`,
-    alternates: { canonical: page.canonical_url },
+    alternates: {
+      canonical,
+      languages: {
+        "en-IN": canonical,
+        "en": canonical,
+        "x-default": canonical,
+      },
+    },
+    robots: { index: true, follow: true },
   };
 }
 
 export default async function GeneratedPage({ params }: PageProps) {
   const { slug } = await params;
-  const route = "/" + slug.join("/") + "/";
+  const route = `/${slug.join("/").replace(/^\/+|\/+$/g, "")}/`;
   const page = getGeneratedPageByRoute(route);
   if (!page) notFound();
 
@@ -60,7 +69,6 @@ export default async function GeneratedPage({ params }: PageProps) {
   if (!raw) notFound();
 
   const fm = parseFrontmatter(raw);
-  // Strip the JSON-LD script block before rendering markdown.
   const body = raw
     .replace(/^---\n[\s\S]*?\n---\n/, "")
     .replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>/g, "")
