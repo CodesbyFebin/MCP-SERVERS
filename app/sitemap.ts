@@ -8,6 +8,7 @@ import { categories } from "../src/data/categories";
 import { docsPages, getDocsPath } from "../src/data/docs";
 import { blogPosts, clusters } from "../src/data/blogPosts";
 import { getPublishedCategorySlugs, getPublishedServerProfiles } from "../src/data/publishing";
+import { getPublishedGeneratedPages } from "../src/lib/content/publication-registry";
 import { SITE_ORIGIN } from "../src/lib/canonical-urls";
 
 export const dynamic = "force-static";
@@ -28,7 +29,6 @@ const NON_INDEXABLE_PATH_PREFIXES = [
   "/register/",
   "/search/",
   "/candidate/",
-  "/generated/",
 ];
 
 function normalizePath(path: string): string {
@@ -141,6 +141,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: "monthly" as const,
     priority: 0.6,
   }));
+  const generatedEntries = getPublishedGeneratedPages().map((page) => toEntry(page.route, {
+    changeFrequency: "monthly" as const,
+    priority: 0.65,
+  }));
 
   return dedupeAndValidate([
     ...staticEntries,
@@ -154,5 +158,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...toolEntries,
     ...clusterEntries,
     ...blogPostEntries,
+    ...generatedEntries,
   ]);
 }
