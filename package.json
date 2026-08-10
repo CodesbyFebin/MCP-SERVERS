@@ -1,7 +1,7 @@
 {
-  "name": "react-example",
+  "name": "mcpserver-platform",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "next dev --port 3000",
@@ -17,6 +17,8 @@
     "generate:llms": "node scripts/generate-llms-full.mjs",
     "generate:content": "node scripts/generate-content.mjs",
     "verify:production": "node scripts/verify-production.mjs",
+    "verify:security": "tsx scripts/verify-security.ts",
+    "verify:links": "tsx scripts/verify-internal-links.ts",
     "submit-indexnow": "node scripts/submit-indexnow.mjs",
     "clean": "rm -rf dist .next"
   },
