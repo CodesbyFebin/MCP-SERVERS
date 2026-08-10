@@ -9,10 +9,8 @@ const nextConfig = {
   output: "standalone",
   turbopack: {},
   images: {
-    unoptimized: true,
-    remotePatterns: [
-      { protocol: "https", hostname: "**" },
-    ],
+    formats: ["image/avif", "image/webp"],
+    remotePatterns: [{ protocol: "https", hostname: "**" }],
   },
   devIndicators: false,
   trailingSlash: true,
@@ -31,31 +29,38 @@ const nextConfig = {
           { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
           { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), payment=(), usb=()" },
           { key: "X-DNS-Prefetch-Control", value: "on" },
-          { key: "Strict-Transport-Security", value: "max-age=31536000; includeSubDomains" },
+          { key: "Strict-Transport-Security", value: "max-age=31536000; includeSubDomains; preload" },
         ],
       },
       {
         source: "/public/data/:path*",
-        headers: [
-          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
-        ],
+        headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
+      },
+      {
+        source: "/servers/:path*",
+        headers: [{ key: "Cache-Control", value: "public, s-maxage=300, stale-while-revalidate=86400" }],
+      },
+      {
+        source: "/docs/:path*",
+        headers: [{ key: "Cache-Control", value: "public, s-maxage=3600, stale-while-revalidate=86400" }],
+      },
+      {
+        source: "/blog/:path*",
+        headers: [{ key: "Cache-Control", value: "public, s-maxage=3600, stale-while-revalidate=86400" }],
+      },
+      {
+        source: "/glossary/:path*",
+        headers: [{ key: "Cache-Control", value: "public, s-maxage=3600, stale-while-revalidate=86400" }],
       },
       {
         source: "/api/:path*",
-        headers: [
-          { key: "Cache-Control", value: "no-store, must-revalidate" },
-        ],
+        headers: [{ key: "Cache-Control", value: "no-store, must-revalidate" }],
       },
     ];
   },
 
   async rewrites() {
-    return [
-      {
-        source: "/sitemap.xml",
-        destination: "/sitemap-index.xml",
-      },
-    ];
+    return [];
   },
 
   experimental: {
