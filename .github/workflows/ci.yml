@@ -35,6 +35,9 @@ jobs:
       - name: Run typecheck
         run: npm run typecheck
 
+      - name: Run sitemap quality gate
+        run: npm run seo:sitemap
+
       - name: Run production build
         run: npm run build
 
