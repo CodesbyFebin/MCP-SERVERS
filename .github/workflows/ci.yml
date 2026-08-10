@@ -6,6 +6,9 @@ on:
   push:
     branches: ["master"]
 
+permissions:
+  contents: read
+
 jobs:
   build:
     name: Verify and Test
@@ -21,7 +24,7 @@ jobs:
           cache: "npm"
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install --no-audit --no-fund
 
       - name: Run security verification
         run: npm run verify:security
