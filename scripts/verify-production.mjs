@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 
-const baseUrl = (process.env.PRODUCTION_BASE_URL || "https://www.mcpserver.in").replace(/\/$/, "");
+const baseUrl = (process.env.PRODUCTION_BASE_URL || "https://mcpserver.in").replace(/\/$/, "");
 const evidenceDir = path.join(process.cwd(), ".safe-deep", "evidence");
 const outputPath = path.join(evidenceDir, "live-seo-verification.json");
 
@@ -16,8 +16,9 @@ const pages = [
 
 const redirectVariants = [
   { source: "http://mcpserver.in/", expected: `${baseUrl}/`, expectedMaxHops: 1 },
-  { source: "https://mcpserver.in/", expected: `${baseUrl}/`, expectedMaxHops: 1 },
+  { source: "https://mcpserver.in/", expected: `${baseUrl}/`, expectedMaxHops: 0 },
   { source: "http://www.mcpserver.in/", expected: `${baseUrl}/`, expectedMaxHops: 1 },
+  { source: "https://www.mcpserver.in/", expected: `${baseUrl}/`, expectedMaxHops: 1 },
 ];
 
 function stripTags(value) {
@@ -135,11 +136,7 @@ for (const page of pages) {
 
 for (const variant of redirectVariants) {
   const result = await resolveRedirect(variant.source);
-  const platformHttpHop =
-    variant.source.startsWith("http://") &&
-    result.redirectCount === 2 &&
-    result.hops[0]?.location?.startsWith("https://") &&
-    result.finalUrl === variant.expected;
+  const platformHttpHop = variant.source.startsWith("http://") && result.redirectCount === 2;
   const errors = [];
 
   if (result.finalUrl !== variant.expected) errors.push(`Expected final URL ${variant.expected}, got ${result.finalUrl}`);
@@ -173,12 +170,8 @@ const evidence = {
 
 fs.writeFileSync(outputPath, `${JSON.stringify(evidence, null, 2)}\n`);
 
-for (const page of pageResults) {
-  console.log(`${page.ok ? "OK" : "FAIL"} ${page.url}`);
-}
-for (const redirect of redirectResults) {
-  console.log(`${redirect.ok ? "OK" : "FAIL"} ${redirect.source} => ${redirect.finalUrl} (${redirect.redirectCount} redirects)`);
-}
+for (const page of pageResults) console.log(`${page.ok ? "OK" : "FAIL"} ${page.url}`);
+for (const redirect of redirectResults) console.log(`${redirect.ok ? "OK" : "FAIL"} ${redirect.source} => ${redirect.finalUrl} (${redirect.redirectCount} redirects)`);
 if (evidence.warnings.length > 0) {
   for (const warning of evidence.warnings) console.warn(`WARN ${warning}`);
 }

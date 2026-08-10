@@ -1,3 +1,4 @@
+// Canonical draft model shared by the content pipeline, storage, and validation layers.
 export interface SectionDraft {
   sectionId: string
   title: string
@@ -31,6 +32,7 @@ export interface Draft {
 }
 
 export function createDraft(overrides: Partial<Draft> = {}): Draft {
+  const now = new Date().toISOString()
   return {
     id: `draft-${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
     entityId: "",
@@ -38,18 +40,13 @@ export function createDraft(overrides: Partial<Draft> = {}): Draft {
     pageType: "",
     locale: "en",
     sections: [],
-    metadata: {
-      title: "",
-      description: "",
-      canonical: "",
-      alternates: [],
-    },
+    metadata: { title: "", description: "", canonical: "", alternates: [] },
     schema: {},
     qualityScore: null,
     status: "draft",
     contentHash: "",
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
+    createdAt: now,
+    updatedAt: now,
     ...overrides,
   }
 }

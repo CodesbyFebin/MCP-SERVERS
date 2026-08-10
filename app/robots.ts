@@ -2,8 +2,8 @@ import { MetadataRoute } from "next";
 
 export const dynamic = "force-static";
 
-const baseUrl = "https://www.mcpserver.in";
-const sitemapUrl = `${baseUrl}/sitemap-index.xml`;
+const baseUrl = "https://mcpserver.in";
+const sitemapUrl = `${baseUrl}/sitemap.xml`;
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -40,13 +40,9 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
       },
       {
-        userAgent: [
-          "AhrefsBot",
-          "SemrushBot",
-          "MJ12bot",
-        ],
+        userAgent: ["AhrefsBot", "SemrushBot", "MJ12bot"],
         disallow: "/",
-      }
+      },
     ],
     sitemap: sitemapUrl,
   };

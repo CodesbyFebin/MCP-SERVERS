@@ -31,13 +31,13 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.mcpserver.in"),
+  metadataBase: new URL("https://mcpserver.in"),
   title: {
-    default: "MCPserver.in — Hosted MCP Platform for AI Agents",
+    default: "MCPserver.in — MCP Intelligence & Hosted Platform for AI Agents",
     template: "%s | MCPserver.in"
   },
-  description: "Discover and deploy MCP servers. Hosted infrastructure for AI agents with India-region hosting and compliance features.",
-  keywords: ["MCP server hosting India", "hosted MCP platform", "DPDP-aware AI tools", "MCP servers Mumbai", "MCP servers Bengaluru", "Model Context Protocol hosting"],
+  description: "Discover, evaluate and deploy MCP servers with evidence-backed profiles, security intelligence, compatibility data and hosted infrastructure.",
+  keywords: ["MCP server", "Model Context Protocol", "MCP server directory", "MCP security", "MCP hosting", "MCP server India", "AI agents"],
   authors: [{ name: "MCPserver.in Engineering" }],
   creator: "MCPserver.in",
   publisher: "MCPserver.in",
@@ -63,10 +63,10 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    url: "https://www.mcpserver.in",
+    url: "https://mcpserver.in/",
     siteName: "MCPserver.in",
-    title: "MCPserver.in — Hosted MCP Platform for AI Agents",
-    description: "Discover and deploy MCP servers. Hosted infrastructure for AI agents with India-region hosting and compliance features.",
+    title: "MCPserver.in — MCP Intelligence & Hosted Platform for AI Agents",
+    description: "Discover, evaluate and deploy MCP servers with evidence-backed profiles, security intelligence, compatibility data and hosted infrastructure.",
     locale: "en_IN",
   },
   twitter: {
@@ -102,9 +102,6 @@ export default function RootLayout({
   return (
     <html lang="en" className={`dark ${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}>
       <head>
-        <link rel="alternate" hrefLang="en-IN" href="https://www.mcpserver.in/" />
-        <link rel="alternate" hrefLang="en" href="https://www.mcpserver.in/" />
-        <link rel="alternate" hrefLang="x-default" href="https://www.mcpserver.in/" />
         {process.env.NEXT_PUBLIC_GTM_ID && (
           <Script id="gtm-script" strategy="afterInteractive">
             {`
@@ -148,12 +145,9 @@ export default function RootLayout({
         )}
         <ThemeAndAuthProvider>
           <div className="flex flex-col min-h-screen bg-[#050505] text-[#e0e0e0] font-sans relative overflow-x-hidden transition-colors duration-200">
-            {/* Background Glows */}
             <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[400px] bg-cyan-950/20 rounded-full blur-[120px] pointer-events-none z-0 dark:opacity-100 opacity-30"></div>
             <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[400px] bg-purple-950/20 rounded-full blur-[120px] pointer-events-none z-0 dark:opacity-100 opacity-30"></div>
-            <div className="absolute inset-0 w-full h-full opacity-[0.03] pointer-events-none z-0" style={{ backgroundImage: "radial-gradient(#ffffff 1px, transparent 1px)", backgroundSize: "40px 40px" }}></div>
-            
-            {/* Main Content wrapper */}
+            <div className="absolute inset-0 w-full h-full opacity-[0.03] pointer-events-none z-0" style={{ backgroundImage: "radial-gradient(#ffffff 1px, transparent 0)", backgroundSize: "40px 40px" }}></div>
             <div className="relative z-10 flex flex-col min-h-screen">
               <SchemaJsonLd schema={getWebApplicationSchema()} />
               <SchemaJsonLd schema={getOrganizationSchema()} />

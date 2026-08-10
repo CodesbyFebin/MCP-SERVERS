@@ -10,3 +10,11 @@ coverage/
 !.env.example
 git-history/
 .vercel
+
+# Local credentials and generated secret material
+*.pem
+*.key
+*.crt
+credentials*.json
+service-account*.json
+public/KEY.txt

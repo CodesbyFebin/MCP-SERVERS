@@ -39,16 +39,11 @@ export function loadPageContent(slug: string): ContentPage | null {
 }
 
 function loadContent(filePath: string): ContentPage | null {
-  if (!fs.existsSync(filePath)) {
-    return null
-  }
+  if (!fs.existsSync(filePath)) return null
 
   const content = fs.readFileSync(filePath, "utf-8")
   const frontmatterMatch = content.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/)
-
-  if (!frontmatterMatch) {
-    return null
-  }
+  if (!frontmatterMatch) return null
 
   const frontmatter = frontmatterMatch[1]
   const body = frontmatterMatch[2]
@@ -77,14 +72,9 @@ function loadContent(filePath: string): ContentPage | null {
     const questions: Array<{ question: string; answer: string }> = []
     const questionRegex = /### (.*?)\n\n([\s\S]*?)(?=\n### |\n## |\n---|\n$)/g
     let match
-
     while ((match = questionRegex.exec(faqSection[1])) !== null) {
-      questions.push({
-        question: match[1].trim(),
-        answer: match[2].trim(),
-      })
+      questions.push({ question: match[1].trim(), answer: match[2].trim() })
     }
-
     return questions
   }
 
@@ -98,42 +88,21 @@ function loadContent(filePath: string): ContentPage | null {
 
     const reviewRegex = /\*\*(.*?)\*\* \((\d)\/5\) — \*(.*?)\*\n\n> ([\s\S]*?)(?=\n\n\*\*|\n\n###|\n\n---|\n$)/g
     let match
-
     while ((match = reviewRegex.exec(ugcSection[1])) !== null) {
-      reviews.push({
-        author: match[1].trim(),
-        rating: parseInt(match[2], 10),
-        text: match[4].trim(),
-        date: match[3].trim(),
-      })
+      reviews.push({ author: match[1].trim(), rating: parseInt(match[2], 10), text: match[4].trim(), date: match[3].trim() })
     }
 
     const discussionRegex = /- \[\*\*(.*?)\*\*\]\((.*?)\)\*\* on (.*?)\n\s*> ([\s\S]*?)(?=\n-|\n###|\n---|\n$)/g
-
     while ((match = discussionRegex.exec(ugcSection[1])) !== null) {
-      discussions.push({
-        platform: match[3].trim(),
-        title: match[1].trim(),
-        url: match[2].trim(),
-        excerpt: match[4].trim(),
-      })
+      discussions.push({ platform: match[3].trim(), title: match[1].trim(), url: match[2].trim(), excerpt: match[4].trim() })
     }
 
     const caseStudyRegex = /\*\*(.*?)\*\*\n\n- \*\*Challenge\*\*: ([\s\S]*?)\n- \*\*Solution\*\*: ([\s\S]*?)\n- \*\*Outcome\*\*: ([\s\S]*?)(?=\n\n\*\*|\n---|\n$)/g
-
     while ((match = caseStudyRegex.exec(ugcSection[1])) !== null) {
-      caseStudies.push({
-        company: match[1].trim(),
-        challenge: match[2].trim(),
-        solution: match[3].trim(),
-        outcome: match[4].trim(),
-      })
+      caseStudies.push({ company: match[1].trim(), challenge: match[2].trim(), solution: match[3].trim(), outcome: match[4].trim() })
     }
 
-    if (reviews.length === 0 && discussions.length === 0 && caseStudies.length === 0) {
-      return undefined
-    }
-
+    if (reviews.length === 0 && discussions.length === 0 && caseStudies.length === 0) return undefined
     return { reviews, discussions, caseStudies }
   }
 
@@ -147,21 +116,4 @@ function loadContent(filePath: string): ContentPage | null {
     faq: parseFAQ(),
     ugc: parseUGC(),
   }
-}
-
-export function hasGeneratedContent(type: "server" | "topic" | "pillar" | "comparison", slug: string): boolean {
-  const filePath = path.join(CONTENT_ROOT, type === "server" ? "servers" : type === "topic" ? "topics" : type === "pillar" ? "pillars" : "compare", `${slug}.md`)
-  return fs.existsSync(filePath)
-}
-
-export function listGeneratedContent(type: "server" | "topic" | "pillar" | "comparison"): string[] {
-  const dir = path.join(CONTENT_ROOT, type === "server" ? "servers" : type === "topic" ? "topics" : type === "pillar" ? "pillars" : "compare")
-
-  if (!fs.existsSync(dir)) {
-    return []
-  }
-
-  return fs.readdirSync(dir)
-    .filter((file) => file.endsWith(".md"))
-    .map((file) => file.replace(/\.md$/, ""))
 }
