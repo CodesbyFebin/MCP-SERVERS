@@ -13,6 +13,7 @@
     "lint": "tsc --noEmit",
     "typecheck": "tsc --noEmit",
     "seo:audit": "tsx validate-seo.ts",
+    "seo:sitemap": "tsx scripts/verify-sitemap-quality.ts",
     "seo:rankings": "node scripts/seo-rank-tracker.mjs",
     "generate:llms": "node scripts/generate-llms-full.mjs",
     "generate:content": "node scripts/generate-content.mjs",
