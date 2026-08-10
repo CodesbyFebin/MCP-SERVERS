@@ -7,6 +7,7 @@ import { comparisons } from "../src/data/comparisons";
 import { categories } from "../src/data/categories";
 import { docsPages, getDocsPath } from "../src/data/docs";
 import { blogPosts, clusters } from "../src/data/blogPosts";
+import { getPublishedCategorySlugs, getPublishedServerProfiles } from "../src/data/publishing";
 import { SITE_ORIGIN } from "../src/lib/canonical-urls";
 
 export const dynamic = "force-static";
@@ -19,6 +20,47 @@ const popularComparisonSlugs = [
   "slack-mcp-server-vs-discord-mcp-server",
   "github-mcp-server-vs-postgres-mcp-server",
 ];
+
+const NON_INDEXABLE_PATH_PREFIXES = [
+  "/admin/",
+  "/api/",
+  "/login/",
+  "/register/",
+  "/search/",
+  "/candidate/",
+  "/generated/",
+];
+
+function normalizePath(path: string): string {
+  const collapsed = path.replace(/\/{2,}/g, "/");
+  if (collapsed === "/") return "/";
+  return collapsed.endsWith("/") ? collapsed : `${collapsed}/`;
+}
+
+function toEntry(path: string, options: Omit<MetadataRoute.Sitemap[number], "url"> = {}): MetadataRoute.Sitemap[number] {
+  const normalizedPath = normalizePath(path);
+  return { url: `${baseUrl}${normalizedPath}`, ...options };
+}
+
+function isAllowedSitemapUrl(url: string): boolean {
+  if (!url.startsWith(`${baseUrl}/`) && url !== `${baseUrl}/`) return false;
+  const pathname = new URL(url).pathname;
+  return !NON_INDEXABLE_PATH_PREFIXES.some((prefix) => pathname.startsWith(prefix));
+}
+
+function dedupeAndValidate(entries: MetadataRoute.Sitemap): MetadataRoute.Sitemap {
+  const seen = new Set<string>();
+  const output: MetadataRoute.Sitemap = [];
+
+  for (const entry of entries) {
+    const normalizedUrl = `${baseUrl}${normalizePath(new URL(entry.url).pathname)}`;
+    if (seen.has(normalizedUrl) || !isAllowedSitemapUrl(normalizedUrl)) continue;
+    seen.add(normalizedUrl);
+    output.push({ ...entry, url: normalizedUrl });
+  }
+
+  return output;
+}
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const today = new Date();
@@ -66,30 +108,41 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: "/performance/mcp-server-latency", changeFrequency: "weekly" as const, priority: 0.9 },
   ];
 
-  const staticEntries = staticPaths.map((p) => {
-    const mod = p.url === "" ? undefined : today;
-    return {
-      url: `${baseUrl}${p.url}/`,
-      ...(mod ? { lastModified: mod } : {}),
-      changeFrequency: p.changeFrequency,
-      priority: p.priority,
-    };
-  });
+  const staticEntries = staticPaths.map((p) => toEntry(p.url, {
+    ...(p.url ? { lastModified: today } : {}),
+    changeFrequency: p.changeFrequency,
+    priority: p.priority,
+  }));
 
-  const pillarEntries = pillars.map((p) => ({ url: `${baseUrl}/${p.slug}/`, lastModified: (p as any).updatedAt || (p as any).publishedAt || today, changeFrequency: "weekly" as const, priority: 0.9 }));
-  const topicEntries = topics.map((t) => ({ url: `${baseUrl}/topics/${t.slug}/`, changeFrequency: "weekly" as const, priority: 0.8 }));
-  const serverEntries = servers.map((s) => ({ url: `${baseUrl}/servers/${s.slug}/`, changeFrequency: "weekly" as const, priority: 0.8 }));
-  const glossaryEntries = glossaryTerms.map((g) => ({ url: `${baseUrl}/glossary/${g.slug}/`, lastModified: (g as any).updatedAt || (g as any).publishedAt || today, changeFrequency: "weekly" as const, priority: 0.7 }));
-  const comparisonSlugs = [...comparisons.map((c) => c.slug), ...popularComparisonSlugs];
-  const comparisonEntries = comparisonSlugs.map((slug) => ({ url: `${baseUrl}/compare/${slug}/`, changeFrequency: "weekly" as const, priority: 0.8 }));
-  const categoryEntries = categories.map((c) => ({ url: `${baseUrl}/directory/${c.slug}/`, changeFrequency: "weekly" as const, priority: 0.8 }));
-  const docsEntries = docsPages.map((doc) => ({ url: `${baseUrl}${getDocsPath(doc)}/`, changeFrequency: doc.changefreq, priority: doc.priority }));
+  const publishedServerSlugs = new Set(getPublishedServerProfiles().map((profile) => profile.server.slug));
+  const publishedCategorySlugs = new Set(getPublishedCategorySlugs());
+
+  const pillarEntries = pillars.map((p) => toEntry(`/${p.slug}`, {
+    lastModified: (p as any).updatedAt || (p as any).publishedAt || today,
+    changeFrequency: "weekly" as const,
+    priority: 0.9,
+  }));
+  const topicEntries = topics.map((t) => toEntry(`/topics/${t.slug}`, { changeFrequency: "weekly" as const, priority: 0.8 }));
+  const serverEntries = servers.filter((server) => publishedServerSlugs.has(server.slug)).map((server) => toEntry(`/servers/${server.slug}`, { changeFrequency: "weekly" as const, priority: 0.8 }));
+  const glossaryEntries = glossaryTerms.map((g) => toEntry(`/glossary/${g.slug}`, {
+    lastModified: (g as any).updatedAt || (g as any).publishedAt || today,
+    changeFrequency: "weekly" as const,
+    priority: 0.7,
+  }));
+  const comparisonSlugs = Array.from(new Set([...comparisons.map((c) => c.slug), ...popularComparisonSlugs]));
+  const comparisonEntries = comparisonSlugs.map((slug) => toEntry(`/compare/${slug}`, { changeFrequency: "weekly" as const, priority: 0.8 }));
+  const categoryEntries = categories.filter((category) => publishedCategorySlugs.has(category.slug)).map((category) => toEntry(`/directory/${category.slug}`, { changeFrequency: "weekly" as const, priority: 0.8 }));
+  const docsEntries = docsPages.map((doc) => toEntry(getDocsPath(doc), { changeFrequency: doc.changefreq, priority: doc.priority }));
   const toolSlugs = ["mcp-playground", "mcp-server-checker", "mcp-schema-viewer", "mcp-config-validator", "mcp-endpoint-tester", "mcp-sdk-workbench", "mcp-benchmark", "server-selector"];
-  const toolEntries = toolSlugs.map((slug) => ({ url: `${baseUrl}/tools/${slug}/`, changeFrequency: "weekly" as const, priority: 0.8 }));
-  const clusterEntries = clusters.map((cluster) => ({ url: `${baseUrl}/blog/cluster/${cluster.slug}/`, changeFrequency: "weekly" as const, priority: 0.7 }));
-  const blogPostEntries = blogPosts.map((post) => ({ url: `${baseUrl}/blog/${post.slug}/`, lastModified: (post as any).updatedAt || (post as any).publishedAt || new Date(post.date), changeFrequency: "monthly" as const, priority: 0.6 }));
+  const toolEntries = toolSlugs.map((slug) => toEntry(`/tools/${slug}`, { changeFrequency: "weekly" as const, priority: 0.8 }));
+  const clusterEntries = clusters.map((cluster) => toEntry(`/blog/cluster/${cluster.slug}`, { changeFrequency: "weekly" as const, priority: 0.7 }));
+  const blogPostEntries = blogPosts.map((post) => toEntry(`/blog/${post.slug}`, {
+    lastModified: (post as any).updatedAt || (post as any).publishedAt || new Date(post.date),
+    changeFrequency: "monthly" as const,
+    priority: 0.6,
+  }));
 
-  return [
+  return dedupeAndValidate([
     ...staticEntries,
     ...pillarEntries,
     ...topicEntries,
@@ -101,5 +154,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...toolEntries,
     ...clusterEntries,
     ...blogPostEntries,
-  ];
+  ]);
 }
