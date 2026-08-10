@@ -28,9 +28,21 @@ export function getOrganizationSchema() {
         siteConfig.founder.socials.linkedin
       ]
     },
+    "sameAs": [siteConfig.socials.github, siteConfig.socials.twitter]
+  };
+}
+
+export function getMcpEntitySchema() {
+  return {
+    "@type": "Thing",
+    "@id": `${siteConfig.url}/#mcp`,
+    "name": "Model Context Protocol",
+    "alternateName": "MCP",
+    "description": "An open protocol for connecting AI applications to external tools, resources, and prompts through a standardized client-server interface.",
+    "url": `${siteConfig.url}/mcp-protocol/`,
     "sameAs": [
-      siteConfig.socials.github,
-      siteConfig.socials.twitter
+      "https://modelcontextprotocol.io/specification/",
+      "https://www.jsonrpc.org/specification"
     ]
   };
 }
@@ -42,9 +54,8 @@ export function getWebSiteSchema() {
     "@id": `${siteConfig.url}/#website`,
     "name": siteConfig.brand,
     "url": siteConfig.url,
-    "publisher": {
-      "@id": `${siteConfig.url}/#organization`
-    },
+    "publisher": { "@id": `${siteConfig.url}/#organization` },
+    "about": { "@id": `${siteConfig.url}/#mcp` },
     "potentialAction": {
       "@type": "SearchAction",
       "target": `${siteConfig.url}/mcp-server-directory?q={search_term_string}`,
@@ -63,16 +74,12 @@ export function getWebApplicationSchema() {
     "description": "Hosted MCP platform for discovering, building, testing, deploying and managing production-ready Model Context Protocol servers with India-focused compliance controls.",
     "applicationCategory": "DeveloperApplication",
     "operatingSystem": "Cross-Platform",
-    "publisher": {
-      "@id": `${siteConfig.url}/#organization`
-    }
+    "publisher": { "@id": `${siteConfig.url}/#organization` },
+    "about": { "@id": `${siteConfig.url}/#mcp` }
   };
 }
 
-export interface BreadcrumbStep {
-  name: string;
-  item: string;
-}
+export interface BreadcrumbStep { name: string; item: string; }
 
 export function getBreadcrumbSchema(steps: BreadcrumbStep[]) {
   return {
@@ -87,10 +94,7 @@ export function getBreadcrumbSchema(steps: BreadcrumbStep[]) {
   };
 }
 
-export interface FAQSchemaItem {
-  question: string;
-  answer: string;
-}
+export interface FAQSchemaItem { question: string; answer: string; }
 
 export function getFAQSchema(items: FAQSchemaItem[]) {
   return {
@@ -99,10 +103,7 @@ export function getFAQSchema(items: FAQSchemaItem[]) {
     "mainEntity": items.map(item => ({
       "@type": "Question",
       "name": item.question,
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": item.answer
-      }
+      "acceptedAnswer": { "@type": "Answer", "text": item.answer }
     }))
   };
 }
@@ -124,7 +125,6 @@ export interface PillarSchemaOptions {
 export function generatePillarSchema(pillar: PillarSchemaOptions) {
   const url = `${siteConfig.url}/${pillar.slug}`;
   const faqSchema = generateFAQSchema(pillar.faqs);
-  
   const schema: Record<string, any> = {
     "@context": "https://schema.org",
     "@type": "TechArticle",
@@ -132,29 +132,18 @@ export function generatePillarSchema(pillar: PillarSchemaOptions) {
     "headline": pillar.title,
     "description": pillar.description,
     "url": url,
-    "isPartOf": {
-      "@id": `${url}#webpage`
-    },
+    "isPartOf": { "@id": `${url}#webpage` },
     "inLanguage": "en",
     "mainEntityOfPage": url,
-    "author": {
-      "@type": "Organization",
-      "name": "MCPserver.in Engineering",
-      "@id": `${siteConfig.url}/#organization`
-    },
-    "publisher": {
-      "@id": `${siteConfig.url}/#organization`
-    },
+    "author": { "@type": "Organization", "name": "MCPserver.in Engineering", "@id": `${siteConfig.url}/#organization` },
+    "publisher": { "@id": `${siteConfig.url}/#organization` },
+    "about": { "@id": `${siteConfig.url}/#mcp` },
     "datePublished": new Date().toISOString(),
     "dateModified": new Date().toISOString(),
     ...(pillar.sameAs && { sameAs: pillar.sameAs }),
     ...(pillar.mentions && { mentions: pillar.mentions.map(m => ({ "@type": "Thing", ...m })) })
   };
-
-  if (faqSchema) {
-    schema["@graph"] = [schema, faqSchema];
-  }
-
+  if (faqSchema) schema["@graph"] = [schema, faqSchema];
   return schema;
 }
 
@@ -169,10 +158,7 @@ export function getSoftwareApplicationSchema(name: string, description: string) 
   };
 }
 
-export interface HowToStep {
-  name: string;
-  text: string;
-}
+export interface HowToStep { name: string; text: string; }
 
 export function getHowToSchema(name: string, description: string, steps: HowToStep[]) {
   return {
@@ -190,7 +176,7 @@ export function getHowToSchema(name: string, description: string, steps: HowToSt
 }
 
 export interface UnifiedGraphOptions {
-  pageUrl: string; // e.g., "/postgres-mcp-server" or "/mcp-vs-rest"
+  pageUrl: string;
   title: string;
   description: string;
   breadcrumbs?: BreadcrumbStep[];
@@ -204,33 +190,20 @@ export interface UnifiedGraphOptions {
     datePublished: string;
     dateModified: string;
   };
-  softwareApplication?: {
-    name: string;
-    description: string;
-  };
+  softwareApplication?: { name: string; description: string };
   mentions?: { name: string; url?: string }[];
   sameAs?: string[];
   itemList?: { name: string; url: string; description?: string }[];
 }
 
-/**
- * Builds a unified, fully connected Schema.org @graph.
- * This links Organization, WebSite, WebPage, TechArticle, SoftwareApplication, FAQs and Breadcrumbs together.
- */
 export function getUnifiedGraphSchema(options: UnifiedGraphOptions) {
   const fullPageUrl = `${siteConfig.url}${options.pageUrl}`;
-  
-  // 1. Organization Base Entity
   const organizationEntity = {
     "@type": "Organization",
     "@id": `${siteConfig.url}/#organization`,
     "name": siteConfig.company.name,
     "url": siteConfig.url,
-    "logo": {
-      "@type": "ImageObject",
-      "url": `${siteConfig.url}/logo.svg`,
-      "caption": siteConfig.brand
-    },
+    "logo": { "@type": "ImageObject", "url": `${siteConfig.url}/logo.svg`, "caption": siteConfig.brand },
     "email": siteConfig.company.email,
     "address": {
       "@type": "PostalAddress",
@@ -239,50 +212,37 @@ export function getUnifiedGraphSchema(options: UnifiedGraphOptions) {
       "addressRegion": "Karnataka",
       "addressCountry": "IN"
     },
-    "sameAs": [
-      siteConfig.socials.github,
-      siteConfig.socials.twitter
-    ]
+    "sameAs": [siteConfig.socials.github, siteConfig.socials.twitter]
   };
-
-  // 2. WebSite Base Entity
+  const mcpEntity = getMcpEntitySchema();
   const websiteEntity = {
     "@type": "WebSite",
     "@id": `${siteConfig.url}/#website`,
     "name": siteConfig.brand,
     "url": siteConfig.url,
-    "publisher": {
-      "@id": `${siteConfig.url}/#organization`
-    },
+    "publisher": { "@id": `${siteConfig.url}/#organization` },
+    "about": { "@id": `${siteConfig.url}/#mcp` },
     "potentialAction": {
       "@type": "SearchAction",
       "target": `${siteConfig.url}/mcp-server-directory?q={search_term_string}`,
       "query-input": "required name=search_term_string"
     }
   };
-
-  // 3. WebPage Primary Node
   const webpageEntity: Record<string, any> = {
     "@type": "WebPage",
     "@id": `${fullPageUrl}#webpage`,
     "url": fullPageUrl,
     "name": options.title,
     "description": options.description,
-    "isPartOf": {
-      "@id": `${siteConfig.url}/#website`
-    },
-    "publisher": {
-      "@id": `${siteConfig.url}/#organization`
-    }
+    "isPartOf": { "@id": `${siteConfig.url}/#website` },
+    "publisher": { "@id": `${siteConfig.url}/#organization` },
+    "about": { "@id": `${siteConfig.url}/#mcp` }
   };
-  if (options.speakable && options.speakable.length > 0) {
-    webpageEntity.speakable = options.speakable;
-  }
+  if (options.speakable?.length) webpageEntity.speakable = options.speakable;
 
-  const graph: any[] = [organizationEntity, websiteEntity, webpageEntity];
+  const graph: any[] = [organizationEntity, mcpEntity, websiteEntity, webpageEntity];
 
-  // 4. Breadcrumbs list mapping
-  if (options.breadcrumbs && options.breadcrumbs.length > 0) {
+  if (options.breadcrumbs?.length) {
     const breadcrumbListEntity = {
       "@type": "BreadcrumbList",
       "@id": `${fullPageUrl}#breadcrumbs`,
@@ -297,28 +257,20 @@ export function getUnifiedGraphSchema(options: UnifiedGraphOptions) {
     graph.push(breadcrumbListEntity);
   }
 
-  // 5. TechArticle or Blog mapping (for topic or pillar pages)
   if (options.article) {
     const articleEntity: Record<string, any> = {
       "@type": "TechArticle",
       "@id": `${fullPageUrl}#article`,
-      "isPartOf": {
-        "@id": `${fullPageUrl}#webpage`
-      },
+      "isPartOf": { "@id": `${fullPageUrl}#webpage` },
       "headline": options.article.title,
       "description": options.article.description,
       "inLanguage": "en",
       "mainEntityOfPage": fullPageUrl,
       "datePublished": options.article.datePublished,
       "dateModified": options.article.dateModified,
-      "author": {
-        "@type": "Person",
-        "name": options.article.authorName,
-        "jobTitle": options.article.authorRole || "Architect"
-      },
-      "publisher": {
-        "@id": `${siteConfig.url}/#organization`
-      },
+      "author": { "@type": "Person", "name": options.article.authorName, "jobTitle": options.article.authorRole || "Architect" },
+      "publisher": { "@id": `${siteConfig.url}/#organization` },
+      "about": { "@id": `${siteConfig.url}/#mcp` },
       ...(options.sameAs && { sameAs: options.sameAs }),
       ...(options.mentions && { mentions: options.mentions.map(m => ({ "@type": "Thing", ...m })) })
     };
@@ -326,7 +278,6 @@ export function getUnifiedGraphSchema(options: UnifiedGraphOptions) {
     graph.push(articleEntity);
   }
 
-  // 6. SoftwareApplication (for individual connectors/servers directories)
   if (options.softwareApplication) {
     const softwareEntity = {
       "@type": "SoftwareApplication",
@@ -335,44 +286,31 @@ export function getUnifiedGraphSchema(options: UnifiedGraphOptions) {
       "operatingSystem": "All",
       "applicationCategory": "DeveloperApplication",
       "description": options.softwareApplication.description,
-      "publisher": {
-        "@id": `${siteConfig.url}/#organization`
-      }
+      "publisher": { "@id": `${siteConfig.url}/#organization` },
+      "about": { "@id": `${siteConfig.url}/#mcp` }
     };
-    
-    // Connect Software to WebPage about attribute
     webpageEntity.about = { "@id": `${fullPageUrl}#software` };
     graph.push(softwareEntity);
   }
 
-  // 7. FAQPage nodes
-  if (options.faq && options.faq.length > 0) {
-    const faqEntity = {
+  if (options.faq?.length) {
+    graph.push({
       "@type": "FAQPage",
       "@id": `${fullPageUrl}#faq`,
-      "isPartOf": {
-        "@id": `${fullPageUrl}#webpage`
-      },
+      "isPartOf": { "@id": `${fullPageUrl}#webpage` },
       "mainEntity": options.faq.map(item => ({
         "@type": "Question",
         "name": item.question,
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": item.answer
-        }
+        "acceptedAnswer": { "@type": "Answer", "text": item.answer }
       }))
-    };
-    graph.push(faqEntity);
+    });
   }
 
-  // 8. ItemList mapping (for directory/collection pages)
-  if (options.itemList && options.itemList.length > 0) {
-    const itemListEntity = {
+  if (options.itemList?.length) {
+    graph.push({
       "@type": "ItemList",
       "@id": `${fullPageUrl}#itemlist`,
-      "isPartOf": {
-        "@id": `${fullPageUrl}#webpage`
-      },
+      "isPartOf": { "@id": `${fullPageUrl}#webpage` },
       "itemListElement": options.itemList.map((entry, idx) => ({
         "@type": "ListItem",
         "position": idx + 1,
@@ -380,12 +318,8 @@ export function getUnifiedGraphSchema(options: UnifiedGraphOptions) {
         "url": entry.url.startsWith("http") ? entry.url : `${siteConfig.url}${entry.url}`,
         ...(entry.description && { description: entry.description })
       }))
-    };
-    graph.push(itemListEntity);
+    });
   }
 
-  return {
-    "@context": "https://schema.org",
-    "@graph": graph
-  };
+  return { "@context": "https://schema.org", "@graph": graph };
 }
