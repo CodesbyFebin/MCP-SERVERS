@@ -3,13 +3,8 @@ import { SITE_ORIGIN } from "../src/lib/canonical-urls";
 
 const EXPECTED_ORIGIN = SITE_ORIGIN.replace(/\/$/, "");
 const FORBIDDEN_PREFIXES = [
-  "/admin/",
-  "/api/",
-  "/login/",
-  "/register/",
-  "/search/",
-  "/candidate/",
-  "/generated/",
+  "/admin/", "/api/", "/login/", "/register/", "/search/", "/candidate/",
+  "/generated/", "/drafts/", "/internal/", "/profile/", "/dashboard/",
 ];
 const LEGACY_PATHS = new Set([
   "/mcp-hosting/",
@@ -33,9 +28,8 @@ for (const entry of entries) {
   if (entry.url !== normalized) errors.push(`Non-canonical URL shape: ${entry.url}`);
   if (seen.has(normalized)) errors.push(`Duplicate URL: ${normalized}`);
   if (LEGACY_PATHS.has(normalizedPath)) errors.push(`Legacy redirect URL in sitemap: ${normalized}`);
-  if (FORBIDDEN_PREFIXES.some((prefix) => normalizedPath.startsWith(prefix))) {
-    errors.push(`Non-indexable route in sitemap: ${normalized}`);
-  }
+  if (FORBIDDEN_PREFIXES.some((prefix) => normalizedPath.startsWith(prefix))) errors.push(`Non-indexable route in sitemap: ${normalized}`);
+  if (url.search || url.hash) errors.push(`Query/hash URL in sitemap: ${entry.url}`);
 
   seen.add(normalized);
 }
