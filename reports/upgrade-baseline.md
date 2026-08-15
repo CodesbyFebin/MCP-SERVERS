@@ -55,10 +55,18 @@ A server is indexable only when:
 2. verification state is `verified`; and
 3. at least one attached evidence passage is explicitly `verified`.
 
-The same predicate must drive server pages, sitemap server entries, public directory lists, LLM indexes, JSON feeds and derived counts.
+The same predicate must drive server pages, sitemap server entries, public directory lists, LLM indexes, JSON feeds, JSON-LD, related-server surfaces, search and derived counts.
+
+## Preview release blockers found and fixed on the feature branch
+
+1. Vercel Linux install failed because `fsevents` had been accidentally promoted into `devDependencies`. It was removed from dependencies.
+2. `.vercelignore` used unanchored `drafts/`, which caused Vercel to delete `src/lib/content/drafts/*` even though production TypeScript imports those modules. Ignore rules are now root-anchored.
+3. The repository used `distDir: "dist"` with `output: "standalone"`. Next compiled successfully, but Vercel packaging then failed with `ENOENT` for `dist/next-server.js.nft.json`. The feature branch returns to Vercel-native Next.js output conventions instead of custom standalone packaging.
+
+These fixes remain preview-only until a clean branch build and rendered-output crawl pass.
 
 ## Branch strategy
 
 Implementation branch: `codex/evidence-ledger-v2`.
 
-Do not update `master` until the branch build, Evidence Ledger tests and representative preview crawl pass. Production verification must be performed against `www.mcpserver.in` after an approved merge/deployment.
+Do not update `master` until the branch build, Evidence Ledger tests, canonical/indexability checks, machine-feed checks, accessibility/security gates, and representative preview crawl pass. Production verification must be performed against `www.mcpserver.in` after an approved merge/deployment.
