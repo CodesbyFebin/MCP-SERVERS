@@ -30,6 +30,9 @@ const NON_INDEXABLE_PATH_PREFIXES = [
   "/search/",
   "/candidate/",
   "/mcp-server-directory/",
+  "/mcp-hosting/",
+  "/mcp-tutorial/",
+  "/blog/how-to-build-mcp-server-from-scratch/",
 ];
 
 function normalizePath(path: string): string {
