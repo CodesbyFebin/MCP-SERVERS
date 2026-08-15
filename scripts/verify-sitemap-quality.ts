@@ -10,8 +10,10 @@ const FORBIDDEN_PREFIXES = [
   "/search/",
   "/candidate/",
   "/generated/",
+  "/mcp-server-directory/",
 ];
 const LEGACY_PATHS = new Set([
+  "/mcp-server-directory/",
   "/mcp-hosting/",
   "/mcp-tutorial/",
   "/blog/how-to-build-mcp-server-from-scratch/",
@@ -42,7 +44,7 @@ for (const entry of entries) {
 
 if (entries.length === 0) errors.push("Sitemap is empty.");
 if (!entries.some((entry) => entry.url === `${EXPECTED_ORIGIN}/`)) errors.push("Homepage is missing from sitemap.");
-if (!entries.some((entry) => entry.url === `${EXPECTED_ORIGIN}/mcp-server-directory/`)) errors.push("Directory hub is missing from sitemap.");
+if (!entries.some((entry) => entry.url === `${EXPECTED_ORIGIN}/servers/`)) errors.push("Canonical server registry is missing from sitemap.");
 
 if (errors.length) {
   console.error(`Sitemap quality gate failed with ${errors.length} error(s):`);
