@@ -1,0 +1,114 @@
+name: Compose Gate
+
+on:
+  pull_request:
+    branches: ["master"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  compose:
+    name: Validate Compose and Caddy
+    runs-on: ubuntu-latest
+    env:
+      SOURCE_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+      ACME_EMAIL: ci@mcpserver.invalid
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+
+      - name: Prepare non-secret CI runtime environment
+        run: |
+          cat > .env.production <<EOF
+          APP_VERSION=${SOURCE_SHA}
+          EOF
+
+      - name: Validate production Compose model
+        run: |
+          set -euo pipefail
+          docker compose \
+            --file deploy/compose/docker-compose.production.yml \
+            config --format json > /tmp/compose.json
+
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const compose = JSON.parse(fs.readFileSync('/tmp/compose.json', 'utf8'));
+          const sourceSha = process.env.SOURCE_SHA;
+          const expectedAcmeEmail = process.env.ACME_EMAIL;
+          const web = compose.services?.web;
+          const caddy = compose.services?.caddy;
+          if (!web || !caddy) throw new Error('production compose must define web and caddy services');
+          if (web.environment?.APP_VERSION !== sourceSha) {
+            throw new Error(`web APP_VERSION=${web.environment?.APP_VERSION}; expected ${sourceSha}`);
+          }
+          if (caddy.environment?.ACME_EMAIL !== expectedAcmeEmail) {
+            throw new Error('Caddyfile references ACME_EMAIL but production Compose does not pass the expected ACME_EMAIL into the caddy service');
+          }
+          console.log(`Compose environment contract verified for ${sourceSha}`);
+          NODE
+
+      - name: Validate production Caddyfile
+        run: |
+          set -euo pipefail
+          docker run --rm \
+            --env "ACME_EMAIL=${ACME_EMAIL}" \
+            --volume "${PWD}/deploy/caddy/Caddyfile:/etc/caddy/Caddyfile:ro" \
+            caddy:2-alpine \
+            caddy validate --config /etc/caddy/Caddyfile
+
+      - name: Build and start web service with production Compose
+        run: |
+          set -euo pipefail
+          docker compose \
+            --file deploy/compose/docker-compose.production.yml \
+            up --detach --build web
+
+      - name: Verify Compose health and exact source revision
+        run: |
+          set -euo pipefail
+          trap 'docker compose --file deploy/compose/docker-compose.production.yml logs web || true' ERR
+
+          cid="$(docker compose --file deploy/compose/docker-compose.production.yml ps --quiet web)"
+          test -n "$cid"
+
+          for attempt in $(seq 1 60); do
+            health="$(docker inspect --format '{{if .State.Health}}{{.State.Health.Status}}{{else}}none{{end}}' "$cid")"
+            if [ "$health" = "healthy" ]; then
+              break
+            fi
+            if [ "$health" = "unhealthy" ]; then
+              docker inspect "$cid"
+              exit 1
+            fi
+            sleep 2
+          done
+
+          test "$(docker inspect --format '{{.State.Health.Status}}' "$cid")" = "healthy"
+
+          docker compose \
+            --file deploy/compose/docker-compose.production.yml \
+            exec -T web wget -qO- http://127.0.0.1:3000/api/health/ > /tmp/compose-health.json
+          cat /tmp/compose-health.json
+
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const payload = JSON.parse(fs.readFileSync('/tmp/compose-health.json', 'utf8'));
+          if (payload.status !== 'ok') throw new Error(`health status=${payload.status}`);
+          if (payload.service !== 'mcpserver.in') throw new Error(`health service=${payload.service}`);
+          if (payload.version !== process.env.SOURCE_SHA) {
+            throw new Error(`health version=${payload.version}; expected ${process.env.SOURCE_SHA}`);
+          }
+          console.log(`Compose runtime verified for ${process.env.SOURCE_SHA}`);
+          NODE
+
+      - name: Compose logs
+        if: always()
+        run: docker compose --file deploy/compose/docker-compose.production.yml logs || true
+
+      - name: Cleanup
+        if: always()
+        run: docker compose --file deploy/compose/docker-compose.production.yml down --volumes --remove-orphans || true
