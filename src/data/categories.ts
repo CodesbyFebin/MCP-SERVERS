@@ -6,109 +6,111 @@ export interface DirectoryCategory {
   count: number;
 }
 
+// `count` is retained as editorial inventory metadata for compatibility only.
+// Public counts must be derived from the publication-approved server projection.
 export const categories: DirectoryCategory[] = [
   {
     slug: "developer-tools",
     name: "Developer Tools",
-    description: "Connect code repositories, CI/CD, and hosting dashboards.",
+    description: "Connect code repositories, CI/CD, and development tooling.",
     iconName: "Code",
     count: 34
   },
   {
     slug: "databases",
     name: "Databases",
-    description: "Safely expose SQL/NoSQL databases and vector indexes to models.",
+    description: "Connect SQL, NoSQL, and data systems through MCP server implementations.",
     iconName: "Database",
     count: 28
   },
   {
     slug: "productivity",
     name: "Productivity",
-    description: "Let AI organize emails, calendar logs, and project management tickets.",
+    description: "Connect productivity and work-management systems through MCP.",
     iconName: "Briefcase",
     count: 22
   },
   {
     slug: "finance",
-    name: "Finance & Billing",
-    description: "Manage subscription plans, check invoices, and trigger split billing.",
+    name: "Finance",
+    description: "Connect payment, billing, and finance systems where MCP support is evidenced.",
     iconName: "CreditCard",
     count: 16
   },
   {
     slug: "communication",
     name: "Communication",
-    description: "Connect to Slack, Discord, Teams, Email via MCP.",
+    description: "Communication and messaging integrations with evidence-backed MCP support.",
     iconName: "MessageCircle",
     count: 0
   },
   {
     slug: "devops",
     name: "DevOps",
-    description: "CI/CD, Jenkins, Docker, Kubernetes, and pipeline automation.",
+    description: "CI/CD, container, orchestration, and automation integrations.",
     iconName: "Settings",
     count: 0
   },
   {
     slug: "cloud",
     name: "Cloud Services",
-    description: "AWS, Azure, GCP, Cloudflare, and multi-cloud MCP servers.",
+    description: "Cloud-provider and infrastructure integrations with documented MCP support.",
     iconName: "Cloud",
     count: 0
   },
   {
     slug: "ai-ml",
     name: "AI/ML Services",
-    description: "OpenAI, Anthropic, Hugging Face, and model provider servers.",
+    description: "Model-provider and machine-learning integrations with documented MCP support.",
     iconName: "Brain",
     count: 0
   },
   {
     slug: "infrastructure",
     name: "Infrastructure",
-    description: "IaC, monitoring agents, and infrastructure MCP servers.",
+    description: "Infrastructure and operations integrations tracked by the Evidence Ledger.",
     iconName: "Server",
     count: 0
   },
   {
     slug: "payments",
     name: "Payments & Billing",
-    description: "Stripe, PayPal, invoicing, and payment gateway servers.",
+    description: "Payment and billing integrations tracked separately when supported by evidence.",
     iconName: "CreditCard",
     count: 0
   },
   {
     slug: "iot",
     name: "Internet of Things",
-    description: "IoT device management, sensor data, and edge MCP servers.",
+    description: "IoT and edge integrations tracked by the Evidence Ledger.",
     iconName: "Zap",
     count: 0
   },
   {
     slug: "analytics",
     name: "Analytics & Data",
-    description: "Analytics platforms, BI tools, and data visualization servers.",
+    description: "Analytics, BI, and data-visualization integrations with documented MCP support.",
     iconName: "BarChart3",
     count: 0
   },
   {
     slug: "security",
     name: "Security & Compliance",
-    description: "Identity, compliance, secrets management, and security servers.",
+    description: "Identity and security integrations tracked with claim-specific evidence.",
     iconName: "Shield",
     count: 0
   },
   {
     slug: "storage",
     name: "Storage & CDN",
-    description: "Object storage, file systems, backups, and CDN servers.",
+    description: "Storage, file-system, and delivery integrations tracked by the Evidence Ledger.",
     iconName: "HardDrive",
     count: 0
   },
   {
     slug: "monitoring",
     name: "Monitoring & Observability",
-    description: "APM, logging, tracing, and metrics MCP servers.",
+    description: "Monitoring, tracing, and observability integrations with documented MCP support.",
     iconName: "Activity",
     count: 0
   }
