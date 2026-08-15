@@ -5,10 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "next dev --port 3000",
+    "start": "next start --port 3000",
     "test": "vitest run",
     "test:watch": "vitest watch",
     "prebuild": "tsx scripts/generate-llms-txt.mjs",
-    "build": "npm run verify:evidence && tsx scripts/verify-security.ts && tsx validate-seo.ts && next build",
+    "build": "npm run verify:publication-authority && npm run verify:evidence && tsx scripts/verify-security.ts && tsx validate-seo.ts && next build",
     "postbuild": "node scripts/postbuild-indexnow.mjs",
     "lint": "tsc --noEmit",
     "typecheck": "tsc --noEmit",
@@ -17,15 +18,16 @@
     "seo:rankings": "node scripts/seo-rank-tracker.mjs",
     "generate:llms": "tsx scripts/generate-llms-txt.mjs",
     "generate:content": "node scripts/generate-content.mjs",
+    "verify:publication-authority": "node scripts/audit-publication-authority.mjs",
     "verify:evidence": "vitest run tests/integration/evidence-ledger.test.ts",
     "verify:production": "node scripts/verify-production.mjs",
     "verify:security": "tsx scripts/verify-security.ts",
     "verify:links": "tsx scripts/verify-internal-links.ts",
     "verify:sitemap": "node scripts/verify-sitemap.mjs",
-    "verify:release": "npm run typecheck && npm test && npm run verify:security && npm run verify:links && npm run build",
+    "verify:release": "npm run verify:publication-authority && npm run typecheck && npm test && npm run verify:security && npm run verify:links && npm run build",
     "verify:postdeploy": "npm run verify:sitemap && npm run verify:production",
     "submit-indexnow": "node scripts/submit-indexnow.mjs",
-    "clean": "rm -rf dist .next"
+    "clean": "rm -rf .next dist"
   },
   "dependencies": {
     "@google/genai": "^2.4.0",
