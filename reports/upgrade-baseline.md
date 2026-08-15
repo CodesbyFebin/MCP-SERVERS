@@ -13,6 +13,7 @@ Date: 2026-08-15
 - Production domains: `mcpserver.in`, `www.mcpserver.in`
 - Vercel Node runtime: 24.x
 - Experimental/reference repository explicitly excluded: `CodesbyFebin/MCP-SERVER`
+- Draft release-gate PR: `#6` (`codex/evidence-ledger-v2` → `master`)
 
 ## Baseline build/release commands
 
@@ -69,4 +70,4 @@ These fixes remain preview-only until a clean branch build and rendered-output c
 
 Implementation branch: `codex/evidence-ledger-v2`.
 
-Do not update `master` until the branch build, Evidence Ledger tests, canonical/indexability checks, machine-feed checks, accessibility/security gates, and representative preview crawl pass. Production verification must be performed against `www.mcpserver.in` after an approved merge/deployment.
+Do not update `master` until the branch build, Evidence Ledger tests, canonical/indexability checks, machine-feed checks, accessibility/security/performance gates, and representative preview crawl pass. Production verification must be performed against `www.mcpserver.in` after an approved merge/deployment.
