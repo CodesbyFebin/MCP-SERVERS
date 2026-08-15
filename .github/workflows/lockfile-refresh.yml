@@ -1,0 +1,53 @@
+name: Lockfile Refresh
+
+on:
+  pull_request:
+    branches: ["master"]
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    env:
+      HEAD_BRANCH: ${{ github.event.pull_request.head.ref }}
+    steps:
+      - name: Checkout PR head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Regenerate lockfile only
+        run: npm install --package-lock-only --ignore-scripts --no-audit --no-fund
+
+      - name: Enforce lockfile-only mutation
+        run: |
+          set -euo pipefail
+          unexpected="$(git diff --name-only | grep -vx 'package-lock.json' || true)"
+          if [ -n "$unexpected" ]; then
+            printf 'Unexpected files changed:\n%s\n' "$unexpected" >&2
+            exit 1
+          fi
+          git diff --check -- package-lock.json
+          git diff --stat -- package-lock.json
+
+      - name: Commit refreshed lockfile
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- package-lock.json; then
+            echo "package-lock.json already synchronized"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add package-lock.json
+          git commit -m "build: synchronize npm lockfile"
+          git push origin "HEAD:${HEAD_BRANCH}"
