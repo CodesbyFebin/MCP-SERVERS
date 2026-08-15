@@ -1,70 +1,102 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { Cpu, FileQuestion, KeyRound, Monitor, ShieldQuestion } from "lucide-react";
 import { clients } from "../../src/data/entities";
-import Breadcrumbs from "../../src/components/Breadcrumbs";
-import SchemaJsonLd from "../../src/components/SchemaJsonLd";
-import { getUnifiedGraphSchema } from "../../src/lib/schema";
-import { Monitor, Cpu } from "lucide-react";
+
+const ORIGIN = "https://www.mcpserver.in";
 
 export const metadata: Metadata = {
-  title: "MCP Client Configuration Guides",
-  description: "Setup and configuration guides for every MCP-compatible AI client: Claude Desktop, Cursor, VS Code, Claude Code, and more.",
-  alternates: { canonical: "https://www.mcpserver.in/clients/" },
+  title: "MCP Client Compatibility Evidence | MCPserver.in",
+  description: "Track MCP client identities separately from compatibility evidence. Transport, authentication and configuration support remain unverified until primary documentation is attached.",
+  alternates: { canonical: `${ORIGIN}/clients/` },
+  openGraph: {
+    type: "website",
+    url: `${ORIGIN}/clients/`,
+    title: "MCP Client Compatibility Evidence",
+    description: "A compatibility catalog that distinguishes known client inventory from verified MCP support claims.",
+    siteName: "MCPserver.in",
+  },
 };
 
 const CLIENT_TYPE_LABELS: Record<string, string> = {
-  "desktop-app": "Desktop App",
-  "ide": "IDE / Editor",
-  "cli": "CLI Tool",
-  "web-app": "Web App",
-  "framework": "AI Framework",
+  "desktop-app": "Desktop app",
+  ide: "IDE / editor",
+  cli: "CLI tool",
+  "web-app": "Web app",
+  framework: "AI framework",
 };
 
-export default function ClientsIndexPage() {
-  const schema = getUnifiedGraphSchema({
-    pageUrl: "/clients/",
-    title: "MCP Client Configuration Guides",
-    description: "Setup and configuration guides for every MCP-compatible AI client.",
-    breadcrumbs: [{ name: "Clients", item: "/clients" }],
-    itemList: clients.map((e) => ({
-      name: e.name,
-      url: e.route,
-      description: e.metaDescription,
-    })),
-  });
-
+export default function ClientsPage() {
   return (
-    <div className="min-h-screen py-6 pb-20 bg-[#050508] text-white">
-      <SchemaJsonLd schema={schema} />
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <Breadcrumbs items={[{ name: "AI Clients", href: "/clients" }]} />
-        <header className="py-8 border-b border-white/5">
-          <h1 className="text-4xl font-display font-bold text-white">MCP Client Configuration Guides</h1>
-          <p className="mt-3 text-white/60 max-w-2xl text-sm leading-relaxed">
-            Configure MCP servers in Claude Desktop, Cursor, VS Code, and every other MCP-compatible AI client.
-          </p>
-        </header>
-        <section className="mt-10">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {clients.map((e) => (
-              <Link key={e.id} href={e.route} className="block p-5 rounded-2xl border border-white/5 bg-white/[0.02] hover:border-cyan-500/30 transition-all">
-                <div className="flex items-center gap-2 mb-2">
-                  <Cpu className="w-4 h-4 text-cyan-400" />
-                  <span className="text-xs text-white/40">{CLIENT_TYPE_LABELS[e.clientType] ?? e.clientType}</span>
-                  <span className="ml-auto text-[10px] text-white/30">{e.vendor}</span>
-                </div>
-                <div className="text-sm font-bold text-white">{e.name}</div>
-                <p className="text-xs text-white/55 mt-1 leading-relaxed line-clamp-2">{e.metaDescription}</p>
-                <div className="flex flex-wrap gap-1.5 mt-3">
-                  {e.mcpFeatures.slice(0, 3).map((f) => (
-                    <span key={f} className="px-2 py-0.5 rounded-full text-[10px] border border-white/10 text-white/40">{f}</span>
-                  ))}
-                </div>
-              </Link>
-            ))}
+    <div className="min-h-screen bg-[#030711] text-white">
+      <section className="border-b border-white/8 bg-[radial-gradient(circle_at_16%_12%,rgba(34,211,238,.12),transparent_26%),radial-gradient(circle_at_82%_18%,rgba(124,58,237,.18),transparent_31%)]">
+        <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 lg:py-20">
+          <div className="max-w-4xl">
+            <div className="inline-flex items-center gap-2 rounded-full border border-cyan-300/20 bg-cyan-400/[0.06] px-3 py-1.5 text-xs font-bold text-cyan-100"><Monitor className="h-3.5 w-3.5" /> Compatibility evidence catalog</div>
+            <h1 className="mt-6 text-5xl font-black tracking-[-0.045em] sm:text-6xl">Known clients are not the same as verified compatibility.</h1>
+            <p className="mt-5 max-w-3xl text-lg leading-8 text-white/60">
+              MCPserver.in keeps client identity, vendor, transport support, authentication support and configuration evidence as separate facts. The current client seed is retained as inventory only; unsupported compatibility fields are not promoted into public claims.
+            </p>
           </div>
-        </section>
-      </div>
+          <div className="mt-9 grid gap-4 sm:grid-cols-3">
+            <Metric value={clients.length} label="Client identities tracked" />
+            <Metric value={0} label="Runtime compatibility claims published" />
+            <Metric value={0} label="Synthetic compatibility proofs" />
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-5 py-14 sm:px-8 lg:py-20">
+        <div className="grid gap-5 lg:grid-cols-[0.72fr_0.28fr]">
+          <div>
+            <div className="mb-7">
+              <div className="text-xs font-bold uppercase tracking-[0.18em] text-violet-300">Inventory layer</div>
+              <h2 className="mt-2 text-3xl font-black">Client candidates awaiting compatibility evidence</h2>
+              <p className="mt-3 max-w-3xl text-sm leading-7 text-white/54">
+                These names come from the editorial client inventory. Until official client documentation is attached, this page deliberately does not state supported transports, auth methods, config syntax, or runtime compatibility.
+              </p>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+              {clients.map((client) => (
+                <article key={client.id} className="rounded-2xl border border-white/10 bg-white/[0.025] p-5">
+                  <div className="flex items-center justify-between gap-3">
+                    <Cpu className="h-5 w-5 text-cyan-300" />
+                    <span className="rounded-full border border-amber-300/15 bg-amber-400/[0.05] px-2 py-1 text-[10px] font-bold uppercase tracking-[0.1em] text-amber-200">Evidence pending</span>
+                  </div>
+                  <h3 className="mt-4 text-lg font-black">{client.name}</h3>
+                  <dl className="mt-4 space-y-2 text-xs">
+                    <Row label="Vendor" value={client.vendor || "Unknown"} />
+                    <Row label="Type" value={CLIENT_TYPE_LABELS[client.clientType] ?? client.clientType ?? "Unknown"} />
+                    <Row label="Transport evidence" value="Not yet published" />
+                    <Row label="Authentication evidence" value="Not yet published" />
+                  </dl>
+                </article>
+              ))}
+            </div>
+          </div>
+
+          <aside className="h-fit rounded-3xl border border-white/10 bg-white/[0.025] p-6 lg:sticky lg:top-24">
+            <h2 className="text-xl font-black">Compatibility evidence contract</h2>
+            <div className="mt-5 space-y-4">
+              <Rule icon={<FileQuestion className="h-4 w-4" />} title="Documentation" body="Attach first-party documentation that explicitly describes MCP support." />
+              <Rule icon={<Monitor className="h-4 w-4" />} title="Transport" body="Record stdio or Streamable HTTP only when the client documentation supports it." />
+              <Rule icon={<KeyRound className="h-4 w-4" />} title="Authentication" body="Do not infer an auth model from the server side or from another client." />
+              <Rule icon={<ShieldQuestion className="h-4 w-4" />} title="Runtime state" body="Documented support must not be labelled runtime-verified without a reproducible observation." />
+            </div>
+          </aside>
+        </div>
+      </section>
     </div>
   );
+}
+
+function Metric({ value, label }: { value: number; label: string }) {
+  return <div className="rounded-2xl border border-white/10 bg-black/20 p-5"><div className="text-3xl font-black">{value}</div><div className="mt-2 text-xs font-bold text-white/55">{label}</div></div>;
+}
+
+function Row({ label, value }: { label: string; value: string }) {
+  return <div className="flex justify-between gap-4 border-b border-white/6 pb-2 last:border-0 last:pb-0"><dt className="text-white/35">{label}</dt><dd className="text-right font-semibold text-white/65">{value}</dd></div>;
+}
+
+function Rule({ icon, title, body }: { icon: React.ReactNode; title: string; body: string }) {
+  return <div className="rounded-xl border border-white/8 bg-black/20 p-4"><div className="flex items-center gap-2 text-violet-300">{icon}<h3 className="text-sm font-bold text-white">{title}</h3></div><p className="mt-2 text-xs leading-5 text-white/48">{body}</p></div>;
 }

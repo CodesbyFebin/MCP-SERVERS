@@ -1,0 +1,33 @@
+{
+  email {$ACME_EMAIL}
+  servers {
+    protocols h1 h2 h3
+  }
+}
+
+mcpserver.in {
+  redir https://www.mcpserver.in{uri} permanent
+}
+
+www.mcpserver.in {
+  encode zstd gzip
+
+  header {
+    Strict-Transport-Security "max-age=31536000; includeSubDomains"
+    X-Content-Type-Options "nosniff"
+    Referrer-Policy "strict-origin-when-cross-origin"
+    X-Frame-Options "DENY"
+    Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
+  }
+
+  reverse_proxy web:3000 {
+    health_uri /api/health/
+    health_interval 30s
+    health_timeout 5s
+  }
+
+  log {
+    output stdout
+    format json
+  }
+}

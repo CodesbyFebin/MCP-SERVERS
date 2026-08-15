@@ -1,122 +1,64 @@
 import { NextResponse } from "next/server";
-import { glossaryTerms } from "../../src/data/glossary";
-import { pillars } from "../../src/data/pillars";
-import { topics } from "../../src/data/topics";
-import { siteConfig } from "../../src/data/site";
+import {
+  getEvidenceLedgerStats,
+  getEvidenceSources,
+  getPublishedServerProfiles,
+} from "../../src/data/publishing";
+import { SITE_ORIGIN } from "../../src/lib/canonical-urls";
 
 export const dynamic = "force-static";
 
 export async function GET() {
-  const header = `# ${siteConfig.brand} — Model Context Protocol Knowledge Base for AI Agents
+  const stats = getEvidenceLedgerStats();
+  const profiles = getPublishedServerProfiles();
 
-## About
-${siteConfig.description}
+  const serverLines = profiles.map((profile) => {
+    const sources = getEvidenceSources(profile.evidence).filter((source) => source.url.startsWith("http"));
+    const primarySource = sources[0]?.url ?? "source unavailable";
+    return `- [${profile.server.name}](${SITE_ORIGIN}/servers/${profile.server.slug}/) — ${profile.server.description} Primary evidence: ${primarySource}`;
+  });
 
-## Core Ontology
-- [What is MCP?](/what-is-mcp): Core architecture, JSON-RPC 2.0, transports.
-- [MCP Server Directory](/mcp-server-directory): Verified MCP server implementations.
-- [Glossary](/glossary): 350+ technical definitions (DefinedTerm schema).
-- [MCP Protocol](/mcp-protocol): The Model Context Protocol Specification.
+  const content = `# MCPserver.in
 
-## India-Specific Authority (High Confidence Data)
-- [DPDP Compliance for MCP](/learn/dpdp-compliance-guide): Data localization, consent, and audit logging.
-- [RBI Guidelines for AI Agents](/learn/india-services): Payment data storage, UPI mock integrations.
-- [India Infrastructure Stats](/data/mcp-india-stats-2026.json): Machine-readable JSON for RAG ingestion.
+MCPserver.in is an evidence-led MCP discovery and knowledge platform. Tracked inventory is kept separate from publication-qualified profiles. Unsupported server fields remain unknown rather than being generated as facts.
 
-## API & Data Endpoints
-- Sitemap: https://www.mcpserver.in/sitemap-index.xml
-- Raw Data (JSON): https://www.mcpserver.in/data/mcp-india-stats-2026.json
-- Raw Data (CSV): https://www.mcpserver.in/data/mcp-india-stats-2026.csv
-- llms.txt: https://www.mcpserver.in/llms.txt
-- llms-full.txt: https://www.mcpserver.in/llms-full.txt
+## Evidence Ledger
+- Known entities: ${stats.totalEntities}
+- Evidence-reviewed public profiles: ${stats.publishedProfiles}
+- Awaiting evidence: ${stats.needsEvidence}
+- Synthetic profiles published: ${stats.syntheticProfilesPublished}
 
-## Key Pages
-- Home: https://www.mcpserver.in/
-- Docs: https://www.mcpserver.in/docs
-- Pricing: https://www.mcpserver.in/pricing
-- Blog: https://www.mcpserver.in/blog
-- MCP Server Directory: https://www.mcpserver.in/mcp-server-directory
-- Security: https://www.mcpserver.in/security
-- State of MCP in India 2026: https://www.mcpserver.in/state-of-mcp
-- MCP Knowledge Hub: https://www.mcpserver.in/learn
+## Publication policy
+A server appears in curated public discovery surfaces only after it passes the shared Evidence Ledger publication policy. Evidence is claim-specific: one source does not imply that every field is verified.
 
-## Why ${siteConfig.brand}?
-- **Growing MCP Server Directory**: Curated servers from GitHub, npm, and Docker Hub with schema validation
-- **DPDP & RBI Aligned**: India-focused hosting with compliance controls
-- **India Edge Network**: Low-latency hosting from Mumbai and Bengaluru
-- **Enterprise Security**: Audit logs, rate-limiting, and secure credential management
+## Published MCP server profiles
+${serverLines.length ? serverLines.join("\n") : "- No server profiles currently meet the publication gate."}
 
-## Supported Integrations
-- Claude Desktop
-- VS Code
-- Cursor IDE
-- GitHub Copilot
-- Azure AI Agents
-- Any MCP-compliant client
+## Primary site surfaces
+- [Evidence-backed server registry](${SITE_ORIGIN}/servers/)
+- [Categories](${SITE_ORIGIN}/categories/)
+- [Integrations](${SITE_ORIGIN}/integrations/)
+- [Clients](${SITE_ORIGIN}/clients/)
+- [Documentation](${SITE_ORIGIN}/docs/)
+- [Learn](${SITE_ORIGIN}/learn/)
+- [State of MCP](${SITE_ORIGIN}/state-of-mcp/)
+- [Editorial policy](${SITE_ORIGIN}/editorial-policy/)
+- [Security](${SITE_ORIGIN}/security/)
 
-## Key Concepts
-- Model Context Protocol (MCP)
-- MCP Tools & Resources
-- STDIO & SSE Transports
-- JSON-RPC 2.0 Communication
-- OAuth & DPDP Compliance
+## Machine-readable surfaces
+- [Sitemap](${SITE_ORIGIN}/sitemap.xml)
+- [Published server JSON](${SITE_ORIGIN}/api/servers.json)
+- [MCP registry JSON](${SITE_ORIGIN}/mcp-registry.json)
+- [Full LLM index](${SITE_ORIGIN}/llms-full.txt)
 
-## Documentation Clusters
+## Canonical origin
+${SITE_ORIGIN}
 `;
 
-  const docsClusters = [
-    { slug: "getting-started", title: "Getting Started", description: "MCP concepts, local installation, Claude and Cursor configuration, managed edge hosting." },
-    { slug: "protocol", title: "Protocol", description: "Tools, resources, prompts, events, JSON-RPC, stdio, and SSE concepts for MCP builders." },
-    { slug: "pricing", title: "Pricing", description: "India-aware hosting costs, free vs paid, hidden operational costs, enterprise security and VAPT planning." },
-    { slug: "performance", title: "Performance", description: "Bengaluru vs Mumbai placement, global vs India hosting, payload optimization, latency benchmarking." },
-    { slug: "compliance", title: "Compliance", description: "DPDP-aware implementation, PII redaction, audit logs, RBI-aware fintech controls, secure tool design." },
-    { slug: "comparisons", title: "Comparisons", description: "MCP vs REST, GraphQL, API gateways, and when-to-use-MCP decision guides." },
-    { slug: "deployment", title: "Deployment", description: "Railway, AWS EC2, Google Cloud Run, Vercel, Kubernetes, environment variables, health checks, rollout patterns." },
-    { slug: "industry", title: "Industry", description: "Indian startup, fintech, ecommerce, government, healthcare, and education workflows with sector-specific safety controls." },
-    { slug: "monitoring", title: "Monitoring", description: "Grafana dashboards, MCP Pulse-style checks, logs, traces, redaction metrics, and incident workflows." },
-  ];
-
-  const clusterLinks = docsClusters.map(c => `- [/docs/${c.slug}](https://www.mcpserver.in/docs/${c.slug}): ${c.description}`).join("\\n");
-
-  const pillarSection = `
-## Core Pillars (MCP Topics)
-`;
-
-  const pillarLinks = pillars.slice(0, 20).map(p => `- [${p.title}](https://www.mcpserver.in/${p.slug}): ${p.shortAnswer}`).join("\\n");
-
-  const glossarySection = `
-## Glossary Terms (${glossaryTerms.length} key MCP concepts)
-`;
-
-  const glossaryLinks = glossaryTerms.slice(0, 50).map(g => `- [${g.term}](https://www.mcpserver.in/glossary/${g.slug}): ${g.definition.substring(0, 100)}...`).join("\\n");
-
-  const footer = `
-## Contact & Institutional Trust
-- Email: support@mcpserver.in
-- Location: Bengaluru, Karnataka, India
-- GitHub: https://github.com/mcpserver-in
-- Twitter: https://twitter.com/mcpserver_in
-
-## Compliance
-- DPDP Act 2023 aligned
-- RBI Cyber Framework considerations
-- SOC 2 ready framework
-- GDPR ready architecture
-
-## Data Endpoints
-- JSON: https://www.mcpserver.in/data/mcp-india-stats-2026.json
-- CSV: https://www.mcpserver.in/data/mcp-india-stats-2026.csv
-
----
-*This llms.txt is dynamically generated and updated with the latest MCP documentation, glossary, and technical content. Last updated: ${new Date().toISOString().split("T")[0]}*
-`;
-
-  const fullContent = header + clusterLinks + pillarSection + pillarLinks + glossarySection + glossaryLinks + footer;
-
-  return new NextResponse(fullContent, {
+  return new NextResponse(content, {
     status: 200,
     headers: {
-      "Content-Type": "text/markdown; charset=utf-8",
+      "Content-Type": "text/plain; charset=utf-8",
       "Cache-Control": "public, max-age=3600, stale-while-revalidate=1800",
     },
   });

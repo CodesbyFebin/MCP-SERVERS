@@ -1,0 +1,88 @@
+name: Docker Gate
+
+on:
+  pull_request:
+    branches: ["master"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  docker:
+    name: Build and Health Check
+    runs-on: ubuntu-latest
+    env:
+      SOURCE_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+
+      - name: Build production image
+        run: |
+          set -euo pipefail
+          docker build --pull \
+            --file deploy/docker/Dockerfile \
+            --tag "mcpserver:${SOURCE_SHA}" \
+            .
+
+      - name: Verify non-root runtime user
+        run: |
+          set -euo pipefail
+          user="$(docker image inspect "mcpserver:${SOURCE_SHA}" --format '{{.Config.User}}')"
+          test -n "$user"
+          test "$user" != "0"
+          test "$user" != "root"
+          echo "Runtime user: $user"
+
+      - name: Run production image
+        run: |
+          set -euo pipefail
+          docker run --detach \
+            --name mcpserver-docker-gate \
+            --publish 127.0.0.1:3000:3000 \
+            --env "APP_VERSION=${SOURCE_SHA}" \
+            "mcpserver:${SOURCE_SHA}"
+
+      - name: Verify health endpoint
+        run: |
+          set -euo pipefail
+          trap 'docker logs mcpserver-docker-gate || true' ERR
+
+          for attempt in $(seq 1 60); do
+            if curl --fail --silent --show-error \
+              http://127.0.0.1:3000/api/health/ \
+              --output /tmp/health.json; then
+              break
+            fi
+            sleep 2
+          done
+
+          cat /tmp/health.json
+
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const payload = JSON.parse(fs.readFileSync('/tmp/health.json', 'utf8'));
+          const expectedSha = process.env.SOURCE_SHA;
+          if (payload.status !== 'ok') throw new Error(`health status=${payload.status}`);
+          if (payload.service !== 'mcpserver.in') throw new Error(`health service=${payload.service}`);
+          if (payload.version !== expectedSha) {
+            throw new Error(`health version=${payload.version}; expected ${expectedSha}`);
+          }
+          console.log(`Health verified for ${expectedSha}`);
+          NODE
+
+      - name: Verify container remains running
+        run: |
+          set -euo pipefail
+          test "$(docker inspect --format '{{.State.Running}}' mcpserver-docker-gate)" = "true"
+
+      - name: Container logs
+        if: always()
+        run: docker logs mcpserver-docker-gate || true
+
+      - name: Cleanup
+        if: always()
+        run: docker rm --force mcpserver-docker-gate || true

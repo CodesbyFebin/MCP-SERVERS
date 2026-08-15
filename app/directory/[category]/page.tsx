@@ -1,159 +1,149 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import { ArrowLeft, Cpu, Shield } from "lucide-react";
 import { categories } from "../../../src/data/categories";
-import { publishedServers } from "../../../src/data/publishing";
+import { servers } from "../../../src/data/servers";
+import { getPublishedCategorySlugs } from "../../../src/data/publishing";
 import ServerCard from "../../../src/components/ServerCard";
 import Breadcrumbs from "../../../src/components/Breadcrumbs";
-import { BookOpen, Database, ArrowLeft, Cpu, Shield } from "lucide-react";
 import SchemaJsonLd from "../../../src/components/SchemaJsonLd";
+import { SITE_ORIGIN } from "../../../src/lib/canonical-urls";
 
 interface PageProps {
-  params: Promise<{
-    category: string;
-  }>;
+  params: Promise<{ category: string }>;
 }
 
 export async function generateStaticParams() {
-  return categories.map((c) => ({
-    category: c.slug,
-  }));
+  const published = new Set(getPublishedCategorySlugs());
+  return categories.filter((category) => published.has(category.slug)).map((category) => ({ category: category.slug }));
 }
 
-export async function generateMetadata({ params }: PageProps) {
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { category: categorySlug } = await params;
-  const category = categories.find((c) => c.slug === categorySlug);
-  if (!category) return {};
+  const category = categories.find((item) => item.slug === categorySlug);
+  const matchedServers = category
+    ? servers.filter((server) => server.category.toLowerCase() === category.name.toLowerCase())
+    : [];
+
+  if (!category || matchedServers.length === 0) {
+    return {
+      title: "MCP Server Category | MCPserver.in",
+      robots: { index: false, follow: true },
+    };
+  }
+
+  const canonical = `${SITE_ORIGIN}/directory/${category.slug}/`;
+  const description = `Browse ${matchedServers.length} evidence-reviewed ${category.name} MCP server ${matchedServers.length === 1 ? "profile" : "profiles"}, with publication state and source provenance.`;
 
   return {
-    title: `${category.name} MCP Servers Directory`,
-    description: `Browse ${category.name} Model Context Protocol (MCP) server profiles. ${category.description} Each public listing is gated by MCPServer.in publication checks.`,
-    alternates: {
-      canonical: `/directory/${categorySlug}`,
-      languages: {
-        "en-IN": `/directory/${categorySlug}`,
-        "en": `/directory/${categorySlug}`,
-      }
+    title: `${category.name} MCP Servers — Evidence-Reviewed Directory | MCPserver.in`,
+    description,
+    alternates: { canonical },
+    openGraph: {
+      type: "website",
+      url: canonical,
+      siteName: "MCPserver.in",
+      title: `${category.name} MCP Servers — Evidence-Reviewed Directory`,
+      description,
     },
   };
 }
 
 export default async function CategoryPage({ params }: PageProps) {
   const { category: categorySlug } = await params;
-  const category = categories.find((c) => c.slug === categorySlug);
+  const category = categories.find((item) => item.slug === categorySlug);
 
-  if (!category) {
-    notFound();
-  }
+  if (!category) notFound();
 
-  // Filter servers that belong to this category
-  const matchedServers = publishedServers.filter(
-    (s) => s.category.toLowerCase() === category.name.toLowerCase()
+  const matchedServers = servers.filter(
+    (server) => server.category.toLowerCase() === category.name.toLowerCase(),
   );
 
+  if (matchedServers.length === 0) notFound();
+
+  const canonical = `${SITE_ORIGIN}/directory/${category.slug}/`;
   const breadcrumbSteps = [
-    { name: "Directory", href: "/mcp-server-directory" },
-    { name: category.name, href: `/directory/${category.slug}` }
+    { name: "MCP Servers", href: "/servers/" },
+    { name: "Categories", href: "/categories/" },
+    { name: category.name, href: `/directory/${category.slug}/` },
   ];
 
   const categorySchema = {
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@id": `https://mcpserver.in/directory/${category.slug}#itemlist`,
-        "@type": "ItemList",
-        "name": `${category.name} MCP Servers`,
-        "description": category.description,
-        "itemListElement": matchedServers.map((s, idx) => ({
-          "@type": "ListItem",
-          "position": idx + 1,
-          "url": `https://mcpserver.in/servers/${s.slug}`
-        }))
+        "@id": `${canonical}#webpage`,
+        "@type": "CollectionPage",
+        url: canonical,
+        name: `${category.name} MCP Servers — Evidence-Reviewed Directory`,
+        description: category.description,
+        isPartOf: { "@id": `${SITE_ORIGIN}/#website` },
+        mainEntity: { "@id": `${canonical}#itemlist` },
       },
       {
-        "@id": `https://mcpserver.in/directory/${category.slug}#webpage`,
-        "@type": "WebPage",
-        "url": `https://mcpserver.in/directory/${category.slug}`,
-        "name": `${category.name} MCP Servers Directory`,
-        "description": category.description,
-        "isPartOf": {
-          "@id": "https://mcpserver.in/#website",
-          "@type": "WebSite",
-          "url": "https://mcpserver.in"
-        }
-      }
-    ]
+        "@id": `${canonical}#itemlist`,
+        "@type": "ItemList",
+        name: `${category.name} evidence-reviewed MCP server profiles`,
+        numberOfItems: matchedServers.length,
+        itemListElement: matchedServers.map((server, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          url: `${SITE_ORIGIN}/servers/${server.slug}/`,
+          name: `${server.name} MCP Server`,
+        })),
+      },
+    ],
   };
 
   return (
-    <div id={`category-page-${category.slug}`} className="min-h-screen bg-transparent text-[#e0e0e0] font-sans pt-6 pb-16">
+    <main id={`category-page-${category.slug}`} className="min-h-screen bg-transparent pb-16 pt-6 text-[#e0e0e0]">
       <SchemaJsonLd schema={categorySchema} />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Breadcrumbs */}
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Breadcrumbs items={breadcrumbSteps} />
 
-        {/* Back navigation */}
         <div className="mt-4">
-          <Link href="/mcp-server-directory" className="inline-flex items-center gap-1 text-xs text-cyan-400 hover:underline">
-            <ArrowLeft className="w-3.5 h-3.5" /> Back to Server Directory
+          <Link href="/servers/" className="inline-flex items-center gap-1 text-xs text-cyan-400 hover:underline">
+            <ArrowLeft className="h-3.5 w-3.5" /> Back to evidence-backed registry
           </Link>
         </div>
 
-        {/* Header */}
-        <div className="text-center py-10 relative">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-60 h-60 bg-cyan-500/5 rounded-full blur-[80px] pointer-events-none" />
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-white tracking-tighter leading-tight">
+        <header className="relative py-10 text-center">
+          <div className="pointer-events-none absolute left-1/2 top-0 h-60 w-60 -translate-x-1/2 rounded-full bg-cyan-500/5 blur-[80px]" />
+          <h1 className="text-3xl font-bold leading-tight tracking-tighter text-white sm:text-4xl lg:text-5xl">
             {category.name} MCP Servers
           </h1>
-          <p className="mt-3 text-xs sm:text-sm text-white/50 max-w-2xl mx-auto leading-relaxed">
-            {category.description} Explore published Model Context Protocol directory profiles with visible evidence and claim state.
+          <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-white/50">
+            {category.description} Only profiles that pass the shared Evidence Ledger publication policy appear here.
           </p>
-        </div>
+        </header>
 
-        {/* Results Grid */}
-        <div className="mt-8">
-          <div className="flex items-center justify-between pb-4 border-b border-white/5 mb-6 text-xs text-white/45">
-            <div>
-              Showing <strong className="text-white">{matchedServers.length}</strong> integrations under {category.name}
-            </div>
+        <section className="mt-8" aria-labelledby="category-results-heading">
+          <div className="mb-6 flex items-center justify-between border-b border-white/5 pb-4 text-xs text-white/45">
+            <h2 id="category-results-heading" className="font-normal">
+              <strong className="text-white">{matchedServers.length}</strong> evidence-reviewed {matchedServers.length === 1 ? "profile" : "profiles"}
+            </h2>
             <div className="flex items-center gap-4">
-              <span className="flex items-center gap-1"><Cpu className="w-3.5 h-3.5 text-cyan-500" /> MCP Profile</span>
-              <span className="flex items-center gap-1"><Shield className="w-3.5 h-3.5 text-cyan-500" /> Claims Labelled</span>
+              <span className="flex items-center gap-1"><Cpu className="h-3.5 w-3.5 text-cyan-500" /> MCP profile</span>
+              <span className="flex items-center gap-1"><Shield className="h-3.5 w-3.5 text-emerald-400" /> Evidence reviewed</span>
             </div>
           </div>
 
-          {matchedServers.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {matchedServers.map((server) => (
-                <ServerCard key={server.slug} server={server} />
-              ))}
-            </div>
-          ) : (
-            <div className="p-12 text-center rounded-xl bg-white/[0.01] border border-white/5 max-w-lg mx-auto backdrop-blur-sm">
-              <Database className="w-8 h-8 text-white/20 mx-auto mb-3" />
-              <p className="text-sm text-white/50 font-medium">No integrations found for this category yet.</p>
-            </div>
-          )}
-        </div>
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {matchedServers.map((server) => <ServerCard key={server.slug} server={server} />)}
+          </div>
+        </section>
 
-        {/* Request Block */}
-        <div className="mt-16 p-8 rounded-2xl bg-gradient-to-r from-cyan-950/5 via-white/[0.01] to-purple-950/5 border border-white/5 text-center max-w-4xl mx-auto backdrop-blur-sm">
-          <BookOpen className="w-6 h-6 text-cyan-500 mx-auto mb-3" />
-          <h3 className="text-sm sm:text-base font-display font-bold text-white">Need a custom {category.name} integration?</h3>
-          <p className="text-xs text-white/50 mt-1 max-w-md mx-auto leading-relaxed">
-            Suggest a new API connector or database protocol. Submissions enter editorial review before they can appear in public indexable routes.
+        <aside className="mx-auto mt-16 max-w-4xl rounded-2xl border border-white/8 bg-white/[0.02] p-7 text-center">
+          <h2 className="text-base font-bold text-white">Why are some tracked entities absent?</h2>
+          <p className="mx-auto mt-2 max-w-2xl text-xs leading-6 text-white/50">
+            Inventory records remain outside public category listings until primary evidence supports publication. Unknown capabilities, authentication methods, versions, and compatibility are not filled with generated substitutes.
           </p>
-          <div className="mt-4">
-            <Link
-              href="/pricing"
-              className="px-5 py-2 bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-bold text-white rounded-full inline-flex items-center gap-1 transition-all"
-            >
-              Request Custom Server Integration
-            </Link>
-          </div>
-        </div>
-
+          <Link href="/editorial-policy/" className="mt-4 inline-flex text-xs font-bold text-cyan-300 hover:text-cyan-200">
+            Read the publication methodology →
+          </Link>
+        </aside>
       </div>
-    </div>
+    </main>
   );
 }

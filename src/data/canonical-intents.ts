@@ -35,11 +35,12 @@ export const canonicalIntents = {
   },
   serverDirectory: {
     id: "serverDirectory",
-    canonicalPath: "/mcp-server-directory/",
+    canonicalPath: "/servers/",
     primaryQuery: "mcp server directory",
     supportingQueries: ["mcp server directory India", "mcp servers list"],
     contentType: "directory",
     status: "active",
+    conflictsWith: ["/mcp-server-directory/"],
   },
   buildServer: {
     id: "buildServer",

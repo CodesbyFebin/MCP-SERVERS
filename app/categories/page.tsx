@@ -5,18 +5,18 @@ import Breadcrumbs from "../../src/components/Breadcrumbs";
 import SchemaJsonLd from "../../src/components/SchemaJsonLd";
 import { categories } from "../../src/data/categories";
 import { servers } from "../../src/data/servers";
+import { getPublishedCategorySlugs } from "../../src/data/publishing";
 import { getUnifiedGraphSchema } from "../../src/lib/schema";
 
 export const metadata: Metadata = {
-  title: "MCP Server Categories - Browse by Use Case",
-  description:
-    "Explore MCP server categories for developer tools, databases, productivity workflows, finance systems, and enterprise AI agent infrastructure.",
+  title: "Evidence-Reviewed MCP Server Categories | MCPserver.in",
+  description: "Browse MCP server categories that currently contain evidence-reviewed, publication-qualified server profiles.",
   alternates: {
-    canonical: "/categories",
+    canonical: "/categories/",
     languages: {
-    "en-IN": "/categories",
-    "en": "/categories",
-        },
+      "en-IN": "/categories/",
+      "en": "/categories/",
+    },
   },
 };
 
@@ -28,40 +28,43 @@ const icons = {
 };
 
 export default function CategoriesPage() {
+  const publishedCategorySlugs = new Set(getPublishedCategorySlugs());
+  const publicCategories = categories.filter((category) => publishedCategorySlugs.has(category.slug));
+
   const schema = getUnifiedGraphSchema({
-    pageUrl: "/categories",
-    title: "MCP Server Categories",
-    description: "Explore MCP server categories for developer tools, databases, productivity workflows, finance systems, and enterprise AI agent infrastructure.",
+    pageUrl: "/categories/",
+    title: "Evidence-Reviewed MCP Server Categories",
+    description: "Categories are surfaced publicly only when they contain at least one evidence-reviewed MCP server profile.",
     breadcrumbs: [
       { name: "Home", item: "/" },
-      { name: "Categories", item: "/categories" }
-    ]
+      { name: "Categories", item: "/categories/" },
+    ],
   });
 
   return (
     <div id="categories-page" className="min-h-screen bg-transparent text-white pt-6 pb-16">
       <SchemaJsonLd schema={schema} />
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <Breadcrumbs items={[{ name: "Categories", href: "/categories" }]} />
+        <Breadcrumbs items={[{ name: "Categories", href: "/categories/" }]} />
 
         <section className="py-10 text-center">
           <div className="mx-auto grid h-12 w-12 place-items-center rounded-xl border border-violet-300/20 bg-violet-500/10">
             <Grid2X2 className="h-6 w-6 text-violet-200" />
           </div>
-          <h1 className="mt-5 text-4xl font-black tracking-tight text-white sm:text-5xl">Browse MCP categories</h1>
+          <h1 className="mt-5 text-4xl font-black tracking-tight text-white sm:text-5xl">Evidence-reviewed MCP categories</h1>
           <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-white/58">
-            Start from a workload category, then drill into server-level guides with auth, deployment, and security notes.
+            Category pages are derived from the same publication-approved server cohort as the registry, sitemap, feeds, and structured data. Empty or evidence-pending categories are not presented as live inventory.
           </p>
         </section>
 
         <section className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-          {categories.map((category) => {
+          {publicCategories.map((category) => {
             const Icon = icons[category.iconName as keyof typeof icons] ?? Grid2X2;
             const matchedServers = servers.filter((server) => server.category.toLowerCase() === category.name.toLowerCase());
             return (
               <Link
                 key={category.slug}
-                href={`/directory/${category.slug}`}
+                href={`/directory/${category.slug}/`}
                 className="group rounded-xl border border-white/10 bg-white/[0.03] p-6 transition hover:border-violet-300/35 hover:bg-white/[0.055]"
               >
                 <div className="flex items-start justify-between gap-4">
@@ -72,9 +75,8 @@ export default function CategoriesPage() {
                 </div>
                 <h2 className="mt-5 text-lg font-black text-white">{category.name}</h2>
                 <p className="mt-2 min-h-14 text-xs leading-relaxed text-white/55">{category.description}</p>
-                <div className="mt-5 flex items-center justify-between border-t border-white/8 pt-4 text-xs">
-                  <span className="font-bold text-violet-200">{category.count}+ indexed</span>
-                  <span className="text-white/45">{matchedServers.length} guides live</span>
+                <div className="mt-5 border-t border-white/8 pt-4 text-xs">
+                  <span className="font-bold text-emerald-200">{matchedServers.length} evidence-reviewed {matchedServers.length === 1 ? "profile" : "profiles"}</span>
                 </div>
               </Link>
             );

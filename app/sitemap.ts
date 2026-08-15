@@ -7,7 +7,7 @@ import { comparisons } from "../src/data/comparisons";
 import { categories } from "../src/data/categories";
 import { docsPages, getDocsPath } from "../src/data/docs";
 import { blogPosts, clusters } from "../src/data/blogPosts";
-import { getPublishedCategorySlugs, getPublishedServerProfiles } from "../src/data/publishing";
+import { getPublishedCategorySlugs } from "../src/data/publishing";
 import { getPublishedGeneratedPages } from "../src/lib/content/publication-registry";
 import { SITE_ORIGIN } from "../src/lib/canonical-urls";
 
@@ -29,6 +29,10 @@ const NON_INDEXABLE_PATH_PREFIXES = [
   "/register/",
   "/search/",
   "/candidate/",
+  "/mcp-server-directory/",
+  "/mcp-hosting/",
+  "/mcp-tutorial/",
+  "/blog/how-to-build-mcp-server-from-scratch/",
 ];
 
 function normalizePath(path: string): string {
@@ -69,7 +73,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: "/complete-guide-mcp-servers", changeFrequency: "weekly" as const, priority: 0.95 },
     { url: "/servers", changeFrequency: "daily" as const, priority: 0.9 },
     { url: "/categories", changeFrequency: "weekly" as const, priority: 0.8 },
-    { url: "/mcp-server-directory", changeFrequency: "daily" as const, priority: 0.9 },
     { url: "/integrations", changeFrequency: "weekly" as const, priority: 0.8 },
     { url: "/clients", changeFrequency: "weekly" as const, priority: 0.8 },
     { url: "/mcp-monitoring", changeFrequency: "weekly" as const, priority: 0.8 },
@@ -114,7 +117,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: p.priority,
   }));
 
-  const publishedServerSlugs = new Set(getPublishedServerProfiles().map((profile) => profile.server.slug));
   const publishedCategorySlugs = new Set(getPublishedCategorySlugs());
 
   const pillarEntries = pillars.map((p) => toEntry(`/${p.slug}`, {
@@ -123,7 +125,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.9,
   }));
   const topicEntries = topics.map((t) => toEntry(`/topics/${t.slug}`, { changeFrequency: "weekly" as const, priority: 0.8 }));
-  const serverEntries = servers.filter((server) => publishedServerSlugs.has(server.slug)).map((server) => toEntry(`/servers/${server.slug}`, { changeFrequency: "weekly" as const, priority: 0.8 }));
+  const serverEntries = servers.map((server) => toEntry(`/servers/${server.slug}`, { changeFrequency: "weekly" as const, priority: 0.8 }));
   const glossaryEntries = glossaryTerms.map((g) => toEntry(`/glossary/${g.slug}`, {
     lastModified: (g as any).updatedAt || (g as any).publishedAt || today,
     changeFrequency: "weekly" as const,
