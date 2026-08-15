@@ -7,7 +7,6 @@ import ThemeAndAuthProvider from "../src/components/ThemeAndAuthProvider";
 import Header from "../src/components/Header";
 import Footer from "../src/components/Footer";
 import SchemaJsonLd from "../src/components/SchemaJsonLd";
-import { getOrganizationSchema, getWebSiteSchema, getWebApplicationSchema } from "../src/lib/schema";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -30,50 +29,40 @@ const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
 });
 
+const ORIGIN = "https://www.mcpserver.in";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://mcpserver.in"),
+  metadataBase: new URL(ORIGIN),
   title: {
-    default: "MCPserver.in — MCP Intelligence & Hosted Platform for AI Agents",
-    template: "%s | MCPserver.in"
+    default: "MCPserver.in — Evidence-Backed MCP Server Discovery",
+    template: "%s | MCPserver.in",
   },
-  description: "Discover, evaluate and deploy MCP servers with evidence-backed profiles, security intelligence, compatibility data and hosted infrastructure.",
-  keywords: ["MCP server", "Model Context Protocol", "MCP server directory", "MCP security", "MCP hosting", "MCP server India", "AI agents"],
-  authors: [{ name: "MCPserver.in Engineering" }],
+  description: "Discover Model Context Protocol servers, integrations, clients, documentation and research with explicit source provenance and publication status.",
+  keywords: ["MCP server", "Model Context Protocol", "MCP server directory", "MCP integrations", "MCP clients", "MCP evidence"],
+  authors: [{ name: "MCPserver.in Editorial" }],
   creator: "MCPserver.in",
   publisher: "MCPserver.in",
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
+  formatDetection: { email: false, address: false, telephone: false },
   alternates: {
     canonical: "/",
-    languages: {
-      "en-IN": "/",
-      "en": "/",
-      "x-default": "/",
-    }
+    languages: { "en-IN": "/", en: "/", "x-default": "/" },
   },
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "32x32" },
-      { url: "/favicon.svg", type: "image/svg+xml" }
+      { url: "/favicon.svg", type: "image/svg+xml" },
     ],
-    shortcut: "/favicon.ico"
+    shortcut: "/favicon.ico",
   },
   openGraph: {
     type: "website",
-    url: "https://mcpserver.in/",
+    url: `${ORIGIN}/`,
     siteName: "MCPserver.in",
-    title: "MCPserver.in — MCP Intelligence & Hosted Platform for AI Agents",
-    description: "Discover, evaluate and deploy MCP servers with evidence-backed profiles, security intelligence, compatibility data and hosted infrastructure.",
+    title: "MCPserver.in — Evidence-Backed MCP Server Discovery",
+    description: "A provenance-aware directory and knowledge layer for Model Context Protocol servers, integrations and clients.",
     locale: "en_IN",
   },
-  twitter: {
-    card: "summary_large_image",
-    site: "@mcpserver_in",
-    creator: "@mcpserver_in"
-  },
+  twitter: { card: "summary_large_image" },
   robots: {
     index: true,
     follow: true,
@@ -88,76 +77,65 @@ export const metadata: Metadata = {
   verification: {
     google: process.env.GOOGLE_SITE_VERIFICATION,
     yandex: process.env.YANDEX_SITE_VERIFICATION,
-    other: process.env.BING_SITE_VERIFICATION
-      ? { "msvalidate.01": process.env.BING_SITE_VERIFICATION }
-      : undefined,
+    other: process.env.BING_SITE_VERIFICATION ? { "msvalidate.01": process.env.BING_SITE_VERIFICATION } : undefined,
   },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+const globalGraph = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${ORIGIN}/#organization`,
+      name: "MCPserver.in",
+      url: `${ORIGIN}/`,
+      logo: `${ORIGIN}/logo.svg`,
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${ORIGIN}/#website`,
+      name: "MCPserver.in",
+      url: `${ORIGIN}/`,
+      publisher: { "@id": `${ORIGIN}/#organization` },
+      potentialAction: {
+        "@type": "SearchAction",
+        target: `${ORIGIN}/mcp-server-directory/?q={search_term_string}`,
+        "query-input": "required name=search_term_string",
+      },
+    },
+  ],
+};
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`dark ${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}>
       <head>
         {process.env.NEXT_PUBLIC_GTM_ID && (
           <Script id="gtm-script" strategy="afterInteractive">
-            {`
-              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-              })(window,document,'script','dataLayer','${process.env.NEXT_PUBLIC_GTM_ID}');
-            `}
+            {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${process.env.NEXT_PUBLIC_GTM_ID}');`}
           </Script>
         )}
         {process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID && (
-          <Script
-            src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID}`}
-            strategy="afterInteractive"
-          />
+          <Script src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID}`} strategy="afterInteractive" />
         )}
         {process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID && (
           <Script id="ga4-init" strategy="afterInteractive">
-            {`
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', '${process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID}', {
-                page_path: window.location.pathname,
-              });
-            `}
+            {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID}',{page_path:window.location.pathname});`}
           </Script>
         )}
       </head>
       <body className="antialiased selection:bg-cyan-500/30 selection:text-cyan-200">
         {process.env.NEXT_PUBLIC_GTM_ID && (
           <noscript>
-            <iframe
-              src={`https://www.googletagmanager.com/ns.html?id=${process.env.NEXT_PUBLIC_GTM_ID}`}
-              height="0"
-              width="0"
-              style={{ display: 'none', visibility: 'hidden' }}
-            />
+            <iframe src={`https://www.googletagmanager.com/ns.html?id=${process.env.NEXT_PUBLIC_GTM_ID}`} height="0" width="0" style={{ display: "none", visibility: "hidden" }} />
           </noscript>
         )}
         <ThemeAndAuthProvider>
-          <div className="flex flex-col min-h-screen bg-[#050505] text-[#e0e0e0] font-sans relative overflow-x-hidden transition-colors duration-200">
-            <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[400px] bg-cyan-950/20 rounded-full blur-[120px] pointer-events-none z-0 dark:opacity-100 opacity-30"></div>
-            <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[400px] bg-purple-950/20 rounded-full blur-[120px] pointer-events-none z-0 dark:opacity-100 opacity-30"></div>
-            <div className="absolute inset-0 w-full h-full opacity-[0.03] pointer-events-none z-0" style={{ backgroundImage: "radial-gradient(#ffffff 1px, transparent 0)", backgroundSize: "40px 40px" }}></div>
-            <div className="relative z-10 flex flex-col min-h-screen">
-              <SchemaJsonLd schema={getWebApplicationSchema()} />
-              <SchemaJsonLd schema={getOrganizationSchema()} />
-              <SchemaJsonLd schema={getWebSiteSchema()} />
-              <Header />
-              <main className="flex-1">
-                {children}
-              </main>
-              <Footer />
-            </div>
+          <div className="flex min-h-screen flex-col overflow-x-hidden bg-[#050505] font-sans text-[#e0e0e0]">
+            <SchemaJsonLd schema={globalGraph} />
+            <Header />
+            <main className="flex-1">{children}</main>
+            <Footer />
           </div>
         </ThemeAndAuthProvider>
       </body>

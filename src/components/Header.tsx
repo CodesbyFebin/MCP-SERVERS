@@ -12,15 +12,15 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header id="app-header" className="sticky top-0 z-50 border-b border-white/10 bg-[#02050d]/88 text-white backdrop-blur-xl">
+    <header id="app-header" className="sticky top-0 z-50 border-b border-white/10 bg-[#02050d]/90 text-white backdrop-blur-xl">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-[70px] items-center justify-between gap-4">
           <div className="flex min-w-0 items-center gap-5">
             <BrandMark />
-            <span className="hidden items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-[11px] font-bold text-white/70 md:inline-flex">
-              <span className="inline-block h-2.5 w-4 rounded-sm bg-gradient-to-b from-[#FF9933] via-white to-[#128807]" />
-              India-ready MCP Platform
-            </span>
+            <Link href="/servers/" className="hidden items-center gap-2 rounded-full border border-cyan-300/15 bg-cyan-400/[0.05] px-3 py-1.5 text-[11px] font-bold text-cyan-100 md:inline-flex">
+              <span className="h-2 w-2 rounded-full bg-emerald-300 shadow-[0_0_12px_rgba(110,231,183,.8)]" />
+              Evidence-led MCP directory
+            </Link>
           </div>
 
           <nav className="hidden items-center gap-1 lg:flex">
@@ -49,10 +49,10 @@ export default function Header() {
               className="inline-flex min-h-10 items-center gap-2 rounded-md border border-white/15 bg-white/[0.025] px-3 text-xs font-bold text-white transition hover:bg-white/[0.06]"
             >
               <Github className="h-4 w-4" />
-              Star on GitHub
+              GitHub
             </a>
-            <Link href="/profile" className="inline-flex min-h-10 items-center rounded-md bg-violet-600 px-4 text-xs font-black text-white shadow-[0_0_24px_rgba(124,58,237,0.35)] transition hover:bg-violet-500">
-              Dashboard
+            <Link href="/servers/" className="inline-flex min-h-10 items-center rounded-md bg-gradient-to-r from-blue-500 to-violet-600 px-4 text-xs font-black text-white shadow-[0_0_24px_rgba(124,58,237,0.35)] transition hover:brightness-110">
+              Evidence Ledger
             </Link>
           </div>
 
@@ -60,7 +60,7 @@ export default function Header() {
             type="button"
             onClick={() => setIsOpen((open) => !open)}
             className="grid h-10 w-10 place-items-center rounded-md border border-white/10 bg-white/[0.03] text-white lg:hidden"
-            aria-label="Open navigation"
+            aria-label={isOpen ? "Close navigation" : "Open navigation"}
           >
             {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
@@ -77,9 +77,7 @@ export default function Header() {
                   key={item.href}
                   href={item.href}
                   onClick={() => setIsOpen(false)}
-                  className={`block rounded-md px-3 py-3 text-sm font-bold ${
-                    active ? "bg-violet-500/15 text-white" : "text-white/68 hover:bg-white/[0.04] hover:text-white"
-                  }`}
+                  className={`block rounded-md px-3 py-3 text-sm font-bold ${active ? "bg-violet-500/15 text-white" : "text-white/68 hover:bg-white/[0.04] hover:text-white"}`}
                 >
                   {item.name}
                 </Link>
@@ -87,21 +85,11 @@ export default function Header() {
             })}
           </div>
           <div className="mt-4 grid gap-3 border-t border-white/10 pt-4">
-            <a
-              href="https://github.com/CodesbyFebin/MCP-SERVERS"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex min-h-10 items-center justify-center gap-2 rounded-md border border-white/15 bg-white/[0.025] text-xs font-bold text-white"
-            >
-              <Github className="h-4 w-4" />
-              Star on GitHub
+            <a href="https://github.com/CodesbyFebin/MCP-SERVERS" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-10 items-center justify-center gap-2 rounded-md border border-white/15 bg-white/[0.025] text-xs font-bold text-white">
+              <Github className="h-4 w-4" /> GitHub
             </a>
-            <Link
-              href="/profile"
-              onClick={() => setIsOpen(false)}
-              className="inline-flex min-h-10 items-center justify-center rounded-md bg-violet-600 text-xs font-black text-white"
-            >
-              Dashboard
+            <Link href="/servers/" onClick={() => setIsOpen(false)} className="inline-flex min-h-10 items-center justify-center rounded-md bg-violet-600 text-xs font-black text-white">
+              Evidence Ledger
             </Link>
           </div>
         </div>
