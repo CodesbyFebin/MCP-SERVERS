@@ -1,121 +1,88 @@
 import { NextResponse } from "next/server";
-import { glossaryTerms } from "../../src/data/glossary";
-import { pillars } from "../../src/data/pillars";
-import { topics } from "../../src/data/topics";
-import { siteConfig } from "../../src/data/site";
+import {
+  getEvidenceLedgerStats,
+  getEvidenceSources,
+  getPublishedServerProfiles,
+} from "../../src/data/publishing";
+import { SITE_ORIGIN } from "../../src/lib/canonical-urls";
 
 export const dynamic = "force-static";
 
 export async function GET() {
-  const today = new Date().toISOString().split("T")[0];
-  
-  const header = `# MCPserver.in - Full Knowledge Graph (AI Agent Index)
+  const stats = getEvidenceLedgerStats();
+  const profiles = getPublishedServerProfiles();
 
-> This document represents the complete structured entities, relationships, and metadata of the MCPserver.in ecosystem for AI agents, RAG systems, and answer engines.
-> Last Updated: ${today}
+  const profileSections = profiles.map((profile) => {
+    const sources = getEvidenceSources(profile.evidence).filter((source) => source.url.startsWith("http"));
+    const evidence = profile.evidence
+      .filter((item) => item.status === "verified")
+      .map((item) => {
+        const source = sources.find((candidate) => candidate.id === item.sourceId);
+        return `  - ${item.id}: ${item.text}\n    Supports: ${item.supports.join(", ") || "unspecified"}\n    Source: ${source?.url ?? "source unavailable"}\n    Checked: ${item.capturedAt}`;
+      })
+      .join("\n");
 
----
+    const claims = profile.claims
+      .map((claim) => `  - ${claim.text} [evidence: ${claim.evidenceIds.join(", ")}]`)
+      .join("\n");
 
-## 1. Primary Protocol Entities
+    return `## ${profile.server.name} MCP Server
+- Canonical URL: ${SITE_ORIGIN}/servers/${profile.server.slug}/
+- Category: ${profile.server.category}
+- Publication status: ${profile.status}
+- Verification state: ${profile.verificationState}
+- Repository: ${profile.repositoryUrl ?? "Unknown"}
+- Documentation: ${profile.documentationUrl ?? "Unknown"}
+- Latest verified version: ${profile.latestVerifiedVersion ?? "Unknown"}
+- Last reviewed: ${profile.provenance.lastReviewed ?? "Unknown"}
+- Capabilities with record-level support: ${profile.capabilities.length ? profile.capabilities.join(", ") : "Unknown / not asserted"}
 
-### Entity: Model Context Protocol (MCP)
-- **Definition:** An open, secure protocol that standardizes how artificial intelligence agents and large language models (LLMs) exchange context, tools, prompts, and data resources with external servers.
-- **Alternative Name:** MCP
-- **Standard Transport Layers:**
-  - \`stdio\`: Local process communication over standard input/output channels.
-  - \`SSE\` (Server-Sent Events): Remote HTTP connections for decoupled setups.
-- **Message Protocol:** Strictly compliant with the JSON-RPC 2.0 specification.
-- **Core Capabilities:**
-  - **Tools:** Enabling models to perform tasks (e.g., query SQL, write files, call APIs).
-  - **Resources:** Exposing static or dynamic read-only data (e.g., log dumps, DB schemas).
-  - **Prompts:** Offering reusable prompt templates directly from the server.
+### Verified claims
+${claims || "  - No claims published."}
 
----
+### Evidence
+${evidence || "  - No evidence published."}`;
+  });
 
-## 2. Core Protocol Pillars
+  const content = `# MCPserver.in — Full Evidence-Ledger Index
 
+This document is a machine-readable editorial index of MCPserver.in's publication-qualified server corpus. It intentionally excludes server inventory that has not passed the shared evidence and verification gate.
+
+## Site identity
+- Canonical origin: ${SITE_ORIGIN}
+- Server registry: ${SITE_ORIGIN}/servers/
+- Editorial policy: ${SITE_ORIGIN}/editorial-policy/
+- Machine registry: ${SITE_ORIGIN}/mcp-registry.json
+- Published server JSON: ${SITE_ORIGIN}/api/servers.json
+- Sitemap: ${SITE_ORIGIN}/sitemap.xml
+
+## Evidence Ledger summary
+- Known entities: ${stats.totalEntities}
+- Evidence-reviewed public profiles: ${stats.publishedProfiles}
+- Awaiting evidence: ${stats.needsEvidence}
+- Synthetic profiles published: ${stats.syntheticProfilesPublished}
+
+## Publication semantics
+A public server profile must satisfy the centralized publication predicate. Evidence entries identify the claims or fields they support; an official source for identity does not automatically verify authentication, transport, compatibility, security, performance, or version data.
+
+${profileSections.join("\n\n---\n\n") || "## Published server profiles\nNo server profiles currently meet the publication gate."}
+
+## Other canonical public surfaces
+- Integrations: ${SITE_ORIGIN}/integrations/
+- Clients: ${SITE_ORIGIN}/clients/
+- Documentation: ${SITE_ORIGIN}/docs/
+- Learn: ${SITE_ORIGIN}/learn/
+- Glossary: ${SITE_ORIGIN}/glossary/
+- State of MCP: ${SITE_ORIGIN}/state-of-mcp/
+- Security: ${SITE_ORIGIN}/security/
+- Privacy: ${SITE_ORIGIN}/privacy/
+- Terms: ${SITE_ORIGIN}/terms/
 `;
 
-  const pillarSection = pillars.map(p => `### Pillar: ${p.title}
-- **Slug:** \`${p.slug}\`
-- **Definition:** ${p.description}
-- **Direct Answer:** ${p.shortAnswer}
-- **Primary Keyword:** ${p.primaryKeyword}
-
-`).join("\\n");
-
-  const topicSection = `
-
----
-
-## 3. MCP Topics
-
-`;
-
-  const topicsContent = topics.map(t => `### Topic: ${t.title}
-- **Slug:** \`${t.slug}\`
-- **Definition:** ${t.explanation}
-- **Key Takeaway:** ${t.shortAnswer}
-
-`).join("\\n");
-
-  const glossarySection = `
-
----
-
-## 4. Glossary Terms (${glossaryTerms.length} defined terms)
-
-`;
-
-  const glossaryContent = glossaryTerms.map(g => `### Term: ${g.term}
-- **Slug:** \`${g.slug}\`
-- **Definition:** ${g.definition}
-- **Detailed Explanation:** ${g.detailedExplanation}
-- **Key Takeaways:** ${g.keyTakeaways ? g.keyTakeaways.join(", ") : "N/A"}
-- **Technical Details:**
-  - Protocol Layer: ${g.technicalDetails.protocolLayer || "N/A"}
-  - Format: ${g.technicalDetails.format || "N/A"}
-  - Latency Profile: ${g.technicalDetails.latencyProfile || "N/A"}
-- **Use Case:** ${g.useCase || "N/A"}
-- **References:** ${g.references.join(", ")}
-
-`).join("\\n");
-
-  const footer = `
-
----
-
-## 5. Documentation Knowledge Base
-
-### Clusters:
-- Getting Started: MCP concepts, local installation, Claude and Cursor configuration, managed edge hosting.
-- Protocol: Tools, resources, prompts, events, JSON-RPC, stdio, and SSE concepts for MCP builders.
-- Pricing: India-aware hosting costs, free vs paid, hidden operational costs, enterprise security and VAPT planning.
-- Performance: Bengaluru vs Mumbai placement, global vs India hosting, payload optimization, latency benchmarking.
-- Compliance: DPDP-aware implementation, PII redaction, audit logs, RBI-aware fintech controls, secure tool design.
-- Comparisons: MCP vs REST, GraphQL, API gateways, and when-to-use-MCP decision guides.
-- Deployment: Railway, AWS EC2, Google Cloud Run, Vercel, Kubernetes, environment variables, health checks, rollout patterns.
-- Industry: Indian startup, fintech, ecommerce, government, healthcare, and education workflows with sector-specific safety controls.
-- Monitoring: Grafana dashboards, MCP Pulse-style checks, logs, traces, redaction metrics, and incident workflows.
-
----
-
-## 6. Contact & Institutional Trust
-- **Publisher:** ${siteConfig.brand}
-- **Support Contact:** ${siteConfig.company.email}
-- **Legal Compliance:** Designed for secure, compliant production MCP workflows on robust edge infrastructure.
-
----
-
-*Generated by MCPserver.in Knowledge Graph API - For RAG ingestion and AI answer engine indexing.*
-`;
-
-  const fullContent = header + pillarSection + topicSection + topicsContent + glossarySection + glossaryContent + footer;
-
-  return new NextResponse(fullContent, {
+  return new NextResponse(content, {
     status: 200,
     headers: {
-      "Content-Type": "text/markdown; charset=utf-8",
+      "Content-Type": "text/plain; charset=utf-8",
       "Cache-Control": "public, max-age=3600, stale-while-revalidate=1800",
     },
   });
