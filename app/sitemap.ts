@@ -31,6 +31,15 @@ const NON_INDEXABLE_PATH_PREFIXES = [
   "/candidate/",
 ];
 
+const LEGACY_PATHS = new Set([
+  "/mcp-hosting/",
+  "/mcp-tutorial/",
+  "/blog/how-to-build-mcp-server-from-scratch/",
+  "/complete-mcp-guide/",
+  "/build-an-mcp-server/",
+  "/host-mcp-server/",
+]);
+
 function normalizePath(path: string): string {
   const collapsed = path.replace(/\/{2,}/g, "/");
   if (collapsed === "/") return "/";
@@ -54,7 +63,8 @@ function dedupeAndValidate(entries: MetadataRoute.Sitemap): MetadataRoute.Sitema
 
   for (const entry of entries) {
     const normalizedUrl = `${baseUrl}${normalizePath(new URL(entry.url).pathname)}`;
-    if (seen.has(normalizedUrl) || !isAllowedSitemapUrl(normalizedUrl)) continue;
+    const normalizedPath = new URL(normalizedUrl).pathname;
+    if (seen.has(normalizedUrl) || LEGACY_PATHS.has(normalizedPath) || !isAllowedSitemapUrl(normalizedUrl)) continue;
     seen.add(normalizedUrl);
     output.push({ ...entry, url: normalizedUrl });
   }

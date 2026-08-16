@@ -22,13 +22,14 @@ export async function generateMetadata({ params }: { params: BlogPostPageParams 
   const post = blogPosts.find(p => p.slug === slug);
   if (!post) return {};
   return {
-    title: `${post.title}`,
+    title: post.title,
     description: post.excerpt,
     alternates: {
-      canonical: `/blog/${slug}`,
+      canonical: `/blog/${slug}/`,
       languages: {
-        "en-IN": `/blog/${slug}`,
-        "en": `/blog/${slug}`,
+        "en-IN": `/blog/${slug}/`,
+        "en": `/blog/${slug}/`,
+        "x-default": `/blog/${slug}/`,
       }
     },
   };
@@ -40,14 +41,15 @@ export default async function BlogPostPage({ params }: { params: BlogPostPagePar
   if (!post) notFound();
 
   const dates = getContentDates(`blog:${slug}`);
+  const canonicalUrl = `https://mcpserver.in/blog/${slug}/`;
   const unifiedSchema = getUnifiedGraphSchema({
-    pageUrl: `/blog/${slug}`,
+    pageUrl: `/blog/${slug}/`,
     title: post.title,
     description: post.excerpt,
     breadcrumbs: [
       { name: "Home", item: "/" },
-      { name: "Blog", item: "/blog" },
-      { name: post.title, item: `/blog/${slug}` }
+      { name: "Blog", item: "/blog/" },
+      { name: post.title, item: `/blog/${slug}/` }
     ],
     article: {
       title: post.title,
@@ -56,38 +58,43 @@ export default async function BlogPostPage({ params }: { params: BlogPostPagePar
       authorRole: "Platform Team",
       datePublished: dates.datePublished,
       dateModified: dates.dateModified
-    }
+    },
+    mentions: [
+      { name: "Model Context Protocol", url: "https://modelcontextprotocol.io/specification/" }
+    ]
   });
-  const newsArticleSchema = {
+  const blogPostingSchema = {
     "@context": "https://schema.org",
-    "@type": "NewsArticle",
-    "@id": `https://www.mcpserver.in/blog/${slug}#newsarticle`,
+    "@type": "BlogPosting",
+    "@id": `${canonicalUrl}#blogposting`,
     headline: post.title,
     description: post.excerpt,
+    url: canonicalUrl,
     datePublished: dates.datePublished,
     dateModified: dates.dateModified,
+    inLanguage: "en-IN",
     author: {
       "@type": "Organization",
       "name": "MCPserver.in Engineering",
-      "url": "https://www.mcpserver.in/"
+      "url": "https://mcpserver.in/"
     },
     publisher: {
       "@type": "Organization",
       "name": "MCPserver.in",
-      "url": "https://www.mcpserver.in/",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://www.mcpserver.in/logo.svg"
-      }
+      "url": "https://mcpserver.in/",
+      "logo": { "@type": "ImageObject", "url": "https://mcpserver.in/logo.svg" }
     },
-    mainEntityOfPage: `https://www.mcpserver.in/blog/${slug}`
+    mainEntityOfPage: { "@id": `${canonicalUrl}#webpage` },
+    about: { "@id": "https://mcpserver.in/#mcp" },
+    articleSection: post.category,
+    keywords: post.keywords.join(", ")
   };
   const faqSchema = post.faqs && post.faqs.length > 0 ? getFAQSchema(post.faqs) : null;
 
   return (
     <div id={`blog-${slug}`} className="min-h-screen bg-transparent text-white pt-6 pb-16">
       <SchemaJsonLd schema={unifiedSchema} />
-      <SchemaJsonLd schema={newsArticleSchema} />
+      <SchemaJsonLd schema={blogPostingSchema} />
       {faqSchema && <SchemaJsonLd schema={faqSchema} />}
       <div className="mx-auto max-w-3xl px-4 sm:px-6">
         <Breadcrumbs items={[
@@ -107,9 +114,7 @@ export default async function BlogPostPage({ params }: { params: BlogPostPagePar
 
             <div className="mt-4 flex flex-wrap gap-2">
               {post.ugcElements.map((ugc) => (
-                <span key={ugc} className="text-xs rounded-full bg-cyan-500/10 px-2 py-1 text-cyan-200">
-                  {ugc}
-                </span>
+                <span key={ugc} className="text-xs rounded-full bg-cyan-500/10 px-2 py-1 text-cyan-200">{ugc}</span>
               ))}
             </div>
 
@@ -125,39 +130,26 @@ export default async function BlogPostPage({ params }: { params: BlogPostPagePar
             </div>
           </header>
 
-          <div
-            className="prose prose-invert mt-10 max-w-none"
-            dangerouslySetInnerHTML={{ __html: post.content }}
-          />
+          <div className="prose prose-invert mt-10 max-w-none" dangerouslySetInnerHTML={{ __html: post.content }} />
 
           <section className="mt-14 border-t border-white/10 pt-10">
             <h2 className="text-xl font-black text-white">Join the Discussion</h2>
             <div className="mt-6 space-y-8">
-              <UGCOrchestrator
-                postId={post.slug}
-                postCategory={post.category}
-                ugcElements={post.ugcElements}
-              />
+              <UGCOrchestrator postId={post.slug} postCategory={post.category} ugcElements={post.ugcElements} />
             </div>
           </section>
 
           <footer className="mt-12 border-t border-white/10 pt-8">
             <div className="flex items-center gap-4">
-              <div className="grid h-12 w-12 place-items-center rounded-full border-2 border-white/10 bg-gradient-to-br from-cyan-300 to-violet-500 text-sm font-black text-white">
-                MCP
-              </div>
+              <div className="grid h-12 w-12 place-items-center rounded-full border-2 border-white/10 bg-gradient-to-br from-cyan-300 to-violet-500 text-sm font-black text-white">MCP</div>
               <div>
                 <div className="text-sm font-black text-white">MCPserver.in Engineering</div>
                 <div className="text-xs text-white/45">Platform Team</div>
               </div>
             </div>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="/blog" className="inline-flex items-center gap-1 text-xs font-bold text-cyan-300">
-                ← All articles
-              </Link>
-              <Link href="/learn" className="inline-flex items-center gap-1 text-xs font-bold text-cyan-300">
-                Read more guides →
-              </Link>
+              <Link href="/blog" className="inline-flex items-center gap-1 text-xs font-bold text-cyan-300">← All articles</Link>
+              <Link href="/learn" className="inline-flex items-center gap-1 text-xs font-bold text-cyan-300">Read more guides →</Link>
             </div>
           </footer>
         </article>

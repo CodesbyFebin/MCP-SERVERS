@@ -2,121 +2,146 @@ import { NextResponse } from "next/server";
 import { glossaryTerms } from "../../src/data/glossary";
 import { pillars } from "../../src/data/pillars";
 import { topics } from "../../src/data/topics";
+import { servers } from "../../src/data/servers";
+import { docsPages, getDocsPath } from "../../src/data/docs";
+import { blogPosts } from "../../src/data/blogPosts";
 import { siteConfig } from "../../src/data/site";
 
 export const dynamic = "force-static";
 
+const baseUrl = siteConfig.url.replace(/\/$/, "");
+
 export async function GET() {
   const today = new Date().toISOString().split("T")[0];
-  
-  const header = `# MCPserver.in - Full Knowledge Graph (AI Agent Index)
 
-> This document represents the complete structured entities, relationships, and metadata of the MCPserver.in ecosystem for AI agents, RAG systems, and answer engines.
-> Last Updated: ${today}
+  const header = `# MCPserver.in - Full Published Knowledge Index
 
----
-
-## 1. Primary Protocol Entities
-
-### Entity: Model Context Protocol (MCP)
-- **Definition:** An open, secure protocol that standardizes how artificial intelligence agents and large language models (LLMs) exchange context, tools, prompts, and data resources with external servers.
-- **Alternative Name:** MCP
-- **Standard Transport Layers:**
-  - \`stdio\`: Local process communication over standard input/output channels.
-  - \`SSE\` (Server-Sent Events): Remote HTTP connections for decoupled setups.
-- **Message Protocol:** Strictly compliant with the JSON-RPC 2.0 specification.
-- **Core Capabilities:**
-  - **Tools:** Enabling models to perform tasks (e.g., query SQL, write files, call APIs).
-  - **Resources:** Exposing static or dynamic read-only data (e.g., log dumps, DB schemas).
-  - **Prompts:** Offering reusable prompt templates directly from the server.
+> Canonical machine-readable index for AI agents, RAG systems, answer engines, and search crawlers.
+> This index lists published content metadata and relationships. It does not claim that every generated candidate page is indexable.
+> Canonical origin: ${baseUrl}
+> Last updated: ${today}
 
 ---
 
-## 2. Core Protocol Pillars
+## 1. Primary Protocol Entity
+
+### Model Context Protocol (MCP)
+- **Definition:** An open protocol for connecting AI applications to external tools, resources, and prompts through a standardized client-server interface.
+- **Canonical entity:** ${baseUrl}/mcp-protocol/
+- **Specification:** https://modelcontextprotocol.io/specification/
+- **Message format:** JSON-RPC 2.0
+- **Core primitives:** Tools, Resources, Prompts
+- **Transports:** stdio, Server-Sent Events (SSE), Streamable HTTP
+
+---
+
+## 2. Pillar Pages (${pillars.length})
 
 `;
 
-  const pillarSection = pillars.map(p => `### Pillar: ${p.title}
-- **Slug:** \`${p.slug}\`
-- **Definition:** ${p.description}
-- **Direct Answer:** ${p.shortAnswer}
-- **Primary Keyword:** ${p.primaryKeyword}
-
-`).join("\\n");
+  const pillarSection = pillars.map((p) => `### ${p.title}
+- URL: ${baseUrl}/${p.slug}/
+- Description: ${p.description}
+- Direct answer: ${p.shortAnswer}
+- Primary keyword: ${p.primaryKeyword}
+`).join("\n");
 
   const topicSection = `
-
 ---
 
-## 3. MCP Topics
+## 3. Topic Pages (${topics.length})
 
-`;
+${topics.map((t) => `### ${t.title}
+- URL: ${baseUrl}/topics/${t.slug}/
+- Description: ${t.explanation}
+- Key takeaway: ${t.shortAnswer}
+`).join("\n")}`;
 
-  const topicsContent = topics.map(t => `### Topic: ${t.title}
-- **Slug:** \`${t.slug}\`
-- **Definition:** ${t.explanation}
-- **Key Takeaway:** ${t.shortAnswer}
+  const serverSection = `
+---
 
-`).join("\\n");
+## 4. MCP Server Directory (${servers.length})
+
+${servers.map((s) => `### ${s.name}
+- URL: ${baseUrl}/servers/${s.slug}/
+- Category: ${s.category}
+- Description: ${s.description}
+- Authentication: ${s.auth}
+- Use cases: ${s.useCases.join("; ")}
+- Features: ${s.features.join("; ")}
+`).join("\n")}`;
+
+  const docsSection = `
+---
+
+## 5. Documentation (${docsPages.length})
+
+${docsPages.map((doc) => `### ${doc.title}
+- URL: ${baseUrl}${getDocsPath(doc)}/
+- Category: ${doc.category}
+- Description: ${doc.description}
+- Direct answer: ${doc.directAnswer}
+- Schema type: ${doc.schemaType}
+- Related: ${doc.related.join(", ")}
+`).join("\n")}`;
+
+  const blogSection = `
+---
+
+## 6. Blog Posts (${blogPosts.length})
+
+${blogPosts.map((post) => `### ${post.title}
+- URL: ${baseUrl}/blog/${post.slug}/
+- Date: ${post.date}
+- Category: ${post.category}
+- Excerpt: ${post.excerpt}
+- Keywords: ${post.keywords.join(", ")}
+`).join("\n")}`;
 
   const glossarySection = `
-
 ---
 
-## 4. Glossary Terms (${glossaryTerms.length} defined terms)
+## 7. Glossary (${glossaryTerms.length} defined terms)
 
-`;
-
-  const glossaryContent = glossaryTerms.map(g => `### Term: ${g.term}
-- **Slug:** \`${g.slug}\`
-- **Definition:** ${g.definition}
-- **Detailed Explanation:** ${g.detailedExplanation}
-- **Key Takeaways:** ${g.keyTakeaways ? g.keyTakeaways.join(", ") : "N/A"}
-- **Technical Details:**
-  - Protocol Layer: ${g.technicalDetails.protocolLayer || "N/A"}
-  - Format: ${g.technicalDetails.format || "N/A"}
-  - Latency Profile: ${g.technicalDetails.latencyProfile || "N/A"}
-- **Use Case:** ${g.useCase || "N/A"}
-- **References:** ${g.references.join(", ")}
-
-`).join("\\n");
+${glossaryTerms.map((g) => `### ${g.term}
+- URL: ${baseUrl}/glossary/${g.slug}/
+- Definition: ${g.definition}
+- Detailed explanation: ${g.detailedExplanation}
+- Key takeaways: ${g.keyTakeaways?.join(", ") || "N/A"}
+- Protocol layer: ${g.technicalDetails.protocolLayer || "N/A"}
+- Format: ${g.technicalDetails.format || "N/A"}
+- Latency profile: ${g.technicalDetails.latencyProfile || "N/A"}
+- Use case: ${g.useCase || "N/A"}
+- References: ${g.references.join(", ")}
+`).join("\n")}`;
 
   const footer = `
-
 ---
 
-## 5. Documentation Knowledge Base
+## 8. Canonical Machine Endpoints
+- Sitemap: ${baseUrl}/sitemap.xml
+- LLM summary: ${baseUrl}/llms.txt
+- Full index: ${baseUrl}/llms-full.txt
+- Security: ${baseUrl}/security/
+- Editorial policy: ${baseUrl}/editorial-policy/
+- Privacy: ${baseUrl}/privacy/
+- Terms: ${baseUrl}/terms/
 
-### Clusters:
-- Getting Started: MCP concepts, local installation, Claude and Cursor configuration, managed edge hosting.
-- Protocol: Tools, resources, prompts, events, JSON-RPC, stdio, and SSE concepts for MCP builders.
-- Pricing: India-aware hosting costs, free vs paid, hidden operational costs, enterprise security and VAPT planning.
-- Performance: Bengaluru vs Mumbai placement, global vs India hosting, payload optimization, latency benchmarking.
-- Compliance: DPDP-aware implementation, PII redaction, audit logs, RBI-aware fintech controls, secure tool design.
-- Comparisons: MCP vs REST, GraphQL, API gateways, and when-to-use-MCP decision guides.
-- Deployment: Railway, AWS EC2, Google Cloud Run, Vercel, Kubernetes, environment variables, health checks, rollout patterns.
-- Industry: Indian startup, fintech, ecommerce, government, healthcare, and education workflows with sector-specific safety controls.
-- Monitoring: Grafana dashboards, MCP Pulse-style checks, logs, traces, redaction metrics, and incident workflows.
+## 9. Entity and Source Notes
+- MCP specification: https://modelcontextprotocol.io/specification/
+- JSON-RPC 2.0 specification: https://www.jsonrpc.org/specification
+- Content is generated from structured repository datasets at build time.
+- URLs in this index use the canonical apex origin and normalized trailing-slash form.
 
----
-
-## 6. Contact & Institutional Trust
-- **Publisher:** ${siteConfig.brand}
-- **Support Contact:** ${siteConfig.company.email}
-- **Legal Compliance:** Designed for secure, compliant production MCP workflows on robust edge infrastructure.
-
----
-
-*Generated by MCPserver.in Knowledge Graph API - For RAG ingestion and AI answer engine indexing.*
+*Generated by MCPserver.in for machine-readable discovery.*
 `;
 
-  const fullContent = header + pillarSection + topicSection + topicsContent + glossarySection + glossaryContent + footer;
-
-  return new NextResponse(fullContent, {
+  return new NextResponse(header + pillarSection + topicSection + serverSection + docsSection + blogSection + glossarySection + footer, {
     status: 200,
     headers: {
-      "Content-Type": "text/markdown; charset=utf-8",
+      "Content-Type": "text/plain; charset=utf-8",
       "Cache-Control": "public, max-age=3600, stale-while-revalidate=1800",
+      "X-Content-Type-Options": "nosniff",
     },
   });
 }
