@@ -1,16 +1,3 @@
-/**
- * @mcp/servers-registry — Publication Authority
- *
- * Single source of truth for server publication decisions.
- * This package exports the authoritative `isServerIndexable()` predicate
- * that determines whether a server entity is eligible for public indexing.
- *
- * Used by:
- * - apps/web (server registry adapter, route templates)
- * - evidence pipeline
- * - any consumer needing publication authority
- */
-export type IndexableStatus = "published" | "draft" | "unverified" | "unknown";
 export interface RegistryEntry {
     id: string;
     type: "server" | "tool" | "resource" | "prompt";
@@ -44,10 +31,15 @@ export type EngineEntry = RegistryEntry & {
     engineVersion: string;
 };
 export interface RegistryIdentity {
+    /** Official registry-assigned ID (preferred) */
     registryId: string | null;
+    /** Repository URL (e.g., GitHub, GitLab) */
     repositoryUrl: string | null;
+    /** Package identity: name + version hash */
     packageIdentity: string | null;
+    /** Canonical homepage URL */
     canonicalHomepage: string | null;
+    /** Display name (least preferred for deduplication) */
     displayName: string | null;
 }
 export interface RegistrySource {
@@ -72,20 +64,20 @@ export interface RegistryChange {
     previousState?: Record<string, unknown>;
     newState: Record<string, unknown>;
 }
-/**
- * Normalize a registry entry, returning its identity and cleaned data
- */
 export declare class RegistryNormalizer {
+    /**
+     * Normalize a registry entry, returning its identity and cleaned data
+     */
     normalize(entry: RegistryEntry, source: RegistrySource): {
         identity: RegistryIdentity;
         normalized: RegistryEntry;
     };
 }
-/**
- * Deduplicate a list of registry entries by identity
- * Keeps the entry with the highest-priority identity and most recent timestamp
- */
 export declare class RegistryDeduplicator {
+    /**
+     * Deduplicate a list of registry entries by identity
+     * Keeps the entry with the highest-priority identity and most recent timestamp
+     */
     deduplicate(entries: RegistryEntry[], sources: RegistrySource[]): {
         unique: RegistryEntry[];
         duplicates: {
@@ -95,10 +87,10 @@ export declare class RegistryDeduplicator {
         resolutionLog: string[];
     };
 }
-/**
- * Validate a registry entry's required fields and constraints
- */
 export declare class RegistryValidator {
+    /**
+     * Validate a registry entry's required fields and constraints
+     */
     validateEntry(entry: RegistryEntry): {
         valid: boolean;
         errors: string[];
@@ -106,7 +98,7 @@ export declare class RegistryValidator {
     /**
      * Validate a publication decision using the centralized isServerIndexable() rule
      */
-    validatePublicationDecision(published: boolean, evidenceCount: number, evidenceVerified: boolean, status: IndexableStatus): {
+    validatePublicationDecision(published: boolean, evidenceCount: number, evidenceVerified: boolean, status: "published" | "unverified" | "draft" | "unknown"): {
         valid: boolean;
         decision: {
             serverId: string;
@@ -119,35 +111,18 @@ export declare class RegistryValidator {
     };
 }
 /**
- * Determines if a server entity is indexable (publicly discoverable).
+ * Publication authority: deterministic isServerIndexable() rule
  *
- * A server is indexable if and only if ALL of the following are true:
- * 1. publicationStatus === "published" (intent to publish)
- * 2. evidenceCount > 0 (at least one evidence reference exists)
- * 3. evidenceVerified === true (evidence has been verified)
- * 4. status === "published" (current status confirms published state)
- *
- * This is the SINGLE authoritative publication predicate for servers.
- * No other function, route, or component may override this logic.
- *
- * @param published - Whether the server's publicationStatus is "published"
- * @param evidenceCount - Number of evidence references attached to the server
- * @param evidenceVerified - Whether the evidence has been verified (not just present)
- * @param status - Current editorial status of the server entry
- * @returns Object with indexable boolean and human-readable reason
+ * Rules (evaluated against a server's evidence ledger):
+ *   - published + evidence + verified       => indexable
+ *   - published + no evidence              => not indexable
+ *   - published + unverified               => not indexable
+ *   - draft + evidence + verified          => not indexable
+ *   - unknown status                       => not indexable
  */
-export declare function isServerIndexable(published: boolean, evidenceCount: number, evidenceVerified: boolean, status: IndexableStatus): {
+export declare function isServerIndexable(published: boolean, evidenceCount: number, evidenceVerified: boolean, status: "published" | "unverified" | "draft" | "unknown"): {
     indexable: boolean;
     reason: string;
     decidedAt: string;
 };
-/**
- * Type guard for checking if a server entry passes publication authority.
- * Use this in route handlers for runtime protection.
- */
-export declare function isServerIndexableEntry(entry: {
-    publicationStatus: string;
-    evidenceRefs?: string[];
-    verificationStatus: string;
-}): boolean;
 //# sourceMappingURL=index.d.ts.map
