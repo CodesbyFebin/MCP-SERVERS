@@ -44,3 +44,4 @@ coverage/
 app-mcpserver-in/.next/
 app-mcpserver-in/.pytest_cache/
 package-lock.json
+.vercel
