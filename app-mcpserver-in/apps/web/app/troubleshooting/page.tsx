@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { getIndexableServers } from "@/src/content/route-helpers";
-import { collectionPageJsonLd, breadcrumbListJsonLd, faqPageJsonLd } from "@/src/seo/schema";
+import { collectionPageJsonLd, breadcrumbListJsonLd } from "@/src/seo/schema";
 import { Breadcrumbs } from "@/src/components/content/Breadcrumbs";
 import { DirectAnswer } from "@/src/components/content/DirectAnswer";
 import { FAQ } from "@/src/components/content/FAQ";
