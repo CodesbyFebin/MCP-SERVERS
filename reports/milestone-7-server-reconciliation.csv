@@ -1,0 +1,53 @@
+# Milestone 7 — Server Entity Reconciliation Report
+# Generated: 2026-08-22
+# Purpose: Document legacy indexed server URL handling and publication authority migration
+# Authority: isServerIndexable() from @mcp/servers-registry (single publication predicate)
+
+# LEGACY_URL,CANONICAL_URL,LEGACY_STATUS,RECONCILIATION_ACTION,NOTES
+/servers/mcp-server-postgres,/servers/mcp-server-postgres,hardcoded SSG page,REPLACED by dynamic [slug] route,Old static page removed; now driven by server registry adapter
+/servers,/servers,hardcoded aggregate,UPGRADED to registry-driven,Now uses getIndexableServers() from adapter
+/categories,/categories,not existent,CREATED,Derives from indexable servers' categories field
+/capabilities,/capabilities,not existent,CREATED,Derives from indexable servers' capabilities field
+/sitemap.xml,/sitemap.xml,not existent,CREATED,Combines editorial + server cohorts via publication authority
+/llms.txt,/llms.txt,not existent,CREATED,Same public cohorts as sitemap
+
+# PUBLICATION_AUTHORITY_MIGRATION
+# OLD: Hardcoded pages with embedded data
+# NEW: Dynamic routes + registry adapter delegating to isServerIndexable()
+# 
+# SERVER REGISTRY MIGRATION:
+# - mcp-server-postgres: Had unsupported fields (version="none", capabilities=[], tags=["database","postgres","placeholder"], categories=["database"])
+# - NOW: All unsupported fields null/empty (version=null, capabilities=null, tags=[], categories=[]) — only evidence-backed fields populated
+# - publicationStatus: "published" (registry entry exists)
+# - verificationStatus: "unverified" (no verified implementation)
+# - evidenceRefs: 4 primary-source evidence items (GitHub, npm, PyPI, MCP Spec)
+# - isVerified: false (fails isServerIndexable: published + evidence but NOT verified)
+# - Result: Page renders with NOT-INDEXED banner, correct JSON-LD, evidence panel
+
+# RECONCILIATION_RULES
+# 1. Any server entry without verified implementation → isVerified=false → NOT-INDEXED banner
+# 2. Only servers passing isServerIndexable() appear in /servers, /categories, /capabilities, sitemap, llms.txt
+# 3. Categories/Capabilities pages derive ONLY from indexable servers
+# 4. Cross-system linking (editorial → server) via getRelatedPublicServers() filtering by isVerified
+# 5. No AggregateRating, Review, Offer, PriceSpecification, Certification without evidence
+# 6. Canonical origin: https://www.mcpserver.in (app.mcpserver.in is NOT a public authority)
+
+# VERIFICATION_DECISIONS
+# mcp-server-postgres: published+unverified → NOT INDEXABLE
+# Reason: evidence exists but none verified (evidenceRefs point to absence findings)
+# 
+# Future servers must provide:
+# - Verified source code (repository URL in ledger)
+# - Verified capabilities (tools/resources/prompts independently confirmed)
+# - Verified transport/authentication mechanisms
+# - At least one evidenceRef with status="verified"
+# 
+# Only then will isServerIndexable() return indexable=true
+
+# CHANGE_LOG
+# 2026-08-22: Initial reconciliation structure created
+# 2026-08-22: Server registry refactored to adapter pattern
+# 2026-08-22: Dynamic [slug] route created
+# 2026-08-22: Categories/Capabilities pages created
+# 2026-08-22: Sitemap + llms.txt created
+# 2026-08-22: Postgres entity cleaned (unsupported fields nulled)

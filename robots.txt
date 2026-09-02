@@ -1,0 +1,18 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /drafts/
+Disallow: /internal/
+Disallow: /admin/
+Disallow: /profile/
+Disallow: /register/
+Disallow: /login/
+
+User-agent: GPTBot
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+
+Sitemap: https://www.mcpserver.in/sitemap.xml

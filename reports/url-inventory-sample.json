@@ -1,0 +1,24 @@
+URL Inventory Sample for MCP-SERVERS Project
+
+The url-inventory.json file contains registry entries for content generation.
+
+Sample entry structure:
+{
+  "id": "entry-slug",
+  "slug": "server-slug",
+  "path": "/path/to/server/",
+  "primaryKeyword": "keyword",
+  "secondaryKeywords": ["keyword1", "keyword2"],
+  "title": "Server Name",
+  "description": "Server description",
+  "contentType": "server",
+  "cluster": "sitemap-group",
+  "dependencies": [],
+  "standards": [],
+  "operatingSystem": "linux",
+  "license": "MIT"
+}
+
+Processing via scripts/orchestrate-with-workflow.ts
+Batch size: configurable (default 10)
+Workflow: contentGenerationWorkflow

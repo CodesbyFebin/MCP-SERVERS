@@ -1,0 +1,44 @@
+# MCPserver.in - Human Attribution
+
+## Core Team
+
+**Lead Developer**: cyberteck
+- Primary architect and implementation
+- SAFE-DEEP OS v5 design
+- MCPserver.in and app.mcpserver.in coordination
+
+**Security Lead**: security team
+- Security policy and compliance
+- Threat modeling (32 categories across 8 categories)
+- Policy engine and JWT authentication
+
+**Documentation**: documentation team
+- Architecture documents (7 major files)
+- Evidence model (EVIDENCE_MODEL.md)
+- Migration inventory (MIGRATION_INVENTORY.md)
+- Threat model (THREAT_MODEL.md)
+- API specification (API_MODEL.md)
+
+**QA & Testing**: QA team
+- Observability suite (metrics, health checks, error tracking)
+- Test-driven development (Vitest/Pytest suites)
+- Production gate verification
+
+## Contributors
+
+Individual contributors to the MCP-SERVERS project are acknowledged in:
+- `https://www.mcpserver.in/contributors`
+- `https://app.mcpserver.in/contributors`
+
+## Version
+
+SAFE-DEEP OS v5 - Phase 1.5 hardened
+- 11 shared packages
+- 7 architecture documents
+- 1,187-artifact migration accounting
+- QUARANTINE fail-closed behavior
+- Dual-surface www/app split
+
+---
+
+This project follows the Model Context Protocol (MCP) for structured domain modeling, evidence-led publication, and dual-product architecture (MCPserver.in + app.mcpserver.in).
