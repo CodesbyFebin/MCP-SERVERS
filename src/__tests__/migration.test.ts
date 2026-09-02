@@ -122,18 +122,59 @@ describe("migration — GSC Coverage-Valid cohort (676 URLs)", () => {
   });
 });
 
-describe("migration — milestone-7 server reconciliation ledger", () => {
-  it("milestone-7-server-reconciliation.csv exists and has content", () => {
-    const ledgerPath = path.join(process.cwd(), "reports/milestone-7-server-reconciliation.csv");
-    expect(fs.existsSync(ledgerPath)).toBe(true);
-    const content = fs.readFileSync(ledgerPath, "utf-8");
-    expect(content.trim().length).toBeGreaterThan(0);
-    const lines = content.trim().split("\n");
-    expect(lines.length).toBeGreaterThan(5);
+describe("migration — milestone-7 migration ledger (spec-compliant)", () => {
+  const LEDGER_PATH = path.join(process.cwd(), "reports/milestone-7-migration-ledger.csv");
+
+  it("milestone-7-migration-ledger.csv exists", () => {
+    expect(fs.existsSync(LEDGER_PATH)).toBe(true);
   });
 
-  it("server-registry has the mcp-server-postgres entry documented in the ledger", () => {
+  it("CSV has the spec column headers", () => {
+    const header = fs.readFileSync(LEDGER_PATH, "utf-8").split("\n")[0];
+    expect(header).toBe("family_slug,canonical_url,gsc_clicks,gsc_impressions,decision,evidence,redirect_target");
+  });
+
+  it("every row has a non-empty decision (enum: KEEP_INDEXED | REDIRECT_301 | DEFER_NOINDEX | DROP_NOINDEX)", () => {
+    const lines = fs.readFileSync(LEDGER_PATH, "utf-8").trim().split("\n");
+    const VALID_DECISIONS = new Set(["KEEP_INDEXED", "REDIRECT_301", "DEFER_NOINDEX", "DROP_NOINDEX"]);
+    for (const line of lines.slice(1)) {
+      const decision = line.split(",")[4];
+      expect(VALID_DECISIONS.has(decision)).toBe(true);
+    }
+  });
+
+  it("decision distribution reflects the known cohort sizes", () => {
+    // The ledger covers: 676 GSC URLs + 83 registry paths
+    // GSC redirect sources (93) → REDIRECT_301
+    // GSC non-redirect (583) → KEEP_INDEXED
+    // Registry paths not in GSC (72) → DEFER_NOINDEX
+    const lines = fs.readFileSync(LEDGER_PATH, "utf-8").trim().split("\n");
+    const counts: Record<string, number> = {};
+    for (const line of lines.slice(1)) {
+      const d = line.split(",")[4];
+      counts[d] = (counts[d] ?? 0) + 1;
+    }
+    expect(counts["REDIRECT_301"]).toBe(93);   // 93 GSC URLs that are redirect sources
+    expect(counts["KEEP_INDEXED"]).toBeGreaterThan(500); // GSC non-redirect cohort
+    expect(counts["DEFER_NOINDEX"]).toBeGreaterThan(0);  // registry paths not in GSC
+    expect(counts["DROP_NOINDEX"] ?? 0).toBe(0);         // all numeric-suffix are in redirect map
+    expect(lines.length - 1).toBeGreaterThan(700);       // ledger is comprehensive
+  });
+
+  it("REDIRECT_301 rows all have a non-empty redirect_target", () => {
+    const lines = fs.readFileSync(LEDGER_PATH, "utf-8").trim().split("\n");
+    for (const line of lines.slice(1)) {
+      const cols = line.split(",");
+      if (cols[4] === "REDIRECT_301") {
+        expect(cols[6]).toBeTruthy();
+      }
+    }
+  });
+
+  it("server-registry mcp-server-postgres entry is documented in the legacy reconciliation CSV", () => {
+    // The milestone-7-server-reconciliation.csv documents the server registry migration.
     const ledgerPath = path.join(process.cwd(), "reports/milestone-7-server-reconciliation.csv");
+    expect(fs.existsSync(ledgerPath)).toBe(true);
     const content = fs.readFileSync(ledgerPath, "utf-8");
     expect(content).toContain("mcp-server-postgres");
     expect(content).toContain("/servers/mcp-server-postgres");
