@@ -1,8 +1,8 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "nextjs",
-  "rootDirectory": "app-mcpserver-in",
-  "buildCommand": "cd apps/web && npm install && npm run build",
-  "installCommand": "npm install",
-  "devCommand": "cd apps/web && npm run dev"
+  "rootDirectory": "app-mcpserver-in/apps/web",
+  "buildCommand": "npm run build",
+  "installCommand": "npm install --legacy-peer-deps",
+  "devCommand": "npm run dev"
 }

@@ -125,4 +125,13 @@ export declare function isServerIndexable(published: boolean, evidenceCount: num
     reason: string;
     decidedAt: string;
 };
+/**
+ * Type guard: checks if a server entry satisfies the publication authority
+ * (isServerIndexable) based on its stored metadata fields.
+ */
+export declare function isServerIndexableEntry(entry: {
+    publicationStatus?: string;
+    verificationStatus?: string;
+    evidenceRefs?: string[];
+}): boolean;
 //# sourceMappingURL=index.d.ts.map

@@ -166,3 +166,17 @@ export function isServerIndexable(published, evidenceCount, evidenceVerified, st
     // unknown status or any other case
     return { indexable: false, reason: "unknown-status", decidedAt: new Date().toISOString() };
 }
+/**
+ * Type guard: checks if a server entry satisfies the publication authority
+ * (isServerIndexable) based on its stored metadata fields.
+ */
+export function isServerIndexableEntry(entry) {
+    const published = entry.publicationStatus === "published";
+    const evidenceCount = entry.evidenceRefs?.length ?? 0;
+    const evidenceVerified = entry.verificationStatus === "verified" && evidenceCount > 0;
+    const rawStatus = published ? "published" : entry.verificationStatus ?? "unknown";
+    const status = rawStatus === "published" || rawStatus === "unverified" || rawStatus === "draft"
+        ? rawStatus
+        : "unknown";
+    return isServerIndexable(published, evidenceCount, evidenceVerified, status).indexable;
+}
