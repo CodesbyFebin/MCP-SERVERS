@@ -53,11 +53,10 @@ WORKDIR /app
 RUN chown -R node:node /app
 USER node
 
-# Copy the standalone output (server.js, .next/standalone, public, .next/static)
-# plus the static assets directory Next keeps outside of standalone.
+# Copy the standalone output (server.js, .next/standalone, .next/static).
+# No ./public directory exists — Next.js App Router uses app/favicon.ico instead.
 COPY --from=build --chown=node:node /app/.next/standalone ./
 COPY --from=build --chown=node:node /app/.next/static ./.next/static
-COPY --from=build --chown=node:node /app/public ./public
 
 EXPOSE 3000
 
