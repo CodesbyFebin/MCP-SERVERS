@@ -1,0 +1,69 @@
+import { NextResponse } from "next/server";
+
+/**
+ * /.well-known/ai.txt — AI crawler directive file (equivalent to robots.txt for AI agents).
+ * Mirrors the root ai.txt so the path resolves correctly under app/.well-known/
+ * in the Next.js App Router.
+ */
+const AI_TXT = `# MCPserver.in - Crawler Permissions (opt-in)
+
+## Agent Directives
+
+The following directives control crawler behavior for MCPserver.in:
+
+### Allow (default for compliant agents)
+
+- \`/\` - Homepage and main entry point
+- \`/servers\` - Server directory (AI-indexed)
+- \`/servers/[slug]\` - Individual server pages
+- \`/categories\` - Category browsing and filtering
+- \`/integrations\` - Integration directory
+- \`/clients\` - Client libraries
+- \`/evidence\` - Publication authority and evidence
+- \`/methodology\` - SAFE-DEEP OS v5 methodology
+- \`/docs\` - Technical documentation
+- \`/learn\` - Learning resources
+- \`/glossary\` - Defined terms and key concepts
+- \`/security\` - Security model and threat mitigation
+- \`/about\` - About page
+- \`/state-of-mcp\` - Research and analysis
+
+### Disallow (strictly restricted)
+
+- \`/drafts/\` - Draft publications, not yet verified
+- \`/internal/\` - Internal systems and APIs
+- \`/api/\` - JSON-RPC and REST API endpoints
+- \`/admin/\` - Administrative interfaces
+- \`/profile/\` - User profile pages
+- \`/register/\` - Registration flows
+- \`/login/\` - Authentication pages
+- \`/sitemap/\` - Sitemap metadata (reference only)
+- \`/robots/\` - Robots.txt metadata (reference only)
+
+### Per-Agent Directives
+
+| Agent | Allowed Paths | Notes |
+|-------|--------------|-------|
+| \`GPTBot\` | Full site except \`/drafts/\` and \`/internal/\` | Primary crawler for content indexing |
+| \`ClaudeBot\` | \`/\`, \`/servers\`, \`/integrations\`, \`/clients\`, \`/docs\` | Focused on integration and documentation |
+| \`PerplexityBot\` | \`/\`, \`/servers\`, \`/categories\`, \`/evidence\` | Factual queries and server data |
+| \`Googlebot\` | Full site (default robots) | Standard Google indexing |
+
+## Opt-out Mechanism
+
+Agents respect the \`noindex\` directive via:
+- \`X-Robots-Tag: noindex\` HTTP header
+- \`<meta name="robots" content="noindex">\` HTML tag
+- \`Disallow\` in robots.txt for paths not meant for indexing
+
+*This file complements robots.txt and sitemap.xml. For full policy, see security.txt and the isServerIndexable() publication authority function.*
+`;
+
+export function GET() {
+  return new NextResponse(AI_TXT, {
+    headers: {
+      "Content-Type": "text/plain; charset=utf-8",
+      "Cache-Control": "public, max-age=86400",
+    },
+  });
+}

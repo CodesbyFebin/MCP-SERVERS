@@ -137,3 +137,57 @@ describe("sitemap: deterministic lastmod", () => {
     expect(sitemapSource).not.toMatch(/lastModified:\s*now/);
   });
 });
+
+describe("Phase 2 canonical hardening", () => {
+  describe("middleware: trailing-slash normalization", () => {
+    const middlewareSource = readSource("middleware.ts");
+
+    it("strips trailing slash from non-root paths via 308 redirect", () => {
+      // Non-root paths ending in "/" must 308-redirect to the path without the trailing slash.
+      expect(middlewareSource).toMatch(/308/);
+      expect(middlewareSource).toMatch(/pathname !== "\/"/);
+      expect(middlewareSource).toMatch(/endsWith\("\/"\)/);
+      // Checks that replace(/\/+/ is present. Using toMatch(string) not a regex to avoid
+      // esbuild confusing / in regex literal with / in the path-pattern replace call.
+      expect(middlewareSource).toContain("replace(/\\/+");
+    });
+
+    it("does not redirect root path \"/\"", () => {
+      // Root "/" has no trailing slash to strip; must not be included in the strip logic.
+      expect(middlewareSource).toMatch(/pathname !== "\/"/);
+    });
+
+    it("excludes llms-full.txt from the matcher (static pre-rendered)", () => {
+      // llms-full.txt is pre-rendered and must bypass the middleware matcher.
+      expect(middlewareSource).toContain("llms-full.txt");
+    });
+  });
+
+  describe("next.config.mjs: security headers", () => {
+    const configSource = readSource("next.config.mjs");
+
+    it("exports HSTS header with max-age=31536000 and includeSubDomains", () => {
+      expect(configSource).toMatch(/Strict-Transport-Security/);
+      expect(configSource).toMatch(/max-age=31536000/);
+      expect(configSource).toMatch(/includeSubDomains/);
+    });
+
+    it("CSP connect-src includes Sentry ingest origins", () => {
+      // Sentry SDK uses *.ingest.sentry.io for event ingestion.
+      expect(configSource).toMatch(/ingest\.sentry\.io/);
+    });
+
+    it("CSP script-src includes browser.sentry-cdn.com", () => {
+      // Sentry SDK loader is served from browser.sentry-cdn.com.
+      expect(configSource).toMatch(/browser\.sentry-cdn\.com/);
+    });
+
+    it("output is standalone for Docker multi-stage build", () => {
+      expect(configSource).toMatch(/output:\s*["']standalone["']/);
+    });
+
+    it("trailingSlash is false (enforce canonical path form)", () => {
+      expect(configSource).toMatch(/trailingSlash:\s*false/);
+    });
+  });
+});

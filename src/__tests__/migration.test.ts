@@ -15,7 +15,9 @@ const gscIndexed = JSON.parse(
   fs.readFileSync(path.join(DATA_DIR, "gsc-indexed-urls.json"), "utf-8")
 ) as { url: string; path: string; bucket: string; clicks: number; impressions: number }[];
 
-/** Pre-mapped 94 legacy redirects (92 numeric-suffix glossary + 2 mcp-server-directory). */
+/** Pre-mapped 92 legacy redirects (90 glossary + 1 mcp-server-directory + 1 /directory/).
+ *  The 4 topical /directory/* paths (iot, databases, devops, monitoring) are held
+ *  in the ledger as EVIDENCE_REVIEW per G8 — they are NOT mass-redirected. */
 const redirects = JSON.parse(
   fs.readFileSync(path.join(DATA_DIR, "glossary-and-legacy-redirects.json"), "utf-8")
 ) as { source: string; destination: string; permanent: boolean }[];
@@ -65,14 +67,11 @@ describe("migration — GSC Coverage-Valid cohort (676 URLs)", () => {
   it("redirect sources that are still GSC-valid equals the redirect count for those buckets", () => {
     // Before the redirects are deployed, the legacy URLs remain in GSC Coverage-Valid.
     // After deployment, Google should drop them. The expected overlap right now is:
-    // - 92 numeric-suffix glossary entries (all still in GSC, all in redirect map)
-    // - 1 /mcp-server-directory entry (without trailing slash; the trailing-slash variant
-    //   is not in GSC because the redirect at deployment will collapse them)
+    // - 90 numeric-suffix glossary entries (2 protected terms removed)
+    // - 1 /mcp-server-directory entry (without trailing slash)
+    // 4 /directory/* paths are EVIDENCE_REVIEW in the ledger (G8), not redirect map entries.
     const overlap = gscIndexed.filter((r) => redirectMap.has(stripTrailingSlash(r.path)));
-    // 92 glossary + 1 mcp-server-directory = 93, plus 1 mcp-server-directory with trailing
-    // slash if it appears in GSC. Right now 93 (1 of the 2 /mcp-server-directory paths
-    // is in GSC — the no-trailing-slash variant).
-    expect(overlap.length).toBe(93);
+    expect(overlap.length).toBe(91);
   });
 
   it("total cohort clicks + impressions are positive", () => {
@@ -107,17 +106,28 @@ describe("migration — GSC Coverage-Valid cohort (676 URLs)", () => {
         else if (row.clicks === 0 && row.impressions < 10) { noindex++; }
         else { evidenceReview++; } // borderline: 0 clicks, 10-49 imps
       }
-      // 93 redirect sources are still in GSC (pre-deployment cohort)
-      expect(redirect).toBe(93);
+      // 91 redirect sources are still in GSC: 90 glossary + 1 mcp-server-directory
+      // The 4 /directory/* paths are EVIDENCE_REVIEW (G8), not redirect map entries.
+      expect(redirect).toBe(91);
       expect(keep + redirect + evidenceReview + noindex).toBe(676);
     });
 
-    it("all 92 numeric-suffix glossary URLs from GSC are in the redirect map", () => {
+    it("all 90 numeric-suffix glossary URLs from GSC are in the redirect map (post-blocker resolution)", () => {
       const numericSuffix = gscIndexed.filter((r) => /-\d+\/?$/.test(r.path));
+      // 92 numeric-suffix in GSC, but mcp-soc-2 and mcp-iso-27001 are now protected
+      // and removed from the redirect map (BLOCKER 1 RESOLVED). 90 remain.
       expect(numericSuffix).toHaveLength(92);
+      let inMap = 0;
+      let notInMap: string[] = [];
       for (const row of numericSuffix) {
-        expect(redirectMap.has(stripTrailingSlash(row.path))).toBe(true);
+        if (redirectMap.has(stripTrailingSlash(row.path))) inMap++;
+        else notInMap.push(row.path);
       }
+      expect(inMap).toBe(90);
+      // The 2 not in the map are the protected terms
+      expect(notInMap).toEqual(
+        expect.arrayContaining(["/glossary/mcp-soc-2/", "/glossary/mcp-iso-27001/"])
+      );
     });
   });
 });
@@ -131,34 +141,39 @@ describe("migration — milestone-7 migration ledger (spec-compliant)", () => {
 
   it("CSV has the spec column headers", () => {
     const header = fs.readFileSync(LEDGER_PATH, "utf-8").split("\n")[0];
-    expect(header).toBe("family_slug,canonical_url,gsc_clicks,gsc_impressions,decision,evidence,redirect_target");
+    // 2 new columns added for BLOCKER 3 resolution (gsc_status, publication_authority)
+    expect(header).toBe(
+      "family_slug,canonical_url,gsc_clicks,gsc_impressions,decision,evidence,redirect_target,gsc_status,publication_authority",
+    );
   });
 
-  it("every row has a non-empty decision (enum: KEEP_INDEXED | REDIRECT_301 | DEFER_NOINDEX | DROP_NOINDEX)", () => {
+  it("every row has a non-empty decision (enum: KEEP_INDEXED | REDIRECT_301 | EVIDENCE_REVIEW | DEFER_NOINDEX | DROP_NOINDEX)", () => {
     const lines = fs.readFileSync(LEDGER_PATH, "utf-8").trim().split("\n");
-    const VALID_DECISIONS = new Set(["KEEP_INDEXED", "REDIRECT_301", "DEFER_NOINDEX", "DROP_NOINDEX"]);
+    const VALID_DECISIONS = new Set(["KEEP_INDEXED", "REDIRECT_301", "EVIDENCE_REVIEW", "DEFER_NOINDEX", "DROP_NOINDEX"]);
     for (const line of lines.slice(1)) {
       const decision = line.split(",")[4];
       expect(VALID_DECISIONS.has(decision)).toBe(true);
     }
   });
 
-  it("decision distribution reflects the known cohort sizes", () => {
-    // The ledger covers: 676 GSC URLs + 83 registry paths
-    // GSC redirect sources (93) → REDIRECT_301
-    // GSC non-redirect (583) → KEEP_INDEXED
-    // Registry paths not in GSC (72) → DEFER_NOINDEX
+  it("decision distribution reflects the known cohort sizes (post-blocker resolution, G8: /directory/* held for EVIDENCE_REVIEW)", () => {
+    // The ledger covers: 676 GSC URLs + 72 registry paths not in GSC
+    // GSC redirect sources (91) → REDIRECT_301 (90 glossary + 1 mcp-server-directory)
+    // GSC non-redirect (581) → KEEP_INDEXED
+    // GSC /directory/* (4) → EVIDENCE_REVIEW (G8: per-path resolution pending)
+    // Registry paths not in GSC (72) → DEFER_NOINDEX (decoupled, gsc_status=absent)
     const lines = fs.readFileSync(LEDGER_PATH, "utf-8").trim().split("\n");
     const counts: Record<string, number> = {};
     for (const line of lines.slice(1)) {
       const d = line.split(",")[4];
       counts[d] = (counts[d] ?? 0) + 1;
     }
-    expect(counts["REDIRECT_301"]).toBe(93);   // 93 GSC URLs that are redirect sources
-    expect(counts["KEEP_INDEXED"]).toBeGreaterThan(500); // GSC non-redirect cohort
-    expect(counts["DEFER_NOINDEX"]).toBeGreaterThan(0);  // registry paths not in GSC
-    expect(counts["DROP_NOINDEX"] ?? 0).toBe(0);         // all numeric-suffix are in redirect map
-    expect(lines.length - 1).toBeGreaterThan(700);       // ledger is comprehensive
+    expect(counts["REDIRECT_301"]).toBe(91); // 90 glossary + 1 mcp-server-directory
+    expect(counts["KEEP_INDEXED"]).toBe(581);
+    expect(counts["EVIDENCE_REVIEW"] ?? 0).toBe(4); // /directory/{iot,databases,devops,monitoring} (G8)
+    expect(counts["DEFER_NOINDEX"]).toBe(72);
+    expect(counts["DROP_NOINDEX"] ?? 0).toBe(0);
+    expect(lines.length - 1).toBe(748);
   });
 
   it("REDIRECT_301 rows all have a non-empty redirect_target", () => {

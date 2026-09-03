@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 /**
- * Canonical host guard.
+ * Canonical host guard + trailing-slash policy.
  *
  * Product doctrine (locked):
  *   www.mcpserver.in — public search / evidence / knowledge authority
@@ -10,6 +10,10 @@ import { NextRequest, NextResponse } from "next/server";
  *
  * Until the standalone app workspace exists, app.mcpserver.in must NOT serve
  * the public authority corpus. We issue a 308 to www preserving path and query.
+ *
+ * Trailing-slash policy: paths are non-slash canonical. Any non-root path with
+ * a trailing slash is 308-redirected to the same path without the trailing slash.
+ * The root path "/" is unchanged.
  */
 const APP_HOST = "app.mcpserver.in";
 const APEX_HOST = "mcpserver.in";
@@ -28,19 +32,19 @@ export function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  // app.mcpserver.in → www.mcpserver.in (308, preserve path + query)
-  if (hostname === APP_HOST) {
+  // Host normalization: app + apex → www (308)
+  if (hostname === APP_HOST || hostname === APEX_HOST) {
     const url = request.nextUrl.clone();
     url.protocol = "https:";
     url.host = CANONICAL_HOST;
     return NextResponse.redirect(url, 308);
   }
 
-  // mcpserver.in apex → www.mcpserver.in (308, preserve path + query)
-  if (hostname === APEX_HOST) {
+  // Trailing-slash normalization: non-root paths ending in "/" → 308 to strip
+  const { pathname, search } = request.nextUrl;
+  if (pathname !== "/" && pathname.endsWith("/")) {
     const url = request.nextUrl.clone();
-    url.protocol = "https:";
-    url.host = CANONICAL_HOST;
+    url.pathname = pathname.replace(/\/+$/, "");
     return NextResponse.redirect(url, 308);
   }
 
@@ -49,5 +53,9 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   // Run on everything except static assets and Next internals.
-  matcher: ["/((?!_next/static|_next/image|favicon.ico|robots.txt|sitemap.xml|llms.txt).*)"],
+  matcher: [
+    // Skip static assets, Next.js internals, pre-rendered text surfaces,
+    // and RFC 8615 /.well-known/ resources.
+    "/((?!_next/static|_next/image|favicon.ico|robots.txt|sitemap.xml|llms.txt|llms-full.txt|\\.well-known/).*)",
+  ],
 };

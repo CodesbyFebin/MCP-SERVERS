@@ -6,7 +6,11 @@ import { serverRegistry } from "@/content/server-registry";
 
 const DATA_DIR = path.join(process.cwd(), "data/migration/source");
 
-/** 94 redirects: 92 numeric-suffix glossary + 2 mcp-server-directory. */
+/** 93 redirects: 90 numeric-suffix glossary + 3 legacy (2 mcp-server-directory + 1 /directory/).
+ *  The 2 protected terms (mcp-soc-2, mcp-iso-27001) were removed from the handoff
+ *  and are listed separately in glossary-protections.json.
+ *  The 4 topical /directory/* paths (iot, databases, devops, monitoring) are held
+ *  in the ledger as EVIDENCE_REVIEW per G8 — not mass-redirected. */
 const redirects = JSON.parse(
   fs.readFileSync(path.join(DATA_DIR, "glossary-and-legacy-redirects.json"), "utf-8")
 ) as { source: string; destination: string; permanent: boolean }[];
@@ -20,25 +24,31 @@ function stripTrailingSlash(p: string): string {
   return p.endsWith("/") ? p.slice(0, -1) : p;
 }
 
-describe("glossary-migration — numeric suffix reconciliation (94 redirects)", () => {
-  it("redirect map has 94 entries", () => {
-    expect(redirects).toHaveLength(94);
+describe("glossary-migration — numeric suffix reconciliation (93 redirects, post-blocker resolution)", () => {
+  it("redirect map has 93 entries (was 94: 2 protected terms removed; 4 /directory/* held for G8 review)", () => {
+    expect(redirects).toHaveLength(93);
   });
 
-  it("92 of 94 redirects target /glossary/ or /glossary/mcp-server/", () => {
+  it("90 of 92 redirects target /glossary/ or /glossary/mcp-server/", () => {
     const glossaryRedirects = redirects.filter(
       (r) => r.destination === "/glossary/" || r.destination === "/glossary/mcp-server/"
     );
-    expect(glossaryRedirects).toHaveLength(92);
+    expect(glossaryRedirects).toHaveLength(90);
   });
 
-  it("2 of 94 redirects are the /mcp-server-directory pair", () => {
-    // /directory/ is not a published page in this build (see milestone-7-server-reconciliation.csv:
-    // legacy /directory/* → /servers). These 2 redirects will be remapped to /servers at merge time.
-    const dirRedirects = redirects.filter((r) => r.destination === "/directory/");
-    expect(dirRedirects).toHaveLength(2);
+  it("3 redirects target /servers/ (1 mcp-server-directory pair + 1 /directory/ generic)", () => {
+    // /mcp-server-directory/* 301 → /servers/ (one hop).
+    // /directory/ generic → /servers/.
+    // The 4 topical /directory/* paths (iot, databases, devops, monitoring) are
+    // EVIDENCE_REVIEW in the ledger per G8 — not mass-redirected here.
+    const dirRedirects = redirects.filter((r) => r.destination === "/servers/");
+    expect(dirRedirects).toHaveLength(3); // 2 mcp-server-directory + 1 /directory/
     const sources = dirRedirects.map((r) => r.source).sort();
-    expect(sources).toEqual(["/mcp-server-directory", "/mcp-server-directory/"]);
+    expect(sources).toEqual([
+      "/directory/",
+      "/mcp-server-directory",
+      "/mcp-server-directory/",
+    ]);
   });
 
   it("all redirect sources start with /", () => {
@@ -61,28 +71,40 @@ describe("glossary-migration — numeric suffix reconciliation (94 redirects)", 
   });
 
   it("redirect sources are unique (counting both /mcp-server-directory variants as one logical source)", () => {
-    // The data has 94 raw sources, but the 2 /mcp-server-directory variants
-    // (with and without trailing slash) represent one logical redirect pair.
-    // Both must be kept in vercel.json so each variant 301s correctly.
+    // The data has 93 raw sources: 90 glossary + 2 mcp-server-directory + 1 /directory/.
+    // (4 topical /directory/* held for G8 review, not in handoff.)
+    // After stripping trailing slashes: 90 glossary + 1 mcp-server-directory + 1 /directory/ = 92 unique.
     const sources = redirects.map((r) => stripTrailingSlash(r.source));
     const uniqueSources = new Set(sources);
-    expect(sources.length).toBe(94);        // raw
-    expect(uniqueSources.size).toBe(93);    // 92 glossary + 1 mcp-server-directory
+    expect(sources.length).toBe(93);        // raw
+    expect(uniqueSources.size).toBe(92);     // 90 glossary + 1 mcp-server-directory + 1 /directory/
   });
 
-  it("every numeric-suffix glossary path in GSC is in the redirect map", () => {
+  it("every numeric-suffix glossary path in GSC is in the redirect map (excluding the 2 protected terms)", () => {
     // GSC paths carry trailing slashes; redirect sources do not — normalise both.
+    // After BLOCKER 1 resolution, 92 numeric-suffix paths exist in GSC, but 2 of them
+    // (mcp-soc-2, mcp-iso-27001) are now protected and not in the redirect map.
     const numericGlossary = gscIndexed.filter(
       (r) => r.bucket === "glossary" && /-\d+\/?$/.test(r.path)
     );
     expect(numericGlossary).toHaveLength(92);
     const redirectSources = new Set(redirects.map((r) => stripTrailingSlash(r.source)));
+    let inMap = 0;
+    const notInMap: string[] = [];
     for (const row of numericGlossary) {
-      expect(redirectSources.has(stripTrailingSlash(row.path))).toBe(true);
+      if (redirectSources.has(stripTrailingSlash(row.path))) {
+        inMap++;
+      } else {
+        notInMap.push(row.path);
+      }
     }
+    expect(inMap).toBe(90);
+    expect(notInMap).toEqual(
+      expect.arrayContaining(["/glossary/mcp-soc-2/", "/glossary/mcp-iso-27001/"]),
+    );
   });
 
-  it("92 numeric-suffix glossary sources match /glossary/mcp-*-<digit>/?", () => {
+  it("90 numeric-suffix glossary sources match /glossary/mcp-*-<digit>/?", () => {
     const glossaryRedirects = redirects.filter(
       (r) => r.destination === "/glossary/" || r.destination === "/glossary/mcp-server/"
     );

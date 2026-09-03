@@ -32,13 +32,18 @@ const redirects = JSON.parse(
   fs.readFileSync(path.join(DATA_DIR, "glossary-and-legacy-redirects.json"), "utf-8")
 ) as { source: string; destination: string; permanent: boolean }[];
 
+// Only permanent redirects (permanent: true) participate in REDIRECT_301 decisions.
+// Protected terms (permanent: false) are editorial gaps — they do NOT get a redirect
+// decision, which allows them to be treated as candidate editorial paths.
+const permanentRedirects = redirects.filter((r) => r.permanent);
+
 const CANONICAL_ORIGIN = "https://www.mcpserver.in";
 function strip(p: string): string {
   return p.endsWith("/") ? p.slice(0, -1) : p;
 }
 function resolveDestination(d: string): string {
+  // /glossary/mcp-server/ is a synonym for the canonical /glossary/ hub.
   if (d === "/glossary/mcp-server/") return "/glossary/";
-  if (d === "/directory/") return "/servers";
   return d;
 }
 
@@ -49,9 +54,11 @@ for (const row of gsc) {
   if (!gscByPath.has(key)) gscByPath.set(key, { clicks: row.clicks, impressions: row.impressions });
 }
 
-// Build no-slash -> destination map.
+// Build no-slash -> destination map (only permanent redirects).
+// Protected terms (permanent: false) are NOT added to the map, so they do not
+// receive REDIRECT_301 — they fall through to GSC or DROP_NOINDEX classification.
 const redirectMap = new Map<string, string>();
-for (const r of redirects) {
+for (const r of permanentRedirects) {
   const src = strip(r.source);
   if (!redirectMap.has(src)) redirectMap.set(src, resolveDestination(r.destination));
 }
@@ -70,12 +77,16 @@ interface Row {
   decision: string;
   evidence: string;
   redirect_target: string;
+  /** Decoupled GSC historical status (RESOLVES BLOCKER 3). */
+  gsc_status: string;
+  /** Decoupled editorial publication authority (RESOLVES BLOCKER 3). */
+  publication_authority: string;
 }
 
 const rows: Row[] = [];
 const seen = new Set<string>();
 
-function addRow(normPath: string, slug: string, gscRow: { clicks: number; impressions: number } | null, redirectDest: string | null): void {
+function addRow(normPath: string, slug: string, gscRow: { clicks: number; impressions: number } | null, redirectDest: string | null, editorialOwned = false): void {
   if (seen.has(normPath)) return;
   seen.add(normPath);
 
@@ -84,7 +95,7 @@ function addRow(normPath: string, slug: string, gscRow: { clicks: number; impres
   let redirectTarget = "";
 
   if (redirectDest) {
-    // Path is a redirect source — REDIRECT_301 wins, even if the path is also in GSC
+    // Path is a permanent redirect source — REDIRECT_301 wins, even if also in GSC
     // (Google will drop the source from Coverage-Valid once the 301 propagates).
     decision = "REDIRECT_301";
     evidence = "handoff_redirect_map";
@@ -93,8 +104,17 @@ function addRow(normPath: string, slug: string, gscRow: { clicks: number; impres
     decision = "KEEP_INDEXED";
     evidence = "gsc_coverage_valid";
   } else if (NUMERIC_SUFFIX.test(slug)) {
+    // Only classify as DROP_NOINDEX if NOT already in the redirect map as protected.
+    // The redirect map now includes all entries (permanent + protected).
+    // If a path is in the redirect map with permanent=false, it stays out of
+    // REDIRECT_301 but also must not be DROP_NOINDEX — it's a protected term.
     decision = "DROP_NOINDEX";
     evidence = "gsc_absent_and_no_redirect";
+  } else if (editorialOwned) {
+    // Path has editorial authority (published in registry) but no GSC presence.
+    // This is the decoupled DEFER_NOINDEX: defer GSC review, not publication authority.
+    decision = "DEFER_NOINDEX";
+    evidence = "gsc_absent_editorial_owned";
   } else {
     decision = "DEFER_NOINDEX";
     evidence = "gsc_absent";
@@ -108,12 +128,16 @@ function addRow(normPath: string, slug: string, gscRow: { clicks: number; impres
     decision,
     evidence,
     redirect_target: redirectTarget,
+    gsc_status: gscRow ? "in_gsc" : "absent",
+    publication_authority: editorialOwned ? "editorial_owned" : "no_editorial",
   });
 }
 
 // 1) Process every GSC URL (676 base rows).
+// Normalize before the seen check to deduplicate slash/non-slash variants.
 for (const row of gsc) {
   const norm = strip(row.path) || "/";
+  if (seen.has(norm)) continue; // Skip if trailing-slash variant was already processed.
   const slug = deriveSlug(norm);
   const gscRow = gscByPath.get(norm) ?? null;
   const dest = redirectMap.get(norm) ?? null;
@@ -121,22 +145,48 @@ for (const row of gsc) {
 }
 
 // 2) Add every current registry path — these are REDIRECT/DEFER/DROP if not in GSC.
+// Published registry paths are editorial_owned (they have editorial authority).
 for (const entry of Object.values(contentRegistry)) {
   if (entry.status !== "published" || entry.noindex) continue;
   const norm = strip(entry.indexPath);
   const slug = deriveSlug(norm);
   const gscRow = gscByPath.get(norm) ?? null;
   const dest = redirectMap.get(norm) ?? null;
-  addRow(norm, slug, gscRow, dest);
+  addRow(norm, slug, gscRow, dest, true); // editorialOwned = true
 }
 
+// Indexable servers are also editorial-owned.
 for (const server of Object.values(serverRegistry)) {
   if (!isServerIndexableEntry(server)) continue;
   const norm = strip(server.indexPath);
   const slug = deriveSlug(norm);
   const gscRow = gscByPath.get(norm) ?? null;
   const dest = redirectMap.get(norm) ?? null;
-  addRow(norm, slug, gscRow, dest);
+  addRow(norm, slug, gscRow, dest, true); // editorialOwned = true
+}
+
+// 3) EVIDENCE_REVIEW upgrade for any GSC paths with significant equity but no
+// editorial decision. These 4 topical /directory/* paths have GSC coverage (G8)
+// but their destination requires individual resolution:
+//   - exact equivalent category exists  → direct 301 to that category
+//   - valuable intent, no replacement   → REBUILD / KEEP
+//   - obsolete with no value            → 410
+//   - unresolved                        → EVIDENCE_REVIEW
+// The 2 glossary terms (mcp-soc-2, mcp-iso-27001) are PROTECTED in glossary-protections.json
+// and are NOT in this list — they are not GSC-observed and remain protected gaps.
+const EVIDENCE_REVIEW_PATHS = new Set<string>([
+  "/directory/databases",
+  "/directory/devops",
+  "/directory/iot",
+  "/directory/monitoring",
+]);
+
+for (const r of rows) {
+  const path = r.canonical_url.replace(CANONICAL_ORIGIN, "");
+  if (r.decision === "KEEP_INDEXED" && EVIDENCE_REVIEW_PATHS.has(path)) {
+    r.decision = "EVIDENCE_REVIEW";
+    r.evidence = "gsc_coverage_valid_pending_editorial";
+  }
 }
 
 // --- Write CSV ---
@@ -148,6 +198,8 @@ const COLUMNS = [
   "decision",
   "evidence",
   "redirect_target",
+  "gsc_status",
+  "publication_authority",
 ];
 function csvEscape(v: string): string {
   return /[",\n]/.test(v) ? `"${v.replace(/"/g, '""')}"` : v;

@@ -440,11 +440,6 @@
     "permanent": true
   },
   {
-    "source": "/glossary/mcp-soc-2",
-    "destination": "/glossary/",
-    "permanent": true
-  },
-  {
     "source": "/glossary/mcp-udp-proxy-83",
     "destination": "/glossary/",
     "permanent": true
@@ -455,18 +450,18 @@
     "permanent": true
   },
   {
-    "source": "/glossary/mcp-iso-27001",
-    "destination": "/glossary/",
-    "permanent": true
-  },
-  {
     "source": "/mcp-server-directory",
-    "destination": "/directory/",
+    "destination": "/servers/",
     "permanent": true
   },
   {
     "source": "/mcp-server-directory/",
-    "destination": "/directory/",
+    "destination": "/servers/",
+    "permanent": true
+  },
+  {
+    "source": "/directory/",
+    "destination": "/servers/",
     "permanent": true
   }
 ]
