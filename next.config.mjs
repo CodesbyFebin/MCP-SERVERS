@@ -34,9 +34,13 @@ const nextConfig = {
   // bundles only the runtime files Next.js needs in production, enabling the
   // multi-stage Dockerfile to ship a small image.
   output: "standalone",
-  // Trailing-slash policy: false = paths are non-slash canonical; middleware
-  // enforces 308 from slash variants to non-slash.
+  // Trailing-slash policy: false = paths are non-slash canonical. Next's own
+  // trailing-slash 308 is DISABLED (skipTrailingSlashRedirect) so the
+  // middleware owns slash handling — otherwise Next normalizes /directory/
+  // to /directory BEFORE the alias redirect, creating a 308 + 308 chain
+  // instead of the single alias hop the migration contract requires.
   trailingSlash: false,
+  skipTrailingSlashRedirect: true,
   // Legacy directory alias migration (P1): /directory and /mcp-server-directory
   // converge to /servers as ONE 301 hop. Declared at the routing layer so the
   // slashed variants are caught before Next's own trailing-slash 308 (which
