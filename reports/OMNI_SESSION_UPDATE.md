@@ -373,3 +373,46 @@ PHASE 25 PRODUCTION CUTOVER (only after GRANTED)
 *Date: 2026-09-03*
 *Status: 🟡 RELEASE CANDIDATE / HOLD*
 *Next gate: commit working tree → record NEW_SHA → free Colima/Docker disk → docker build → /api/health sha verification*
+
+---
+
+# Round 4 — Remaining-build execution (P0–P24), 2026-09-06
+
+Artifact SHA: `fee01b2f9485c58ae842473668cc38a67b966a69` · Status: 🔴 BLOCKED (cutover) / RC-quality code
+
+## Implemented
+- **P1** — `/directory` + `/mcp-server-directory` (slash-agnostic) → `/servers` as ONE permanent hop; declared in `next.config.mjs` redirects + middleware + vercel.json parity. Topical `/directory/*` NOT matched (G8).
+- **P2** — `/servers` discovery engine: keyword search, category/capability/transport/auth/publisher filters, sorting (name/updated only — no popularity ranking), pagination, query-string persistence, clear-filters, zero-results state. `src/lib/server-discovery.ts` (pure) + `app/servers/ServersDiscovery.tsx` (client) + 32 logic tests. Option facets derived only from the indexable cohort.
+- **P3** — dedicated reachable `mcp-server-postgres` page (noindex, evidence-labeled); `/servers/[slug]` refactored to a generic verified-only template that omits unverified fields.
+- **P5** — `/search` (noindex): client-side search over indexable cohorts only; results expose title/type/snippet/canonical URL/verification state; 9 leakage-guard tests.
+- **P6** — blocking cross-surface cohort test: registry.json == api/servers.json == mcp-registry.json == llms.txt == llms-full.txt == sitemap.xml == /servers page (all from `isServerIndexable()`; handlers must not proxy each other).
+- **P8** — registry-derived SiteHeader: pillar-group nav from `PILLAR_GROUPS`, no hardcoded arrays, unique IDs/canonicalPaths pinned.
+- **P23** — migration ledger gains `canonical_route_status`; **RELEASE BLOCKER surfaced: 565 of 581 KEEP_INDEXED URLs have no canonical route** (248 blog, 146 glossary, 69 docs…). Left for per-URL editorial decisions (G8 discipline; no mass reclassification).
+
+## Runtime bugs caught and fixed by the gates
+1. Middleware infinite-redirect latent bug: NextURL pathname setter re-applied trailing slash → 308 strip redirected to itself. Redirects now mutate a plain URL.
+2. Caddyfile `auto_https on` invalid — container would crash at startup. Removed; `caddy validate` = Valid configuration.
+3. Slashed alias two-hop chain: Next's trailing-slash 308 pre-empted alias redirects → fixed with routing-layer redirects + `skipTrailingSlashRedirect`. Runtime matrix: all 4 alias variants single-hop → `/servers`.
+
+## Verification (all against `mcpserver-in:fee01b2f…`)
+- tsc PASS · vitest **230/230** · next build PASS (114 pages)
+- `/api/health` → `{"status":"ok","sha":"fee01b2f…"}`
+- Runtime redirect matrix: `/directory(,)`, `/mcp-server-directory(,)` → single 308 → `/servers`; `/directory/iot…` → 404 (G8); `/servers/` → 308 → `/servers`
+- Headers: HSTS, CSP, nosniff, Referrer-Policy, Permissions-Policy, X-Frame-Options (6/6)
+- Machine surfaces 8/8 → 200; key pages 5/5 → 200
+- Docker image 345 MB, non-root, standalone, healthcheck green
+- `docker compose config` PASS · `caddy validate` PASS
+
+## Gate deltas this round
+- Dependencies: next@14.2.35 highs → RISK_ACCEPTED_WITH_EVIDENCE (major upgrade deferred); postcss NOT_PRODUCTION_REACHABLE
+- Accessibility / Performance: UNVERIFIED (require staging tooling)
+- Caddy runtime serving: BLOCKED (host port 80 occupied by existing ssh listener; no DNS/ACME here)
+- External staging + Master Reviewer: NOT RUN
+
+## Unblock path to 🟢
+1. Editorial resolves the 565 unserved URLs (REBUILD / redirect / 410) — blocking tests pin the counts.
+2. Host with 80/443 + DNS → full compose up → Caddy runtime verification.
+3. Non-indexable staging at exact SHA → crawl + accessibility + measured performance.
+4. Master Reviewer on the evidence package → then cutover.
+
+*Signed: OMNI-LOOP BUILDER (round 4 — remaining build + runtime certification)*
