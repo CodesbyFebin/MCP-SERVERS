@@ -179,6 +179,36 @@ describe("migration reconciliation", () => {
     }
   });
 
+  it("P23 route coverage: KEEP_INDEXED rows are explicitly classified served vs unserved_pending_editorial (RELEASE BLOCKER surface)", () => {
+    // The canonical build cannot serve most of the historical corpus (legacy
+    // blog/glossary/docs content was never ported). The ledger must state
+    // this explicitly instead of implying KEEP_INDEXED == still published.
+    // These exact counts pin the gap: if either changes, the change must be
+    // conscious (content ported or decisions made per URL).
+    const ledger = readCsv(resolve(process.cwd(), "reports/milestone-7-migration-ledger.csv"));
+    const keep = ledger.filter((r) => r.decision === "KEEP_INDEXED");
+    const served = keep.filter((r) => r.canonical_route_status === "served");
+    const unserved = keep.filter((r) => r.canonical_route_status === "unserved_pending_editorial");
+
+    expect(served.length + unserved.length).toBe(keep.length);
+    expect(served.length).toBe(16);
+    expect(unserved.length).toBe(565);
+
+    // Every unserved KEEP_INDEXED row is a blocker candidate: it will 404 at
+    // cutover unless editorial resolves it (REBUILD / redirect / 410).
+    for (const r of unserved.slice(0, 3)) {
+      expect(r.evidence).toBe("gsc_coverage_valid");
+    }
+  });
+
+  it("route coverage column exists on every row with the documented enum", () => {
+    const ledger = readCsv(resolve(process.cwd(), "reports/milestone-7-migration-ledger.csv"));
+    const VALID = new Set(["served", "unserved_pending_editorial"]);
+    for (const r of ledger) {
+      expect(VALID.has(r.canonical_route_status), r.canonical_url).toBe(true);
+    }
+  });
+
   it("decoupling: no DEFER_NOINDEX row has gsc_status=absent AND publication_authority=editorial_owned (BLOCKER 3 RESOLVED)", () => {
     const ledger = readCsv(resolve(process.cwd(), "reports/milestone-7-migration-ledger.csv"));
     const defer = ledger.filter((r) => r.decision === "DEFER_NOINDEX");

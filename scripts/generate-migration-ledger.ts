@@ -69,6 +69,53 @@ function deriveSlug(p: string): string {
   return segs[segs.length - 1] ?? p;
 }
 
+/**
+ * Canonical route coverage (P23 gap surface).
+ *
+ * KEEP_INDEXED implies the canonical build can serve the URL. That is NOT
+ * true for a large part of the historical corpus (legacy blog/glossary/docs
+ * content that was never ported). This column makes the gap explicit and
+ * machine-checkable instead of silently 404ing at cutover:
+ *   - served                     → a canonical route exists for this path
+ *   - unserved_pending_editorial → no route; needs an explicit editorial
+ *                                  decision (REBUILD / redirect / 410)
+ *                                  BEFORE production cutover.
+ * No mass reclassification happens here — decisions stay with editorial.
+ */
+function collectStaticRoutes(dir: string, base = ""): Set<string> {
+  const routes = new Set<string>();
+  let entries: fs.Dirent[];
+  try {
+    entries = fs.readdirSync(dir, { withFileTypes: true });
+  } catch {
+    return routes;
+  }
+  const hasPage = entries.some((e) => e.isFile() && (e.name === "page.tsx" || e.name === "page.tsx" || e.name === "page.jsx"));
+  if (hasPage) routes.add(base === "" ? "/" : base);
+  for (const e of entries) {
+    if (!e.isDirectory()) continue;
+    if (e.name.startsWith("[") || e.name.startsWith("_") || e.name.startsWith("(")) continue;
+    const childBase = `${base}/${e.name}`;
+    for (const r of collectStaticRoutes(path.join(dir, e.name), childBase)) routes.add(r);
+  }
+  return routes;
+}
+
+const staticRoutes = collectStaticRoutes(path.join(process.cwd(), "app"));
+const registryPaths = new Set(
+  Object.values(contentRegistry)
+    .filter((e) => e.status === "published" && !e.noindex)
+    .map((e) => strip(e.indexPath)),
+);
+const serverPaths = new Set(
+  Object.values(serverRegistry)
+    .filter((s) => isServerIndexableEntry(s))
+    .map((s) => strip(s.indexPath)),
+);
+function isServed(normPath: string): boolean {
+  return staticRoutes.has(normPath) || registryPaths.has(normPath) || serverPaths.has(normPath);
+}
+
 interface Row {
   family_slug: string;
   canonical_url: string;
@@ -81,6 +128,8 @@ interface Row {
   gsc_status: string;
   /** Decoupled editorial publication authority (RESOLVES BLOCKER 3). */
   publication_authority: string;
+  /** Whether the canonical build can serve this URL (P23 gap surface). */
+  canonical_route_status: string;
 }
 
 const rows: Row[] = [];
@@ -130,6 +179,7 @@ function addRow(normPath: string, slug: string, gscRow: { clicks: number; impres
     redirect_target: redirectTarget,
     gsc_status: gscRow ? "in_gsc" : "absent",
     publication_authority: editorialOwned ? "editorial_owned" : "no_editorial",
+    canonical_route_status: isServed(normPath) ? "served" : "unserved_pending_editorial",
   });
 }
 
@@ -200,6 +250,7 @@ const COLUMNS = [
   "redirect_target",
   "gsc_status",
   "publication_authority",
+  "canonical_route_status",
 ];
 function csvEscape(v: string): string {
   return /[",\n]/.test(v) ? `"${v.replace(/"/g, '""')}"` : v;
@@ -216,3 +267,13 @@ console.log(`Wrote ${rows.length} rows to ${outPath}`);
 const counts: Record<string, number> = {};
 for (const r of rows) counts[r.decision] = (counts[r.decision] ?? 0) + 1;
 console.log("Decisions:", JSON.stringify(counts));
+
+const keepServed = rows.filter((r) => r.decision === "KEEP_INDEXED" && r.canonical_route_status === "served").length;
+const keepUnserved = rows.filter((r) => r.decision === "KEEP_INDEXED" && r.canonical_route_status === "unserved_pending_editorial").length;
+console.log(`KEEP_INDEXED route coverage: served=${keepServed} unserved_pending_editorial=${keepUnserved}`);
+if (keepUnserved > 0) {
+  console.log(
+    `RELEASE BLOCKER (P23): ${keepUnserved} KEEP_INDEXED URLs have no canonical route. ` +
+    `Each needs an explicit editorial decision (REBUILD / redirect / 410) BEFORE production cutover.`
+  );
+}

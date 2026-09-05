@@ -141,9 +141,10 @@ describe("migration — milestone-7 migration ledger (spec-compliant)", () => {
 
   it("CSV has the spec column headers", () => {
     const header = fs.readFileSync(LEDGER_PATH, "utf-8").split("\n")[0];
-    // 2 new columns added for BLOCKER 3 resolution (gsc_status, publication_authority)
+    // gsc_status + publication_authority added for BLOCKER 3 resolution;
+    // canonical_route_status added for the P23 route-coverage gap surface.
     expect(header).toBe(
-      "family_slug,canonical_url,gsc_clicks,gsc_impressions,decision,evidence,redirect_target,gsc_status,publication_authority",
+      "family_slug,canonical_url,gsc_clicks,gsc_impressions,decision,evidence,redirect_target,gsc_status,publication_authority,canonical_route_status",
     );
   });
 
