@@ -74,7 +74,7 @@ export default function PillarsDirectoryPage() {
         {PILLAR_GROUPS.map((group) => {
           const pillars = getPillarsByGroup(group.key);
           return (
-            <section key={group.key} className="mb-10">
+            <section key={group.key} id={group.key} className="mb-10 scroll-mt-20">
               <h2 className="mb-3 text-2xl font-semibold text-slate-900 dark:text-slate-100">
                 {group.label}
               </h2>

@@ -53,7 +53,9 @@ describe("global layout: one H1 rule", () => {
   });
 
   it("brand is a Link (semantic, non-heading)", () => {
-    expect(layoutSource).toMatch(/<Link[^>]+>\s*MCPserver\.in\s*<\/Link>/);
+    // The brand lives in the shared SiteHeader component.
+    const headerSource = readSource("src/components/layout/SiteHeader.tsx");
+    expect(headerSource).toMatch(/<Link[^>]+>\s*MCPserver\.in\s*<\/Link>/);
   });
 
   it("layout metadata is not generic 'SEO/AEO/GEO' boilerplate", () => {
