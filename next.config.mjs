@@ -37,6 +37,18 @@ const nextConfig = {
   // Trailing-slash policy: false = paths are non-slash canonical; middleware
   // enforces 308 from slash variants to non-slash.
   trailingSlash: false,
+  // Legacy directory alias migration (P1): /directory and /mcp-server-directory
+  // converge to /servers as ONE 301 hop. Declared at the routing layer so the
+  // slashed variants are caught before Next's own trailing-slash 308 (which
+  // would otherwise create a 308 + 301 chain). Exact paths only — topical
+  // /directory/* subpaths are EVIDENCE_REVIEW per G8 and must NOT match.
+  // Middleware carries the same map as defense in depth for self-host.
+  async redirects() {
+    return [
+      { source: "/directory", destination: "/servers", permanent: true },
+      { source: "/mcp-server-directory", destination: "/servers", permanent: true },
+    ];
+  },
   async headers() {
     return [
       {
