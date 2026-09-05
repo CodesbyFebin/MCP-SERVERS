@@ -13,7 +13,7 @@
     # Global options
     email {$ACME_EMAIL:security@mcpserver.in}
     admin off
-    auto_https on
+    # auto_https: default (enabled). ACME via Let's Encrypt for all site blocks.
 }
 
 # --- Apex → www (308, preserve path and query) -------------------------------
