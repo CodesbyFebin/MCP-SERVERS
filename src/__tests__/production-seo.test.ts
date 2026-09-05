@@ -37,8 +37,10 @@ describe("app.mcpserver.in host guard (middleware)", () => {
     expect(middlewareSource).toContain(".vercel.app");
   });
 
-  it("preserves path and query (uses nextUrl.clone)", () => {
-    expect(middlewareSource).toContain("request.nextUrl.clone()");
+  it("preserves path and query (builds redirect from the request URL)", () => {
+    // Redirects mutate a plain URL copy of request.url, which preserves the
+    // query string; NextURL's pathname setter would re-add trailing slashes.
+    expect(middlewareSource).toContain("new URL(request.url)");
   });
 });
 

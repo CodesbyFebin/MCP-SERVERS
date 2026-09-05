@@ -469,6 +469,16 @@
       "source": "/mcp-server-directory",
       "destination": "/servers",
       "permanent": true
+    },
+    {
+      "source": "/directory",
+      "destination": "/servers",
+      "permanent": true
+    },
+    {
+      "source": "/directory/",
+      "destination": "/servers",
+      "permanent": true
     }
   ]
 }
