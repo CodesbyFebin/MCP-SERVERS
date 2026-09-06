@@ -416,3 +416,51 @@ Artifact SHA: `fee01b2f9485c58ae842473668cc38a67b966a69` · Status: 🔴 BLOCKED
 4. Master Reviewer on the evidence package → then cutover.
 
 *Signed: OMNI-LOOP BUILDER (round 4 — remaining build + runtime certification)*
+
+---
+
+# Round 5 — Editorial gate resolved + runtime == ledger, 2026-09-06
+
+Artifact SHA: `b1bc4f4e1f7536c5e87b560c8e496ae760aa4ef8` (identity verified BAKED-IN, no env override)
+
+## Editorial gate execution (P23) — INVARIANTS NOW HOLD
+```
+KEEP_INDEXED_TOTAL  = 16  = KEEP_INDEXED_SERVED_200  ✓
+KEEP_INDEXED_UNSERVED = 0                               ✓
+REVIEW_UNRESOLVED     = 0                               ✓
+```
+- 15 REDIRECT_301 by semantic equivalence (normalized topic-slug identity,
+  same-family preference; every destination audited as served 200 + self-canonical)
+- 82 REBUILD (78 search-equity: clicks≥1 or impressions≥10; + 4 topical /directory/*, G8 resolved)
+- 472 GONE_410 (0 clicks AND <10 impressions — retired, no replacement)
+- 107 total redirects = 90 glossary + 1 mcp-server-directory + 1 /directory/ + 15 equivalents
+
+## Runtime == ledger (structural fix)
+`next.config.mjs` derives the runtime redirect table FROM the ledger CSV at
+build time — self-host can never diverge from the migration decisions again
+(previously the 90 glossary redirects existed only in vercel.json and 404'd
+on Docker; `/directory/` was missing from the ledger entirely).
+
+## Additional runtime defects found and fixed
+- `/security/oauth` and any unknown/draft/noindex slug on the five
+  /<parent>/[slug] routes rendered an EMPTY 200 page → now notFound();
+  dynamicParams=false everywhere.
+- Dynamic editorial pages emitted NO canonical tag → self-canonical added.
+- Docker build ENOSPC: pruned 5 stale session images (3.7GB) — note the
+  env-override loophole: verify health WITHOUT -e APP_VERSION to prove the
+  baked-in identity.
+
+## Final gate run at b1bc4f4
+tsc PASS · 233/233 tests · build PASS · 107 redirects in routes-manifest ·
+Docker 345MB · /api/health baked-in SHA exact · runtime matrix: all alias +
+glossary + semantic redirects single-hop to 200 self-canonical destinations ·
+G8 paths 404 · publication guards 404 · 8/8 machine surfaces · 6/6 headers ·
+`caddy validate` PASS.
+
+## Still blocking cutover
+1. 82 REBUILD pages authored (ledger lists each with its evidence basis)
+2. Live Caddy/HTTPS on host with 80/443 + DNS (config validated only)
+3. Non-indexable external staging + crawl + WCAG + measured perf
+4. Master Reviewer → GRANTED
+
+*Signed: OMNI-LOOP BUILDER (round 5 — editorial gate closed, invariants green)*

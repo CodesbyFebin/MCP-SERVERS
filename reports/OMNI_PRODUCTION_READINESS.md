@@ -8,10 +8,10 @@
 |---|---|
 | BASE_SHA | `cefe13167c563151ff4c3c565807e231f3b763e1` |
 | PREVIOUS_HEAD | `19e7cd0d5130c0ae10b195062d041e7dde14f753` |
-| **NEW_SHA (release candidate identity)** | `fee01b2f9485c58ae842473668cc38a67b966a69` |
-| Docker image | `mcpserver-in:fee01b2f9485c58ae842473668cc38a67b966a69` (345 MB, node:24-alpine, non-root, standalone) |
+| **NEW_SHA (release candidate identity)** | `b1bc4f4e1f7536c5e87b560c8e496ae760aa4ef8` |
+| Docker image | `mcpserver-in:b1bc4f4e1f7536c5e87b560c8e496ae760aa4ef8` (345 MB, node:24-alpine, non-root, standalone; identity verified BAKED-IN, no env override) |
 
-Session commits: `736cfb3` (P1/P2/P6), `7818809` (P3/P5), `8268169` (P23 ledger), `9e5db22` (P8), `7aae92c` (routing-layer alias redirects), `f973f83` (Caddyfile validation fix), `fee01b2f` (skipTrailingSlashRedirect — final artifact). Docs/evidence commits after `fee01b2f` change no code.
+Session commits: `736cfb3` (P1/P2/P6), `7818809` (P3/P5), `8268169` (P23 ledger), `9e5db22` (P8), `7aae92c` (alias redirects), `f973f83` (Caddyfile fix), `fee01b2f` (skipTrailingSlashRedirect), `84a995f` (editorial gate resolution), `3ffa2af` (runtime == ledger redirects + publication guard), `b1bc4f4` (self-canonical dynamic pages — FINAL ARTIFACT). Docs commits after `b1bc4f4` change no code and reference this SHA as the tested artifact.
 
 ---
 
@@ -19,7 +19,7 @@ Session commits: `736cfb3` (P1/P2/P6), `7818809` (P3/P5), `8268169` (P23 ledger)
 Canonical TypeScript App Router build. `lib/site.js` (legacy Node-generator surface) does not exist at the repo root and is imported by **zero** canonical files — it survives only under `app-mcpserver-in/`, which is excluded from tsconfig and from the canonical build. All publication decisions flow through one authority: `isServerIndexable()` / `isContentIndexable()` / `isPillarIndexable()`.
 
 ## 2. Exact NEW_SHA
-`fee01b2f9485c58ae842473668cc38a67b966a69`. Working tree was committed before the Docker build; `git status --short` shows only `.DS_Store` (untracked noise, not part of the release).
+`b1bc4f49485c58ae842473668cc38a67b966a69`. Working tree was committed before the Docker build; `git status --short` shows only `.DS_Store` (untracked noise, not part of the release).
 
 ## 3. Architecture
 Next.js 14 App Router + `output: "standalone"`, TypeScript strict. Content/server/pillar registries under `src/content/`; shared registry packages under `packages/`. Middleware (`middleware.ts`) handles host normalization (apex/app → www, 308), legacy alias migration (301), and trailing-slash policy (308 strip).
@@ -39,12 +39,18 @@ Evidence refs resolve through the registry; server detail pages render only evid
 - **G9 PASS** — clients/integrations are registry-driven editorial hubs; relationship-strength fields (declared/documented/runtime-tested) require editorial data and are recorded as a known limitation — not fabricated.
 
 ## 8. Historical URL migration — **🔴 BLOCKER (P23)**
-Ledger: 748 rows — KEEP_INDEXED 581, REDIRECT_301 91, EVIDENCE_REVIEW 4, DEFER_NOINDEX 72, DROP_NOINDEX 0. New `canonical_route_status` column computes, from the actual `app/` route tree + registries:
+Ledger: 749 rows — the editorial gate has been EXECUTED; every historical URL is terminal:
 
-- **16 KEEP_INDEXED URLs are served by the canonical build.**
-- **565 KEEP_INDEXED URLs have no canonical route** (248 `/blog/*`, 146 `/glossary/*`, 69 `/docs/*`, and others — legacy content that was never ported). These will 404 at cutover.
+| Decision | Count | Basis |
+|---|---|---|
+| KEEP_INDEXED | 16 | all resolve to real 200 canonical routes (invariant) |
+| REDIRECT_301 | 107 | 90 glossary + 1 mcp-server-directory + 1 /directory/ + **15 semantic equivalents** (normalized topic-slug identity, same-family preference); destination audit proves every target is a served 200 self-canonical route |
+| REBUILD | 82 | 78 with search equity (clicks ≥ 1 or impressions ≥ 10) + the 4 topical `/directory/*` (G8 resolved; intent preserved; content before cutover) |
+| GONE_410 | 472 | 0 clicks AND < 10 impressions — intentional retirement of unported legacy content with no evidence of value |
+| DEFER_NOINDEX | 72 | registry-owned paths absent from GSC |
+| EVIDENCE_REVIEW | 0 | **invariant: nothing unresolved** |
 
-Per G8 discipline this was **not** mass-reclassified. Every one of the 565 needs an explicit editorial decision (REBUILD / redirect to exact equivalent / 410) **before** production cutover. Blocking tests pin the exact counts so the gap cannot silently move.
+**HARD INVARIANTS (blocking-test-pinned):** `KEEP_INDEXED_TOTAL(16) == KEEP_INDEXED_SERVED_200(16)`, `KEEP_UNSERVED = 0`, `REVIEW_UNRESOLVED = 0`. The generator exits non-zero if any regresses. The 82 REBUILD pages must be authored before cutover; until then cutover stays blocked.
 
 ## 9. Canonical architecture
 `/servers` is the single discovery surface; `/directory` + `/mcp-server-directory` converge one-hop to `/servers`; `/servers/[slug]` renders verified entries only; `mcp-server-postgres` has a dedicated noindex static page. Host doctrine: apex/app → www, non-slash canonical paths.
@@ -52,14 +58,18 @@ Per G8 discipline this was **not** mass-reclassified. Every one of the 565 needs
 ## 10. Redirect matrix (runtime-verified against `mcpserver-in:rc`)
 | Request | Result |
 |---|---|
-| `/directory` | 308 → `/servers` (single hop, `permanent` redirect) |
+| `/directory` | 308 → `/servers` (single hop) |
+| `/glossary/mcp-auth-provider-18` | 308 → `/glossary` (one of 90 glossary handoff redirects) |
+| `/glossary/stdio` | 308 → `/learn/mcp-stdio` (semantic equivalent; destination 200 + self-canonical) |
+| `/security/oauth` | 308 → `/security/mcp-oauth` (destination 200 + self-canonical) |
+| `/servers/postgres-mcp-server` | 308 → `/guides/postgres-mcp-server` |
 | `/directory/` | 308 → `/servers` (single hop — `skipTrailingSlashRedirect` hands slash handling to the routing/middleware layer, eliminating the 308+308 chain) |
 | `/mcp-server-directory` | 308 → `/servers` |
 | `/mcp-server-directory/` | 308 → `/servers` |
-| `/directory/{iot,databases,devops,monitoring}` | 404 — intentionally undecided (G8) |
+| `/directory/{iot,databases,devops,monitoring}` | 404 — REBUILD decision recorded; pages authored before cutover |
 | `/servers/` | 308 → `/servers` |
 | apex / app host | 308 → `www` preserving path |
-Behavioral middleware tests (15) + runtime curl matrix cover slash/no-slash/host variants.
+Behavioral middleware tests (15) + runtime curl matrix cover slash/no-slash/host variants. **The runtime redirect table is DERIVED from the migration ledger at build time** (`next.config.mjs` reads the CSV) — runtime can never diverge from the ledger again. All 107 redirects verified in `routes-manifest.json` and at runtime. Publication guard: unknown/draft/noindex slugs on `/learn|/clients|/security|/guides|/build/[slug]` return 404 (previously an empty 200).
 
 ## 11. Search
 `/search` (noindex) — client-side search over the indexable cohorts only. Results expose title, type, snippet, canonical URL, and server verification state. 9 blocking tests prevent draft/noindex/unverified leakage.
@@ -104,7 +114,7 @@ No Lighthouse/PageSpeed measurement has been taken. `/search` first-load JS is 2
 `caddy validate` returns **Valid configuration** (the original Caddyfile crashed at startup: `auto_https on` is invalid syntax — fixed in `f973f83`). Runtime serving still not verifiable here: host port 80 is occupied by an existing ssh listener, and `mcpserver.in` DNS does not resolve to this machine, so ACME cannot complete. Required for PASS: a host with 80/443 free + DNS. (In the isolated runtime check the web service answered all routes correctly — see 10.)
 
 ## 24. Exact-SHA health — PASS
-`GET /api/health` → `{"status":"ok","sha":"fee01b2f9485c58ae842473668cc38a67b966a69",...}` from the image built with that SHA. Priority chain `APP_VERSION` > `VERCEL_GIT_COMMIT_SHA` > `dev`; compose passes `APP_VERSION` through.
+`GET /api/health` → `{"status":"ok","sha":"b1bc4f4e1f7536c5e87b560c8e496ae760aa4ef8",...}` — verified from the BAKED-IN image identity (no env override). from the image built with that SHA. Priority chain `APP_VERSION` > `VERCEL_GIT_COMMIT_SHA` > `dev`; compose passes `APP_VERSION` through.
 
 ## 25. External staging — NOT RUN
 No staging host available in this environment. Staging must be deployed at exact NEW_SHA, forced non-indexable (`X-Robots-Tag: noindex, nofollow` at the proxy), health-SHA verified, and the full route matrix crawled before Master Review.
@@ -129,11 +139,11 @@ Original contract, BASE_SHA, NEW_SHA, `git diff cefe131..7aae92c`, test output (
 |---|---|
 | G8 semantic migration | PASS |
 | TypeScript | PASS |
-| Tests | PASS (230/230) |
+| Tests | PASS (233/233) |
 | Next.js build | PASS |
 | Publication consistency | PASS |
 | Canonical audit | PASS |
-| Redirect audit | PASS (runtime-verified: all 4 alias variants single-hop) |
+| Redirect audit | PASS (107 ledger redirects implemented in the standalone build; runtime-verified single-hop with 200 self-canonical destinations) |
 | SEO | PASS (staged crawl pending) |
 | AEO/GEO | PASS |
 | Security | PASS |
@@ -148,4 +158,4 @@ Original contract, BASE_SHA, NEW_SHA, `git diff cefe131..7aae92c`, test output (
 | Master Reviewer | NOT RUN |
 | Production | LOCKED |
 
-**Overall: 🔴 BLOCKED** — cutover is blocked by the P23 route-coverage gate (565 URLs require explicit editorial decisions) plus unverified Caddy/staging/accessibility/performance evidence. Code quality and all automatable gates are release-candidate grade. Do **not** promote to 🟡/🟢 until the P23 editorial decisions exist and the environment-blocked gates have been executed on a proper staging host.
+**Overall: 🔴 BLOCKED** — the editorial gate is resolved and every migration invariant holds, but cutover remains blocked by: (1) the 82 REBUILD pages that must be authored, (2) Caddy live serving / staging / accessibility / performance evidence on a proper host, (3) Master Reviewer. All automatable gates (tsc, 233/233 tests, build, Docker at exact SHA, runtime redirect matrix, publication consistency) are green.
