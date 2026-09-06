@@ -22,9 +22,10 @@ dist/
 .idea/
 .vscode/
 
-# Test artifacts and reports (only relevant for humans; the runtime does not need them)
+# Reports: small (272K). The migration ledger CSV is a BUILD-TIME input —
+# next.config.mjs derives the runtime redirect table from it, so it must
+# stay in the build context.
 coverage/
-reports/
 playwright-report/
 test-results/
 .nyc_output/

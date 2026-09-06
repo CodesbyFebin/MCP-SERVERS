@@ -747,3 +747,4 @@ directory,https://www.mcpserver.in/glossary/directory,,,DEFER_NOINDEX,gsc_absent
 marketplace,https://www.mcpserver.in/glossary/marketplace,,,DEFER_NOINDEX,gsc_absent_editorial_owned,,absent,editorial_owned,served
 guides,https://www.mcpserver.in/guides,,,DEFER_NOINDEX,gsc_absent_editorial_owned,,absent,editorial_owned,served
 build,https://www.mcpserver.in/build,,,DEFER_NOINDEX,gsc_absent_editorial_owned,,absent,editorial_owned,served
+directory,https://www.mcpserver.in/directory,,,REDIRECT_301,handoff_redirect_map,/servers/,absent,no_editorial,unserved_pending_editorial

@@ -215,6 +215,18 @@ for (const server of Object.values(serverRegistry)) {
   addRow(norm, slug, gscRow, dest, true); // editorialOwned = true
 }
 
+// 2.5) Every permanent handoff redirect source must appear in the ledger —
+// even when absent from GSC and the registry (e.g. /directory/). A decided
+// redirect that never becomes a row would silently vanish from the runtime
+// redirect table, which is derived from this ledger.
+for (const r of permanentRedirects) {
+  const norm = strip(r.source);
+  if (!norm) continue;
+  const slug = deriveSlug(norm);
+  const dest = redirectMap.get(norm) ?? resolveDestination(r.destination);
+  addRow(norm, slug, gscByPath.get(norm) ?? null, dest);
+}
+
 // 3) EVIDENCE_REVIEW upgrade for any GSC paths with significant equity but no
 // editorial decision. These 4 topical /directory/* paths have GSC coverage (G8)
 // but their destination requires individual resolution:

@@ -161,7 +161,7 @@ describe("migration — milestone-7 migration ledger (spec-compliant)", () => {
     // The ledger covers: 676 GSC URLs + 72 registry paths not in GSC
     // Editorial gate resolution of the 565 unserved KEEP rows + 4 /directory/*:
     //   KEEP_INDEXED   16  (every one served-200 — invariant)
-    //   REDIRECT_301  106  (90 glossary + 1 mcp-server-directory + 15 semantic equivalents)
+    //   REDIRECT_301  107  (90 glossary + 1 mcp-server-directory + 1 /directory/ + 15 semantic equivalents)
     //   REBUILD        82  (78 search-equity + 4 topical /directory/*)
     //   GONE_410      472  (0 clicks, <10 impressions, no replacement — retired)
     //   DEFER_NOINDEX  72  (registry paths not in GSC)
@@ -172,14 +172,14 @@ describe("migration — milestone-7 migration ledger (spec-compliant)", () => {
       const d = line.split(",")[4];
       counts[d] = (counts[d] ?? 0) + 1;
     }
-    expect(counts["REDIRECT_301"]).toBe(106);
+    expect(counts["REDIRECT_301"]).toBe(107);
     expect(counts["KEEP_INDEXED"]).toBe(16);
     expect(counts["REBUILD"]).toBe(82);
     expect(counts["GONE_410"]).toBe(472);
     expect(counts["EVIDENCE_REVIEW"] ?? 0).toBe(0);
     expect(counts["DEFER_NOINDEX"]).toBe(72);
     expect(counts["DROP_NOINDEX"] ?? 0).toBe(0);
-    expect(lines.length - 1).toBe(748);
+    expect(lines.length - 1).toBe(749);
   });
 
   it("REDIRECT_301 rows all have a non-empty redirect_target", () => {

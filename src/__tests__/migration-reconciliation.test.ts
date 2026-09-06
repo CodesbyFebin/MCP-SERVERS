@@ -78,11 +78,11 @@ describe("migration reconciliation", () => {
 
   it("migration ledger: 748 rows, editorial gate resolved (P23 invariants: KEEP all served-200, REVIEW=0)", () => {
     const ledger = readCsv(resolve(process.cwd(), "reports/milestone-7-migration-ledger.csv"));
-    expect(ledger).toHaveLength(748);
+    expect(ledger).toHaveLength(749);
     const counts: Record<string, number> = {};
     for (const r of ledger) counts[r.decision] = (counts[r.decision] || 0) + 1;
     expect(counts["KEEP_INDEXED"]).toBe(16); // every KEEP row is served-200
-    expect(counts["REDIRECT_301"]).toBe(106); // 90 glossary + 1 mcp-server-directory + 15 semantic equivalents
+    expect(counts["REDIRECT_301"]).toBe(107); // 90 glossary + 1 mcp-server-directory + 1 /directory/ + 15 semantic equivalents
     expect(counts["REBUILD"]).toBe(82); // 78 search-equity + 4 topical /directory/*
     expect(counts["GONE_410"]).toBe(472); // no evidence (0 clicks, <10 impressions)
     expect(counts["EVIDENCE_REVIEW"] ?? 0).toBe(0);
@@ -104,11 +104,11 @@ describe("migration reconciliation", () => {
   it("REDIRECT_301 = 90 glossary + 1 mcp-server-directory + 15 semantic equivalents = 106 (all destinations served)", () => {
     const ledger = readCsv(resolve(process.cwd(), "reports/milestone-7-migration-ledger.csv"));
     const redirect = ledger.filter((r) => r.decision === "REDIRECT_301");
-    expect(redirect).toHaveLength(106);
+    expect(redirect).toHaveLength(107);
     const glossaryRedir = redirect.filter((r) => r.canonical_url.includes("/glossary/"));
     expect(glossaryRedir).toHaveLength(96); // 90 handoff + 6 semantic equivalents
     const legacyRedir = redirect.filter((r) => !r.canonical_url.includes("/glossary/"));
-    expect(legacyRedir).toHaveLength(10);
+    expect(legacyRedir).toHaveLength(11);
     // /mcp-server-directory canonicalizes to /servers/
     const mcpServerDir = legacyRedir.find(
       (r) => new URL(r.canonical_url).pathname.replace(/\/+$/, "") === "/mcp-server-directory",
