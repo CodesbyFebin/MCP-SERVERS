@@ -101,7 +101,40 @@ function collectStaticRoutes(dir: string, base = ""): Set<string> {
   return routes;
 }
 
+/**
+ * Routes whose page file is an auto-generated REBUILD stub (scaffolded by
+ * scripts/scaffold-rebuild-pages.mjs). These resolve 200 but carry noindex
+ * and no substantive content — they are NOT "served" in the indexable sense;
+ * their decision must remain REBUILD until real content is authored.
+ */
+function collectRebuildStubRoutes(dir: string, base = ""): Set<string> {
+  const stubs = new Set<string>();
+  let entries: fs.Dirent[];
+  try {
+    entries = fs.readdirSync(dir, { withFileTypes: true });
+  } catch {
+    return stubs;
+  }
+  const pageFile = entries.find((e) => e.isFile() && e.name === "page.tsx");
+  if (pageFile) {
+    try {
+      const head = fs.readFileSync(path.join(dir, pageFile.name), "utf-8").slice(0, 400);
+      if (head.includes("AUTO-GENERATED REBUILD STUB")) stubs.add(base === "" ? "/" : base);
+    } catch {
+      // unreadable page file — treat as normal route
+    }
+  }
+  for (const e of entries) {
+    if (!e.isDirectory()) continue;
+    if (e.name.startsWith("[") || e.name.startsWith("_") || e.name.startsWith("(")) continue;
+    const childBase = `${base}/${e.name}`;
+    for (const r of collectRebuildStubRoutes(path.join(dir, e.name), childBase)) stubs.add(r);
+  }
+  return stubs;
+}
+
 const staticRoutes = collectStaticRoutes(path.join(process.cwd(), "app"));
+const rebuildStubRoutes = collectRebuildStubRoutes(path.join(process.cwd(), "app"));
 const registryPaths = new Set(
   Object.values(contentRegistry)
     .filter((e) => e.status === "published" && !e.noindex)
@@ -112,8 +145,11 @@ const serverPaths = new Set(
     .filter((s) => isServerIndexableEntry(s))
     .map((s) => strip(s.indexPath)),
 );
-function isServed(normPath: string): boolean {
-  return staticRoutes.has(normPath) || registryPaths.has(normPath) || serverPaths.has(normPath);
+type RouteStatus = "served" | "served_rebuild_stub" | "unserved_pending_editorial";
+function routeStatusFor(normPath: string): RouteStatus {
+  if (rebuildStubRoutes.has(normPath)) return "served_rebuild_stub";
+  if (staticRoutes.has(normPath) || registryPaths.has(normPath) || serverPaths.has(normPath)) return "served";
+  return "unserved_pending_editorial";
 }
 
 interface Row {
@@ -179,7 +215,7 @@ function addRow(normPath: string, slug: string, gscRow: { clicks: number; impres
     redirect_target: redirectTarget,
     gsc_status: gscRow ? "in_gsc" : "absent",
     publication_authority: editorialOwned ? "editorial_owned" : "no_editorial",
-    canonical_route_status: isServed(normPath) ? "served" : "unserved_pending_editorial",
+    canonical_route_status: routeStatusFor(normPath),
   });
 }
 
@@ -316,7 +352,19 @@ for (const r of rows) {
     r.evidence = "topical_directory_intent_rebuild_pending";
     continue;
   }
-  if (r.decision !== "KEEP_INDEXED" || r.canonical_route_status !== "unserved_pending_editorial") {
+  if (r.decision !== "KEEP_INDEXED") continue;
+  // A scaffolded rebuild stub resolves 200 but is noindex and contentless:
+  // it does NOT satisfy KEEP_INDEXED (indexable canonical content). The URL
+  // keeps its REBUILD decision; the route-status column records progress.
+  if (r.canonical_route_status === "served_rebuild_stub") {
+    const equity =
+      Number(r.gsc_clicks || "0") >= REBUILD_EQUITY_CLICKS ||
+      Number(r.gsc_impressions || "0") >= REBUILD_EQUITY_IMPRESSIONS;
+    r.decision = "REBUILD";
+    r.evidence = equity ? "legacy_content_not_ported_search_equity" : "legacy_content_not_ported_no_evidence";
+    continue;
+  }
+  if (r.canonical_route_status !== "unserved_pending_editorial") {
     continue;
   }
   const equiv = findRegistryEquivalent(normPath);
@@ -368,9 +416,12 @@ console.log("Decisions:", JSON.stringify(counts));
 console.log("Editorial resolutions applied:", JSON.stringify(resolutionCounts));
 
 const keepServed = rows.filter((r) => r.decision === "KEEP_INDEXED" && r.canonical_route_status === "served").length;
-const keepUnserved = rows.filter((r) => r.decision === "KEEP_INDEXED" && r.canonical_route_status === "unserved_pending_editorial").length;
+const keepUnserved = rows.filter((r) => r.decision === "KEEP_INDEXED" && r.canonical_route_status !== "served").length;
+const stubServed = rows.filter((r) => r.decision === "REBUILD" && r.canonical_route_status === "served_rebuild_stub").length;
+const rebuildPending = rows.filter((r) => r.decision === "REBUILD" && r.canonical_route_status !== "served_rebuild_stub").length;
 const unresolved = rows.filter((r) => r.decision === "EVIDENCE_REVIEW").length;
-console.log(`KEEP_INDEXED route coverage: served=${keepServed} unserved_pending_editorial=${keepUnserved}`);
+console.log(`KEEP_INDEXED route coverage: served=${keepServed} non-served=${keepUnserved}`);
+console.log(`REBUILD: stub-served=${stubServed} page-not-yet-authored=${rebuildPending}`);
 console.log(`EVIDENCE_REVIEW unresolved: ${unresolved}`);
 
 // Hard invariants (P23 editorial gate): KEEP_INDEXED must equal served-200,

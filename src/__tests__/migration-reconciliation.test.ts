@@ -250,10 +250,17 @@ describe("migration reconciliation", () => {
 
   it("route coverage column exists on every row with the documented enum", () => {
     const ledger = readCsv(resolve(process.cwd(), "reports/milestone-7-migration-ledger.csv"));
-    const VALID = new Set(["served", "unserved_pending_editorial"]);
+    const VALID = new Set(["served", "served_rebuild_stub", "unserved_pending_editorial"]);
     for (const r of ledger) {
       expect(VALID.has(r.canonical_route_status), r.canonical_url).toBe(true);
     }
+  });
+
+  it("every REBUILD URL is stub-served: 200 noindex scaffold exists (rebuild progress surface)", () => {
+    const ledger = readCsv(resolve(process.cwd(), "reports/milestone-7-migration-ledger.csv"));
+    const rebuild = ledger.filter((r) => r.decision === "REBUILD");
+    const stubServed = rebuild.filter((r) => r.canonical_route_status === "served_rebuild_stub");
+    expect(stubServed).toHaveLength(82);
   });
 
   it("decoupling: no DEFER_NOINDEX row has gsc_status=absent AND publication_authority=editorial_owned (BLOCKER 3 RESOLVED)", () => {
