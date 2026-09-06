@@ -51,23 +51,62 @@ def fetch(url):
         return None, b"", {"error": str(e)}
 
 
-def indexable_cohort():
-    """Published indexable paths from the content registry of record: the
-    migration ledger's served KEEP + DEFER rows are registry-owned; but the
-    true cohort is computed from the ledger's served rows that are not
-    redirect sources and not rebuild stubs."""
-    keep, defer = set(), set()
+def ledger_sets():
+    """Ledger-derived sets: (cohort, redirect_sources, gone).
+
+    The ledger is the authority for MIGRATION decisions on legacy URLs, not
+    for live indexability: KEEP/DEFER rows may currently serve as noindex
+    stubs (e.g. /blog), and DEFER_NOINDEX rows may be fully published in the
+    registry (e.g. glossary entries). The sitemap contract is therefore
+    checked against LIVE runtime truth (below), using the ledger for
+    redirect/gone leak detection and legacy coverage.
+    """
+    cohort, redirects, gone = set(), set(), set()
     with open(LEDGER_PATH, encoding="utf-8") as f:
         for row in csv.DictReader(f):
             path = row["canonical_url"].replace("https://www.mcpserver.in", "").rstrip("/") or "/"
             dec = row["decision"].strip()
             status = row["canonical_route_status"].strip()
-            if dec == "KEEP_INDEXED" and status == "served":
-                keep.add(path)
-            elif dec == "DEFER_NOINDEX":
-                # registry-owned pages absent from GSC: indexable cohort too
-                defer.add(path)
-    return keep, defer
+            if dec == "REDIRECT_301":
+                redirects.add(path)
+            elif dec == "GONE_410":
+                gone.add(path)
+            elif (dec == "KEEP_INDEXED" and status == "served") or dec == "DEFER_NOINDEX":
+                cohort.add(path)
+    return cohort, redirects, gone
+
+
+# Core hub surfaces declared in llms.txt / navigation. Each must be either in
+# the sitemap or live-noindex — a hub accidentally dropped from the sitemap
+# (or advertising itself while noindex) is a certification failure.
+HUB_SURFACES = [
+    "/", "/servers", "/pillars", "/docs", "/categories", "/capabilities",
+    "/evidence", "/methodology", "/editorial-policy", "/about",
+]
+
+_live_cache = {}
+
+
+def live_state(path):
+    """(reachable, noindex) for a path, cached. noindex = X-Robots-Tag or
+    <meta name="robots" content="...noindex...">."""
+    if path in _live_cache:
+        return _live_cache[path]
+    status, body, headers = fetch(f"{TARGET_URL}{path}")
+    reachable = status == 200
+    noindex = False
+    if reachable:
+        if "noindex" in headers.get("X-Robots-Tag", "").lower():
+            noindex = True
+        else:
+            html = body.decode("utf-8", "replace")
+            for tag in re.findall(r"<meta\s[^>]*>", html, re.I):
+                if re.search(r"name\s*=\s*[\"']robots[\"']", tag, re.I) and \
+                   re.search(r"content\s*=\s*[\"'][^\"']*noindex", tag, re.I):
+                    noindex = True
+                    break
+    _live_cache[path] = (reachable, noindex)
+    return _live_cache[path]
 
 
 def validate_robots():
@@ -139,9 +178,28 @@ def validate_llms():
             passed = False
 
     # Every link target in llms.txt must be a real surface (no fabrication):
-    # the sitemap check below covers page cohort; here we just count links.
-    n = len(re.findall(r"^-\s*\[[^\]]+\]\(https://www\.mcpserver\.in[^)]*\)", content, re.M))
-    log_info(f"{n} canonical links listed")
+    # page links must resolve 200 and be indexable; machine surfaces
+    # (.json/.txt/.xml) must resolve 200.
+    links = re.findall(r"\]\((https://www\.mcpserver\.in[^)]*)\)", content)
+    n_page = 0
+    fab = []
+    for target in links:
+        path = target.replace("https://www.mcpserver.in", "").rstrip("/") or "/"
+        reachable, noindex = live_state(path)
+        if not reachable:
+            fab.append(f"{path} unreachable")
+        elif noindex and not path.endswith((".json", ".txt", ".xml")):
+            fab.append(f"{path} serves noindex")
+        if not path.endswith((".json", ".txt", ".xml")):
+            n_page += 1
+    if fab:
+        log_fail(f"{len(fab)} llms.txt links point at non-serving/noindex surfaces (fabrication):")
+        for p in fab[:5]:
+            print(f"     - {p}")
+        passed = False
+    else:
+        log_pass(f"all {len(links)} llms.txt link targets resolve live ({n_page} page links)")
+    log_info(f"{len(links)} canonical links listed")
     return passed
 
 
@@ -196,38 +254,67 @@ def validate_sitemap():
     urls = [el.text for el in root.iter(f"{NS}loc")]
     log_info(f"{len(urls)} URLs in sitemap")
 
-    keep, defer = indexable_cohort()
+    cohort, redirects, gone = ledger_sets()
     sitemap_paths = {(u.replace("https://www.mcpserver.in", "").rstrip("/") or "/") for u in urls}
-    cohort = keep | defer
 
-    extra = sorted(sitemap_paths - cohort)
-    missing = sorted(cohort - sitemap_paths)
+    # Leak check: every sitemap URL must be live, indexable, and not a
+    # retired/redirected legacy route.
+    leaks = []
+    for p in sorted(sitemap_paths):
+        if p in redirects:
+            leaks.append((p, "redirect source"))
+            continue
+        if p in gone:
+            leaks.append((p, "GONE_410 row"))
+            continue
+        reachable, noindex = live_state(p)
+        if not reachable:
+            leaks.append((p, "not reachable (non-200)"))
+        elif noindex:
+            leaks.append((p, "serves noindex"))
 
-    # noindex surfaces must never appear
-    stubs = [p for p in sitemap_paths if p.startswith(("/blog/", "/directory/")) and p not in cohort]
+    # Coverage check: every ledger cohort URL that is live-indexable must be
+    # in the sitemap. Cohort rows currently serving noindex stubs (e.g. the
+    # truthful /blog stub) are correctly excluded from the sitemap.
+    missing = []
+    for p in sorted(cohort):
+        reachable, noindex = live_state(p)
+        if reachable and not noindex and p not in sitemap_paths:
+            missing.append(p)
+
+    # Hub surfaces: each declared hub must be in the sitemap or live-noindex.
+    hub_fail = []
+    for p in HUB_SURFACES:
+        reachable, noindex = live_state(p)
+        if not reachable:
+            hub_fail.append(f"{p} unreachable")
+        elif p not in sitemap_paths and not noindex:
+            hub_fail.append(f"{p} indexable but absent from sitemap")
 
     passed = True
-    if extra:
-        log_fail(f"{len(extra)} sitemap URLs are NOT in the indexable cohort (leak):")
-        for p in extra[:5]:
-            print(f"     - {p}")
+    if leaks:
+        log_fail(f"{len(leaks)} sitemap URLs fail the indexability contract (leak):")
+        for p, why in leaks[:5]:
+            print(f"     - {p} ({why})")
         passed = False
     else:
-        log_pass("zero leaks: every sitemap URL is in the indexable cohort")
-
-    if stubs:
-        log_fail(f"{len(stubs)} rebuild-stub/noindex URLs leaked into sitemap")
-        passed = False
-    else:
-        log_pass("no rebuild-stub/noindex URLs in sitemap")
+        log_pass("zero leaks: every sitemap URL is live and indexable")
 
     if missing:
-        log_fail(f"{len(missing)} cohort pages missing from sitemap:")
+        log_fail(f"{len(missing)} live-indexable cohort pages missing from sitemap:")
         for p in missing[:5]:
             print(f"     - {p}")
         passed = False
     else:
-        log_pass("indexable cohort fully covered by sitemap (exact match)")
+        log_pass("every live-indexable ledger cohort page is in the sitemap")
+
+    if hub_fail:
+        log_fail("hub surface contract violated:")
+        for p in hub_fail[:5]:
+            print(f"     - {p}")
+        passed = False
+    else:
+        log_pass("all hub surfaces in sitemap or explicitly noindex")
     return passed
 
 
@@ -253,7 +340,7 @@ def main():
 
     out = ROOT / "reports" / "machine-readable-audit-result.json"
     out.write_text(json.dumps({
-        "timestamp": __import__("datetime").datetime.utcnow().isoformat() + "Z",
+        "timestamp": __import__("datetime").datetime.now(__import__("datetime").timezone.utc).isoformat().replace("+00:00", "Z"),
         "target": TARGET_URL,
         "results": results,
         "verdict": "PASSED" if all_pass else "FAILED",
