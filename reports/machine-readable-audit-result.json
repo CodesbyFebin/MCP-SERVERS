@@ -1,0 +1,11 @@
+{
+  "timestamp": "2026-09-06T14:14:28.362881Z",
+  "target": "http://127.0.0.1:3100",
+  "results": {
+    "robots.txt": true,
+    "llms.txt": true,
+    "ai.txt": true,
+    "sitemap.xml": true
+  },
+  "verdict": "PASSED"
+}

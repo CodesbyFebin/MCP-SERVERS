@@ -44,9 +44,12 @@ def fetch(url):
     req = urllib.request.Request(url, headers={"User-Agent": "mcpserver-machine-audit/1.0"})
     try:
         with urllib.request.urlopen(req, timeout=TIMEOUT) as res:
-            return res.status, res.read(), dict(res.headers)
+            # HTTP headers are case-insensitive; Next route handlers emit some
+            # lowercase (content-type, x-robots-tag). Normalize to lowercase
+            # so .get("content-type") is reliable.
+            return res.status, res.read(), {k.lower(): v for k, v in res.headers.items()}
     except urllib.error.HTTPError as e:
-        return e.code, b"", dict(e.headers)
+        return e.code, b"", {k.lower(): v for k, v in e.headers.items()}
     except Exception as e:
         return None, b"", {"error": str(e)}
 
@@ -96,7 +99,7 @@ def live_state(path):
     reachable = status == 200
     noindex = False
     if reachable:
-        if "noindex" in headers.get("X-Robots-Tag", "").lower():
+        if "noindex" in headers.get("x-robots-tag", "").lower():
             noindex = True
         else:
             html = body.decode("utf-8", "replace")
@@ -158,7 +161,7 @@ def validate_llms():
         log_fail("must start with a Markdown H1")
         passed = False
 
-    ct = headers.get("Content-Type", "")
+    ct = headers.get("content-type", "")
     if "text/plain" in ct or "text/markdown" in ct:
         log_pass(f"content-type text ({ct})")
     else:
@@ -215,10 +218,10 @@ def validate_ai_manifest():
     wk_body = body2.decode("utf-8", "replace") if status2 == 200 else None
 
     passed = True
-    if "text/plain" in headers.get("Content-Type", ""):
+    if "text/plain" in headers.get("content-type", ""):
         log_pass("content-type text/plain")
     else:
-        log_fail(f"unexpected content-type: {headers.get('Content-Type')}")
+        log_fail(f"unexpected content-type: {headers.get('content-type')}")
         passed = False
 
     for field in ["Registry: https://www.mcpserver.in/mcp-registry.json",

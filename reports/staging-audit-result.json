@@ -1,7 +1,7 @@
 {
-  "timestamp": "2026-09-06T06:33:34.865Z",
+  "timestamp": "2026-09-06T14:14:47.889Z",
   "stagingUrl": "http://127.0.0.1:3100",
-  "expectedSha": "72e6468d0a3a105c03591392ab38323741f3dd79",
+  "expectedSha": "96951c2e9041c4bba47aba11f0167632e4446154",
   "shaMatch": true,
   "redirects": {
     "pass": 24,
@@ -50,7 +50,7 @@
     "fail": 0
   },
   "lighthouse": {
-    "performance": 69,
+    "performance": 96,
     "accessibility": 92,
     "best-practices": 96,
     "seo": 100
