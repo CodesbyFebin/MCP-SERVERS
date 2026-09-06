@@ -1,7 +1,7 @@
 {
-  "timestamp": "2026-09-06T04:53:49.597Z",
+  "timestamp": "2026-09-06T05:16:48.440Z",
   "stagingUrl": "http://127.0.0.1:3100",
-  "expectedSha": "4411653ca20349abda39c6560cb6d34386c60c02",
+  "expectedSha": "8b9f63d5171bb524affb8fb8e9ddf73a1baefe85",
   "shaMatch": true,
   "redirects": {
     "pass": 24,
@@ -38,8 +38,8 @@
     "fail": 0
   },
   "canonicals": {
-    "pass": 3,
-    "fail": 1
+    "pass": 4,
+    "fail": 0
   },
   "noindex": {
     "pass": 1,
@@ -49,7 +49,12 @@
     "pass": 8,
     "fail": 0
   },
-  "lighthouse": null,
-  "lighthouseStatus": "UNVERIFIED",
-  "verdict": "FAILED"
+  "lighthouse": {
+    "performance": 88,
+    "accessibility": 92,
+    "best-practices": 96,
+    "seo": 100
+  },
+  "lighthouseStatus": "MEASURED",
+  "verdict": "PASSED"
 }
