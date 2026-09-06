@@ -239,6 +239,92 @@ for (const r of rows) {
   }
 }
 
+// --- 4) Editorial resolution gate (P23) -------------------------------------
+// Every historical URL must end in exactly one of:
+//   KEEP_INDEXED  → resolves to a real 200 canonical route (checked above)
+//   REDIRECT_301  → semantically equivalent destination, one hop, 200 target
+//   REBUILD       → content recreated before cutover, original intent preserved
+//   GONE_410      → intentionally retired, no replacement exists
+//   EVIDENCE_REVIEW → unresolved (release-blocking; must end at 0)
+//
+// Rules (evidence-based, no batch destination assignment):
+//   a. Semantic equivalent: a registry path whose normalized slug equals the
+//      URL's normalized slug (strip leading "mcp-", trailing "-<digits>").
+//      Topic identity is the equivalence; disambiguation prefers the same
+//      top-level family, then /learn (definitional), then lexicographic.
+//   b. No equivalent + search equity (clicks >= 1 OR impressions >= 10)
+//      → REBUILD.
+//   c. No equivalent + no evidence (0 clicks, < 10 impressions)
+//      → GONE_410 (intentional retirement of unported legacy content).
+const normalizeSlug = (s: string): string =>
+  s.toLowerCase().replace(/^mcp-/, "").replace(/-\d+$/, "");
+
+const registryByNormSlug = new Map<string, string[]>();
+for (const entry of Object.values(contentRegistry)) {
+  if (entry.status !== "published" || entry.noindex) continue;
+  const slug = entry.indexPath.split("/").filter(Boolean).pop() ?? entry.slug;
+  const key = normalizeSlug(slug);
+  registryByNormSlug.set(key, [...(registryByNormSlug.get(key) ?? []), strip(entry.indexPath)]);
+}
+for (const key of registryByNormSlug.keys()) {
+  registryByNormSlug.get(key)!.sort((a, b) => {
+    const famA = a.split("/")[1];
+    const famB = b.split("/")[1];
+    if (famA !== famB) {
+      if (famA === "learn") return -1;
+      if (famB === "learn") return 1;
+      return famA.localeCompare(famB);
+    }
+    return a.localeCompare(b);
+  });
+}
+function findRegistryEquivalent(normPath: string): string | null {
+  const segs = normPath.split("/").filter(Boolean);
+  const slug = segs[segs.length - 1] ?? normPath;
+  const family = segs.length > 1 ? segs[0] : null;
+  const candidates = registryByNormSlug.get(normalizeSlug(slug));
+  if (!candidates || candidates.length === 0) return null;
+  if (family) {
+    const sameFamily = candidates.find((p) => p.split("/")[1] === family);
+    if (sameFamily) return sameFamily;
+  }
+  return candidates[0];
+}
+
+const REBUILD_EQUITY_CLICKS = 1;
+const REBUILD_EQUITY_IMPRESSIONS = 10;
+
+let resolutionCounts: Record<string, number> = {};
+for (const r of rows) {
+  const normPath = r.canonical_url.replace(CANONICAL_ORIGIN, "");
+  if (r.decision === "EVIDENCE_REVIEW") {
+    // G8 resolution: the 4 topical /directory/* paths carry real historical
+    // intent (category pages) → REBUILD before cutover; intent preserved.
+    r.decision = "REBUILD";
+    r.evidence = "topical_directory_intent_rebuild_pending";
+    continue;
+  }
+  if (r.decision !== "KEEP_INDEXED" || r.canonical_route_status !== "unserved_pending_editorial") {
+    continue;
+  }
+  const equiv = findRegistryEquivalent(normPath);
+  if (equiv) {
+    r.decision = "REDIRECT_301";
+    r.evidence = "semantic_equivalent_registry_path";
+    r.redirect_target = equiv;
+  } else if (
+    Number(r.gsc_clicks || "0") >= REBUILD_EQUITY_CLICKS ||
+    Number(r.gsc_impressions || "0") >= REBUILD_EQUITY_IMPRESSIONS
+  ) {
+    r.decision = "REBUILD";
+    r.evidence = "legacy_content_not_ported_search_equity";
+  } else {
+    r.decision = "GONE_410";
+    r.evidence = "legacy_content_not_ported_no_evidence";
+  }
+  resolutionCounts[r.decision] = (resolutionCounts[r.decision] ?? 0) + 1;
+}
+
 // --- Write CSV ---
 const COLUMNS = [
   "family_slug",
@@ -267,13 +353,37 @@ console.log(`Wrote ${rows.length} rows to ${outPath}`);
 const counts: Record<string, number> = {};
 for (const r of rows) counts[r.decision] = (counts[r.decision] ?? 0) + 1;
 console.log("Decisions:", JSON.stringify(counts));
+console.log("Editorial resolutions applied:", JSON.stringify(resolutionCounts));
 
 const keepServed = rows.filter((r) => r.decision === "KEEP_INDEXED" && r.canonical_route_status === "served").length;
 const keepUnserved = rows.filter((r) => r.decision === "KEEP_INDEXED" && r.canonical_route_status === "unserved_pending_editorial").length;
+const unresolved = rows.filter((r) => r.decision === "EVIDENCE_REVIEW").length;
 console.log(`KEEP_INDEXED route coverage: served=${keepServed} unserved_pending_editorial=${keepUnserved}`);
-if (keepUnserved > 0) {
-  console.log(
-    `RELEASE BLOCKER (P23): ${keepUnserved} KEEP_INDEXED URLs have no canonical route. ` +
-    `Each needs an explicit editorial decision (REBUILD / redirect / 410) BEFORE production cutover.`
-  );
+console.log(`EVIDENCE_REVIEW unresolved: ${unresolved}`);
+
+// Hard invariants (P23 editorial gate): KEEP_INDEXED must equal served-200,
+// and no unresolved review rows may remain.
+const invariantsHold = keepUnserved === 0 && unresolved === 0;
+console.log(`INVARIANTS: KEEP_UNSERVED=0 ${keepUnserved === 0 ? "PASS" : "FAIL"} · REVIEW_UNRESOLVED=0 ${unresolved === 0 ? "PASS" : "FAIL"}`);
+if (!invariantsHold) {
+  console.log("RELEASE BLOCKER (P23): unresolved editorial decisions remain.");
+  process.exitCode = 1;
 }
+
+// Redirect destination audit: every REDIRECT_301 target must be a served
+// canonical route (200 + self-canonicalizing registry/static page).
+const servedTargets = new Set<string>(["/servers"]);
+for (const entry of Object.values(contentRegistry)) {
+  if (entry.status === "published" && !entry.noindex) servedTargets.add(strip(entry.indexPath));
+}
+let badTargets = 0;
+for (const r of rows) {
+  if (r.decision !== "REDIRECT_301") continue;
+  const target = strip(r.redirect_target);
+  if (!servedTargets.has(target)) {
+    badTargets++;
+    console.log(`BAD REDIRECT TARGET: ${r.canonical_url} -> ${r.redirect_target}`);
+  }
+}
+console.log(`Redirect destination audit: ${badTargets === 0 ? "PASS" : `FAIL (${badTargets} unserved targets)`}`);
+if (badTargets > 0) process.exitCode = 1;

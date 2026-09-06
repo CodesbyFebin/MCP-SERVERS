@@ -76,26 +76,39 @@ describe("migration reconciliation", () => {
     expect(auth).toBe(9);
   });
 
-  it("migration ledger: 748 rows, KEEP_INDEXED=581, REDIRECT_301=91, EVIDENCE_REVIEW=4, DEFER_NOINDEX=72 (G8: /directory/* held for individual review)", () => {
+  it("migration ledger: 748 rows, editorial gate resolved (P23 invariants: KEEP all served-200, REVIEW=0)", () => {
     const ledger = readCsv(resolve(process.cwd(), "reports/milestone-7-migration-ledger.csv"));
     expect(ledger).toHaveLength(748);
     const counts: Record<string, number> = {};
     for (const r of ledger) counts[r.decision] = (counts[r.decision] || 0) + 1;
-    expect(counts["KEEP_INDEXED"]).toBe(581);
-    expect(counts["REDIRECT_301"]).toBe(91); // 90 glossary + 1 mcp-server-directory
-    expect(counts["EVIDENCE_REVIEW"]).toBe(4); // /directory/{iot,databases,devops,monitoring} (G8)
+    expect(counts["KEEP_INDEXED"]).toBe(16); // every KEEP row is served-200
+    expect(counts["REDIRECT_301"]).toBe(106); // 90 glossary + 1 mcp-server-directory + 15 semantic equivalents
+    expect(counts["REBUILD"]).toBe(82); // 78 search-equity + 4 topical /directory/*
+    expect(counts["GONE_410"]).toBe(472); // no evidence (0 clicks, <10 impressions)
+    expect(counts["EVIDENCE_REVIEW"] ?? 0).toBe(0);
     expect(counts["DEFER_NOINDEX"]).toBe(72);
     expect(counts["DROP_NOINDEX"] ?? 0).toBe(0);
   });
 
-  it("REDIRECT_301 = 90 glossary + 1 mcp-server-directory = 91 (BLOCKER 1+2 RESOLVED, /directory/* held for EVIDENCE_REVIEW per G8)", () => {
+  it("P23 HARD INVARIANTS: KEEP_INDEXED_TOTAL == KEEP_INDEXED_SERVED_200, KEEP_UNSERVED=0, REVIEW_UNRESOLVED=0", () => {
+    const ledger = readCsv(resolve(process.cwd(), "reports/milestone-7-migration-ledger.csv"));
+    const keep = ledger.filter((r) => r.decision === "KEEP_INDEXED");
+    const keepServed = keep.filter((r) => r.canonical_route_status === "served");
+    const keepUnserved = keep.filter((r) => r.canonical_route_status === "unserved_pending_editorial");
+    const unresolved = ledger.filter((r) => r.decision === "EVIDENCE_REVIEW");
+    expect(keepServed.length).toBe(keep.length);
+    expect(keepUnserved).toHaveLength(0);
+    expect(unresolved).toHaveLength(0);
+  });
+
+  it("REDIRECT_301 = 90 glossary + 1 mcp-server-directory + 15 semantic equivalents = 106 (all destinations served)", () => {
     const ledger = readCsv(resolve(process.cwd(), "reports/milestone-7-migration-ledger.csv"));
     const redirect = ledger.filter((r) => r.decision === "REDIRECT_301");
-    expect(redirect).toHaveLength(91);
+    expect(redirect).toHaveLength(106);
     const glossaryRedir = redirect.filter((r) => r.canonical_url.includes("/glossary/"));
-    expect(glossaryRedir).toHaveLength(90); // 2 protected terms removed
+    expect(glossaryRedir).toHaveLength(96); // 90 handoff + 6 semantic equivalents
     const legacyRedir = redirect.filter((r) => !r.canonical_url.includes("/glossary/"));
-    expect(legacyRedir).toHaveLength(1);
+    expect(legacyRedir).toHaveLength(10);
     // /mcp-server-directory canonicalizes to /servers/
     const mcpServerDir = legacyRedir.find(
       (r) => new URL(r.canonical_url).pathname.replace(/\/+$/, "") === "/mcp-server-directory",
@@ -150,20 +163,29 @@ describe("migration reconciliation", () => {
     expect(protections.protectedTerms).toHaveLength(2);
   });
 
-  it("all legacy redirects: /mcp-server-directory → /servers/ (one-hop canonical chain)", () => {
+  it("all redirects: every destination is a served canonical route (200 + self-canonical)", () => {
     const ledger = readCsv(resolve(process.cwd(), "reports/milestone-7-migration-ledger.csv"));
     const redirect = ledger.filter((r) => r.decision === "REDIRECT_301");
-    const nonGlossary = redirect.filter((r) => !r.canonical_url.includes("/glossary/"));
-    expect(nonGlossary).toHaveLength(1); // 1 mcp-server-directory only
-    for (const r of nonGlossary) {
-      expect(r.redirect_target).toBe("/servers/");
+    const served = new Set<string>(["/servers"]);
+    for (const e of Object.values(contentRegistry)) {
+      if (e.status === "published" && !e.noindex) served.add(e.indexPath.replace(/\/+$/, ""));
     }
+    expect(redirect.length).toBeGreaterThan(0);
+    for (const r of redirect) {
+      const target = r.redirect_target.replace(/\/+$/, "") || "/";
+      expect(served.has(target), `${r.canonical_url} -> ${r.redirect_target} is NOT served`).toBe(true);
+    }
+    // /mcp-server-directory keeps its one-hop canonicalization to /servers/
+    const mcpServerDir = redirect.find(
+      (r) => norm(new URL(r.canonical_url).pathname) === "/mcp-server-directory",
+    );
+    expect(mcpServerDir).toBeDefined();
+    expect(mcpServerDir!.redirect_target).toBe("/servers/");
   });
 
-  it("EVIDENCE_REVIEW: 4 /directory/* paths are held for individual resolution (G8)", () => {
+  it("G8 RESOLVED: 4 /directory/* paths are REBUILD (topical intent preserved, content before cutover)", () => {
     const ledger = readCsv(resolve(process.cwd(), "reports/milestone-7-migration-ledger.csv"));
-    const evidenceReview = ledger.filter((r) => r.decision === "EVIDENCE_REVIEW");
-    expect(evidenceReview).toHaveLength(4);
+    expect(ledger.filter((r) => r.decision === "EVIDENCE_REVIEW")).toHaveLength(0);
     for (const path of [
       "/directory/iot",
       "/directory/databases",
@@ -172,10 +194,13 @@ describe("migration reconciliation", () => {
     ]) {
       const found = ledger.find(
         (r) =>
-          r.decision === "EVIDENCE_REVIEW" &&
+          r.decision === "REBUILD" &&
           new URL(r.canonical_url).pathname.replace(/\/+$/, "") === path,
       );
-      expect(found, `expected ${path} in EVIDENCE_REVIEW ledger (G8)`).toBeDefined();
+      expect(found, `expected ${path} in REBUILD ledger (G8 resolution)`).toBeDefined();
+      expect(found!.evidence).toBe("topical_directory_intent_rebuild_pending");
+      // G8: they must NOT be blanket-redirected to /servers/
+      expect(found!.redirect_target).toBe("");
     }
   });
 
@@ -192,12 +217,34 @@ describe("migration reconciliation", () => {
 
     expect(served.length + unserved.length).toBe(keep.length);
     expect(served.length).toBe(16);
-    expect(unserved.length).toBe(565);
+    // Editorial gate resolved: no KEEP_INDEXED row may be unserved.
+    expect(unserved).toHaveLength(0);
+  });
 
-    // Every unserved KEEP_INDEXED row is a blocker candidate: it will 404 at
-    // cutover unless editorial resolves it (REBUILD / redirect / 410).
-    for (const r of unserved.slice(0, 3)) {
-      expect(r.evidence).toBe("gsc_coverage_valid");
+  it("REBUILD rows: 78 search-equity + 4 topical; GONE_410 rows: no-evidence only", () => {
+    const ledger = readCsv(resolve(process.cwd(), "reports/milestone-7-migration-ledger.csv"));
+    const rebuild = ledger.filter((r) => r.decision === "REBUILD");
+    expect(rebuild.filter((r) => r.evidence === "legacy_content_not_ported_search_equity")).toHaveLength(78);
+    expect(rebuild.filter((r) => r.evidence === "topical_directory_intent_rebuild_pending")).toHaveLength(4);
+    const gone = ledger.filter((r) => r.decision === "GONE_410");
+    expect(gone).toHaveLength(472);
+    for (const r of gone) {
+      expect(r.evidence).toBe("legacy_content_not_ported_no_evidence");
+      expect(Number(r.gsc_clicks || "0")).toBe(0);
+      expect(Number(r.gsc_impressions || "0")).toBeLessThan(10);
+    }
+  });
+
+  it("semantic-equivalent redirects: destination equals a registry path with the same normalized topic slug", () => {
+    const ledger = readCsv(resolve(process.cwd(), "reports/milestone-7-migration-ledger.csv"));
+    const equivRedirs = ledger.filter((r) => r.evidence === "semantic_equivalent_registry_path");
+    expect(equivRedirs).toHaveLength(15);
+    const normSlug = (p: string) =>
+      p.split("/").filter(Boolean).pop()!.toLowerCase().replace(/^mcp-/, "").replace(/-\d+$/, "");
+    for (const r of equivRedirs) {
+      const srcSlug = normSlug(new URL(r.canonical_url).pathname);
+      const dstSlug = normSlug(r.redirect_target);
+      expect(dstSlug, `${r.canonical_url} -> ${r.redirect_target}`).toBe(srcSlug);
     }
   });
 
@@ -273,9 +320,10 @@ describe("migration reconciliation", () => {
     }
   });
 
-  it("/mcp-host, /what-is-mcp, /mcp-installation: in GSC inventory AND in ledger as KEEP_INDEXED", () => {
-    // Resolution: all three topics ARE in the migration ledger as KEEP_INDEXED —
-    // they were not dropped and do not need remediation.
+  it("/mcp-host, /what-is-mcp, /mcp-installation: in GSC inventory AND explicitly decided in ledger", () => {
+    // Resolution: all three topics are in the migration ledger with an
+    // explicit terminal decision (GONE_410 — no evidence, no replacement);
+    // none is silently dropped.
     const inv = JSON.parse(
       readFileSync(
         resolve(process.cwd(), "data/migration/source/gsc-full-inventory.json"),
@@ -295,11 +343,11 @@ describe("migration reconciliation", () => {
     expect(topicPaths).toContain("/mcp-installation");
 
     const ledger = readCsv(resolve(process.cwd(), "reports/milestone-7-migration-ledger.csv"));
+    const TERMINAL = new Set(["KEEP_INDEXED", "REDIRECT_301", "REBUILD", "GONE_410", "DEFER_NOINDEX"]);
     for (const path of ["/mcp-host", "/what-is-mcp", "/mcp-installation"]) {
-      const found = ledger.find(
-        (r) => r.decision === "KEEP_INDEXED" && norm(new URL(r.canonical_url).pathname) === path,
-      );
-      expect(found, `expected ${path} in ledger as KEEP_INDEXED`).toBeDefined();
+      const found = ledger.find((r) => norm(new URL(r.canonical_url).pathname) === path);
+      expect(found, `expected ${path} in ledger`).toBeDefined();
+      expect(TERMINAL.has(found!.decision), `${path} decision ${found!.decision}`).toBe(true);
     }
   });
 

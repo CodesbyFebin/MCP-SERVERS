@@ -148,30 +148,35 @@ describe("migration — milestone-7 migration ledger (spec-compliant)", () => {
     );
   });
 
-  it("every row has a non-empty decision (enum: KEEP_INDEXED | REDIRECT_301 | EVIDENCE_REVIEW | DEFER_NOINDEX | DROP_NOINDEX)", () => {
+  it("every row has a non-empty decision (enum: KEEP_INDEXED | REDIRECT_301 | REBUILD | GONE_410 | EVIDENCE_REVIEW | DEFER_NOINDEX | DROP_NOINDEX)", () => {
     const lines = fs.readFileSync(LEDGER_PATH, "utf-8").trim().split("\n");
-    const VALID_DECISIONS = new Set(["KEEP_INDEXED", "REDIRECT_301", "EVIDENCE_REVIEW", "DEFER_NOINDEX", "DROP_NOINDEX"]);
+    const VALID_DECISIONS = new Set(["KEEP_INDEXED", "REDIRECT_301", "REBUILD", "GONE_410", "EVIDENCE_REVIEW", "DEFER_NOINDEX", "DROP_NOINDEX"]);
     for (const line of lines.slice(1)) {
       const decision = line.split(",")[4];
       expect(VALID_DECISIONS.has(decision)).toBe(true);
     }
   });
 
-  it("decision distribution reflects the known cohort sizes (post-blocker resolution, G8: /directory/* held for EVIDENCE_REVIEW)", () => {
+  it("decision distribution reflects the resolved editorial gate (P23: every URL terminal)", () => {
     // The ledger covers: 676 GSC URLs + 72 registry paths not in GSC
-    // GSC redirect sources (91) → REDIRECT_301 (90 glossary + 1 mcp-server-directory)
-    // GSC non-redirect (581) → KEEP_INDEXED
-    // GSC /directory/* (4) → EVIDENCE_REVIEW (G8: per-path resolution pending)
-    // Registry paths not in GSC (72) → DEFER_NOINDEX (decoupled, gsc_status=absent)
+    // Editorial gate resolution of the 565 unserved KEEP rows + 4 /directory/*:
+    //   KEEP_INDEXED   16  (every one served-200 — invariant)
+    //   REDIRECT_301  106  (90 glossary + 1 mcp-server-directory + 15 semantic equivalents)
+    //   REBUILD        82  (78 search-equity + 4 topical /directory/*)
+    //   GONE_410      472  (0 clicks, <10 impressions, no replacement — retired)
+    //   DEFER_NOINDEX  72  (registry paths not in GSC)
+    //   EVIDENCE_REVIEW 0  (invariant: nothing unresolved)
     const lines = fs.readFileSync(LEDGER_PATH, "utf-8").trim().split("\n");
     const counts: Record<string, number> = {};
     for (const line of lines.slice(1)) {
       const d = line.split(",")[4];
       counts[d] = (counts[d] ?? 0) + 1;
     }
-    expect(counts["REDIRECT_301"]).toBe(91); // 90 glossary + 1 mcp-server-directory
-    expect(counts["KEEP_INDEXED"]).toBe(581);
-    expect(counts["EVIDENCE_REVIEW"] ?? 0).toBe(4); // /directory/{iot,databases,devops,monitoring} (G8)
+    expect(counts["REDIRECT_301"]).toBe(106);
+    expect(counts["KEEP_INDEXED"]).toBe(16);
+    expect(counts["REBUILD"]).toBe(82);
+    expect(counts["GONE_410"]).toBe(472);
+    expect(counts["EVIDENCE_REVIEW"] ?? 0).toBe(0);
     expect(counts["DEFER_NOINDEX"]).toBe(72);
     expect(counts["DROP_NOINDEX"] ?? 0).toBe(0);
     expect(lines.length - 1).toBe(748);
