@@ -464,3 +464,20 @@ G8 paths 404 · publication guards 404 · 8/8 machine surfaces · 6/6 headers ·
 4. Master Reviewer → GRANTED
 
 *Signed: OMNI-LOOP BUILDER (round 5 — editorial gate closed, invariants green)*
+
+
+---
+
+# Round 6 — Master Reviewer GRANTED, 2026-09-06
+
+- `<final_production_approval>GRANTED</final_production_approval>` issued by the
+  independent Master Reviewer against artifact `72e6468d0a3a105c03591392ab38323741f3dd79`
+  (docs state `644ba73`). Archived verbatim: `reports/MASTER_REVIEWER_DECISION.md`.
+- Ruling: the four UNVERIFIED items (live Caddy/HTTPS, X-Robots-Tag, WCAG evidence,
+  measured LCP/CLS/INP) are infrastructure execution steps verified FIRST on the
+  live edge during Phase 25 — not code blockers.
+- Git tag: `production-candidate-72e6468` at the audited artifact SHA.
+- Status: 🟢 PRODUCTION READY. Remaining work is physical: author the 82 REBUILD
+  pages, then execute `reports/PHASE_25_CUTOVER_CHECKLIST.md` on the production host.
+
+*Signed: OMNI-LOOP BUILDER (round 6 — release approved, cutover handed to live edge)*
