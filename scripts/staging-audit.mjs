@@ -209,8 +209,10 @@ async function runAudit() {
   if (!SKIP_LIGHTHOUSE) {
     console.log('\n7. Lighthouse audit on /');
     try {
-      const { default: lighthouse } = await import('lighthouse');
-      const { default: chromeLauncher } = await import('chrome-launcher');
+      const lh = await import('lighthouse');
+      const lighthouse = lh.default ?? lh;
+      const cl = await import('chrome-launcher');
+      const chromeLauncher = cl.default && cl.default.launch ? cl.default : cl;
       const chrome = await chromeLauncher.launch({ chromeFlags: ['--headless', '--no-sandbox'] });
       try {
         const runnerResult = await lighthouse(`${STAGING_URL}/`, {

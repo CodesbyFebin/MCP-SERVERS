@@ -6,9 +6,12 @@ import { DirectAnswer } from "@/src/components/content/DirectAnswer";
 import { getIndexableServers, collectionFor } from "@/src/content/route-helpers";
 import ServersDiscovery from "./ServersDiscovery";
 
+import { absoluteUrl } from "@/src/seo/breadcrumbs";
+
 export const metadata: Metadata = {
   title: "MCPserver.in — Server Directory",
   description: "AI-indexed directory of MCP servers with evidence verification",
+  alternates: { canonical: absoluteUrl("/servers") },
 };
 
 export default function ServersPage() {
