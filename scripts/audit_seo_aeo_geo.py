@@ -33,6 +33,14 @@ NS = "{http://www.sitemaps.org/schemas/sitemap/0.9}"
 
 GREEN, RED, CYAN, BOLD, END = "\033[92m", "\033[91m", "\033[96m", "\033[1m", "\033[0m"
 
+# 10-item certification scorecard, matching the gate's acceptance format.
+# Kept stable so the "N/10 CERTIFIED" verdict is meaningful and auditable.
+FINDINGS = []  # list of (name, ok)
+
+
+def record(name, ok):
+    FINDINGS.append((name, ok))
+
 
 def log_pass(msg): print(f"{GREEN}PASS {msg}{END}")
 def log_fail(msg): print(f"{RED}FAIL {msg}{END}")
@@ -117,33 +125,40 @@ def validate_robots():
     status, body, _ = fetch(f"{TARGET_URL}/robots.txt")
     if status != 200:
         log_fail(f"robots.txt unreachable (status={status})")
+        record("robots: private surfaces blocked", False)
+        record("robots: sitemap pointer", False)
+        record("robots: AI agents allowed (GEO)", False)
         return False
     content = body.decode("utf-8", "replace")
-    passed = True
 
+    blocked = True
     for required in ["Disallow: /api/", "Disallow: /admin/", "Disallow: /drafts/", "Disallow: /internal/"]:
         if required in content:
             log_pass(f"{required} present (private surfaces blocked)")
         else:
             log_fail(f"missing '{required}'")
-            passed = False
+            blocked = False
+    record("robots: private surfaces blocked", blocked)
 
-    if re.search(r"^Sitemap:\s*https://www\.mcpserver\.in/sitemap\.xml$", content, re.M):
+    sitemap_ptr = bool(re.search(r"^Sitemap:\s*https://www\.mcpserver\.in/sitemap\.xml$", content, re.M))
+    if sitemap_ptr:
         log_pass("Sitemap pointer present and correct")
     else:
         log_fail("missing/incorrect Sitemap pointer")
-        passed = False
+    record("robots: sitemap pointer", sitemap_ptr)
 
     # GEO doctrine: AI agents must be ALLOWED (this site's core strategy is
     # LLM discoverability). The audit asserts the allows stay in place.
+    geo = True
     for agent in ["GPTBot", "ClaudeBot", "PerplexityBot"]:
         m = re.search(rf"User-agent:\s*{agent}\n(.*?)(?=\nUser-agent:|\Z)", content, re.S)
         if m and "Allow: /" in m.group(1):
             log_pass(f"{agent} explicitly allowed (GEO doctrine preserved)")
         else:
             log_fail(f"{agent} allow-directive missing — GEO strategy broken")
-            passed = False
-    return passed
+            geo = False
+    record("robots: AI agents allowed (GEO)", geo)
+    return blocked and sitemap_ptr and geo
 
 
 def validate_llms():
@@ -151,23 +166,27 @@ def validate_llms():
     status, body, headers = fetch(f"{TARGET_URL}/llms.txt")
     if status != 200:
         log_fail(f"llms.txt unreachable (status={status})")
+        record("llms: manifest valid (H1 + text)", False)
+        record("llms: all link targets resolve live", False)
+        record("llms: core/resource links present", False)
         return False
     content = body.decode("utf-8", "replace")
-    passed = True
 
-    if content.startswith("# "):
+    h1_ok = content.startswith("# ")
+    if h1_ok:
         log_pass("valid Markdown H1 header present")
     else:
         log_fail("must start with a Markdown H1")
-        passed = False
 
     ct = headers.get("content-type", "")
-    if "text/plain" in ct or "text/markdown" in ct:
+    ct_ok = "text/plain" in ct or "text/markdown" in ct
+    if ct_ok:
         log_pass(f"content-type text ({ct})")
     else:
         log_fail(f"unexpected content-type: {ct}")
-        passed = False
+    record("llms: manifest valid (H1 + text)", h1_ok and ct_ok)
 
+    links_ok = True
     for label, target in [
         ("/servers", "https://www.mcpserver.in/servers"),
         ("/pillars", "https://www.mcpserver.in/pillars"),
@@ -178,7 +197,8 @@ def validate_llms():
             log_pass(f"links {label} ({target})")
         else:
             log_fail(f"missing link to {target}")
-            passed = False
+            links_ok = False
+    record("llms: core/resource links present", links_ok)
 
     # Every link target in llms.txt must be a real surface (no fabrication):
     # page links must resolve 200 and be indexable; machine surfaces
@@ -199,11 +219,11 @@ def validate_llms():
         log_fail(f"{len(fab)} llms.txt links point at non-serving/noindex surfaces (fabrication):")
         for p in fab[:5]:
             print(f"     - {p}")
-        passed = False
     else:
         log_pass(f"all {len(links)} llms.txt link targets resolve live ({n_page} page links)")
+    record("llms: all link targets resolve live", not fab)
     log_info(f"{len(links)} canonical links listed")
-    return passed
+    return h1_ok and ct_ok and links_ok and not fab
 
 
 def validate_ai_manifest():
@@ -211,19 +231,21 @@ def validate_ai_manifest():
     status, body, headers = fetch(f"{TARGET_URL}/ai.txt")
     if status != 200:
         log_fail(f"/ai.txt unreachable (status={status})")
+        record("ai.txt: reachable + machine-source pointers", False)
+        record("ai.txt: .well-known mirror", False)
         return False
     root_body = body.decode("utf-8", "replace")
 
     status2, body2, _ = fetch(f"{TARGET_URL}/.well-known/ai.txt")
     wk_body = body2.decode("utf-8", "replace") if status2 == 200 else None
 
-    passed = True
-    if "text/plain" in headers.get("content-type", ""):
+    ct_ok = "text/plain" in headers.get("content-type", "")
+    if ct_ok:
         log_pass("content-type text/plain")
     else:
         log_fail(f"unexpected content-type: {headers.get('content-type')}")
-        passed = False
 
+    pointers_ok = True
     for field in ["Registry: https://www.mcpserver.in/mcp-registry.json",
                   "LLMs-Info: https://www.mcpserver.in/llms.txt",
                   "Policy: https://www.mcpserver.in/robots.txt",
@@ -232,14 +254,16 @@ def validate_ai_manifest():
             log_pass(field)
         else:
             log_fail(f"missing '{field}'")
-            passed = False
+            pointers_ok = False
+    record("ai.txt: reachable + machine-source pointers", status == 200 and ct_ok and pointers_ok)
 
-    if wk_body == root_body:
+    mirror_ok = wk_body == root_body
+    if mirror_ok:
         log_pass("/.well-known/ai.txt mirrors /ai.txt byte-for-byte")
     else:
         log_fail("/.well-known/ai.txt diverges from /ai.txt")
-        passed = False
-    return passed
+    record("ai.txt: .well-known mirror", mirror_ok)
+    return status == 200 and ct_ok and pointers_ok and mirror_ok
 
 
 def validate_sitemap():
@@ -247,11 +271,15 @@ def validate_sitemap():
     status, body, _ = fetch(f"{TARGET_URL}/sitemap.xml")
     if status != 200:
         log_fail(f"sitemap.xml unreachable (status={status})")
+        record("sitemap: zero leaks", False)
+        record("sitemap: cohort covered + hubs", False)
         return False
     try:
         root = ET.fromstring(body)
     except ET.ParseError as e:
         log_fail(f"invalid XML: {e}")
+        record("sitemap: zero leaks", False)
+        record("sitemap: cohort covered + hubs", False)
         return False
 
     urls = [el.text for el in root.iter(f"{NS}loc")]
@@ -294,20 +322,20 @@ def validate_sitemap():
         elif p not in sitemap_paths and not noindex:
             hub_fail.append(f"{p} indexable but absent from sitemap")
 
-    passed = True
     if leaks:
         log_fail(f"{len(leaks)} sitemap URLs fail the indexability contract (leak):")
         for p, why in leaks[:5]:
             print(f"     - {p} ({why})")
-        passed = False
     else:
         log_pass("zero leaks: every sitemap URL is live and indexable")
+    record("sitemap: zero leaks", not leaks)
 
+    coverage_ok = True
     if missing:
         log_fail(f"{len(missing)} live-indexable cohort pages missing from sitemap:")
         for p in missing[:5]:
             print(f"     - {p}")
-        passed = False
+        coverage_ok = False
     else:
         log_pass("every live-indexable ledger cohort page is in the sitemap")
 
@@ -315,10 +343,11 @@ def validate_sitemap():
         log_fail("hub surface contract violated:")
         for p in hub_fail[:5]:
             print(f"     - {p}")
-        passed = False
+        coverage_ok = False
     else:
         log_pass("all hub surfaces in sitemap or explicitly noindex")
-    return passed
+    record("sitemap: cohort covered + hubs", not missing and not hub_fail)
+    return not leaks and not missing and not hub_fail
 
 
 def main():
@@ -332,25 +361,38 @@ def main():
         "sitemap.xml": validate_sitemap(),
     }
 
-    log_header("SCORECARD")
-    all_pass = True
+    passed = all(results.values())
+    n_pass = sum(ok for _, ok in FINDINGS)
+    n_total = len(FINDINGS)
+
+    log_header(f"SCORECARD ({n_pass}/{n_total})")
     for name, ok in results.items():
         print(f"  {name:<12}: {GREEN}PASS{END}" if ok else f"  {name:<12}: {RED}FAIL{END}")
-        all_pass = all_pass and ok
 
-    verdict = "MACHINE-READABLE GATE PASSED" if all_pass else "CERTIFICATION FAILED"
-    print(f"\n{BOLD}{GREEN if all_pass else RED}{verdict}{END}\n")
+    log_header("10-POINT CERTIFICATION")
+    for name, ok in FINDINGS:
+        mark = "\u2705" if ok else "\u274c"
+        print(f"  {mark} {name}")
+
+    if passed and n_total == 10 and n_pass == 10:
+        verdict = f"10/10 CERTIFIED."
+        print(f"\n{BOLD}{GREEN}\U0001f7e2 {verdict} MACHINE-READABLE GATE PASSED{END}\n")
+    else:
+        verdict = "CERTIFICATION FAILED."
+        print(f"\n{BOLD}{RED}\U0001f534 {verdict} ({n_pass}/{n_total}){END}\n")
 
     out = ROOT / "reports" / "machine-readable-audit-result.json"
     out.write_text(json.dumps({
         "timestamp": __import__("datetime").datetime.now(__import__("datetime").timezone.utc).isoformat().replace("+00:00", "Z"),
         "target": TARGET_URL,
         "results": results,
-        "verdict": "PASSED" if all_pass else "FAILED",
+        "score": {"passed": n_pass, "total": n_total},
+        "findings": [{"name": n, "ok": k} for n, k in FINDINGS],
+        "verdict": "PASSED" if passed else "FAILED",
     }, indent=2) + "\n", encoding="utf-8")
     print(f"Report: {out}")
 
-    sys.exit(0 if all_pass else 1)
+    sys.exit(0 if passed else 1)
 
 
 if __name__ == "__main__":
