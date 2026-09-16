@@ -1,0 +1,15 @@
+graph LR
+    P0[Phase-0 Framework / Ledger<br/>7 files] -->|structural foundation| GSC[GSC Evidence Layer]
+    GSC -->|recalibrated metrics| P0
+    
+    subgraph PIPELINE
+        direction TB
+        GSC_exports[GSC exports + historical URL reconciliation] -->|input| LEDGER[Complete migration ledger (Phase-0 files)]
+        LEDGER -->|processed| CONTENT[Content-source reconciliation]
+        CONTENT -->|output| PUBLICATION[Publication decisions]
+        PUBLICATION -->|flow| IMPLEMENTATION[Implementation]
+    end
+    
+    style P0 fill:#f9f,stroke:#333,stroke-width:2px
+    style GSC fill:#bbf,stroke:#333,stroke-width:2px
+    style PIPELINE fill:#e8f,stroke:#333,stroke-width:1px

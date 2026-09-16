@@ -1,0 +1,32 @@
+PHASE-0 FRAMEWORK / LEDGER (7 FILES)
+├── 01-GSC-VALID-URL-INVENTORY.csv
+├── 02-URL-MIGRATION-LEDGER.csv
+├── 03-CONTENT-SOURCE-MAP.csv
+├── 00-REPOSITORY-FORENSICS.md
+├── 04-DUPLICATE-ROUTE-AUDIT.md
+├── 05-TARGET-ARCHITECTURE.md
+└── PROJECT-TRACKER.md
+
+GSC EVIDENCE LAYER
+├── recalculated metrics (904 raw valid rows)
+├── 699 unique normalized valid URLs
+├── 123 Search Performance rows
+├── 203 duplicate canonical groups
+├── 408 raw variant rows in duplicate groups
+└── 676 indexed / 511 discovered-not-indexed
+
+PIPELINE ORDER
+GSC exports + historical URL reconciliation
+        ↓
+complete migration ledger (Phase-0 files)
+        ↓
+content-source reconciliation
+        ↓
+publication decisions
+        ↓
+implementation
+
+COMPLEMENTARY RELATIONSHIP
+Phase-0 framework/ledger: structural foundations, audit trails, migration tracking
+GSC evidence layer: actual performance metrics, index status, duplicate detection
+Together: ledger provides structure; GSC data provides reality check for migration decisions
