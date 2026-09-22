@@ -39,7 +39,12 @@ export interface BrandMcpArticleProps {
   h1: string;
   title: string;
   description: string;
-  status: OfficialStatus;
+  /** Brand pages only: whether the company publishes an official MCP server. */
+  status?: OfficialStatus;
+  /** Full URL path; defaults to /blog/{slug}. */
+  path?: string;
+  /** Parent breadcrumb; defaults to Blog. */
+  section?: { label: string; href: string };
   directAnswer: string;
   reviewedAt: string;
   sections: ArticleSection[];
@@ -74,11 +79,12 @@ export function Ext({ href, children }: { href: string; children: ReactNode }) {
 }
 
 export function BrandMcpArticle(props: BrandMcpArticleProps) {
-  const path = `/blog/${props.slug}`;
-  const banner = STATUS_BANNER[props.status];
+  const path = props.path ?? `/blog/${props.slug}`;
+  const section = props.section ?? { label: "Blog", href: "/blog" };
+  const banner = props.status ? STATUS_BANNER[props.status] : null;
   const crumbs = [
     { label: "Home", href: "/" },
-    { label: "Blog", href: "/blog" },
+    section,
     { label: props.h1, href: path },
   ];
 
@@ -102,16 +108,18 @@ export function BrandMcpArticle(props: BrandMcpArticleProps) {
               }),
               breadcrumbListJsonLd([
                 { name: "Home", item: absoluteUrl("/") },
-                { name: "Blog", item: absoluteUrl("/blog") },
+                { name: section.label, item: absoluteUrl(section.href) },
                 { name: props.h1, item: absoluteUrl(path) },
               ]),
             ]),
           }}
         />
 
-        <div className={`mb-4 rounded border p-3 text-sm font-medium ${banner.className}`}>
-          {banner.label} · status checked {props.reviewedAt}
-        </div>
+        {banner && (
+          <div className={`mb-4 rounded border p-3 text-sm font-medium ${banner.className}`}>
+            {banner.label} · status checked {props.reviewedAt}
+          </div>
+        )}
 
         <h1 className="mb-4 text-3xl font-bold text-slate-900 dark:text-slate-100">{props.h1}</h1>
 
