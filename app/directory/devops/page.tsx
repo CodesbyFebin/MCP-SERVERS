@@ -1,51 +1,60 @@
-/**
- * AUTO-GENERATED REBUILD STUB — do not hand-edit the header; author content below.
- * Path: /directory/devops
- * Decision: REBUILD (migration ledger evidence: topical_directory_intent_rebuild_pending)
- * Status: awaiting substantive editorial content.
- *
- * Publication contract: 200 + noindex until real content is authored. The
- * noindex prevents thin-content indexing; the 200 preserves the URL while
- * its rebuild is pending. Delete this file (replace with the authored page)
- * when the real content lands, then flip robots to index:true.
- */
-
 import type { Metadata } from "next";
+import { P } from "@/src/components/content/BrandMcpArticle";
+import { ServerDirectory, directoryMetadata } from "@/src/components/content/ServerDirectory";
 
 export const dynamic = "force-static";
 
-const PATH = "/directory/devops";
-const TITLE = "Devops";
+const SLUG = "devops";
+const TITLE = "DevOps MCP Servers: Official Options";
+const DESCRIPTION =
+  "Official MCP servers for DevOps: GitHub, GitLab, Azure DevOps, Atlassian (Jira, Bitbucket), Terraform, Azure and Docker's MCP Gateway, with guidance on safe use.";
 
 export function generateMetadata(): Metadata {
-  return {
-    title: TITLE,
-    description:
-      "This resource is being rebuilt to meet MCPserver.in evidence-led editorial standards. Verified documentation will be published here.",
-    alternates: {
-      canonical: `https://www.mcpserver.in${PATH}`,
-    },
-    robots: {
-      index: false, // noindex until substantive content is authored
-      follow: true,
-    },
-  };
+  return directoryMetadata(SLUG, TITLE, DESCRIPTION);
 }
 
-export default function RebuildStubPage() {
+export default function Page() {
   return (
-    <main className="flex min-h-[60vh] flex-col items-center justify-center px-6 text-center">
-      <h1 className="text-3xl font-bold tracking-tight mb-4 text-slate-900 dark:text-slate-100">
-        {TITLE}
-      </h1>
-      <div className="rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-amber-800 dark:border-amber-700 dark:bg-amber-900/20 dark:text-amber-200 max-w-2xl">
-        <p className="font-semibold">Being rebuilt</p>
-        <p className="text-sm mt-1">
-          This page is scheduled for rebuild under the MCPserver.in editorial
-          gate. It returns noindex while the verified content is authored —
-          nothing on this page is fabricated.
-        </p>
-      </div>
-    </main>
+    <ServerDirectory
+      category="DevOps"
+      slug={SLUG}
+      title={TITLE}
+      description={DESCRIPTION}
+      reviewedAt="2026-09-23"
+      directAnswer="The main DevOps platforms now publish official MCP servers: GitHub, GitLab, Azure DevOps, Atlassian (Jira, Confluence, Bitbucket), HashiCorp Terraform and Microsoft Azure. Docker publishes an MCP Gateway for running MCP servers in containers. Give them tokens scoped to the repositories and projects the assistant needs, and review anything that merges, deploys or changes infrastructure."
+      entries={[
+        { name: "GitHub MCP Server", publisher: "GitHub", url: "https://github.com/github/github-mcp-server", note: "GitHub's official MCP server. MIT." },
+        { name: "GitLab MCP server", publisher: "GitLab", url: "https://docs.gitlab.com/user/model_context_protocol/mcp_server/", note: "Built into GitLab at /api/v4/mcp (beta); merge requests, work items, repository, CI.", page: "/blog/mcp-server-for-gitlab-devops" },
+        { name: "Azure DevOps MCP", publisher: "Microsoft", url: "https://github.com/microsoft/azure-devops-mcp", note: "Brings Azure DevOps to agents. MIT." },
+        { name: "Atlassian remote MCP server", publisher: "Atlassian", url: "https://github.com/atlassian/atlassian-mcp-server", note: "Jira, Confluence, Jira Service Management, Bitbucket Cloud, Compass and more.", page: "/blog/mcp-server-for-jira" },
+        { name: "Terraform MCP Server", publisher: "HashiCorp", url: "https://github.com/hashicorp/terraform-mcp-server", note: "Integration with the Terraform ecosystem. MPL-2.0." },
+        { name: "Azure MCP Server", publisher: "Microsoft", url: "https://github.com/microsoft/mcp/blob/main/servers/Azure.Mcp.Server/README.md", note: "Query and manage Azure services.", page: "/servers/azure-mcp-server" },
+        { name: "Docker MCP Gateway", publisher: "Docker", url: "https://github.com/docker/mcp-gateway", note: "docker mcp CLI plugin and MCP Gateway. MIT." },
+      ]}
+      choosing={
+        <>
+          <P>Match the server to where your code and pipelines live, then limit what it can do:</P>
+          <ul className="list-inside list-disc space-y-2 text-slate-700 dark:text-slate-300">
+            <li>Use fine-grained tokens limited to specific repositories or projects.</li>
+            <li>Keep merges, deployments, pipeline runs and <code>terraform apply</code> behind human approval.</li>
+            <li>Issue text, commit messages and PR comments are written by others; treat them as untrusted input.</li>
+            <li>Pin versions of locally run servers and keep them patched.</li>
+          </ul>
+        </>
+      }
+      faqs={[
+        { question: "Does GitHub have an official MCP server?", answer: "Yes, github/github-mcp-server." },
+        { question: "Is the GitLab MCP server generally available?", answer: "It was in beta on the review date, on Free, Premium and Ultimate tiers." },
+        { question: "Can an AI apply Terraform changes through MCP?", answer: "Don't let it do so unattended. Review plans and keep apply behind human approval." },
+        { question: "What is Docker's MCP Gateway?", answer: "A docker mcp CLI plugin and gateway for running MCP servers, published by Docker." },
+        { question: "Is there an official Azure DevOps MCP server?", answer: "Yes, microsoft/azure-devops-mcp." },
+      ]}
+      related={[
+        { href: "/blog/mcp-server-for-gitlab-devops", label: "GitLab MCP server" },
+        { href: "/blog/mcp-server-for-jira", label: "Jira MCP server" },
+        { href: "/glossary/cve-management", label: "CVE management for MCP" },
+        { href: "/directory/monitoring", label: "Monitoring MCP servers" },
+      ]}
+    />
   );
 }
