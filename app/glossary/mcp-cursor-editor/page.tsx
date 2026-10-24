@@ -1,51 +1,147 @@
-/**
- * AUTO-GENERATED REBUILD STUB — do not hand-edit the header; author content below.
- * Path: /glossary/mcp-cursor-editor
- * Decision: REBUILD (migration ledger evidence: legacy_content_not_ported_search_equity)
- * Status: awaiting substantive editorial content.
- *
- * Publication contract: 200 + noindex until real content is authored. The
- * noindex prevents thin-content indexing; the 200 preserves the URL while
- * its rebuild is pending. Delete this file (replace with the authored page)
- * when the real content lands, then flip robots to index:true.
- */
-
 import type { Metadata } from "next";
+import { BrandMcpArticle, Code, P, Ext } from "@/src/components/content/BrandMcpArticle";
 
 export const dynamic = "force-static";
 
-const PATH = "/glossary/mcp-cursor-editor";
-const TITLE = "Mcp Cursor Editor";
+const SLUG = "mcp-cursor-editor";
+const PATH = `/glossary/${SLUG}`;
+const TITLE = "MCP in Cursor: mcp.json Setup Explained";
+const DESCRIPTION =
+  "How Cursor uses MCP: project and global mcp.json, stdio vs remote servers, env and header config, variable interpolation, OAuth redirect URLs, and tool approval.";
+const REVIEWED = "2026-09-23";
+const DOCS = "https://cursor.com/docs/context/mcp";
+
+const UL = "mb-4 list-inside list-disc space-y-2 text-slate-700 dark:text-slate-300";
 
 export function generateMetadata(): Metadata {
   return {
     title: TITLE,
-    description:
-      "This resource is being rebuilt to meet MCPserver.in evidence-led editorial standards. Verified documentation will be published here.",
-    alternates: {
-      canonical: `https://www.mcpserver.in${PATH}`,
-    },
-    robots: {
-      index: false, // noindex until substantive content is authored
-      follow: true,
-    },
+    description: DESCRIPTION,
+    alternates: { canonical: `https://www.mcpserver.in${PATH}` },
+    robots: { index: true, follow: true },
+    openGraph: { title: TITLE, description: DESCRIPTION, type: "article" },
   };
 }
 
-export default function RebuildStubPage() {
+export default function Page() {
   return (
-    <main className="flex min-h-[60vh] flex-col items-center justify-center px-6 text-center">
-      <h1 className="text-3xl font-bold tracking-tight mb-4 text-slate-900 dark:text-slate-100">
-        {TITLE}
-      </h1>
-      <div className="rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-amber-800 dark:border-amber-700 dark:bg-amber-900/20 dark:text-amber-200 max-w-2xl">
-        <p className="font-semibold">Being rebuilt</p>
-        <p className="text-sm mt-1">
-          This page is scheduled for rebuild under the MCPserver.in editorial
-          gate. It returns noindex while the verified content is authored —
-          nothing on this page is fabricated.
-        </p>
-      </div>
-    </main>
+    <BrandMcpArticle
+      slug={SLUG}
+      path={PATH}
+      section={{ label: "Glossary", href: "/glossary" }}
+      title={TITLE}
+      h1="MCP in the Cursor Editor"
+      description={DESCRIPTION}
+      reviewedAt={REVIEWED}
+      directAnswer="Cursor is an MCP client. You add servers in .cursor/mcp.json inside a project, or ~/.cursor/mcp.json for all projects. Local servers use command, args and env; remote servers use url and optional headers. Cursor supports stdio, SSE and Streamable HTTP, and by default asks for approval before it runs an MCP tool."
+      sections={[
+        {
+          id: "files",
+          heading: "Where the config lives",
+          body: (
+            <ul className={UL}>
+              <li><code>.cursor/mcp.json</code> in a project: servers for that project only</li>
+              <li><code>~/.cursor/mcp.json</code>: servers available in every project</li>
+            </ul>
+          ),
+        },
+        {
+          id: "examples",
+          heading: "Config examples",
+          body: (
+            <>
+              <P>A local stdio server:</P>
+              <Code>{`{
+  "mcpServers": {
+    "server-name": {
+      "command": "npx",
+      "args": ["-y", "mcp-server"],
+      "env": { "API_KEY": "\${env:API_KEY}" }
+    }
+  }
+}`}</Code>
+              <P>A remote server:</P>
+              <Code>{`{
+  "mcpServers": {
+    "server-name": {
+      "url": "https://example.com/mcp",
+      "headers": { "API_KEY": "value" }
+    }
+  }
+}`}</Code>
+              <P>
+                Interpolation keeps secrets out of the file: <code>{"${env:NAME}"}</code>,{" "}
+                <code>{"${userHome}"}</code>, <code>{"${workspaceFolder}"}</code>,{" "}
+                <code>{"${workspaceFolderBasename}"}</code> and <code>{"${pathSeparator}"}</code>.
+              </P>
+            </>
+          ),
+        },
+        {
+          id: "oauth",
+          heading: "OAuth",
+          body: (
+            <P>
+              Remote servers that use OAuth work through dynamic client registration. For
+              providers that need a fixed client ID and whitelisted redirect URL, you can put static
+              OAuth client credentials in <code>mcp.json</code>. Cursor&apos;s redirect URLs are{" "}
+              <code>http://localhost:8787/callback</code> for the desktop app and{" "}
+              <code>https://www.cursor.com/agents/mcp/oauth/callback</code> for web and agents.
+            </P>
+          ),
+        },
+        {
+          id: "approval",
+          heading: "Approval and run modes",
+          body: (
+            <P>
+              Per the <Ext href={DOCS}>Cursor docs</Ext>, Cursor asks before using MCP tools by
+              default, and MCP tools follow the same run modes as terminal commands, where
+              allowlisted tools can run without asking. Servers can be toggled off without deleting
+              their config. Only allowlist read-only tools you trust.
+            </P>
+          ),
+        },
+      ]}
+      evidence={[
+        {
+          source: "Cursor docs: Model Context Protocol",
+          url: DOCS,
+          type: "official",
+          status: "verified",
+          reviewedAt: REVIEWED,
+          finding:
+            "Project .cursor/mcp.json and global ~/.cursor/mcp.json; stdio, SSE and Streamable HTTP; command/args/env and url/headers examples; interpolation variables; static OAuth credentials and redirect URLs; approval by default and run modes; toggling servers.",
+        },
+      ]}
+      faqs={[
+        {
+          question: "Where is Cursor's MCP config file?",
+          answer: ".cursor/mcp.json in a project, or ~/.cursor/mcp.json for all projects.",
+        },
+        {
+          question: "Does Cursor support remote MCP servers?",
+          answer: "Yes, over SSE and Streamable HTTP, using a url entry.",
+        },
+        {
+          question: "How do I avoid putting API keys in mcp.json?",
+          answer: "Use interpolation such as ${env:API_KEY} to read them from your environment.",
+        },
+        {
+          question: "Will Cursor run MCP tools without asking?",
+          answer: "Not by default. It asks for approval unless a tool is allowlisted under your run mode.",
+        },
+        {
+          question: "What OAuth redirect URL does Cursor use?",
+          answer: "http://localhost:8787/callback for desktop and https://www.cursor.com/agents/mcp/oauth/callback for web and agents.",
+        },
+      ]}
+      related={[
+        { href: "/troubleshooting/claude-desktop-mcp-not-working", label: "Fix Claude Desktop MCP problems" },
+        { href: "/blog/mcp-transport-methods", label: "MCP transports: stdio vs Streamable HTTP" },
+        { href: "/security/mcp-oauth", label: "MCP OAuth" },
+        { href: "/glossary", label: "MCP glossary" },
+      ]}
+    />
   );
 }
