@@ -44,6 +44,7 @@ const validPaths = new Set<string>([
   "/learn/indic-nlp-guide/",
   "/api/telemetry/p99/",
   "/community/",
+  "/ecosystem/",
   "/state-of-mcp/",
   "/security/",
   "/about/",

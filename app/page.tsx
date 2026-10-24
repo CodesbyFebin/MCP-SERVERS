@@ -177,6 +177,10 @@ export default function Home() {
   return (
     <PageShell id="homepage">
       <SchemaJsonLd schema={unifiedGraphSchema} />
+      <div className="border-b border-emerald-900/30 bg-slate-950 px-6 py-3 text-center text-sm text-emerald-100">
+        Explore the unified MCP knowledge, registry and governance ecosystem.{" "}
+        <Link href="/ecosystem/" className="font-semibold text-emerald-400 underline underline-offset-4">View ecosystem →</Link>
+      </div>
       <section className="relative overflow-hidden py-10 sm:py-14 lg:py-20">
         <Container>
           <div className="grid items-center gap-10 lg:grid-cols-[0.48fr_0.52fr]">

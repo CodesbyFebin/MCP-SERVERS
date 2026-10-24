@@ -5,8 +5,8 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 /** @type {import("next").NextConfig} */
 const nextConfig = {
-  distDir: "dist",
-  output: "standalone",
+  // Vercel uses the standard Next.js output; standalone is for self-hosting.
+  output: process.env.VERCEL ? undefined : "standalone",
   turbopack: {},
   images: {
     unoptimized: true,
