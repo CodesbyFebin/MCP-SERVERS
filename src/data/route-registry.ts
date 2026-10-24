@@ -236,6 +236,7 @@ function buildStaticRoutes(): RouteEntry[] {
     ["/templates",                "MCP Server Templates",                                  "Production-ready MCP server starter templates.",                              0.7, "weekly"],
     ["/news",                     "MCP News",                                              "Latest MCP protocol updates, SDK releases, and ecosystem news.",               0.7, "weekly"],
     ["/state-of-mcp",             "State of MCP",                                         "Annual report on MCP ecosystem adoption, trends, and benchmarks.",            0.9, "weekly"],
+    ["/ecosystem",                "MCPServer Ecosystem", "Discovery, evidence and governance across MCPServer.in.", 0.8, "monthly"],
     ["/pricing",                  "MCPServer.in Pricing",                                  "Hosted MCP platform pricing.",                                                 0.9, "weekly"],
     ["/docs",                     "MCPServer.in Documentation",                            "Platform documentation for MCPServer.in.",                                    0.8, "weekly"],
     ["/blog",                     "MCPServer.in Blog",                                     "Articles on MCP, AI integration, and developer tooling.",                     0.7, "weekly"],
