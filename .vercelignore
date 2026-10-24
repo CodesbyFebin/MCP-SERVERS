@@ -7,6 +7,6 @@ git-history/
 *.log
 .DS_Store
 .kilo/
-drafts/
+/drafts/
 packages/
 assets/
